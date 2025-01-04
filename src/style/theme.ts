@@ -58,7 +58,7 @@ export const defaultTheme: Theme = {
   buttonScheme: {
     primary: {
       color: '#ffffff',
-      bg: '#213555',
+      bg: '#3E5879',
     },
   },
 };
