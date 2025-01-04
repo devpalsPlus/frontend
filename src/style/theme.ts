@@ -7,7 +7,7 @@ export type ColorKey =
   | 'white'
   | 'red';
 
-export type HeadingSize = 'large' | 'medium' | 'small' | 'verySmall';
+export type HeadingSize = 'large' | 'semiLarge' | 'medium' | 'small' | 'verySmall';
 
 export type ButtonSize = 'primary';
 
@@ -46,7 +46,8 @@ export const defaultTheme: Theme = {
     red: '#ff0000',
   },
   heading: {
-    large: { fontSize: '2rem' },
+    large: { fontSize: '1.75rem' },
+    semiLarge: { fontSize: '1.5rem' },
     medium: { fontSize: '1.25rem' },
     small: { fontSize: '1rem' },
     verySmall: { fontSize: '0.5rem' },
