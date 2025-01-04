@@ -4,9 +4,10 @@ export type ColorKey =
   | 'placeholder'
   | 'grey'
   | 'lightgrey'
-  | 'white';
+  | 'white'
+  | 'red';
 
-export type HeadingSize = 'large' | 'medium' | 'small';
+export type HeadingSize = 'large' | 'medium' | 'small' | 'verySmall';
 
 export type ButtonSize = 'primary';
 
@@ -42,11 +43,13 @@ export const defaultTheme: Theme = {
     grey: '#ececec',
     lightgrey: '#f9f9f9',
     white: '#ffffff',
+    red: '#ff0000',
   },
   heading: {
     large: { fontSize: '2rem' },
     medium: { fontSize: '1.25rem' },
     small: { fontSize: '1rem' },
+    verySmall: { fontSize: '0.5rem' },
   },
   buttonSize: {
     primary: {
