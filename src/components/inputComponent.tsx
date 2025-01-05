@@ -1,13 +1,22 @@
 import React from 'react';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 import * as S from '../pages/createProject/CreateProject.styled';
+import MDEditor from '@uiw/react-md-editor';
+import MdEditorInput from './\bmarkdownEditor/MdEditorInput';
 
 type InputProps = {
   control: Control<any>;
   name: string;
   placeholder?: string;
   errors: FieldErrors;
-  type?: 'text' | 'date' | 'textarea' | 'select' | 'number' | string;
+  type?:
+    | 'text'
+    | 'date'
+    | 'textarea'
+    | 'select'
+    | 'number'
+    | 'mdEditor'
+    | string;
   index?: string;
 };
 
@@ -35,6 +44,9 @@ const Input = ({
 
       case 'textarea':
         return <S.TextArea {...field} placeholder={placeholder} />;
+
+      case 'mdEditor':
+        return <MdEditorInput field={{ ...field }} />;
 
       default:
         return <S.Input {...field} type={type} placeholder={placeholder} />;
