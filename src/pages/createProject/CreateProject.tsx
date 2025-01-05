@@ -3,7 +3,7 @@ import * as S from './CreateProject.styled';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Input from '../../components/common/inputComponent';
+import Input from '../../components/inputComponent';
 import { PROJECTDATA } from '../../constants';
 
 const dateRegex = /^\d{4}\.\d{2}\.\d{2}$/;
@@ -42,7 +42,9 @@ const createProjectScheme = z.object({
     .positive({ message: '예상 기간은 1 이상이어야 합니다.' })
     .max(365, { message: '예상 기간은 365일을 초과할 수 없습니다.' }),
 
-  method: z.string({ required_error: '진행 방식을 입력해주세요.' }),
+  method: z
+    .string({ required_error: '진행 방식을 입력해주세요.' })
+    .nonempty({ message: '진행 방식을 입력해주세요.' }),
 
   newBy: z.boolean().optional(),
 
