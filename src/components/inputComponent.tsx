@@ -1,6 +1,6 @@
 import React from 'react';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
-import * as S from '../../pages/createProject/CreateProject.styled';
+import * as S from '../pages/createProject/CreateProject.styled';
 
 type InputProps = {
   control: Control<any>;
