@@ -4,7 +4,7 @@ import Main from '../pages/main/Main';
 import Login from '../pages/login/Login';
 import Register from '../pages/register/Register';
 import ChangePassword from '../pages/changePassword/ChangePassword';
-import Layout from '../components/common/layout/home/Layout';
+import Layout from '../components/common/layout/Layout';
 import Home from '../pages/home/Home';
 import CreateProject from '../pages/createProject/CreateProject';
 import Apply from '../pages/apply/Apply';
