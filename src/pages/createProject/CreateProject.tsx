@@ -147,7 +147,7 @@ const CreateProject = () => {
             control={control}
             errors={errors}
             name="description"
-            type="textarea"
+            type="mdEditor"
             placeholder="프로젝트 상세 정보를 입력해주세요."
           />
         </S.Section>
