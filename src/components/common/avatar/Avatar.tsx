@@ -9,7 +9,11 @@ export interface AvatarProps {
 function Avatar({ size, image }: AvatarProps) {
   return (
     <S.AvatarContainer size={size}>
-      {typeof image === 'string' ? <img src={image} alt="Avatar" /> : image}
+      {typeof image === 'string' ? (
+        <img className="avatar" src={image} alt="Avatar" />
+      ) : (
+        image
+      )}
     </S.AvatarContainer>
   );
 }
