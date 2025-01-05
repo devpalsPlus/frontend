@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './Main.styled';
-
 const Main = () => {
   /*
     메인 페이지
