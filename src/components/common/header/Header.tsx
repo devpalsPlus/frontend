@@ -1,11 +1,19 @@
 import React from 'react';
-import Container from './Header.styled';
+import * as S from './Header.styled';
+import Mainlogo from '../../../assets/mainlogo.svg';
+import Avatar from '../avatar/Avatar';
+import User from '../../../assets/user.svg';
+import { Link } from 'react-router-dom';
 
-const Header = () => {
-  /*
-    전체 Header 입니다.
-  */
-  return <Container>Header Component</Container>;
-};
+function Header() {
+  return (
+    <S.HeaderContainer>
+      <Link to="/home">
+        <img src={Mainlogo} alt="logo" />
+      </Link>
+      <Avatar size="45px" image={User} />
+    </S.HeaderContainer>
+  );
+}
 
 export default Header;
