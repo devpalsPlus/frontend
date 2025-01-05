@@ -1,8 +1,7 @@
 import React from 'react';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 import * as S from '../pages/createProject/CreateProject.styled';
-import MDEditor from '@uiw/react-md-editor';
-import MdEditorInput from './\bmarkdownEditor/MdEditorInput';
+import MdEditorInput from './markdownEditor/MdEditorInput';
 
 type InputProps = {
   control: Control<any>;
