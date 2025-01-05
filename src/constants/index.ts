@@ -6,7 +6,7 @@ export const PROJECTDATA = [
     name: 'maxVolunteers',
     label: '모집 인원',
     type: 'number',
-    placeholder: '인원을 입력하세요.',
+    placeholder: '모집 인원을 입력하세요. (ex. 5)',
   },
   {
     id: '2',
@@ -20,21 +20,21 @@ export const PROJECTDATA = [
     name: 'field',
     label: '모집 분야',
     type: 'text',
-    placeholder: '모집 분야를 적어주세요.',
+    placeholder: '모집 분야를 입력하세요.',
   },
   {
     id: '4',
     name: 'duration',
     label: '예상 기간',
     type: 'number',
-    placeholder: '예상 기간을 입력하세요.',
+    placeholder: '예상 기간을 입력하세요. (ex. 5)',
   },
   {
     id: '5',
     name: 'method',
     label: '진행 방식',
     type: 'text',
-    placeholder: '온라인 / 오프라인 / 온오프라인',
+    placeholder: '온라인 / 오프라인 / 온오프라인 등',
   },
   {
     id: '6',
