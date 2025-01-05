@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
-const RootStyle = styled.div``;
+export const HeaderContainer = styled.div`
+  width: 100%;
+  max-width: ${({ theme }) => theme.layout.width.desktop};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 120px;
 
-export default RootStyle;
+  img {
+    width: 80px;
+    height: 80px;
+  }
+`;
