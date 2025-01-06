@@ -25,13 +25,16 @@ const Input = ({
     switch (type) {
       case 'date':
         return (
-          <S.DateInput name={name} type="date" placeholder={placeholder} />
+          <S.DateInput
+            {...field}
+            name={name}
+            type="date"
+            placeholder={placeholder}
+          />
         );
 
       case 'textarea':
         return <S.TextArea {...field} placeholder={placeholder} />;
-
-      case 'select':
 
       default:
         return <S.Input {...field} type={type} placeholder={placeholder} />;
@@ -39,37 +42,35 @@ const Input = ({
   };
 
   const renderInputProjectInformation = (field: any) => {
-    if (index) {
-      switch (type) {
-        case 'text':
-          return (
-            <S.InfoInputText
-              {...field}
-              name={name}
-              type="text"
-              placeholder={placeholder}
-            />
-          );
-        case 'select':
-          return (
-            <select {...field}>
-              <option value="" disabled>
-                {placeholder}
-              </option>
-            </select>
-          );
-        case 'number':
-          return (
-            <S.InfoInputText
-              {...field}
-              name={name}
-              type="number"
-              placeholder={placeholder}
-            />
-          );
-        case 'checkbox':
-          return <S.InfoInputCheckbox {...field} type="checkbox" id={name} />;
-      }
+    switch (type) {
+      case 'text':
+        return (
+          <S.InfoInputText
+            {...field}
+            name={name}
+            type="text"
+            placeholder={placeholder}
+          />
+        );
+      case 'select':
+        return (
+          <select {...field}>
+            <option value="" disabled>
+              {placeholder}
+            </option>
+          </select>
+        );
+      case 'number':
+        return (
+          <S.InfoInputText
+            {...field}
+            name={name}
+            type="number"
+            placeholder={placeholder}
+          />
+        );
+      case 'checkbox':
+        return <S.InfoInputCheckbox {...field} type="checkbox" id={name} />;
     }
   };
 

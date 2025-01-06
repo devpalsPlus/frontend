@@ -6,20 +6,49 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '../../components/common/inputComponent';
 import { PROJECTDATA } from '../../constants';
 
+const dateRegex = /^\d{4}\.\d{2}\.\d{2}$/;
+
 const createProjectScheme = z.object({
-  startDate: z.date({ message: '입력해주세요' }),
-  endDate: z.date({ message: '입력해주세요' }),
+  startDate: z
+    .string({ required_error: '시작 날짜를 입력해주세요.' })
+    .refine((date) => !isNaN(Date.parse(date)), {
+      message: '유효한 날짜를 입력해주세요.',
+    }),
+  endDate: z
+    .string({ required_error: '종료 날짜를 입력해주세요.' })
+    .refine((date) => !isNaN(Date.parse(date)), {
+      message: '유효한 날짜를 입력해주세요.',
+    }),
 
-  title: z.string({ message: '입력해주세요' }),
+  title: z
+    .string({ required_error: '프로젝트 제목을 입력해주세요.' })
+    .min(1, { message: '프로젝트 제목을 입력해주세요.' }),
 
-  maxVolunteers: z.number({ message: '숫자로 입력해주세요.' }),
-  startDatePre: z.string({ message: '입력해주세요' }),
-  field: z.string({ message: '입력해주세요' }),
-  duration: z.number({ message: '입력해주세요' }),
-  method: z.string({ message: '입력해주세요' }),
-  newBy: z.string({ message: '입력해주세요' }),
+  maxVolunteers: z.coerce
+    .number({ required_error: '모집 인원을 입력해주세요.' })
+    .min(1, { message: '모집 인원은 1명 이상이어야 합니다.' })
+    .max(1000, { message: '모집 인원은 1000명 이하이어야 합니다.' }),
 
-  description: z.string({ message: '입력해주세요' }),
+  startDatePre: z
+    .string({ required_error: '시작 날짜를 입력해주세요.' })
+    .regex(dateRegex, { message: 'YYYY.MM.DD 형식이어야 합니다.' }),
+
+  field: z
+    .string({ required_error: '모집 분야를 입력해주세요.' })
+    .min(1, { message: '모집 분야를 입력해주세요.' }),
+
+  duration: z.coerce
+    .number({ required_error: '예상 기간을 입력해주세요.' })
+    .positive({ message: '예상 기간은 1 이상이어야 합니다.' })
+    .max(365, { message: '예상 기간은 365일을 초과할 수 없습니다.' }),
+
+  method: z.string({ required_error: '진행 방식을 입력해주세요.' }),
+
+  newBy: z.boolean().optional(),
+
+  description: z
+    .string({ required_error: '프로젝트 내용을 입력해주세요.' })
+    .min(10, { message: '프로젝트 내용은 최소 10자 이상이어야 합니다.' }),
 });
 
 const CreateProject = () => {
@@ -29,6 +58,18 @@ const CreateProject = () => {
     control,
   } = useForm<z.infer<typeof createProjectScheme>>({
     resolver: zodResolver(createProjectScheme),
+    defaultValues: {
+      startDatePre: '',
+      startDate: '',
+      endDate: '',
+      title: '',
+      maxVolunteers: 0,
+      field: '',
+      duration: 0,
+      method: '',
+      newBy: false,
+      description: '',
+    },
   });
 
   const handleSubmit = (data: z.infer<typeof createProjectScheme>, e: any) => {
