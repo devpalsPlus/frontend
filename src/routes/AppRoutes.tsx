@@ -78,7 +78,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/users/:userId',
+    path: '/main/mypage',
     element: (
       <Layout>
         <LayoutSidebar>
@@ -127,6 +127,7 @@ const routeList = [
       </Layout>
     ),
   },
+
   {
     path: '/main/manage/:projectId',
     element: (
