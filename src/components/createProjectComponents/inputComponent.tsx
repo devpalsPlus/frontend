@@ -1,7 +1,7 @@
 import React from 'react';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 import * as S from '../../pages/createProject/CreateProject.styled';
-import MdEditorInput from './\bmarkdownEditor/MdEditorInput';
+import MdEditorInput from '../markdownEditor/MdEditorInput';
 
 type InputProps = {
   control: Control<any>;
@@ -38,7 +38,7 @@ const Input = ({
       case 'mdEditor':
         return <MdEditorInput field={{ ...field }} />;
       default:
-        return <S.Input {...field} type={type} placeholder={placeholder} />;
+        return <S.Inputs {...field} type={type} placeholder={placeholder} />;
     }
   };
 
