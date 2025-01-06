@@ -5,8 +5,27 @@ import { EnvelopeIcon } from '@heroicons/react/24/outline';
 import { KeyIcon } from '@heroicons/react/24/outline';
 import InputText from '../../components/auth/InputText';
 import Title from '../../components/common/title/Title';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+const loginSchema = z.object({
+  email: z.string().email('이메일을 입력해주세요.').nonempty('이메일을 입력해주세요.'),
+  password: z.string().nonempty('비밀번호를 입력해주세요.')
+});
+
+type loginFormValues = z.infer<typeof loginSchema>;
 
 const Login = () => {
+  const {register, handleSubmit, formState: {errors}} = useForm<loginFormValues>({
+    resolver: zodResolver(loginSchema)
+  });
+
+  const onSubmit = (data: loginFormValues, e?: React.BaseSyntheticEvent) => {
+    e?.preventDefault();
+    console.log(data);
+  }
+
   return (
     <S.Container>
       <h1 className='logo'>
@@ -15,15 +34,15 @@ const Login = () => {
         </Link>
       </h1>
       <Title size='semiLarge'>로그인</Title>
-      <form>
-        <fieldset>
-          <EnvelopeIcon />
-          <InputText placeholder='이메일' inputType='email' />
-        </fieldset>
-        <fieldset>
-          <KeyIcon />
-          <InputText placeholder='비밀번호' inputType='password' />
-        </fieldset>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <S.InputWrapper>
+          <InputText inputType='email' placeholder='이메일' icon={<EnvelopeIcon />} {...register('email')}/>
+          {errors.email && <S.ErrorMessage>{errors.email.message}</S.ErrorMessage>}
+        </S.InputWrapper>
+        <S.InputWrapper>
+          <InputText inputType='password' placeholder='비밀번호' icon={<KeyIcon />} {...register('password')}/>
+          {errors.password && <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>}
+        </S.InputWrapper>
         <button type="submit">로그인</button>
       </form>
       <S.WrapperPassword>

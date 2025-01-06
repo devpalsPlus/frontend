@@ -1,13 +1,21 @@
 import React from 'react';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 import * as S from '../../pages/createProject/CreateProject.styled';
+import MdEditorInput from '../markdownEditor/MdEditorInput';
 
 type InputProps = {
   control: Control<any>;
   name: string;
   placeholder?: string;
   errors: FieldErrors;
-  type?: 'text' | 'date' | 'textarea' | 'select' | 'number' | string;
+  type?:
+    | 'text'
+    | 'date'
+    | 'textarea'
+    | 'select'
+    | 'number'
+    | 'mdEditor'
+    | string;
   index?: string;
 };
 
@@ -24,17 +32,13 @@ const Input = ({
   const renderInput = (field: any) => {
     switch (type) {
       case 'date':
-        return (
-          <S.DateInput
-            {...field}
-            name={name}
-            type="date"
-            placeholder={placeholder}
-          />
-        );
+        return <S.DateInput {...field} type="date" placeholder={placeholder} />;
 
       case 'textarea':
         return <S.TextArea {...field} placeholder={placeholder} />;
+
+      case 'mdEditor':
+        return <MdEditorInput field={{ ...field }} />;
 
       default:
         return <S.Input {...field} type={type} placeholder={placeholder} />;
@@ -45,12 +49,7 @@ const Input = ({
     switch (type) {
       case 'text':
         return (
-          <S.InfoInputText
-            {...field}
-            name={name}
-            type="text"
-            placeholder={placeholder}
-          />
+          <S.InfoInputText {...field} type="text" placeholder={placeholder} />
         );
       case 'select':
         return (
@@ -62,12 +61,7 @@ const Input = ({
         );
       case 'number':
         return (
-          <S.InfoInputText
-            {...field}
-            name={name}
-            type="number"
-            placeholder={placeholder}
-          />
+          <S.InfoInputText {...field} type="number" placeholder={placeholder} />
         );
       case 'checkbox':
         return <S.InfoInputCheckbox {...field} type="checkbox" id={name} />;

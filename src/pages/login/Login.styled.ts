@@ -18,15 +18,6 @@ export const Container = styled.div`
     align-items: center;
   }
   
-  fieldset {
-    max-width: 300px;
-    width: 100%;
-    border: 1px solid #c2c2c2;
-    border-radius: 30px;
-    padding: 0.6rem 0.625rem;
-    margin-bottom: 25px;
-  }
-  
   svg {
     width: 1.4rem;
     height: 1.4rem;
@@ -45,6 +36,17 @@ export const Container = styled.div`
     font-weight: 600;
   }
 `;
+
+export const InputWrapper = styled.div`
+  max-width: 300px;
+  width: 100%;
+  padding: 0.6rem 0.625rem;
+  margin-bottom: 25px;
+`;
+
+export const ErrorMessage = styled.span`
+  color: red;
+`
 
 export const WrapperPassword = styled.div`
   width: 30%;
