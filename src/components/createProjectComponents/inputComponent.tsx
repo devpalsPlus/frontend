@@ -1,7 +1,6 @@
 import React from 'react';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
-import * as S from '../pages/createProject/CreateProject.styled';
-import MDEditor from '@uiw/react-md-editor';
+import * as S from '../../pages/createProject/CreateProject.styled';
 import MdEditorInput from './\bmarkdownEditor/MdEditorInput';
 
 type InputProps = {
@@ -33,14 +32,7 @@ const Input = ({
   const renderInput = (field: any) => {
     switch (type) {
       case 'date':
-        return (
-          <S.DateInput
-            {...field}
-            name={name}
-            type="date"
-            placeholder={placeholder}
-          />
-        );
+        return <S.DateInput {...field} type="date" placeholder={placeholder} />;
 
       case 'textarea':
         return <S.TextArea {...field} placeholder={placeholder} />;
@@ -57,12 +49,7 @@ const Input = ({
     switch (type) {
       case 'text':
         return (
-          <S.InfoInputText
-            {...field}
-            name={name}
-            type="text"
-            placeholder={placeholder}
-          />
+          <S.InfoInputText {...field} type="text" placeholder={placeholder} />
         );
       case 'select':
         return (
@@ -74,12 +61,7 @@ const Input = ({
         );
       case 'number':
         return (
-          <S.InfoInputText
-            {...field}
-            name={name}
-            type="number"
-            placeholder={placeholder}
-          />
+          <S.InfoInputText {...field} type="number" placeholder={placeholder} />
         );
       case 'checkbox':
         return <S.InfoInputCheckbox {...field} type="checkbox" id={name} />;
