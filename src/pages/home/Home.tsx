@@ -1,6 +1,7 @@
 import * as S from './Home.styled';
 import Banner from '../../components/home/banner/Banner';
 import ProjectStats from '../../components/home/projectStats/ProjectStats';
+import SearchFiltering from '../../components/home/searchFiltering/SearchFiltering';
 
 const Home = () => {
   /*
@@ -10,7 +11,10 @@ const Home = () => {
     <S.Container>
       <S.Wrapper>
         <Banner />
-        <ProjectStats />
+        <S.WrapperContents>
+          <ProjectStats />
+          <SearchFiltering />
+        </S.WrapperContents>
       </S.Wrapper>
     </S.Container>
   );
