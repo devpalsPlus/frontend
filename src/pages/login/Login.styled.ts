@@ -8,28 +8,21 @@ export const Container = styled.div`
   img {
     width: 6rem;
     height: 6rem;
-    margin: 5rem 0 2.5rem;
+    margin: 4rem 0 2.5rem;
   }
   
   form {
-    width: 30%;
+    width: 35%;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  svg {
-    width: 1.4rem;
-    height: 1.4rem;
-    color: #c2c2c2;
-    margin-right: 10px;
   }
 
   button {
     max-width: 300px;
     width: 100%;
     border-radius: 30px;
-    padding: 0.7rem 0.625rem;
+    padding: 0.75rem 0.625rem;
     color: ${({theme}) => theme.color.white};
     background-color: ${({theme}) => theme.buttonScheme['primary'].bg};
     font-size: 1rem;
@@ -40,12 +33,21 @@ export const Container = styled.div`
 export const InputWrapper = styled.div`
   max-width: 300px;
   width: 100%;
-  padding: 0.6rem 0.625rem;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  position: relative;
 `;
 
-export const ErrorMessage = styled.span`
-  color: red;
+export const ErrorMessage = styled.span<{ message?: string }>`
+  position: absolute;
+  bottom: -1.5rem;
+  left: 1rem;
+  display: inline-block;
+  color: #d43636;
+  font-size: 0.7rem;
+  height: 1.2rem;
+  visibility: ${({ message }) => (message ? 'visible' : 'hidden')};
+  opacity: ${({ message }) => (message ? 1 : 0)};
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 `
 
 export const WrapperPassword = styled.div`

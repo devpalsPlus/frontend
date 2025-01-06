@@ -4,6 +4,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid #ccc;
+  padding: 0.7rem 0.625rem;
+  border-radius: 30px;
 `;
 
 export const IconContainer = styled.div`
@@ -11,6 +13,13 @@ export const IconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  svg {
+    width: 1.4rem;
+    height: 1.4rem;
+    color: #c2c2c2;
+    margin-right: 10px;
+  }
 `;
 
 export const Input = styled.input`
@@ -20,6 +29,6 @@ export const Input = styled.input`
   color: ${({theme}) => theme.color.primary}
 
   &::placeholder {
-    color: #aaa;
+    color: #c2c2c2;
   }
-`;
+`; 
