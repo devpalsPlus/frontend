@@ -7,7 +7,12 @@ export type ColorKey =
   | 'white'
   | 'red';
 
-export type HeadingSize = 'large' | 'semiLarge' | 'medium' | 'small' | 'verySmall';
+export type HeadingSize =
+  | 'large'
+  | 'semiLarge'
+  | 'medium'
+  | 'small'
+  | 'verySmall';
 
 export type ButtonSize = 'primary';
 
@@ -74,7 +79,7 @@ export const defaultTheme: Theme = {
   },
   layout: {
     width: {
-      desktop: '2000px',
+      desktop: '1440px',
       tablet: '768px',
       mobile: '320px',
     },
