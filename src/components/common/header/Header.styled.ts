@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
   width: 100%;
+  margin: 0 auto;
   max-width: ${({ theme }) => theme.layout.width.desktop};
   display: flex;
   justify-content: space-between;

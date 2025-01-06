@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from '../pages/main/Main';
 import Login from '../pages/login/Login';
 import Register from '../pages/register/Register';
@@ -18,34 +18,151 @@ import OtherUserProfile from '../pages/users/otherUserProfile/OtherUserProfile';
 import OtherUserProject from '../pages/users/otherUserProject/OtherUserProject';
 import MyProjectVolunteer from '../pages/manage/myProjectVolunteer/MyProjectVolunteer';
 import MyProjectVolunteersPass from '../pages/manage/myProjectParticipantsPass/MyProjectVolunteersPass';
+import Error from '../pages/error/Error';
+
+const routeList = [
+  {
+    path: '/',
+    element: <Main />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/signup',
+    element: <Register />,
+  },
+  {
+    path: '/change-password',
+    element: <ChangePassword />,
+  },
+  {
+    path: '/main',
+    element: (
+      <Layout>
+        <Home />
+      </Layout>
+    ),
+  },
+  {
+    path: '/main/create',
+    element: (
+      <Layout>
+        <CreateProject />
+      </Layout>
+    ),
+  },
+  {
+    path: '/main/apply',
+    element: (
+      <Layout>
+        <Apply />
+      </Layout>
+    ),
+  },
+  {
+    path: '/main/project-detail',
+    element: (
+      <Layout>
+        <ProjectDetail />
+      </Layout>
+    ),
+  },
+  {
+    path: '/main/manage',
+    element: (
+      <Layout>
+        <MyProjectList />
+      </Layout>
+    ),
+  },
+  {
+    path: '/main/users/:userId',
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <MyProfile />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
+  {
+    path: '/main/users/:userId/entered',
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <MyEnteredProject />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
+  {
+    path: '/main/users/:userId/apply',
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <MyApplyProject />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
+  {
+    path: '/main/users/:userId/others',
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <OtherUserProfile />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
+  {
+    path: '/main/users/:userId/others-project',
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <OtherUserProject />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
+  {
+    path: '/main/manage/:projectId',
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <MyProjectVolunteer />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
+  {
+    path: '/main/manage/:projectId/pass-nonpass',
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <MyProjectVolunteersPass />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
+];
+
+const newRouteList = routeList.map((item) => {
+  return {
+    ...item,
+    errorElement: <Error />,
+  };
+});
+
+const router = createBrowserRouter(newRouteList);
 
 const AppRoutes = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Main />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/change-password" element={<ChangePassword />} />
-
-      <Route path="/main" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="create" element={<CreateProject />} />
-        <Route path="apply" element={<Apply />} />
-        <Route path="project-detail" element={<ProjectDetail />} />
-        <Route path="manage" element={<MyProjectList />} />
-        <Route path="users/:user_id" element={<LayoutSidebar />}>
-          <Route index element={<MyProfile />} />
-          <Route path="entered" element={<MyEnteredProject />} />
-          <Route path="apply" element={<MyApplyProject />} />
-          <Route path="others" element={<OtherUserProfile />} />
-          <Route path="others-project" element={<OtherUserProject />} />
-        </Route>
-        <Route path="manage/:project_id" element={<LayoutSidebar />}>
-          <Route index element={<MyProjectVolunteer />} />
-          <Route path="pass-nonpass" element={<MyProjectVolunteersPass />} />
-        </Route>
-      </Route>
-    </Routes>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 };
 
