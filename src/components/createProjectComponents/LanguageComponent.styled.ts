@@ -17,14 +17,12 @@ export const LanguageItem = styled.div<{ isSelected: boolean }>`
   align-items: center;
   gap: 3px;
   padding: 3px 8px;
-  border: 1px solid
-    ${({ isSelected, theme }) =>
-      isSelected ? theme.color.primary : theme.color.border};
+  border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius};
   background-color: ${({ isSelected, theme }) =>
-    isSelected ? theme.color.primary : theme.color.white};
+    isSelected ? theme.buttonScheme.primary.bg : theme.color.white};
   color: ${({ isSelected, theme }) =>
-    isSelected ? theme.color.white : theme.color.primary};
+    isSelected ? theme.color.white : theme.color.lightgrey};
   cursor: pointer;
   transition: all 0.2s;
 
@@ -39,7 +37,8 @@ export const LanguageItem = styled.div<{ isSelected: boolean }>`
   .name {
     font-size: 0.7rem;
     font-weight: 200;
-    color: ${({ theme }) => theme.color.primary};
+    color: ${({ isSelected, theme }) =>
+      isSelected ? theme.color.white : theme.color.primary};
   }
 `;
 
