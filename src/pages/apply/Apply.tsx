@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './Apply.styled';
 import Input from '../../components/createProjectComponents/inputComponent';
-import { useForm } from 'react-hook-form';
+import { useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { CareerInputList } from '../../components/createProjectComponents/inputComponent2';
 
 const ApplyScheme = z.object({
   email: z.string(),
   phoneFirst: z.string(),
   phoneMiddle: z.string(),
   phoneLast: z.string(),
+  phone: z.array(
+    z.object({
+      first: z.string(),
+      middle: z.string(),
+      last: z.string(),
+    })
+  ),
   wantToSay: z.string(),
-  introduce: z.string(),
+  careers: z
+    .array(
+      z.object({
+        companyName: z.string(),
+        periodStart: z.string(),
+        periodEnd: z.string(),
+        role: z.string(),
+      })
+    )
+    .optional(),
 });
 
 const Apply = () => {
@@ -19,6 +36,7 @@ const Apply = () => {
     handleSubmit: onSubmitHandler,
     formState: { errors },
     control,
+    register,
   } = useForm<z.infer<typeof ApplyScheme>>({
     resolver: zodResolver(ApplyScheme),
     defaultValues: {
@@ -26,16 +44,24 @@ const Apply = () => {
       phoneFirst: '',
       phoneMiddle: '',
       phoneLast: '',
+      phone: [],
       wantToSay: '',
-      introduce: '',
+      careers: [],
     },
+  });
+  const { fields: fieldsCareers, append: appendCareers } = useFieldArray({
+    name: 'careers',
+    control,
+  });
+
+  const { fields: fieldsPhone, append: appendPhone } = useFieldArray({
+    name: 'phone',
+    control,
   });
 
   const handleSubmit = (data: z.infer<typeof ApplyScheme>) => {
     console.log(data);
   };
-
-  const handleClick = () => {};
 
   return (
     <S.Container>
@@ -73,15 +99,53 @@ const Apply = () => {
 
         <S.Section>
           <S.Label>경력사항 / 수상이력</S.Label>
-          <S.CareerContainer>
-            <S.CareerInput type="text" placeholder="회사명 / 활동명" />
-            <S.CareerInput
-              type="date"
-              placeholder="기간 (예: 2023.01 ~ 2023.12)"
-            />
-            <S.CareerInput type="text" placeholder="역할 / 기여도" />
-          </S.CareerContainer>
-          <p onClick={handleClick}>추가</p>
+          {fieldsCareers.map((field, index) => (
+            <S.CareerContainer key={field.id}>
+              <CareerInputList
+                control={control}
+                index={index}
+                field={field}
+                placeholder="회사명 / 활동명"
+                name="companyName"
+              />
+              <CareerInputList
+                control={control}
+                index={index}
+                field={field}
+                placeholder="시작 기간"
+                name="periodStart"
+                type="date"
+              />
+              <CareerInputList
+                control={control}
+                index={index}
+                field={field}
+                placeholder="종료 기간"
+                name="periodEnd"
+                type="date"
+              />
+              <CareerInputList
+                control={control}
+                index={index}
+                field={field}
+                placeholder="역할 / 기여도"
+                name="role"
+              />
+            </S.CareerContainer>
+          ))}
+          <p
+            onClick={() =>
+              appendCareers({
+                companyName: '',
+                periodStart: '',
+                periodEnd: '',
+                role: '',
+              })
+            }
+            style={{ cursor: 'pointer', color: 'blue' }}
+          >
+            추가
+          </p>
         </S.Section>
 
         <S.SubmitButton type="submit">제출</S.SubmitButton>

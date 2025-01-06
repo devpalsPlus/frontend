@@ -117,10 +117,10 @@ export const CareerInput = styled.input`
   }
 
   &:nth-child(1) {
-    flex: 2;
+    flex: 1;
   }
   &:nth-child(2) {
-    flex: 1;
+    flex: 0.5;
     padding: 10px 9px;
     border: 1px solid ${({ theme }) => theme.color.border};
     border-radius: ${({ theme }) => theme.borderRadius};
@@ -134,7 +134,22 @@ export const CareerInput = styled.input`
     }
   }
   &:nth-child(3) {
-    flex: 1.5;
+    flex: 0.5;
+    padding: 10px 9px;
+    border: 1px solid ${({ theme }) => theme.color.border};
+    border-radius: ${({ theme }) => theme.borderRadius};
+    font-size: ${({ theme }) => theme.heading.small};
+    background-color: #ffffff;
+    color: #aaa;
+    font-family: 'Arial', sans-serif;
+
+    &::placeholder {
+      color: #aaa;
+    }
+  }
+
+  &:nth-child(4) {
+    flex: 2;
   }
 `;
 
