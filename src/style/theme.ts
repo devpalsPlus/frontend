@@ -7,11 +7,18 @@ export type ColorKey =
   | 'white'
   | 'red';
 
-export type HeadingSize = 'large' | 'semiLarge' | 'medium' | 'small' | 'verySmall';
+export type HeadingSize =
+  | 'large'
+  | 'semiLarge'
+  | 'medium'
+  | 'small'
+  | 'verySmall';
 
 export type ButtonSize = 'primary';
 
 export type ButtonSchema = 'primary';
+
+export type LayoutWidth = 'desktop' | 'tablet' | 'mobile';
 
 interface Theme {
   color: Record<ColorKey, string>;
@@ -31,6 +38,11 @@ interface Theme {
     [key in ButtonSchema]: {
       color: string;
       bg: string;
+    };
+  };
+  layout: {
+    width: {
+      [key in LayoutWidth]: string;
     };
   };
 }
@@ -63,6 +75,13 @@ export const defaultTheme: Theme = {
     primary: {
       color: '#ffffff',
       bg: '#3E5879',
+    },
+  },
+  layout: {
+    width: {
+      desktop: '1440px',
+      tablet: '768px',
+      mobile: '320px',
     },
   },
 };

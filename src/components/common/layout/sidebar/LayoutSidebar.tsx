@@ -1,9 +1,10 @@
 import React from 'react';
 import * as S from './LayoutSidebar.styled';
-import { Outlet } from 'react-router-dom';
 import Sidebar from '../../sidebar/Sidebar';
-
-const LayoutSidebar = () => {
+interface LayoutSidebarProps {
+  children: React.ReactNode;
+}
+const LayoutSidebar = ({ children }: LayoutSidebarProps) => {
   /*
     관리자 페이지와 마이 페이지의 Sidebar Layout 입니다.
   */
@@ -11,8 +12,7 @@ const LayoutSidebar = () => {
   return (
     <S.Container>
       <Sidebar />
-
-      <Outlet />
+      {children}
     </S.Container>
   );
 };
