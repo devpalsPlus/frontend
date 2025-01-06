@@ -1,15 +1,15 @@
 import React from 'react';
 import * as S from './Layout.styled';
 import Header from '../header/Header';
-import { Outlet } from 'react-router-dom';
 
-function Layout() {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+function Layout({ children }: LayoutProps) {
   return (
     <>
       <Header />
-      <S.LayoutContainer>
-        <Outlet />
-      </S.LayoutContainer>
+      <S.LayoutContainer>{children}</S.LayoutContainer>
     </>
   );
 }
