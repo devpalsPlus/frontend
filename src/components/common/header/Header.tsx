@@ -1,9 +1,10 @@
 import React from 'react';
 import * as S from './Header.styled';
 import Mainlogo from '../../../assets/mainlogo.svg';
-import Avatar from '../avatar/Avatar';
 import User from '../../../assets/user.svg';
 import { Link } from 'react-router-dom';
+import DropDown from '../dropDown/DropDown';
+import Avatar from '../avatar/Avatar';
 
 function Header() {
   return (
@@ -11,7 +12,25 @@ function Header() {
       <Link to="/home">
         <img src={Mainlogo} alt="logo" />
       </Link>
-      <Avatar size="45px" image={User} />
+      <nav className="auth">
+        <DropDown toggleButton={<Avatar size="45px" image={User} />}>
+          <>
+            {
+              <ul>
+                <li>
+                  <Link to="/main/mypage">마이페이지</Link>
+                </li>
+                <li>
+                  <Link to="/main/manage">모집하고 있는 프로젝트 </Link>
+                </li>
+                <li>
+                  <Link to="/home">로그아웃</Link>
+                </li>
+              </ul>
+            }
+          </>
+        </DropDown>
+      </nav>
     </S.HeaderContainer>
   );
 }
