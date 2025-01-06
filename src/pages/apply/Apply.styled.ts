@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 970px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 40px;
   font-family: Arial, sans-serif;

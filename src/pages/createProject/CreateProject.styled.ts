@@ -110,21 +110,6 @@ export const InfoInputCheckbox = styled.input`
   cursor: pointer;
 `;
 
-export const InfoInputSelect = styled.input`
-  select {
-    flex: 0.6;
-    padding: 10px;
-    border: 1px solid ${({ theme }) => theme.color.border};
-    border-radius: ${({ theme }) => theme.borderRadius};
-    font-size: 0.5rem;
-    background-color: #f9f9f9;
-
-    &::placeholder {
-      color: #aaa;
-    }
-  }
-`;
-
 export const TextArea = styled.textarea`
   width: 100%;
   height: 150px;
