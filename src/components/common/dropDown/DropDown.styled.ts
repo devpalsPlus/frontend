@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const DropDownStyle = styled.div`
+export const DropDownContainer = styled.div`
   position: relative;
   button {
     background: none;
