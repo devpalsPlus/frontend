@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Input from '../../components/createProjectComponents/inputComponent';
 
 export const Container = styled.div`
   max-width: 100%;
@@ -6,7 +7,7 @@ export const Container = styled.div`
   padding: 60px;
 `;
 
-export const Input = styled.input`
+export const Inputs = styled.input`
   width: 100%;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.border};
