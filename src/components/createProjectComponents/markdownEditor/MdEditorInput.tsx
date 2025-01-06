@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './MdEditorInput.styled';
-import MDEditor from '@uiw/react-md-editor';
 
 const MdEditorInput = ({ field }) => {
   return (
