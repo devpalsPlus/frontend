@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 900px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 60px;
 `;
@@ -69,7 +69,7 @@ export const SectionInput = styled.div`
 export const InfoRow = styled.div`
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 13px;
   display: flex;
 
   label {
