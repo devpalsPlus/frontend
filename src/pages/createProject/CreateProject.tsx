@@ -34,11 +34,7 @@ const createProjectScheme = z.object({
     .string({ required_error: '시작 날짜를 입력해주세요.' })
     .regex(dateRegex, { message: 'YYYY.MM.DD 형식이어야 합니다.' }),
   field: z
-    .array(
-      z.object({
-        id: z.string(),
-      })
-    )
+    .array(z.string())
     .min(1, { message: '최소 1개 이상의 분야를 선택해주세요.' }),
   duration: z.coerce
     .number({ required_error: '예상 기간을 입력해주세요.' })
@@ -47,11 +43,7 @@ const createProjectScheme = z.object({
   method: z.string().nonempty({ message: '진행 방식을 선택 해주세요.' }),
   newBy: z.boolean().optional(),
   languages: z
-    .array(
-      z.object({
-        language: z.string(),
-      })
-    )
+    .array(z.string())
     .min(1, { message: '최소 1개 이상의 언어를 선택해주세요.' }),
 
   description: z
@@ -60,12 +52,8 @@ const createProjectScheme = z.object({
 });
 
 const CreateProject = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState<
-    { language: string; icon: string }[]
-  >([]);
-  const [selectedMethod, setSelectedMethod] = useState<
-    { id: string; label: string }[]
-  >([]);
+  const [selectedLanguage, setSelectedLanguage] = useState<string[]>([]);
+  const [selectedMethod, setSelectedMethod] = useState<string[]>([]);
 
   const {
     handleSubmit: onSubmitHandler,
@@ -91,7 +79,6 @@ const CreateProject = () => {
 
   const handleSubmit = (data: z.infer<typeof createProjectScheme>, e: any) => {
     e.preventDefault();
-    setValue('languages', selectedLanguage);
     console.log(data);
   };
 
