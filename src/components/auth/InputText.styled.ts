@@ -26,7 +26,7 @@ export const Input = styled.input`
   border: none;
   outline: none;
   font-size: 0.9em;
-  color: ${({ theme }) => theme.color.primary};
+  color: ${({ theme }) => theme.color.primary}
 
   &::placeholder {
     color: #c2c2c2;
