@@ -4,13 +4,13 @@ import Input from '../../components/createProjectComponents/inputComponent';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { CareerInputList } from '../../components/createProjectComponents/inputComponent2';
+import {
+  CareerInputList,
+  PhoneInputList,
+} from '../../components/createProjectComponents/inputComponent2';
 
 const ApplyScheme = z.object({
   email: z.string(),
-  phoneFirst: z.string(),
-  phoneMiddle: z.string(),
-  phoneLast: z.string(),
   phone: z.array(
     z.object({
       first: z.string(),
@@ -36,15 +36,17 @@ const Apply = () => {
     handleSubmit: onSubmitHandler,
     formState: { errors },
     control,
-    register,
   } = useForm<z.infer<typeof ApplyScheme>>({
     resolver: zodResolver(ApplyScheme),
     defaultValues: {
       email: '',
-      phoneFirst: '',
-      phoneMiddle: '',
-      phoneLast: '',
-      phone: [],
+      phone: [
+        {
+          first: '',
+          middle: '',
+          last: '',
+        },
+      ],
       wantToSay: '',
       careers: [],
     },
@@ -54,7 +56,7 @@ const Apply = () => {
     control,
   });
 
-  const { fields: fieldsPhone, append: appendPhone } = useFieldArray({
+  const { fields: fieldsPhone } = useFieldArray({
     name: 'phone',
     control,
   });
@@ -83,13 +85,33 @@ const Apply = () => {
 
         <S.Section>
           <S.Label>전화번호</S.Label>
-          <S.PhoneInputContainer>
-            <S.PhoneInputFirst type="text" maxLength={3} />
-            <S.Dash>-</S.Dash>
-            <S.PhoneInput type="text" maxLength={4} />
-            <S.Dash>-</S.Dash>
-            <S.PhoneInput type="text" maxLength={4} />
-          </S.PhoneInputContainer>
+          {fieldsPhone.map((field, index) => (
+            <S.PhoneInputContainer key={field.id}>
+              <PhoneInputList
+                control={control}
+                index={index}
+                field={field}
+                name="first"
+                maxLength={3}
+              />
+              <S.Dash>-</S.Dash>
+              <PhoneInputList
+                control={control}
+                index={index}
+                field={field}
+                name="middle"
+                maxLength={4}
+              />
+              <S.Dash>-</S.Dash>
+              <PhoneInputList
+                control={control}
+                index={index}
+                field={field}
+                name="last"
+                maxLength={4}
+              />
+            </S.PhoneInputContainer>
+          ))}
         </S.Section>
 
         <S.Section>

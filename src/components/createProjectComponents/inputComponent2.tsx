@@ -11,6 +11,15 @@ interface CareerInputListProps {
   type?: 'text' | 'date';
 }
 
+interface PhoneInputListProps {
+  control: Control<any>;
+  index: number;
+  field: any;
+  placeholder?: string;
+  name: string;
+  maxLength?: number;
+}
+
 export const CareerInputList = ({
   control,
   index,
@@ -24,6 +33,29 @@ export const CareerInputList = ({
       name={`careers.${index}.${name}`}
       render={({ field }) => (
         <S.CareerInput {...field} type={type} placeholder={placeholder} />
+      )}
+    />
+  );
+};
+
+export const PhoneInputList = ({
+  control,
+  index,
+  name,
+  placeholder,
+  maxLength,
+}: PhoneInputListProps) => {
+  return (
+    <Controller
+      control={control}
+      name={`phone.${index}.${name}`}
+      render={({ field }) => (
+        <S.PhoneInput
+          {...field}
+          maxLength={maxLength}
+          placeholder={placeholder}
+          name={name}
+        />
       )}
     />
   );

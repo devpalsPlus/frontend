@@ -58,21 +58,8 @@ export const PhoneInputContainer = styled.div`
   margin-bottom: 15px;
 `;
 
-export const PhoneInputFirst = styled.input`
-  width: 60px;
-  padding: 10px;
-  border: 1px solid ${({ theme }) => theme.color.border};
-  border-radius: ${({ theme }) => theme.borderRadius};
-  text-align: center;
-  font-size: 14px;
-
-  &:focus {
-    outline: none;
-    border-color: #888;
-  }
-`;
-export const PhoneInput = styled.input`
-  width: 80px;
+export const PhoneInput = styled.input<{ name: string }>`
+  ${({ name }) => (name === 'first' ? `width: 60px;` : `width: 80px;`)}
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius};
