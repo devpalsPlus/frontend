@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const DropDownContainer = styled.div`
   position: relative;
-  button {
+  .toggle {
     background: none;
     border: none;
     cursor: pointer;
