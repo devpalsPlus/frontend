@@ -9,12 +9,10 @@ const Home = () => {
     */
   return (
     <S.Container>
+      <Banner />
       <S.Wrapper>
-        <Banner />
-        <S.WrapperContents>
-          <ProjectStats />
-          <SearchFiltering />
-        </S.WrapperContents>
+        <ProjectStats />
+        <SearchFiltering />
       </S.Wrapper>
     </S.Container>
   );
