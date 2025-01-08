@@ -20,12 +20,10 @@ export const CategoryItem = styled.div<{ isSelected: boolean }>`
   padding: 3px 5px;
   border: 1px solid
     ${({ isSelected, theme }) =>
-      isSelected ? theme.color.primary : theme.color.border};
+      isSelected ? theme.buttonScheme.primary.bg : theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius};
   background-color: ${({ isSelected, theme }) =>
-    isSelected ? theme.color.primary : theme.color.white};
-  color: ${({ isSelected, theme }) =>
-    isSelected ? theme.color.white : theme.color.primary};
+    isSelected ? theme.buttonScheme.primary.bg : theme.color.white};
   cursor: pointer;
   transition: all 0.2s;
 
@@ -36,7 +34,8 @@ export const CategoryItem = styled.div<{ isSelected: boolean }>`
   .name {
     font-size: 0.7rem;
     font-weight: 200;
-    color: ${({ theme }) => theme.color.primary};
+    color: ${({ isSelected, theme }) =>
+      isSelected ? theme.color.white : theme.color.primary};
   }
 `;
 

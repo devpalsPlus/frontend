@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Input from '../../components/createProjectComponents/inputComponent';
 
 export const Container = styled.div`
   max-width: 100%;
@@ -6,7 +7,7 @@ export const Container = styled.div`
   padding: 60px;
 `;
 
-export const Input = styled.input`
+export const Inputs = styled.input`
   width: 100%;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.border};
@@ -108,21 +109,6 @@ export const InfoInputCheckbox = styled.input`
   width: 12px;
   height: 12px;
   cursor: pointer;
-`;
-
-export const InfoInputSelect = styled.input`
-  select {
-    flex: 0.6;
-    padding: 10px;
-    border: 1px solid ${({ theme }) => theme.color.border};
-    border-radius: ${({ theme }) => theme.borderRadius};
-    font-size: 0.5rem;
-    background-color: #f9f9f9;
-
-    &::placeholder {
-      color: #aaa;
-    }
-  }
 `;
 
 export const TextArea = styled.textarea`

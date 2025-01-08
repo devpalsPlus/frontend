@@ -4,10 +4,8 @@ import { FieldErrors } from 'react-hook-form';
 import { LANGUAGEDATA } from '../../constants';
 
 interface LanguageComponentProps {
-  selectedLanguage: { language: string; icon: string }[];
-  setSelectedLanguage: React.Dispatch<
-    React.SetStateAction<{ language: string; icon: string }[]>
-  >;
+  selectedLanguage: string[];
+  setSelectedLanguage: React.Dispatch<React.SetStateAction<string[]>>;
   errors: FieldErrors;
   name: string;
   setValue: any;
@@ -21,36 +19,33 @@ const LanguageComponent = ({
   setValue,
 }: LanguageComponentProps) => {
   const hasError = Boolean(errors?.[name]);
-  console.log(hasError);
 
-  const handleLanguageClick = (lang: { language: string; icon: string }) => {
+  const handleLanguageClick = (lang: string) => {
     setSelectedLanguage((prev) => {
-      const isAlreadySelected = prev.some(
-        (item) => item.language === lang.language
-      );
+      const isAlreadySelected = prev.some((item) => item === lang);
 
-      if (isAlreadySelected) {
-        return prev.filter((item) => item.language !== lang.language);
-      } else {
-        setValue('languages', selectedLanguage);
-        return [...prev, lang];
-      }
+      const updated = isAlreadySelected
+        ? prev.filter((item) => item !== lang)
+        : [...prev, lang];
+
+      setValue(name, updated);
+
+      return updated;
     });
   };
 
   return (
     <S.Container>
       <S.LanguagesContainer>
-        {/* 임시 데이터 */}
         {LANGUAGEDATA.map((lang, idx) => {
           const isSelected = selectedLanguage.some(
-            (item) => item.language === lang.language
+            (item) => item === lang.language
           );
           return (
             <S.LanguageItem
               key={idx}
               isSelected={isSelected}
-              onClick={() => handleLanguageClick(lang)}
+              onClick={() => handleLanguageClick(lang.language)}
             >
               <span className="icon">{lang.icon}</span>
               <span className="name">{lang.language}</span>

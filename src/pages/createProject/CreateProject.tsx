@@ -30,36 +30,20 @@ const createProjectScheme = z.object({
     .number({ required_error: '모집 인원을 입력해주세요.' })
     .min(1, { message: '모집 인원은 1명 이상이어야 합니다.' })
     .max(1000, { message: '모집 인원은 1000명 이하이어야 합니다.' }),
-
   startDatePre: z
     .string({ required_error: '시작 날짜를 입력해주세요.' })
     .regex(dateRegex, { message: 'YYYY.MM.DD 형식이어야 합니다.' }),
-
   field: z
-    .string({ required_error: '모집 분야를 입력해주세요.' })
-    .min(1, { message: '모집 분야를 입력해주세요.' }),
-
+    .array(z.string())
+    .min(1, { message: '최소 1개 이상의 분야를 선택해주세요.' }),
   duration: z.coerce
     .number({ required_error: '예상 기간을 입력해주세요.' })
     .positive({ message: '예상 기간은 1 이상이어야 합니다.' })
     .max(365, { message: '예상 기간은 365일을 초과할 수 없습니다.' }),
-
-  method: z
-    .array(
-      z.object({
-        language: z.string(),
-      })
-    )
-    .min(1, { message: '최소 1개 이상의 언어를 선택해주세요.' }),
-
+  method: z.string().nonempty({ message: '진행 방식을 선택 해주세요.' }),
   newBy: z.boolean().optional(),
-
   languages: z
-    .array(
-      z.object({
-        language: z.string(),
-      })
-    )
+    .array(z.string())
     .min(1, { message: '최소 1개 이상의 언어를 선택해주세요.' }),
 
   description: z
@@ -68,6 +52,9 @@ const createProjectScheme = z.object({
 });
 
 const CreateProject = () => {
+  const [selectedLanguage, setSelectedLanguage] = useState<string[]>([]);
+  const [selectedMethod, setSelectedMethod] = useState<string[]>([]);
+
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
@@ -81,20 +68,14 @@ const CreateProject = () => {
       endDate: '',
       title: '',
       maxVolunteers: 0,
-      field: '',
+      field: [],
       duration: 0,
-      method: [],
+      method: '',
       newBy: false,
       languages: [],
       description: '',
     },
   });
-  const [selectedLanguage, setSelectedLanguage] = useState<
-    { language: string; icon: string }[]
-  >([]);
-  const [selectedMethod, setSelectedMethod] = useState<
-    { id: string; label: string }[]
-  >([]);
 
   const handleSubmit = (data: z.infer<typeof createProjectScheme>, e: any) => {
     e.preventDefault();
@@ -149,7 +130,7 @@ const CreateProject = () => {
                       <label htmlFor={input.name}>{input.label}</label>
                     </S.InfoRow>
                     <MozipCategory
-                      name="method"
+                      name="field"
                       selectedMethod={selectedMethod}
                       setSelectedMethod={setSelectedMethod}
                       errors={errors}
