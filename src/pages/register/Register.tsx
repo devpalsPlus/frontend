@@ -7,7 +7,11 @@ import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useState } from 'react';
 import InputText from '../../components/auth/InputText';
-import { EnvelopeIcon, KeyIcon } from '@heroicons/react/24/outline';
+import {
+  EnvelopeIcon,
+  KeyIcon,
+  FaceSmileIcon,
+} from '@heroicons/react/24/outline';
 import {
   postVerificationEmail,
   postVerifyEmailCode,
@@ -273,7 +277,7 @@ const Register = () => {
                 <InputText
                   inputType='text'
                   placeholder='닉네임'
-                  icon={<KeyIcon />}
+                  icon={<FaceSmileIcon />}
                   autoComplete='off'
                   {...field}
                   onChange={(e) => {
