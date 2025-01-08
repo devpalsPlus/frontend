@@ -15,12 +15,6 @@ export const Wrapper = styled.button`
   align-items: center;
   gap: 0.5rem;
 
-  img {
-    width: 2rem;
-    border: 1px solid ${({ theme }) => theme.color.border};
-    border-radius: 2rem;
-  }
-
   &:hover {
     transform: scale(1.1);
     transition: all 100ms ease-in-out;
