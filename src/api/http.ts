@@ -51,7 +51,6 @@ export const createClient = (config?: AxiosRequestConfig) => {
             { refreshToken }
           );
           const newAccessToken = refreshResponse.data.accessToken;
-
           storeLogin(newAccessToken, refreshToken as string);
           originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
 

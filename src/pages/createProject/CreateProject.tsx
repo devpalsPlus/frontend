@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './CreateProject.styled';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Input from '../../components/common/inputComponent';
+import Input from '../../components/createProjectComponents/inputComponent';
 import { PROJECTDATA } from '../../constants';
+import LanguageComponent from '../../components/createProjectComponents/LanguageComponent';
+import MozipCategory from '../../components/createProjectComponents/MozipCategoryComponent';
 
 const dateRegex = /^\d{4}\.\d{2}\.\d{2}$/;
 
@@ -28,23 +30,21 @@ const createProjectScheme = z.object({
     .number({ required_error: '모집 인원을 입력해주세요.' })
     .min(1, { message: '모집 인원은 1명 이상이어야 합니다.' })
     .max(1000, { message: '모집 인원은 1000명 이하이어야 합니다.' }),
-
   startDatePre: z
     .string({ required_error: '시작 날짜를 입력해주세요.' })
     .regex(dateRegex, { message: 'YYYY.MM.DD 형식이어야 합니다.' }),
-
   field: z
-    .string({ required_error: '모집 분야를 입력해주세요.' })
-    .min(1, { message: '모집 분야를 입력해주세요.' }),
-
+    .array(z.string())
+    .min(1, { message: '최소 1개 이상의 분야를 선택해주세요.' }),
   duration: z.coerce
     .number({ required_error: '예상 기간을 입력해주세요.' })
     .positive({ message: '예상 기간은 1 이상이어야 합니다.' })
     .max(365, { message: '예상 기간은 365일을 초과할 수 없습니다.' }),
-
-  method: z.string({ required_error: '진행 방식을 입력해주세요.' }),
-
+  method: z.string().nonempty({ message: '진행 방식을 선택 해주세요.' }),
   newBy: z.boolean().optional(),
+  languages: z
+    .array(z.string())
+    .min(1, { message: '최소 1개 이상의 언어를 선택해주세요.' }),
 
   description: z
     .string({ required_error: '프로젝트 내용을 입력해주세요.' })
@@ -52,10 +52,14 @@ const createProjectScheme = z.object({
 });
 
 const CreateProject = () => {
+  const [selectedLanguage, setSelectedLanguage] = useState<string[]>([]);
+  const [selectedMethod, setSelectedMethod] = useState<string[]>([]);
+
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
     control,
+    setValue,
   } = useForm<z.infer<typeof createProjectScheme>>({
     resolver: zodResolver(createProjectScheme),
     defaultValues: {
@@ -64,10 +68,11 @@ const CreateProject = () => {
       endDate: '',
       title: '',
       maxVolunteers: 0,
-      field: '',
+      field: [],
       duration: 0,
       method: '',
       newBy: false,
+      languages: [],
       description: '',
     },
   });
@@ -119,23 +124,44 @@ const CreateProject = () => {
           <S.SectionInput>
             {PROJECTDATA.map((input, index) => (
               <>
-                <S.InfoRow key={index}>
-                  <label htmlFor={input.name}>{input.label}</label>
-                  <Input
-                    index={input.id}
-                    control={control}
-                    errors={errors}
-                    name={input.name}
-                    type={input.type}
-                    placeholder={input.placeholder}
-                  />
-                </S.InfoRow>
+                {input.label === '모집 분야' ? (
+                  <>
+                    <S.InfoRow key={index}>
+                      <label htmlFor={input.name}>{input.label}</label>
+                    </S.InfoRow>
+                    <MozipCategory
+                      name="field"
+                      selectedMethod={selectedMethod}
+                      setSelectedMethod={setSelectedMethod}
+                      errors={errors}
+                      setValue={setValue}
+                    />
+                  </>
+                ) : (
+                  <S.InfoRow key={index}>
+                    <label htmlFor={input.name}>{input.label}</label>
+                    <Input
+                      index={input.id}
+                      control={control}
+                      errors={errors}
+                      name={input.name}
+                      type={input.type}
+                      placeholder={input.placeholder}
+                    />
+                  </S.InfoRow>
+                )}
               </>
             ))}
-
             <S.InfoRow>
               <label htmlFor="languages">사용 언어</label>
             </S.InfoRow>
+            <LanguageComponent
+              name="languages"
+              selectedLanguage={selectedLanguage}
+              setSelectedLanguage={setSelectedLanguage}
+              errors={errors}
+              setValue={setValue}
+            />
           </S.SectionInput>
         </S.Section>
 
@@ -145,7 +171,7 @@ const CreateProject = () => {
             control={control}
             errors={errors}
             name="description"
-            type="textarea"
+            type="mdEditor"
             placeholder="프로젝트 상세 정보를 입력해주세요."
           />
         </S.Section>
