@@ -15,17 +15,35 @@ export const Container = styled.div`
     height: 2.8rem;
   }
 
-  * {
-    cursor: pointer;
+  .filteringButton {
+    button {
+      border-radius: 1.5rem;
+      width: 100%;
+      height: 100%;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
   .beginnerButton {
-    justify-content: center;
     button {
-      min-width: 7rem;
-      img {
-        padding-left: 0.8rem;
-      }
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
     }
+  }
+
+  svg {
+    width: 1rem;
+  }
+
+  .skillTagBox {
+    width: 90%;
+    height: 100%;
+    border: none;
+    position: absolute;
+    top: 8rem;
   }
 `;

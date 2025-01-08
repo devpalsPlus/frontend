@@ -9,16 +9,19 @@ export const Wrapper = styled.button`
   justify-content: center;
   align-items: center;
   position: relative;
+  border-radius: 1.5rem;
 
   .defaultValue {
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0 1rem;
+    border-radius: 1.5rem;
   }
 
   .select {
-    z-index: 10;
     width: 100%;
     border: 1px solid ${({ theme }) => theme.color.border};
     border-radius: 0.5rem;
@@ -36,9 +39,5 @@ export const Wrapper = styled.button`
         color: white;
       }
     }
-  }
-
-  svg {
-    width: 1rem;
   }
 `;
