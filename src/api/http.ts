@@ -1,7 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import useAuthStore from '../store/authStore';
 
-const BASE_URL = '백엔드주소';
+const BASE_URL =
+  'http://ec2-15-165-173-141.ap-northeast-2.compute.amazonaws.com/';
 const DEFAULT_TIMEOUT = 30000;
 
 export const createClient = (config?: AxiosRequestConfig) => {
@@ -47,7 +48,7 @@ export const createClient = (config?: AxiosRequestConfig) => {
         originalRequest._retry = true;
         try {
           const refreshResponse = await axios.post(
-            `${BASE_URL}}/auth/refresh`,
+            '${http://ec2-15-165-173-141.ap-northeast-2.compute.amazonaws.com/}}/auth/refresh',
             { refreshToken }
           );
           const newAccessToken = refreshResponse.data.accessToken;
