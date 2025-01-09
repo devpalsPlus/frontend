@@ -46,10 +46,9 @@ export const createClient = (config?: AxiosRequestConfig) => {
       ) {
         originalRequest._retry = true;
         try {
-          const refreshResponse = await axios.post(
-            `${BASE_URL}}/auth/refresh`,
-            { refreshToken }
-          );
+          const refreshResponse = await axios.post(`${BASE_URL}/auth/refresh`, {
+            refreshToken,
+          });
           const newAccessToken = refreshResponse.data.accessToken;
           storeLogin(newAccessToken, refreshToken as string);
           originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
