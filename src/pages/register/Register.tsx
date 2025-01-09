@@ -12,11 +12,9 @@ import {
   KeyIcon,
   FaceSmileIcon,
 } from '@heroicons/react/24/outline';
-import {
-  postVerificationEmail,
-  postVerifyEmailCode,
-  postCheckNickname,
-} from '../../api/auth.api';
+import { postCheckNickname } from '../../api/auth.api';
+import useEmailVerification from '../../hooks/useEmailVerification';
+import axios from 'axios';
 
 const registerSchema = z
   .object({
@@ -48,15 +46,12 @@ const registerSchema = z
 type registerFormValues = z.infer<typeof registerSchema>;
 
 const Register = () => {
-  const [emailMessage, setEmailMessage] = useState<string | null>(null);
-  const [codeMessage, setCodeMessage] = useState<string | null>(null);
   const [nicknameMessage, setNicknameMessage] = useState<string | null>(null);
 
   const {
     control,
     handleSubmit,
     formState: { errors },
-    setValue,
     getValues,
   } = useForm<registerFormValues>({
     resolver: zodResolver(registerSchema),
@@ -70,45 +65,21 @@ const Register = () => {
     },
   });
 
-  const handleEmail = async (email: string) => {
-    if (!email) {
-      setEmailMessage(null);
-      return;
-    }
-    try {
-      const response = await postVerificationEmail(email);
-      console.log('이메일코드 발송:', response);
-      if (response?.status === 201) {
-        setEmailMessage('인증 코드가 이메일로 전송되었습니다.');
-      }
-    } catch (error: any) {
-      if (error.response?.status === 400) {
-        setEmailMessage('유효한 이메일을 입력해주세요.');
-      } else {
-        setEmailMessage('서버 내부 오류로 인해 인증 코드 확인에 실패했습니다.');
-      }
-    }
+  const {
+    emailMessage,
+    codeMessage,
+    handleEmail,
+    handleVerifyCode,
+    handleCodeChange,
+    handleEmailChange,
+  } = useEmailVerification();
+
+  const handleClickEmail = (email: string) => {
+    handleEmail(email);
   };
 
-  const handleVerifyCode = async (email: string, code: string) => {
-    if (!email || !code) {
-      setCodeMessage(null);
-      return;
-    }
-    try {
-      const response = await postVerifyEmailCode({ email, code });
-      if (response?.status === 200) {
-        setCodeMessage('인증코드가 확인되었습니다.');
-
-        setValue('verificationCode', code);
-      }
-    } catch (error: any) {
-      if (error.response?.status === 401) {
-        setCodeMessage('인증 코드가 만료되었습니다.');
-      } else {
-        setCodeMessage('이메일과 인증코드를 다시 확인해주세요.');
-      }
-    }
+  const handleClickCode = (email: string, code: string) => {
+    handleVerifyCode(email, code);
   };
 
   const handleCheckNickname = async (nickname: string) => {
@@ -119,8 +90,10 @@ const Register = () => {
     try {
       const response = await postCheckNickname(nickname);
       setNicknameMessage(response?.message as string);
-    } catch (error: any) {
-      setNicknameMessage(error.response.data.message);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setNicknameMessage(error.response?.data.message);
+      }
     }
   };
 
@@ -154,11 +127,7 @@ const Register = () => {
                   onChange={(e) => {
                     const value = e.target.value;
                     field.onChange(e);
-                    if (!value) {
-                      setEmailMessage(null);
-                    } else {
-                      setEmailMessage('');
-                    }
+                    handleEmailChange(value);
                   }}
                 />
                 {errors.email && (
@@ -171,7 +140,7 @@ const Register = () => {
               <button
                 type='button'
                 onClick={() => {
-                  handleEmail(field.value);
+                  handleClickEmail(field.value);
                 }}
               >
                 메일 전송
@@ -196,26 +165,21 @@ const Register = () => {
                   onChange={(e) => {
                     const value = e.target.value;
                     field.onChange(e);
-                    if (!value) {
-                      setCodeMessage(null);
-                    } else {
-                      setCodeMessage('');
-                    }
+                    handleCodeChange(value);
                   }}
                 />
-                {errors.verificationCode && (
+                {(errors.verificationCode || codeMessage) && (
                   <S.ErrorMessage>
-                    {errors.verificationCode.message}
+                    {errors.verificationCode
+                      ? errors.verificationCode.message
+                      : codeMessage}
                   </S.ErrorMessage>
-                )}
-                {!errors.verificationCode && codeMessage && (
-                  <S.ErrorMessage>{codeMessage}</S.ErrorMessage>
                 )}
               </S.InputWrapper>
               <button
                 type='button'
                 onClick={() => {
-                  handleVerifyCode(getValues('email'), field.value);
+                  handleClickCode(getValues('email'), field.value);
                 }}
               >
                 인증 확인
