@@ -5,4 +5,5 @@ export const Container = styled.div`
   width: 90%;
   padding: 2rem;
   border-radius: 3rem;
+  background-color: ${({ theme }) => theme.color.white};
 `;

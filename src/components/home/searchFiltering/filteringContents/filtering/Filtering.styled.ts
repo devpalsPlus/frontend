@@ -29,14 +29,15 @@ export const Wrapper = styled.button`
     top: 2.8rem;
     cursor: pointer;
     overflow: hidden;
+    background-color: ${({ theme }) => theme.color.white};
 
     .option {
       text-align: initial;
       padding: 0.5rem;
 
       &:hover {
-        background-color: #213555;
-        color: white;
+        background-color: ${({ theme }) => theme.color.navy};
+        color: ${({ theme }) => theme.color.white};
       }
     }
   }
