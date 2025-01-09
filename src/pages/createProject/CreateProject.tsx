@@ -1,16 +1,14 @@
-import { useState } from 'react';
 import * as S from './CreateProject.styled';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '../../components/createProjectComponents/inputComponent';
-import { PROJECTDATA } from '../../constants';
-import LanguageComponent from '../../components/createProjectComponents/LanguageComponent';
-import MozipCategory from '../../components/createProjectComponents/MozipCategoryComponent';
+import ProjectInformation from '../../components/createProjectComponents/ProjectInformation';
+import { CreateProjectFormValues, FormData } from '../../models/createProject';
+import { useEffect } from 'react';
+import { createProject } from '../../api/createProject.api';
 
-const dateRegex = /^\d{4}\.\d{2}\.\d{2}$/;
-
-const createProjectScheme = z.object({
+export const createProjectScheme = z.object({
   startDate: z
     .string({ required_error: '시작 날짜를 입력해주세요.' })
     .refine((date) => !isNaN(Date.parse(date)), {
@@ -31,19 +29,23 @@ const createProjectScheme = z.object({
     .min(1, { message: '모집 인원은 1명 이상이어야 합니다.' })
     .max(1000, { message: '모집 인원은 1000명 이하이어야 합니다.' }),
   startDatePre: z
-    .string({ required_error: '시작 날짜를 입력해주세요.' })
-    .regex(dateRegex, { message: 'YYYY.MM.DD 형식이어야 합니다.' }),
+    .string({ required_error: '종료 날짜를 입력해주세요.' })
+    .refine((date) => !isNaN(Date.parse(date)), {
+      message: '유효한 날짜를 입력해주세요.',
+    }),
   field: z
-    .array(z.string())
-    .min(1, { message: '최소 1개 이상의 분야를 선택해주세요.' }),
+    .array(z.number({ message: '숫자로 입력 되어야 합니다.' }))
+    .length(1, { message: '1개의 진행 방식을 선택 해주세요.' }),
   duration: z.coerce
     .number({ required_error: '예상 기간을 입력해주세요.' })
     .positive({ message: '예상 기간은 1 이상이어야 합니다.' })
     .max(365, { message: '예상 기간은 365일을 초과할 수 없습니다.' }),
-  method: z.string().nonempty({ message: '진행 방식을 선택 해주세요.' }),
+  position: z
+    .array(z.number({ message: '숫자로 입력 되어야 합니다.' }))
+    .min(1, { message: '1개의 분야를 선택해주세요.' }),
   newBy: z.boolean().optional(),
   languages: z
-    .array(z.string())
+    .array(z.number({ message: '숫자로 입력 되어야 합니다.' }))
     .min(1, { message: '최소 1개 이상의 언어를 선택해주세요.' }),
 
   description: z
@@ -52,15 +54,12 @@ const createProjectScheme = z.object({
 });
 
 const CreateProject = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState<number[]>([]);
-  const [selectedMethod, setSelectedMethod] = useState<number[]>([]);
-
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
     control,
     setValue,
-  } = useForm<z.infer<typeof createProjectScheme>>({
+  } = useForm<CreateProjectFormValues>({
     resolver: zodResolver(createProjectScheme),
     defaultValues: {
       startDatePre: '',
@@ -70,7 +69,7 @@ const CreateProject = () => {
       maxVolunteers: 0,
       field: [],
       duration: 0,
-      method: '',
+      position: [],
       newBy: false,
       languages: [],
       description: '',
@@ -79,7 +78,35 @@ const CreateProject = () => {
 
   const handleSubmit = (data: z.infer<typeof createProjectScheme>, e: any) => {
     e.preventDefault();
-    console.log(data);
+    const formData: FormData = {
+      title: data.title,
+      totalMember: data.maxVolunteers,
+      recruitmentStartDate: data.startDate,
+      recruitmentEndDate: data.endDate,
+      startDate: data.startDatePre,
+      positionTagId: data.position,
+      estimatedPeriod: `${data.duration}개월`,
+      methodId: data.field[0],
+      isBeginner: data.newBy,
+      skillTagId: data.languages,
+      description: data.description,
+    };
+
+    createProject(formData).then((status) => {
+      if (status === 201) {
+        alert('프로젝트가 성공적으로 생성되었습니다.');
+        setValue('startDate', '');
+        setValue('endDate', '');
+        setValue('title', '');
+        setValue('maxVolunteers', 0);
+        setValue('field', []);
+        setValue('duration', 0);
+        setValue('position', []);
+        setValue('newBy', false);
+        setValue('languages', []);
+        setValue('description', '');
+      }
+    });
   };
 
   return (
@@ -122,44 +149,9 @@ const CreateProject = () => {
         <S.Section>
           <S.SectionTitle>프로젝트 정보</S.SectionTitle>
           <S.SectionInput>
-            {PROJECTDATA.map((input, index) => (
-              <>
-                {input.label === '모집 분야' ? (
-                  <>
-                    <S.InfoRow key={index}>
-                      <label htmlFor={input.name}>{input.label}</label>
-                    </S.InfoRow>
-                    <MozipCategory
-                      name='field'
-                      selectedMethod={selectedMethod}
-                      setSelectedMethod={setSelectedMethod}
-                      errors={errors}
-                      setValue={setValue}
-                    />
-                  </>
-                ) : (
-                  <S.InfoRow key={index}>
-                    <label htmlFor={input.name}>{input.label}</label>
-                    <Input
-                      index={input.id}
-                      control={control}
-                      errors={errors}
-                      name={input.name}
-                      type={input.type}
-                      placeholder={input.placeholder}
-                    />
-                  </S.InfoRow>
-                )}
-              </>
-            ))}
-            <S.InfoRow>
-              <label htmlFor='languages'>사용 언어</label>
-            </S.InfoRow>
-            <LanguageComponent
-              name='languages'
-              selectedLanguage={selectedLanguage}
-              setSelectedLanguage={setSelectedLanguage}
+            <ProjectInformation
               errors={errors}
+              control={control}
               setValue={setValue}
             />
           </S.SectionInput>
