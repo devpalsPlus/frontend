@@ -1,8 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import useAuthStore from '../store/authStore';
 
-const BASE_URL =
-  'http://ec2-15-165-173-141.ap-northeast-2.compute.amazonaws.com/';
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}`;
 const DEFAULT_TIMEOUT = 30000;
 
@@ -48,10 +46,9 @@ export const createClient = (config?: AxiosRequestConfig) => {
       ) {
         originalRequest._retry = true;
         try {
-          const refreshResponse = await axios.post(
-            '${http://ec2-15-165-173-141.ap-northeast-2.compute.amazonaws.com/}}/auth/refresh',
-            { refreshToken }
-          );
+          const refreshResponse = await axios.post(`${BASE_URL}/auth/refresh`, {
+            refreshToken,
+          });
           const newAccessToken = refreshResponse.data.accessToken;
           storeLogin(newAccessToken, refreshToken as string);
           originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
