@@ -1,10 +1,10 @@
 import * as S from './SkillTagImg.styled';
 
-interface SkillTagImg {
+interface SkillTagImgProps {
   image: string;
   skillTag: string;
 }
-export default function SkillTagImg({ image, skillTag }) {
+export default function SkillTagImg({ image, skillTag }: SkillTagImgProps) {
   return (
     <S.Container>
       <img src={image} alt={skillTag} />

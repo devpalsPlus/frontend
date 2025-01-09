@@ -11,7 +11,7 @@ export const Container = styled.div`
   .border {
     width: 0.3rem;
     height: 4rem;
-    background-color: #213555;
+    background-color: ${({ theme }) => theme.color.navy};
   }
 
   .stat {

@@ -1,4 +1,4 @@
-import { httpClient } from './http';
+import { httpClient } from './http.api';
 import { AxiosResponse } from 'axios';
 
 interface EmailRequestBody {
