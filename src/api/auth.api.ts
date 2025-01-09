@@ -1,38 +1,39 @@
+import axios from 'axios';
+import { VerifyEmail, VerifyNickname } from '../models/auth';
 import { httpClient } from './http';
-import { AxiosResponse } from 'axios';
 
-interface EmailRequestBody {
-  email: string;
-}
-
-interface VerifyCodeRequestBody {
-  email: string;
-  code: string;
-}
-
-interface NicknameResponse {
-  message: string;
-}
-
-export const postVerificationEmail = async (
-  email: string
-): Promise<AxiosResponse> => {
-  const body: EmailRequestBody = { email };
-  return await httpClient.post('/authenticode/send', body);
+export const postVerificationEmail = async (email: string) => {
+  try {
+    const response = await httpClient.post('/authenticode/send', { email });
+    return response;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error('error response:', error?.response?.data);
+    }
+  }
 };
 
-export const postVerifyEmailCode = async (
-  email: string,
-  code: string
-): Promise<AxiosResponse> => {
-  const body: VerifyCodeRequestBody = { email, code };
-  return await httpClient.post('/authenticode/verify', body);
+export const postVerifyEmailCode = async (data: VerifyEmail) => {
+  try {
+    const response = await httpClient.post('/authenticode/verify', data);
+    return response;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error('error response:', error?.response?.data);
+    }
+  }
 };
 
-export const postCheckNickname = async (
-  nickname: string
-): Promise<NicknameResponse> => {
-  const body = { nickname };
-  const response = await httpClient.post('/user/nickname-check', body);
-  return response.data;
+export const postCheckNickname = async (nickname: string) => {
+  try {
+    const response = await httpClient.post<VerifyNickname>(
+      '/user/nickname-check',
+      { nickname }
+    );
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error('error response:', error?.response?.data);
+    }
+  }
 };

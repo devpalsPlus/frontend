@@ -78,7 +78,7 @@ const Register = () => {
     try {
       const response = await postVerificationEmail(email);
       console.log('이메일코드 발송:', response);
-      if (response.status === 201) {
+      if (response?.status === 201) {
         setEmailMessage('인증 코드가 이메일로 전송되었습니다.');
       }
     } catch (error: any) {
@@ -96,8 +96,8 @@ const Register = () => {
       return;
     }
     try {
-      const response = await postVerifyEmailCode(email, code);
-      if (response.status === 200) {
+      const response = await postVerifyEmailCode({ email, code });
+      if (response?.status === 200) {
         setCodeMessage('인증코드가 확인되었습니다.');
 
         setValue('verificationCode', code);
@@ -118,10 +118,9 @@ const Register = () => {
     }
     try {
       const response = await postCheckNickname(nickname);
-      setNicknameMessage(response.message);
+      setNicknameMessage(response?.message as string);
     } catch (error: any) {
       setNicknameMessage(error.response.data.message);
-      // 여기 다시 살펴보자.
     }
   };
 
