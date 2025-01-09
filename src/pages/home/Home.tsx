@@ -1,6 +1,7 @@
 import * as S from './Home.styled';
 import Banner from '../../components/home/banner/Banner';
 import ProjectStats from '../../components/home/projectStats/ProjectStats';
+import SearchFiltering from '../../components/home/searchFiltering/SearchFiltering';
 
 const Home = () => {
   /*
@@ -8,9 +9,10 @@ const Home = () => {
     */
   return (
     <S.Container>
+      <Banner />
       <S.Wrapper>
-        <Banner />
         <ProjectStats />
+        <SearchFiltering />
       </S.Wrapper>
     </S.Container>
   );
