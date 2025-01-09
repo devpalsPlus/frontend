@@ -1,10 +1,9 @@
-import React from 'react';
 import * as S from './LanguageComponent.styled';
 import { FieldErrors } from 'react-hook-form';
 import beginner from '/src/assets/beginner.svg';
-import SkillTag from '../common/skillTagBox/skillTag/SkillTag';
 import { PROJECT_SKILL } from '../../constants/homeConstants';
 import SkillTagImg from '../common/skillTagBox/skillTag/skillTagImg/SkillTagImg';
+import { handleClick } from '../../util/handleClick.util';
 
 interface LanguageComponentProps {
   selectedLanguage: number[];
@@ -23,20 +22,6 @@ const LanguageComponent = ({
 }: LanguageComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
-  const handleLanguageClick = (idx: number) => {
-    setSelectedLanguage((prev) => {
-      const isAlreadySelected = prev.some((item) => item === idx);
-
-      const updated = isAlreadySelected
-        ? prev.filter((item) => item !== idx)
-        : [...prev, idx];
-
-      setValue(name, updated);
-
-      return updated;
-    });
-  };
-
   return (
     <S.Container>
       <S.LanguagesContainer>
@@ -46,7 +31,9 @@ const LanguageComponent = ({
             <S.LanguageItem
               key={idx}
               isSelected={isSelected}
-              onClick={() => handleLanguageClick(idx)}
+              onClick={() =>
+                handleClick(idx, setValue, name, setSelectedLanguage)
+              }
             >
               <SkillTagImg image={beginner} skillTag={lang} />
               <p className='lang'>{lang}</p>
