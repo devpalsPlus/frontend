@@ -56,10 +56,11 @@ export const PhoneInputContainer = styled.div`
   gap: 8px;
   justify-content: flex-start;
   margin-bottom: 15px;
+  position: relative;
 `;
 
 export const PhoneInput = styled.input<{ name: string }>`
-  ${({ name }) => (name === 'first' ? `width: 60px;` : `width: 80px;`)}
+  width: 60px;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -153,4 +154,14 @@ export const SubmitButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+`;
+
+export const FormError = styled.p`
+  margin-top: 0.3px;
+  font-size: 0.7rem;
+  color: ${({ theme }) => theme.color.red};
+  position: absolute;
+  top: 100%;
+  left: 0;
+  white-space: nowrap;
 `;
