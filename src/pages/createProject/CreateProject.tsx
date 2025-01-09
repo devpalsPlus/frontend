@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as S from './CreateProject.styled';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -52,8 +52,8 @@ const createProjectScheme = z.object({
 });
 
 const CreateProject = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState<string[]>([]);
-  const [selectedMethod, setSelectedMethod] = useState<string[]>([]);
+  const [selectedLanguage, setSelectedLanguage] = useState<number[]>([]);
+  const [selectedMethod, setSelectedMethod] = useState<number[]>([]);
 
   const {
     handleSubmit: onSubmitHandler,
@@ -91,19 +91,19 @@ const CreateProject = () => {
           <S.SectionTitle>프로젝트 모집 일정</S.SectionTitle>
           <S.DateContainer>
             <Input
-              name="startDate"
+              name='startDate'
               control={control}
-              type="date"
+              type='date'
               errors={errors}
-              placeholder="시작 날짜"
+              placeholder='시작 날짜'
             />
             <S.Separator>-</S.Separator>
             <Input
-              name="endDate"
+              name='endDate'
               control={control}
-              type="date"
+              type='date'
               errors={errors}
-              placeholder="종료 날짜"
+              placeholder='종료 날짜'
             />
           </S.DateContainer>
         </S.Section>
@@ -113,9 +113,9 @@ const CreateProject = () => {
           <Input
             control={control}
             errors={errors}
-            name="title"
-            type="text"
-            placeholder="프로젝트 제목을 입력해주세요."
+            name='title'
+            type='text'
+            placeholder='프로젝트 제목을 입력해주세요.'
           />
         </S.Section>
 
@@ -130,7 +130,7 @@ const CreateProject = () => {
                       <label htmlFor={input.name}>{input.label}</label>
                     </S.InfoRow>
                     <MozipCategory
-                      name="field"
+                      name='field'
                       selectedMethod={selectedMethod}
                       setSelectedMethod={setSelectedMethod}
                       errors={errors}
@@ -153,10 +153,10 @@ const CreateProject = () => {
               </>
             ))}
             <S.InfoRow>
-              <label htmlFor="languages">사용 언어</label>
+              <label htmlFor='languages'>사용 언어</label>
             </S.InfoRow>
             <LanguageComponent
-              name="languages"
+              name='languages'
               selectedLanguage={selectedLanguage}
               setSelectedLanguage={setSelectedLanguage}
               errors={errors}
@@ -170,13 +170,13 @@ const CreateProject = () => {
           <Input
             control={control}
             errors={errors}
-            name="description"
-            type="mdEditor"
-            placeholder="프로젝트 상세 정보를 입력해주세요."
+            name='description'
+            type='mdEditor'
+            placeholder='프로젝트 상세 정보를 입력해주세요.'
           />
         </S.Section>
 
-        <S.SubmitButton type="submit">제출</S.SubmitButton>
+        <S.SubmitButton type='submit'>제출</S.SubmitButton>
       </form>
     </S.Container>
   );

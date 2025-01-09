@@ -1,11 +1,11 @@
 import React from 'react';
 import * as S from './MozipCategory.styled';
 import { FieldErrors } from 'react-hook-form';
-import { CATEGORY } from '../../constants';
+import { PROJECT_POSITION } from '../../constants/homeConstants';
 
 interface MozipCategoryComponentProps {
-  selectedMethod: string[];
-  setSelectedMethod: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedMethod: number[];
+  setSelectedMethod: React.Dispatch<React.SetStateAction<number[]>>;
   errors: FieldErrors;
   name: string;
   setValue: any;
@@ -20,13 +20,13 @@ const MozipCategoryComponent = ({
 }: MozipCategoryComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
-  const handleLanguageClick = (label: string) => {
+  const handleLanguageClick = (idx: number) => {
     setSelectedMethod((prev) => {
-      const isAlreadySelected = prev.some((item) => item === label);
+      const isAlreadySelected = prev.some((item) => item === idx);
 
       const updated = isAlreadySelected
-        ? prev.filter((item) => item !== label)
-        : [...prev, label];
+        ? prev.filter((item) => item !== idx)
+        : [...prev, idx];
 
       setValue(name, updated);
       return updated;
@@ -36,16 +36,15 @@ const MozipCategoryComponent = ({
   return (
     <S.Container>
       <S.CategoryContainer>
-        {/* 임시 데이터 */}
-        {CATEGORY.map((data, idx) => {
-          const isSelected = selectedMethod.some((item) => item === data.label);
+        {PROJECT_POSITION.map((data, idx) => {
+          const isSelected = selectedMethod.some((item) => item === idx);
           return (
             <S.CategoryItem
               key={idx}
               isSelected={isSelected}
-              onClick={() => handleLanguageClick(data.label)}
+              onClick={() => handleLanguageClick(idx)}
             >
-              <span className="name">{data.label}</span>
+              <span className='name'>{data}</span>
             </S.CategoryItem>
           );
         })}

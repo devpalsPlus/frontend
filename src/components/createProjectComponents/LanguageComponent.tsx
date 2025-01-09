@@ -1,11 +1,14 @@
 import React from 'react';
 import * as S from './LanguageComponent.styled';
 import { FieldErrors } from 'react-hook-form';
-import { LANGUAGEDATA } from '../../constants';
+import beginner from '/src/assets/beginner.svg';
+import SkillTag from '../common/skillTagBox/skillTag/SkillTag';
+import { PROJECT_SKILL } from '../../constants/homeConstants';
+import SkillTagImg from '../common/skillTagBox/skillTag/skillTagImg/SkillTagImg';
 
 interface LanguageComponentProps {
-  selectedLanguage: string[];
-  setSelectedLanguage: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedLanguage: number[];
+  setSelectedLanguage: React.Dispatch<React.SetStateAction<number[]>>;
   errors: FieldErrors;
   name: string;
   setValue: any;
@@ -20,13 +23,13 @@ const LanguageComponent = ({
 }: LanguageComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
-  const handleLanguageClick = (lang: string) => {
+  const handleLanguageClick = (idx: number) => {
     setSelectedLanguage((prev) => {
-      const isAlreadySelected = prev.some((item) => item === lang);
+      const isAlreadySelected = prev.some((item) => item === idx);
 
       const updated = isAlreadySelected
-        ? prev.filter((item) => item !== lang)
-        : [...prev, lang];
+        ? prev.filter((item) => item !== idx)
+        : [...prev, idx];
 
       setValue(name, updated);
 
@@ -37,18 +40,16 @@ const LanguageComponent = ({
   return (
     <S.Container>
       <S.LanguagesContainer>
-        {LANGUAGEDATA.map((lang, idx) => {
-          const isSelected = selectedLanguage.some(
-            (item) => item === lang.language
-          );
+        {PROJECT_SKILL.map((lang, idx) => {
+          const isSelected = selectedLanguage.some((item) => item === idx);
           return (
             <S.LanguageItem
               key={idx}
               isSelected={isSelected}
-              onClick={() => handleLanguageClick(lang.language)}
+              onClick={() => handleLanguageClick(idx)}
             >
-              <span className="icon">{lang.icon}</span>
-              <span className="name">{lang.language}</span>
+              <SkillTagImg image={beginner} skillTag={lang} />
+              <p className='lang'>{lang}</p>
             </S.LanguageItem>
           );
         })}
