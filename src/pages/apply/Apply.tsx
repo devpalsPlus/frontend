@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import * as S from './Apply.styled';
 import Input from '../../components/createProjectComponents/inputComponent';
 import { useFieldArray, useForm } from 'react-hook-form';
@@ -8,17 +7,14 @@ import {
   CareerInputList,
   PhoneInputList,
 } from '../../components/createProjectComponents/inputComponent2';
+import useJoinProject from '../../hooks/useJoinProject';
+import { useParams } from 'react-router-dom';
+import { formatDate } from '../../util/format';
 
 const ApplyScheme = z.object({
-  email: z.string(),
-  phone: z.array(
-    z.object({
-      first: z.string(),
-      middle: z.string(),
-      last: z.string(),
-    })
-  ),
-  wantToSay: z.string(),
+  email: z.string().email({ message: '이메일 형식으로 입력해주세요.' }),
+  phone: z.string().array().optional(),
+  wantToSay: z.string().optional(),
   careers: z
     .array(
       z.object({
@@ -31,45 +27,48 @@ const ApplyScheme = z.object({
     .optional(),
 });
 
+export type ApplySchemeType = z.infer<typeof ApplyScheme>;
+
 const Apply = () => {
+  const { projectId } = useParams();
+  const { data, isLoading, isFetching } = useJoinProject(Number(projectId));
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
     control,
-  } = useForm<z.infer<typeof ApplyScheme>>({
+  } = useForm<ApplySchemeType>({
     resolver: zodResolver(ApplyScheme),
     defaultValues: {
       email: '',
-      phone: [
-        {
-          first: '',
-          middle: '',
-          last: '',
-        },
-      ],
+      phone: [],
       wantToSay: '',
       careers: [],
     },
   });
+
   const { fields: fieldsCareers, append: appendCareers } = useFieldArray({
     name: 'careers',
     control,
   });
 
-  const { fields: fieldsPhone } = useFieldArray({
-    name: 'phone',
-    control,
-  });
+  const handleSubmit = (data: ApplySchemeType) => {
+    const formData = {
+      email: data.email,
+      phone: `${data?.phone?.[0]}-${data?.phone?.[1]}-${data?.phone?.[2]}`,
+      wantToSay: data.wantToSay,
+      careers: data.careers,
+    };
 
-  const handleSubmit = (data: z.infer<typeof ApplyScheme>) => {
-    console.log(data);
+    console.log(formData);
   };
 
   return (
     <S.Container>
       <S.Title>프로젝트 지원</S.Title>
-      <S.Subtitle>클론코딩 사이드프로젝트 팀원 모집</S.Subtitle>
-      <S.Dates>2024.12.29 - 2025.01.10</S.Dates>
+      <S.Subtitle>{data?.title}</S.Subtitle>
+      <S.Dates>{`${formatDate(data?.recruitmentStartDate)} ~ ${formatDate(
+        data?.recruitmentEndDate
+      )}`}</S.Dates>
 
       <S.Form onSubmit={onSubmitHandler(handleSubmit)}>
         <S.Section>
@@ -77,46 +76,51 @@ const Apply = () => {
           <Input
             control={control}
             errors={errors}
-            name="email"
-            type="email"
-            placeholder="이메일을 입력해주세요."
+            name='email'
+            type='email'
+            placeholder='이메일을 입력해주세요.'
           />
         </S.Section>
 
         <S.Section>
           <S.Label>전화번호</S.Label>
-          {fieldsPhone.map((field, index) => (
-            <S.PhoneInputContainer key={field.id}>
-              <PhoneInputList
-                control={control}
-                index={index}
-                field={field}
-                name="first"
-                maxLength={3}
-              />
-              <S.Dash>-</S.Dash>
-              <PhoneInputList
-                control={control}
-                index={index}
-                field={field}
-                name="middle"
-                maxLength={4}
-              />
-              <S.Dash>-</S.Dash>
-              <PhoneInputList
-                control={control}
-                index={index}
-                field={field}
-                name="last"
-                maxLength={4}
-              />
-            </S.PhoneInputContainer>
-          ))}
+          <S.PhoneInputContainer>
+            <PhoneInputList
+              control={control}
+              name='phone.0'
+              maxLength={3}
+              placeholder='010'
+            />
+            <S.Dash>-</S.Dash>
+            <PhoneInputList
+              control={control}
+              name='phone.1'
+              maxLength={4}
+              placeholder='1234'
+            />
+            <S.Dash>-</S.Dash>
+            <PhoneInputList
+              control={control}
+              name='phone.2'
+              maxLength={4}
+              placeholder='5678'
+            />
+
+            {errors.phone && (
+              <S.FormError>{String(errors?.phone?.root?.message)}</S.FormError>
+            )}
+          </S.PhoneInputContainer>
         </S.Section>
 
         <S.Section>
           <S.Label>기획자에게 하고 싶은 말</S.Label>
-          <S.TextArea placeholder="하고 싶은 말을 입력해주세요." />
+          <Input
+            control={control}
+            errors={errors}
+            name='wantToSay'
+            type='textarea'
+            placeholder='하고 싶은 말을 입력해주세요.'
+          />
         </S.Section>
 
         <S.Section>
@@ -127,31 +131,31 @@ const Apply = () => {
                 control={control}
                 index={index}
                 field={field}
-                placeholder="회사명 / 활동명"
-                name="companyName"
+                placeholder='회사명 / 활동명'
+                name='companyName'
               />
               <CareerInputList
                 control={control}
                 index={index}
                 field={field}
-                placeholder="시작 기간"
-                name="periodStart"
-                type="date"
+                placeholder='시작 기간'
+                name='periodStart'
+                type='date'
               />
               <CareerInputList
                 control={control}
                 index={index}
                 field={field}
-                placeholder="종료 기간"
-                name="periodEnd"
-                type="date"
+                placeholder='종료 기간'
+                name='periodEnd'
+                type='date'
               />
               <CareerInputList
                 control={control}
                 index={index}
                 field={field}
-                placeholder="역할 / 기여도"
-                name="role"
+                placeholder='역할 / 기여도'
+                name='role'
               />
             </S.CareerContainer>
           ))}
@@ -170,7 +174,7 @@ const Apply = () => {
           </p>
         </S.Section>
 
-        <S.SubmitButton type="submit">제출</S.SubmitButton>
+        <S.SubmitButton type='submit'>제출</S.SubmitButton>
       </S.Form>
     </S.Container>
   );
