@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { VerifyEmail, VerifyNickname } from '../models/auth';
-import { httpClient } from './http';
+import { httpClient } from './http.api';
 
 export const postVerificationEmail = async (email: string) => {
   try {
@@ -9,6 +9,7 @@ export const postVerificationEmail = async (email: string) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error('error response:', error?.response?.data);
+      throw error;
     }
   }
 };
@@ -20,6 +21,7 @@ export const postVerifyEmailCode = async (data: VerifyEmail) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error('error response:', error?.response?.data);
+      throw error;
     }
   }
 };
@@ -34,6 +36,7 @@ export const postCheckNickname = async (nickname: string) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error('error response:', error?.response?.data);
+      throw error;
     }
   }
 };
