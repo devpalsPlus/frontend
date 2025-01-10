@@ -1,4 +1,3 @@
-import React from 'react';
 import { Controller, Control } from 'react-hook-form';
 import * as S from '../../pages/apply/Apply.styled';
 
@@ -13,8 +12,6 @@ interface CareerInputListProps {
 
 interface PhoneInputListProps {
   control: Control<any>;
-  index: number;
-  field: any;
   placeholder?: string;
   name: string;
   maxLength?: number;
@@ -40,7 +37,6 @@ export const CareerInputList = ({
 
 export const PhoneInputList = ({
   control,
-  index,
   name,
   placeholder,
   maxLength,
@@ -48,14 +44,16 @@ export const PhoneInputList = ({
   return (
     <Controller
       control={control}
-      name={`phone.${index}.${name}`}
+      name={name}
       render={({ field }) => (
-        <S.PhoneInput
-          {...field}
-          maxLength={maxLength}
-          placeholder={placeholder}
-          name={name}
-        />
+        <div>
+          <S.PhoneInput
+            {...field}
+            maxLength={maxLength}
+            placeholder={placeholder}
+            name={name}
+          />
+        </div>
       )}
     />
   );

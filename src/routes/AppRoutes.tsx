@@ -53,7 +53,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/apply',
+    path: '/main/apply/:projectId',
     element: (
       <Layout>
         <Apply />
@@ -61,7 +61,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/project-detail',
+    path: '/main/project-detail/:projectId',
     element: (
       <Layout>
         <ProjectDetail />
