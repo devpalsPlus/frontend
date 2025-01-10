@@ -18,7 +18,6 @@ const useEmailVerification = (): emailVerificationResult => {
   const handleEmail = async (email: string) => {
     setEmailMessage(null);
     if (!email) {
-      setEmailMessage(null);
       return;
     }
     try {
@@ -65,8 +64,12 @@ const useEmailVerification = (): emailVerificationResult => {
     }
   };
 
-  const handleCodeChange = () => {
-    setCodeMessage(null);
+  const handleCodeChange = (code: string) => {
+    if (!code) {
+      setEmailMessage(null);
+    } else {
+      setEmailMessage('');
+    }
   };
 
   const handleEmailChange = (email: string) => {
