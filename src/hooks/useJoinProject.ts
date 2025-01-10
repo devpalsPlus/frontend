@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getProjectData } from '../api/joinProject.ap';
+import { getProjectData } from '../api/joinProject.api';
 
 const useJoinProject = (id: number) => {
   const { data, isLoading, isFetching } = useQuery({

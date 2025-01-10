@@ -1,4 +1,4 @@
-import { Controller, Control, Field } from 'react-hook-form';
+import { Controller, Control } from 'react-hook-form';
 import * as S from '../../pages/apply/Apply.styled';
 
 interface CareerInputListProps {
