@@ -51,7 +51,7 @@ const Register = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     getValues,
   } = useForm<registerFormValues>({
     resolver: zodResolver(registerSchema),
@@ -99,7 +99,15 @@ const Register = () => {
 
   const onSubmit = (data: registerFormValues, e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
-    console.log('회원가입: ', data);
+
+    if (!isValid) {
+      alert('모든 필드를 정확히 입력해주세요.');
+      return;
+    }
+
+    const { email, password, nickname } = data;
+    const requestData = { email, password, nickname };
+    console.log('회원가입: ', requestData);
   };
 
   return (
@@ -272,7 +280,9 @@ const Register = () => {
           )}
         />
         <S.ButtonWrapper>
-          <button type='submit'>회원가입</button>
+          <button type='submit' disabled={!isValid}>
+            회원가입
+          </button>
         </S.ButtonWrapper>
       </form>
     </S.Container>

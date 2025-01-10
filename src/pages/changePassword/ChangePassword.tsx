@@ -44,7 +44,7 @@ const ChangePassword = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     getValues,
   } = useForm<changePasswordFormValues>({
     resolver: zodResolver(changePasswordSchema),
@@ -70,7 +70,16 @@ const ChangePassword = () => {
     e?: React.BaseSyntheticEvent
   ) => {
     e?.preventDefault();
-    console.log('비밀번호 재설정: ', data);
+
+    if (!isValid) {
+      alert('모든 필드를 정확히 입력해주세요.');
+      return;
+    }
+
+    const { email, password } = data;
+    const newPassword = password;
+    const requestData = { email, newPassword };
+    console.log('비밀번호 재설정: ', requestData);
   };
 
   return (
@@ -201,7 +210,9 @@ const ChangePassword = () => {
           )}
         />
         <S.ButtonWrapper>
-          <button type='submit'>재설정 완료</button>
+          <button type='submit' disabled={!isValid}>
+            재설정 완료
+          </button>
         </S.ButtonWrapper>
       </form>
     </S.Container>
