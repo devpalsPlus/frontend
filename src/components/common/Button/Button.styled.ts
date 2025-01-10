@@ -6,7 +6,7 @@ export const CommonButton = styled.button<Omit<ButtonProps, 'children'>>`
   padding: ${({ theme, size }) => theme.buttonSize[size].padding};
   color: ${({ theme, schema }) => theme.buttonScheme[schema].color};
   background-color: ${({ theme, schema }) => theme.buttonScheme[schema].bg};
-  border-radius: ${({ theme, size }) => theme.borderRadius[size]};
+  border-radius: ${({ theme, radius }) => theme.borderRadius[radius]};
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
   cursor: ${({ disabled }) => (disabled ? 'none' : 'pointer')};
 `;
