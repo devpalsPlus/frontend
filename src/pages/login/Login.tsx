@@ -5,7 +5,7 @@ import { EnvelopeIcon, KeyIcon } from '@heroicons/react/24/outline';
 import InputText from '../../components/auth/InputText';
 import Title from '../../components/common/title/Title';
 import { z } from 'zod';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 const loginSchema = z.object({
@@ -20,11 +20,15 @@ type loginFormValues = z.infer<typeof loginSchema>;
 
 const Login = () => {
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm<loginFormValues>({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
 
   const onSubmit = (data: loginFormValues, e?: React.BaseSyntheticEvent) => {
@@ -41,28 +45,42 @@ const Login = () => {
       </h1>
       <Title size='semiLarge'>로그인</Title>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <S.InputWrapper>
-          <InputText
-            inputType='email'
-            placeholder='이메일'
-            icon={<EnvelopeIcon />}
-            {...register('email')}
-          />
-          {errors.email && (
-            <S.ErrorMessage>{errors.email.message}</S.ErrorMessage>
+        <Controller
+          name='email'
+          control={control}
+          render={({ field }) => (
+            <S.InputWrapper>
+              <InputText
+                inputType='email'
+                placeholder='이메일'
+                icon={<EnvelopeIcon />}
+                autoComplete='off'
+                {...field}
+              />
+              {errors.email && (
+                <S.ErrorMessage>{errors.email.message}</S.ErrorMessage>
+              )}
+            </S.InputWrapper>
           )}
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <InputText
-            inputType='password'
-            placeholder='비밀번호'
-            icon={<KeyIcon />}
-            {...register('password')}
-          />
-          {errors.password && (
-            <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
+        />
+        <Controller
+          name='password'
+          control={control}
+          render={({ field }) => (
+            <S.InputWrapper>
+              <InputText
+                inputType='password'
+                placeholder='비밀번호'
+                icon={<KeyIcon />}
+                {...field}
+                autoComplete='off'
+              />
+              {errors.password && (
+                <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
+              )}
+            </S.InputWrapper>
           )}
-        </S.InputWrapper>
+        />
         <button type='submit'>로그인</button>
       </form>
       <S.WrapperPassword>
