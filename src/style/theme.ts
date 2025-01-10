@@ -15,12 +15,13 @@ export type HeadingSize =
   | 'small'
   | 'verySmall';
 
-export type ButtonSize = 'primary';
+export type ButtonSize = 'primary' | 'large';
 
 export type ButtonSchema = 'primary';
 
 export type LayoutWidth = 'desktop' | 'tablet' | 'mobile';
 
+export type BorderRadiusSize = 'primary' | 'large';
 interface Theme {
   color: Record<ColorKey, string>;
   heading: {
@@ -34,7 +35,9 @@ interface Theme {
       padding: string;
     };
   };
-  borderRadius: string;
+  borderRadius: {
+    [key in BorderRadiusSize]: string;
+  };
   buttonScheme: {
     [key in ButtonSchema]: {
       color: string;
@@ -71,8 +74,15 @@ export const defaultTheme: Theme = {
       fontSize: '1rem',
       padding: '0.5rem 1.375rem',
     },
+    large: {
+      fontSize: '1rem',
+      padding: '1.25rem 1.875rem',
+    },
   },
-  borderRadius: '15px',
+  borderRadius: {
+    primary: '15px',
+    large: '30px',
+  },
   buttonScheme: {
     primary: {
       color: '#ffffff',
