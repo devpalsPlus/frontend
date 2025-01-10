@@ -10,6 +10,8 @@ import {
 import useJoinProject from '../../hooks/useJoinProject';
 import { useParams } from 'react-router-dom';
 import { formatDate } from '../../util/format';
+import { applicantProject } from '../../api/joinProject.api';
+import { joinProject } from '../../models/joinProject';
 
 const ApplyScheme = z.object({
   email: z.string().email({ message: '이메일 형식으로 입력해주세요.' }),
@@ -18,7 +20,7 @@ const ApplyScheme = z.object({
   careers: z
     .array(
       z.object({
-        companyName: z.string(),
+        name: z.string(),
         periodStart: z.string(),
         periodEnd: z.string(),
         role: z.string(),
@@ -31,7 +33,8 @@ export type ApplySchemeType = z.infer<typeof ApplyScheme>;
 
 const Apply = () => {
   const { projectId } = useParams();
-  const { data, isLoading, isFetching } = useJoinProject(Number(projectId));
+  const id = Number(projectId);
+  const { data, isLoading, isFetching } = useJoinProject(id);
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
@@ -52,15 +55,38 @@ const Apply = () => {
   });
 
   const handleSubmit = (data: ApplySchemeType) => {
-    const formData = {
+    const formData: joinProject = {
       email: data.email,
-      phone: `${data?.phone?.[0]}-${data?.phone?.[1]}-${data?.phone?.[2]}`,
-      wantToSay: data.wantToSay,
-      careers: data.careers,
+      phoneNumber: `${data?.phone?.[0]}-${data?.phone?.[1]}-${data?.phone?.[2]}`,
+      message: data.wantToSay,
+      career: data.careers,
     };
 
-    console.log(formData);
+    applicantProject(formData, id).then((status) => {
+      switch (status) {
+        case 201:
+          alert('지원서가 성공적으로 제출되었습니다.');
+          break;
+        case 400:
+          alert('잘못된 요청입니다.');
+          break;
+        case 401:
+          alert('세션이 만료되었습니다. 로그인 해주세요.');
+          break;
+        case 404:
+          alert('해당 페이지가 존재하지 않습니다');
+          break;
+        case 500:
+          alert('서버 오류.');
+          break;
+        default:
+          alert('알 수 없는 에러.');
+      }
+    });
   };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isFetching) return <div>isFetching...</div>;
 
   return (
     <S.Container>
@@ -162,7 +188,7 @@ const Apply = () => {
           <p
             onClick={() =>
               appendCareers({
-                companyName: '',
+                name: '',
                 periodStart: '',
                 periodEnd: '',
                 role: '',
