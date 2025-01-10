@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  min-width: 1440px;
-`;
+export const Container = styled.div``;
 
 export const Wrapper = styled.div`
-  width: 1440px;
+  max-width: 90%;
   margin: auto;
 `;

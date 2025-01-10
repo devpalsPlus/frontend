@@ -1,4 +1,3 @@
-import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from '../pages/main/Main';
 import Login from '../pages/login/Login';
@@ -54,7 +53,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/apply',
+    path: '/main/apply/:projectId',
     element: (
       <Layout>
         <Apply />
@@ -78,7 +77,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/users/:userId',
+    path: '/main/mypage',
     element: (
       <Layout>
         <LayoutSidebar>
@@ -127,6 +126,7 @@ const routeList = [
       </Layout>
     ),
   },
+
   {
     path: '/main/manage/:projectId',
     element: (

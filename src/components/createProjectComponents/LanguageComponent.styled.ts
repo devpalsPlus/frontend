@@ -27,14 +27,11 @@ export const LanguageItem = styled.div<{ isSelected: boolean }>`
   transition: all 0.2s;
 
   &:hover {
-    background-color: ${({ theme }) => theme.color.grey};
+    transform: scale(1.1);
+    transition: all 100ms ease-in-out;
   }
 
-  .icon {
-    font-size: 1rem;
-  }
-
-  .name {
+  .lang {
     font-size: 0.7rem;
     font-weight: 200;
     color: ${({ isSelected, theme }) =>

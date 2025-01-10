@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 343px;
+  height: 22rem;
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 export const Wrapper = styled.div`
   display: flex;
-  width: 1100px;
-  height: 116px;
-  margin: 0 auto;
-  gap: 100px;
+  height: 7.25rem;
+  gap: 6.25rem;
 `;

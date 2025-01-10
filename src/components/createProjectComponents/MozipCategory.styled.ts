@@ -28,7 +28,8 @@ export const CategoryItem = styled.div<{ isSelected: boolean }>`
   transition: all 0.2s;
 
   &:hover {
-    background-color: ${({ theme }) => theme.color.grey};
+    transform: scale(1.1);
+    transition: all 100ms ease-in-out;
   }
 
   .name {
