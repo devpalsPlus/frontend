@@ -61,7 +61,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/project-detail',
+    path: '/main/project-detail/:projectId',
     element: (
       <Layout>
         <ProjectDetail />
