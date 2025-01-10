@@ -3,9 +3,8 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '../../components/createProjectComponents/inputComponent';
-import ProjectInformation from '../../components/createProjectComponents/ProjectInformation';
+import ProjectInformationInput from '../../components/createProjectComponents/ProjectInformationInput';
 import { CreateProjectFormValues, FormData } from '../../models/createProject';
-import { useEffect } from 'react';
 import { createProject } from '../../api/createProject.api';
 
 export const createProjectScheme = z.object({
@@ -149,7 +148,7 @@ const CreateProject = () => {
         <S.Section>
           <S.SectionTitle>프로젝트 정보</S.SectionTitle>
           <S.SectionInput>
-            <ProjectInformation
+            <ProjectInformationInput
               errors={errors}
               control={control}
               setValue={setValue}
