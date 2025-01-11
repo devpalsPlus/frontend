@@ -1,4 +1,4 @@
-export const formatDate = (isoDate: Date) => {
+export const formatDate = (isoDate) => {
   const date = new Date(isoDate);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
