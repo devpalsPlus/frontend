@@ -1,7 +1,10 @@
 import { joinProject } from '../models/joinProject';
+import { ProjectDetailExtended } from '../models/projectDetail';
 import { httpClient } from './http.api';
 
-export const getProjectData = async (id: number) => {
+export const getProjectData = async (
+  id: number
+): Promise<ProjectDetailExtended> => {
   const response = await httpClient.get(`/project/${id}`);
   return response.data;
 };
