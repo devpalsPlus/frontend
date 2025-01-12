@@ -2,13 +2,16 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  width: 100%;
+  max-width: ${({ theme }) => theme.layout.width.desktop};
+  margin: 0 auto;
   flex-direction: column;
   align-items: center;
 
   img {
     width: 6.5rem;
     height: 6.5rem;
-    margin: 3rem 0 2.5rem;
+    margin: 2.5rem 0;
   }
 
   form {
