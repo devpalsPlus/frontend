@@ -2,17 +2,17 @@ import AppRoutes from './routes/AppRoutes';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './style/global';
 import { defaultTheme } from './style/theme';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from './api/queryClient';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
+  const queryClient = new QueryClient();
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={defaultTheme}>
-        <GlobalStyle />
+    <ThemeProvider theme={defaultTheme}>
+      <GlobalStyle />
+      <QueryClientProvider client={queryClient}>
         <AppRoutes />
-      </ThemeProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 
