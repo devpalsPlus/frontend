@@ -1,6 +1,6 @@
 import * as S from '../login/Login.styled';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import Mainlogo from '../../assets/mainlogo.svg';
 import Title from '../../components/common/title/Title';
 import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
@@ -86,7 +86,7 @@ const ChangePassword = () => {
     <S.Container>
       <h1 className='logo'>
         <Link to='/'>
-          <img src={logo} alt='logo' />
+          <img src={Mainlogo} alt='logo' />
         </Link>
       </h1>
       <Title size='semiLarge'>비밀번호 재설정</Title>

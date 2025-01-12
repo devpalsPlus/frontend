@@ -6,8 +6,8 @@ export const Container = styled.div`
   align-items: center;
 
   img {
-    width: 6rem;
-    height: 6rem;
+    width: 6.5rem;
+    height: 6.5rem;
     margin: 3rem 0 2.5rem;
   }
 
@@ -16,6 +16,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 2rem;
   }
 
   button {

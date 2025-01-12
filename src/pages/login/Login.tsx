@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import * as S from './Login.styled';
-import logo from '../../assets/logo.png';
+import Mainlogo from '../../assets/mainlogo.svg';
 import { EnvelopeIcon, KeyIcon } from '@heroicons/react/24/outline';
 import InputText from '../../components/auth/InputText';
 import Title from '../../components/common/title/Title';
@@ -40,7 +40,7 @@ const Login = () => {
     <S.Container>
       <h1 className='logo'>
         <Link to='/'>
-          <img src={logo} alt='logo' />
+          <img src={Mainlogo} alt='logo' />
         </Link>
       </h1>
       <Title size='semiLarge'>로그인</Title>
