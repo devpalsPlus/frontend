@@ -1,15 +1,18 @@
-import React from 'react';
 import AppRoutes from './routes/AppRoutes';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './style/global';
 import { defaultTheme } from './style/theme';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './api/queryClient';
 
 function App() {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <GlobalStyle />
-      <AppRoutes />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={defaultTheme}>
+        <GlobalStyle />
+        <AppRoutes />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 

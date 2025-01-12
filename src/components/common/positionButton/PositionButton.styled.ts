@@ -4,7 +4,8 @@ export const Container = styled.div`
   .positionButton {
     background-color: ${({ theme }) => theme.color.lightgrey};
     width: fit-content;
+    border: 1px solid ${({ theme }) => theme.color.grey};
     border-radius: ${({ theme }) => theme.borderRadius};
-    padding: 0.3rem;
+    padding: 0.3rem 0.4rem;
   }
 `;

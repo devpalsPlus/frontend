@@ -1,37 +1,22 @@
-import {
-  PROJECT_METHOD,
-  PROJECT_POSITION,
-} from '../../../../constants/homeConstants';
 import Filtering from './filtering/Filtering';
 import * as S from './FilteringContents.styled';
 import beginner from '../../../../assets/beginner.svg';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import SkillTagBox from '../../../common/skillTagBox/SkillTagBox';
 import { useEffect, useRef, useState } from 'react';
+import { useSearchFilteringSkillTag } from '../../../../hooks/useSearchFilteringSkillTag';
+import { useOutsideClick } from '../../../../hooks/useOutsideClick';
 
 export default function FilteringContents() {
+  const { skillTagsData, positionTagsData, methodTagsData } =
+    useSearchFilteringSkillTag();
   const [skillTagButtonToggle, setSkillTagButtonToggle] = useState(false);
-  const filteringRef = useRef<HTMLDivElement>(null);
 
   const handleSkillTagBoxToggle = () => {
     setSkillTagButtonToggle((prev) => !prev);
   };
 
-  useEffect(() => {
-    const handleOutsideClick = (e: MouseEvent) => {
-      if (
-        filteringRef.current &&
-        !filteringRef.current.contains(e.target as Node)
-      ) {
-        setSkillTagButtonToggle(false);
-      }
-    };
-    document.addEventListener('mousedown', handleOutsideClick);
-
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [filteringRef]);
+  const filteringRef = useOutsideClick(() => setSkillTagButtonToggle(false));
 
   return (
     <S.Container>
@@ -45,8 +30,8 @@ export default function FilteringContents() {
           <ChevronDownIcon />
         </button>
       </div>
-      <Filtering selects={[...PROJECT_POSITION]} defaultValue='포지션' />
-      <Filtering selects={[...PROJECT_METHOD]} defaultValue='진행방식' />
+      <Filtering selects={positionTagsData} defaultValue='포지션' />
+      <Filtering selects={methodTagsData} defaultValue='진행방식' />
       <div className='filteringButton beginnerButton'>
         <button>
           새싹 모집
@@ -56,7 +41,7 @@ export default function FilteringContents() {
 
       {skillTagButtonToggle && (
         <div className='skillTagBox'>
-          <SkillTagBox />
+          <SkillTagBox width='90%' skillTagsData={skillTagsData} />
         </div>
       )}
     </S.Container>

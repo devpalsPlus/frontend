@@ -3,6 +3,7 @@ import Banner from '../../components/home/banner/Banner';
 import ProjectStats from '../../components/home/projectStats/ProjectStats';
 import SearchFiltering from '../../components/home/searchFiltering/SearchFiltering';
 import ProjectCardLists from '../../components/home/projectCardLists/ProjectCardLists';
+import { SearchFilteringProvider } from '../../context/SearchFilteringContext';
 
 const Home = () => {
   /*
@@ -13,8 +14,10 @@ const Home = () => {
       <Banner />
       <S.Wrapper>
         <ProjectStats />
-        <SearchFiltering />
-        <ProjectCardLists />
+        <SearchFilteringProvider>
+          <SearchFiltering />
+          <ProjectCardLists />
+        </SearchFilteringProvider>
       </S.Wrapper>
     </S.Container>
   );

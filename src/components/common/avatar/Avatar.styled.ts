@@ -4,6 +4,7 @@ import { AvatarProps } from './Avatar';
 export const AvatarContainer = styled.div<Omit<AvatarProps, 'image'>>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
+  border: 1px solid ${({ theme }) => theme.color.grey};
   border-radius: 50%;
   .avatar {
     width: 100%;

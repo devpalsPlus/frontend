@@ -6,40 +6,47 @@ import { v4 as uuid } from 'uuid';
 import beginner from '../../../../assets/beginner.svg';
 import Avatar from '../../../common/avatar/Avatar';
 import { EyeIcon } from '@heroicons/react/24/outline';
+import { ProjectList } from '../../../../models/mainProjectLists';
+import { formatDate } from '../../../../util/formatDate';
 
-export default function CardList() {
+interface CardListProps {
+  list: ProjectList;
+}
+
+export default function CardList({ list }: CardListProps) {
+  console.log('list', list);
+
   return (
     <S.Container>
-      <div className='deadLine'>마감일: 2025년 2월 10일</div>
+      <div className='deadLine'>
+        마감일: {formatDate(list.recruitmentEndDate)}
+      </div>
       <div className='title'>
-        <span>
-          클론코딩 사이드 프로젝트 팀원 모집 클론코딩 사이드 프로젝트 팀원 모집
-          클론코딩 사이드 프로젝트 팀원 모집
-        </span>
+        <span>{list.title}</span>
       </div>
       <div className='position'>
         <div className='positionTitle'>모집 분야</div>
-        <div className='skillTags'>
+        <div className='positionTags'>
           {PROJECT_POSITION.map((position) => (
             <PositionButton position={position} key={uuid()} />
           ))}
         </div>
       </div>
-      <div className='skill'>
+      <div className='skillTag'>
         {PROJECT_POSITION.map((po) => (
           <SkillTagImg image={beginner} key={po} skillTag={po} />
         ))}
       </div>
       <div className='info'>
         <div className='nickname'>
-          <Avatar size={'2.8rem'} image={beginner} />
-          <span>Jenny</span>
+          <Avatar size={'2.8rem'} image={list.User.profileImg} />
+          <span>{list.User.nickname}</span>
         </div>
         <div className='etc'>
-          <img src={beginner} alt='plant' />
+          {list.isBeginner && <img src={beginner} alt='plant' />}
           <div className='view'>
             <EyeIcon />
-            <span>1</span>
+            <span>{list.views}</span>
           </div>
         </div>
       </div>

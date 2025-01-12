@@ -1,14 +1,15 @@
-import { PROJECT_STATS_TITLE } from '../../../constants/homeConstants';
+import { useProjectStatistic } from '../../../hooks/useProjectStatistic';
 import ProjectStat from './projectStat/ProjectStat';
 import * as S from './ProjectStats.styled';
-import { v4 as uuid } from 'uuid';
 
 export default function ProjectStats() {
+  const { projectStatData } = useProjectStatistic();
+
   return (
     <S.Container>
       <S.Wrapper>
-        {PROJECT_STATS_TITLE.map((title) => (
-          <ProjectStat title={title} key={uuid()} />
+        {projectStatData.map((data) => (
+          <ProjectStat title={data.label} count={data.count} key={data.count} />
         ))}
       </S.Wrapper>
     </S.Container>

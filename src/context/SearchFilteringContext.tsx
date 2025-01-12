@@ -1,5 +1,5 @@
 import { createContext, PropsWithChildren, useState } from 'react';
-import { SearchFilters } from '../models/SearchFilters';
+import type { SearchFilters } from '../models/searchFilters';
 
 interface SearchFilteringContextType {
   searchFilters: SearchFilters;
@@ -12,10 +12,11 @@ const SearchFilteringContext = createContext<SearchFilteringContextType | null>(
 
 export function SearchFilteringProvider({ children }: PropsWithChildren) {
   const [searchFilters, setSearchFilters] = useState<SearchFilters>({
-    skillTag: '',
-    position: '',
-    method: '',
-    beginner: false,
+    skillTag: [],
+    positionTag: null,
+    method: null,
+    isBeginner: false,
+    page: 1,
   });
 
   const handleUpdateFilters = (key: string, filter: string | boolean) => {

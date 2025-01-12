@@ -40,10 +40,10 @@ export const Container = styled.div`
   }
 
   .skillTagBox {
-    width: 90%;
+    width: 100%;
     height: 100%;
     border: none;
     position: absolute;
-    top: 8rem;
+    top: 11rem;
   }
 `;
