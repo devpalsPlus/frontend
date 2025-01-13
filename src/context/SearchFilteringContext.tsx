@@ -26,6 +26,7 @@ export function SearchFilteringProvider({ children }: PropsWithChildren) {
     positionTag: null,
     method: null,
     isBeginner: false,
+    keyword: '',
     page: 1,
   });
 
