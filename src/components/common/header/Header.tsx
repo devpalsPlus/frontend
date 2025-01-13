@@ -9,21 +9,21 @@ import Avatar from '../avatar/Avatar';
 function Header() {
   return (
     <S.HeaderContainer>
-      <Link to="/home">
-        <img src={Mainlogo} alt="logo" />
+      <Link to='/home'>
+        <img src={Mainlogo} alt='logo' />
       </Link>
-      <nav className="auth">
-        <DropDown toggleButton={<Avatar size="45px" image={User} />}>
+      <nav className='auth'>
+        <DropDown toggleButton={<Avatar size='45px' image={User} />}>
           <>
             <ul>
               <li>
-                <Link to="/main/mypage">마이페이지</Link>
+                <Link to='/mypage'>마이페이지</Link>
               </li>
               <li>
-                <Link to="/main/manage">모집하고 있는 프로젝트 </Link>
+                <Link to='/manage'>모집하고 있는 프로젝트 </Link>
               </li>
               <li>
-                <Link to="/home">로그아웃</Link>
+                <Link to='/home'>로그아웃</Link>
               </li>
             </ul>
           </>
