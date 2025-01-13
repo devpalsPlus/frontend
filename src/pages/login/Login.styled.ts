@@ -25,11 +25,7 @@ export const Container = styled.div`
   button {
     max-width: 310px;
     width: 100%;
-    border-radius: 30px;
     padding: 0.8rem 0.625rem;
-    color: ${({ theme }) => theme.color.white};
-    background-color: ${({ theme }) => theme.buttonScheme['primary'].bg};
-    font-size: 1rem;
     font-weight: 600;
   }
 `;
@@ -39,8 +35,6 @@ export const InputContainer = styled.div`
   gap: 0.6rem;
 
   button {
-    max-width: 110px;
-    width: 50%;
     align-self: baseline;
     padding: 0.9rem 1rem;
     font-size: 0.9rem;
