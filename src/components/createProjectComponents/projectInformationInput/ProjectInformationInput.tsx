@@ -6,7 +6,7 @@ import { Control, FieldErrors, UseFormSetValue } from 'react-hook-form';
 import { PROJECT_DATA } from '../../../constants';
 import { CreateProjectFormValues } from '../../../models/createProject';
 import * as S from './ProjectInformationInput.styled';
-import Input from '../inputComponent';
+import Input from '../../inputComponent/inputComponent';
 
 interface ProjectInformationProps {
   errors: FieldErrors;
@@ -30,7 +30,7 @@ const ProjectInformationInput = ({
           <S.InfoRow key={index}>
             <label htmlFor={input.name}>{input.label}</label>
             <Input
-              index={input.id}
+              indexInfo={input.id}
               control={control}
               errors={errors}
               name={input.name}

@@ -10,7 +10,6 @@ export const InfoRow = styled.div`
     font-size: 0.8rem;
     font-weight: bold;
     color: #333;
-    flex: 0.11;
   }
 
   p {
