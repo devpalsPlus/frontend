@@ -6,6 +6,7 @@ import Input from '../../components/createProjectComponents/inputComponent';
 import ProjectInformationInput from '../../components/createProjectComponents/ProjectInformationInput';
 import { CreateProjectFormValues, FormData } from '../../models/createProject';
 import { createProject } from '../../api/createProject.api';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export const createProjectScheme = z.object({
   startDate: z
@@ -53,6 +54,8 @@ export const createProjectScheme = z.object({
 });
 
 const CreateProject = () => {
+  const { projectId } = useParams();
+  const navigate = useNavigate();
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
@@ -75,8 +78,7 @@ const CreateProject = () => {
     },
   });
 
-  const handleSubmit = (data: z.infer<typeof createProjectScheme>, e: any) => {
-    e.preventDefault();
+  const handleSubmit = (data: z.infer<typeof createProjectScheme>) => {
     const formData: FormData = {
       title: data.title,
       totalMember: data.maxVolunteers,
@@ -94,16 +96,7 @@ const CreateProject = () => {
     createProject(formData).then((status) => {
       if (status === 201) {
         alert('프로젝트가 성공적으로 생성되었습니다.');
-        setValue('startDate', '');
-        setValue('endDate', '');
-        setValue('title', '');
-        setValue('maxVolunteers', 0);
-        setValue('field', []);
-        setValue('duration', 0);
-        setValue('position', []);
-        setValue('newBy', false);
-        setValue('languages', []);
-        setValue('description', '');
+        navigate(`/main/project-detail/${projectId}`);
       }
     });
   };

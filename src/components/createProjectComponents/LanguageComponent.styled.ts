@@ -9,7 +9,7 @@ export const LanguagesContainer = styled.div`
   margin-top: 10px;
   padding: 3px 0;
   background-color: ${({ theme }) => theme.color.white};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
 `;
 
 export const LanguageItem = styled.div<{ isSelected: boolean }>`
@@ -18,7 +18,7 @@ export const LanguageItem = styled.div<{ isSelected: boolean }>`
   gap: 3px;
   padding: 3px 8px;
   border: 1px solid ${({ theme }) => theme.color.border};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
   background-color: ${({ isSelected, theme }) =>
     isSelected ? theme.buttonScheme.primary.bg : theme.color.white};
   color: ${({ isSelected, theme }) =>
