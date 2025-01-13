@@ -4,6 +4,7 @@ import useGetProjectData from '../../hooks/useJoinProject';
 import * as S from './ProjectDetail.styled';
 import { formatDate } from '../../util/format';
 import Button from '../../components/common/Button/Button';
+import MarkdownEditorView from '../../components/createProjectComponents/editor/\bMarkdownEditorView';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -38,21 +39,23 @@ const ProjectDetail = () => {
 
       <S.Content>
         <ProjectInformation data={data} />
-
+        <br></br>
         <S.ProjectDescription>
-          <S.SectionTitle>프로젝트 소개</S.SectionTitle>
-          <S.Description>{data.description}</S.Description>
+          <MarkdownEditorView description={data.description} />
         </S.ProjectDescription>
       </S.Content>
+      <S.ApplyButtonContainer>
+        <Button
+          size='primary'
+          schema='primary'
+          radius='primary'
+          onClick={handleApplyClick}
+        >
+          프로젝트 함께하기
+        </Button>
+      </S.ApplyButtonContainer>
 
-      <Button
-        size='primary'
-        schema='primary'
-        radius='primary'
-        onClick={handleApplyClick}
-      >
-        프로젝트 함께하기
-      </Button>
+      <hr></hr>
     </S.Container>
   );
 };
