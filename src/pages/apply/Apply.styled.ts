@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '../../components/common/Button/Button';
 
 export const Container = styled.div`
   max-width: 100%;
@@ -47,36 +48,8 @@ export const Input = styled.input`
   width: 100%;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.border};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
   margin-bottom: 10px;
-`;
-
-export const PhoneInputContainer = styled.div`
-  display: flex;
-  gap: 8px;
-  justify-content: flex-start;
-  margin-bottom: 15px;
-  position: relative;
-`;
-
-export const PhoneInput = styled.input<{ name: string }>`
-  width: 60px;
-  padding: 10px;
-  border: 1px solid ${({ theme }) => theme.color.border};
-  border-radius: ${({ theme }) => theme.borderRadius};
-  text-align: center;
-  font-size: 14px;
-
-  &:focus {
-    outline: none;
-    border-color: #888;
-  }
-`;
-
-export const Dash = styled.span`
-  align-self: center;
-  font-size: 16px;
-  color: #888;
 `;
 
 export const TextArea = styled.textarea`
@@ -84,84 +57,11 @@ export const TextArea = styled.textarea`
   height: 100px;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.border};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
 `;
 
-export const CareerContainer = styled.div`
-  display: flex;
-  gap: 8px;
-  justify-content: flex-start;
-`;
-
-export const CareerInput = styled.input`
-  padding: 10px;
-  border: 1px solid ${({ theme }) => theme.color.border};
-  border-radius: ${({ theme }) => theme.borderRadius};
-  font-size: 14px;
-
-  &:focus {
-    outline: none;
-    border-color: #888;
-  }
-
-  &:nth-child(1) {
-    flex: 1;
-  }
-  &:nth-child(2) {
-    flex: 0.5;
-    padding: 10px 9px;
-    border: 1px solid ${({ theme }) => theme.color.border};
-    border-radius: ${({ theme }) => theme.borderRadius};
-    font-size: ${({ theme }) => theme.heading.small};
-    background-color: #ffffff;
-    color: #aaa;
-    font-family: 'Arial', sans-serif;
-
-    &::placeholder {
-      color: #aaa;
-    }
-  }
-  &:nth-child(3) {
-    flex: 0.5;
-    padding: 10px 9px;
-    border: 1px solid ${({ theme }) => theme.color.border};
-    border-radius: ${({ theme }) => theme.borderRadius};
-    font-size: ${({ theme }) => theme.heading.small};
-    background-color: #ffffff;
-    color: #aaa;
-    font-family: 'Arial', sans-serif;
-
-    &::placeholder {
-      color: #aaa;
-    }
-  }
-
-  &:nth-child(4) {
-    flex: 2;
-  }
-`;
-
-export const SubmitButton = styled.button`
+export const SubmitButton = styled(Button)`
   width: 10%;
   padding: 15px;
-  background-color: ${({ theme }) => theme.buttonScheme.primary.bg};
-  color: ${({ theme }) => theme.color.white};
-  font-size: ${({ theme }) => theme.heading.small};
-  font-weight: bold;
-  border-radius: ${({ theme }) => theme.borderRadius};
   cursor: pointer;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
-
-export const FormError = styled.p`
-  margin-top: 0.3px;
-  font-size: 0.7rem;
-  color: ${({ theme }) => theme.color.red};
-  position: absolute;
-  top: 100%;
-  left: 0;
-  white-space: nowrap;
 `;

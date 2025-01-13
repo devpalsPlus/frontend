@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import ProjectInformation from '../../components/createProjectComponents/ProjectInformation';
+import ProjectInformation from '../../components/createProjectComponents/projectInformationText/ProjectInformation';
 import useGetProjectData from '../../hooks/useJoinProject';
 import * as S from './ProjectDetail.styled';
 import { formatDate } from '../../util/format';

@@ -1,21 +1,24 @@
 import * as S from './Apply.styled';
-import Input from '../../components/createProjectComponents/inputComponent';
+import Input from '../../components/inputComponent/inputComponent';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import {
-  CareerInputList,
-  PhoneInputList,
-} from '../../components/createProjectComponents/inputComponent2';
 import { useParams } from 'react-router-dom';
 import { formatDate } from '../../util/format';
 import { applicantProject } from '../../api/joinProject.api';
 import { joinProject } from '../../models/joinProject';
 import useGetProjectData from '../../hooks/useJoinProject';
+import Button from '../../components/common/Button/Button';
+import { useEffect } from 'react';
+import CareersComponent from '../../components/applyComponents/careersComponent/CareersComponent';
+import PhoneComponent from '../../components/applyComponents/phoneComponent/PhoneComponent';
 
 const ApplyScheme = z.object({
   email: z.string().email({ message: '이메일 형식으로 입력해주세요.' }),
-  phone: z.string().array().optional(),
+  phone: z
+    .string({ message: '전화번호를 입력해주세요.' })
+    .array()
+    .nonempty({ message: '전화번호를 입력해주세요.' }),
   wantToSay: z.string().optional(),
   careers: z
     .array(
@@ -39,6 +42,7 @@ const Apply = () => {
     handleSubmit: onSubmitHandler,
     formState: { errors },
     control,
+    setValue,
   } = useForm<ApplySchemeType>({
     resolver: zodResolver(ApplyScheme),
     defaultValues: {
@@ -61,6 +65,7 @@ const Apply = () => {
       message: data.wantToSay,
       career: data.careers,
     };
+    console.log(formData);
 
     applicantProject(formData, id).then((status) => {
       switch (status) {
@@ -85,14 +90,22 @@ const Apply = () => {
     });
   };
 
+  useEffect(() => {
+    setValue('email', data?.User.email);
+  }, [data, setValue]);
+
+  if (!data) {
+    return <div>데이터가 없습니다.</div>;
+  }
+
   if (isLoading) return <div>Loading...</div>;
   if (isFetching) return <div>isFetching...</div>;
 
   return (
     <S.Container>
       <S.Title>프로젝트 지원</S.Title>
-      <S.Subtitle>{data?.title}</S.Subtitle>
-      <S.Dates>{`${formatDate(data?.recruitmentStartDate)} ~ ${formatDate(
+      <S.Subtitle>{data.title}</S.Subtitle>
+      <S.Dates>{`${formatDate(data.recruitmentStartDate)} ~ ${formatDate(
         data?.recruitmentEndDate
       )}`}</S.Dates>
 
@@ -103,39 +116,14 @@ const Apply = () => {
             control={control}
             errors={errors}
             name='email'
-            type='email'
+            type='text'
             placeholder='이메일을 입력해주세요.'
           />
         </S.Section>
 
         <S.Section>
           <S.Label>전화번호</S.Label>
-          <S.PhoneInputContainer>
-            <PhoneInputList
-              control={control}
-              name='phone.0'
-              maxLength={3}
-              placeholder='010'
-            />
-            <S.Dash>-</S.Dash>
-            <PhoneInputList
-              control={control}
-              name='phone.1'
-              maxLength={4}
-              placeholder='1234'
-            />
-            <S.Dash>-</S.Dash>
-            <PhoneInputList
-              control={control}
-              name='phone.2'
-              maxLength={4}
-              placeholder='5678'
-            />
-
-            {errors.phone && (
-              <S.FormError>{String(errors?.phone?.root?.message)}</S.FormError>
-            )}
-          </S.PhoneInputContainer>
+          <PhoneComponent control={control} errors={errors} />
         </S.Section>
 
         <S.Section>
@@ -151,56 +139,16 @@ const Apply = () => {
 
         <S.Section>
           <S.Label>경력사항 / 수상이력</S.Label>
-          {fieldsCareers.map((field, index) => (
-            <S.CareerContainer key={field.id}>
-              <CareerInputList
-                control={control}
-                index={index}
-                field={field}
-                placeholder='회사명 / 활동명'
-                name='companyName'
-              />
-              <CareerInputList
-                control={control}
-                index={index}
-                field={field}
-                placeholder='시작 기간'
-                name='periodStart'
-                type='date'
-              />
-              <CareerInputList
-                control={control}
-                index={index}
-                field={field}
-                placeholder='종료 기간'
-                name='periodEnd'
-                type='date'
-              />
-              <CareerInputList
-                control={control}
-                index={index}
-                field={field}
-                placeholder='역할 / 기여도'
-                name='role'
-              />
-            </S.CareerContainer>
-          ))}
-          <p
-            onClick={() =>
-              appendCareers({
-                name: '',
-                periodStart: '',
-                periodEnd: '',
-                role: '',
-              })
-            }
-            style={{ cursor: 'pointer', color: 'blue' }}
-          >
-            추가
-          </p>
+          <CareersComponent
+            fieldsCareers={fieldsCareers}
+            appendCareers={appendCareers}
+            control={control}
+          />
         </S.Section>
 
-        <S.SubmitButton type='submit'>제출</S.SubmitButton>
+        <Button size='primary' schema='primary' radius='primary' type='submit'>
+          지원하기
+        </Button>
       </S.Form>
     </S.Container>
   );

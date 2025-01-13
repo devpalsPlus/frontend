@@ -1,11 +1,11 @@
 import * as S from './ProjectInformation.styled';
-import { PROJECT_DATA_GET } from '../../constants';
+import { PROJECT_DATA_GET } from '../../../constants';
 import beginner from '/src/assets/beginner.svg';
 import {
   ProjectDetail,
   ProjectDetailExtended,
-} from '../../models/projectDetail';
-import { formatDate } from '../../util/format';
+} from '../../../models/projectDetail';
+import { formatDate } from '../../../util/format';
 
 interface ProjectInformationProps {
   data: ProjectDetailExtended;
@@ -18,6 +18,7 @@ const ProjectInformation = ({ data }: ProjectInformationProps) => {
     <S.SectionInput>
       <S.InfoRow>
         {data.isBeginner && <S.BeginnerIcon src={beginner} alt='초보자 환영' />}
+        {data.isBeginner && <p>초보 환영</p>}
       </S.InfoRow>
 
       {PROJECT_DATA_GET.map((input, index) => (
