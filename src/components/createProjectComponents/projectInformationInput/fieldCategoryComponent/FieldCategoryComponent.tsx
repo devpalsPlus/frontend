@@ -1,8 +1,8 @@
-import * as S from './MozipCategory.styled';
+import * as S from './FieldCategoryComponent.styled';
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
-import { PROJECT_METHOD } from '../../constants/homeConstants';
-import { handleClick } from '../../util/handleClick.util';
-import { CreateProjectFormValues } from '../../models/createProject';
+import { PROJECT_METHOD } from '../../../../constants/homeConstants';
+import { handleClick } from '../../../../util/handleClick.util';
+import { CreateProjectFormValues } from '../../../../models/createProject';
 
 interface FieldCategoryComponentProps {
   selectedMethod: number[];

@@ -1,9 +1,9 @@
 import * as S from './LanguageComponent.styled';
 import { FieldErrors } from 'react-hook-form';
 import beginner from '/src/assets/beginner.svg';
-import { PROJECT_SKILL } from '../../constants/homeConstants';
-import SkillTagImg from '../common/skillTagBox/skillTag/skillTagImg/SkillTagImg';
-import { handleClick } from '../../util/handleClick.util';
+import { handleClick } from '../../../../util/handleClick.util';
+import SkillTagImg from '../../../common/skillTagBox/skillTag/skillTagImg/SkillTagImg';
+import { PROJECT_SKILL } from '../../../../constants/homeConstants';
 
 interface LanguageComponentProps {
   selectedLanguage: number[];

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import * as S from '../../pages/createProject/CreateProject.styled';
-import { PROJECTDATA } from '../../constants';
-import MozipCategoryComponent from './MozipCategoryComponent';
-import Input from './inputComponent';
-import LanguageComponent from './LanguageComponent';
-import FieldCategoryComponent from './FieldCategoryComponent';
+import { useState } from 'react';
+import MozipCategoryComponent from './positionComponent/PositionComponent';
+import LanguageComponent from './languageComponent/LanguageComponent';
+import FieldCategoryComponent from './fieldCategoryComponent/FieldCategoryComponent';
 import { Control, FieldErrors, UseFormSetValue } from 'react-hook-form';
-import { CreateProjectFormValues } from '../../models/createProject';
+import { PROJECT_DATA } from '../../../constants';
+import { CreateProjectFormValues } from '../../../models/createProject';
+import * as S from './ProjectInformationInput.styled';
+import Input from '../inputComponent';
 
 interface ProjectInformationProps {
   errors: FieldErrors;
@@ -25,7 +25,7 @@ const ProjectInformationInput = ({
 
   return (
     <>
-      {PROJECTDATA.map((input, index) => (
+      {PROJECT_DATA.map((input, index) => (
         <>
           <S.InfoRow key={index}>
             <label htmlFor={input.name}>{input.label}</label>
