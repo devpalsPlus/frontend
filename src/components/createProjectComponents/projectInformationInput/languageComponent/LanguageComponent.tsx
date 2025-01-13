@@ -26,13 +26,13 @@ const LanguageComponent = ({
     <S.Container>
       <S.LanguagesContainer>
         {PROJECT_SKILL.map((lang, idx) => {
-          const isSelected = selectedLanguage.some((item) => item === idx);
+          const isSelected = selectedLanguage.some((item) => item === idx + 1);
           return (
             <S.LanguageItem
-              key={idx}
+              key={idx + 1}
               isSelected={isSelected}
               onClick={() =>
-                handleClick(idx, setValue, name, setSelectedLanguage)
+                handleClick(idx + 1, setValue, name, setSelectedLanguage)
               }
             >
               <SkillTagImg image={beginner} skillTag={lang} />

@@ -25,13 +25,15 @@ const MozipCategoryComponent = ({
     <S.Container>
       <S.CategoryContainer>
         {PROJECT_POSITION.map((position, idx) => {
-          const isSelected = selectedMozip.some((item) => item === idx);
+          const isSelected = selectedMozip.some((item) => item === idx + 1);
           return (
             <S.PositionButtonFeat
               position={position}
               isSelected={isSelected}
-              onClick={() => handleClick(idx, setValue, name, setSelectedMozip)}
-              key={idx}
+              onClick={() =>
+                handleClick(idx + 1, setValue, name, setSelectedMozip)
+              }
+              key={idx + 1}
             />
           );
         })}
