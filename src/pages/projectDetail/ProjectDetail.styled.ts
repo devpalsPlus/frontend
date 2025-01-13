@@ -33,6 +33,7 @@ export const ProfileImage = styled.img`
   height: 50px;
   border-radius: 50%;
   margin-right: 15px;
+  border: 1px solid ${({ theme }) => theme.buttonScheme.primary.bg};
 `;
 
 export const UserInfo = styled.div`
