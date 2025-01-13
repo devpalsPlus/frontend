@@ -2,10 +2,11 @@ import * as S from './CreateProject.styled';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Input from '../../components/createProjectComponents/inputComponent';
-import ProjectInformationInput from '../../components/createProjectComponents/ProjectInformationInput';
+import Input from '../../components/inputComponent/inputComponent';
 import { CreateProjectFormValues, FormData } from '../../models/createProject';
 import { createProject } from '../../api/createProject.api';
+import { useNavigate } from 'react-router-dom';
+import ProjectInformationInput from '../../components/createProjectComponents/projectInformationInput/ProjectInformationInput';
 
 export const createProjectScheme = z.object({
   startDate: z
@@ -20,11 +21,11 @@ export const createProjectScheme = z.object({
     }),
 
   title: z
-    .string({ required_error: '프로젝트 제목을 입력해주세요.' })
+    .string({ message: '프로젝트 제목을 입력해주세요.' })
     .min(1, { message: '프로젝트 제목을 입력해주세요.' }),
 
   maxVolunteers: z.coerce
-    .number({ required_error: '모집 인원을 입력해주세요.' })
+    .number({ message: '모집 인원을 입력해주세요.' })
     .min(1, { message: '모집 인원은 1명 이상이어야 합니다.' })
     .max(1000, { message: '모집 인원은 1000명 이하이어야 합니다.' }),
   startDatePre: z
@@ -36,7 +37,7 @@ export const createProjectScheme = z.object({
     .array(z.number({ message: '숫자로 입력 되어야 합니다.' }))
     .length(1, { message: '1개의 진행 방식을 선택 해주세요.' }),
   duration: z.coerce
-    .number({ required_error: '예상 기간을 입력해주세요.' })
+    .number({ message: '예상 기간을 입력해주세요.' })
     .positive({ message: '예상 기간은 1 이상이어야 합니다.' })
     .max(365, { message: '예상 기간은 365일을 초과할 수 없습니다.' }),
   position: z
@@ -47,12 +48,13 @@ export const createProjectScheme = z.object({
     .array(z.number({ message: '숫자로 입력 되어야 합니다.' }))
     .min(1, { message: '최소 1개 이상의 언어를 선택해주세요.' }),
 
-  description: z
-    .string({ required_error: '프로젝트 내용을 입력해주세요.' })
+  markdownEditor: z
+    .string({ message: '프로젝트 내용을 입력해주세요.' })
     .min(10, { message: '프로젝트 내용은 최소 10자 이상이어야 합니다.' }),
 });
 
 const CreateProject = () => {
+  const navigate = useNavigate();
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
@@ -65,18 +67,15 @@ const CreateProject = () => {
       startDate: '',
       endDate: '',
       title: '',
-      maxVolunteers: 0,
       field: [],
-      duration: 0,
       position: [],
       newBy: false,
       languages: [],
-      description: '',
+      markdownEditor: '',
     },
   });
 
-  const handleSubmit = (data: z.infer<typeof createProjectScheme>, e: any) => {
-    e.preventDefault();
+  const handleSubmit = (data: z.infer<typeof createProjectScheme>) => {
     const formData: FormData = {
       title: data.title,
       totalMember: data.maxVolunteers,
@@ -88,22 +87,13 @@ const CreateProject = () => {
       methodId: data.field[0],
       isBeginner: data.newBy,
       skillTagId: data.languages,
-      description: data.description,
+      description: data.markdownEditor,
     };
 
     createProject(formData).then((status) => {
       if (status === 201) {
         alert('프로젝트가 성공적으로 생성되었습니다.');
-        setValue('startDate', '');
-        setValue('endDate', '');
-        setValue('title', '');
-        setValue('maxVolunteers', 0);
-        setValue('field', []);
-        setValue('duration', 0);
-        setValue('position', []);
-        setValue('newBy', false);
-        setValue('languages', []);
-        setValue('description', '');
+        navigate(`/main`);
       }
     });
   };
@@ -161,7 +151,7 @@ const CreateProject = () => {
           <Input
             control={control}
             errors={errors}
-            name='description'
+            name='markdownEditor'
             type='mdEditor'
             placeholder='프로젝트 상세 정보를 입력해주세요.'
           />

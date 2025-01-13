@@ -45,7 +45,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/create',
+    path: '/create',
     element: (
       <Layout>
         <CreateProject />
@@ -53,7 +53,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/apply/:projectId',
+    path: '/apply/:projectId',
     element: (
       <Layout>
         <Apply />
@@ -61,7 +61,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/project-detail/:projectId',
+    path: '/project-detail/:projectId',
     element: (
       <Layout>
         <ProjectDetail />
@@ -69,7 +69,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/manage',
+    path: '/manage',
     element: (
       <Layout>
         <MyProjectList />
@@ -77,7 +77,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/mypage',
+    path: '/mypage',
     element: (
       <Layout>
         <LayoutSidebar>
@@ -87,7 +87,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/users/:userId/entered',
+    path: '/users/:userId/entered',
     element: (
       <Layout>
         <LayoutSidebar>
@@ -97,7 +97,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/users/:userId/apply',
+    path: '/users/:userId/apply',
     element: (
       <Layout>
         <LayoutSidebar>
@@ -107,7 +107,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/users/:userId/others',
+    path: '/users/:userId/others',
     element: (
       <Layout>
         <LayoutSidebar>
@@ -117,7 +117,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/users/:userId/others-project',
+    path: '/users/:userId/others-project',
     element: (
       <Layout>
         <LayoutSidebar>
@@ -128,7 +128,7 @@ const routeList = [
   },
 
   {
-    path: '/main/manage/:projectId',
+    path: '/manage/:projectId',
     element: (
       <Layout>
         <LayoutSidebar>
@@ -138,7 +138,7 @@ const routeList = [
     ),
   },
   {
-    path: '/main/manage/:projectId/pass-nonpass',
+    path: '/manage/:projectId/pass-nonpass',
     element: (
       <Layout>
         <LayoutSidebar>

@@ -1,4 +1,3 @@
-import React from 'react';
 import * as S from './MarkdownEditor.styled';
 
 const MdEditorInput = ({ field }) => {

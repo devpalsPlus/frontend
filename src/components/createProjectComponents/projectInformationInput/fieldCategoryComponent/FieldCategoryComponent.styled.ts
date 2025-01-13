@@ -9,21 +9,17 @@ export const CategoryContainer = styled.div`
   margin-top: 5px;
   padding: 3px 0;
   background-color: ${({ theme }) => theme.color.white};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
   margin-bottom: 3px;
 `;
 
 export const CategoryItem = styled.div<{ isSelected: boolean }>`
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  padding: 3px 5px;
-  border: 1px solid
-    ${({ isSelected, theme }) =>
-      isSelected ? theme.buttonScheme.primary.bg : theme.color.border};
-  border-radius: ${({ theme }) => theme.borderRadius};
-  background-color: ${({ isSelected, theme }) =>
-    isSelected ? theme.buttonScheme.primary.bg : theme.color.white};
+  background-color: ${({ theme, isSelected }) =>
+    isSelected ? theme.buttonScheme.primary.bg : theme.color.lightgrey};
+  width: fit-content;
+  border: 1px solid ${({ theme }) => theme.color.grey};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
+  padding: 0.2rem 0.4rem;
   cursor: pointer;
   transition: all 0.2s;
 
@@ -33,11 +29,7 @@ export const CategoryItem = styled.div<{ isSelected: boolean }>`
   }
 
   .name {
-    font-size: 0.7rem;
-    font-weight: 200;
-    color: ${({ isSelected, theme }) =>
-      isSelected ? theme.color.white : theme.color.primary};
-  }
+    color : ${({ theme, isSelected }) => isSelected && theme.color.white}
 `;
 
 export const FormError = styled.p`

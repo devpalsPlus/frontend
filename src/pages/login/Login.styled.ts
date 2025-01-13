@@ -2,13 +2,16 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  width: 100%;
+  max-width: ${({ theme }) => theme.layout.width.desktop};
+  margin: 0 auto;
   flex-direction: column;
   align-items: center;
 
   img {
-    width: 6rem;
-    height: 6rem;
-    margin: 3rem 0 2.5rem;
+    width: 6.5rem;
+    height: 6.5rem;
+    margin: 2.5rem 0;
   }
 
   form {
@@ -16,16 +19,13 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 2rem;
   }
 
   button {
     max-width: 310px;
     width: 100%;
-    border-radius: 30px;
     padding: 0.8rem 0.625rem;
-    color: ${({ theme }) => theme.color.white};
-    background-color: ${({ theme }) => theme.buttonScheme['primary'].bg};
-    font-size: 1rem;
     font-weight: 600;
   }
 `;
@@ -35,8 +35,6 @@ export const InputContainer = styled.div`
   gap: 0.6rem;
 
   button {
-    max-width: 110px;
-    width: 50%;
     align-self: baseline;
     padding: 0.9rem 1rem;
     font-size: 0.9rem;

@@ -1,6 +1,6 @@
 //constants
 
-export const PROJECTDATA = [
+export const PROJECT_DATA = [
   {
     id: '1',
     name: 'maxVolunteers',
@@ -29,5 +29,24 @@ export const PROJECTDATA = [
     name: 'newBy',
     label: '새싹 여부',
     type: 'checkbox',
+    placeholder: '',
   },
-];
+] as const;
+
+export const PROJECT_DATA_GET = [
+  {
+    id: '1',
+    name: 'totalMember',
+    label: '모집 인원',
+  },
+  {
+    id: '2',
+    name: 'startDate',
+    label: '시작 예정',
+  },
+  {
+    id: '3',
+    name: 'estimatedPeriod',
+    label: '예상 기간',
+  },
+] as const;
