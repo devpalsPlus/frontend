@@ -7,11 +7,11 @@ import {
   CareerInputList,
   PhoneInputList,
 } from '../../components/createProjectComponents/inputComponent2';
-import useJoinProject from '../../hooks/useJoinProject';
 import { useParams } from 'react-router-dom';
 import { formatDate } from '../../util/format';
 import { applicantProject } from '../../api/joinProject.api';
 import { joinProject } from '../../models/joinProject';
+import useGetProjectData from '../../hooks/useJoinProject';
 
 const ApplyScheme = z.object({
   email: z.string().email({ message: '이메일 형식으로 입력해주세요.' }),
@@ -34,7 +34,7 @@ export type ApplySchemeType = z.infer<typeof ApplyScheme>;
 const Apply = () => {
   const { projectId } = useParams();
   const id = Number(projectId);
-  const { data, isLoading, isFetching } = useJoinProject(id);
+  const { data, isLoading, isFetching } = useGetProjectData(id);
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },

@@ -1,17 +1,31 @@
 import styled from 'styled-components';
+import Button from '../../components/common/Button/Button';
 
 export const Container = styled.div`
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px;
   font-family: 'Arial, sans-serif';
   color: #333;
+  margin-top: 70px;
 `;
 
 export const Header = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 20px;
+`;
+
+export const Title = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+export const ProfileContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
 `;
 
 export const ProfileImage = styled.img`
@@ -23,7 +37,9 @@ export const ProfileImage = styled.img`
 
 export const UserInfo = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
 `;
 
 export const UserName = styled.div`
@@ -43,6 +59,7 @@ export const ViewCount = styled.div`
 
 export const Content = styled.div`
   margin-top: 20px;
+  margin-bottom: 60px;
 `;
 
 export const ProjectDetails = styled.div`
@@ -83,7 +100,13 @@ export const Description = styled.div`
   color: #444;
 `;
 
-export const ActionButton = styled.button`
+export const ApplyButtonContainer = styled.div`
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+`;
+
+export const ActionButton = styled(Button)`
   display: block;
   width: 100%;
   padding: 15px;

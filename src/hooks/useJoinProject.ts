@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { getProjectData } from '../api/joinProject.api';
 
-const useJoinProject = (id: number) => {
+const useGetProjectData = (id: number) => {
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: ['joinProject'],
+    queryKey: ['projectDataAll', id],
     queryFn: async () => await getProjectData(id),
     staleTime: 1000 * 60 * 5,
   });
@@ -11,4 +11,4 @@ const useJoinProject = (id: number) => {
   return { data, isLoading, isFetching };
 };
 
-export default useJoinProject;
+export default useGetProjectData;
