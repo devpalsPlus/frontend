@@ -33,7 +33,7 @@ export const PROJECTDATA = [
   },
 ] as const;
 
-export const PROJECTDATAGET = [
+export const PROJECT_DATA_GET = [
   {
     id: '1',
     name: 'totalMember',

@@ -1,5 +1,5 @@
 import * as S from './ProjectInformation.styled';
-import { PROJECTDATAGET } from '../../constants';
+import { PROJECT_DATA_GET } from '../../constants';
 import beginner from '/src/assets/beginner.svg';
 import {
   ProjectDetail,
@@ -20,7 +20,7 @@ const ProjectInformation = ({ data }: ProjectInformationProps) => {
         {data.isBeginner && <S.BeginnerIcon src={beginner} alt='초보자 환영' />}
       </S.InfoRow>
 
-      {PROJECTDATAGET.map((input, index) => (
+      {PROJECT_DATA_GET.map((input, index) => (
         <S.InfoRow key={index}>
           <label htmlFor={input.name}>{input.label}</label>
           <p>{data[input.name as keyof ProjectDetail]}</p>
