@@ -1,6 +1,6 @@
 //constants
 
-export const PROJECTDATA = [
+export const PROJECT_DATA = [
   {
     id: '1',
     name: 'maxVolunteers',
