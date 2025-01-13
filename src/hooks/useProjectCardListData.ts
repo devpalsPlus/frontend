@@ -1,26 +1,25 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchProjectLists } from '../api/projectLists.api';
-import { useEffect, useState } from 'react';
-import { ProjectList } from '../models/mainProjectLists';
+import { useSaveSearchFiltering } from './useSaveSearchFiltering';
 
 export const useProjectCardListData = () => {
-  const [projectListsData, setProjectListsData] = useState<
-    ProjectList[] | undefined
-  >(undefined);
-  const { isError, isLoading, data } = useQuery({
-    queryKey: ['searchFiltering'],
-    queryFn: async () =>
-      await fetchProjectLists({
-        isBeginner: false,
-        page: 1,
-      }),
+  const { searchFilters } = useSaveSearchFiltering();
+  const {
+    isError,
+    isLoading,
+    data: projectListsData,
+  } = useQuery({
+    queryKey: [
+      'searchFilters',
+      searchFilters.positionTag,
+      searchFilters.isBeginner,
+      searchFilters.keyword,
+      searchFilters.method,
+      searchFilters.skillTag,
+      searchFilters.page,
+    ],
+    queryFn: () => fetchProjectLists(searchFilters),
   });
-
-  useEffect(() => {
-    if (data) {
-      setProjectListsData(data?.projects);
-    }
-  }, [data]);
 
   return {
     isError,

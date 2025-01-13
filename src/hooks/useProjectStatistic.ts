@@ -16,8 +16,8 @@ export const useProjectStatistic = () => {
   const { data } = useQuery({
     queryKey: ['projectStat'],
     queryFn: async () => await fetchProjectStatistic(),
-    // staleTime: Infinity,
-    // gcTime: Infinity,
+    staleTime: Infinity,
+    gcTime: Infinity,
   });
 
   useEffect(() => {

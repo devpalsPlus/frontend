@@ -11,7 +11,7 @@ export default function ProjectCardLists() {
         <h1>프로젝트 리스트</h1>
       </div>
       <S.Wrapper>
-        {projectListsData?.map((list) => (
+        {projectListsData?.projects.map((list) => (
           <CardList key={list.id} list={list} />
         ))}
       </S.Wrapper>

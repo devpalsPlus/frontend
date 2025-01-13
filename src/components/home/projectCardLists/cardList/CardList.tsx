@@ -1,12 +1,10 @@
-import { PROJECT_POSITION } from '../../../../constants/homeConstants';
 import PositionButton from '../../../common/positionButton/PositionButton';
 import SkillTagImg from '../../../common/skillTagBox/skillTag/skillTagImg/SkillTagImg';
 import * as S from './CardList.styled';
-import { v4 as uuid } from 'uuid';
 import beginner from '../../../../assets/beginner.svg';
 import Avatar from '../../../common/avatar/Avatar';
 import { EyeIcon } from '@heroicons/react/24/outline';
-import { ProjectList } from '../../../../models/mainProjectLists';
+import type { ProjectList } from '../../../../models/mainProjectLists';
 import { formatDate } from '../../../../util/formatDate';
 
 interface CardListProps {
@@ -14,7 +12,7 @@ interface CardListProps {
 }
 
 export default function CardList({ list }: CardListProps) {
-  console.log('list', list);
+  console.log(list);
 
   return (
     <S.Container>
@@ -27,15 +25,21 @@ export default function CardList({ list }: CardListProps) {
       <div className='position'>
         <div className='positionTitle'>모집 분야</div>
         <div className='positionTags'>
-          {PROJECT_POSITION.map((position) => (
-            <PositionButton position={position} key={uuid()} />
-          ))}
+          {list.positionTags.length > 0 &&
+            list.positionTags.map((position) => (
+              <PositionButton position={position.name} key={position.id} />
+            ))}
         </div>
       </div>
       <div className='skillTag'>
-        {PROJECT_POSITION.map((po) => (
-          <SkillTagImg image={beginner} key={po} skillTag={po} />
-        ))}
+        {list.skillTags.length > 0 &&
+          list.skillTags.map((skill) => (
+            <SkillTagImg
+              image={skill.img}
+              key={skill.id}
+              skillTag={skill.name}
+            />
+          ))}
       </div>
       <div className='info'>
         <div className='nickname'>

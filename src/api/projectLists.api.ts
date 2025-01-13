@@ -4,10 +4,13 @@ import type {
 } from '../models/mainProjectLists';
 import type { SearchFilters } from '../models/searchFilters';
 import { httpClient } from './http.api';
-
+let count = 0;
 export const fetchProjectLists = async (params: SearchFilters) => {
   try {
-    const response = await httpClient.get<ProjectLists>('/project', { params });
+    const response = await httpClient.get<ProjectLists>('/project', {
+      params,
+    });
+    console.log('fetchProjectLists', count++, response.data);
 
     return response.data;
   } catch (e) {

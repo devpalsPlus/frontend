@@ -1,8 +1,10 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import * as S from './Filtering.styled';
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { MethodTag, PositionTag } from '../../../../../models/tags';
 import { useOutsideClick } from '../../../../../hooks/useOutsideClick';
+import { useSaveSearchFiltering } from '../../../../../hooks/useSaveSearchFiltering';
+import { SEARCH_FILTERING_DEFAULT_VALUE } from '../../../../../constants/homeConstants';
 
 interface FilteringProps {
   selects: PositionTag[] | MethodTag[];
@@ -10,11 +12,19 @@ interface FilteringProps {
 }
 
 export default function Filtering({ selects, defaultValue }: FilteringProps) {
+  const { handleUpdateFilters } = useSaveSearchFiltering();
   const [changeValue, setChangeValue] = useState<string>(defaultValue);
   const [dropDownToggle, setDropDownToggle] = useState(false);
 
-  const handleValueClick = (tagName: string) => {
+  const handleValueClick = (tagName: string, tagId: number) => {
     setChangeValue(tagName);
+    setDropDownToggle(false);
+
+    if (defaultValue === SEARCH_FILTERING_DEFAULT_VALUE.POSITION) {
+      handleUpdateFilters('positionTag', tagId);
+    } else if (defaultValue === SEARCH_FILTERING_DEFAULT_VALUE.METHOD) {
+      handleUpdateFilters('method', tagId);
+    }
   };
 
   const handleDropDownToggle = () => {
@@ -36,7 +46,7 @@ export default function Filtering({ selects, defaultValue }: FilteringProps) {
               <div
                 className='option'
                 key={select.id}
-                onClick={() => handleValueClick(select.name)}
+                onClick={() => handleValueClick(select.name, select.id)}
               >
                 {select.name}
               </div>

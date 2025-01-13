@@ -47,3 +47,16 @@ export const Container = styled.div`
     top: 11rem;
   }
 `;
+
+export const BeginnerDiv = styled.div<{ $toggle: boolean }>`
+  outline: 1px solid
+    ${({ theme, $toggle }) => ($toggle ? theme.color.navy : 'initial')};
+  border: 1px solid
+    ${({ theme, $toggle }) => ($toggle ? theme.color.navy : 'initial')};
+  transition: all 100ms ease-in-out;
+
+  button {
+    color: ${({ theme, $toggle }) => ($toggle ? theme.color.navy : 'initial')};
+    font-weight: ${({ $toggle }) => ($toggle ? 'bold' : 'initial')};
+  }
+`;

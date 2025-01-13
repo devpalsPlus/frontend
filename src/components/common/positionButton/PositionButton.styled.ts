@@ -5,7 +5,7 @@ export const Container = styled.div`
     background-color: ${({ theme }) => theme.color.lightgrey};
     width: fit-content;
     border: 1px solid ${({ theme }) => theme.color.grey};
-    border-radius: ${({ theme }) => theme.borderRadius};
-    padding: 0.3rem 0.4rem;
+    border-radius: ${({ theme }) => theme.borderRadius.primary};
+    padding: 0.2rem 0.4rem;
   }
 `;

@@ -1,3 +1,5 @@
+import { PositionTag, SkillTag } from './tags';
+
 export interface User {
   id: number;
   nickname: string;
@@ -13,10 +15,6 @@ export interface Method {
   name: string;
   createdAt: string;
 }
-
-// export interface ProjectPositionTag {
-//   propertyName: type;
-// }
 
 export interface ProjectList {
   id: number;
@@ -35,6 +33,8 @@ export interface ProjectList {
   createdAt: string;
   updatedAt: string;
   User: User;
+  positionTags: PositionTag[];
+  skillTags: SkillTag[];
   ProjectSkillTag: string[];
   Method: Method;
   ProjectPositionTag: string[];
