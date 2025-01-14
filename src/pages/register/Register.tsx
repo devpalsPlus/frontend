@@ -17,6 +17,7 @@ import useEmailVerification from '../../hooks/useEmailVerification';
 import axios from 'axios';
 import Button from '../../components/common/Button/Button';
 import { ERROR_MESSAGES } from '../../constants/authConstants';
+import { useAuth } from '../../hooks/useAuth';
 
 const registerSchema = z
   .object({
@@ -45,10 +46,12 @@ const registerSchema = z
     path: ['passwordConfirm'],
   });
 
-type registerFormValues = z.infer<typeof registerSchema>;
+export type registerFormValues = z.infer<typeof registerSchema>;
 
 const Register = () => {
   const [nicknameMessage, setNicknameMessage] = useState<string | null>(null);
+
+  const { userSignup } = useAuth();
 
   const {
     control,
@@ -99,7 +102,10 @@ const Register = () => {
     }
   };
 
-  const onSubmit = (data: registerFormValues, e?: React.BaseSyntheticEvent) => {
+  const onSubmit = (
+    data: Pick<registerFormValues, 'email' | 'password' | 'nickname'>,
+    e?: React.BaseSyntheticEvent
+  ) => {
     e?.preventDefault();
 
     if (!isValid) {
@@ -109,7 +115,7 @@ const Register = () => {
 
     const { email, password, nickname } = data;
     const requestData = { email, password, nickname };
-    console.log('회원가입: ', requestData);
+    userSignup(requestData);
   };
 
   return (

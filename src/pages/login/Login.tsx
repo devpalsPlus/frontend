@@ -9,6 +9,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '../../components/common/Button/Button';
 import { ERROR_MESSAGES } from '../../constants/authConstants';
+import { useAuth } from '../../hooks/useAuth';
 
 const loginSchema = z.object({
   email: z
@@ -18,9 +19,10 @@ const loginSchema = z.object({
   password: z.string().nonempty(ERROR_MESSAGES.PASSWORD_REQUIRED),
 });
 
-type loginFormValues = z.infer<typeof loginSchema>;
+export type loginFormValues = z.infer<typeof loginSchema>;
 
 const Login = () => {
+  const { userLogin } = useAuth();
   const {
     control,
     handleSubmit,
@@ -35,7 +37,7 @@ const Login = () => {
 
   const onSubmit = (data: loginFormValues, e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
-    console.log(data);
+    userLogin(data);
   };
 
   return (

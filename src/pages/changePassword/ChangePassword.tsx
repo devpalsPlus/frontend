@@ -11,6 +11,7 @@ import { EnvelopeIcon, KeyIcon } from '@heroicons/react/24/outline';
 import useEmailVerification from '../../hooks/useEmailVerification';
 import Button from '../../components/common/Button/Button';
 import { ERROR_MESSAGES } from '../../constants/authConstants';
+import { useAuth } from '../../hooks/useAuth';
 
 const changePasswordSchema = z
   .object({
@@ -19,21 +20,25 @@ const changePasswordSchema = z
       .email(ERROR_MESSAGES.INVALID_EMAIL)
       .nonempty(ERROR_MESSAGES.EMAIL_REQUIRED),
     verificationCode: z.string().nonempty(ERROR_MESSAGES.CODE_REQUIRED),
-    password: z
+    newPassword: z
       .string()
       .min(6, ERROR_MESSAGES.PASSWORD_MIN)
       .regex(/[^a-zA-Z0-9]/, ERROR_MESSAGES.PASSWORD_SPECIAL)
       .nonempty(ERROR_MESSAGES.PASSWORD_REQUIRED),
-    passwordConfirm: z.string().nonempty(ERROR_MESSAGES.PASSWORD_CHECK_CONFIRM),
+    newPasswordConfirm: z
+      .string()
+      .nonempty(ERROR_MESSAGES.PASSWORD_CHECK_CONFIRM),
   })
-  .refine((data) => data.password === data.passwordConfirm, {
+  .refine((data) => data.newPassword === data.newPasswordConfirm, {
     message: ERROR_MESSAGES.PASSWORD_CONFIRM,
     path: ['passwordConfirm'],
   });
 
-type changePasswordFormValues = z.infer<typeof changePasswordSchema>;
+export type changePasswordFormValues = z.infer<typeof changePasswordSchema>;
 
 const ChangePassword = () => {
+  const { resetPassword } = useAuth();
+
   const {
     emailMessage,
     codeMessage,
@@ -54,8 +59,8 @@ const ChangePassword = () => {
     defaultValues: {
       email: '',
       verificationCode: '',
-      password: '',
-      passwordConfirm: '',
+      newPassword: '',
+      newPasswordConfirm: '',
     },
   });
 
@@ -68,7 +73,7 @@ const ChangePassword = () => {
   };
 
   const onSubmit = (
-    data: changePasswordFormValues,
+    data: Pick<changePasswordFormValues, 'email' | 'newPassword'>,
     e?: React.BaseSyntheticEvent
   ) => {
     e?.preventDefault();
@@ -78,10 +83,9 @@ const ChangePassword = () => {
       return;
     }
 
-    const { email, password } = data;
-    const newPassword = password;
+    const { email, newPassword } = data;
     const requestData = { email, newPassword };
-    console.log('비밀번호 재설정: ', requestData);
+    resetPassword(requestData);
   };
 
   return (
@@ -178,7 +182,7 @@ const ChangePassword = () => {
 
         {/* password */}
         <Controller
-          name='password'
+          name='newPassword'
           control={control}
           render={({ field }) => (
             <S.InputWrapper>
@@ -189,8 +193,8 @@ const ChangePassword = () => {
                 autoComplete='off'
                 {...field}
               />
-              {errors.password && (
-                <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
+              {errors.newPassword && (
+                <S.ErrorMessage>{errors.newPassword.message}</S.ErrorMessage>
               )}
             </S.InputWrapper>
           )}
@@ -198,7 +202,7 @@ const ChangePassword = () => {
 
         {/* passwordConfirm */}
         <Controller
-          name='passwordConfirm'
+          name='newPasswordConfirm'
           control={control}
           render={({ field }) => (
             <S.InputWrapper>
@@ -209,9 +213,9 @@ const ChangePassword = () => {
                 autoComplete='off'
                 {...field}
               />
-              {errors.passwordConfirm && (
+              {errors.newPasswordConfirm && (
                 <S.ErrorMessage>
-                  {errors.passwordConfirm.message}
+                  {errors.newPasswordConfirm.message}
                 </S.ErrorMessage>
               )}
             </S.InputWrapper>
