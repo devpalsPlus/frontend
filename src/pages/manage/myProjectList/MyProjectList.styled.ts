@@ -1,3 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const ManageProjectsContainer = styled.div`
+  padding-top: 4.375em;
+  width: 100%;
+`;
