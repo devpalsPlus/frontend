@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div<{ isSelected: boolean }>`
   .positionButton {
     background-color: ${({ isSelected, theme }) =>
-      isSelected ? theme.buttonScheme.primary.bg : theme.color.white};
+      isSelected ? theme.buttonScheme.primary.bg : theme.color.lightgrey};
     width: fit-content;
     border: 1px solid
       ${({ isSelected, theme }) =>

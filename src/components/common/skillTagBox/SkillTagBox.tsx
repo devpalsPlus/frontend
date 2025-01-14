@@ -1,11 +1,19 @@
-import { PROJECT_SKILL } from '../../../constants/homeConstants';
+import { useSearchFilteringSkillTag } from '../../../hooks/useSearchFilteringSkillTag';
 import SkillTag from './skillTag/SkillTag';
 import * as S from './SkillTagBox.styled';
 
-export default function SkillTagBox() {
+export interface SkillTagBoxProps {
+  width: string;
+}
+
+export default function SkillTagBox({ width }: SkillTagBoxProps) {
+  const { skillTagsData } = useSearchFilteringSkillTag();
+
   return (
-    <S.Container>
-      <SkillTag skillTags={[...PROJECT_SKILL]} />
+    <S.Container width={width}>
+      {skillTagsData?.map((skillTagData) => (
+        <SkillTag skillTagData={skillTagData} key={skillTagData.id} />
+      ))}
     </S.Container>
   );
 }

@@ -1,21 +1,16 @@
 import * as S from './SkillTag.styled';
-import beginner from '../../../../assets/beginner.svg';
-import { v4 as uuid } from 'uuid';
 import SkillTagImg from './skillTagImg/SkillTagImg';
+import type { SkillTag } from '../../../../models/tags';
 
 interface SkillTagProps {
-  skillTags: string[];
+  skillTagData: SkillTag;
 }
 
-export default function SkillTag({ skillTags }: SkillTagProps) {
+export default function SkillTag({ skillTagData }: SkillTagProps) {
   return (
     <S.Container>
-      {skillTags.map((skillTag) => (
-        <S.Wrapper key={uuid()}>
-          <SkillTagImg image={beginner} skillTag={skillTag} />
-          {skillTag}
-        </S.Wrapper>
-      ))}
+      <SkillTagImg image={skillTagData.img} skillTag={skillTagData.name} />
+      {skillTagData.name}
     </S.Container>
   );
 }
