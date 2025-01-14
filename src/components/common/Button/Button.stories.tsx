@@ -14,7 +14,7 @@ const meta = {
       control: { type: 'select' },
       options: ['primary', 'large'],
       table: {
-        type: { summary: 'prymary | large' },
+        type: { summary: 'primary | large' },
       },
     },
     schema: {
@@ -22,7 +22,7 @@ const meta = {
       control: { type: 'select' },
       options: ['primary'],
       table: {
-        type: { summary: 'prymary' },
+        type: { summary: 'primary' },
       },
     },
     radius: {
@@ -31,7 +31,7 @@ const meta = {
       control: { type: 'select' },
       options: ['primary', 'large'],
       table: {
-        type: { summary: 'prymary | large' },
+        type: { summary: 'primary | large' },
       },
     },
     children: {

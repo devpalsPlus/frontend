@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '../../components/common/Button/Button';
 
 export const Container = styled.div`
   max-width: 100%;
@@ -32,6 +33,7 @@ export const ProfileImage = styled.img`
   height: 50px;
   border-radius: 50%;
   margin-right: 15px;
+  border: 1px solid ${({ theme }) => theme.buttonScheme.primary.bg};
 `;
 
 export const UserInfo = styled.div`
@@ -58,6 +60,7 @@ export const ViewCount = styled.div`
 
 export const Content = styled.div`
   margin-top: 20px;
+  margin-bottom: 60px;
 `;
 
 export const ProjectDetails = styled.div`
@@ -98,7 +101,13 @@ export const Description = styled.div`
   color: #444;
 `;
 
-export const ActionButton = styled.button`
+export const ApplyButtonContainer = styled.div`
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+`;
+
+export const ActionButton = styled(Button)`
   display: block;
   width: 100%;
   padding: 15px;
