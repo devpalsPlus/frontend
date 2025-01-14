@@ -2,6 +2,7 @@ export type ColorKey =
   | 'primary'
   | 'border'
   | 'placeholder'
+  | 'deepgrey'
   | 'grey'
   | 'lightgrey'
   | 'white'
@@ -56,6 +57,7 @@ export const defaultTheme: Theme = {
     primary: '#000000',
     border: '#e3e3e3',
     placeholder: '#cdcdcd',
+    deepgrey: '#6D6D6D',
     grey: '#ececec',
     lightgrey: '#f9f9f9',
     white: '#ffffff',

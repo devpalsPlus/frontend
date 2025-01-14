@@ -10,8 +10,7 @@ import { useSaveSearchFiltering } from '../../../../hooks/useSaveSearchFiltering
 import { SEARCH_FILTERING_DEFAULT_VALUE } from '../../../../constants/homeConstants';
 
 export default function FilteringContents() {
-  const { skillTagsData, positionTagsData, methodTagsData } =
-    useSearchFilteringSkillTag();
+  const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
   const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
   const [skillTagButtonToggle, setSkillTagButtonToggle] = useState(false);
 
@@ -67,7 +66,7 @@ export default function FilteringContents() {
           ref={filteringRef}
           onClick={handleSkillTagFilterClick}
         >
-          <SkillTagBox width='90%' skillTagsData={skillTagsData} />
+          <SkillTagBox width='90%' />
         </div>
       )}
     </S.Container>

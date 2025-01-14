@@ -1,7 +1,18 @@
 import * as S from './MyProjectList.styled';
+import Title from '../../../components/common/title/Title';
+import CardList from '../../../components/manageProjects/CardList';
+import { useManagedProjects } from '../../../hooks/useManagedProjects';
 
 const MyProjectList = () => {
-  return <S.Container>MyProjectList Component</S.Container>;
+  const { managedProjects } = useManagedProjects();
+
+  return (
+    <S.ManageProjectsContainer>
+      <Title size='large'>모집 프로젝트 리스트</Title>
+
+      <CardList projects={managedProjects} />
+    </S.ManageProjectsContainer>
+  );
 };
 
 export default MyProjectList;
