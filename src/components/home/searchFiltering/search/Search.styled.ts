@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   width: 100vw;
   display: flex;
   align-items: center;
-  label {
+  form {
     width: 100%;
     display: flex;
     justify-content: space-between;

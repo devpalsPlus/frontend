@@ -4,7 +4,7 @@ import useGetProjectData from '../../hooks/useJoinProject';
 import * as S from './ProjectDetail.styled';
 import { formatDate } from '../../util/format';
 import Button from '../../components/common/Button/Button';
-import MarkdownEditorView from '../../components/createProjectComponents/editor/\bMarkdownEditorView';
+import MarkdownEditorView from '../../components/createProjectComponents/editor/MarkdownEditorView';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();

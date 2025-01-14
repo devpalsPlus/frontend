@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useState } from 'react';
+import { createContext, PropsWithChildren, useEffect, useState } from 'react';
 import type { SearchFilters } from '../models/searchFilters';
 
 type SearchFilteringKey =
@@ -6,6 +6,7 @@ type SearchFilteringKey =
   | 'positionTag'
   | 'method'
   | 'isBeginner'
+  | 'keyword'
   | 'page';
 
 interface SearchFilteringContextType {
@@ -23,8 +24,8 @@ const SearchFilteringContext = createContext<SearchFilteringContextType | null>(
 export function SearchFilteringProvider({ children }: PropsWithChildren) {
   const [searchFilters, setSearchFilters] = useState<SearchFilters>({
     skillTag: [],
-    positionTag: null,
-    method: null,
+    positionTag: 0,
+    method: 0,
     isBeginner: false,
     keyword: '',
     page: 1,
@@ -37,16 +38,29 @@ export function SearchFilteringProvider({ children }: PropsWithChildren) {
     setSearchFilters((prev) => {
       if (key === 'skillTag') {
         if (typeof filter !== 'string') return prev;
-        const updatedSkillTags = Array.isArray(prev.skillTag)
-          ? prev.skillTag.includes(filter as string)
-            ? prev.skillTag.filter((tag) => tag !== filter)
-            : [...prev.skillTag, filter]
-          : [filter];
-        return { ...prev, skillTag: updatedSkillTags };
+
+        if (Array.isArray(prev.skillTag)) {
+          if (prev.skillTag.includes(filter as string)) {
+            const updatedSkillTags = prev.skillTag.filter(
+              (tag) => tag !== filter
+            );
+            return { ...prev, skillTag: updatedSkillTags };
+          } else {
+            const updatedSkillTags = [...prev.skillTag, filter];
+            return { ...prev, skillTag: updatedSkillTags };
+          }
+        } else {
+          const updatedSkillTags = [filter];
+          return { ...prev, skillTag: updatedSkillTags };
+        }
       }
       return { ...prev, [key]: filter };
     });
   };
+
+  useEffect(() => {
+    console.log('searchFilters', searchFilters);
+  }, [searchFilters]);
 
   return (
     <SearchFilteringContext.Provider

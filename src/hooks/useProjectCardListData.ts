@@ -9,16 +9,9 @@ export const useProjectCardListData = () => {
     isLoading,
     data: projectListsData,
   } = useQuery({
-    queryKey: [
-      'searchFilters',
-      searchFilters.positionTag,
-      searchFilters.isBeginner,
-      searchFilters.keyword,
-      searchFilters.method,
-      searchFilters.skillTag,
-      searchFilters.page,
-    ],
+    queryKey: ['searchFilters', JSON.stringify(searchFilters)],
     queryFn: () => fetchProjectLists(searchFilters),
+    enabled: !!searchFilters,
   });
 
   return {
