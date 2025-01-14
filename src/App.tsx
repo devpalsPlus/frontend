@@ -5,7 +5,13 @@ import { defaultTheme } from './style/theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        gcTime: 20000,
+      },
+    },
+  });
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
