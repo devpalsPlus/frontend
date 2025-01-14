@@ -139,6 +139,7 @@ const Apply = () => {
 
         <S.Section>
           <S.Label>경력사항 / 수상이력</S.Label>
+
           <CareersComponent
             fieldsCareers={fieldsCareers}
             appendCareers={appendCareers}

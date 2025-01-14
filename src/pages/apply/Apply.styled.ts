@@ -65,3 +65,13 @@ export const SubmitButton = styled(Button)`
   padding: 15px;
   cursor: pointer;
 `;
+
+export const FormError = styled.p`
+  margin-top: 0.3px;
+  font-size: 0.7rem;
+  color: ${({ theme }) => theme.color.red};
+  position: absolute;
+  top: 100%;
+  left: 0;
+  white-space: nowrap;
+`;

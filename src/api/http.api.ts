@@ -13,7 +13,7 @@ export const createClient = (config?: AxiosRequestConfig) => {
     timeout: DEFAULT_TIMEOUT,
     headers: {
       'content-type': 'application/json',
-      authorization: `Bearer ${accessToken}`,
+      authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsIjoiZGV2cGFsc0BtYWlsLmNvbSIsImlhdCI6MTczNjQzNDEzMiwiZXhwIjoxNzM2NDM3NzMyfQ.Wpx7zqPjnkgtMh5cd0rzqm_NdprHOyTyDeGw_6hiZ9I`,
     },
     withCredentials: true,
     ...config,
