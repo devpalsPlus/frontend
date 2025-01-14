@@ -6,7 +6,7 @@ import Input from '../../components/inputComponent/inputComponent';
 import { CreateProjectFormValues, FormData } from '../../models/createProject';
 import { createProject } from '../../api/createProject.api';
 import { useNavigate } from 'react-router-dom';
-import ProjectInformationInput from '../../components/createProjectComponents/projectInformationInput/ProjectInformationInput';
+import ProjectInformationInput from '../../components/projectFormComponents/projectInformationInput/ProjectInformationInput';
 
 export const createProjectScheme = z.object({
   startDate: z

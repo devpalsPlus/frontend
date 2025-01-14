@@ -9,7 +9,7 @@ import {
   useControllerApply,
   useControllerCommon,
 } from '../../hooks/useControllerForm';
-import MdEditorInput from '../createProjectComponents/editor/MarkdownEditor';
+import MdEditorInput from '../projectFormComponents/editor/MarkdownEditor';
 
 type InputProps = {
   control: Control<any>;
