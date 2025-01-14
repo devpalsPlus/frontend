@@ -1,62 +1,72 @@
-import {
-  PROJECT_METHOD,
-  PROJECT_POSITION,
-} from '../../../../constants/homeConstants';
 import Filtering from './filtering/Filtering';
 import * as S from './FilteringContents.styled';
 import beginner from '../../../../assets/beginner.svg';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import SkillTagBox from '../../../common/skillTagBox/SkillTagBox';
-import { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
+import { useSearchFilteringSkillTag } from '../../../../hooks/useSearchFilteringSkillTag';
+import { useOutsideClick } from '../../../../hooks/useOutsideClick';
+import { useSaveSearchFiltering } from '../../../../hooks/useSaveSearchFiltering';
+import { SEARCH_FILTERING_DEFAULT_VALUE } from '../../../../constants/homeConstants';
 
 export default function FilteringContents() {
+  const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
+  const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
   const [skillTagButtonToggle, setSkillTagButtonToggle] = useState(false);
-  const filteringRef = useRef<HTMLDivElement>(null);
 
   const handleSkillTagBoxToggle = () => {
     setSkillTagButtonToggle((prev) => !prev);
   };
 
-  useEffect(() => {
-    const handleOutsideClick = (e: MouseEvent) => {
-      if (
-        filteringRef.current &&
-        !filteringRef.current.contains(e.target as Node)
-      ) {
-        setSkillTagButtonToggle(false);
-      }
-    };
-    document.addEventListener('mousedown', handleOutsideClick);
+  const handleSkillTagFilterClick = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement;
+    const textContent = target.textContent;
+    if (!textContent) return;
+    handleUpdateFilters('skillTag', textContent);
+  };
 
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [filteringRef]);
+  const filteringRef = useOutsideClick(() => setSkillTagButtonToggle(false));
 
   return (
     <S.Container>
       <div
         className='filteringButton skillTagButton'
         onClick={handleSkillTagBoxToggle}
-        ref={filteringRef}
       >
         <button>
           언어선택
           <ChevronDownIcon />
         </button>
       </div>
-      <Filtering selects={[...PROJECT_POSITION]} defaultValue='포지션' />
-      <Filtering selects={[...PROJECT_METHOD]} defaultValue='진행방식' />
-      <div className='filteringButton beginnerButton'>
-        <button>
+      <Filtering
+        selects={positionTagsData}
+        defaultValue={SEARCH_FILTERING_DEFAULT_VALUE.POSITION}
+      />
+      <Filtering
+        selects={methodTagsData}
+        defaultValue={SEARCH_FILTERING_DEFAULT_VALUE.METHOD}
+      />
+      <S.BeginnerDiv
+        className='filteringButton beginnerButton'
+        $toggle={searchFilters.isBeginner}
+      >
+        <button
+          onClick={() =>
+            handleUpdateFilters('isBeginner', !searchFilters.isBeginner)
+          }
+        >
           새싹 모집
-          <img src={beginner} alt='plant' />
+          <img className='isBeginner' src={beginner} alt='plant' />
         </button>
-      </div>
+      </S.BeginnerDiv>
 
       {skillTagButtonToggle && (
-        <div className='skillTagBox'>
-          <SkillTagBox />
+        <div
+          className='skillTagBox'
+          ref={filteringRef}
+          onClick={handleSkillTagFilterClick}
+        >
+          <SkillTagBox width='90%' />
         </div>
       )}
     </S.Container>
