@@ -1,24 +1,28 @@
 import { Link } from 'react-router-dom';
 import * as S from './Login.styled';
-import logo from '../../assets/logo.png';
+import Mainlogo from '../../assets/mainlogo.svg';
 import { EnvelopeIcon, KeyIcon } from '@heroicons/react/24/outline';
 import InputText from '../../components/auth/InputText';
 import Title from '../../components/common/title/Title';
 import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Button from '../../components/common/Button/Button';
+import { ERROR_MESSAGES } from '../../constants/authConstants';
+import { useAuth } from '../../hooks/useAuth';
 
 const loginSchema = z.object({
   email: z
     .string()
-    .email('유효한 이메일을 입력해주세요.')
-    .nonempty('이메일을 입력해주세요.'),
-  password: z.string().nonempty('비밀번호를 입력해주세요.'),
+    .email(ERROR_MESSAGES.INVALID_EMAIL)
+    .nonempty(ERROR_MESSAGES.EMAIL_REQUIRED),
+  password: z.string().nonempty(ERROR_MESSAGES.PASSWORD_REQUIRED),
 });
 
-type loginFormValues = z.infer<typeof loginSchema>;
+export type loginFormValues = z.infer<typeof loginSchema>;
 
 const Login = () => {
+  const { userLogin } = useAuth();
   const {
     control,
     handleSubmit,
@@ -33,14 +37,14 @@ const Login = () => {
 
   const onSubmit = (data: loginFormValues, e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
-    console.log(data);
+    userLogin(data);
   };
 
   return (
     <S.Container>
       <h1 className='logo'>
         <Link to='/'>
-          <img src={logo} alt='logo' />
+          <img src={Mainlogo} alt='logo' />
         </Link>
       </h1>
       <Title size='semiLarge'>로그인</Title>
@@ -81,7 +85,9 @@ const Login = () => {
             </S.InputWrapper>
           )}
         />
-        <button type='submit'>로그인</button>
+        <Button size='primary' schema='primary' radius='large'>
+          로그인
+        </Button>
       </form>
       <S.WrapperPassword>
         <span>비밀번호를 잊으셨나요?</span>
@@ -96,7 +102,9 @@ const Login = () => {
           함께 성장해봐요!
         </p>
         <Link to='/signup'>
-          <button>회원가입</button>
+          <Button size='primary' schema='primary' radius='large'>
+            회원가입
+          </Button>
         </Link>
       </S.WrapperRegister>
     </S.Container>

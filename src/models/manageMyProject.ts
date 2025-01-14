@@ -1,11 +1,16 @@
 //model
-export interface ManageMyprojectList {
+export interface ManagedProject {
+  id: number;
   title: string;
-  description: string;
   totalMember: number;
-  startDate: string;
-  positionId: number;
-  estimatedPeriod: string;
-  methodId: number;
+  recruitmentEndDate: string;
   isBeginner: boolean;
+  ProjectSkillTag: SkillTag[];
+}
+
+export interface SkillTag {
+  id: number;
+  name: string;
+  img: string;
+  createdAt: string;
 }

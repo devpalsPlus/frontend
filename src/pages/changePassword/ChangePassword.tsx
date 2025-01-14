@@ -1,6 +1,6 @@
 import * as S from '../login/Login.styled';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import Mainlogo from '../../assets/mainlogo.svg';
 import Title from '../../components/common/title/Title';
 import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
@@ -9,29 +9,36 @@ import React from 'react';
 import InputText from '../../components/auth/InputText';
 import { EnvelopeIcon, KeyIcon } from '@heroicons/react/24/outline';
 import useEmailVerification from '../../hooks/useEmailVerification';
+import Button from '../../components/common/Button/Button';
+import { ERROR_MESSAGES } from '../../constants/authConstants';
+import { useAuth } from '../../hooks/useAuth';
 
 const changePasswordSchema = z
   .object({
     email: z
       .string()
-      .email('올바른 이메일 형식을 입력해주세요.')
-      .nonempty('이메일을 입력해주세요.'),
-    verificationCode: z.string().nonempty('인증코드를 입력해주세요.'),
-    password: z
+      .email(ERROR_MESSAGES.INVALID_EMAIL)
+      .nonempty(ERROR_MESSAGES.EMAIL_REQUIRED),
+    verificationCode: z.string().nonempty(ERROR_MESSAGES.CODE_REQUIRED),
+    newPassword: z
       .string()
-      .min(6, '6자리 이상 입력해주세요.')
-      .regex(/[^a-zA-Z0-9]/, '특수문자 1개 이상을 포함해주세요.')
-      .nonempty('비밀번호를 입력해주세요.'),
-    passwordConfirm: z.string().nonempty('비밀번호 확인을 입력해주세요.'),
+      .min(6, ERROR_MESSAGES.PASSWORD_MIN)
+      .regex(/[^a-zA-Z0-9]/, ERROR_MESSAGES.PASSWORD_SPECIAL)
+      .nonempty(ERROR_MESSAGES.PASSWORD_REQUIRED),
+    newPasswordConfirm: z
+      .string()
+      .nonempty(ERROR_MESSAGES.PASSWORD_CHECK_CONFIRM),
   })
-  .refine((data) => data.password === data.passwordConfirm, {
-    message: '비밀번호가 다릅니다.',
+  .refine((data) => data.newPassword === data.newPasswordConfirm, {
+    message: ERROR_MESSAGES.PASSWORD_CONFIRM,
     path: ['passwordConfirm'],
   });
 
-type changePasswordFormValues = z.infer<typeof changePasswordSchema>;
+export type changePasswordFormValues = z.infer<typeof changePasswordSchema>;
 
 const ChangePassword = () => {
+  const { resetPassword } = useAuth();
+
   const {
     emailMessage,
     codeMessage,
@@ -52,8 +59,8 @@ const ChangePassword = () => {
     defaultValues: {
       email: '',
       verificationCode: '',
-      password: '',
-      passwordConfirm: '',
+      newPassword: '',
+      newPasswordConfirm: '',
     },
   });
 
@@ -66,7 +73,7 @@ const ChangePassword = () => {
   };
 
   const onSubmit = (
-    data: changePasswordFormValues,
+    data: Pick<changePasswordFormValues, 'email' | 'newPassword'>,
     e?: React.BaseSyntheticEvent
   ) => {
     e?.preventDefault();
@@ -76,17 +83,16 @@ const ChangePassword = () => {
       return;
     }
 
-    const { email, password } = data;
-    const newPassword = password;
+    const { email, newPassword } = data;
     const requestData = { email, newPassword };
-    console.log('비밀번호 재설정: ', requestData);
+    resetPassword(requestData);
   };
 
   return (
     <S.Container>
       <h1 className='logo'>
         <Link to='/'>
-          <img src={logo} alt='logo' />
+          <img src={Mainlogo} alt='logo' />
         </Link>
       </h1>
       <Title size='semiLarge'>비밀번호 재설정</Title>
@@ -117,14 +123,17 @@ const ChangePassword = () => {
                   <S.ErrorMessage>{emailMessage}</S.ErrorMessage>
                 )}
               </S.InputWrapper>
-              <button
+              <Button
+                size='primary'
+                schema='primary'
+                radius='large'
                 type='button'
                 onClick={() => {
                   handleClickEmail(field.value);
                 }}
               >
                 메일 전송
-              </button>
+              </Button>
             </S.InputContainer>
           )}
         />
@@ -156,21 +165,24 @@ const ChangePassword = () => {
                   </S.ErrorMessage>
                 )}
               </S.InputWrapper>
-              <button
+              <Button
+                size='primary'
+                schema='primary'
+                radius='large'
                 type='button'
                 onClick={() => {
                   handleClickCode(getValues('email'), field.value);
                 }}
               >
                 인증 확인
-              </button>
+              </Button>
             </S.InputContainer>
           )}
         />
 
         {/* password */}
         <Controller
-          name='password'
+          name='newPassword'
           control={control}
           render={({ field }) => (
             <S.InputWrapper>
@@ -181,8 +193,8 @@ const ChangePassword = () => {
                 autoComplete='off'
                 {...field}
               />
-              {errors.password && (
-                <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
+              {errors.newPassword && (
+                <S.ErrorMessage>{errors.newPassword.message}</S.ErrorMessage>
               )}
             </S.InputWrapper>
           )}
@@ -190,7 +202,7 @@ const ChangePassword = () => {
 
         {/* passwordConfirm */}
         <Controller
-          name='passwordConfirm'
+          name='newPasswordConfirm'
           control={control}
           render={({ field }) => (
             <S.InputWrapper>
@@ -201,18 +213,24 @@ const ChangePassword = () => {
                 autoComplete='off'
                 {...field}
               />
-              {errors.passwordConfirm && (
+              {errors.newPasswordConfirm && (
                 <S.ErrorMessage>
-                  {errors.passwordConfirm.message}
+                  {errors.newPasswordConfirm.message}
                 </S.ErrorMessage>
               )}
             </S.InputWrapper>
           )}
         />
         <S.ButtonWrapper>
-          <button type='submit' disabled={!isValid}>
+          <Button
+            size='primary'
+            schema='primary'
+            radius='large'
+            type='submit'
+            disabled={!isValid}
+          >
             재설정 완료
-          </button>
+          </Button>
         </S.ButtonWrapper>
       </form>
     </S.Container>

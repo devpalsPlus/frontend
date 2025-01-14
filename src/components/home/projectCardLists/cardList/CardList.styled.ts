@@ -26,13 +26,10 @@ export const Container = styled.div`
     flex-direction: column;
     flex-wrap: wrap;
     gap: 0.5rem;
-
-    .skillTags {
-      display: flex;
-    }
   }
 
-  .skill {
+  .skillTag,
+  .positionTags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
@@ -62,6 +59,10 @@ export const Container = styled.div`
 
         svg {
           width: 1.3rem;
+        }
+        span {
+          width: 2.5rem;
+          flex-direction: row;
         }
       }
     }

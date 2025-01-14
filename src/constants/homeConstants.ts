@@ -1,3 +1,8 @@
+export const SEARCH_FILTERING_DEFAULT_VALUE = {
+  POSITION: '포지션',
+  METHOD: '진행방법',
+} as const;
+
 export const PROJECT_STATS_TITLE = [
   '모집 / 진행 중인 프로젝트',
   '마무리 된 프로젝트',

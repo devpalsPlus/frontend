@@ -1,6 +1,6 @@
 import * as S from '../login/Login.styled';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import Mainlogo from '../../assets/mainlogo.svg';
 import Title from '../../components/common/title/Title';
 import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
@@ -15,38 +15,43 @@ import {
 import { postCheckNickname } from '../../api/auth.api';
 import useEmailVerification from '../../hooks/useEmailVerification';
 import axios from 'axios';
+import Button from '../../components/common/Button/Button';
+import { ERROR_MESSAGES } from '../../constants/authConstants';
+import { useAuth } from '../../hooks/useAuth';
 
 const registerSchema = z
   .object({
     email: z
       .string()
-      .email('올바른 이메일 형식을 입력해주세요.')
-      .nonempty('이메일을 입력해주세요.'),
-    verificationCode: z.string().nonempty('인증코드를 입력해주세요.'),
+      .email(ERROR_MESSAGES.INVALID_EMAIL)
+      .nonempty(ERROR_MESSAGES.EMAIL_REQUIRED),
+    verificationCode: z.string().nonempty(ERROR_MESSAGES.CODE_REQUIRED),
     password: z
       .string()
-      .min(6, '6자리 이상 입력해주세요.')
-      .regex(/[^a-zA-Z0-9]/, '특수문자 1개 이상을 포함해주세요.')
-      .nonempty('비밀번호를 입력해주세요.'),
-    passwordConfirm: z.string().nonempty('비밀번호 확인을 입력해주세요.'),
+      .min(6, ERROR_MESSAGES.PASSWORD_MIN)
+      .regex(/[^a-zA-Z0-9]/, ERROR_MESSAGES.PASSWORD_SPECIAL)
+      .nonempty(ERROR_MESSAGES.PASSWORD_REQUIRED),
+    passwordConfirm: z.string().nonempty(ERROR_MESSAGES.PASSWORD_CHECK_CONFIRM),
     nickname: z
       .string()
-      .nonempty('닉네임을 입력해주세요.')
-      .max(6, '6자 이하로 입력해주세요.')
+      .nonempty(ERROR_MESSAGES.NICKNAME_REQUIRED)
+      .max(6, ERROR_MESSAGES.NICKNAME_LENGTH)
       .regex(
         /^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ0-9~`!@#$%^&*()\-_=+]{1,6}$/,
-        '특수문자는 (~,`,!,@,#,$,%,^,&,*,(,),-,_,+)만 사용할 수 있습니다.'
+        ERROR_MESSAGES.NICKNAME_FORMAT
       ),
   })
   .refine((data) => data.password === data.passwordConfirm, {
-    message: '비밀번호가 다릅니다.',
+    message: ERROR_MESSAGES.PASSWORD_CONFIRM,
     path: ['passwordConfirm'],
   });
 
-type registerFormValues = z.infer<typeof registerSchema>;
+export type registerFormValues = z.infer<typeof registerSchema>;
 
 const Register = () => {
   const [nicknameMessage, setNicknameMessage] = useState<string | null>(null);
+
+  const { userSignup } = useAuth();
 
   const {
     control,
@@ -97,7 +102,10 @@ const Register = () => {
     }
   };
 
-  const onSubmit = (data: registerFormValues, e?: React.BaseSyntheticEvent) => {
+  const onSubmit = (
+    data: Pick<registerFormValues, 'email' | 'password' | 'nickname'>,
+    e?: React.BaseSyntheticEvent
+  ) => {
     e?.preventDefault();
 
     if (!isValid) {
@@ -107,14 +115,14 @@ const Register = () => {
 
     const { email, password, nickname } = data;
     const requestData = { email, password, nickname };
-    console.log('회원가입: ', requestData);
+    userSignup(requestData);
   };
 
   return (
     <S.Container>
       <h1 className='logo'>
         <Link to='/'>
-          <img src={logo} alt='logo' />
+          <img src={Mainlogo} alt='logo' />
         </Link>
       </h1>
       <Title size='semiLarge'>회원가입</Title>
@@ -145,14 +153,17 @@ const Register = () => {
                   <S.ErrorMessage>{emailMessage}</S.ErrorMessage>
                 )}
               </S.InputWrapper>
-              <button
+              <Button
+                size='primary'
+                schema='primary'
+                radius='large'
                 type='button'
                 onClick={() => {
                   handleClickEmail(field.value);
                 }}
               >
                 메일 전송
-              </button>
+              </Button>
             </S.InputContainer>
           )}
         />
@@ -184,14 +195,17 @@ const Register = () => {
                   </S.ErrorMessage>
                 )}
               </S.InputWrapper>
-              <button
+              <Button
+                size='primary'
+                schema='primary'
+                radius='large'
                 type='button'
                 onClick={() => {
                   handleClickCode(getValues('email'), field.value);
                 }}
               >
                 인증 확인
-              </button>
+              </Button>
             </S.InputContainer>
           )}
         />
@@ -268,21 +282,30 @@ const Register = () => {
                   <S.ErrorMessage>{nicknameMessage}</S.ErrorMessage>
                 )}
               </S.InputWrapper>
-              <button
+              <Button
+                size='primary'
+                schema='primary'
+                radius='large'
                 type='button'
                 onClick={() => {
                   handleCheckNickname(field.value);
                 }}
               >
                 중복 확인
-              </button>
+              </Button>
             </S.InputContainer>
           )}
         />
         <S.ButtonWrapper>
-          <button type='submit' disabled={!isValid}>
+          <Button
+            size='primary'
+            schema='primary'
+            radius='large'
+            type='submit'
+            disabled={!isValid}
+          >
             회원가입
-          </button>
+          </Button>
         </S.ButtonWrapper>
       </form>
     </S.Container>

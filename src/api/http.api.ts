@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import useAuthStore from '../store/authStore';
 
 const BASE_URL = `${import.meta.env.VITE_APP_API_BASE_URL}`;
-const DEFAULT_TIMEOUT = 30000;
+const DEFAULT_TIMEOUT = 15000;
 
 export const createClient = (config?: AxiosRequestConfig) => {
   const { accessToken, refreshToken, storeLogin, storeLogout } =
@@ -42,19 +42,33 @@ export const createClient = (config?: AxiosRequestConfig) => {
       if (
         error.response &&
         error.response.status === 401 &&
-        originalRequest._retry
+        !originalRequest._retry
       ) {
         originalRequest._retry = true;
         try {
-          const refreshResponse = await axios.post(`${BASE_URL}/auth/refresh`, {
-            refreshToken,
-          });
-          const newAccessToken = refreshResponse.data.accessToken;
-          storeLogin(newAccessToken, refreshToken as string);
-          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+          const refreshResponse = await axios.post(
+            `${BASE_URL}/auth/refresh`,
+            {
+              refreshToken,
+            },
+            { withCredentials: true }
+          );
+          const newTokens = refreshResponse.data;
+          const { newAccessToken, newRefreshToken } = newTokens;
+
+          console.log('갱신된 토큰:', newTokens);
+
+          storeLogin(newAccessToken, newRefreshToken);
+          axiosInstance.defaults.headers[
+            'Authorization'
+          ] = `Bearer ${newAccessToken}`;
+          originalRequest.headers[
+            'Authorization'
+          ] = `New Bearer ${newAccessToken}`;
 
           return axios(originalRequest);
         } catch (refreshError) {
+          alert('토큰을 갱신할 수 없습니다 -> 다른 메시지 변경 예정');
           storeLogout();
           return Promise.reject(refreshError);
         }
