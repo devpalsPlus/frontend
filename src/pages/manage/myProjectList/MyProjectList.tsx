@@ -5,6 +5,7 @@ import { useManagedProjects } from '../../../hooks/useManagedProjects';
 
 const MyProjectList = () => {
   const { managedProjects } = useManagedProjects();
+
   return (
     <S.ManageProjectsContainer>
       <header className='titleWrap'>
