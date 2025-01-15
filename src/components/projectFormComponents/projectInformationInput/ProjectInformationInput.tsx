@@ -7,6 +7,7 @@ import { PROJECT_DATA } from '../../../constants';
 import { CreateProjectFormValues } from '../../../models/createProject';
 import * as S from './ProjectInformationInput.styled';
 import Input from '../../inputComponent/inputComponent';
+import { useSearchFilteringSkillTag } from '../../../hooks/useSearchFilteringSkillTag';
 
 interface ProjectInformationProps {
   errors: FieldErrors;
@@ -22,6 +23,9 @@ const ProjectInformationInput = ({
   const [selectedLanguage, setSelectedLanguage] = useState<number[]>([]);
   const [selectedMozip, setSelectedMozip] = useState<number[]>([]);
   const [selectedMethod, setSelectedMethod] = useState<number[]>([]);
+
+  const { skillTagsData, positionTagsData, methodTagsData } =
+    useSearchFilteringSkillTag();
 
   return (
     <>
@@ -50,6 +54,7 @@ const ProjectInformationInput = ({
         setSelectedMethod={setSelectedMethod}
         errors={errors}
         setValue={setValue}
+        methodTagsData={methodTagsData}
       />
 
       <S.InfoRow>
@@ -61,6 +66,7 @@ const ProjectInformationInput = ({
         setSelectedMozip={setSelectedMozip}
         errors={errors}
         setValue={setValue}
+        positionTagsData={positionTagsData}
       />
 
       <S.InfoRow>
@@ -72,6 +78,7 @@ const ProjectInformationInput = ({
         setSelectedLanguage={setSelectedLanguage}
         errors={errors}
         setValue={setValue}
+        skillTagsData={skillTagsData}
       />
     </>
   );

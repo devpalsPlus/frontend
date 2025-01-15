@@ -1,8 +1,8 @@
 import * as S from './FieldCategoryComponent.styled';
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
-import { PROJECT_METHOD } from '../../../../constants/homeConstants';
 import { handleClick } from '../../../../util/handleClick.util';
 import { CreateProjectFormValues } from '../../../../models/createProject';
+import { MethodTag } from '../../../../models/tags';
 
 interface FieldCategoryComponentProps {
   selectedMethod: number[];
@@ -10,6 +10,7 @@ interface FieldCategoryComponentProps {
   errors: FieldErrors;
   name: string;
   setValue: UseFormSetValue<CreateProjectFormValues>;
+  methodTagsData: MethodTag[];
 }
 
 const FieldCategoryComponent = ({
@@ -18,13 +19,14 @@ const FieldCategoryComponent = ({
   errors,
   name,
   setValue,
+  methodTagsData,
 }: FieldCategoryComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
   return (
     <S.Container>
       <S.CategoryContainer>
-        {PROJECT_METHOD.map((data, idx) => {
+        {methodTagsData.map((data, idx) => {
           const isSelected = selectedMethod.some((item) => item === idx);
           return (
             <S.CategoryItem
@@ -34,7 +36,7 @@ const FieldCategoryComponent = ({
                 handleClick(idx, setValue, name, setSelectedMethod)
               }
             >
-              <span className='name'>{data}</span>
+              <span className='name'>{data.name}</span>
             </S.CategoryItem>
           );
         })}
