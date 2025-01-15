@@ -12,7 +12,7 @@ function Header() {
   const { isLoggedIn } = useAuthStore();
   return (
     <S.HeaderContainer>
-      <Link to='/home'>
+      <Link to='/main'>
         <img src={Mainlogo} alt='logo' />
       </Link>
       <nav className='auth'>

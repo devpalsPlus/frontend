@@ -1,9 +1,13 @@
 import styled from 'styled-components';
+import { SkillTagImgProps } from './SkillTagImg';
 
-export const Container = styled.div`
+export const Wrapper = styled.div<Pick<SkillTagImgProps, '$select'>>`
+  background-color: ${({ theme }) => theme.color.white};
+  border-radius: 50%;
   img {
     width: 2.2rem;
-    border: 1px solid ${({ theme }) => theme.color.border};
     border-radius: 50%;
+    border: 1px solid
+      ${({ theme, $select }) => ($select ? 'none' : theme.color.border)};
   }
 `;

@@ -1,22 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchProjectLists } from '../api/projectLists.api';
-import { useSaveSearchFiltering } from './useSaveSearchFiltering';
+import type { SearchFilters } from '../models/SearchFilters';
 
-export const useProjectCardListData = () => {
-  const { searchFilters } = useSaveSearchFiltering();
+export const useProjectCardListData = (filter: SearchFilters) => {
   const {
     isError,
     isLoading,
     data: projectListsData,
   } = useQuery({
-    queryKey: ['searchFilters', JSON.stringify(searchFilters)],
-    queryFn: () => fetchProjectLists(searchFilters),
-    enabled: !!searchFilters,
+    queryKey: ['searchFilters', filter],
+    queryFn: () => fetchProjectLists(filter),
   });
 
   return {
     isError,
     isLoading,
-    projectListsData,
+    projectListsData: projectListsData?.projects,
   };
 };

@@ -1,19 +1,18 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import useAuthStore from '../store/authStore';
+import useAuthStore, { getTokens } from '../store/authStore';
 
 const BASE_URL = `${import.meta.env.VITE_APP_API_BASE_URL}`;
 const DEFAULT_TIMEOUT = 15000;
 
 export const createClient = (config?: AxiosRequestConfig) => {
-  const { accessToken, refreshToken, storeLogin, storeLogout } =
-    useAuthStore.getState();
+  const { storeLogin, storeLogout } = useAuthStore.getState();
 
   const axiosInstance = axios.create({
     baseURL: BASE_URL,
     timeout: DEFAULT_TIMEOUT,
     headers: {
       'content-type': 'application/json',
-      authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjgsImVtYWlsIjoiZGV2cGFsc0BtYWlsLmNvbSIsImlhdCI6MTczNjQzNDEzMiwiZXhwIjoxNzM2NDM3NzMyfQ.Wpx7zqPjnkgtMh5cd0rzqm_NdprHOyTyDeGw_6hiZ9I`,
+      authorization: getTokens() ? `Bearer ${getTokens().accessToken}` : '',
     },
     withCredentials: true,
     ...config,
@@ -21,14 +20,15 @@ export const createClient = (config?: AxiosRequestConfig) => {
 
   axiosInstance.interceptors.request.use(
     (config) => {
+      const { accessToken } = getTokens();
       if (accessToken) {
         config.headers['Authorization'] = `Bearer ${accessToken}`;
       }
       return config;
     },
     (error) => {
-      console.log(error);
-      Promise.reject(error);
+      console.log('interceptors request error:', error);
+      return Promise.reject(error);
     }
   );
 
@@ -45,30 +45,26 @@ export const createClient = (config?: AxiosRequestConfig) => {
         !originalRequest._retry
       ) {
         originalRequest._retry = true;
+
         try {
+          const refreshToken = getTokens().refreshToken;
           const refreshResponse = await axios.post(
-            `${BASE_URL}/auth/refresh`,
+            `${BASE_URL}auth/refresh`,
             {
               refreshToken,
             },
             { withCredentials: true }
           );
-          const newTokens = refreshResponse.data;
-          const { newAccessToken, newRefreshToken } = newTokens;
 
-          console.log('갱신된 토큰:', newTokens);
+          const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
+            refreshResponse.data;
 
           storeLogin(newAccessToken, newRefreshToken);
-          axiosInstance.defaults.headers[
-            'Authorization'
-          ] = `Bearer ${newAccessToken}`;
-          originalRequest.headers[
-            'Authorization'
-          ] = `New Bearer ${newAccessToken}`;
+          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
 
-          return axios(originalRequest);
+          return await axios(originalRequest);
         } catch (refreshError) {
-          alert('토큰을 갱신할 수 없습니다 -> 다른 메시지 변경 예정');
+          alert('토큰을 갱신할 수 없습니다. 로그인 상태를 확인하세요.');
           storeLogout();
           return Promise.reject(refreshError);
         }

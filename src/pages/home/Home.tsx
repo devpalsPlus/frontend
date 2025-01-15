@@ -7,19 +7,16 @@ import { SearchFilteringProvider } from '../../context/SearchFilteringContext';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const Home = () => {
-  /*
-    모집공고 페이지
-    */
   return (
-    <SearchFilteringProvider>
-      <S.Container>
-        <Banner />
-        <ProjectStats />
+    <S.Container>
+      <Banner />
+      <ProjectStats />
+      <SearchFilteringProvider>
         <SearchFiltering />
         <ProjectCardLists />
-      </S.Container>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </SearchFilteringProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </SearchFilteringProvider>
+    </S.Container>
   );
 };
 
