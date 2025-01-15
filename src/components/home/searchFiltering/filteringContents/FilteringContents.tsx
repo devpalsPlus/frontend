@@ -13,16 +13,24 @@ export default function FilteringContents() {
   const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
   const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
   const [skillTagButtonToggle, setSkillTagButtonToggle] = useState(false);
+  const [selectSkills, setSelectSkills] = useState<string[]>([]);
 
   const handleSkillTagBoxToggle = () => {
-    setSkillTagButtonToggle((prev) => !prev);
+    setSkillTagButtonToggle((prev) => {
+      console.log('setSkillTagButtonToggle-prev', prev);
+
+      return !prev;
+    });
   };
 
   const handleSkillTagFilterClick = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
     const textContent = target.textContent;
-    if (!textContent) return;
-    handleUpdateFilters('skillTag', textContent);
+
+    const id = target.dataset.id;
+    if (!textContent || !id) return;
+
+    handleUpdateFilters('skillTag', id);
   };
 
   const filteringRef = useOutsideClick(() => setSkillTagButtonToggle(false));
@@ -59,14 +67,17 @@ export default function FilteringContents() {
           <img className='isBeginner' src={beginner} alt='plant' />
         </button>
       </S.BeginnerDiv>
-
       {skillTagButtonToggle && (
         <div
           className='skillTagBox'
-          ref={filteringRef}
           onClick={handleSkillTagFilterClick}
+          ref={filteringRef}
         >
-          <SkillTagBox width='90%' />
+          <SkillTagBox
+            width='90%'
+            selectSkills={selectSkills}
+            setSelectSkills={setSelectSkills}
+          />
         </div>
       )}
     </S.Container>

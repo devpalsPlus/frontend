@@ -48,7 +48,7 @@ export const Container = styled.div`
   }
 `;
 
-export const BeginnerDiv = styled.div<{ $toggle: boolean }>`
+export const BeginnerDiv = styled.div<{ $toggle: boolean | null }>`
   outline: 1px solid
     ${({ theme, $toggle }) => ($toggle ? theme.color.navy : 'initial')};
   border: 1px solid

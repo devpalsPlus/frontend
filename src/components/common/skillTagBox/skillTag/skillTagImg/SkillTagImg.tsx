@@ -1,13 +1,18 @@
 import * as S from './SkillTagImg.styled';
 
-interface SkillTagImgProps {
+export interface SkillTagImgProps {
   image: string;
   skillTag: string;
+  $select?: boolean;
 }
-export default function SkillTagImg({ image, skillTag }: SkillTagImgProps) {
+export default function SkillTagImg({
+  image,
+  skillTag,
+  $select,
+}: SkillTagImgProps) {
   return (
-    <S.Container>
+    <S.Wrapper $select={$select}>
       <img src={image} alt={skillTag} />
-    </S.Container>
+    </S.Wrapper>
   );
 }
