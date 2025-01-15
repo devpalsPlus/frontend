@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import * as S from './Filtering.styled';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { MethodTag, PositionTag } from '../../../../../models/tags';
 import { useOutsideClick } from '../../../../../hooks/useOutsideClick';
 import { useSaveSearchFiltering } from '../../../../../hooks/useSaveSearchFiltering';
@@ -16,7 +16,7 @@ export default function Filtering({ selects, defaultValue }: FilteringProps) {
   const [changeValue, setChangeValue] = useState<string>(defaultValue);
   const [dropDownToggle, setDropDownToggle] = useState(false);
 
-  const handleValueClick = (tagName: string, tagId: number) => {
+  const handleValueClick = async (tagName: string, tagId: number) => {
     setChangeValue(tagName);
     setDropDownToggle(false);
 
@@ -35,24 +35,26 @@ export default function Filtering({ selects, defaultValue }: FilteringProps) {
 
   return (
     <S.Container>
-      <S.Wrapper>
-        <div className='defaultValue' onClick={handleDropDownToggle}>
-          {changeValue}
-          <ChevronDownIcon />
+      <S.Wrapper ref={filteringRef}>
+        <div className='refWrapper'>
+          <button className='defaultValue' onClick={handleDropDownToggle}>
+            {changeValue}
+            <ChevronDownIcon />
+          </button>
+          {dropDownToggle && (
+            <div className='select'>
+              {selects.map((select) => (
+                <div
+                  className='option'
+                  key={select.id}
+                  onClick={() => handleValueClick(select.name, select.id)}
+                >
+                  {select.name}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-        {dropDownToggle && (
-          <div className='select' ref={filteringRef}>
-            {selects.map((select) => (
-              <div
-                className='option'
-                key={select.id}
-                onClick={() => handleValueClick(select.name, select.id)}
-              >
-                {select.name}
-              </div>
-            ))}
-          </div>
-        )}
       </S.Wrapper>
     </S.Container>
   );

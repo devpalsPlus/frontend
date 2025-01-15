@@ -12,7 +12,7 @@ export default function PositionButton({
   isSelected = false,
 }: PositionButtonProps) {
   return (
-    <S.Container onClick={onClick} isSelected={isSelected}>
+    <S.Container onClick={onClick} $isSelected={isSelected}>
       <div className='positionButton'>{position}</div>
     </S.Container>
   );

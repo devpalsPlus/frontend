@@ -2,7 +2,7 @@ import type {
   ProjectLists,
   ProjectStatistic,
 } from '../models/mainProjectLists';
-import type { SearchFilters } from '../models/searchFilters';
+import type { SearchFilters } from '../models/SearchFilters';
 import { httpClient } from './http.api';
 let count = 0;
 export const fetchProjectLists = async (params: SearchFilters) => {

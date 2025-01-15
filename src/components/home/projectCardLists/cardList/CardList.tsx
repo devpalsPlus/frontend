@@ -32,7 +32,7 @@ export default function CardList({ list }: CardListProps) {
         </div>
       </div>
       <div className='skillTag'>
-        {list.skillTags.length > 0 &&
+        {Boolean(list.skillTags.length) &&
           list.skillTags.map((skill) => (
             <SkillTagImg
               image={skill.img}
