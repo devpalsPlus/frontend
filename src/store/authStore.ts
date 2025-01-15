@@ -2,17 +2,16 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 interface AuthState {
-  accessToken: string | null;
-  refreshToken: string | null;
   isLoggedIn: boolean;
   storeLogin: (accessToken: string, refreshToken: string) => void;
   storeLogout: () => void;
 }
 
-export const getTokens = () => ({
-  accessToken: localStorage.getItem('accessToken'),
-  refreshToken: localStorage.getItem('refreshToken')
-});
+export const getTokens = () => {
+  const accessToken = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
+  return { accessToken, refreshToken };
+};
 
 const setTokens = (accessToken: string, refreshToken: string) => {
   localStorage.setItem('accessToken', accessToken);
@@ -22,28 +21,22 @@ const setTokens = (accessToken: string, refreshToken: string) => {
 const removeTokens = () => {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('refreshToken');
-}
+};
 
 const useAuthStore = create(
   persist<AuthState>(
-    (set) => {
-      const { accessToken, refreshToken } = getTokens();
-      const isLoggedIn = accessToken !== null && refreshToken !== null;
+    (set) => ({
+      isLoggedIn: getTokens() ? true : false,
 
-      return {
-        accessToken,
-        refreshToken,
-        isLoggedIn,
-        storeLogin: (accessToken: string, refreshToken: string) => {
-          set({ accessToken, refreshToken, isLoggedIn: true });
-          setTokens(accessToken, refreshToken);
-        },
-        storeLogout: () => {
-          set({ accessToken: null, refreshToken: null, isLoggedIn: false });
-          removeTokens();
-        },
-      };
-    },
+      storeLogin: (accessToken: string, refreshToken: string) => {
+        setTokens(accessToken, refreshToken);
+        set({ isLoggedIn: true });
+      },
+      storeLogout: () => {
+        removeTokens();
+        set({ isLoggedIn: false });
+      },
+    }),
     {
       name: 'auth-storage', // 로컬스토리지에 저장될 이름
     }

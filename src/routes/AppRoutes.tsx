@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 import Main from '../pages/main/Main';
 import Login from '../pages/login/Login';
 import Register from '../pages/register/Register';
@@ -19,8 +23,12 @@ import MyProjectVolunteer from '../pages/manage/myProjectVolunteer/MyProjectVolu
 import MyProjectVolunteersPass from '../pages/manage/myProjectParticipantsPass/MyProjectVolunteersPass';
 import Error from '../pages/error/Error';
 import { ROUTES } from '../constants/routes';
+import useAuthStore from '../store/authStore';
 
-const routeList = [
+const AppRoutes = () => {
+  const { isLoggedIn } = useAuthStore();
+
+  const routeList = [
   {
     path: ROUTES.main,
     element: <Main />,
@@ -31,7 +39,7 @@ const routeList = [
   },
   {
     path: ROUTES.signup,
-    element: <Register />,
+    element: isLoggedIn ? <Navigate to='/main' replace /> : <Register />,
   },
   {
     path: ROUTES.changePw,
@@ -150,21 +158,16 @@ const routeList = [
   },
 ];
 
-const newRouteList = routeList.map((item) => {
-  return {
-    ...item,
-    errorElement: <Error />,
-  };
-});
+  const newRouteList = routeList.map((item) => {
+    return {
+      ...item,
+      errorElement: <Error />,
+    };
+  });
 
-const router = createBrowserRouter(newRouteList);
+  const router = createBrowserRouter(newRouteList);
 
-const AppRoutes = () => {
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default AppRoutes;

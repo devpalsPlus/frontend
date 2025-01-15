@@ -4,13 +4,18 @@ import type { SkillTag } from '../../../../models/tags';
 
 interface SkillTagProps {
   skillTagData: SkillTag;
+  $select: boolean;
 }
 
-export default function SkillTag({ skillTagData }: SkillTagProps) {
+export default function SkillTag({ skillTagData, $select }: SkillTagProps) {
   return (
-    <S.Container>
-      <SkillTagImg image={skillTagData.img} skillTag={skillTagData.name} />
+    <S.Wrapper $select={$select} data-id={skillTagData.id}>
+      <SkillTagImg
+        image={skillTagData.img}
+        skillTag={skillTagData.name}
+        $select={$select}
+      />
       {skillTagData.name}
-    </S.Container>
+    </S.Wrapper>
   );
 }
