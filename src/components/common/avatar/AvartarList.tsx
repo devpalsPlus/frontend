@@ -11,7 +11,11 @@ function AvartarList({ avatars, size = '33px' }: AvartarListProps) {
   return (
     <S.Wrapper>
       {avatars.map((avatar) => (
-        <Avatar size={size} image={avatar.SkillTag.img} />
+        <Avatar
+          key={avatar.skillTagId}
+          size={size}
+          image={avatar.SkillTag.img}
+        />
       ))}
     </S.Wrapper>
   );
