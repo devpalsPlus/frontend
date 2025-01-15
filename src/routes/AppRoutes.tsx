@@ -18,26 +18,27 @@ import OtherUserProject from '../pages/users/otherUserProject/OtherUserProject';
 import MyProjectVolunteer from '../pages/manage/myProjectVolunteer/MyProjectVolunteer';
 import MyProjectVolunteersPass from '../pages/manage/myProjectParticipantsPass/MyProjectVolunteersPass';
 import Error from '../pages/error/Error';
+import { ROUTES } from '../constants/routes';
 
 const routeList = [
   {
-    path: '/',
+    path: ROUTES.main,
     element: <Main />,
   },
   {
-    path: '/login',
+    path: ROUTES.login,
     element: <Login />,
   },
   {
-    path: '/signup',
+    path: ROUTES.signup,
     element: <Register />,
   },
   {
-    path: '/change-password',
+    path: ROUTES.changePw,
     element: <ChangePassword />,
   },
   {
-    path: '/main',
+    path: ROUTES.home,
     element: (
       <Layout>
         <Home />
@@ -45,7 +46,7 @@ const routeList = [
     ),
   },
   {
-    path: '/create',
+    path: ROUTES.createProject,
     element: (
       <Layout>
         <CreateProject />
@@ -53,7 +54,7 @@ const routeList = [
     ),
   },
   {
-    path: '/apply/:projectId',
+    path: `${ROUTES.apply}/:projectId`,
     element: (
       <Layout>
         <Apply />
@@ -61,7 +62,7 @@ const routeList = [
     ),
   },
   {
-    path: '/project-detail/:projectId',
+    path: `${ROUTES.projectDetail}/:projectId`,
     element: (
       <Layout>
         <ProjectDetail />
@@ -69,7 +70,7 @@ const routeList = [
     ),
   },
   {
-    path: '/manage',
+    path: ROUTES.manageProjectsRoot,
     element: (
       <Layout>
         <MyProjectList />
@@ -77,7 +78,7 @@ const routeList = [
     ),
   },
   {
-    path: '/mypage',
+    path: ROUTES.mypage,
     element: (
       <Layout>
         <LayoutSidebar>
@@ -87,7 +88,7 @@ const routeList = [
     ),
   },
   {
-    path: '/users/:userId/entered',
+    path: `${ROUTES.userInfoProject}/:userId`,
     element: (
       <Layout>
         <LayoutSidebar>
@@ -97,7 +98,7 @@ const routeList = [
     ),
   },
   {
-    path: '/users/:userId/apply',
+    path: `${ROUTES.userInfoApply}/:userId`,
     element: (
       <Layout>
         <LayoutSidebar>
@@ -107,7 +108,7 @@ const routeList = [
     ),
   },
   {
-    path: '/users/:userId/others',
+    path: `${ROUTES.userInfoOthers}/:userId`,
     element: (
       <Layout>
         <LayoutSidebar>
@@ -117,7 +118,7 @@ const routeList = [
     ),
   },
   {
-    path: '/users/:userId/others-project',
+    path: `${ROUTES.userInfoOthersProject}/:userId`,
     element: (
       <Layout>
         <LayoutSidebar>
@@ -128,7 +129,7 @@ const routeList = [
   },
 
   {
-    path: '/manage/:projectId',
+    path: `${ROUTES.manageProjectsRoot}/:projectId`,
     element: (
       <Layout>
         <LayoutSidebar>
@@ -138,7 +139,7 @@ const routeList = [
     ),
   },
   {
-    path: '/manage/:projectId/pass-nonpass',
+    path: `${ROUTES.manageProjectsPassNonPass}/:projectId`,
     element: (
       <Layout>
         <LayoutSidebar>
