@@ -10,8 +10,8 @@ export const ROUTES = {
   manageProjectsRoot: '/manage',
   manageProjectsPassNonPass: '/manage/pass-nonpass',
   mypage: '/mypage',
-  userInfoProject: '/users',
-  userInfoApply: '/users/apply',
-  userInfoOthers: '/users/others',
-  userInfoOthersProject: '/users/others-project',
+  mypageJoinedProjects: 'join-projects',
+  mypageAppliedProjects: 'apply-projects',
+  userpage: '/user',
+  userJoinedProject: 'join-projects',
 } as const;
