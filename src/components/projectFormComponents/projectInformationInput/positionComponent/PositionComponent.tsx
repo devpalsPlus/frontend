@@ -36,6 +36,7 @@ const MozipCategoryComponent = ({
                 handleClick(idx + 1, setValue, name, setSelectedMozip)
               }
               key={idx + 1}
+              isHover={true}
             />
           );
         })}
