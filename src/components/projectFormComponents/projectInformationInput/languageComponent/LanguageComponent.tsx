@@ -1,14 +1,14 @@
 import * as S from './LanguageComponent.styled';
-import { FieldErrors } from 'react-hook-form';
-import { handleClick } from '../../../../util/handleClick.util';
+import { FieldErrors, UseFormSetValue } from 'react-hook-form';
 import SkillTagBox from '../../../common/skillTagBox/SkillTagBox';
+import { CreateProjectFormValues } from '../../../../models/createProject';
 
 interface LanguageComponentProps {
   selectedLanguage: number[];
   setSelectedLanguage: React.Dispatch<React.SetStateAction<number[]>>;
   errors: FieldErrors;
   name: string;
-  setValue: any;
+  setValue: UseFormSetValue<CreateProjectFormValues>;
 }
 
 const LanguageComponent = ({
@@ -22,23 +22,6 @@ const LanguageComponent = ({
 
   return (
     <S.Container>
-      {/* <S.LanguagesContainer>
-        {skillTagsData.map((lang, idx) => {
-          const isSelected = selectedLanguage.some((item) => item === idx + 1);
-          return (
-            <S.LanguageItem
-              key={idx + 1}
-              isSelected={isSelected}
-              onClick={() =>
-                handleClick(idx + 1, setValue, name, setSelectedLanguage)
-              }
-            >
-              <SkillTagImg image={beginner} skillTag={lang.name} />
-              <p className='lang'>{lang.name}</p>
-            </S.LanguageItem>
-          );
-        })}
-      </S.LanguagesContainer> */}
       <SkillTagBox
         width='100%'
         selectSkills={selectedLanguage}

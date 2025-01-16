@@ -9,19 +9,19 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
   margin-bottom: 50px;
 `;
 
 export const Subtitle = styled.h2`
-  font-size: 18px;
+  font-size: 25px;
   color: #555;
   margin-bottom: 20px;
 `;
 
 export const Dates = styled.p`
-  font-size: 14px;
+  font-size: 20px;
   color: #888;
   margin-bottom: 50px;
 `;
@@ -39,7 +39,7 @@ export const Section = styled.div`
 `;
 
 export const Label = styled.label`
-  font-size: 14px;
+  font-size: 20px;
   font-weight: bold;
   color: #333;
 `;
