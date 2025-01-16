@@ -5,19 +5,18 @@ import Title from '../../components/common/title/Title';
 import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useState } from 'react';
+import React from 'react';
 import InputText from '../../components/auth/InputText';
 import {
   EnvelopeIcon,
   KeyIcon,
   FaceSmileIcon,
 } from '@heroicons/react/24/outline';
-import { postCheckNickname } from '../../api/auth.api';
 import useEmailVerification from '../../hooks/useEmailVerification';
-import axios from 'axios';
 import Button from '../../components/common/Button/Button';
 import { ERROR_MESSAGES } from '../../constants/authConstants';
 import { useAuth } from '../../hooks/useAuth';
+import useNickNameVerification from '../../hooks/useNicknameVerification';
 
 const registerSchema = z
   .object({
@@ -49,8 +48,6 @@ const registerSchema = z
 export type registerFormValues = z.infer<typeof registerSchema>;
 
 const Register = () => {
-  const [nicknameMessage, setNicknameMessage] = useState<string | null>(null);
-
   const { userSignup } = useAuth();
 
   const {
@@ -79,6 +76,9 @@ const Register = () => {
     handleEmailChange,
   } = useEmailVerification();
 
+  const { nicknameMessage, handleNickNameChange, handleNickname } =
+    useNickNameVerification();
+
   const handleClickEmail = (email: string) => {
     handleEmail(email);
   };
@@ -87,19 +87,8 @@ const Register = () => {
     handleVerifyCode(email, code);
   };
 
-  const handleCheckNickname = async (nickname: string) => {
-    if (!nickname) {
-      setNicknameMessage(null);
-      return;
-    }
-    try {
-      const response = await postCheckNickname(nickname);
-      setNicknameMessage(response?.message as string);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        setNicknameMessage(error.response?.data.message);
-      }
-    }
+  const handleCheckNickname = (nickname: string) => {
+    handleNickname(nickname);
   };
 
   const onSubmit = (
@@ -268,11 +257,7 @@ const Register = () => {
                   onChange={(e) => {
                     const value = e.target.value;
                     field.onChange(e);
-                    if (!value) {
-                      setNicknameMessage(null);
-                    } else {
-                      setNicknameMessage('');
-                    }
+                    handleNickNameChange(value);
                   }}
                 />
                 {errors.nickname && (
