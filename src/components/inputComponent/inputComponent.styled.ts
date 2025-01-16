@@ -15,6 +15,7 @@ export const InputStyle = styled.input`
           padding: 10px;
           border: 1px solid ${props.theme.color.border};
           border-radius: 13px;
+          font-size: 1.1rem;
         `;
       case 'date':
         return `
@@ -22,7 +23,7 @@ export const InputStyle = styled.input`
           padding: 10px 9px;
           border: 1px solid ${props.theme.color.border};
           border-radius: ${props.theme.borderRadius.primary};
-          font-size: ${props.theme.heading.small};
+          font-size: 1.1rem;
           background-color: #ffffff;
           color: #aaa;
           font-family: 'Arial', sans-serif;
@@ -38,7 +39,7 @@ export const InputStyle = styled.input`
             margin-top: 5px;
             border: 1px solid ${props.theme.color.border};
             border-radius: ${props.theme.borderRadius.primary};
-            font-size: ${props.theme.heading.small};
+            font-size: 1.1rem;
             resize: none;
           `;
     }
@@ -50,24 +51,24 @@ export const InputInfoStyle = styled.input`
     switch (props.type) {
       case 'text':
         return `
-            width: 180px;
+            width: 220px;
             border: none;
-            font-size: 0.8rem;
+            font-size: 1.0rem;
             text-align: left;
             padding-left: 1px;
         `;
       case 'number':
         return `
-            width: 180px;
+            width: 220px;
             border: none;
-            font-size: 0.8rem;
+            font-size: 1.0rem;
             text-align: left;
             padding-left: 1px;`;
 
       case 'checkbox':
         return `
-            width: 12px;
-            height: 12px;
+            width: 15px;
+            height: 15px;
             cursor: pointer;
             padding-left: 10px;
             margin-left: 10px;
@@ -127,12 +128,12 @@ export const CareerInput = styled.input`
 `;
 
 export const PhoneInput = styled.input`
-  width: 60px;
+  width: 70px;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   text-align: center;
-  font-size: 14px;
+  font-size: 19px;
 
   &:focus {
     outline: none;
@@ -142,7 +143,7 @@ export const PhoneInput = styled.input`
 
 export const FormError = styled.p`
   margin-top: 0.3px;
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: ${({ theme }) => theme.color.red};
   position: absolute;
   top: 100%;
