@@ -14,7 +14,7 @@ import Apply from '../pages/apply/Apply';
 import ProjectDetail from '../pages/projectDetail/ProjectDetail';
 import MyProjectList from '../pages/manage/myProjectList/MyProjectList';
 import LayoutSidebar from '../components/common/layout/sidebar/LayoutSidebar';
-import MyProfile from '../pages/mypage/MyPage';
+import MyProfile from '../components/mypage/myProfile/myProfile';
 import MyApplyProject from '../components/mypage/appliedProject/MyApplyProject';
 import MyProjectVolunteer from '../pages/manage/myProjectVolunteer/MyProjectVolunteer';
 import MyProjectVolunteersPass from '../pages/manage/myProjectParticipantsPass/MyProjectVolunteersPass';
