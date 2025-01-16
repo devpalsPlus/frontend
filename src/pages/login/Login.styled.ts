@@ -38,12 +38,13 @@ export const InputContainer = styled.div`
     align-self: baseline;
     padding: 0.9rem 1rem;
     font-size: 0.9rem;
+    width: 30%;
   }
 `;
 
 export const InputWrapper = styled.div`
   max-width: 310px;
-  width: 100%;
+  width: 70%;
   margin-bottom: 1.875rem;
   position: relative;
 `;
