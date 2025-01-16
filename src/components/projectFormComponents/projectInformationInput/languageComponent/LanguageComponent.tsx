@@ -1,9 +1,6 @@
 import * as S from './LanguageComponent.styled';
 import { FieldErrors } from 'react-hook-form';
-import beginner from '/src/assets/beginner.svg';
 import { handleClick } from '../../../../util/handleClick.util';
-import SkillTagImg from '../../../common/skillTagBox/skillTag/skillTagImg/SkillTagImg';
-import { SkillTag } from '../../../../models/tags';
 import SkillTagBox from '../../../common/skillTagBox/SkillTagBox';
 
 interface LanguageComponentProps {
@@ -12,7 +9,6 @@ interface LanguageComponentProps {
   errors: FieldErrors;
   name: string;
   setValue: any;
-  skillTagsData: SkillTag[];
 }
 
 const LanguageComponent = ({
@@ -21,7 +17,6 @@ const LanguageComponent = ({
   errors,
   name,
   setValue,
-  skillTagsData,
 }: LanguageComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
@@ -44,7 +39,12 @@ const LanguageComponent = ({
           );
         })}
       </S.LanguagesContainer> */}
-      <SkillTagBox width='100%' />
+      <SkillTagBox
+        width='100%'
+        selectSkills={selectedLanguage}
+        setSelectSkills={setSelectedLanguage}
+        setValue={setValue}
+      />
 
       {hasError && <S.FormError>{String(errors[name]?.message)}</S.FormError>}
     </S.Container>
