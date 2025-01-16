@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useParams } from 'react-router-dom';
 import { formatDate } from '../../util/format';
-import { applicantProject } from '../../api/joinProject.api';
+import { postApplicantProject } from '../../api/joinProject.api';
 import { joinProject } from '../../models/joinProject';
 import useGetProjectData from '../../hooks/useJoinProject';
 import Button from '../../components/common/Button/Button';
@@ -67,7 +67,7 @@ const Apply = () => {
     };
     console.log(formData);
 
-    applicantProject(formData, id).then((status) => {
+    postApplicantProject(formData, id).then((status) => {
       switch (status) {
         case 201:
           alert('지원서가 성공적으로 제출되었습니다.');

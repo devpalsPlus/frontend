@@ -9,7 +9,10 @@ export const getProjectData = async (
   return response.data;
 };
 
-export const applicantProject = async (formData: joinProject, id: number) => {
+export const postApplicantProject = async (
+  formData: joinProject,
+  id: number
+) => {
   const response = await httpClient.post(`/project/${id}/applicant`, formData);
   return response.status;
 };
