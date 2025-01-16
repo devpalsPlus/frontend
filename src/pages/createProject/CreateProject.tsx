@@ -33,9 +33,7 @@ export const createProjectScheme = z.object({
     .refine((date) => !isNaN(Date.parse(date)), {
       message: '유효한 날짜를 입력해주세요.',
     }),
-  field: z
-    .array(z.number({ message: '숫자로 입력 되어야 합니다.' }))
-    .length(1, { message: '1개의 진행 방식을 선택 해주세요.' }),
+  field: z.number({ message: '진행 방식을 선택 해주세요.' }),
   duration: z.coerce
     .number({ message: '예상 기간을 입력해주세요.' })
     .positive({ message: '예상 기간은 1 이상이어야 합니다.' })
@@ -67,7 +65,7 @@ const CreateProject = () => {
       startDate: '',
       endDate: '',
       title: '',
-      field: [],
+      field: 0,
       position: [],
       newBy: false,
       languages: [],
@@ -84,7 +82,7 @@ const CreateProject = () => {
       startDate: data.startDatePre,
       positionTagId: data.position,
       estimatedPeriod: `${data.duration}개월`,
-      methodId: data.field[0],
+      methodId: data.field,
       isBeginner: data.newBy,
       skillTagId: data.languages,
       description: data.markdownEditor,

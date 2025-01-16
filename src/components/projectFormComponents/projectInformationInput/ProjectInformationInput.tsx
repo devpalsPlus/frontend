@@ -22,7 +22,7 @@ const ProjectInformationInput = ({
 }: ProjectInformationProps) => {
   const [selectedLanguage, setSelectedLanguage] = useState<number[]>([]);
   const [selectedMozip, setSelectedMozip] = useState<number[]>([]);
-  const [selectedMethod, setSelectedMethod] = useState<number[]>([]);
+  const [selectedMethod, setSelectedMethod] = useState<number>(0);
 
   const { skillTagsData, positionTagsData, methodTagsData } =
     useSearchFilteringSkillTag();

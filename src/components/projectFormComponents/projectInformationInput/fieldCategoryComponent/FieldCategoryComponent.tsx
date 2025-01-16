@@ -1,12 +1,11 @@
 import * as S from './FieldCategoryComponent.styled';
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
-import { handleClick } from '../../../../util/handleClick.util';
 import { CreateProjectFormValues } from '../../../../models/createProject';
 import { MethodTag } from '../../../../models/tags';
 
 interface FieldCategoryComponentProps {
-  selectedMethod: number[];
-  setSelectedMethod: React.Dispatch<React.SetStateAction<number[]>>;
+  selectedMethod: number;
+  setSelectedMethod: React.Dispatch<React.SetStateAction<number>>;
   errors: FieldErrors;
   name: string;
   setValue: UseFormSetValue<CreateProjectFormValues>;
@@ -23,18 +22,20 @@ const FieldCategoryComponent = ({
 }: FieldCategoryComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
+  const handleClick = (idx: number) => {
+    setSelectedMethod(idx);
+    setValue('field', idx + 1);
+  };
+
   return (
     <S.Container>
       <S.CategoryContainer>
         {methodTagsData.map((data, idx) => {
-          const isSelected = selectedMethod.some((item) => item === idx);
           return (
             <S.CategoryItem
               key={idx}
-              isSelected={isSelected}
-              onClick={() =>
-                handleClick(idx, setValue, name, setSelectedMethod)
-              }
+              isSelected={selectedMethod === idx}
+              onClick={() => handleClick(idx)}
             >
               <span className='name'>{data.name}</span>
             </S.CategoryItem>
