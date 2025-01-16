@@ -8,9 +8,11 @@ const MyProjectList = () => {
 
   return (
     <S.ManageProjectsContainer>
-      <Title size='large'>모집 프로젝트 리스트</Title>
+      <header className='titleWrap'>
+        <Title size='large'>모집 프로젝트 리스트</Title>
+      </header>
 
-      <CardList projects={managedProjects} />
+      <CardList projects={managedProjects ?? []} />
     </S.ManageProjectsContainer>
   );
 };
