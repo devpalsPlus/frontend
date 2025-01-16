@@ -22,140 +22,141 @@ import OtherUserProject from '../pages/users/otherUserProject/OtherUserProject';
 import MyProjectVolunteer from '../pages/manage/myProjectVolunteer/MyProjectVolunteer';
 import MyProjectVolunteersPass from '../pages/manage/myProjectParticipantsPass/MyProjectVolunteersPass';
 import Error from '../pages/error/Error';
+import { ROUTES } from '../constants/routes';
 import useAuthStore from '../store/authStore';
 
 const AppRoutes = () => {
   const { isLoggedIn } = useAuthStore();
 
   const routeList = [
-    {
-      path: '/',
-      element: <Main />,
-    },
-    {
-      path: '/login',
-      element: <Login />,
-    },
-    {
-      path: '/signup',
-      element: isLoggedIn ? <Navigate to='/main' replace /> : <Register />,
-    },
-    {
-      path: '/change-password',
-      element: <ChangePassword />,
-    },
-    {
-      path: '/main',
-      element: (
-        <Layout>
-          <Home />
-        </Layout>
-      ),
-    },
-    {
-      path: '/create',
-      element: (
-        <Layout>
-          <CreateProject />
-        </Layout>
-      ),
-    },
-    {
-      path: '/apply/:projectId',
-      element: (
-        <Layout>
-          <Apply />
-        </Layout>
-      ),
-    },
-    {
-      path: '/project-detail/:projectId',
-      element: (
-        <Layout>
-          <ProjectDetail />
-        </Layout>
-      ),
-    },
-    {
-      path: '/manage',
-      element: (
-        <Layout>
-          <MyProjectList />
-        </Layout>
-      ),
-    },
-    {
-      path: '/mypage',
-      element: (
-        <Layout>
-          <LayoutSidebar>
-            <MyProfile />
-          </LayoutSidebar>
-        </Layout>
-      ),
-    },
-    {
-      path: '/users/:userId/entered',
-      element: (
-        <Layout>
-          <LayoutSidebar>
-            <MyEnteredProject />
-          </LayoutSidebar>
-        </Layout>
-      ),
-    },
-    {
-      path: '/users/:userId/apply',
-      element: (
-        <Layout>
-          <LayoutSidebar>
-            <MyApplyProject />
-          </LayoutSidebar>
-        </Layout>
-      ),
-    },
-    {
-      path: '/users/:userId/others',
-      element: (
-        <Layout>
-          <LayoutSidebar>
-            <OtherUserProfile />
-          </LayoutSidebar>
-        </Layout>
-      ),
-    },
-    {
-      path: '/users/:userId/others-project',
-      element: (
-        <Layout>
-          <LayoutSidebar>
-            <OtherUserProject />
-          </LayoutSidebar>
-        </Layout>
-      ),
-    },
+  {
+    path: ROUTES.main,
+    element: <Main />,
+  },
+  {
+    path: ROUTES.login,
+    element: <Login />,
+  },
+  {
+    path: ROUTES.signup,
+    element: isLoggedIn ? <Navigate to='/main' replace /> : <Register />,
+  },
+  {
+    path: ROUTES.changePw,
+    element: <ChangePassword />,
+  },
+  {
+    path: ROUTES.home,
+    element: (
+      <Layout>
+        <Home />
+      </Layout>
+    ),
+  },
+  {
+    path: ROUTES.createProject,
+    element: (
+      <Layout>
+        <CreateProject />
+      </Layout>
+    ),
+  },
+  {
+    path: `${ROUTES.apply}/:projectId`,
+    element: (
+      <Layout>
+        <Apply />
+      </Layout>
+    ),
+  },
+  {
+    path: `${ROUTES.projectDetail}/:projectId`,
+    element: (
+      <Layout>
+        <ProjectDetail />
+      </Layout>
+    ),
+  },
+  {
+    path: ROUTES.manageProjectsRoot,
+    element: (
+      <Layout>
+        <MyProjectList />
+      </Layout>
+    ),
+  },
+  {
+    path: ROUTES.mypage,
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <MyProfile />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
+  {
+    path: `${ROUTES.userInfoProject}/:userId`,
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <MyEnteredProject />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
+  {
+    path: `${ROUTES.userInfoApply}/:userId`,
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <MyApplyProject />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
+  {
+    path: `${ROUTES.userInfoOthers}/:userId`,
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <OtherUserProfile />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
+  {
+    path: `${ROUTES.userInfoOthersProject}/:userId`,
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <OtherUserProject />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
 
-    {
-      path: '/manage/:projectId',
-      element: (
-        <Layout>
-          <LayoutSidebar>
-            <MyProjectVolunteer />
-          </LayoutSidebar>
-        </Layout>
-      ),
-    },
-    {
-      path: '/manage/:projectId/pass-nonpass',
-      element: (
-        <Layout>
-          <LayoutSidebar>
-            <MyProjectVolunteersPass />
-          </LayoutSidebar>
-        </Layout>
-      ),
-    },
-  ];
+  {
+    path: `${ROUTES.manageProjectsRoot}/:projectId`,
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <MyProjectVolunteer />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
+  {
+    path: `${ROUTES.manageProjectsPassNonPass}/:projectId`,
+    element: (
+      <Layout>
+        <LayoutSidebar>
+          <MyProjectVolunteersPass />
+        </LayoutSidebar>
+      </Layout>
+    ),
+  },
+];
 
   const newRouteList = routeList.map((item) => {
     return {

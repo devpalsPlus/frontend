@@ -5,7 +5,13 @@ export interface ManagedProject {
   totalMember: number;
   recruitmentEndDate: string;
   isBeginner: boolean;
-  ProjectSkillTag: SkillTag[];
+  ProjectSkillTag: ProjectSkillTag[];
+}
+
+export interface ProjectSkillTag {
+  projectId: number;
+  skillTagId: number;
+  SkillTag: SkillTag;
 }
 
 export interface SkillTag {
