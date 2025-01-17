@@ -37,11 +37,15 @@ const AppRoutes = () => {
     },
     {
       path: ROUTES.login,
-      element: isLoggedIn ? <Navigate to='/main' replace /> : <Login />,
+      element: isLoggedIn ? <Navigate to={ROUTES.home} replace /> : <Login />,
     },
     {
       path: ROUTES.signup,
-      element: isLoggedIn ? <Navigate to='/main' replace /> : <Register />,
+      element: isLoggedIn ? (
+        <Navigate to={ROUTES.home} replace />
+      ) : (
+        <Register />
+      ),
     },
     {
       path: ROUTES.changePw,

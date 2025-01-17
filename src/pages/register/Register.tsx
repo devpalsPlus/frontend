@@ -17,6 +17,7 @@ import Button from '../../components/common/Button/Button';
 import { ERROR_MESSAGES } from '../../constants/authConstants';
 import { useAuth } from '../../hooks/useAuth';
 import useNickNameVerification from '../../hooks/useNicknameVerification';
+import { ROUTES } from '../../constants/routes';
 
 const registerSchema = z
   .object({
@@ -110,7 +111,7 @@ const Register = () => {
   return (
     <S.Container>
       <h1 className='logo'>
-        <Link to='/'>
+        <Link to={ROUTES.home}>
           <img src={Mainlogo} alt='logo' />
         </Link>
       </h1>

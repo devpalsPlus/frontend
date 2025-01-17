@@ -7,6 +7,8 @@ import useAuthStore from '../store/authStore';
 import { useAlert } from './useAlert';
 import { useMutation } from '@tanstack/react-query';
 import { LoginResponse } from '../models/auth';
+import { ROUTES } from '../constants/routes';
+import { AxiosError } from 'axios';
 
 export const useAuth = () => {
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ export const useAuth = () => {
 
   const signupMutaton = useMutation<
     void,
-    Error,
+    AxiosError,
     { email: string; password: string; nickname: string }
   >({
     mutationFn: async ({ email, password, nickname }) => {
@@ -23,7 +25,7 @@ export const useAuth = () => {
     },
     onSuccess: () => {
       showAlert('회원가입 완료되었습니다.');
-      navigate('/login');
+      navigate(ROUTES.login);
     },
     onError: () => {
       showAlert('회원가입 실패하였습니다.');
@@ -32,7 +34,7 @@ export const useAuth = () => {
 
   const resetPasswordMutation = useMutation<
     void,
-    Error,
+    AxiosError,
     { email: string; newPassword: string }
   >({
     mutationFn: async ({ email, newPassword }) => {
@@ -40,7 +42,7 @@ export const useAuth = () => {
     },
     onSuccess: () => {
       showAlert('비밀번호가 성공적으로 재설정 되었습니다.');
-      navigate('/login');
+      navigate(ROUTES.login);
     },
     onError: () => {
       showAlert('비밀번호 재설정에 실패하였습니다.');
@@ -49,7 +51,7 @@ export const useAuth = () => {
 
   const userLoginMutation = useMutation<
     LoginResponse,
-    Error,
+    AxiosError,
     { email: string; password: string }
   >({
     mutationFn: async ({ email, password }) => {
@@ -62,7 +64,7 @@ export const useAuth = () => {
 
       showAlert('로그인 되었습니다.');
       storeLogin(accessToken, refreshToken);
-      navigate('/main');
+      navigate(ROUTES.home);
     },
     onError: () => {
       showAlert('가입되지 않은 계정입니다.');
@@ -88,7 +90,7 @@ export const useAuth = () => {
   const userLogout = () => {
     storeLogout();
     showAlert('로그아웃 되었습니다.');
-    navigate('/main');
+    navigate(ROUTES.home);
   };
 
   return { userSignup, resetPassword, userLogin, userLogout };
