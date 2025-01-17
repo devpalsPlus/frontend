@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import * as S from '../../pages/createProject/CreateProject.styled';
-import { PROJECT_DATA } from '../../constants';
+import { PROJECT_DATA } from '../../constants/projectConstants';
 import FieldCategoryComponent from './FieldCategoryComponent';
 import { Control, FieldErrors, UseFormSetValue } from 'react-hook-form';
 import { CreateProjectFormValues } from '../../models/createProject';
-import Input from '../inputComponent/inputComponent';
+import Input from './inputComponent/inputComponent';
 import MozipCategoryComponent from './projectInformationInput/positionComponent/PositionComponent';
 import LanguageComponent from './projectInformationInput/languageComponent/LanguageComponent';
 

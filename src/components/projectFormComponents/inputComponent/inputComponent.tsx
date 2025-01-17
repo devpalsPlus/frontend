@@ -8,8 +8,8 @@ import * as S from './inputComponent.styled';
 import {
   useControllerApply,
   useControllerCommon,
-} from '../../hooks/useControllerForm';
-import MdEditorInput from '../projectFormComponents/editor/MarkdownEditor';
+} from '../../../util/controllerForm';
+import MdEditorInput from '../editor/MarkdownEditor';
 
 type InputProps = {
   control: Control<any>;

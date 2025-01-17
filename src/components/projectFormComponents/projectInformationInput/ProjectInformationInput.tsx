@@ -3,10 +3,10 @@ import MozipCategoryComponent from './positionComponent/PositionComponent';
 import LanguageComponent from './languageComponent/LanguageComponent';
 import FieldCategoryComponent from './fieldCategoryComponent/FieldCategoryComponent';
 import { Control, FieldErrors, UseFormSetValue } from 'react-hook-form';
-import { PROJECT_DATA } from '../../../constants';
+import { PROJECT_DATA } from '../../../constants/projectConstants';
 import { CreateProjectFormValues } from '../../../models/createProject';
 import * as S from './ProjectInformationInput.styled';
-import Input from '../../inputComponent/inputComponent';
+import Input from '../inputComponent/inputComponent';
 import { useSearchFilteringSkillTag } from '../../../hooks/useSearchFilteringSkillTag';
 
 interface ProjectInformationProps {
@@ -24,8 +24,7 @@ const ProjectInformationInput = ({
   const [selectedMozip, setSelectedMozip] = useState<number[]>([]);
   const [selectedMethod, setSelectedMethod] = useState<number>(0);
 
-  const { skillTagsData, positionTagsData, methodTagsData } =
-    useSearchFilteringSkillTag();
+  const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
 
   return (
     <>
@@ -78,7 +77,6 @@ const ProjectInformationInput = ({
         setSelectedLanguage={setSelectedLanguage}
         errors={errors}
         setValue={setValue}
-        skillTagsData={skillTagsData}
       />
     </>
   );

@@ -1,6 +1,6 @@
 import { Control, UseFieldArrayAppend } from 'react-hook-form';
 import { ApplySchemeType } from '../../../pages/apply/Apply';
-import Input from '../../inputComponent/inputComponent';
+import Input from '../../projectFormComponents/inputComponent/inputComponent';
 import * as S from './CareersComponent.styled';
 
 interface CareersComponentProps {

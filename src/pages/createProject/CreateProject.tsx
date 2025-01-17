@@ -2,7 +2,7 @@ import * as S from './CreateProject.styled';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Input from '../../components/inputComponent/inputComponent';
+import Input from '../../components/projectFormComponents/inputComponent/inputComponent';
 import { CreateProjectFormValues, FormData } from '../../models/createProject';
 import { createProject } from '../../api/createProject.api';
 import { useNavigate } from 'react-router-dom';

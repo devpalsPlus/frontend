@@ -1,5 +1,5 @@
 import * as S from './PhoneComponent.styled';
-import Input from '../../inputComponent/inputComponent';
+import Input from '../../projectFormComponents/inputComponent/inputComponent';
 import { ApplySchemeType } from '../../../pages/apply/Apply';
 import { Control, FieldErrors } from 'react-hook-form';
 

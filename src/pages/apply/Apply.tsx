@@ -1,5 +1,5 @@
 import * as S from './Apply.styled';
-import Input from '../../components/inputComponent/inputComponent';
+import Input from '../../components/projectFormComponents/inputComponent/inputComponent';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
