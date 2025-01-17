@@ -50,7 +50,7 @@ const CareersComponent = ({
           />
         </S.CareerContainer>
       ))}
-      <p
+      <button
         onClick={() =>
           appendCareers({
             name: '',
@@ -62,7 +62,7 @@ const CareersComponent = ({
         style={{ cursor: 'pointer', color: 'blue' }}
       >
         추가
-      </p>
+      </button>
     </>
   );
 };
