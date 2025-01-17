@@ -17,11 +17,8 @@ import ProjectDetail from '../pages/projectDetail/ProjectDetail';
 import MyProjectList from '../pages/manage/myProjectList/MyProjectList';
 
 import LayoutSidebar from '../components/common/layout/sidebar/LayoutSidebar';
-import MyProfile from '../pages/users/myProfile/MyProfile';
-import MyEnteredProject from '../pages/users/myEnteredProject/MyEnteredProject';
-import MyApplyProject from '../pages/users/myApplyProject/MyApplyProject';
-import OtherUserProfile from '../pages/users/otherUserProfile/OtherUserProfile';
-import OtherUserProject from '../pages/users/otherUserProject/OtherUserProject';
+import MyProfile from '../components/mypage/myProfile/myProfile';
+import MyApplyProject from '../components/mypage/appliedProject/MyApplyProject';
 import MyProjectVolunteer from '../pages/manage/myProjectVolunteer/MyProjectVolunteer';
 import MyProjectVolunteersPass from '../pages/manage/myProjectParticipantsPass/MyProjectVolunteersPass';
 import Error from '../pages/error/Error';
@@ -29,6 +26,11 @@ import { ROUTES } from '../constants/routes';
 import useAuthStore from '../store/authStore';
 import LoadingSpinner from '../components/common/loadingSpinner/LoadingSpinner';
 import ProtectRoute from '../components/common/ProtectRoute';
+import MyJoinProjects from '../components/mypage/joinedProject/MyJoinProjects';
+import UserProfile from '../components/userPage/userProfile/UserProfile';
+import UserJoinProject from '../components/userPage/joinedProject/UserJoinProject';
+import MyPage from '../pages/mypage/MyPage';
+import UserPage from '../pages/userpage/UserPage';
 
 const AppRoutes = () => {
   const { isLoggedIn } = useAuthStore();
@@ -40,11 +42,15 @@ const AppRoutes = () => {
     },
     {
       path: ROUTES.login,
-      element: <Login />,
+      element: isLoggedIn ? <Navigate to={ROUTES.home} replace /> : <Login />,
     },
     {
       path: ROUTES.signup,
-      element: isLoggedIn ? <Navigate to='/main' replace /> : <Register />,
+      element: isLoggedIn ? (
+        <Navigate to={ROUTES.home} replace />
+      ) : (
+        <Register />
+      ),
     },
     {
       path: ROUTES.changePw,
@@ -100,53 +106,42 @@ const AppRoutes = () => {
       path: ROUTES.mypage,
       element: (
         <Layout>
-          <LayoutSidebar>
-            <MyProfile />
-          </LayoutSidebar>
+          <MyPage />
         </Layout>
       ),
+      children: [
+        {
+          path: '',
+          element: <MyProfile />,
+        },
+        {
+          path: ROUTES.mypageJoinedProjects,
+          element: <MyJoinProjects />,
+        },
+        {
+          path: ROUTES.mypageAppliedProjects,
+          element: <MyApplyProject />,
+        },
+      ],
     },
     {
-      path: `${ROUTES.userInfoProject}/:userId`,
+      path: `${ROUTES.userpage}/:userId`,
       element: (
         <Layout>
-          <LayoutSidebar>
-            <MyEnteredProject />
-          </LayoutSidebar>
+          <UserPage />
         </Layout>
       ),
+      children: [
+        {
+          path: '',
+          element: <UserProfile />,
+        },
+        {
+          path: ROUTES.userJoinedProject,
+          element: <UserJoinProject />,
+        },
+      ],
     },
-    {
-      path: `${ROUTES.userInfoApply}/:userId`,
-      element: (
-        <Layout>
-          <LayoutSidebar>
-            <MyApplyProject />
-          </LayoutSidebar>
-        </Layout>
-      ),
-    },
-    {
-      path: `${ROUTES.userInfoOthers}/:userId`,
-      element: (
-        <Layout>
-          <LayoutSidebar>
-            <OtherUserProfile />
-          </LayoutSidebar>
-        </Layout>
-      ),
-    },
-    {
-      path: `${ROUTES.userInfoOthersProject}/:userId`,
-      element: (
-        <Layout>
-          <LayoutSidebar>
-            <OtherUserProject />
-          </LayoutSidebar>
-        </Layout>
-      ),
-    },
-
     {
       path: `${ROUTES.manageProjectsRoot}/:projectId`,
       element: (

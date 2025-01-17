@@ -10,6 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '../../components/common/Button/Button';
 import { ERROR_MESSAGES } from '../../constants/authConstants';
 import { useAuth } from '../../hooks/useAuth';
+import { ROUTES } from '../../constants/routes';
 
 const loginSchema = z.object({
   email: z
@@ -43,7 +44,7 @@ const Login = () => {
   return (
     <S.Container>
       <h1 className='logo'>
-        <Link to='/'>
+        <Link to={ROUTES.home}>
           <img src={Mainlogo} alt='logo' />
         </Link>
       </h1>
