@@ -9,3 +9,8 @@ export interface VerifyNickname {
   nickname: string;
   message: string;
 }
+
+export interface LoginResponse {
+  accessToken: string;
+  refreshToken: string;
+}
