@@ -6,6 +6,7 @@ import DropDown from '../dropDown/DropDown';
 import Avatar from '../avatar/Avatar';
 import { useAuth } from '../../../hooks/useAuth';
 import useAuthStore from '../../../store/authStore';
+import { ROUTES } from '../../../constants/routes';
 
 function Header() {
   const { userLogout } = useAuth();
@@ -21,10 +22,10 @@ function Header() {
             {isLoggedIn && (
               <ul>
                 <li>
-                  <Link to='/mypage'>마이페이지</Link>
+                  <Link to={ROUTES.mypage}>마이페이지</Link>
                 </li>
                 <li>
-                  <Link to='/manage'>모집하고 있는 프로젝트 </Link>
+                  <Link to={ROUTES.manageProjectsRoot}>공고관리 </Link>
                 </li>
                 <li>
                   <button onClick={userLogout}>로그아웃</button>
@@ -34,10 +35,10 @@ function Header() {
             {!isLoggedIn && (
               <ul>
                 <li>
-                  <Link to='/login'>로그인</Link>
+                  <Link to={ROUTES.login}>로그인</Link>
                 </li>
                 <li>
-                  <Link to='/signup'>회원가입</Link>
+                  <Link to={ROUTES.signup}>회원가입</Link>
                 </li>
               </ul>
             )}
