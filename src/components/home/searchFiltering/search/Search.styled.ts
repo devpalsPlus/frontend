@@ -1,3 +1,4 @@
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import styled from 'styled-components';
 
 export const Container = styled.div`

@@ -1,7 +1,4 @@
-import {
-  ArrowUturnLeftIcon,
-  MagnifyingGlassIcon,
-} from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import * as S from './Search.styled';
 import { useSaveSearchFiltering } from '../../../../hooks/useSaveSearchFiltering';
 import React, { useState } from 'react';
@@ -35,14 +32,17 @@ export default function Search() {
             onChange={handleTextChange}
           />
           <div className='buttonWrapper'>
+            {searchFilters.keyword && (
+              <button
+                className='searchIcon xMarkIcon'
+                onClick={handleSearchResetClick}
+              >
+                <XCircleIcon />
+              </button>
+            )}
             <button className='searchIcon'>
               <MagnifyingGlassIcon />
             </button>
-            {searchFilters.keyword && (
-              <button className='searchIcon' onClick={handleSearchResetClick}>
-                <ArrowUturnLeftIcon />
-              </button>
-            )}
           </div>
         </form>
       </S.Wrapper>
