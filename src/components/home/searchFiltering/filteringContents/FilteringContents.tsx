@@ -24,6 +24,7 @@ export default function FilteringContents() {
   };
 
   const handleSkillTagFilterClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
     const target = e.target as HTMLElement;
     const textContent = target.textContent;
 
