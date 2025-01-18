@@ -40,11 +40,21 @@ export default function FilteringContents() {
       <div
         className='filteringButton skillTagButton'
         onClick={handleSkillTagBoxToggle}
+        ref={filteringRef}
       >
         <button>
           언어선택
           <ChevronDownIcon />
         </button>
+        {skillTagButtonToggle && (
+          <div className='skillTagBox' onClick={handleSkillTagFilterClick}>
+            <SkillTagBox
+              width='90%'
+              selectSkills={selectSkills}
+              setSelectSkills={setSelectSkills}
+            />
+          </div>
+        )}
       </div>
       <Filtering
         selects={positionTagsData}
@@ -67,19 +77,6 @@ export default function FilteringContents() {
           <img className='isBeginner' src={beginner} alt='plant' />
         </button>
       </S.BeginnerDiv>
-      {skillTagButtonToggle && (
-        <div
-          className='skillTagBox'
-          onClick={handleSkillTagFilterClick}
-          ref={filteringRef}
-        >
-          <SkillTagBox
-            width='90%'
-            selectSkills={selectSkills}
-            setSelectSkills={setSelectSkills}
-          />
-        </div>
-      )}
     </S.Container>
   );
 }
