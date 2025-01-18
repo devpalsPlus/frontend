@@ -13,10 +13,8 @@ export const DropDownContainer = styled.div`
     position: absolute;
     top: 50px;
     right: 0;
-    padding: 23px 28px;
     background-color: ${({ theme }) => theme.color.white};
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: ${({ theme }) => theme.borderRadius};
     z-index: 100;
   }
 `;

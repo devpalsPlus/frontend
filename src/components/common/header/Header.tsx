@@ -25,9 +25,7 @@ function Header() {
                   <Link to={ROUTES.mypage}>마이페이지</Link>
                 </li>
                 <li>
-                  <Link to={ROUTES.manageProjectsRoot}>
-                    모집하고 있는 프로젝트{' '}
-                  </Link>
+                  <Link to={ROUTES.manageProjectsRoot}>공고관리 </Link>
                 </li>
                 <li>
                   <button onClick={userLogout}>로그아웃</button>

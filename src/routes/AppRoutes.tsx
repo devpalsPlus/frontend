@@ -3,16 +3,19 @@ import {
   Navigate,
   RouterProvider,
 } from 'react-router-dom';
-import Main from '../pages/main/Main';
+import { Suspense } from 'react';
+
 import Login from '../pages/login/Login';
 import Register from '../pages/register/Register';
 import ChangePassword from '../pages/changePassword/ChangePassword';
+import Main from '../pages/main/Main';
 import Layout from '../components/common/layout/Layout';
 import Home from '../pages/home/Home';
 import CreateProject from '../pages/createProject/CreateProject';
 import Apply from '../pages/apply/Apply';
 import ProjectDetail from '../pages/projectDetail/ProjectDetail';
 import MyProjectList from '../pages/manage/myProjectList/MyProjectList';
+
 import LayoutSidebar from '../components/common/layout/sidebar/LayoutSidebar';
 import MyProfile from '../components/mypage/myProfile/myProfile';
 import MyApplyProject from '../components/mypage/appliedProject/MyApplyProject';
@@ -21,6 +24,8 @@ import MyProjectVolunteersPass from '../pages/manage/myProjectParticipantsPass/M
 import Error from '../pages/error/Error';
 import { ROUTES } from '../constants/routes';
 import useAuthStore from '../store/authStore';
+import LoadingSpinner from '../components/common/loadingSpinner/LoadingSpinner';
+import ProtectRoute from '../components/common/ProtectRoute';
 import MyJoinProjects from '../components/mypage/joinedProject/MyJoinProjects';
 import UserProfile from '../components/userPage/userProfile/UserProfile';
 import UserJoinProject from '../components/userPage/joinedProject/UserJoinProject';
@@ -86,9 +91,15 @@ const AppRoutes = () => {
     {
       path: ROUTES.manageProjectsRoot,
       element: (
-        <Layout>
-          <MyProjectList />
-        </Layout>
+        <>
+          <ProtectRoute redirectUrl={ROUTES.login}>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Layout>
+                <MyProjectList />
+              </Layout>
+            </Suspense>
+          </ProtectRoute>
+        </>
       ),
     },
     {
