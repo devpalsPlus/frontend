@@ -21,9 +21,14 @@ export const Wrapper = styled.div`
     input {
       width: 100%;
     }
-    .searchIcon {
-      svg {
-        width: 1.6rem;
+
+    .buttonWrapper {
+      display: flex;
+      gap: 0.4rem;
+      .searchIcon {
+        svg {
+          width: 1.6rem;
+        }
       }
     }
   }

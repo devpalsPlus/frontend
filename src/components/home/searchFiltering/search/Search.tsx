@@ -1,10 +1,13 @@
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import {
+  ArrowUturnLeftIcon,
+  MagnifyingGlassIcon,
+} from '@heroicons/react/24/outline';
 import * as S from './Search.styled';
 import { useSaveSearchFiltering } from '../../../../hooks/useSaveSearchFiltering';
 import React, { useState } from 'react';
 
 export default function Search() {
-  const { handleUpdateFilters } = useSaveSearchFiltering();
+  const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
   const [searchText, setSearchText] = useState('');
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,9 +16,11 @@ export default function Search() {
   };
   const handleSubmitSearch = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
-
     handleUpdateFilters('keyword', searchText);
+  };
+  const handleSearchResetClick = () => {
+    handleUpdateFilters('keyword', '');
+    setSearchText('');
   };
 
   return (
@@ -29,9 +34,16 @@ export default function Search() {
             value={searchText}
             onChange={handleTextChange}
           />
-          <button className='searchIcon'>
-            <MagnifyingGlassIcon className='searchIcon' />
-          </button>
+          <div className='buttonWrapper'>
+            <button className='searchIcon'>
+              <MagnifyingGlassIcon />
+            </button>
+            {searchFilters.keyword && (
+              <button className='searchIcon' onClick={handleSearchResetClick}>
+                <ArrowUturnLeftIcon />
+              </button>
+            )}
+          </div>
         </form>
       </S.Wrapper>
     </S.Container>
