@@ -27,8 +27,6 @@ export default function SkillTagBox({
     );
     if (!dataId) return;
 
-    console.log(dataId);
-
     setSelectSkills((prev) => {
       const selectedSkills = prev.includes(dataId)
         ? prev.filter((prevId) => prevId !== dataId)
