@@ -25,10 +25,10 @@ export default function FilteringContents() {
 
   const handleSkillTagFilterClick = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
-    const textContent = target.textContent;
 
-    const id = target.dataset.id;
-    if (!textContent || !id) return;
+    const id =
+      target.dataset.id || target.closest('[data-id]')?.getAttribute('data-id');
+    if (!id) return;
 
     handleUpdateFilters('skillTag', id);
   };
