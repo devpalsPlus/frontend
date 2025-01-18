@@ -44,17 +44,17 @@ export const UserInfo = styled.div`
 `;
 
 export const UserName = styled.div`
-  font-size: 18px;
+  font-size: 21px;
   font-weight: bold;
 `;
 
 export const PostDate = styled.div`
-  font-size: 14px;
+  font-size: 18px;
   color: #777;
 `;
 
 export const ViewCount = styled.div`
-  font-size: 14px;
+  font-size: 17px;
   color: #777;
 `;
 

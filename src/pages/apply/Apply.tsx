@@ -1,11 +1,11 @@
 import * as S from './Apply.styled';
-import Input from '../../components/inputComponent/inputComponent';
+import Input from '../../components/projectFormComponents/inputComponent/inputComponent';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useParams } from 'react-router-dom';
 import { formatDate } from '../../util/format';
-import { applicantProject } from '../../api/joinProject.api';
+import { postApplicantProject } from '../../api/joinProject.api';
 import { joinProject } from '../../models/joinProject';
 import useGetProjectData from '../../hooks/useJoinProject';
 import Button from '../../components/common/Button/Button';
@@ -67,7 +67,7 @@ const Apply = () => {
     };
     console.log(formData);
 
-    applicantProject(formData, id).then((status) => {
+    postApplicantProject(formData, id).then((status) => {
       switch (status) {
         case 201:
           alert('지원서가 성공적으로 제출되었습니다.');
@@ -139,6 +139,7 @@ const Apply = () => {
 
         <S.Section>
           <S.Label>경력사항 / 수상이력</S.Label>
+
           <CareersComponent
             fieldsCareers={fieldsCareers}
             appendCareers={appendCareers}

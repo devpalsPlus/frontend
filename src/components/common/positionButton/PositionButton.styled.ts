@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{ $isSelected: boolean }>`
+export const Container = styled.div<{
+  $isSelected: boolean;
+  $isHover: boolean;
+}>`
   .positionButton {
     background-color: ${({ $isSelected, theme }) =>
       $isSelected ? theme.buttonScheme.primary.bg : theme.color.lightgrey};
@@ -15,9 +18,13 @@ export const Container = styled.div<{ $isSelected: boolean }>`
     cursor: pointer;
     transition: all 0.2s;
 
-    &:hover {
-      transform: scale(1.1);
-      transition: all 100ms ease-in-out;
-    }
+    ${({ $isHover }) =>
+      $isHover &&
+      `
+        &:hover {
+          transform: scale(1.1);
+          transition: all 100ms ease-in-out;
+        }
+      `}
   }
 `;

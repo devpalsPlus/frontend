@@ -50,3 +50,26 @@ export const PROJECT_DATA_GET = [
     label: '예상 기간',
   },
 ] as const;
+
+export const CAREER_INPUT = [
+  {
+    name: 'name',
+    placeholder: '회사명 / 활동명',
+    type: 'text',
+  },
+  {
+    name: 'periodStart',
+    placeholder: '시작 기간 (YYYY-MM-DD)',
+    type: 'date',
+  },
+  {
+    name: 'periodEnd',
+    placeholder: '종료 기간 (YYYY-MM-DD)',
+    type: 'date',
+  },
+  {
+    name: 'role',
+    placeholder: '역할 / 기여도',
+    type: 'text',
+  },
+];
