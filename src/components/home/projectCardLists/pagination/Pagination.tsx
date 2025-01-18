@@ -3,8 +3,6 @@ import { useProjectCardListData } from '../../../../hooks/useProjectCardListData
 import { useSaveSearchFiltering } from '../../../../hooks/useSaveSearchFiltering';
 import * as S from './Pagination.styled';
 import {
-  ChevronDoubleLeftIcon,
-  ChevronDoubleRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   EllipsisHorizontalIcon,
@@ -25,17 +23,17 @@ export default function Pagination() {
   };
   const { startPage, endPage } = calculatePageRange() || {
     startPage: 1,
-    endPage: 1,
+    endPage: 5,
   };
-  const [pagination, setPagination] = useState<number[]>(
-    Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i)
-  );
 
+  const [pagination, setPagination] = useState<number[]>([]);
   useEffect(() => {
     setPagination(
-      Array.from({ length: endPage - startPage + 1 }, (_, i) => i + 1)
+      Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i)
     );
   }, [endPage, startPage]);
+
+  if (!lastPage) return;
 
   const handleMovePaginationClick = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
@@ -44,23 +42,38 @@ export default function Pagination() {
     handleUpdateFilters('page', Number(dataId));
   };
 
-  const handleChevronClick = (page: number) => {
-    handleUpdateFilters('page', page);
+  type Action = 'pagePrev' | 'pageFirst' | 'pageEnd' | 'pageNext';
+  const handleChevronClick = (action: Action) => {
+    switch (action) {
+      case 'pagePrev':
+        handleUpdateFilters('page', currentPage - 1);
+        break;
+      case 'pageFirst':
+        handleUpdateFilters('page', 1);
+        break;
+      case 'pageEnd':
+        handleUpdateFilters('page', lastPage);
+        break;
+      case 'pageNext':
+        handleUpdateFilters('page', currentPage + 1);
+        break;
+      default:
+        break;
+    }
   };
 
-  if (!lastPage) return;
   return (
     <S.Container>
       <S.Wrapper>
         <div className='paginationWrapper' onClick={handleMovePaginationClick}>
           {currentPage !== 1 && (
             <>
-              <button onClick={() => handleChevronClick(currentPage - 1)}>
+              <button onClick={() => handleChevronClick('pagePrev')}>
                 <ChevronLeftIcon />
               </button>
               <button
                 className='doubleButton'
-                onClick={() => handleChevronClick(1)}
+                onClick={() => handleChevronClick('pageFirst')}
               >
                 1
               </button>
@@ -68,28 +81,25 @@ export default function Pagination() {
             </>
           )}
 
-          {Array.from({ length: endPage - startPage + 1 }, (_, i: number) => {
-            const pageIndex = startPage + i;
-            return (
-              <S.Pagination
-                key={pageIndex}
-                data-id={pageIndex}
-                $select={currentPage === pageIndex ? true : false}
-              >
-                {pageIndex}
-              </S.Pagination>
-            );
-          })}
+          {pagination.map((pageIndex) => (
+            <S.Pagination
+              key={pageIndex}
+              data-id={pageIndex}
+              $select={currentPage === pageIndex ? true : false}
+            >
+              {pageIndex}
+            </S.Pagination>
+          ))}
           {currentPage !== lastPage && (
             <>
               <EllipsisHorizontalIcon />
               <button
                 className='doubleButton'
-                onClick={() => handleChevronClick(lastPage)}
+                onClick={() => handleChevronClick('pageEnd')}
               >
                 {lastPage}
               </button>
-              <button onClick={() => handleChevronClick(currentPage + 1)}>
+              <button onClick={() => handleChevronClick('pageNext')}>
                 <ChevronRightIcon />
               </button>
             </>

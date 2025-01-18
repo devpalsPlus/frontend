@@ -7,6 +7,8 @@ export default function ProjectCardLists() {
   const { projectListsData, isError, isLoading } = useProjectCardListData();
   if (!projectListsData) return;
 
+  // if (isLoading) return <LoadingSpinner />;
+
   return (
     <S.Container>
       <div className='title'>
