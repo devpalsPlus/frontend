@@ -9,7 +9,7 @@ export interface SkillTagBoxProps {
   width: string;
   selectSkills: number[];
   setSelectSkills: React.Dispatch<React.SetStateAction<number[]>>;
-  setValue: UseFormSetValue<CreateProjectFormValues>;
+  setValue?: UseFormSetValue<CreateProjectFormValues>;
 }
 
 export default function SkillTagBox({
@@ -29,7 +29,9 @@ export default function SkillTagBox({
         ? prev.filter((prevId) => prevId !== dataId)
         : [...prev, dataId];
 
-      setValue('languages', selectedSkills);
+      if (setValue) {
+        setValue('languages', selectedSkills);
+      }
       return selectedSkills;
     });
   };
