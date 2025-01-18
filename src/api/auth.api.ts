@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { VerifyEmail, VerifyNickname } from '../models/auth';
 import { httpClient } from './http.api';
 import { registerFormValues } from '../pages/register/Register';
@@ -10,10 +9,8 @@ export const postVerificationEmail = async (email: string) => {
     const response = await httpClient.post('/authenticode/send', { email });
     return response;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error('error response:', error?.response?.data);
-      throw error;
-    }
+    console.error('verificationEmail:', error);
+    throw error;
   }
 };
 
@@ -22,10 +19,8 @@ export const postVerifyEmailCode = async (data: VerifyEmail) => {
     const response = await httpClient.post('/authenticode/verify', data);
     return response;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error('error response:', error?.response?.data);
-      throw error;
-    }
+    console.error('verifiyEmailCode:', error);
+    throw error;
   }
 };
 
@@ -35,12 +30,10 @@ export const postCheckNickname = async (nickname: string) => {
       '/user/nickname-check',
       { nickname }
     );
-    return response.data;
+    return response;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error('error response:', error?.response?.data);
-      throw error;
-    }
+    console.error('checkNickname:', error);
+    throw error;
   }
 };
 
@@ -49,12 +42,10 @@ export const postSignUp = async (
 ) => {
   try {
     const response = await httpClient.post('/auth/sign-up', data);
-    return response.data;
+    return response;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error('error response:', error?.response?.data);
-      throw error;
-    }
+    console.error('signup:', error);
+    throw error;
   }
 };
 
@@ -63,12 +54,10 @@ export const postResetPassword = async (
 ) => {
   try {
     const response = await httpClient.post('/auth/password/reset', data);
-    return response.data;
+    return response;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error('error response:', error?.response?.data);
-      throw error;
-    }
+    console.error('resetpassword:', error);
+    throw error;
   }
 };
 
@@ -77,21 +66,7 @@ export const postLogin = async (data: loginFormValues) => {
     const response = await httpClient.post('/auth/login', data);
     return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error('error response:', error?.response?.data);
-      throw error;
-    }
+    console.error('login:', error);
+    throw error;
   }
 };
-
-// export const postRequestNewTokens = async (refreshToken: string) => {
-//   try {
-//     const response = await httpClient.post('/auth/refresh', { refreshToken });
-//     return response.data;
-//   } catch (error) {
-//     if (axios.isAxiosError(error)) {
-//       console.error('error response:', error?.response?.data);
-//       throw error;
-//     }
-//   }
-// }

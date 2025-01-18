@@ -13,7 +13,7 @@ export default function FilteringContents() {
   const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
   const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
   const [skillTagButtonToggle, setSkillTagButtonToggle] = useState(false);
-  const [selectSkills, setSelectSkills] = useState<string[]>([]);
+  const [selectSkills, setSelectSkills] = useState<number[]>([]);
 
   const handleSkillTagBoxToggle = () => {
     setSkillTagButtonToggle((prev) => {

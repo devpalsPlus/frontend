@@ -19,17 +19,23 @@ export const HeaderContainer = styled.div`
       display: flex;
       flex-direction: column;
       align-items: start;
-      gap: 16px;
-      width: 150px;
+      width: 9.375rem;
       li {
+        width: 100%;
+        padding: 10px 28px;
         a,
         button {
           font-size: 1rem;
           font-weight: 600;
           width: 100%;
           line-height: 1;
-          background: none;
-          border: 0;
+          text-align: left;
+          color: inherit;
+        }
+
+        &:hover {
+          color: ${({ theme }) => theme.color.white};
+          background-color: ${({ theme }) => theme.color.navy};
         }
       }
     }

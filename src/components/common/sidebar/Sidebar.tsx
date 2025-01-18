@@ -1,13 +1,38 @@
-import React from 'react';
+import { NavLink } from 'react-router-dom';
+import Avatar from '../avatar/Avatar';
 import * as S from './Sidebar.styled';
 
-const Sidebar = () => {
-  /* 
-    사이드바는 마이 페이지와 관리자 페이지의 양식이 동일해서 하나의 페이지로도 되지 않을까 싶어
-    하나의 페이지만 생성했습니다.
-  */
+interface MenuItem {
+  label: string;
+  path: string;
+  icon?: React.ReactNode;
+}
 
-  return <S.Container>sidebar Component</S.Container>;
+interface SidebarProps {
+  menuItems: MenuItem[];
+  profileImage?: string;
+  nickname?: string;
+}
+
+const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
+  return (
+    <S.Container>
+      <S.AvartarWrapper>
+        <Avatar size='120px' image={profileImage} />
+        <span>{nickname ? nickname : ''}</span>
+      </S.AvartarWrapper>
+      <S.MenuList>
+        {menuItems.map(({ label, path, icon }) => (
+          <NavLink key={path} to={path}>
+            <S.MenuItem>
+              {icon && <S.IconWrapper>{icon}</S.IconWrapper>}
+              {label}
+            </S.MenuItem>
+          </NavLink>
+        ))}
+      </S.MenuList>
+    </S.Container>
+  );
 };
 
 export default Sidebar;
