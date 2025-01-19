@@ -9,12 +9,14 @@ import { postApplicantProject } from '../../api/joinProject.api';
 import { joinProject } from '../../models/joinProject';
 import useGetProjectData from '../../hooks/useJoinProject';
 import Button from '../../components/common/Button/Button';
-import { useEffect } from 'react';
 import CareersComponent from '../../components/applyComponents/careersComponent/CareersComponent';
 import PhoneComponent from '../../components/applyComponents/phoneComponent/PhoneComponent';
 
 const ApplyScheme = z.object({
-  email: z.string().email({ message: '이메일 형식으로 입력해주세요.' }),
+  email: z
+    .string()
+    .nonempty({ message: '이메일을 입력해주세요.' })
+    .email({ message: '이메일 형식으로 입력해주세요.' }),
   phone: z
     .string({ message: '전화번호를 입력해주세요.' })
     .array()
@@ -42,7 +44,6 @@ const Apply = () => {
     handleSubmit: onSubmitHandler,
     formState: { errors },
     control,
-    setValue,
   } = useForm<ApplySchemeType>({
     resolver: zodResolver(ApplyScheme),
     defaultValues: {
@@ -65,7 +66,6 @@ const Apply = () => {
       message: data.wantToSay,
       career: data.careers,
     };
-    console.log(formData);
 
     postApplicantProject(formData, id).then((status) => {
       switch (status) {
@@ -89,10 +89,6 @@ const Apply = () => {
       }
     });
   };
-
-  useEffect(() => {
-    setValue('email', data?.User.email);
-  }, [data, setValue]);
 
   if (!data) {
     return <div>데이터가 없습니다.</div>;

@@ -5,7 +5,7 @@ export const handleClick = (
   idx: number,
   setValue: UseFormSetValue<CreateProjectFormValues>,
   name: string,
-  setData
+  setData: React.Dispatch<React.SetStateAction<number[]>>
 ) => {
   setData((prev) => {
     const isAlreadySelected = prev.some((item) => item === idx);
