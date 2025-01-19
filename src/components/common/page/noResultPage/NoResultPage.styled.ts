@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { NoResultPageProps } from './NoResultPage';
 
-export const Container = styled.div`
+export const Container = styled.div<Pick<NoResultPageProps, 'height'>>`
   width: 100%;
-  height: 40rem;
+  height: ${({ height }) => height};
   display: flex;
   justify-content: center;
   align-items: center;

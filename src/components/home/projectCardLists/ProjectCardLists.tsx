@@ -30,7 +30,7 @@ export default function ProjectCardLists() {
             <CardList key={list.id} list={list} data-cardId={list.id} />
           ))
         ) : (
-          <NoResultPage />
+          <NoResultPage height='40rem' />
         )}
       </S.Wrapper>
       <Pagination />
