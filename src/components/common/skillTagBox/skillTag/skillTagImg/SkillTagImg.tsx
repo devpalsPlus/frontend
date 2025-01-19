@@ -4,17 +4,17 @@ export interface SkillTagImgProps {
   image: string;
   skillTag: string;
   $select?: boolean;
-  id: number;
+  skillTagId: number;
 }
 export default function SkillTagImg({
   image,
   skillTag,
   $select,
-  id,
+  skillTagId,
 }: SkillTagImgProps) {
   return (
     <S.Wrapper $select={$select}>
-      <img src={image} alt={skillTag} data-id={id} />
+      <img src={image} alt={skillTag} data-id={skillTagId} />
     </S.Wrapper>
   );
 }
