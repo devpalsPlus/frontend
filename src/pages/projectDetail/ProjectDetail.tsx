@@ -20,7 +20,7 @@ const ProjectDetail = () => {
   if (isFetching) return <div>isFetching...</div>;
 
   const handleApplyClick = () => {
-    navigate(`/main/apply/${id}`);
+    navigate(`/apply/${id}`);
   };
 
   return (

@@ -26,10 +26,10 @@ export default function FilteringContents() {
   const handleSkillTagFilterClick = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     const target = e.target as HTMLElement;
-    const textContent = target.textContent;
 
-    const id = target.dataset.id;
-    if (!textContent || !id) return;
+    const id =
+      target.dataset.id || target.closest('[data-id]')?.getAttribute('data-id');
+    if (!id) return;
 
     handleUpdateFilters('skillTag', id);
   };
@@ -38,12 +38,8 @@ export default function FilteringContents() {
 
   return (
     <S.Container>
-      <div
-        className='filteringButton skillTagButton'
-        onClick={handleSkillTagBoxToggle}
-        ref={filteringRef}
-      >
-        <button>
+      <div className='filteringButton skillTagButton' ref={filteringRef}>
+        <button onClick={handleSkillTagBoxToggle}>
           언어선택
           <ChevronDownIcon />
         </button>

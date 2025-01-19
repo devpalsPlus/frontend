@@ -19,9 +19,12 @@ export default function SkillTagBox({
   setValue,
 }: SkillTagBoxProps) {
   const { skillTagsData } = useSearchFilteringSkillTag();
+
   const handleAddSelectSkills = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
-    const dataId = Number(target.dataset.id);
+    const dataId = Number(
+      target.dataset.id || target.closest('[data-id]')?.getAttribute('data-id')
+    );
     if (!dataId) return;
 
     setSelectSkills((prev) => {
@@ -29,9 +32,7 @@ export default function SkillTagBox({
         ? prev.filter((prevId) => prevId !== dataId)
         : [...prev, dataId];
 
-      if (setValue) {
-        setValue('languages', selectedSkills);
-      }
+      setValue?.('languages', selectedSkills);
       return selectedSkills;
     });
   };
