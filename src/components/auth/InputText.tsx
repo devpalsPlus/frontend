@@ -3,7 +3,7 @@ import * as S from './InputText.styled';
 
 interface InputTextProps extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
-  inputType: 'text' | 'email' | 'password' | 'number';
+  inputType: 'text' | 'email' | 'password' | 'number' | 'checkbox' | 'date';
   icon?: React.ReactNode;
 }
 
