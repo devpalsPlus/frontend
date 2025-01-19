@@ -4,7 +4,7 @@ export interface SkillTagImgProps {
   image: string;
   skillTag: string;
   $select?: boolean;
-  skillTagId: number;
+  skillTagId?: number;
 }
 export default function SkillTagImg({
   image,
