@@ -62,6 +62,7 @@ export const IconWrapper = styled.div`
 
 export const Wrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 1.25rem;
 
@@ -72,7 +73,9 @@ export const Wrapper = styled.div`
   }
 
   ul {
+    margin-top: 0.6rem;
     display: flex;
+    flex-wrap: wrap;
     gap: 5px;
 
     li {
