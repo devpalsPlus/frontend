@@ -4,10 +4,12 @@ import { EditMyInfo, MyInfo } from '../models/myInfo';
 import { useAlert } from './useAlert';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../constants/routes';
+import { myInfoKey } from './queries/keys';
 
 export const useMyProfileInfo = () => {
   const { data, isLoading } = useQuery<MyInfo>({
-    queryKey: ['myInfo'],
+    queryKey: myInfoKey.myProfile,
     queryFn: () => getMyInfo(),
     staleTime: 1 * 60 * 1000,
   });
@@ -25,9 +27,9 @@ export const useEditMyProfileInfo = () => {
       await putMyInfo(data);
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: myInfoKey.myProfile });
       showAlert('프로필 수정이 완료되었습니다.');
-      navigate('/mypage');
-      queryClient.invalidateQueries({ queryKey: ['myInfo'] });
+      navigate(ROUTES.mypage);
     },
     onError: () => {
       showAlert('프로필 수정에 실패했습니다.');
