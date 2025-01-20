@@ -1,5 +1,5 @@
 import { createContext, PropsWithChildren, useState } from 'react';
-import type { SearchFilters } from '../models/SearchFilters';
+import type { SearchFilters } from '../models/searchFilters';
 
 type SearchFilteringKey =
   | 'skillTag'
@@ -13,7 +13,7 @@ interface SearchFilteringContextType {
   searchFilters: SearchFilters;
   handleUpdateFilters: (
     key: SearchFilteringKey,
-    filter: string | number | boolean | null
+    filter: string | number | boolean | null | string[]
   ) => void;
 }
 
@@ -33,14 +33,16 @@ export function SearchFilteringProvider({ children }: PropsWithChildren) {
 
   const handleUpdateFilters = (
     key: SearchFilteringKey,
-    filter: string | number | boolean | null
+    filter: string | number | boolean | null | string[]
   ) => {
     setSearchFilters((prev) => {
       if (key === 'skillTag') {
+        if (Array.isArray(filter) && filter.length === 0) {
+          return { ...prev, skillTag: [] };
+        }
         if (typeof filter !== 'string') return prev;
-
         if (Array.isArray(prev.skillTag)) {
-          if (prev.skillTag.includes(filter as string)) {
+          if (prev.skillTag.includes(filter)) {
             const updatedSkillTags = prev.skillTag.filter(
               (tag) => tag !== filter
             );

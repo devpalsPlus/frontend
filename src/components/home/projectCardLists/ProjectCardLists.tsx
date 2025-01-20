@@ -5,6 +5,8 @@ import NoResultPage from '../../common/page/noResultPage/NoResultPage';
 import CardList from './cardList/CardList';
 import Pagination from './pagination/Pagination';
 import * as S from './ProjectCardLists.styled';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../../constants/routes';
 
 export default function ProjectCardLists() {
   const { projectListsData, isLoading } = useProjectCardListData();
@@ -27,7 +29,9 @@ export default function ProjectCardLists() {
       <S.Wrapper $flex={isFlex}>
         {projectListsData && Boolean(projectListsData.projects.length) ? (
           projectListsData.projects.map((list) => (
-            <CardList key={list.id} list={list} data-cardId={list.id} />
+            <Link to={`${ROUTES.projectDetail}/${list.id}`} key={list.id}>
+              <CardList list={list} data-cardId={list.id} />
+            </Link>
           ))
         ) : (
           <NoResultPage height='40rem' />
