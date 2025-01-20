@@ -60,7 +60,7 @@ const Login = () => {
                 inputType='email'
                 placeholder='이메일'
                 icon={<EnvelopeIcon />}
-                autoComplete='off'
+                autoComplete='auto'
                 {...field}
               />
               {errors.email && (
