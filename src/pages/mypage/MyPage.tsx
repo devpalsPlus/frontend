@@ -31,7 +31,11 @@ const MyPage = () => {
 
   return (
     <S.Container>
-      <Sidebar menuItems={menuItems} nickname={myData?.nickname} />
+      <Sidebar
+        menuItems={menuItems}
+        nickname={myData?.nickname}
+        profileImage={myData?.profileImg}
+      />
       <S.Wrapper>
         <S.ScrollWrapper>
           <Outlet />

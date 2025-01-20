@@ -11,7 +11,7 @@ interface MenuItem {
 
 interface SidebarProps {
   menuItems: MenuItem[];
-  profileImage?: string;
+  profileImage?: string | null;
   nickname?: string;
 }
 

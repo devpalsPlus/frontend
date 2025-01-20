@@ -220,7 +220,7 @@ const MyProfile = () => {
                     <InputText
                       inputType='text'
                       placeholder='닉네임'
-                      autoComplete='off'
+                      autoComplete='auto'
                       {...field}
                       onChange={(e) => {
                         const value = e.target.value;
@@ -330,7 +330,7 @@ const MyProfile = () => {
                     <InputText
                       inputType='text'
                       placeholder='깃허브 주소를 입력해주세요.'
-                      autoComplete='off'
+                      autoComplete='auto'
                       {...field}
                     />
                   </S.InputTextGithub>
@@ -357,7 +357,7 @@ const MyProfile = () => {
                           <InputText
                             inputType='text'
                             placeholder='회사 이름'
-                            autoComplete='off'
+                            autoComplete='auto'
                             {...field}
                           />
                         </S.InputTextCareer>
@@ -378,7 +378,7 @@ const MyProfile = () => {
                           <InputText
                             inputType='date'
                             placeholder='시작 날짜'
-                            autoComplete='off'
+                            autoComplete='auto'
                             value={field.value || ''}
                             onChange={(e) => field.onChange(e.target.value)}
                           />
@@ -400,7 +400,7 @@ const MyProfile = () => {
                           <InputText
                             inputType='date'
                             placeholder='종료 날짜'
-                            autoComplete='off'
+                            autoComplete='auto'
                             value={field.value || ''}
                             onChange={(e) => field.onChange(e.target.value)}
                           />
@@ -423,7 +423,7 @@ const MyProfile = () => {
                             <InputText
                               inputType='text'
                               placeholder='역할'
-                              autoComplete='off'
+                              autoComplete='auto'
                               {...field}
                             />
                           </S.InputTextCareer>

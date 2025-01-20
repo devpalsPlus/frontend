@@ -25,7 +25,11 @@ const UserPage = () => {
 
   return (
     <S.Container>
-      <Sidebar menuItems={menuItems} nickname={userData?.nickname} />
+      <Sidebar
+        menuItems={menuItems}
+        nickname={userData?.nickname}
+        profileImage={userData?.profileImg}
+      />
       <S.Wrapper>
         <S.ScrollWrapper>
           <Outlet />
