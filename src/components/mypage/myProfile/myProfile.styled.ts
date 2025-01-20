@@ -60,6 +60,11 @@ export const IconWrapper = styled.div`
   border: 1px solid #f0f0f0;
 `;
 
+export const Bio = styled.p`
+  white-space: pre-line;
+  word-break: break-word;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -68,7 +73,7 @@ export const Wrapper = styled.div`
 
   label {
     margin-right: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     color: ${({ theme }) => theme.color.deepGrey};
   }
 
@@ -76,7 +81,7 @@ export const Wrapper = styled.div`
     margin-top: 0.6rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 8px;
 
     li {
       display: flex;
@@ -105,7 +110,7 @@ export const List = styled.div`
   margin-bottom: 1.25rem;
 
   label {
-    font-weight: 600;
+    font-weight: 700;
     color: ${({ theme }) => theme.color.deepGrey};
     margin-bottom: 0.6rem;
   }
@@ -133,7 +138,7 @@ export const EditWrapper = styled.div`
 
   label {
     margin-right: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     color: ${({ theme }) => theme.color.deepGrey};
   }
 
@@ -185,11 +190,11 @@ export const EditContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
   position: relative;
 
   label {
-    margin-bottom: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     color: ${({ theme }) => theme.color.deepGrey};
   }
 
@@ -216,17 +221,7 @@ export const EditList = styled.div`
   margin-bottom: 3rem;
   background-color: ${({ theme }) => theme.color.white};
   padding: 1rem;
-  padding-bottom: 0.3rem;
   border-radius: 20px;
-
-  label {
-    margin-bottom: 0.7rem;
-  }
-
-  textarea {
-    width: 100%;
-    padding: 1rem;
-  }
 `;
 
 export const CareerList = styled.div`
@@ -239,7 +234,6 @@ export const CareerList = styled.div`
   background-color: rgba(237, 237, 237, 0.73);
   border-radius: 20px;
   padding: 0.5rem;
-  margin-bottom: 1rem;
 
   button {
     position: static;

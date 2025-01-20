@@ -22,6 +22,7 @@ import { ROUTES } from '../../../constants/routes';
 import { Link } from 'react-router-dom';
 import BeginnerIcon from '../../../assets/beginner.svg';
 import OptionBox from './optionBox';
+import TextareaAutosize from 'react-textarea-autosize';
 
 const profileSchema = z.object({
   nickname: z
@@ -108,9 +109,15 @@ const MyProfile = () => {
         nickname: myData.nickname,
         bio: myData.bio || '',
         positionTagId: myData.positionTag?.id || 0,
+        github: myData.github || '',
         skillTagIds: skillTagIds,
         career: myData.career?.length
-          ? myData.career
+          ? myData.career.map((item) => ({
+              name: item.name,
+              periodStart: item.periodStart.split('T')[0],
+              periodEnd: item.periodEnd.split('T')[0],
+              role: item.role,
+            }))
           : [{ name: '', periodStart: '', periodEnd: '', role: '' }],
       });
     }
@@ -192,7 +199,7 @@ const MyProfile = () => {
           </S.List>
           <S.List>
             <label>소&nbsp;&nbsp;&nbsp;개</label>
-            <p>{myData.bio}</p>
+            <S.Bio>{myData.bio}</S.Bio>
           </S.List>
           <Link to={ROUTES.changePw}>비밀번호 재설정</Link>
           <button onClick={() => setIsEditing(true)}>
@@ -268,7 +275,6 @@ const MyProfile = () => {
                           );
                         }
                       }}
-                      hasImage={true}
                       imgSrc={skill.img}
                     />
                   ))}
@@ -300,7 +306,6 @@ const MyProfile = () => {
                         type='radio'
                         isSelected={field.value === position.id}
                         onChange={(id) => field.onChange(id)}
-                        hasImage={false}
                       />
                     ))}
                   {errors.positionTagId && (
@@ -372,9 +377,10 @@ const MyProfile = () => {
                         <S.InputTextCareer>
                           <InputText
                             inputType='date'
-                            placeholder='시작 날짜 (YYYY-MM-DD)'
+                            placeholder='시작 날짜'
                             autoComplete='off'
-                            {...field}
+                            value={field.value || ''}
+                            onChange={(e) => field.onChange(e.target.value)}
                           />
                         </S.InputTextCareer>
                         {errors.career?.[index]?.periodStart && (
@@ -393,9 +399,10 @@ const MyProfile = () => {
                         <S.InputTextCareer>
                           <InputText
                             inputType='date'
-                            placeholder='종료 날짜  (YYYY-MM-DD)'
+                            placeholder='종료 날짜'
                             autoComplete='off'
-                            {...field}
+                            value={field.value || ''}
+                            onChange={(e) => field.onChange(e.target.value)}
                           />
                         </S.InputTextCareer>
                         {errors.career?.[index]?.periodEnd && (
@@ -456,9 +463,17 @@ const MyProfile = () => {
                 name='bio'
                 control={control}
                 render={({ field }) => (
-                  <textarea
+                  <TextareaAutosize
                     {...field}
-                    placeholder='자신의 소개를 입력해주세요.'
+                    placeholder='자신의 소개를 입력해주세요. 최대 10줄 입력 가능합니다.'
+                    minRows={3}
+                    maxRows={10}
+                    style={{
+                      width: '100%',
+                      padding: '0.5rem',
+                      fontSize: '0.9em',
+                      resize: 'none',
+                    }}
                   />
                 )}
               />
