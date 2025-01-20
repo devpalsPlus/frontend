@@ -1,0 +1,74 @@
+{
+  "id": 10,
+  "title": "클론코딩 사이드 프로젝트 모집 공고",
+  "description": "string",
+  "totalMember": 3,
+  "startDate": "2025-01-25T00:00:00.000Z",
+  "estimatedPeriod": "3개월",
+  "methodId": 1,
+  "authorId": 8,
+  "views": 1,
+  "isBeginner": true,
+  "isDone": false,
+  "recruitmentEndDate": "2025-02-15T00:00:00.000Z",
+  "recruitmentStartDate": "2025-01-06T00:00:00.000Z",
+  "createdAt": "2025-01-06T07:05:01.000Z",
+  "updatedAt": "2025-01-06T07:05:01.000Z",
+  "User": {
+    "id": 8,
+    "nickname": "김개발",
+    "email": "devpals@mail.com",
+    "bio": null,
+    "profileImg": "프로필 이미지 주소",
+    "createdAt": "2025-01-04T06:39:31.000Z",
+    "updatedAt": "2025-01-08T18:15:13.000Z"
+  },
+  "ProjectSkillTag": [
+    {
+      "projectId": 10,
+      "skillTagId": 1,
+      "SkillTag": {
+        "id": 1,
+        "name": "JavaScript",
+        "img": "스킬 태그 이미지 주소",
+        "createdAt": "2025-01-02T15:07:03.000Z"
+      }
+    },
+    {
+      "projectId": 10,
+      "skillTagId": 2,
+      "SkillTag": {
+        "id": 2,
+        "name": "TypeScript",
+        "img": "스킬 태그 이미지 주소",
+        "createdAt": "2025-01-02T15:07:23.000Z"
+      }
+    }
+  ],
+  "Method": {
+    "id": 1,
+    "name": "온라인",
+    "createdAt": "2025-01-02T12:36:01.000Z"
+  },
+  "ProjectPositionTag": [
+    {
+      "projectId": 10,
+      "positionTagId": 1,
+      "PositionTag": {
+        "id": 1,
+        "name": "백엔드",
+        "createdAt": "2025-01-02T12:19:48.000Z"
+      }
+    },
+    {
+      "projectId": 10,
+      "positionTagId": 2,
+      "PositionTag": {
+        "id": 2,
+        "name": "프론트엔드",
+        "createdAt": "2025-01-02T12:19:51.000Z"
+      }
+    }
+  ],
+  "Applicant": []
+}

@@ -1,3 +1,5 @@
+import { SkillTag } from './tags';
+
 //model
 export interface ManagedProject {
   id: number;
@@ -12,11 +14,4 @@ export interface ProjectSkillTag {
   projectId: number;
   skillTagId: number;
   SkillTag: SkillTag;
-}
-
-export interface SkillTag {
-  id: number;
-  name: string;
-  img: string;
-  createdAt: string;
 }
