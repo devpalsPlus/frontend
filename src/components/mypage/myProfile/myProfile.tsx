@@ -12,7 +12,7 @@ import Button from '../../common/Button/Button';
 import {
   useEditMyProfileInfo,
   useMyProfileInfo,
-} from '../../../hooks/useMyProfileInfo';
+} from '../../../hooks/useMyInfo';
 import {
   PencilIcon,
   XMarkIcon,
