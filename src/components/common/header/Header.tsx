@@ -21,25 +21,27 @@ function Header() {
           <>
             {isLoggedIn && (
               <ul>
-                <li>
-                  <Link to={ROUTES.mypage}>마이페이지</Link>
-                </li>
-                <li>
-                  <Link to={ROUTES.manageProjectsRoot}>공고관리 </Link>
-                </li>
-                <li>
-                  <button onClick={userLogout}>로그아웃</button>
-                </li>
+                <Link to={ROUTES.mypage}>
+                  <li>마이 페이지</li>
+                </Link>
+                <Link to={ROUTES.manageProjectsRoot}>
+                  <li>공고 관리</li>
+                </Link>
+                <Link to='#' onClick={(e) => e.preventDefault()}>
+                  <li>
+                    <button onClick={userLogout}>로그아웃</button>
+                  </li>
+                </Link>
               </ul>
             )}
             {!isLoggedIn && (
               <ul>
-                <li>
-                  <Link to={ROUTES.login}>로그인</Link>
-                </li>
-                <li>
-                  <Link to={ROUTES.signup}>회원가입</Link>
-                </li>
+                <Link to={ROUTES.login}>
+                  <li>로그인</li>
+                </Link>
+                <Link to={ROUTES.signup}>
+                  <li>회원가입</li>
+                </Link>
               </ul>
             )}
           </>
