@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSearchFilteringSkillTag } from '../../../hooks/useSearchFilteringSkillTag';
 import SkillTag from './skillTag/SkillTag';
 import * as S from './SkillTagBox.styled';
