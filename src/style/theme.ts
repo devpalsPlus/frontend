@@ -7,6 +7,7 @@ export type ColorKey =
   | 'lightgrey'
   | 'white'
   | 'red'
+  | 'green'
   | 'navy';
 
 export type HeadingSize =
@@ -62,6 +63,7 @@ export const defaultTheme: Theme = {
     lightgrey: '#f9f9f9',
     white: '#ffffff',
     red: '#ff0000',
+    green: '#a2d393',
     navy: '#213555',
   },
   heading: {
