@@ -1,23 +1,37 @@
 import * as S from './Header.styled';
 import Mainlogo from '../../../assets/mainlogo.svg';
-import User from '../../../assets/user.svg';
 import { Link } from 'react-router-dom';
 import DropDown from '../dropDown/DropDown';
 import Avatar from '../avatar/Avatar';
 import { useAuth } from '../../../hooks/useAuth';
 import useAuthStore from '../../../store/authStore';
 import { ROUTES } from '../../../constants/routes';
+import { useMyProfileInfo } from '../../../hooks/useMyInfo';
+import DefaultImg from '../../../assets/defaultImg.png';
+import { UserCircleIcon } from '@heroicons/react/24/outline';
 
 function Header() {
   const { userLogout } = useAuth();
   const { isLoggedIn } = useAuthStore();
+  const { myData } = useMyProfileInfo();
+
+  const profileImg = myData?.profileImg || DefaultImg;
+
   return (
     <S.HeaderContainer>
       <Link to={ROUTES.home}>
         <img src={Mainlogo} alt='logo' />
       </Link>
       <nav className='auth'>
-        <DropDown toggleButton={<Avatar size='45px' image={User} />}>
+        <DropDown
+          toggleButton={
+            isLoggedIn ? (
+              <Avatar size='45px' image={profileImg} />
+            ) : (
+              <UserCircleIcon width='45' height='45' />
+            )
+          }
+        >
           <>
             {isLoggedIn && (
               <ul>

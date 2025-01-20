@@ -8,6 +8,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { ROUTES } from '../../constants/routes';
 import { useMyProfileInfo } from '../../hooks/useMyInfo';
+import DefaultImg from '../../assets/defaultImg.png';
 
 const MyPage = () => {
   const menuItems = [
@@ -28,13 +29,14 @@ const MyPage = () => {
     },
   ];
   const { myData } = useMyProfileInfo();
+  const profileImg = myData?.profileImg ? myData.profileImg : DefaultImg;
 
   return (
     <S.Container>
       <Sidebar
         menuItems={menuItems}
         nickname={myData?.nickname}
-        profileImage={myData?.profileImg}
+        profileImage={profileImg}
       />
       <S.Wrapper>
         <S.ScrollWrapper>
