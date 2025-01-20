@@ -5,9 +5,6 @@ export const Container = styled.div`
   max-width: 100%;
   margin: 0 auto;
   padding: 40px;
-  font-family: 'Arial, sans-serif';
-  color: #333;
-  margin-top: 70px;
 `;
 
 export const Header = styled.div`
