@@ -15,7 +15,7 @@ export interface Skill {
   skillImg: string;
 }
 
-export interface MyInfo {
+export interface UserInfo {
   id: number;
   nickname: string;
   email: string;
