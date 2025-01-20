@@ -20,3 +20,20 @@ export const putMyInfo = async (data: EditMyInfo) => {
     throw error;
   }
 };
+
+export const patchMyProfileImg = async (file: File) => {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const response = await httpClient.patch('/user/me/profile-img', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error('myprofile upload:', error);
+    throw error;
+  }
+};
