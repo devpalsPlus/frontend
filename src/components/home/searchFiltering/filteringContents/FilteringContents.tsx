@@ -16,11 +16,7 @@ export default function FilteringContents() {
   const [selectSkills, setSelectSkills] = useState<number[]>([]);
 
   const handleSkillTagBoxToggle = () => {
-    setSkillTagButtonToggle((prev) => {
-      console.log('setSkillTagButtonToggle-prev', prev);
-
-      return !prev;
-    });
+    setSkillTagButtonToggle((prev) => !prev);
   };
 
   const handleSkillTagFilterClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -32,6 +28,11 @@ export default function FilteringContents() {
     if (!id) return;
 
     handleUpdateFilters('skillTag', id);
+  };
+
+  const handleSkillTagReset = () => {
+    setSelectSkills([]);
+    handleUpdateFilters('skillTag', []);
   };
 
   const filteringRef = useOutsideClick(() => setSkillTagButtonToggle(false));
@@ -49,6 +50,8 @@ export default function FilteringContents() {
               width='90%'
               selectSkills={selectSkills}
               setSelectSkills={setSelectSkills}
+              reset={true}
+              onHandleSkillTagReset={handleSkillTagReset}
             />
           </div>
         )}

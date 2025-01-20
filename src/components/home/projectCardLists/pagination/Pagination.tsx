@@ -19,7 +19,6 @@ export default function Pagination() {
     const startPage = Math.max(1, currentPage - 2);
     const endPage = Math.min(lastPage, startPage + 4);
     const adjustedStartPage = Math.max(1, endPage - 4);
-
     return { startPage: adjustedStartPage, endPage };
   };
   const { startPage, endPage } = calculatePageRange() || {
