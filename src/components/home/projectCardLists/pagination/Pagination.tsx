@@ -68,7 +68,7 @@ export default function Pagination() {
         <div className='paginationWrapper' onClick={handleMovePaginationClick}>
           {currentPage !== 1 && (
             <>
-              <button onClick={() => handleChevronClick('pagePrev')}>
+              <button onClick={() => handleUpdateFilters('page', lastPage)}>
                 <ChevronLeftIcon />
               </button>
               <button

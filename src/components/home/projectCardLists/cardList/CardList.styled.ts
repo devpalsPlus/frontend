@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  cursor: pointer;
   width: 22.4rem;
   height: 22rem;
   border: 1px solid ${({ theme }) => theme.color.border};
