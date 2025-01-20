@@ -5,6 +5,7 @@ import * as S from './ProjectDetail.styled';
 import { formatDate } from '../../util/format';
 import Button from '../../components/common/Button/Button';
 import MarkdownEditorView from '../../components/projectFormComponents/editor/MarkdownEditorView';
+import Avatar from '../../components/common/avatar/Avatar';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -28,7 +29,9 @@ const ProjectDetail = () => {
       <S.Header>
         <S.Title>{data.title}</S.Title>
         <S.ProfileContainer>
-          <S.ProfileImage src={data.User.profileImg} alt='profile' />
+          <S.ProfileImageContainer>
+            <Avatar size='3.3rem' image={data.User.profileImg} />
+          </S.ProfileImageContainer>
           <S.UserInfo>
             <S.UserName>{data.User.nickname}</S.UserName>
             <S.PostDate>{formatDate(data.recruitmentEndDate)}</S.PostDate>
