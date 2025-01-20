@@ -10,11 +10,11 @@ export const Container = styled.div`
 export const Header = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `;
 
 export const Title = styled.h1`
-  font-size: 24px;
+  font-size: 36px;
   font-weight: bold;
   margin-bottom: 10px;
 `;
