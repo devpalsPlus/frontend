@@ -31,6 +31,7 @@ import UserProfile from '../components/userPage/userProfile/UserProfile';
 import UserJoinProject from '../components/userPage/joinedProject/UserJoinProject';
 import MyPage from '../pages/mypage/MyPage';
 import UserPage from '../pages/userpage/UserPage';
+import ModifyProject from '../pages/modifyProject/ModifyProject';
 
 const AppRoutes = () => {
   const { isLoggedIn } = useAuthStore();
@@ -85,6 +86,14 @@ const AppRoutes = () => {
       element: (
         <Layout>
           <ProjectDetail />
+        </Layout>
+      ),
+    },
+    {
+      path: `${ROUTES.modifyProject}/:projectId`,
+      element: (
+        <Layout>
+          <ModifyProject />
         </Layout>
       ),
     },
