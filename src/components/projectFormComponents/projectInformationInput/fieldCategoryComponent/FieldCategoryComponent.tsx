@@ -2,6 +2,7 @@ import * as S from './FieldCategoryComponent.styled';
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
 import { CreateProjectFormValues } from '../../../../models/createProject';
 import { MethodTag } from '../../../../models/tags';
+import { useEffect } from 'react';
 
 interface FieldCategoryComponentProps {
   selectedMethod: number;
@@ -10,6 +11,7 @@ interface FieldCategoryComponentProps {
   name: string;
   setValue: UseFormSetValue<CreateProjectFormValues>;
   methodTagsData: MethodTag[];
+  apiDataMethodId?: number;
 }
 
 const FieldCategoryComponent = ({
@@ -19,6 +21,7 @@ const FieldCategoryComponent = ({
   name,
   setValue,
   methodTagsData,
+  apiDataMethodId,
 }: FieldCategoryComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
@@ -26,6 +29,13 @@ const FieldCategoryComponent = ({
     setSelectedMethod(idx);
     setValue('field', idx + 1);
   };
+
+  useEffect(() => {
+    if (apiDataMethodId) {
+      setSelectedMethod(apiDataMethodId);
+      setValue('field', apiDataMethodId);
+    }
+  }, [apiDataMethodId]);
 
   return (
     <S.Container>

@@ -17,12 +17,6 @@ export interface SkillTag {
   createdAt: string;
 }
 
-export interface ProjectSkillTag {
-  projectId: number;
-  skillTagId: number;
-  SkillTag: SkillTag;
-}
-
 export interface PositionTag {
   id: number;
   name: string;
@@ -61,7 +55,7 @@ export interface ProjectDetail {
 
 export interface ProjectDetailExtended extends ProjectDetail {
   User: User;
-  ProjectSkillTag: ProjectSkillTag[];
+  skillTags: SkillTag[];
   Method: Method;
   ProjectPositionTag: ProjectPositionTag[];
   Applicant: joinProject[];

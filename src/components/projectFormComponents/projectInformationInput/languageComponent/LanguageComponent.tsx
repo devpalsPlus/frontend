@@ -2,6 +2,7 @@ import * as S from './LanguageComponent.styled';
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
 import SkillTagBox from '../../../common/skillTagBox/SkillTagBox';
 import { CreateProjectFormValues } from '../../../../models/createProject';
+import { SkillTag } from '../../../../models/tags';
 
 interface LanguageComponentProps {
   selectedLanguage: number[];
@@ -9,6 +10,7 @@ interface LanguageComponentProps {
   errors: FieldErrors;
   name: string;
   setValue: UseFormSetValue<CreateProjectFormValues>;
+  apiDataSkillTags: SkillTag[] | undefined;
 }
 
 const LanguageComponent = ({
@@ -17,6 +19,7 @@ const LanguageComponent = ({
   errors,
   name,
   setValue,
+  apiDataSkillTags,
 }: LanguageComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
@@ -27,6 +30,7 @@ const LanguageComponent = ({
         selectSkills={selectedLanguage}
         setSelectSkills={setSelectedLanguage}
         setValue={setValue}
+        apiDataSkillTags={apiDataSkillTags}
       />
 
       {hasError && <S.FormError>{String(errors[name]?.message)}</S.FormError>}

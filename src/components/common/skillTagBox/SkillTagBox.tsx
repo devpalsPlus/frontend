@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSearchFilteringSkillTag } from '../../../hooks/useSearchFilteringSkillTag';
 import SkillTag from './skillTag/SkillTag';
 import * as S from './SkillTagBox.styled';
 import { UseFormSetValue } from 'react-hook-form';
 import { CreateProjectFormValues } from '../../../models/createProject';
+import { SkillTag as SkillTagType } from '../../../models/tags';
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
 
 export interface SkillTagBoxProps {
@@ -11,6 +12,7 @@ export interface SkillTagBoxProps {
   selectSkills: number[];
   setSelectSkills: React.Dispatch<React.SetStateAction<number[]>>;
   setValue?: UseFormSetValue<CreateProjectFormValues>;
+  apiDataSkillTags?: SkillTagType[];
   reset?: boolean;
   onHandleSkillTagReset: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -20,6 +22,7 @@ export default function SkillTagBox({
   selectSkills,
   setSelectSkills,
   setValue,
+  apiDataSkillTags,
   reset = false,
   onHandleSkillTagReset,
 }: SkillTagBoxProps) {
@@ -41,6 +44,15 @@ export default function SkillTagBox({
       return selectedSkills;
     });
   };
+
+  useEffect(() => {
+    const skillTagList: number[] = [];
+    apiDataSkillTags?.map((tag) => {
+      skillTagList.push(tag.id);
+    });
+    setValue?.('languages', skillTagList);
+    setSelectSkills(skillTagList);
+  }, [apiDataSkillTags]);
 
   return (
     <S.Container width={width} onClick={handleAddSelectSkills}>
