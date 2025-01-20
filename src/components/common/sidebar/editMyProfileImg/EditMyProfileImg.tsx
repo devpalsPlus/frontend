@@ -20,8 +20,7 @@ const EditMyProfileImg = () => {
         <input
           id='profile-img-upload'
           type='file'
-          accept='.PNG, .JPG, .JPEG, .SVG'
-          style={{ display: 'none' }}
+          accept='.PNG, .JPG, .JPEG'
           onChange={handleFileChange}
         />
       </label>
