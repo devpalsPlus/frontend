@@ -28,7 +28,7 @@ function Header() {
             isLoggedIn ? (
               <Avatar size='45px' image={profileImg} />
             ) : (
-              <UserCircleIcon width='45' height='45' />
+              <UserCircleIcon color='#6D6D6D' width='48' height='48' />
             )
           }
         >
@@ -36,10 +36,10 @@ function Header() {
             {isLoggedIn && (
               <ul>
                 <Link to={ROUTES.mypage}>
-                  <li>마이 페이지</li>
+                  <li>마이페이지</li>
                 </Link>
                 <Link to={ROUTES.manageProjectsRoot}>
-                  <li>공고 관리</li>
+                  <li>공고관리</li>
                 </Link>
                 <Link to='#' onClick={(e) => e.preventDefault()}>
                   <li>
