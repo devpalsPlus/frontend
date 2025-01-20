@@ -7,7 +7,7 @@ type InputProps = {
   name: string;
   placeholder?: string;
   errors?: FieldErrors;
-  type?: 'text' | 'date' | 'textarea' | 'number';
+  type?: 'text' | 'date' | 'textarea' | 'number' | string;
   indexInfo?: string;
 };
 
@@ -16,7 +16,7 @@ const Input = ({
   name,
   errors,
   placeholder,
-  type = 'text',
+  type,
   indexInfo,
 }: InputProps) => {
   const { field } = useController({
