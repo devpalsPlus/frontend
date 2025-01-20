@@ -28,12 +28,8 @@ export const ProfileContainer = styled.div`
   margin-top: 10px;
 `;
 
-export const ProfileImage = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+export const ProfileImageContainer = styled.div`
   margin-right: 15px;
-  border: 1px solid ${({ theme }) => theme.buttonScheme.primary.bg};
 `;
 
 export const UserInfo = styled.div`
