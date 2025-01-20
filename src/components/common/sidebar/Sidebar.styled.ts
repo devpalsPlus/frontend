@@ -11,7 +11,7 @@ export const Container = styled.div`
   margin-right: 1.25rem;
   padding-bottom: 1rem;
 `;
-export const AvartarWrapper = styled.div`
+export const AvartarContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -25,6 +25,10 @@ export const AvartarWrapper = styled.div`
     font-size: 0.8rem;
     font-weight: 600;
   }
+`;
+
+export const AvartarWrapper = styled.div`
+  position: relative;
 `;
 export const MenuList = styled.div`
   width: 100%;
