@@ -14,7 +14,7 @@ export default function SkillTag({ skillTagData, $select }: SkillTagProps) {
         image={skillTagData.img}
         skillTag={skillTagData.name}
         $select={$select}
-        id={skillTagData.id}
+        skillTagId={skillTagData.id}
       />
       {skillTagData.name}
     </S.Wrapper>

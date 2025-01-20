@@ -154,20 +154,20 @@ const AppRoutes = () => {
     {
       path: `${ROUTES.manageProjectsRoot}/:projectId`,
       element: (
-        <Layout>
-          <LayoutSidebar>
-            <MyProjectVolunteer />
-          </LayoutSidebar>
-        </Layout>
+        <ProtectRoute redirectUrl={ROUTES.login}>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Layout>
+              <MyProjectVolunteer />
+            </Layout>
+          </Suspense>
+        </ProtectRoute>
       ),
     },
     {
       path: `${ROUTES.manageProjectsPassNonPass}/:projectId`,
       element: (
         <Layout>
-          <LayoutSidebar>
-            <MyProjectVolunteersPass />
-          </LayoutSidebar>
+          <MyProjectVolunteersPass />
         </Layout>
       ),
     },
