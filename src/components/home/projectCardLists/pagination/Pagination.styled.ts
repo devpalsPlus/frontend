@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Pagination = styled.div<{ $select: boolean }>`
+export const Pagination = styled.button<{ $select: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
