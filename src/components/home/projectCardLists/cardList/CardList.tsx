@@ -12,8 +12,6 @@ interface CardListProps {
 }
 
 export default function CardList({ list }: CardListProps) {
-  console.log(list);
-
   return (
     <S.Container>
       <div className='deadLine'>

@@ -29,7 +29,9 @@ const MyPage = () => {
     <S.Container>
       <Sidebar menuItems={menuItems} nickname='백엔드에서 받아오는 이름' />
       <S.Wrapper>
-        <Outlet />
+        <S.ScrollWrapper>
+          <Outlet />
+        </S.ScrollWrapper>
       </S.Wrapper>
     </S.Container>
   );

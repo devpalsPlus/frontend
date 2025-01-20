@@ -7,7 +7,7 @@ export const InfoRow = styled.div`
   display: flex;
 
   label {
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #333;
   }

@@ -26,15 +26,15 @@ export const DateContainer = styled.div`
 `;
 
 export const Separator = styled.span`
-  font-size: ${({ theme }) => theme.heading.small};
+  font-size: ${({ theme }) => theme.heading.medium};
   color: #ccc;
 `;
 
 export const SectionTitle = styled.label`
   display: block;
-  font-size: ${({ theme }) => theme.heading.small};
+  font-size: 1.3rem;
   font-weight: bold;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 `;
 
 export const Section = styled.div`
@@ -49,24 +49,6 @@ export const SectionInput = styled.div`
   background-color: #fff;
   flex-direction: column;
   gap: 15px;
-`;
-
-export const InfoRow = styled.div`
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 13px;
-  display: flex;
-
-  label {
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #333;
-    flex: 0.11;
-  }
-
-  p {
-    font-size: 0.8rem;
-  }
 `;
 
 export const SubmitButton = styled.button`

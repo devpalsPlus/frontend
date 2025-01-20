@@ -14,6 +14,7 @@ const Home = () => {
       <SearchFilteringProvider>
         <SearchFiltering />
         <ProjectCardLists />
+        {/* *이상적*스켈레톤-패턴 css-패진,마진조절 */}
         <ReactQueryDevtools initialIsOpen={false} />
       </SearchFilteringProvider>
     </S.Container>

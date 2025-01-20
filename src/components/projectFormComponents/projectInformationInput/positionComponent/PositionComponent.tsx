@@ -1,8 +1,8 @@
 import React from 'react';
 import * as S from './PositionComponent.styled';
 import { FieldErrors } from 'react-hook-form';
-import { PROJECT_POSITION } from '../../../../constants/homeConstants';
 import { handleClick } from '../../../../util/handleClick.util';
+import { PositionTag } from '../../../../models/tags';
 
 interface MozipCategoryComponentProps {
   selectedMozip: number[];
@@ -10,6 +10,7 @@ interface MozipCategoryComponentProps {
   errors: FieldErrors;
   name: string;
   setValue: any;
+  positionTagsData: PositionTag[];
 }
 
 const MozipCategoryComponent = ({
@@ -18,22 +19,24 @@ const MozipCategoryComponent = ({
   errors,
   name,
   setValue,
+  positionTagsData,
 }: MozipCategoryComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
   return (
     <S.Container>
       <S.CategoryContainer>
-        {PROJECT_POSITION.map((position, idx) => {
+        {positionTagsData.map((position, idx) => {
           const isSelected = selectedMozip.some((item) => item === idx + 1);
           return (
             <S.PositionButtonFeat
-              position={position}
+              position={position.name}
               isSelected={isSelected}
               onClick={() =>
                 handleClick(idx + 1, setValue, name, setSelectedMozip)
               }
               key={idx + 1}
+              isHover={true}
             />
           );
         })}

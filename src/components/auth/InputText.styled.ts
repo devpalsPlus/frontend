@@ -6,6 +6,8 @@ export const Container = styled.div`
   border: 1px solid #ccc;
   padding: 0.72rem 0.625rem;
   border-radius: 30px;
+  background-color: ${({ theme }) => theme.color.white};
+  width: 100%;
 `;
 
 export const IconContainer = styled.div`

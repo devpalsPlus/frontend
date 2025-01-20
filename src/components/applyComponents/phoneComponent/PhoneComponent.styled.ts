@@ -14,7 +14,7 @@ export const PhoneInput = styled.input<{ name: string }>`
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   text-align: center;
-  font-size: 14px;
+  font-size: 18px;
 
   &:focus {
     outline: none;
@@ -24,13 +24,13 @@ export const PhoneInput = styled.input<{ name: string }>`
 
 export const Dash = styled.span`
   align-self: center;
-  font-size: 16px;
+  font-size: 25px;
   color: #888;
 `;
 
 export const FormError = styled.p`
   margin-top: 0.3px;
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: ${({ theme }) => theme.color.red};
   position: absolute;
   top: 100%;

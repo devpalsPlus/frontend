@@ -13,7 +13,7 @@ export const InfoRow = styled.div`
   margin-bottom: 10px;
 
   label {
-    font-size: 0.8rem;
+    font-size: 1.1rem;
     font-weight: bold;
     color: #666;
     flex: 0.08;
@@ -21,7 +21,7 @@ export const InfoRow = styled.div`
   }
 
   p {
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #000;
     flex: 0.8;
@@ -38,8 +38,8 @@ export const InfoRow = styled.div`
 `;
 
 export const BeginnerIcon = styled.img`
-  width: 18px;
-  height: 18px;
+  width: 21px;
+  height: 21px;
   border-radius: 50%;
   border: 1px solid #ccc;
   background-color: #fff;

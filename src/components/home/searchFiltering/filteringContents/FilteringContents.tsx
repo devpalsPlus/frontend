@@ -13,7 +13,7 @@ export default function FilteringContents() {
   const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
   const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
   const [skillTagButtonToggle, setSkillTagButtonToggle] = useState(false);
-  const [selectSkills, setSelectSkills] = useState<string[]>([]);
+  const [selectSkills, setSelectSkills] = useState<number[]>([]);
 
   const handleSkillTagBoxToggle = () => {
     setSkillTagButtonToggle((prev) => {
@@ -24,11 +24,12 @@ export default function FilteringContents() {
   };
 
   const handleSkillTagFilterClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
     const target = e.target as HTMLElement;
-    const textContent = target.textContent;
 
-    const id = target.dataset.id;
-    if (!textContent || !id) return;
+    const id =
+      target.dataset.id || target.closest('[data-id]')?.getAttribute('data-id');
+    if (!id) return;
 
     handleUpdateFilters('skillTag', id);
   };
@@ -37,14 +38,20 @@ export default function FilteringContents() {
 
   return (
     <S.Container>
-      <div
-        className='filteringButton skillTagButton'
-        onClick={handleSkillTagBoxToggle}
-      >
-        <button>
+      <div className='filteringButton skillTagButton' ref={filteringRef}>
+        <button onClick={handleSkillTagBoxToggle}>
           언어선택
           <ChevronDownIcon />
         </button>
+        {skillTagButtonToggle && (
+          <div className='skillTagBox' onClick={handleSkillTagFilterClick}>
+            <SkillTagBox
+              width='90%'
+              selectSkills={selectSkills}
+              setSelectSkills={setSelectSkills}
+            />
+          </div>
+        )}
       </div>
       <Filtering
         selects={positionTagsData}
@@ -67,19 +74,6 @@ export default function FilteringContents() {
           <img className='isBeginner' src={beginner} alt='plant' />
         </button>
       </S.BeginnerDiv>
-      {skillTagButtonToggle && (
-        <div
-          className='skillTagBox'
-          onClick={handleSkillTagFilterClick}
-          ref={filteringRef}
-        >
-          <SkillTagBox
-            width='90%'
-            selectSkills={selectSkills}
-            setSelectSkills={setSelectSkills}
-          />
-        </div>
-      )}
     </S.Container>
   );
 }
