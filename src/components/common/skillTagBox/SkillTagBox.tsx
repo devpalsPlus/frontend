@@ -5,6 +5,7 @@ import * as S from './SkillTagBox.styled';
 import { UseFormSetValue } from 'react-hook-form';
 import { CreateProjectFormValues } from '../../../models/createProject';
 import { SkillTag as SkillTagType } from '../../../models/tags';
+import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
 
 export interface SkillTagBoxProps {
   width: string;
@@ -12,6 +13,8 @@ export interface SkillTagBoxProps {
   setSelectSkills: React.Dispatch<React.SetStateAction<number[]>>;
   setValue?: UseFormSetValue<CreateProjectFormValues>;
   apiDataSkillTags?: SkillTagType[];
+  reset?: boolean;
+  onHandleSkillTagReset: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export default function SkillTagBox({
@@ -20,6 +23,8 @@ export default function SkillTagBox({
   setSelectSkills,
   setValue,
   apiDataSkillTags,
+  reset = false,
+  onHandleSkillTagReset,
 }: SkillTagBoxProps) {
   const { skillTagsData } = useSearchFilteringSkillTag();
 
@@ -51,13 +56,25 @@ export default function SkillTagBox({
 
   return (
     <S.Container width={width} onClick={handleAddSelectSkills}>
-      {skillTagsData?.map((skillTagData) => (
-        <SkillTag
-          skillTagData={skillTagData}
-          key={skillTagData.id}
-          $select={selectSkills.includes(skillTagData.id) ? true : false}
-        />
-      ))}
+      <S.Wrapper>
+        <div className='skillTagWrapper'>
+          {skillTagsData?.map((skillTagData) => (
+            <SkillTag
+              skillTagData={skillTagData}
+              key={skillTagData.id}
+              $select={selectSkills.includes(skillTagData.id) ? true : false}
+            />
+          ))}
+        </div>
+        {Boolean(reset) && Boolean(selectSkills.length) && (
+          <div className='buttonWrapper'>
+            <button className='resetButton' onClick={onHandleSkillTagReset}>
+              <ArrowUturnLeftIcon />
+              <span>초기화</span>
+            </button>
+          </div>
+        )}
+      </S.Wrapper>
     </S.Container>
   );
 }
