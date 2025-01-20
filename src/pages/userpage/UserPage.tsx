@@ -2,6 +2,8 @@ import { Outlet, useParams } from 'react-router-dom';
 import Sidebar from '../../components/common/sidebar/Sidebar';
 import * as S from '../mypage/MyPage.styled';
 import { DocumentTextIcon, UserIcon } from '@heroicons/react/24/outline';
+import { ROUTES } from '../../constants/routes';
+import { useUserProfileInfo } from '../../hooks/useUserInfo';
 
 const UserPage = () => {
   const { userId } = useParams<{ userId: string }>();
@@ -9,20 +11,25 @@ const UserPage = () => {
   const menuItems = [
     {
       label: '프로필',
-      path: `/user/${userId}`,
+      path: `${ROUTES.userpage}/${userId}`,
       icon: <UserIcon width='20px' height='20px' />,
     },
     {
       label: '참여한 프로젝트 현황',
-      path: `/user/${userId}/join-projects`,
+      path: `${ROUTES.userpage}/${userId}/${ROUTES.userJoinedProject}`,
       icon: <DocumentTextIcon width='20px' height='20px' />,
     },
   ];
+
+  const { userData } = useUserProfileInfo(Number(userId));
+
   return (
     <S.Container>
-      <Sidebar menuItems={menuItems} nickname='백에서 받아오는 유저이름' />
+      <Sidebar menuItems={menuItems} nickname={userData?.nickname} />
       <S.Wrapper>
-        <Outlet />
+        <S.ScrollWrapper>
+          <Outlet />
+        </S.ScrollWrapper>
       </S.Wrapper>
     </S.Container>
   );

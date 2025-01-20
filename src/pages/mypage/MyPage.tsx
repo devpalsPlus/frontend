@@ -7,6 +7,7 @@ import {
   PencilSquareIcon,
 } from '@heroicons/react/24/outline';
 import { ROUTES } from '../../constants/routes';
+import { useMyProfileInfo } from '../../hooks/useMyInfo';
 
 const MyPage = () => {
   const menuItems = [
@@ -17,18 +18,20 @@ const MyPage = () => {
     },
     {
       label: '참여한 프로젝트 현황',
-      path: `/mypage/${ROUTES.mypageJoinedProjects}`,
+      path: `${ROUTES.mypage}/${ROUTES.mypageJoinedProjects}`,
       icon: <DocumentTextIcon />,
     },
     {
       label: '지원한 프로젝트 현황',
-      path: `/mypage/${ROUTES.mypageAppliedProjects}`,
+      path: `${ROUTES.mypage}/${ROUTES.mypageAppliedProjects}`,
       icon: <PencilSquareIcon />,
     },
   ];
+  const { myData } = useMyProfileInfo();
+
   return (
     <S.Container>
-      <Sidebar menuItems={menuItems} nickname='백엔드에서 받아오는 이름' />
+      <Sidebar menuItems={menuItems} nickname={myData?.nickname} />
       <S.Wrapper>
         <S.ScrollWrapper>
           <Outlet />
