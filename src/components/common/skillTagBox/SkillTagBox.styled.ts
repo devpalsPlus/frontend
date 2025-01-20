@@ -35,6 +35,11 @@ export const Wrapper = styled.div`
       svg {
         width: 1.2rem;
       }
+
+      &:hover {
+        transform: scale(1.1);
+        transition: all 50ms ease-in;
+      }
     }
   }
 `;
