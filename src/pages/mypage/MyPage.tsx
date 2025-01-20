@@ -6,22 +6,23 @@ import {
   DocumentTextIcon,
   PencilSquareIcon,
 } from '@heroicons/react/24/outline';
+import { ROUTES } from '../../constants/routes';
 
 const MyPage = () => {
   const menuItems = [
     {
       label: '프로필',
-      path: '/mypage',
+      path: ROUTES.mypage,
       icon: <UserIcon />,
     },
     {
       label: '참여한 프로젝트 현황',
-      path: '/mypage/join-projects',
+      path: `/mypage/${ROUTES.mypageJoinedProjects}`,
       icon: <DocumentTextIcon />,
     },
     {
       label: '지원한 프로젝트 현황',
-      path: '/mypage/apply-projects',
+      path: `/mypage/${ROUTES.mypageAppliedProjects}`,
       icon: <PencilSquareIcon />,
     },
   ];
