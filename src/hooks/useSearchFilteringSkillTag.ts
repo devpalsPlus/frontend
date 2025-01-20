@@ -44,10 +44,7 @@ export const useSearchFilteringSkillTag = () => {
       { id: 0, name: '전체', createdAt: '' },
       ...positionQuery.data,
     ]);
-    setMethodTagsData([
-      { id: 0, name: '전체', createdAt: '' },
-      ...methodQuery.data,
-    ]);
+    setMethodTagsData([...methodQuery.data]);
   }, [skillQuery.data, positionQuery.data, methodQuery.data]);
 
   return { skillTagsData, positionTagsData, methodTagsData };

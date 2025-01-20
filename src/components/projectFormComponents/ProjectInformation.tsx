@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import MozipCategoryComponent from './positionComponent/PositionComponent';
-import LanguageComponent from './languageComponent/LanguageComponent';
-import FieldCategoryComponent from './fieldCategoryComponent/FieldCategoryComponent';
+import * as S from '../../pages/createProject/CreateProject.styled';
+import { PROJECT_DATA } from '../../constants/projectConstants';
+import FieldCategoryComponent from './FieldCategoryComponent';
 import { Control, FieldErrors, UseFormSetValue } from 'react-hook-form';
-import { PROJECT_DATA } from '../../../constants';
-import { CreateProjectFormValues } from '../../../models/createProject';
-import * as S from './ProjectInformationInput.styled';
-import Input from '../../inputComponent/inputComponent';
+import { CreateProjectFormValues } from '../../models/createProject';
+import Input from './inputComponent/inputComponent';
+import MozipCategoryComponent from './projectInformationInput/positionComponent/PositionComponent';
+import LanguageComponent from './projectInformationInput/languageComponent/LanguageComponent';
 
 interface ProjectInformationProps {
   errors: FieldErrors;
@@ -14,7 +14,7 @@ interface ProjectInformationProps {
   setValue: UseFormSetValue<CreateProjectFormValues>;
 }
 
-const ProjectInformationInput = ({
+const ProjectInformation = ({
   errors,
   control,
   setValue,
@@ -30,7 +30,7 @@ const ProjectInformationInput = ({
           <S.InfoRow key={index}>
             <label htmlFor={input.name}>{input.label}</label>
             <Input
-              indexInfo={input.id}
+              index={index}
               control={control}
               errors={errors}
               name={input.name}
@@ -77,4 +77,4 @@ const ProjectInformationInput = ({
   );
 };
 
-export default ProjectInformationInput;
+export default ProjectInformation;

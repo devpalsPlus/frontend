@@ -1,31 +1,17 @@
 import styled from 'styled-components';
 
-export const PhoneInputContainer = styled.div`
-  display: flex;
-  gap: 8px;
-  justify-content: flex-start;
-  margin-bottom: 15px;
-  position: relative;
-`;
-
-export const PhoneInput = styled.input<{ name: string }>`
-  width: 60px;
+export const PhoneInput = styled.input`
+  width: 70px;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   text-align: center;
-  font-size: 18px;
+  font-size: 19px;
 
   &:focus {
     outline: none;
     border-color: #888;
   }
-`;
-
-export const Dash = styled.span`
-  align-self: center;
-  font-size: 25px;
-  color: #888;
 `;
 
 export const FormError = styled.p`

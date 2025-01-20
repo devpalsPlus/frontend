@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import ProjectInformation from '../../components/createProjectComponents/projectInformationText/ProjectInformation';
+import ProjectInformation from '../../components/projectFormComponents/projectInformationText/ProjectInformation';
 import useGetProjectData from '../../hooks/useJoinProject';
 import * as S from './ProjectDetail.styled';
 import { formatDate } from '../../util/format';
 import Button from '../../components/common/Button/Button';
-import MarkdownEditorView from '../../components/createProjectComponents/editor/MarkdownEditorView';
+import MarkdownEditorView from '../../components/projectFormComponents/editor/MarkdownEditorView';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -20,7 +20,7 @@ const ProjectDetail = () => {
   if (isFetching) return <div>isFetching...</div>;
 
   const handleApplyClick = () => {
-    navigate(`/main/apply/${id}`);
+    navigate(`/apply/${id}`);
   };
 
   return (

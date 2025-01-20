@@ -2,7 +2,7 @@ export type ColorKey =
   | 'primary'
   | 'border'
   | 'placeholder'
-  | 'deepgrey'
+  | 'deepGrey'
   | 'grey'
   | 'lightgrey'
   | 'white'
@@ -14,6 +14,7 @@ export type HeadingSize =
   | 'large'
   | 'semiLarge'
   | 'medium'
+  | 'semiSmall'
   | 'small'
   | 'verySmall';
 
@@ -58,7 +59,7 @@ export const defaultTheme: Theme = {
     primary: '#000000',
     border: '#e3e3e3',
     placeholder: '#cdcdcd',
-    deepgrey: '#6D6D6D',
+    deepGrey: '#6D6D6D',
     grey: '#ececec',
     lightgrey: '#f9f9f9',
     white: '#ffffff',
@@ -70,6 +71,7 @@ export const defaultTheme: Theme = {
     large: { fontSize: '1.75rem' },
     semiLarge: { fontSize: '1.5rem' },
     medium: { fontSize: '1.25rem' },
+    semiSmall: { fontSize: '1.1rem' },
     small: { fontSize: '1rem' },
     verySmall: { fontSize: '0.5rem' },
   },

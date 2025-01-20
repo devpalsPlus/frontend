@@ -1,5 +1,5 @@
 import * as S from './ProjectInformation.styled';
-import { PROJECT_DATA_GET } from '../../../constants';
+import { PROJECT_DATA_GET } from '../../../constants/projectConstants';
 import beginner from '/src/assets/beginner.svg';
 import {
   ProjectDetail,
