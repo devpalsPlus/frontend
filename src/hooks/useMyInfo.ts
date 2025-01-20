@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getMyInfo, putMyInfo } from '../api/mypage.api';
-import { EditMyInfo, MyInfo } from '../models/myInfo';
+import { EditMyInfo, UserInfo } from '../models/userInfo';
 import { useAlert } from './useAlert';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { ROUTES } from '../constants/routes';
 import { myInfoKey } from './queries/keys';
 
 export const useMyProfileInfo = () => {
-  const { data, isLoading } = useQuery<MyInfo>({
+  const { data, isLoading } = useQuery<UserInfo>({
     queryKey: myInfoKey.myProfile,
     queryFn: () => getMyInfo(),
     staleTime: 1 * 60 * 1000,
