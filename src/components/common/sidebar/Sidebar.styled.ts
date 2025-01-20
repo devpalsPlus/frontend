@@ -30,13 +30,15 @@ export const MenuList = styled.div`
   width: 100%;
   margin-top: 3rem;
 `;
-export const MenuItem = styled.div`
+export const MenuItem = styled.div<{ $isActive: boolean }>`
   display: flex;
   align-items: center;
   padding: 0.625rem 1.25rem;
   font-weight: 500;
   color: #6d6d6d;
   margin: 0.5rem 0;
+  background-color: ${({ $isActive }) =>
+    $isActive ? '#f9f9f9' : 'transparent'};
 
   &:hover {
     background-color: #f9f9f9;
