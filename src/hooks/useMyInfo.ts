@@ -60,7 +60,8 @@ export const useUploadProfileImg = () => {
       showAlert('프로필 이미지가 업로드 되었습니다.');
     },
     onError: () => {
-      showAlert('이미지는 1MB 이하, .PNG.JPG.JPEG 형식만 가능합니다.');
+      showAlert(`이미지는 5MB 이하,
+        .png.jpg.jpeg.svg 형식만 가능합니다.`);
     },
   });
 
