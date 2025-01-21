@@ -31,7 +31,6 @@ export const ProfileImageContainer = styled.div`
 
 export const UserInfo = styled.div`
   display: flex;
-  flex-direction: row;
   gap: 12px;
   align-items: center;
 `;
@@ -42,13 +41,25 @@ export const UserName = styled.div`
 `;
 
 export const PostDate = styled.div`
-  font-size: 18px;
-  color: #777;
+  font-size: ${({ theme }) => theme.heading.semiSmall};
+  color: ${({ theme }) => theme.color.deepGrey};
 `;
 
 export const ViewCount = styled.div`
-  font-size: 17px;
-  color: #777;
+  display: flex;
+  gap: 5px;
+  text-align: center;
+  font-size: ${({ theme }) => theme.heading.semiSmall};
+  color: ${({ theme }) => theme.color.deepGrey};
+  font-size: ${({ theme }) => theme.heading.semiSmall};
+  color: ${({ theme }) => theme.color.deepGrey};
+
+  svg {
+    margin-top: 4px;
+    width: 16px;
+    height: 16px;
+    color: ${({ theme }) => theme.color.deepGrey};
+  }
 `;
 
 export const Content = styled.div`
