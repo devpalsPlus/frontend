@@ -9,20 +9,20 @@ import ApplicantInfo from '../../../components/manageProjects/applicantInfo/Appl
 import RecruitmentDate from '../../../components/manageProjects/RecruitmentDate';
 
 import useGetProjectData from '../../../hooks/useJoinProject';
-import { useApllicantInfo } from '../../../hooks/useApllicantInfo';
+import { useApllicantList } from '../../../hooks/useApllicantList';
 
 import { applicantsMenuItems } from '../../../constants/sidebarItems';
+import { useAppllicantInfo } from '../../../hooks/useApplicantInfo';
 
 const MyProjectVolunteer = () => {
   const { projectId } = useParams();
-  const { applicantData } = useApllicantInfo(Number(projectId));
+  const { applicantsData } = useApllicantList(Number(projectId));
   const { data: ProjectData } = useGetProjectData(Number(projectId));
   const sidebarMenuItem = applicantsMenuItems(Number(projectId));
+  const { selectedApplicant, handleApplicantInfo } = useAppllicantInfo(
+    Number(projectId)
+  );
 
-  const handleApplicantInfo = (userId: number) => {
-    // API수정되면 로직 구현할게요 by 형준
-    console.log(userId);
-  };
   return (
     <S.Container>
       <Sidebar menuItems={sidebarMenuItem} />
@@ -35,17 +35,20 @@ const MyProjectVolunteer = () => {
         <S.ContentWrapper>
           <S.ApplicantListWrapper>
             <S.Title>지원자 리스트</S.Title>
-            {applicantData && (
+            {applicantsData && (
               <ApplicantList
+                selectedApplicant={selectedApplicant?.userId}
                 onClick={handleApplicantInfo}
-                applicantsData={applicantData}
+                applicantsData={applicantsData}
               />
             )}
           </S.ApplicantListWrapper>
 
           <S.ApplicantInfoWrapper>
             <S.Title>지원자 정보</S.Title>
-            <ApplicantInfo />
+            {selectedApplicant && (
+              <ApplicantInfo applicantInfo={selectedApplicant} />
+            )}
           </S.ApplicantInfoWrapper>
         </S.ContentWrapper>
       </InfoCard>
