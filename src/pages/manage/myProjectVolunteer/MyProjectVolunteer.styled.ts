@@ -21,6 +21,6 @@ export const ApplicantInfoWrapper = styled.div`
 export const Title = styled.h1`
   font-size: 1.25rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.color.deepgrey};
+  color: ${({ theme }) => theme.color.deepGrey};
   margin-bottom: 1rem;
 `;

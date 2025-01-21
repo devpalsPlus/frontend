@@ -2,7 +2,7 @@ import { ApplicantInfo } from '../../../models/applicant';
 import * as S from './ApplicantItem.styled';
 
 interface ApplicantItemProps {
-  selectedApplicant: number;
+  selectedApplicant?: number;
   applicantData: ApplicantInfo;
   onClick: (userId: number) => void;
 }
