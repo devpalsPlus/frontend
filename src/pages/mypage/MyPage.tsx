@@ -9,6 +9,7 @@ import {
 import { ROUTES } from '../../constants/routes';
 import { useMyProfileInfo } from '../../hooks/useMyInfo';
 import DefaultImg from '../../assets/defaultImg.png';
+import loadingImg from '../../assets/loadingImg.svg';
 
 const MyPage = () => {
   const menuItems = [
@@ -28,7 +29,7 @@ const MyPage = () => {
       icon: <PencilSquareIcon />,
     },
   ];
-  const { myData } = useMyProfileInfo();
+  const { myData, isLoading } = useMyProfileInfo();
   const profileImg = myData?.profileImg ? myData.profileImg : DefaultImg;
 
   return (
@@ -36,7 +37,7 @@ const MyPage = () => {
       <Sidebar
         menuItems={menuItems}
         nickname={myData?.nickname}
-        profileImage={profileImg}
+        profileImage={isLoading ? loadingImg : profileImg}
       />
       <S.Wrapper>
         <S.ScrollWrapper>

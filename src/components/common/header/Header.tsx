@@ -9,11 +9,12 @@ import { ROUTES } from '../../../constants/routes';
 import { useMyProfileInfo } from '../../../hooks/useMyInfo';
 import DefaultImg from '../../../assets/defaultImg.png';
 import { UserCircleIcon } from '@heroicons/react/24/outline';
+import loadingImg from '../../../assets/loadingImg.svg';
 
 function Header() {
   const { userLogout } = useAuth();
-  const { isLoggedIn } = useAuthStore();
-  const { myData } = useMyProfileInfo();
+  const { isLoggedIn } = useAuthStore((state) => state);
+  const { myData, isLoading } = useMyProfileInfo();
 
   const profileImg = myData?.profileImg || DefaultImg;
 
@@ -25,7 +26,9 @@ function Header() {
       <nav className='auth'>
         <DropDown
           toggleButton={
-            isLoggedIn ? (
+            isLoading ? (
+              <Avatar size='45px' image={loadingImg} />
+            ) : isLoggedIn ? (
               <Avatar size='45px' image={profileImg} />
             ) : (
               <UserCircleIcon color='#6D6D6D' width='48' height='48' />

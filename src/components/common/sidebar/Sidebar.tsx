@@ -13,7 +13,7 @@ interface MenuItem {
 
 interface SidebarProps {
   menuItems: MenuItem[];
-  profileImage?: string | null;
+  profileImage?: string | null | React.ReactNode;
   nickname?: string;
 }
 
@@ -34,7 +34,7 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
     <S.Container>
       <S.AvartarContainer>
         <S.AvartarWrapper>
-          <Avatar size='120px' padding='10px' image={profileImage} />
+          <Avatar size='120px' image={profileImage} />
           {isMyProfile && <EditMyProfileImg />}
         </S.AvartarWrapper>
         <span>{nickname ? nickname : ''}</span>
