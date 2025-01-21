@@ -14,4 +14,5 @@ export const ROUTES = {
   mypageAppliedProjects: 'apply-projects',
   userpage: '/user',
   userJoinedProject: 'join-projects',
+  modifyProject: '/project-modify',
 } as const;

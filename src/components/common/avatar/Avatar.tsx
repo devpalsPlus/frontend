@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import * as S from './Avatar.styled';
 
 export interface AvatarProps {
@@ -10,7 +10,7 @@ function Avatar({ size, image }: AvatarProps) {
   return (
     <S.AvatarContainer size={size}>
       {typeof image === 'string' ? (
-        <img className="avatar" src={image} alt="Avatar" />
+        <img className='avatar' src={image} alt='Avatar' />
       ) : (
         image
       )}

@@ -1,58 +1,36 @@
-import * as S from './CreateProject.styled';
+import * as S from './ModifyProject.styled';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '../../components/projectFormComponents/inputComponent/inputComponent';
 import { CreateProjectFormValues, FormData } from '../../models/createProject';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ProjectInformationInput from '../../components/projectFormComponents/projectInformationInput/ProjectInformationInput';
-import { createProject } from '../../api/joinProject.api';
+import { createProjectScheme } from '../createProject/CreateProject';
+import useGetProjectData from '../../hooks/useJoinProject';
+import { useEffect } from 'react';
+import { formatDate } from '../../util/format';
+import useUpdateProject from '../../hooks/useUpdateProject';
+import { useAlert } from '../../hooks/useAlert';
 
-export const createProjectScheme = z.object({
-  startDate: z
-    .string({ required_error: '시작 날짜를 입력해주세요.' })
-    .refine((date) => !isNaN(Date.parse(date)), {
-      message: '유효한 날짜를 입력해주세요.',
-    }),
-  endDate: z
-    .string({ required_error: '종료 날짜를 입력해주세요.' })
-    .refine((date) => !isNaN(Date.parse(date)), {
-      message: '유효한 날짜를 입력해주세요.',
-    }),
-
-  title: z
-    .string({ message: '프로젝트 제목을 입력해주세요.' })
-    .min(1, { message: '프로젝트 제목을 입력해주세요.' }),
-
-  maxVolunteers: z.coerce
-    .number({ message: '모집 인원을 입력해주세요.' })
-    .min(1, { message: '모집 인원은 1명 이상이어야 합니다.' })
-    .max(1000, { message: '모집 인원은 1000명 이하이어야 합니다.' }),
-  startDatePre: z
-    .string({ required_error: '종료 날짜를 입력해주세요.' })
-    .refine((date) => !isNaN(Date.parse(date)), {
-      message: '유효한 날짜를 입력해주세요.',
-    }),
-  field: z.number({ message: '진행 방식을 선택 해주세요.' }),
-  duration: z.coerce
-    .number({ message: '예상 기간을 입력해주세요.' })
-    .positive({ message: '예상 기간은 1 이상이어야 합니다.' })
-    .max(365, { message: '예상 기간은 365일을 초과할 수 없습니다.' }),
-  position: z
-    .array(z.number({ message: '숫자로 입력 되어야 합니다.' }))
-    .min(1, { message: '1개의 분야를 선택해주세요.' }),
-  newBy: z.boolean().optional(),
-  languages: z
-    .array(z.number({ message: '숫자로 입력 되어야 합니다.' }))
-    .min(1, { message: '최소 1개 이상의 언어를 선택해주세요.' }),
-
-  markdownEditor: z
-    .string({ message: '프로젝트 내용을 입력해주세요.' })
-    .min(10, { message: '프로젝트 내용은 최소 10자 이상이어야 합니다.' }),
-});
-
-const CreateProject = () => {
+const ModifyProject = () => {
   const navigate = useNavigate();
+  const { projectId } = useParams();
+  const id = Number(projectId);
+  const { showAlert } = useAlert();
+
+  const { data: projectData } = useGetProjectData(id);
+  const { updateProject, isLoading } = useUpdateProject({
+    id,
+    onSuccess: () => {
+      showAlert('수정 되었습니다.');
+      navigate(`/project-detail/${id}`);
+    },
+    onError: (error) => {
+      console.error('Error updating project:', error);
+    },
+  });
+
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
@@ -73,7 +51,7 @@ const CreateProject = () => {
     },
   });
 
-  const handleSubmit = (data: z.infer<typeof createProjectScheme>) => {
+  const handleSubmit = async (data: z.infer<typeof createProjectScheme>) => {
     const formData: FormData = {
       title: data.title,
       totalMember: data.maxVolunteers,
@@ -87,14 +65,27 @@ const CreateProject = () => {
       skillTagId: data.languages,
       description: data.markdownEditor,
     };
+    console.log(formData);
 
-    createProject(formData).then((status: number) => {
-      if (status === 201) {
-        alert('프로젝트가 성공적으로 생성되었습니다.');
-        navigate(`/main`);
-      }
-    });
+    try {
+      await updateProject(formData);
+    } catch (e) {
+      console.error(e);
+    }
   };
+
+  useEffect(() => {
+    if (projectData) {
+      setValue('startDatePre', formatDate(projectData.startDate));
+      setValue('startDate', formatDate(projectData.recruitmentStartDate));
+      setValue('endDate', formatDate(projectData.recruitmentEndDate));
+      setValue('title', projectData.title);
+      setValue('newBy', projectData.isBeginner);
+      setValue('maxVolunteers', projectData.totalMember);
+      setValue('duration', Number(projectData.estimatedPeriod.slice(0, 1)));
+      setValue('markdownEditor', projectData.description);
+    }
+  }, [projectData]);
 
   return (
     <S.Container>
@@ -140,6 +131,7 @@ const CreateProject = () => {
               errors={errors}
               control={control}
               setValue={setValue}
+              apiData={projectData}
             />
           </S.SectionInput>
         </S.Section>
@@ -160,4 +152,4 @@ const CreateProject = () => {
   );
 };
 
-export default CreateProject;
+export default ModifyProject;

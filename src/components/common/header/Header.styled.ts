@@ -14,29 +14,47 @@ export const HeaderContainer = styled.div`
     height: 80px;
   }
 
+  .panel {
+    border-radius: ${({ theme }) => theme.borderRadius.primary};
+  }
+
   .auth {
     ul {
       display: flex;
       flex-direction: column;
-      align-items: start;
-      width: 9.375rem;
-      li {
+      width: 9rem;
+
+      a,
+      button {
+        font-size: 0.9rem;
+        font-weight: 600;
         width: 100%;
-        padding: 10px 28px;
-        a,
-        button {
-          font-size: 1rem;
-          font-weight: 600;
-          width: 100%;
-          line-height: 1;
-          text-align: left;
-          color: inherit;
-        }
+        line-height: 1;
+        text-align: center;
+        color: inherit;
 
         &:hover {
           color: ${({ theme }) => theme.color.white};
           background-color: ${({ theme }) => theme.color.navy};
         }
+      }
+
+      a {
+        &:first-child {
+          border-top-left-radius: ${({ theme }) => theme.borderRadius.primary};
+          border-top-right-radius: ${({ theme }) => theme.borderRadius.primary};
+        }
+        &:last-child {
+          border-bottom-left-radius: ${({ theme }) =>
+            theme.borderRadius.primary};
+          border-bottom-right-radius: ${({ theme }) =>
+            theme.borderRadius.primary};
+        }
+      }
+
+      li {
+        width: 100%;
+        padding: 1rem;
       }
     }
   }
