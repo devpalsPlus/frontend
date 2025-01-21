@@ -5,17 +5,19 @@ import { changePasswordFormValues } from '../pages/changePassword/ChangePassword
 import { loginFormValues } from '../pages/login/Login';
 import useAuthStore from '../store/authStore';
 import { useAlert } from './useAlert';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { LoginResponse } from '../models/auth';
 import { ROUTES } from '../constants/routes';
 import { AxiosError } from 'axios';
+import { myInfoKey } from './queries/keys';
 
 export const useAuth = () => {
   const navigate = useNavigate();
-  const { storeLogin, storeLogout } = useAuthStore();
+  const { storeLogin, storeLogout } = useAuthStore.getState();
   const { showAlert } = useAlert();
+  const queryClient = useQueryClient();
 
-  const signupMutaton = useMutation<
+  const signupMutation = useMutation<
     void,
     AxiosError,
     { email: string; password: string; nickname: string }
@@ -61,7 +63,6 @@ export const useAuth = () => {
     },
     onSuccess: (data) => {
       const { accessToken, refreshToken } = data;
-
       showAlert('로그인 되었습니다.');
       storeLogin(accessToken, refreshToken);
       navigate(ROUTES.home);
@@ -74,7 +75,7 @@ export const useAuth = () => {
   const userSignup = (
     data: Pick<registerFormValues, 'email' | 'password' | 'nickname'>
   ) => {
-    signupMutaton.mutate(data);
+    signupMutation.mutate(data);
   };
 
   const resetPassword = (
@@ -89,6 +90,7 @@ export const useAuth = () => {
 
   const userLogout = () => {
     storeLogout();
+    queryClient.removeQueries({ queryKey: myInfoKey.myProfile });
     showAlert('로그아웃 되었습니다.');
     navigate(ROUTES.home);
   };
