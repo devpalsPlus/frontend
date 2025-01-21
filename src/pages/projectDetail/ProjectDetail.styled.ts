@@ -51,8 +51,6 @@ export const ViewCount = styled.div`
   text-align: center;
   font-size: ${({ theme }) => theme.heading.semiSmall};
   color: ${({ theme }) => theme.color.deepGrey};
-  font-size: ${({ theme }) => theme.heading.semiSmall};
-  color: ${({ theme }) => theme.color.deepGrey};
 
   svg {
     margin-top: 4px;
