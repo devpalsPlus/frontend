@@ -7,7 +7,7 @@ export const Container = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.large};
   width: 22%;
   min-width: 230px;
-  height: 78vh;
+  height: 80vh;
   margin-right: 1.25rem;
   padding-bottom: 1rem;
 `;
