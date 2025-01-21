@@ -3,5 +3,6 @@ export const managedProjectsKey = {
 } as const;
 
 export const applicantKey = {
+  all: ['applicantList'],
   info: ['applicantInfo'],
 };
