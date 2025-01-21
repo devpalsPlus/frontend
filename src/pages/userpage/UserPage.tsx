@@ -8,7 +8,7 @@ import DefaultImg from '../../assets/defaultImg.png';
 import loadingImg from '../../assets/loadingImg.svg';
 
 const UserPage = () => {
-  const { userId } = useParams<{ userId: string }>();
+  const { userId } = useParams();
 
   const menuItems = [
     {
