@@ -1,9 +1,9 @@
-import { EditMyInfo, MyInfo } from '../models/myInfo';
+import { EditMyInfo, UserInfo } from '../models/userInfo';
 import { httpClient } from './http.api';
 
 export const getMyInfo = async () => {
   try {
-    const response = await httpClient.get<MyInfo>('/user/me');
+    const response = await httpClient.get<UserInfo>('/user/me');
     return response.data;
   } catch (error) {
     console.error('mypage-myinfo:', error);
@@ -17,6 +17,23 @@ export const putMyInfo = async (data: EditMyInfo) => {
     return response;
   } catch (error) {
     console.error('mypage-myinfoedit:', error);
+    throw error;
+  }
+};
+
+export const patchMyProfileImg = async (file: File) => {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const response = await httpClient.patch('/user/me/profile-img', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error('myprofile upload:', error);
     throw error;
   }
 };

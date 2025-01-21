@@ -109,7 +109,7 @@ const ChangePassword = () => {
                   inputType='email'
                   placeholder='이메일'
                   icon={<EnvelopeIcon />}
-                  autoComplete='off'
+                  autoComplete='auto'
                   {...field}
                   onChange={(e) => {
                     const value = e.target.value;
