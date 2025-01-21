@@ -3,35 +3,63 @@ import {
   Navigate,
   RouterProvider,
 } from 'react-router-dom';
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 
-import Login from '../pages/login/Login';
-import Register from '../pages/register/Register';
-import ChangePassword from '../pages/changePassword/ChangePassword';
-import Main from '../pages/main/Main';
-import Layout from '../components/common/layout/Layout';
-import Home from '../pages/home/Home';
-import CreateProject from '../pages/createProject/CreateProject';
-import Apply from '../pages/apply/Apply';
-import ProjectDetail from '../pages/projectDetail/ProjectDetail';
-import MyProjectList from '../pages/manage/myProjectList/MyProjectList';
-
-import LayoutSidebar from '../components/common/layout/sidebar/LayoutSidebar';
-import MyProfile from '../components/mypage/myProfile/myProfile';
-import MyApplyProject from '../components/mypage/appliedProject/MyApplyProject';
-import MyProjectVolunteer from '../pages/manage/myProjectVolunteer/MyProjectVolunteer';
-import MyProjectVolunteersPass from '../pages/manage/myProjectParticipantsPass/MyProjectVolunteersPass';
+import LoadingSpinner from '../components/common/loadingSpinner/LoadingSpinner';
 import Error from '../pages/error/Error';
 import { ROUTES } from '../constants/routes';
 import useAuthStore from '../store/authStore';
-import LoadingSpinner from '../components/common/loadingSpinner/LoadingSpinner';
 import ProtectRoute from '../components/common/ProtectRoute';
-import MyJoinProjects from '../components/mypage/joinedProject/MyJoinProjects';
-import UserProfile from '../components/userPage/userProfile/UserProfile';
-import UserJoinProject from '../components/userPage/joinedProject/UserJoinProject';
-import MyPage from '../pages/mypage/MyPage';
-import UserPage from '../pages/userpage/UserPage';
-import ModifyProject from '../pages/modifyProject/ModifyProject';
+const Login = lazy(() => import('../pages/login/Login'));
+const Register = lazy(() => import('../pages/register/Register'));
+const ChangePassword = lazy(
+  () => import('../pages/changePassword/ChangePassword')
+);
+const Main = lazy(() => import('../pages/main/Main'));
+const Layout = lazy(() => import('../components/common/layout/Layout'));
+const Home = lazy(() => import('../pages/home/Home'));
+const MyPage = lazy(() => import('../pages/mypage/MyPage'));
+const UserPage = lazy(() => import('../pages/userpage/UserPage'));
+const Apply = lazy(() => import('../pages/apply/Apply'));
+
+const CreateProject = lazy(
+  () => import('../pages/createProject/CreateProject')
+);
+const ProjectDetail = lazy(
+  () => import('../pages/projectDetail/ProjectDetail')
+);
+const MyProjectList = lazy(
+  () => import('../pages/manage/myProjectList/MyProjectList')
+);
+const MyProfile = lazy(
+  () => import('../components/mypage/myProfile/myProfile')
+);
+const MyApplyProject = lazy(
+  () => import('../components/mypage/appliedProject/MyApplyProject')
+);
+const MyProjectVolunteer = lazy(
+  () => import('../pages/manage/myProjectVolunteer/MyProjectVolunteer')
+);
+const MyProjectVolunteersPass = lazy(
+  () =>
+    import('../pages/manage/myProjectParticipantsPass/MyProjectVolunteersPass')
+);
+const MyJoinProjects = lazy(
+  () => import('../components/mypage/joinedProject/MyJoinProjects')
+);
+const UserProfile = lazy(
+  () => import('../components/userPage/userProfile/UserProfile')
+);
+const UserJoinProject = lazy(
+  () => import('../components/userPage/joinedProject/UserJoinProject')
+);
+
+const ModifyProject = lazy(
+  () => import('../pages/modifyProject/ModifyProject')
+);
+const ApplicantViewLayout = lazy(
+  () => import('../components/common/layout/ApplicantViewLayout')
+);
 
 const AppRoutes = () => {
   const { isLoggedIn } = useAuthStore();
@@ -156,9 +184,9 @@ const AppRoutes = () => {
       element: (
         <ProtectRoute redirectUrl={ROUTES.login}>
           <Suspense fallback={<LoadingSpinner />}>
-            <Layout>
+            <ApplicantViewLayout>
               <MyProjectVolunteer />
-            </Layout>
+            </ApplicantViewLayout>
           </Suspense>
         </ProtectRoute>
       ),
@@ -166,9 +194,13 @@ const AppRoutes = () => {
     {
       path: `${ROUTES.manageProjectsPassNonPass}/:projectId`,
       element: (
-        <Layout>
-          <MyProjectVolunteersPass />
-        </Layout>
+        <ProtectRoute redirectUrl={ROUTES.login}>
+          <ApplicantViewLayout>
+            <Suspense fallback={<LoadingSpinner />}>
+              <MyProjectVolunteersPass />
+            </Suspense>
+          </ApplicantViewLayout>
+        </ProtectRoute>
       ),
     },
   ];

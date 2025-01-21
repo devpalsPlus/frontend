@@ -6,15 +6,20 @@ export const Container = styled.div`
   height: 22rem;
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: 2rem;
-  padding: 2rem 1rem;
+  padding: 1.8rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
+  .deadLine {
+    color: #3c3c3c;
+    font-size: 0.9rem;
+  }
+
   .title {
     height: 4rem;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: bold;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -29,11 +34,21 @@ export const Container = styled.div`
     gap: 0.5rem;
   }
 
+  .positionTitle {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #5f5f5f;
+  }
+
   .skillTag,
   .positionTags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+  }
+
+  .positionTags {
+    font-size: 0.8rem;
   }
 
   .info {
@@ -46,11 +61,17 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       gap: 0.5rem;
+
+      span {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #646464;
+      }
     }
     .etc {
       display: flex;
       align-items: end;
-      gap: 1rem;
+      gap: 0.5rem;
       img {
         width: 2rem;
       }
@@ -60,10 +81,11 @@ export const Container = styled.div`
 
         svg {
           width: 1.3rem;
+          color: #5f5f5f;
         }
         span {
-          width: 2.5rem;
           flex-direction: row;
+          color: #5f5f5f;
         }
       }
     }

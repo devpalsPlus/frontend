@@ -11,7 +11,7 @@ export const Container = styled.div`
   margin-right: 1.25rem;
   padding-bottom: 1rem;
 `;
-export const AvartarWrapper = styled.div`
+export const AvartarContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -26,17 +26,23 @@ export const AvartarWrapper = styled.div`
     font-weight: 600;
   }
 `;
+
+export const AvartarWrapper = styled.div`
+  position: relative;
+`;
 export const MenuList = styled.div`
   width: 100%;
   margin-top: 3rem;
 `;
-export const MenuItem = styled.div`
+export const MenuItem = styled.div<{ $isActive: boolean }>`
   display: flex;
   align-items: center;
   padding: 0.625rem 1.25rem;
   font-weight: 500;
   color: #6d6d6d;
   margin: 0.5rem 0;
+  background-color: ${({ $isActive }) =>
+    $isActive ? '#f9f9f9' : 'transparent'};
 
   &:hover {
     background-color: #f9f9f9;

@@ -1,6 +1,7 @@
 import styled, { DefaultTheme } from 'styled-components';
 
 interface ButtonProps {
+  $isSelected: boolean;
   passStatus: 'REJECTED' | 'SUCCESS' | string;
 }
 
@@ -22,12 +23,17 @@ export const Button = styled.button<ButtonProps>`
   flex-shrink: 0;
   width: 10rem;
   height: 2.5rem;
-  background-color: ${({ theme }) => theme.color.white};
+  background-color: ${({ $isSelected, theme }) =>
+    $isSelected ? theme.buttonScheme.primary.bg : theme.color.white};
+  color: ${({ $isSelected, theme }) =>
+    $isSelected ? theme.buttonScheme.primary.color : theme.color.primary};
   border: 1px solid
     ${({ passStatus, theme }) => getBorderColor(passStatus, theme)};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
 
   &:hover {
-    background-color: ${({ theme }) => theme.color.grey};
+    background-color: ${({ theme }) => theme.buttonScheme.primary.bg};
+    color: ${({ theme }) => theme.buttonScheme.primary.color};
+    border: none;
   }
 `;
