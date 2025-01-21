@@ -28,7 +28,7 @@ export const Wrapper = styled.div`
       border: 1px solid ${({ theme }) => theme.color.border};
       border-radius: 0.5rem;
       position: absolute;
-      top: 2.3rem;
+      top: 2.8rem;
       cursor: pointer;
       overflow: hidden;
       background-color: ${({ theme }) => theme.color.white};
