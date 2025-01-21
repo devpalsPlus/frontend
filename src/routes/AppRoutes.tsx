@@ -31,6 +31,7 @@ import UserProfile from '../components/userPage/userProfile/UserProfile';
 import UserJoinProject from '../components/userPage/joinedProject/UserJoinProject';
 import MyPage from '../pages/mypage/MyPage';
 import UserPage from '../pages/userpage/UserPage';
+import ApplicantViewLayout from '../components/common/layout/ApplicantViewLayout';
 
 const AppRoutes = () => {
   const { isLoggedIn } = useAuthStore();
@@ -147,9 +148,9 @@ const AppRoutes = () => {
       element: (
         <ProtectRoute redirectUrl={ROUTES.login}>
           <Suspense fallback={<LoadingSpinner />}>
-            <Layout>
+            <ApplicantViewLayout>
               <MyProjectVolunteer />
-            </Layout>
+            </ApplicantViewLayout>
           </Suspense>
         </ProtectRoute>
       ),
@@ -157,9 +158,13 @@ const AppRoutes = () => {
     {
       path: `${ROUTES.manageProjectsPassNonPass}/:projectId`,
       element: (
-        <Layout>
-          <MyProjectVolunteersPass />
-        </Layout>
+        <ProtectRoute redirectUrl={ROUTES.login}>
+          <Suspense fallback={<LoadingSpinner />}>
+            <ApplicantViewLayout>
+              <MyProjectVolunteersPass />
+            </ApplicantViewLayout>
+          </Suspense>
+        </ProtectRoute>
       ),
     },
   ];
