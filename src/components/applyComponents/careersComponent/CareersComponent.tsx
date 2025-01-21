@@ -31,6 +31,9 @@ const CareersComponent = ({
         </S.CareerContainer>
       ))}
       <S.AddButton
+        size='primary'
+        schema='white'
+        radius='primary'
         onClick={() =>
           appendCareers({
             name: '',
@@ -39,7 +42,6 @@ const CareersComponent = ({
             role: '',
           })
         }
-        style={{ cursor: 'pointer', color: 'blue' }}
       >
         추가
       </S.AddButton>

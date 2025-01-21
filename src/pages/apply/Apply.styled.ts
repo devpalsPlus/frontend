@@ -16,7 +16,7 @@ export const Title = styled.h1`
 
 export const Subtitle = styled.h2`
   font-size: 25px;
-  color: #555;
+  color: ${({ theme }) => theme.color.primary};
   margin-bottom: 20px;
 `;
 
@@ -63,6 +63,7 @@ export const TextArea = styled.textarea`
 export const SubmitButton = styled(Button)`
   width: 10%;
   padding: 15px;
+  margin: 0 auto;
   cursor: pointer;
 `;
 

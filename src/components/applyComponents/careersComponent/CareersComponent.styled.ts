@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Button from '../../common/Button/Button';
 
 export const CareerContainer = styled.div`
   display: flex;
@@ -6,8 +7,9 @@ export const CareerContainer = styled.div`
   justify-content: flex-start;
 `;
 
-export const AddButton = styled.button`
-  font-size: 18px;
+export const AddButton = styled(Button)`
+  width: 6%;
+  padding: 10px;
+  cursor: pointer;
   border: 1px solid ${({ theme }) => theme.color.border};
-  border-radius: ${({ theme }) => theme.borderRadius.primary};
 `;
