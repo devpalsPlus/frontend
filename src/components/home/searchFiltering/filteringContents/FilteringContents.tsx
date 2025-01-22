@@ -3,7 +3,7 @@ import * as S from './FilteringContents.styled';
 import beginner from '../../../../assets/beginner.svg';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import SkillTagBox from '../../../common/skillTagBox/SkillTagBox';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchFilteringSkillTag } from '../../../../hooks/useSearchFilteringSkillTag';
 import { useOutsideClick } from '../../../../hooks/useOutsideClick';
 import { useSaveSearchFiltering } from '../../../../hooks/useSaveSearchFiltering';
@@ -50,7 +50,7 @@ export default function FilteringContents() {
               width='90%'
               selectSkills={selectSkills}
               setSelectSkills={setSelectSkills}
-              reset={true}
+              canReset={true}
               onHandleSkillTagReset={handleSkillTagReset}
             />
           </div>

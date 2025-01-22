@@ -1,10 +1,10 @@
-import { createContext, PropsWithChildren, useState } from 'react';
+import { createContext, PropsWithChildren, useEffect, useState } from 'react';
 import type { SearchFilters } from '../models/searchFilters';
 
 type SearchFilteringKey =
   | 'skillTag'
   | 'positionTag'
-  | 'method'
+  | 'methodId'
   | 'isBeginner'
   | 'keyword'
   | 'page';
@@ -25,7 +25,7 @@ export function SearchFilteringProvider({ children }: PropsWithChildren) {
   const [searchFilters, setSearchFilters] = useState<SearchFilters>({
     skillTag: [],
     positionTag: 0,
-    method: 0,
+    methodId: 0,
     isBeginner: false,
     keyword: '',
     page: 1,
@@ -55,10 +55,20 @@ export function SearchFilteringProvider({ children }: PropsWithChildren) {
           const updatedSkillTags = [filter];
           return { ...prev, skillTag: updatedSkillTags };
         }
+      } else if (key === 'page') {
+        if (typeof filter === 'number') {
+          return { ...prev, page: filter };
+        }
+        return prev;
+      } else {
+        return { ...prev, [key]: filter, page: 1 };
       }
-      return { ...prev, [key]: filter };
     });
   };
+
+  useEffect(() => {
+    console.log('searchFilters', searchFilters);
+  }, [searchFilters]);
 
   return (
     <SearchFilteringContext.Provider

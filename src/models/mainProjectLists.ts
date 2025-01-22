@@ -1,4 +1,4 @@
-import { PositionTag, SkillTag } from './tags';
+import type { PositionTag, SkillTag, MethodTag } from './tags';
 
 export interface User {
   id: number;
@@ -8,12 +8,6 @@ export interface User {
   profileImg?: string;
   createdAt?: string;
   updatedAt?: string;
-}
-
-export interface Method {
-  id: number;
-  name: string;
-  createdAt: string;
 }
 
 export interface ProjectList {
@@ -36,7 +30,7 @@ export interface ProjectList {
   positionTags: PositionTag[];
   skillTags: SkillTag[];
   ProjectSkillTag: string[];
-  Method: Method;
+  Method: MethodTag[];
   ProjectPositionTag: string[];
 }
 

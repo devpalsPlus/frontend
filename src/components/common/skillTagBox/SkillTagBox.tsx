@@ -11,7 +11,7 @@ export interface SkillTagBoxProps {
   selectSkills: number[];
   setSelectSkills: React.Dispatch<React.SetStateAction<number[]>>;
   setValue?: UseFormSetValue<CreateProjectFormValues>;
-  reset?: boolean;
+  canReset?: boolean;
   onHandleSkillTagReset: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -20,7 +20,7 @@ export default function SkillTagBox({
   selectSkills,
   setSelectSkills,
   setValue,
-  reset = false,
+  canReset = false,
   onHandleSkillTagReset,
 }: SkillTagBoxProps) {
   const { skillTagsData } = useSearchFilteringSkillTag();
@@ -54,7 +54,7 @@ export default function SkillTagBox({
             />
           ))}
         </div>
-        {Boolean(reset) && Boolean(selectSkills.length) && (
+        {Boolean(canReset) && Boolean(selectSkills.length) && (
           <div className='buttonWrapper'>
             <button className='resetButton' onClick={onHandleSkillTagReset}>
               <ArrowUturnLeftIcon />

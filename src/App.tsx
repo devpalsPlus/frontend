@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './style/global';
 import { defaultTheme } from './style/theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { SearchFilteringProvider } from './context/SearchFilteringContext';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -14,10 +15,12 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <GlobalStyle />
-      <QueryClientProvider client={queryClient}>
-        <AppRoutes />
-      </QueryClientProvider>
+      <SearchFilteringProvider>
+        <GlobalStyle />
+        <QueryClientProvider client={queryClient}>
+          <AppRoutes />
+        </QueryClientProvider>
+      </SearchFilteringProvider>
     </ThemeProvider>
   );
 }
