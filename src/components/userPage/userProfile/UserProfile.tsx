@@ -17,54 +17,72 @@ const UserProfile = () => {
         <S.ProfileSection>
           <S.Wrapper>
             <label>닉네임</label>
-            <span>{userData?.nickname}</span>
-            <S.IconWrapper>
-              {userData?.userLevel === 'Beginner' ? (
-                <img src={BeginnerIcon} alt='beginner' width='16' height='16' />
-              ) : (
-                ''
-              )}
-            </S.IconWrapper>
+            <S.BackgroundWrapper>
+              <span>{userData?.nickname}</span>
+              <S.IconWrapper>
+                {userData?.userLevel === 'Beginner' ? (
+                  <img
+                    src={BeginnerIcon}
+                    alt='beginner'
+                    width='16'
+                    height='16'
+                  />
+                ) : (
+                  ''
+                )}
+              </S.IconWrapper>
+            </S.BackgroundWrapper>
           </S.Wrapper>
           <S.Wrapper>
             <label>스킬셋</label>
-            <ul>
-              {userData?.skills.map((skill) => (
-                <li key={skill.skillName}>
-                  <img
-                    src={skill.skillImg}
-                    alt={skill.skillName}
-                    width='40'
-                    height='40'
-                  />
-                  <span>{skill.skillName}</span>
-                </li>
-              ))}
-            </ul>
+            <S.BackgroundWrapper>
+              <ul>
+                {userData?.skills.map((skill) => (
+                  <li key={skill.skillName}>
+                    <img
+                      src={skill.skillImg}
+                      alt={skill.skillName}
+                      width='40'
+                      height='40'
+                    />
+                    <span>{skill.skillName}</span>
+                  </li>
+                ))}
+              </ul>
+            </S.BackgroundWrapper>
           </S.Wrapper>
           <S.Wrapper>
             <label>포지션</label>
-            <span>{userData?.positionTag?.name}</span>
+            <S.BackgroundWrapper>
+              <span>{userData?.positionTag?.name}</span>
+            </S.BackgroundWrapper>
           </S.Wrapper>
           <S.Wrapper>
             <label>깃허브</label>
-            <span>{userData?.github}</span>
+            <S.BackgroundWrapper>
+              <span>{userData?.github}</span>
+            </S.BackgroundWrapper>
           </S.Wrapper>
           <S.List>
             <label>경&nbsp;&nbsp;&nbsp;력</label>
-            <ul>
-              {userData?.career?.map((career) => (
-                <li key={career.name}>
-                  <span>{career.name}</span> ({career.periodStart.slice(0, 10)}{' '}
-                  ~ {career.periodEnd.slice(0, 10)}{' '}
-                  <span> - {career.role}</span>)
-                </li>
-              ))}
-            </ul>
+            <S.BackgroundBox>
+              <ul>
+                {userData?.career?.map((career) => (
+                  <li key={career.name}>
+                    <span>{career.name}</span> (
+                    {career.periodStart.slice(0, 10)} ~{' '}
+                    {career.periodEnd.slice(0, 10)}{' '}
+                    <span> - {career.role}</span>)
+                  </li>
+                ))}
+              </ul>
+            </S.BackgroundBox>
           </S.List>
           <S.List>
             <label>소&nbsp;&nbsp;&nbsp;개</label>
-            <S.Bio>{userData?.bio}</S.Bio>
+            <S.BackgroundBox>
+              <S.Bio>{userData?.bio}</S.Bio>
+            </S.BackgroundBox>
           </S.List>
         </S.ProfileSection>
       </S.Container>
