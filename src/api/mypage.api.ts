@@ -1,4 +1,5 @@
 import { EditMyInfo, UserInfo } from '../models/userInfo';
+import { UserJoinedProjectList } from '../models/userProject';
 import { httpClient } from './http.api';
 
 export const getMyInfo = async () => {
@@ -34,6 +35,18 @@ export const patchMyProfileImg = async (file: File) => {
     return response;
   } catch (error) {
     console.error('myprofile upload:', error);
+    throw error;
+  }
+};
+
+export const getMyJoinedProjectList = async () => {
+  try {
+    const response = await httpClient.get<UserJoinedProjectList>(
+      '/user/me/project'
+    );
+    return response.data;
+  } catch (error) {
+    console.error('myJoinedProjectList:', error);
     throw error;
   }
 };
