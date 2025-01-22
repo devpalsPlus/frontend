@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 import Button from '../../common/Button/Button';
 
+export const Container = styled.div`
+  width: 100%;
+`;
+
 export const CareerContainer = styled.div`
   display: flex;
-  gap: 8px;
-  justify-content: flex-start;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 10px;
 `;
 
 export const AddButton = styled(Button)`

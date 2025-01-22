@@ -16,7 +16,7 @@ const CareersComponent = ({
   control,
 }: CareersComponentProps) => {
   return (
-    <>
+    <S.Container>
       {fieldsCareers.map((field, index) => (
         <S.CareerContainer key={field.id}>
           {CAREER_INPUT.map((career) => (
@@ -45,7 +45,7 @@ const CareersComponent = ({
       >
         추가
       </S.AddButton>
-    </>
+    </S.Container>
   );
 };
 
