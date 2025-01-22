@@ -1,13 +1,20 @@
 import styled from 'styled-components';
 
+export const TitleWrapper = styled.div`
+  padding: 1rem 0 1rem 1.2rem;
+`;
+
+export const Box = styled.div`
+  position: relative;
+`;
+
 export const Container = styled.div`
-  background-color: rgba(250, 250, 250, 0.8);
+  background-color: rgb(246 246 246);
   border-radius: ${({ theme }) => theme.borderRadius.large};
   padding: 2.5rem 3rem;
-  position: relative;
+  margin-top: 1rem;
 
   form {
-    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -15,14 +22,13 @@ export const Container = styled.div`
 `;
 
 export const ProfileSection = styled.div`
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
 
   button {
     position: absolute;
-    top: 3rem;
-    right: 3rem;
+    top: 1.1rem;
+    right: 1rem;
     background-color: #3e5879;
     padding: 0.5rem;
     border-radius: 50%;

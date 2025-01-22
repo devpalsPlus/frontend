@@ -1,12 +1,18 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { getMyInfo, patchMyProfileImg, putMyInfo } from '../api/mypage.api';
+import {
+  getMyInfo,
+  getMyJoinedProjectList,
+  patchMyProfileImg,
+  putMyInfo,
+} from '../api/mypage.api';
 import { EditMyInfo, UserInfo } from '../models/userInfo';
 import { useAlert } from './useAlert';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../constants/routes';
-import { myInfoKey } from './queries/keys';
+import { myInfoKey, ProjectListKey } from './queries/keys';
 import useAuthStore from '../store/authStore';
+import { UserJoinedProjectList } from '../models/userProject';
 
 export const useMyProfileInfo = () => {
   const { isLoggedIn } = useAuthStore();
@@ -15,7 +21,7 @@ export const useMyProfileInfo = () => {
     queryKey: myInfoKey.myProfile,
     queryFn: () => getMyInfo(),
     staleTime: 1 * 60 * 1000,
-    enabled: !!isLoggedIn,
+    enabled: isLoggedIn,
   });
 
   return { myData: data, isLoading };
@@ -60,7 +66,8 @@ export const useUploadProfileImg = () => {
       showAlert('프로필 이미지가 업로드 되었습니다.');
     },
     onError: () => {
-      showAlert('이미지는 1MB 이하, .PNG.JPG.JPEG 형식만 가능합니다.');
+      showAlert(`이미지는 5MB 이하,
+        .png.jpg.jpeg.svg 형식만 가능합니다.`);
     },
   });
 
@@ -69,4 +76,16 @@ export const useUploadProfileImg = () => {
   };
 
   return { uploadProfileImg };
+};
+
+export const useMyJoinedProjectList = () => {
+  const { isLoggedIn } = useAuthStore();
+
+  const { data, isLoading } = useQuery<UserJoinedProjectList>({
+    queryKey: ProjectListKey.myJoinedList,
+    queryFn: () => getMyJoinedProjectList(),
+    enabled: isLoggedIn,
+  });
+
+  return { myJoinedProjectListData: data, isLoading };
 };

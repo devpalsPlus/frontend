@@ -8,7 +8,7 @@ export const Container = styled.div`
 
   > * {
     width: 7.7rem;
-    padding: 0.7rem 0;
+    height: 2.6rem;
     border: 1px solid ${({ theme }) => theme.color.border};
     display: flex;
     justify-content: space-between;
