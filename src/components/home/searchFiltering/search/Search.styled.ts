@@ -1,9 +1,8 @@
-import { XMarkIcon } from '@heroicons/react/24/outline';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 27rem;
-  height: 2.9rem;
+  width: 30vw;
+  padding: 0.6rem 0;
   display: flex;
   flex-direction: row;
   border: 1px solid ${({ theme }) => theme.color.border};
@@ -11,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   form {

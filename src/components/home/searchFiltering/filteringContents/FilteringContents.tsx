@@ -47,7 +47,7 @@ export default function FilteringContents() {
         {skillTagButtonToggle && (
           <div className='skillTagBox' onClick={handleSkillTagFilterClick}>
             <SkillTagBox
-              width='90%'
+              width='100%'
               selectSkills={selectSkills}
               setSelectSkills={setSelectSkills}
               canReset={true}

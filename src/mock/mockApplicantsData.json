@@ -1,0 +1,365 @@
+[
+  {
+    "id": 7,
+    "userId": 8,
+    "projectId": 6,
+    "message": "기획자에게 하고 싶은 말",
+    "email": "devpals@mail.com",
+    "phoneNumber": "010-9999-0000",
+    "career": null,
+    "status": "",
+    "createdAt": "2025-01-08T17:54:43.000Z",
+    "updatedAt": "2025-01-09T09:01:59.000Z",
+    "User": {
+      "id": 8,
+      "nickname": "김개발1",
+      "email": "devpals@mail.com",
+      "bio": null,
+      "profileImg": "프로필 이미지 주소",
+      "UserSkillTag": [
+        {
+          "userId": 8,
+          "skillTagId": 28,
+          "createdAt": "2025-01-08T11:57:17.000Z",
+          "SkillTag": {
+            "id": 28,
+            "name": "Figma",
+            "img": "스킬 태그 이미지 주소",
+            "createdAt": "2025-01-02T15:11:15.000Z"
+          }
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "userId": 9,
+    "projectId": 6,
+    "message": "기획자에게 하고 싶은 말",
+    "email": "devpals@mail.com",
+    "phoneNumber": "010-9999-0000",
+    "career": null,
+    "status": "REJECTED",
+    "createdAt": "2025-01-08T17:54:43.000Z",
+    "updatedAt": "2025-01-09T09:01:59.000Z",
+    "User": {
+      "id": 9,
+      "nickname": "김개발2",
+      "email": "devpals@mail.com",
+      "bio": null,
+      "profileImg": "프로필 이미지 주소",
+      "UserSkillTag": [
+        {
+          "userId": 9,
+          "skillTagId": 28,
+          "createdAt": "2025-01-08T11:57:17.000Z",
+          "SkillTag": {
+            "id": 28,
+            "name": "Figma",
+            "img": "스킬 태그 이미지 주소",
+            "createdAt": "2025-01-02T15:11:15.000Z"
+          }
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "userId": 10,
+    "projectId": 6,
+    "message": "기획자에게 하고 싶은 말",
+    "email": "devpals@mail.com",
+    "phoneNumber": "010-9999-0000",
+    "career": null,
+    "status": "SUCCESS",
+    "createdAt": "2025-01-08T17:54:43.000Z",
+    "updatedAt": "2025-01-09T09:01:59.000Z",
+    "User": {
+      "id": 10,
+      "nickname": "김개발3",
+      "email": "devpals@mail.com",
+      "bio": null,
+      "profileImg": "프로필 이미지 주소",
+      "UserSkillTag": [
+        {
+          "userId": 10,
+          "skillTagId": 28,
+          "createdAt": "2025-01-08T11:57:17.000Z",
+          "SkillTag": {
+            "id": 28,
+            "name": "Figma",
+            "img": "스킬 태그 이미지 주소",
+            "createdAt": "2025-01-02T15:11:15.000Z"
+          }
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "userId": 11,
+    "projectId": 6,
+    "message": "기획자에게 하고 싶은 말",
+    "email": "devpals@mail.com",
+    "phoneNumber": "010-9999-0000",
+    "career": null,
+    "status": "",
+    "createdAt": "2025-01-08T17:54:43.000Z",
+    "updatedAt": "2025-01-09T09:01:59.000Z",
+    "User": {
+      "id": 11,
+      "nickname": "김개발4",
+      "email": "devpals@mail.com",
+      "bio": null,
+      "profileImg": "프로필 이미지 주소",
+      "UserSkillTag": [
+        {
+          "userId": 11,
+          "skillTagId": 28,
+          "createdAt": "2025-01-08T11:57:17.000Z",
+          "SkillTag": {
+            "id": 28,
+            "name": "Figma",
+            "img": "스킬 태그 이미지 주소",
+            "createdAt": "2025-01-02T15:11:15.000Z"
+          }
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "userId": 12,
+    "projectId": 6,
+    "message": "기획자에게 하고 싶은 말",
+    "email": "devpals@mail.com",
+    "phoneNumber": "010-9999-0000",
+    "career": null,
+    "status": "REJECTED",
+    "createdAt": "2025-01-08T17:54:43.000Z",
+    "updatedAt": "2025-01-09T09:01:59.000Z",
+    "User": {
+      "id": 12,
+      "nickname": "김개발5",
+      "email": "devpals@mail.com",
+      "bio": null,
+      "profileImg": "프로필 이미지 주소",
+      "UserSkillTag": [
+        {
+          "userId": 12,
+          "skillTagId": 28,
+          "createdAt": "2025-01-08T11:57:17.000Z",
+          "SkillTag": {
+            "id": 28,
+            "name": "Figma",
+            "img": "스킬 태그 이미지 주소",
+            "createdAt": "2025-01-02T15:11:15.000Z"
+          }
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "userId": 13,
+    "projectId": 6,
+    "message": "기획자에게 하고 싶은 말",
+    "email": "devpals@mail.com",
+    "phoneNumber": "010-9999-0000",
+    "career": null,
+    "status": "SUCCESS",
+    "createdAt": "2025-01-08T17:54:43.000Z",
+    "updatedAt": "2025-01-09T09:01:59.000Z",
+    "User": {
+      "id": 13,
+      "nickname": "김개발6",
+      "email": "devpals@mail.com",
+      "bio": null,
+      "profileImg": "프로필 이미지 주소",
+      "UserSkillTag": [
+        {
+          "userId": 13,
+          "skillTagId": 28,
+          "createdAt": "2025-01-08T11:57:17.000Z",
+          "SkillTag": {
+            "id": 28,
+            "name": "Figma",
+            "img": "스킬 태그 이미지 주소",
+            "createdAt": "2025-01-02T15:11:15.000Z"
+          }
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "userId": 14,
+    "projectId": 6,
+    "message": "기획자에게 하고 싶은 말",
+    "email": "devpals@mail.com",
+    "phoneNumber": "010-9999-0000",
+    "career": null,
+    "status": "",
+    "createdAt": "2025-01-08T17:54:43.000Z",
+    "updatedAt": "2025-01-09T09:01:59.000Z",
+    "User": {
+      "id": 14,
+      "nickname": "김개발7",
+      "email": "devpals@mail.com",
+      "bio": null,
+      "profileImg": "프로필 이미지 주소",
+      "UserSkillTag": [
+        {
+          "userId": 14,
+          "skillTagId": 28,
+          "createdAt": "2025-01-08T11:57:17.000Z",
+          "SkillTag": {
+            "id": 28,
+            "name": "Figma",
+            "img": "스킬 태그 이미지 주소",
+            "createdAt": "2025-01-02T15:11:15.000Z"
+          }
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "userId": 15,
+    "projectId": 6,
+    "message": "기획자에게 하고 싶은 말",
+    "email": "devpals@mail.com",
+    "phoneNumber": "010-9999-0000",
+    "career": null,
+    "status": "REJECTED",
+    "createdAt": "2025-01-08T17:54:43.000Z",
+    "updatedAt": "2025-01-09T09:01:59.000Z",
+    "User": {
+      "id": 15,
+      "nickname": "김개발8",
+      "email": "devpals@mail.com",
+      "bio": null,
+      "profileImg": "프로필 이미지 주소",
+      "UserSkillTag": [
+        {
+          "userId": 15,
+          "skillTagId": 28,
+          "createdAt": "2025-01-08T11:57:17.000Z",
+          "SkillTag": {
+            "id": 28,
+            "name": "Figma",
+            "img": "스킬 태그 이미지 주소",
+            "createdAt": "2025-01-02T15:11:15.000Z"
+          }
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "userId": 16,
+    "projectId": 6,
+    "message": "기획자에게 하고 싶은 말",
+    "email": "devpals@mail.com",
+    "phoneNumber": "010-9999-0000",
+    "career": null,
+    "status": "SUCCESS",
+    "createdAt": "2025-01-08T17:54:43.000Z",
+    "updatedAt": "2025-01-09T09:01:59.000Z",
+    "User": {
+      "id": 16,
+      "nickname": "김개발9",
+      "email": "devpals@mail.com",
+      "bio": null,
+      "profileImg": "프로필 이미지 주소",
+      "UserSkillTag": [
+        {
+          "userId": 16,
+          "skillTagId": 28,
+          "createdAt": "2025-01-08T11:57:17.000Z",
+          "SkillTag": {
+            "id": 28,
+            "name": "Figma",
+            "img": "스킬 태그 이미지 주소",
+            "createdAt": "2025-01-02T15:11:15.000Z"
+          }
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "userId": 17,
+    "projectId": 6,
+    "message": "기획자에게 하고 싶은 말",
+    "email": "devpals@mail.com",
+    "phoneNumber": "010-9999-0000",
+    "career": null,
+    "status": "SUCCESS",
+    "createdAt": "2025-01-08T17:54:43.000Z",
+    "updatedAt": "2025-01-09T09:01:59.000Z",
+    "User": {
+      "id": 17,
+      "nickname": "김개발10",
+      "email": "devpals@mail.com",
+      "bio": null,
+      "profileImg": "프로필 이미지 주소",
+      "UserSkillTag": [
+        {
+          "userId": 17,
+          "skillTagId": 28,
+          "createdAt": "2025-01-08T11:57:17.000Z",
+          "SkillTag": {
+            "id": 28,
+            "name": "Figma",
+            "img": "스킬 태그 이미지 주소",
+            "createdAt": "2025-01-02T15:11:15.000Z"
+          }
+        },
+        {}
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "userId": 18,
+    "projectId": 6,
+    "message": "기획자에게 하고 싶은 말",
+    "email": "devpals@mail.com",
+    "phoneNumber": "010-9999-0000",
+    "career": null,
+    "status": "SUCCESS",
+    "createdAt": "2025-01-08T17:54:43.000Z",
+    "updatedAt": "2025-01-09T09:01:59.000Z",
+    "User": {
+      "id": 18,
+      "nickname": "김개발",
+      "email": "devpals@mail.com",
+      "bio": null,
+      "profileImg": "프로필 이미지 주소",
+      "UserSkillTag": [
+        {
+          "userId": 18,
+          "skillTagId": 28,
+          "createdAt": "2025-01-08T11:57:17.000Z",
+          "SkillTag": {
+            "id": 28,
+            "name": "Figma",
+            "img": "스킬 태그 이미지 주소",
+            "createdAt": "2025-01-02T15:11:15.000Z"
+          }
+        },
+        {}
+      ]
+    }
+  }
+]

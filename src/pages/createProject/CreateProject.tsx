@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '../../components/projectFormComponents/inputComponent/inputComponent';
 import { CreateProjectFormValues, FormData } from '../../models/createProject';
-import { createProject } from '../../api/createProject.api';
 import { useNavigate } from 'react-router-dom';
 import ProjectInformationInput from '../../components/projectFormComponents/projectInformationInput/ProjectInformationInput';
+import { createProject } from '../../api/joinProject.api';
 
 export const createProjectScheme = z.object({
   startDate: z
@@ -88,7 +88,7 @@ const CreateProject = () => {
       description: data.markdownEditor,
     };
 
-    createProject(formData).then((status) => {
+    createProject(formData).then((status: number) => {
       if (status === 201) {
         alert('프로젝트가 성공적으로 생성되었습니다.');
         navigate(`/main`);

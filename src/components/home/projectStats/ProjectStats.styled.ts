@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  width: 100%;
-  height: 22rem;
   display: flex;
-  align-items: center;
+  padding: 8rem 0;
 `;
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  width: 100%;
   height: 7.25rem;
-  gap: 6.25rem;
 `;

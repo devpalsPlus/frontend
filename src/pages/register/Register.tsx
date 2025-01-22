@@ -128,7 +128,7 @@ const Register = () => {
                   inputType='email'
                   placeholder='이메일'
                   icon={<EnvelopeIcon />}
-                  autoComplete='off'
+                  autoComplete='auto'
                   {...field}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -253,7 +253,7 @@ const Register = () => {
                   inputType='text'
                   placeholder='닉네임'
                   icon={<FaceSmileIcon />}
-                  autoComplete='off'
+                  autoComplete='auto'
                   {...field}
                   onChange={(e) => {
                     const value = e.target.value;
