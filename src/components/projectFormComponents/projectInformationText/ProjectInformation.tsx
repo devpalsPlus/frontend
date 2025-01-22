@@ -44,16 +44,19 @@ const ProjectInformation = ({ data }: ProjectInformationProps) => {
 
       <S.InfoRow>
         <label htmlFor='languages'>사용 언어</label>
-        <div>
-          {data.ProjectSkillTag.map((skillTag) => (
+      </S.InfoRow>
+      <S.SkillTagContainer>
+        {data.ProjectSkillTag.map((skillTag) => (
+          <S.SkillTagImage>
             <img
               key={skillTag.SkillTag.id}
               src={skillTag.SkillTag.img}
               alt={skillTag.SkillTag.name}
             />
-          ))}
-        </div>
-      </S.InfoRow>
+            <p>{skillTag.SkillTag.name}</p>
+          </S.SkillTagImage>
+        ))}
+      </S.SkillTagContainer>
     </S.SectionInput>
   );
 };
