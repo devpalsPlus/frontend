@@ -96,33 +96,41 @@ const AppRoutes = () => {
     {
       path: ROUTES.createProject,
       element: (
-        <Layout>
-          <CreateProject />
-        </Layout>
+        <ProtectRoute redirectUrl={ROUTES.login}>
+          <Layout>
+            <CreateProject />
+          </Layout>
+        </ProtectRoute>
       ),
     },
     {
       path: `${ROUTES.apply}/:projectId`,
       element: (
-        <Layout>
-          <Apply />
-        </Layout>
+        <ProtectRoute redirectUrl={ROUTES.login}>
+          <Layout>
+            <Apply />
+          </Layout>
+        </ProtectRoute>
       ),
     },
     {
       path: `${ROUTES.projectDetail}/:projectId`,
       element: (
-        <Layout>
-          <ProjectDetail />
-        </Layout>
+        <ProtectRoute redirectUrl={ROUTES.login}>
+          <Layout>
+            <ProjectDetail />
+          </Layout>
+        </ProtectRoute>
       ),
     },
     {
       path: `${ROUTES.modifyProject}/:projectId`,
       element: (
-        <Layout>
-          <ModifyProject />
-        </Layout>
+        <ProtectRoute redirectUrl={ROUTES.login}>
+          <Layout>
+            <ModifyProject />
+          </Layout>
+        </ProtectRoute>
       ),
     },
     {
