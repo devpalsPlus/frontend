@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
+  getMyAppliedStatusList,
   getMyInfo,
   getMyJoinedProjectList,
   patchMyProfileImg,
@@ -12,7 +13,10 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../constants/routes';
 import { myInfoKey, ProjectListKey } from './queries/keys';
 import useAuthStore from '../store/authStore';
-import { UserJoinedProjectList } from '../models/userProject';
+import {
+  MyAppliedProjectStatusList,
+  UserJoinedProjectList,
+} from '../models/userProject';
 
 export const useMyProfileInfo = () => {
   const { isLoggedIn } = useAuthStore();
@@ -88,4 +92,16 @@ export const useMyJoinedProjectList = () => {
   });
 
   return { myJoinedProjectListData: data, isLoading };
+};
+
+export const useMyAppliedStatusList = () => {
+  const { isLoggedIn } = useAuthStore();
+
+  const { data, isLoading } = useQuery<MyAppliedProjectStatusList>({
+    queryKey: ProjectListKey.myAppliedStatusList,
+    queryFn: () => getMyAppliedStatusList(),
+    enabled: isLoggedIn,
+  });
+
+  return { myAppliedStatusListData: data, isLoading };
 };

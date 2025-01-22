@@ -39,3 +39,10 @@ export interface UserJoinedProject {
 }
 
 export type UserJoinedProjectList = UserJoinedProject[];
+
+export interface MyAppliedProjectStatus {
+  projectTitle: string;
+  status: string;
+}
+
+export type MyAppliedProjectStatusList = MyAppliedProjectStatus[];
