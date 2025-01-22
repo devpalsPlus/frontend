@@ -146,7 +146,7 @@ const MyProfile = () => {
   }
 
   return (
-    <>
+    <S.Box>
       <S.TitleWrapper>
         <Title size='semiLarge'>나의 정보</Title>
       </S.TitleWrapper>
@@ -513,7 +513,7 @@ const MyProfile = () => {
           </form>
         )}
       </S.Container>
-    </>
+    </S.Box>
   );
 };
 

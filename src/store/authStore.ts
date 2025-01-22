@@ -10,6 +10,7 @@ interface AuthState {
 export const getTokens = () => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
+
   return { accessToken, refreshToken };
 };
 
@@ -26,7 +27,7 @@ const removeTokens = () => {
 const useAuthStore = create(
   persist<AuthState>(
     (set) => ({
-      isLoggedIn: getTokens() ? true : false,
+      isLoggedIn: getTokens()?.accessToken ? true : false,
 
       storeLogin: (accessToken: string, refreshToken: string) => {
         setTokens(accessToken, refreshToken);
@@ -35,6 +36,9 @@ const useAuthStore = create(
       storeLogout: () => {
         removeTokens();
         set({ isLoggedIn: false });
+
+        window.localStorage.removeItem('auth-storage');
+        window.location.reload();
       },
     }),
     {
