@@ -32,7 +32,7 @@ const CareersComponent = ({
       ))}
       <S.AddButton
         size='primary'
-        schema='white'
+        schema='primary'
         radius='primary'
         onClick={() =>
           appendCareers({

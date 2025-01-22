@@ -8,7 +8,7 @@ export const CareerContainer = styled.div`
 `;
 
 export const AddButton = styled(Button)`
-  width: 6%;
+  width: 5%;
   padding: 10px;
   cursor: pointer;
   border: 1px solid ${({ theme }) => theme.color.border};
