@@ -9,7 +9,7 @@ export const Box = styled.div`
 `;
 
 export const Container = styled.div`
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(246 246 246);
   border-radius: ${({ theme }) => theme.borderRadius.large};
   padding: 2.5rem 3rem;
   margin-top: 1rem;
