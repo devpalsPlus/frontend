@@ -18,7 +18,7 @@ const ApplicantInfo = ({ applicantInfo }: ApplicantInfoProps) => {
       </div>
 
       <S.Label>경력</S.Label>
-      {applicantInfo.career.map((data) => (
+      {applicantInfo.career?.map((data) => (
         <S.Text>
           <span className='period'>
             [{data.periodStart} ~ {data.periodEnd}]

@@ -13,7 +13,6 @@ export default function FilteringContents() {
   const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
   const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
   const [skillTagButtonToggle, setSkillTagButtonToggle] = useState(false);
-  const [selectSkills, setSelectSkills] = useState<number[]>([]);
 
   const handleSkillTagBoxToggle = () => {
     setSkillTagButtonToggle((prev) => !prev);
@@ -23,19 +22,20 @@ export default function FilteringContents() {
     e.stopPropagation();
     const target = e.target as HTMLElement;
 
-    const id =
-      target.dataset.id || target.closest('[data-id]')?.getAttribute('data-id');
+    const id = Number(
+      target.dataset.id || target.closest('[data-id]')?.getAttribute('data-id')
+    );
     if (!id) return;
 
     handleUpdateFilters('skillTag', id);
   };
 
   const handleSkillTagReset = () => {
-    setSelectSkills([]);
     handleUpdateFilters('skillTag', []);
   };
 
   const filteringRef = useOutsideClick(() => setSkillTagButtonToggle(false));
+  if (!searchFilters.skillTag) return null;
 
   return (
     <S.Container>
@@ -47,11 +47,9 @@ export default function FilteringContents() {
         {skillTagButtonToggle && (
           <div className='skillTagBox' onClick={handleSkillTagFilterClick}>
             <SkillTagBox
-              width='100%'
-              selectSkills={selectSkills}
-              setSelectSkills={setSelectSkills}
-              reset={true}
+              width='130%'
               onHandleSkillTagReset={handleSkillTagReset}
+              isMain={true}
             />
           </div>
         )}

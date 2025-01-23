@@ -143,9 +143,14 @@ const Apply = () => {
           />
         </S.Section>
 
-        <Button size='primary' schema='primary' radius='primary' type='submit'>
+        <S.SubmitButton
+          size='large'
+          schema='primary'
+          radius='primary'
+          type='submit'
+        >
           지원하기
-        </Button>
+        </S.SubmitButton>
       </S.Form>
     </S.Container>
   );

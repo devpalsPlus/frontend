@@ -26,10 +26,10 @@ const CareerInput = ({
   const hasError = Boolean(errors?.[name]);
 
   return (
-    <div>
+    <>
       <S.CareerInput {...fieldApply} type={type} placeholder={placeholder} />
       {hasError && <S.FormError>{String(errors?.[name]?.message)}</S.FormError>}
-    </div>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import { setupWorker } from 'msw/browser';
 import { myProjectList } from './manageProjectList';
-import { applicantInfo, applicantList } from './applicant';
+import { applicantInfo, applicantList, passNonPass } from './applicant';
 import { projectDetail } from './projectDetail';
 
 export const handlers = [
@@ -8,6 +8,7 @@ export const handlers = [
   applicantList,
   projectDetail,
   applicantInfo,
+  passNonPass,
 ];
 
 export const worker = setupWorker(...handlers);
