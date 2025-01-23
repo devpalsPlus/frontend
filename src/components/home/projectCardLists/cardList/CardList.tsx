@@ -49,6 +49,7 @@ export default function CardList({ list }: CardListProps) {
           )}
           {list.positionTags.length > listPositionTag.length && (
             <S.EllipsisIcon
+              $hiddenIcon={isShowTag.position || isShowTag.skill}
               onMouseOver={() => handlePositionTag(true)}
               onMouseOut={() => handlePositionTag(false)}
             >
@@ -71,6 +72,7 @@ export default function CardList({ list }: CardListProps) {
         )}
         {list.skillTags.length > listSkillTag.length && (
           <S.EllipsisIcon
+            $hiddenIcon={isShowTag.position || isShowTag.skill}
             onMouseOver={() => handleSkillTag(true)}
             onMouseOut={() => handleSkillTag(false)}
           >

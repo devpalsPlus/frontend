@@ -94,14 +94,14 @@ export const Container = styled.div`
   }
 `;
 
-export const EllipsisIcon = styled.button`
+export const EllipsisIcon = styled.button<{ $hiddenIcon: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 2rem;
   padding-left: 0.8rem;
   cursor: pointer;
-  z-index: 10;
+  z-index: ${({ $hiddenIcon }) => ($hiddenIcon ? '0' : '100')};
 
   &:hover {
     transform: scale(1.3);
@@ -118,5 +118,5 @@ export const TagWrapper = styled.div<{ $positionPadding?: boolean }>`
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   padding-bottom: ${({ $positionPadding }) => ($positionPadding ? '1rem' : '')};
   gap: 0.5rem;
-  z-index: 100;
+  z-index: 10;
 `;
