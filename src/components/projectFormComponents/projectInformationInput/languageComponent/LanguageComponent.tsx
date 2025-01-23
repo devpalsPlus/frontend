@@ -3,10 +3,10 @@ import { FieldErrors, UseFormSetValue } from 'react-hook-form';
 import SkillTagBox from '../../../common/skillTagBox/SkillTagBox';
 import { CreateProjectFormValues } from '../../../../models/createProject';
 import { SkillTag } from '../../../../models/tags';
+import { useSaveSearchFiltering } from '../../../../hooks/useSaveSearchFiltering';
+import { useEffect } from 'react';
 
 interface LanguageComponentProps {
-  selectedLanguage: number[];
-  setSelectedLanguage: React.Dispatch<React.SetStateAction<number[]>>;
   errors: FieldErrors;
   name: string;
   setValue: UseFormSetValue<CreateProjectFormValues>;
@@ -14,8 +14,6 @@ interface LanguageComponentProps {
 }
 
 const LanguageComponent = ({
-  selectedLanguage,
-  setSelectedLanguage,
   errors,
   name,
   setValue,
@@ -23,15 +21,36 @@ const LanguageComponent = ({
 }: LanguageComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
+  const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
+  const filterData = searchFilters.skillTag;
+
+  const handleSkillClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    const target = e.target as HTMLElement;
+
+    const id = Number(
+      target.dataset.id || target.closest('[data-id]')?.getAttribute('data-id')
+    );
+    if (!id) return;
+
+    handleUpdateFilters('skillTag', id);
+  };
+
+  useEffect(() => {
+    apiDataSkillTags?.forEach((tag) => {
+      handleUpdateFilters('skillTag', tag.id);
+    });
+  }, [apiDataSkillTags, handleUpdateFilters]);
+
+  useEffect(() => {
+    if (filterData) {
+      setValue?.('languages', filterData);
+    }
+  }, [filterData, setValue]);
+
   return (
-    <S.Container>
-      <SkillTagBox
-        width='100%'
-        selectSkills={selectedLanguage}
-        setSelectSkills={setSelectedLanguage}
-        setValue={setValue}
-        apiDataSkillTags={apiDataSkillTags}
-      />
+    <S.Container onClick={handleSkillClick}>
+      <SkillTagBox width='100%' isCreate={true} />
 
       {hasError && <S.FormError>{String(errors[name]?.message)}</S.FormError>}
     </S.Container>
