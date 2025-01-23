@@ -20,3 +20,8 @@ export const ERROR_MESSAGES = {
   ROLE_REQUIRED: '맡은 역할을 입력해주세요.',
   ENDPERIOD_SPECIAL: '종료 날짜는 시작 날짜 이후여야 합니다.',
 } as const;
+
+export const MY_STATUS = {
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED',
+} as const;

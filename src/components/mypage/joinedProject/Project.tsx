@@ -16,9 +16,9 @@ const Project = ({ project }: ProjectProps) => {
     <S.Container>
       <S.Title>{project.title}</S.Title>
       <S.Date>
-        <div className='dateWrapper'>
+        <S.DateWrapper>
           <span>프로젝트 시작</span>
-        </div>
+        </S.DateWrapper>
         <span>{startProjectDate}</span>
       </S.Date>
       <S.Member>

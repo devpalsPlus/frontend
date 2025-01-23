@@ -40,8 +40,8 @@ export const LanguageItem = styled.div<{ isSelected: boolean }>`
 `;
 
 export const FormError = styled.p`
-  margin-top: 0.3px;
-  font-size: 0.7rem;
+  margin-top: 3px;
+  font-size: 0.9rem;
   color: ${({ theme }) => theme.color.red};
   top: 100%;
   left: 0;

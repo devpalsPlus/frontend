@@ -6,6 +6,7 @@ import { formatDate } from '../../util/format';
 import Button from '../../components/common/Button/Button';
 import MarkdownEditorView from '../../components/projectFormComponents/editor/MarkdownEditorView';
 import Avatar from '../../components/common/avatar/Avatar';
+import { EyeIcon } from '@heroicons/react/24/outline';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -35,7 +36,10 @@ const ProjectDetail = () => {
           <S.UserInfo>
             <S.UserName>{data.User.nickname}</S.UserName>
             <S.PostDate>{formatDate(data.recruitmentEndDate)}</S.PostDate>
-            <S.ViewCount>👁️{data.views}</S.ViewCount>
+            <S.ViewCount>
+              <EyeIcon />
+              {data.views}
+            </S.ViewCount>
           </S.UserInfo>
         </S.ProfileContainer>
       </S.Header>

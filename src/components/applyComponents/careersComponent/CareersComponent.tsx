@@ -16,7 +16,7 @@ const CareersComponent = ({
   control,
 }: CareersComponentProps) => {
   return (
-    <>
+    <S.Container>
       {fieldsCareers.map((field, index) => (
         <S.CareerContainer key={field.id}>
           {CAREER_INPUT.map((career) => (
@@ -31,6 +31,9 @@ const CareersComponent = ({
         </S.CareerContainer>
       ))}
       <S.AddButton
+        size='primary'
+        schema='primary'
+        radius='primary'
         onClick={() =>
           appendCareers({
             name: '',
@@ -39,11 +42,10 @@ const CareersComponent = ({
             role: '',
           })
         }
-        style={{ cursor: 'pointer', color: 'blue' }}
       >
         추가
       </S.AddButton>
-    </>
+    </S.Container>
   );
 };
 

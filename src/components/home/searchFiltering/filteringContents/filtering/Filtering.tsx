@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import * as S from './Filtering.styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { MethodTag, PositionTag } from '../../../../../models/tags';
 import { useOutsideClick } from '../../../../../hooks/useOutsideClick';
 import { useSaveSearchFiltering } from '../../../../../hooks/useSaveSearchFiltering';
@@ -12,9 +12,41 @@ interface FilteringProps {
 }
 
 export default function Filtering({ selects, defaultValue }: FilteringProps) {
-  const { handleUpdateFilters } = useSaveSearchFiltering();
+  const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
   const [changeValue, setChangeValue] = useState<string>(defaultValue);
   const [dropDownToggle, setDropDownToggle] = useState(false);
+  const [addAll, setAddAll] = useState<MethodTag[] | PositionTag[]>([]);
+
+  useEffect(() => {
+    setAddAll([{ id: 0, name: '전체', createdAt: '' }, ...selects]);
+  }, [selects]);
+
+  useEffect(() => {
+    if (!selects.length) return;
+    setChangeValue((prev) => {
+      if (searchFilters.positionTag !== 0 || searchFilters.methodId !== 0) {
+        if (defaultValue === SEARCH_FILTERING_DEFAULT_VALUE.POSITION) {
+          const positionTag = selects.find(
+            (data) => data.id === searchFilters.positionTag
+          )?.name;
+
+          return positionTag ?? SEARCH_FILTERING_DEFAULT_VALUE.METHOD;
+        } else if (defaultValue === SEARCH_FILTERING_DEFAULT_VALUE.METHOD) {
+          const methodTag = selects.find(
+            (data) => data.id === searchFilters.methodId
+          )?.name;
+
+          return methodTag ?? SEARCH_FILTERING_DEFAULT_VALUE.METHOD;
+        }
+      }
+      return prev;
+    });
+  }, [
+    searchFilters.methodId,
+    searchFilters.positionTag,
+    selects,
+    defaultValue,
+  ]);
 
   const handleValueClick = async (tagName: string, tagId: number) => {
     setChangeValue(tagName);
@@ -23,7 +55,7 @@ export default function Filtering({ selects, defaultValue }: FilteringProps) {
     if (defaultValue === SEARCH_FILTERING_DEFAULT_VALUE.POSITION) {
       handleUpdateFilters('positionTag', tagId);
     } else if (defaultValue === SEARCH_FILTERING_DEFAULT_VALUE.METHOD) {
-      handleUpdateFilters('method', tagId);
+      handleUpdateFilters('methodId', tagId);
     }
   };
 
@@ -43,7 +75,7 @@ export default function Filtering({ selects, defaultValue }: FilteringProps) {
           </button>
           {dropDownToggle && (
             <div className='select'>
-              {selects.map((select) => (
+              {addAll.map((select) => (
                 <div
                   className='option'
                   key={select.id}

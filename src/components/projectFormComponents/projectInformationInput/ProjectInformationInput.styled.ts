@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const InfoRow = styled.div`
   align-items: center;
   gap: 10px;
-  margin-bottom: 13px;
+  margin-bottom: 17px;
   display: flex;
 
   label {

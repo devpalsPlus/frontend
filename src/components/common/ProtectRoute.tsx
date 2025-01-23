@@ -7,7 +7,13 @@ interface ProtectRouteProps extends PropsWithChildren {
 
 const ProtectRoute = ({ children, redirectUrl }: ProtectRouteProps) => {
   const { isLoggedIn } = useAuthStore();
-  return isLoggedIn ? <>{children}</> : <Navigate to={redirectUrl} />;
+
+  if (!isLoggedIn) {
+    alert('로그인이 필요한 서비스입니다.');
+    return <Navigate to={redirectUrl} replace />;
+  }
+
+  return <>{children}</>;
 };
 
 export default ProtectRoute;
