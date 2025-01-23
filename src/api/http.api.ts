@@ -48,13 +48,10 @@ export const createClient = (config?: AxiosRequestConfig) => {
 
         try {
           const refreshToken = getTokens().refreshToken;
-          const refreshResponse = await axios.post(
-            `${BASE_URL}auth/refresh`,
-            {
-              refreshToken,
-            },
-            { withCredentials: true }
-          );
+
+          const refreshResponse = await axios.post(`${BASE_URL}auth/refresh`, {
+            refreshToken,
+          });
 
           const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
             refreshResponse.data;
@@ -64,7 +61,6 @@ export const createClient = (config?: AxiosRequestConfig) => {
 
           return await axios(originalRequest);
         } catch (refreshError) {
-          alert('토큰을 갱신할 수 없습니다. 로그인 상태를 확인하세요.');
           storeLogout();
           return Promise.reject(refreshError);
         }
