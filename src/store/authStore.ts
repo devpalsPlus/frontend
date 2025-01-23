@@ -36,9 +36,6 @@ const useAuthStore = create(
       storeLogout: () => {
         removeTokens();
         set({ isLoggedIn: false });
-
-        window.localStorage.removeItem('auth-storage');
-        window.location.reload();
       },
     }),
     {

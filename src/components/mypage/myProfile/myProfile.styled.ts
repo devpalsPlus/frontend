@@ -21,6 +21,20 @@ export const Container = styled.div`
   }
 `;
 
+export const BackgroundWrapper = styled.div`
+  background-color: #fff;
+  display: flex;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+`;
+
+export const BackgroundBox = styled.div`
+  background-color: #fff;
+  display: flex;
+  padding: 1.5rem;
+  border-radius: 15px;
+`;
+
 export const ProfileSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -74,17 +88,16 @@ export const Bio = styled.p`
 export const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
   align-items: center;
   margin-bottom: 1.25rem;
 
   label {
-    margin-right: 1rem;
     font-weight: 700;
     color: ${({ theme }) => theme.color.deepGrey};
   }
 
   ul {
-    margin-top: 0.6rem;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -112,13 +125,13 @@ export const Wrapper = styled.div`
 
 export const List = styled.div`
   display: flex;
+  gap: 1rem;
   flex-direction: column;
   margin-bottom: 1.25rem;
 
   label {
     font-weight: 700;
     color: ${({ theme }) => theme.color.deepGrey};
-    margin-bottom: 0.6rem;
   }
   ul {
     display: flex;
@@ -228,6 +241,7 @@ export const EditList = styled.div`
   background-color: ${({ theme }) => theme.color.white};
   padding: 1rem;
   border-radius: 20px;
+  border: 1px solid #ccc;
 `;
 
 export const CareerList = styled.div`

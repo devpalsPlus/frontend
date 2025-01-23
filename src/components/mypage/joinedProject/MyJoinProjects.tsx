@@ -7,13 +7,12 @@ import { ROUTES } from '../../../constants/routes';
 
 const MyJoinProjects = () => {
   const { myJoinedProjectListData, isLoading } = useMyJoinedProjectList();
-  console.log(myJoinedProjectListData);
 
   if (isLoading) {
     return <div>로딩중...</div>;
   }
   if (!myJoinedProjectListData) {
-    return <div>프로젝트 정보를 불러 올 수 없습니다.</div>;
+    return <div>참여한 프로젝트 정보가 없습니다.</div>;
   }
 
   return (

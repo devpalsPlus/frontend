@@ -26,24 +26,24 @@ export const Date = styled.div`
   gap: 1rem;
   margin-bottom: 1rem;
 
-  .dateWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.2rem 0.65rem;
-    background-color: #3e5879;
-    border-radius: 10px;
-
-    span {
-      font-weight: 500;
-      font-size: 0.78rem;
-      color: #fff;
-    }
-  }
-
   span {
     font-size: 0.9rem;
     color: #777777;
+  }
+`;
+
+export const DateWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  background-color: #3e5879;
+  border-radius: 10px;
+
+  span {
+    font-weight: 500;
+    font-size: 0.78rem;
+    color: #fff;
   }
 `;
 

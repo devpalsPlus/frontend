@@ -17,4 +17,5 @@ export const userInfoKey = {
 
 export const ProjectListKey = {
   myJoinedList: ['myJoinedProjectList'],
+  myAppliedStatusList: ['myAppliedProjectStatusList'],
 } as const;

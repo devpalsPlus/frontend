@@ -1,5 +1,8 @@
 import { EditMyInfo, UserInfo } from '../models/userInfo';
-import { UserJoinedProjectList } from '../models/userProject';
+import {
+  MyAppliedProjectStatusList,
+  UserJoinedProjectList,
+} from '../models/userProject';
 import { httpClient } from './http.api';
 
 export const getMyInfo = async () => {
@@ -47,6 +50,18 @@ export const getMyJoinedProjectList = async () => {
     return response.data;
   } catch (error) {
     console.error('myJoinedProjectList:', error);
+    throw error;
+  }
+};
+
+export const getMyAppliedStatusList = async () => {
+  try {
+    const response = await httpClient.get<MyAppliedProjectStatusList>(
+      '/user/me/applications'
+    );
+    return response.data;
+  } catch (error) {
+    console.error('myAppliedProjectList:', error);
     throw error;
   }
 };

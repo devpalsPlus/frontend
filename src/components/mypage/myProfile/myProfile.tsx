@@ -155,60 +155,72 @@ const MyProfile = () => {
           <S.ProfileSection>
             <S.Wrapper>
               <label>닉네임</label>
-              <span>{myData.nickname}</span>
-              <S.IconWrapper>
-                {myData.userLevel === 'Beginner' ? (
-                  <img
-                    src={BeginnerIcon}
-                    alt='beginner'
-                    width='16'
-                    height='16'
-                  />
-                ) : (
-                  ''
-                )}
-              </S.IconWrapper>
+              <S.BackgroundWrapper>
+                <span>{myData.nickname}</span>
+                <S.IconWrapper>
+                  {myData.userLevel === 'Beginner' ? (
+                    <img
+                      src={BeginnerIcon}
+                      alt='beginner'
+                      width='16'
+                      height='16'
+                    />
+                  ) : (
+                    ''
+                  )}
+                </S.IconWrapper>
+              </S.BackgroundWrapper>
             </S.Wrapper>
             <S.Wrapper>
               <label>스킬셋</label>
-              <ul>
-                {myData.skills.map((skill) => (
-                  <li key={skill.skillName}>
-                    <img
-                      src={skill.skillImg}
-                      alt={skill.skillName}
-                      width='40'
-                      height='40'
-                    />
-                    <span>{skill.skillName}</span>
-                  </li>
-                ))}
-              </ul>
+              <S.BackgroundBox>
+                <ul>
+                  {myData.skills.map((skill) => (
+                    <li key={skill.skillName}>
+                      <img
+                        src={skill.skillImg}
+                        alt={skill.skillName}
+                        width='40'
+                        height='40'
+                      />
+                      <span>{skill.skillName}</span>
+                    </li>
+                  ))}
+                </ul>
+              </S.BackgroundBox>
             </S.Wrapper>
             <S.Wrapper>
               <label>포지션</label>
-              <span>{myData.positionTag?.name}</span>
+              <S.BackgroundWrapper>
+                <span>{myData.positionTag?.name}</span>
+              </S.BackgroundWrapper>
             </S.Wrapper>
             <S.Wrapper>
               <label>깃허브</label>
-              <span>{myData.github}</span>
+              <S.BackgroundWrapper>
+                <span>{myData.github}</span>
+              </S.BackgroundWrapper>
             </S.Wrapper>
             <S.List>
               <label>경&nbsp;&nbsp;&nbsp;력</label>
-              <ul>
-                {myData.career?.map((career) => (
-                  <li key={career.name}>
-                    <span>{career.name}</span> (
-                    {career.periodStart.slice(0, 10)} ~{' '}
-                    {career.periodEnd.slice(0, 10)}{' '}
-                    <span> - {career.role}</span>)
-                  </li>
-                ))}
-              </ul>
+              <S.BackgroundBox>
+                <ul>
+                  {myData.career?.map((career) => (
+                    <li key={career.name}>
+                      <span>{career.name}</span> (
+                      {career.periodStart.slice(0, 10)} ~{' '}
+                      {career.periodEnd.slice(0, 10)}{' '}
+                      <span> - {career.role}</span>)
+                    </li>
+                  ))}
+                </ul>
+              </S.BackgroundBox>
             </S.List>
             <S.List>
               <label>소&nbsp;&nbsp;&nbsp;개</label>
-              <S.Bio>{myData.bio}</S.Bio>
+              <S.BackgroundBox>
+                <S.Bio>{myData.bio}</S.Bio>
+              </S.BackgroundBox>
             </S.List>
             <Link to={ROUTES.changePw}>비밀번호 재설정</Link>
             <button onClick={() => setIsEditing(true)}>
