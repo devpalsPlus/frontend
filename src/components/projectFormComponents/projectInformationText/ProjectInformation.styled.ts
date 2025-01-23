@@ -9,15 +9,15 @@ export const SectionInput = styled.div`
 
 export const InfoRow = styled.div`
   display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  align-items: flex-start;
+  margin-bottom: 20px;
 
   label {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #666;
-    flex: 0.08;
     text-align: left;
+    margin-right: 30px;
   }
 
   img {
@@ -38,10 +38,21 @@ export const InfoRow = styled.div`
   }
 `;
 
+export const InfoLabel = styled.label`
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #666;
+  flex: 0.01;
+  text-align: left;
+  margin-right: 15px;
+  white-space: nowrap;
+`;
+
 export const SkillTagContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 13px;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 10px;
+  flex: 0.6;
 `;
 
 export const SkillTagImage = styled.div`
@@ -49,6 +60,7 @@ export const SkillTagImage = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
+  margin-top: 5px;
 
   img {
     width: 40px;
@@ -59,8 +71,9 @@ export const SkillTagImage = styled.div`
   }
 
   p {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: ${({ theme }) => theme.color.primary};
+    margin-top: 2px;
   }
 `;
 
