@@ -20,6 +20,15 @@ export const InfoRow = styled.div`
     text-align: left;
   }
 
+  img {
+    width: 40px;
+    height: 40px;
+    border: 1px solid ${({ theme }) => theme.color.border};
+    border-radius: 50%;
+    margin-bottom: 5px;
+    margin-right: 10px;
+  }
+
   p {
     font-size: 1rem;
     font-weight: bold;
@@ -27,13 +36,31 @@ export const InfoRow = styled.div`
     flex: 0.8;
     text-align: left;
   }
+`;
+
+export const SkillTagContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+`;
+
+export const SkillTagImage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 
   img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border: 1px solid ${({ theme }) => theme.color.border};
     border-radius: 50%;
-    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: ${({ theme }) => theme.color.primary};
   }
 `;
 
