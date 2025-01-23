@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: flex;
   gap: 1rem;
   position: relative;
+  z-index: 1000;
 
   > * {
     width: 7.7rem;
