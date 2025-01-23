@@ -13,15 +13,21 @@ import { useApllicantList } from '../../../hooks/useApllicantList';
 
 import { applicantsMenuItems } from '../../../constants/sidebarItems';
 import { useAppllicantInfo } from '../../../hooks/useApplicantInfo';
+import PassNonPassButton from '../../../components/manageProjects/applicantList/PassNonPassButton';
+import { usePassNonPass } from '../../../hooks/usePassNonPass';
+import NoContent from '../../../components/noContent/NoContent';
 
 const MyProjectVolunteer = () => {
   const { projectId } = useParams();
-  const { applicantsData } = useApllicantList(Number(projectId));
   const { data: ProjectData } = useGetProjectData(Number(projectId));
   const sidebarMenuItem = applicantsMenuItems(Number(projectId));
+  const { applicantsData, isApplicantLoading } = useApllicantList(
+    Number(projectId)
+  );
   const { selectedApplicant, handleApplicantInfo } = useAppllicantInfo(
     Number(projectId)
   );
+  const { handlePassNonPassStatus } = usePassNonPass(Number(projectId));
 
   return (
     <S.Container>
@@ -32,25 +38,51 @@ const MyProjectVolunteer = () => {
         </div>
         {ProjectData && <RecruitmentDate ProjectData={ProjectData} />}
 
-        <S.ContentWrapper>
-          <S.ApplicantListWrapper>
-            <S.Title>지원자 리스트</S.Title>
-            {applicantsData && (
-              <ApplicantList
-                selectedApplicant={selectedApplicant?.userId}
-                onClick={handleApplicantInfo}
-                applicantsData={applicantsData}
-              />
-            )}
-          </S.ApplicantListWrapper>
-
-          <S.ApplicantInfoWrapper>
-            <S.Title>지원자 정보</S.Title>
+        {isApplicantLoading ||
+        (applicantsData && applicantsData?.length > 0) ? (
+          <S.ContentWrapper>
+            <S.ApplicantListWrapper>
+              <S.Title>지원자 리스트</S.Title>
+              {applicantsData && (
+                <ApplicantList
+                  selectedApplicant={selectedApplicant?.userId}
+                  onClick={handleApplicantInfo}
+                  applicantsData={applicantsData}
+                />
+              )}
+            </S.ApplicantListWrapper>
             {selectedApplicant && (
-              <ApplicantInfo applicantInfo={selectedApplicant} />
+              <S.ApplicantInfoWrapper>
+                <S.TitleWithButtonWrapper>
+                  <S.Title>지원자 정보</S.Title>
+
+                  <S.ButtonWrapper>
+                    <PassNonPassButton
+                      isPass={true}
+                      onClick={() =>
+                        handlePassNonPassStatus(true, selectedApplicant.userId)
+                      }
+                    >
+                      합격 리스트에 추가
+                    </PassNonPassButton>
+                    <PassNonPassButton
+                      isPass={false}
+                      onClick={() =>
+                        handlePassNonPassStatus(false, selectedApplicant.userId)
+                      }
+                    >
+                      불합격 리스트에 추가
+                    </PassNonPassButton>
+                  </S.ButtonWrapper>
+                </S.TitleWithButtonWrapper>
+
+                <ApplicantInfo applicantInfo={selectedApplicant} />
+              </S.ApplicantInfoWrapper>
             )}
-          </S.ApplicantInfoWrapper>
-        </S.ContentWrapper>
+          </S.ContentWrapper>
+        ) : (
+          <NoContent type='applicants' />
+        )}
       </InfoCard>
     </S.Container>
   );

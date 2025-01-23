@@ -18,9 +18,19 @@ export const ApplicantInfoWrapper = styled.div`
   width: 100%;
 `;
 
+export const TitleWithButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+`;
+
 export const Title = styled.h1`
   font-size: 1.25rem;
   font-weight: 700;
   color: ${({ theme }) => theme.color.deepGrey};
   margin-bottom: 1rem;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
 `;
