@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: relative;
   cursor: pointer;
   width: 22.4rem;
   height: 22rem;
@@ -45,6 +46,7 @@ export const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    position: relative;
   }
 
   .positionTags {
@@ -90,4 +92,31 @@ export const Container = styled.div`
       }
     }
   }
+`;
+
+export const EllipsisIcon = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  padding-left: 0.8rem;
+  cursor: pointer;
+  z-index: 10;
+
+  &:hover {
+    transform: scale(1.3);
+    transition: all 200ms ease-in;
+    opacity: 0;
+  }
+`;
+
+export const TagWrapper = styled.div<{ $positionPadding?: boolean }>`
+  background-color: ${({ theme }) => theme.color.white};
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
+  padding-bottom: ${({ $positionPadding }) => ($positionPadding ? '1rem' : '')};
+  gap: 0.5rem;
+  z-index: 100;
 `;
