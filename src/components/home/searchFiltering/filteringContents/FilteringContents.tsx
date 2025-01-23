@@ -3,7 +3,7 @@ import * as S from './FilteringContents.styled';
 import beginner from '../../../../assets/beginner.svg';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import SkillTagBox from '../../../common/skillTagBox/SkillTagBox';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSearchFilteringSkillTag } from '../../../../hooks/useSearchFilteringSkillTag';
 import { useOutsideClick } from '../../../../hooks/useOutsideClick';
 import { useSaveSearchFiltering } from '../../../../hooks/useSaveSearchFiltering';
@@ -13,7 +13,9 @@ export default function FilteringContents() {
   const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
   const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
   const [skillTagButtonToggle, setSkillTagButtonToggle] = useState(false);
-  const [selectSkills, setSelectSkills] = useState<number[]>([]);
+  const [selectSkills, setSelectSkills] = useState<number[]>(
+    searchFilters.skillTag || []
+  );
 
   const handleSkillTagBoxToggle = () => {
     setSkillTagButtonToggle((prev) => !prev);
@@ -23,19 +25,21 @@ export default function FilteringContents() {
     e.stopPropagation();
     const target = e.target as HTMLElement;
 
-    const id =
-      target.dataset.id || target.closest('[data-id]')?.getAttribute('data-id');
+    const id = Number(
+      target.dataset.id || target.closest('[data-id]')?.getAttribute('data-id')
+    );
     if (!id) return;
 
     handleUpdateFilters('skillTag', id);
   };
 
   const handleSkillTagReset = () => {
-    setSelectSkills([]);
+    // setSelectSkills([]);
     handleUpdateFilters('skillTag', []);
   };
 
   const filteringRef = useOutsideClick(() => setSkillTagButtonToggle(false));
+  if (!searchFilters.skillTag) return null;
 
   return (
     <S.Container>
@@ -47,11 +51,11 @@ export default function FilteringContents() {
         {skillTagButtonToggle && (
           <div className='skillTagBox' onClick={handleSkillTagFilterClick}>
             <SkillTagBox
-              width='100%'
+              width='130%'
               selectSkills={selectSkills}
               setSelectSkills={setSelectSkills}
-              canReset={true}
               onHandleSkillTagReset={handleSkillTagReset}
+              isMain={true}
             />
           </div>
         )}

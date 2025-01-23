@@ -6,6 +6,7 @@ import { UseFormSetValue } from 'react-hook-form';
 import { CreateProjectFormValues } from '../../../models/createProject';
 import { SkillTag as SkillTagType } from '../../../models/tags';
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
+import { useSaveSearchFiltering } from '../../../hooks/useSaveSearchFiltering';
 
 export interface SkillTagBoxProps {
   width: string;
@@ -13,8 +14,9 @@ export interface SkillTagBoxProps {
   setSelectSkills: React.Dispatch<React.SetStateAction<number[]>>;
   setValue?: UseFormSetValue<CreateProjectFormValues>;
   apiDataSkillTags?: SkillTagType[];
-  canReset?: boolean;
-  onHandleSkillTagReset: React.MouseEventHandler<HTMLButtonElement>;
+  onHandleSkillTagReset?: React.MouseEventHandler<HTMLButtonElement>;
+  isMain?: boolean;
+  isCreate?: boolean;
 }
 
 export default function SkillTagBox({
@@ -23,10 +25,19 @@ export default function SkillTagBox({
   setSelectSkills,
   setValue,
   apiDataSkillTags,
-  canReset = false,
   onHandleSkillTagReset,
+  isMain = false,
+  isCreate = false,
 }: SkillTagBoxProps) {
   const { skillTagsData } = useSearchFilteringSkillTag();
+  const { searchFilters } = useSaveSearchFiltering();
+  const searchFiltersSkillTag = searchFilters.skillTag;
+
+  // useEffect(() => {
+  //   if (searchFilters.skillTag?.length) {
+  //     setSelectSkills(searchFilters.skillTag);
+  //   }
+  // }, [searchFilters.skillTag, setSelectSkills]);
 
   const handleAddSelectSkills = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
@@ -56,25 +67,33 @@ export default function SkillTagBox({
 
   return (
     <S.Container width={width} onClick={handleAddSelectSkills}>
-      <S.Wrapper>
-        <div className='skillTagWrapper'>
-          {skillTagsData?.map((skillTagData) => (
-            <SkillTag
-              skillTagData={skillTagData}
-              key={skillTagData.id}
-              $select={selectSkills.includes(skillTagData.id) ? true : false}
-            />
-          ))}
-        </div>
-        {Boolean(canReset) && Boolean(selectSkills.length) && (
-          <div className='buttonWrapper'>
-            <button className='resetButton' onClick={onHandleSkillTagReset}>
-              <ArrowUturnLeftIcon />
-              <span>초기화</span>
-            </button>
+      {Boolean(skillTagsData.length) && (
+        <S.Wrapper>
+          <div className='skillTagWrapper'>
+            {skillTagsData?.map((skillTagData) => (
+              <SkillTag
+                skillTagData={skillTagData}
+                key={skillTagData.id}
+                $select={
+                  (isMain &&
+                    searchFiltersSkillTag?.includes(skillTagData.id)) ||
+                  (isCreate && selectSkills.includes(skillTagData.id))
+                    ? true
+                    : false
+                }
+              />
+            ))}
           </div>
-        )}
-      </S.Wrapper>
+          {isMain && Boolean(searchFiltersSkillTag?.length) && (
+            <div className='buttonWrapper'>
+              <button className='resetButton' onClick={onHandleSkillTagReset}>
+                <ArrowUturnLeftIcon />
+                <span>초기화</span>
+              </button>
+            </div>
+          )}
+        </S.Wrapper>
+      )}
     </S.Container>
   );
 }

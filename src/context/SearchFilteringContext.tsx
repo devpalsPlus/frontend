@@ -13,7 +13,7 @@ interface SearchFilteringContextType {
   searchFilters: SearchFilters;
   handleUpdateFilters: (
     key: SearchFilteringKey,
-    filter: string | number | boolean | null | string[]
+    filter: string | number | boolean | number[]
   ) => void;
 }
 
@@ -33,14 +33,14 @@ export function SearchFilteringProvider({ children }: PropsWithChildren) {
 
   const handleUpdateFilters = (
     key: SearchFilteringKey,
-    filter: string | number | boolean | null | string[]
+    filter: string | number | boolean | number[]
   ) => {
     setSearchFilters((prev) => {
       if (key === 'skillTag') {
         if (Array.isArray(filter) && filter.length === 0) {
           return { ...prev, skillTag: [] };
         }
-        if (typeof filter !== 'string') return prev;
+        if (typeof filter !== 'number') return prev;
         if (Array.isArray(prev.skillTag)) {
           if (prev.skillTag.includes(filter)) {
             const updatedSkillTags = prev.skillTag.filter(
