@@ -15,7 +15,7 @@ function Card({ project }: CardProps) {
       <S.CardTitle>{project.title}</S.CardTitle>
       <S.RecruitmentDate>{formatEndDate}까지</S.RecruitmentDate>
       <S.TotalMember>{project.totalMember}명</S.TotalMember>
-      <AvartarList avatars={project.ProjectSkillTag} />
+      <AvartarList maxCount={5} avatars={project.ProjectSkillTag} />
 
       <div className='buttonWrap'>
         <Button size='primary' schema='primary' radius='primary'>
