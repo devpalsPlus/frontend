@@ -15,7 +15,7 @@ import { applicantsMenuItems } from '../../../constants/sidebarItems';
 import { useAppllicantInfo } from '../../../hooks/useApplicantInfo';
 import PassNonPassButton from '../../../components/manageProjects/applicantList/PassNonPassButton';
 import { usePassNonPass } from '../../../hooks/usePassNonPass';
-import NoContent from '../../../components/noContent/NoContent';
+import NoContent from '../../../components/common/noContent/NoContent';
 
 import MainLogo from '../../../assets/mainlogo.svg';
 
