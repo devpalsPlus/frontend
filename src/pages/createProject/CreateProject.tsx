@@ -7,6 +7,8 @@ import { CreateProjectFormValues, FormData } from '../../models/createProject';
 import { useNavigate } from 'react-router-dom';
 import ProjectInformationInput from '../../components/projectFormComponents/projectInformationInput/ProjectInformationInput';
 import { createProject } from '../../api/joinProject.api';
+import { useState } from 'react';
+import { useSaveSearchFiltering } from '../../hooks/useSaveSearchFiltering';
 
 export const createProjectScheme = z.object({
   startDate: z
@@ -73,6 +75,9 @@ const CreateProject = () => {
     },
   });
 
+  const [isSubmit, setIsSubmit] = useState(false);
+  const { handleUpdateFilters } = useSaveSearchFiltering();
+
   const handleSubmit = (data: z.infer<typeof createProjectScheme>) => {
     const formData: FormData = {
       title: data.title,
@@ -91,6 +96,8 @@ const CreateProject = () => {
     createProject(formData).then((status: number) => {
       if (status === 201) {
         alert('프로젝트가 성공적으로 생성되었습니다.');
+        setIsSubmit(true);
+        handleUpdateFilters('skillTag', []);
         navigate(`/main`);
       }
     });
@@ -140,6 +147,8 @@ const CreateProject = () => {
               errors={errors}
               control={control}
               setValue={setValue}
+              isSubmit={isSubmit}
+              setIsSubmit={setIsSubmit}
             />
           </S.SectionInput>
         </S.Section>
