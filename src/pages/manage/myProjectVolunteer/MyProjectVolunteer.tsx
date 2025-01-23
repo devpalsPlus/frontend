@@ -17,6 +17,8 @@ import PassNonPassButton from '../../../components/manageProjects/applicantList/
 import { usePassNonPass } from '../../../hooks/usePassNonPass';
 import NoContent from '../../../components/noContent/NoContent';
 
+import MainLogo from '../../../assets/mainlogo.svg';
+
 const MyProjectVolunteer = () => {
   const { projectId } = useParams();
   const { data: ProjectData } = useGetProjectData(Number(projectId));
@@ -31,7 +33,7 @@ const MyProjectVolunteer = () => {
 
   return (
     <S.Container>
-      <Sidebar menuItems={sidebarMenuItem} />
+      <Sidebar profileImage={MainLogo} menuItems={sidebarMenuItem} />
       <InfoCard>
         <div className='title-wrap'>
           {ProjectData && <Title size='semiLarge'>{ProjectData.title} </Title>}
