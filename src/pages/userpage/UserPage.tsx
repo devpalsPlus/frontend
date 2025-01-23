@@ -4,7 +4,6 @@ import * as S from '../mypage/MyPage.styled';
 import { DocumentTextIcon, UserIcon } from '@heroicons/react/24/outline';
 import { ROUTES } from '../../constants/routes';
 import { useUserProfileInfo } from '../../hooks/useUserInfo';
-import DefaultImg from '../../assets/defaultImg.png';
 import loadingImg from '../../assets/loadingImg.svg';
 
 const UserPage = () => {
@@ -24,13 +23,12 @@ const UserPage = () => {
   ];
 
   const { userData, isLoading } = useUserProfileInfo(Number(userId));
-  const profileImg = userData?.profileImg ? userData.profileImg : DefaultImg;
   return (
     <S.Container>
       <Sidebar
         menuItems={menuItems}
         nickname={userData?.nickname}
-        profileImage={isLoading ? loadingImg : profileImg}
+        profileImage={isLoading ? loadingImg : userData?.profileImg}
       />
       <S.Wrapper>
         <S.ScrollWrapper>
