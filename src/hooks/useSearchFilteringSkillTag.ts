@@ -39,12 +39,9 @@ export const useSearchFilteringSkillTag = () => {
 
   useEffect(() => {
     if (!skillQuery.data || !positionQuery.data || !methodQuery.data) return;
-    setSkillTagsData(skillQuery?.data);
-    setPositionTagsData([
-      { id: 0, name: '전체', createdAt: '' },
-      ...positionQuery.data,
-    ]);
-    setMethodTagsData([...methodQuery.data]);
+    setSkillTagsData(skillQuery.data);
+    setPositionTagsData(positionQuery.data);
+    setMethodTagsData(methodQuery.data);
   }, [skillQuery.data, positionQuery.data, methodQuery.data]);
 
   return { skillTagsData, positionTagsData, methodTagsData };

@@ -1,7 +1,7 @@
 export interface SearchFilters {
-  skillTag?: string[];
+  skillTag?: number[];
   positionTag?: number;
-  method?: number;
+  methodId?: number;
   isBeginner: boolean;
   keyword?: string;
   page: number;
