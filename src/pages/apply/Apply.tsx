@@ -8,9 +8,9 @@ import { formatDate } from '../../util/format';
 import { postApplicantProject } from '../../api/joinProject.api';
 import { joinProject } from '../../models/joinProject';
 import useGetProjectData from '../../hooks/useJoinProject';
-import Button from '../../components/common/Button/Button';
 import CareersComponent from '../../components/applyComponents/careersComponent/CareersComponent';
 import PhoneComponent from '../../components/applyComponents/phoneComponent/PhoneComponent';
+import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
 
 const ApplyScheme = z.object({
   email: z
@@ -94,8 +94,8 @@ const Apply = () => {
     return <div>데이터가 없습니다.</div>;
   }
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isFetching) return <div>isFetching...</div>;
+  if (isLoading) return <LoadingSpinner />;
+  if (isFetching) return <LoadingSpinner />;
 
   return (
     <S.Container>
