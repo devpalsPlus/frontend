@@ -4,10 +4,10 @@ import { getApplicantList } from '../api/applicant.api';
 import { ApplicantInfo } from '../models/applicant';
 
 export const useApllicantList = (projectId: number) => {
-  const { data } = useQuery<ApplicantInfo[]>({
-    queryKey: applicantKey.all,
+  const { data, isLoading, refetch } = useQuery<ApplicantInfo[]>({
+    queryKey: [applicantKey.all, projectId],
     queryFn: () => getApplicantList(projectId),
     staleTime: 1 * 60 * 1000,
   });
-  return { applicantsData: data };
+  return { applicantsData: data, isApplicantLoading: isLoading, refetch };
 };
