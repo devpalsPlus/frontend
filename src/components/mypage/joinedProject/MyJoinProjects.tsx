@@ -23,7 +23,6 @@ const MyJoinProjects = () => {
         <S.Container>
           {myJoinedProjectListData?.map((project) => (
             <Link
-              className='projectBox'
               key={project.projectId}
               to={`${ROUTES.projectDetail}/${project.projectId}`}
             >

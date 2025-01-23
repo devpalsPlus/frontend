@@ -30,7 +30,7 @@ export const Container = styled.div`
   flex-wrap: wrap;
   gap: 5%;
 
-  .projectBox {
+  a {
     display: inline-block;
     width: 46%;
   }

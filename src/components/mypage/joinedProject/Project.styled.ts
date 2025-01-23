@@ -7,6 +7,12 @@ export const Container = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.large};
   border: 1px solid #ededed;
   width: 100%;
+
+  &:hover {
+    background-color: #eee;
+  }
+
+  transition: background-color 0.2s ease-in-out;
 `;
 
 export const Title = styled.p`

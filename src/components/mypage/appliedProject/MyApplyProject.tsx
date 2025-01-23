@@ -1,12 +1,16 @@
+import { Link } from 'react-router-dom';
 import { useMyAppliedStatusList } from '../../../hooks/useMyInfo';
 import NoContent from '../../common/noContent/NoContent';
 import Title from '../../common/title/Title';
 import Spinner from '../Spinner';
 import * as S from './MyApplyProject.styled';
 import MyStatus from './MyStatus';
+import { ROUTES } from '../../../constants/routes';
 
 const MyApplyProject = () => {
   const { myAppliedStatusListData, isLoading } = useMyAppliedStatusList();
+
+  console.log(myAppliedStatusListData);
 
   if (isLoading) {
     return <Spinner size='50px' color='#3e5879;' />;
@@ -19,11 +23,10 @@ const MyApplyProject = () => {
       </S.TitleWrapper>
       {myAppliedStatusListData && myAppliedStatusListData?.length > 0 ? (
         <S.Container>
-          {myAppliedStatusListData?.map((status, index) => (
-            <MyStatus
-              key={`${status.projectTitle}-${status.status}-${index}`}
-              status={status}
-            />
+          {myAppliedStatusListData?.map((status) => (
+            <Link key={status.id} to={`${ROUTES.projectDetail}/${status.id}`}>
+              <MyStatus key={status.id} status={status} />
+            </Link>
           ))}
         </S.Container>
       ) : (
