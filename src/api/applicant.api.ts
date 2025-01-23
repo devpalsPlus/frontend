@@ -14,3 +14,15 @@ export const getApplicantInfo = async (projectId: number, userId: number) => {
   );
   return response.data;
 };
+
+export const patchPassNonPassStatus = async (
+  data: { status: string },
+  projectId: number,
+  userId: number
+) => {
+  const response = await httpClient.patch(
+    `/project/${projectId}/applicant/${userId}/status`,
+    data
+  );
+  return response.data;
+};
