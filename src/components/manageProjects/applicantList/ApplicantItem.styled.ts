@@ -2,14 +2,14 @@ import styled, { DefaultTheme } from 'styled-components';
 
 interface ButtonProps {
   $isSelected: boolean;
-  passStatus: 'REJECTED' | 'SUCCESS' | string;
+  passStatus: 'REJECTED' | 'ACCEPTED' | string;
 }
 
 export const getBorderColor = (passStatus: string, theme: DefaultTheme) => {
   switch (passStatus) {
     case 'REJECTED':
       return theme.color.red;
-    case 'SUCCESS':
+    case 'ACCEPTED':
       return theme.color.green;
     default:
       return theme.color.border;
