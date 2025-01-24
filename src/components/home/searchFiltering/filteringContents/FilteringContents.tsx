@@ -13,9 +13,6 @@ export default function FilteringContents() {
   const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
   const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
   const [skillTagButtonToggle, setSkillTagButtonToggle] = useState(false);
-  const [selectSkills, setSelectSkills] = useState<number[]>(
-    searchFilters.skillTag || []
-  );
 
   const handleSkillTagBoxToggle = () => {
     setSkillTagButtonToggle((prev) => !prev);
@@ -34,7 +31,6 @@ export default function FilteringContents() {
   };
 
   const handleSkillTagReset = () => {
-    // setSelectSkills([]);
     handleUpdateFilters('skillTag', []);
   };
 
@@ -52,8 +48,6 @@ export default function FilteringContents() {
           <div className='skillTagBox' onClick={handleSkillTagFilterClick}>
             <SkillTagBox
               width='130%'
-              selectSkills={selectSkills}
-              setSelectSkills={setSelectSkills}
               onHandleSkillTagReset={handleSkillTagReset}
               isMain={true}
             />
