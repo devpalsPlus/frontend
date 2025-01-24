@@ -2,6 +2,7 @@ import * as S from './ApplicantInfo.styled';
 import { ApplicantInfo as MApplicantInfo } from '../../../models/applicant';
 import AvartarList from '../../common/avatar/AvartarList';
 import { LabelWithContent } from './LabelWithContent';
+import { formatDate } from '../../../util/format';
 interface ApplicantInfoProps {
   applicantInfo: MApplicantInfo;
 }
@@ -21,7 +22,7 @@ const ApplicantInfo = ({ applicantInfo }: ApplicantInfoProps) => {
       {applicantInfo.career?.map((data) => (
         <S.Text>
           <span className='period'>
-            [{data.periodStart} ~ {data.periodEnd}]
+            [{formatDate(data.periodStart)} ~ {formatDate(data.periodEnd)}]
           </span>
           {data.name} - {data.role}
         </S.Text>

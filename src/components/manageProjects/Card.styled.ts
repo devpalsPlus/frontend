@@ -13,6 +13,7 @@ export const CardWrapper = styled.div`
   cursor: pointer;
 
   .buttonWrap {
+    margin-top: 1rem;
     width: 100%;
     display: flex;
     justify-content: end;
@@ -46,4 +47,20 @@ export const TotalMember = styled.small`
   font-weight: 400;
   color: ${({ theme }) => theme.color.deepgrey};
   margin-bottom: 1.125rem;
+`;
+
+export const RecruitmentEnd = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+
+  background-color: #ea6f6f;
+
+  font-size: 0.9rem;
+  color: #fff;
+
+  font-size: 0.8rem;
+  font-weight: 800;
 `;

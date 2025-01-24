@@ -19,7 +19,7 @@ export const applicantsMenuItems = (projectId: number) => {
     },
     {
       label: '공고 관리',
-      path: `${ROUTES.createProject}`,
+      path: `${ROUTES.modifyProject}/${projectId}`,
       icon: <PencilSquareIcon />,
     },
   ];
