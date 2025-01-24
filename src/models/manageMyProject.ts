@@ -6,6 +6,7 @@ export interface ManagedProject {
   title: string;
   totalMember: number;
   recruitmentEndDate: string;
+  isDone: boolean;
   isBeginner: boolean;
   ProjectSkillTag: ProjectSkillTag[];
 }
