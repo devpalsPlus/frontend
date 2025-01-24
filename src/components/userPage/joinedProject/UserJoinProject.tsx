@@ -17,13 +17,6 @@ const UserJoinProject = () => {
     return <Spinner size='50px' color='#3e5879;' />;
   }
 
-  console.log(
-    '참여한 프로젝트리스트 :',
-    userJoinedProjectListData?.acceptedProjects,
-    '기획한 프로젝트 리스트 :',
-    userJoinedProjectListData?.ownProjects
-  );
-
   return (
     <S.Section>
       <S.Wrapper>
