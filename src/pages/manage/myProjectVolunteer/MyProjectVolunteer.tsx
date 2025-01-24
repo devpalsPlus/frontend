@@ -18,13 +18,18 @@ import { usePassNonPass } from '../../../hooks/usePassNonPass';
 import NoContent from '../../../components/common/noContent/NoContent';
 
 import MainLogo from '../../../assets/mainlogo.svg';
+import Modal from '../../../components/common/modal/Modal';
+import { useModal } from '../../../hooks/useModal';
 
 const MyProjectVolunteer = () => {
   const { projectId } = useParams();
   const sidebarMenuItem = applicantsMenuItems(Number(projectId));
-
   const { data: projectData } = useGetProjectData(Number(projectId));
-  const { handlePassNonPassStatus } = usePassNonPass(Number(projectId));
+  const { isOpen, handleModalClose, handleModalOpen, message } = useModal();
+  const { handlePassNonPassStatus } = usePassNonPass(
+    Number(projectId),
+    handleModalOpen
+  );
   const { applicantsData, isApplicantLoading } = useApllicantList(
     Number(projectId)
   );
@@ -93,6 +98,10 @@ const MyProjectVolunteer = () => {
           <NoContent type='applicants' />
         )}
       </InfoCard>
+
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Container>
   );
 };
