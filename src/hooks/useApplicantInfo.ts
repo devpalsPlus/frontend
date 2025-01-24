@@ -1,16 +1,21 @@
 import { getApplicantInfo } from '../api/applicant.api';
 import { useState } from 'react';
-import { ApplicantInfo } from '../models/applicant';
+import { useQuery } from '@tanstack/react-query';
+import { applicantKey } from './queries/keys';
 
-export const useAppllicantInfo = (projectId: number) => {
-  const [selectedApplicant, setSelectedApplicant] =
-    useState<ApplicantInfo | null>(null);
+export const useApplicantInfo = (projectId: number) => {
+  const [selectedApplicant, setSelectedUser] = useState<number | null>(null);
 
-  const handleApplicantInfo = (userId: number) => {
-    getApplicantInfo(projectId, userId).then((data) => {
-      setSelectedApplicant(data);
-    });
+  const { data } = useQuery({
+    queryKey: [applicantKey.info, projectId, selectedApplicant],
+    queryFn: () => getApplicantInfo(projectId, selectedApplicant!),
+    enabled: !!selectedApplicant,
+    staleTime: 1 * 60 * 1000,
+  });
+
+  const handleSelectedApplicant = (userId: number) => {
+    setSelectedUser(userId);
   };
 
-  return { handleApplicantInfo, selectedApplicant };
+  return { applicantInfo: data, selectedApplicant, handleSelectedApplicant };
 };
