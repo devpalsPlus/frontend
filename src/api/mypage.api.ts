@@ -1,7 +1,7 @@
 import { EditMyInfo, UserInfo } from '../models/userInfo';
 import {
   MyAppliedProjectStatusList,
-  UserJoinedProjectList,
+  MyJoinedProjectList,
 } from '../models/userProject';
 import { httpClient } from './http.api';
 
@@ -44,7 +44,7 @@ export const patchMyProfileImg = async (file: File) => {
 
 export const getMyJoinedProjectList = async () => {
   try {
-    const response = await httpClient.get<UserJoinedProjectList>(
+    const response = await httpClient.get<MyJoinedProjectList>(
       '/user/me/project'
     );
     return response.data;

@@ -10,8 +10,6 @@ import { ROUTES } from '../../../constants/routes';
 const MyApplyProject = () => {
   const { myAppliedStatusListData, isLoading } = useMyAppliedStatusList();
 
-  console.log(myAppliedStatusListData);
-
   if (isLoading) {
     return <Spinner size='50px' color='#3e5879;' />;
   }
