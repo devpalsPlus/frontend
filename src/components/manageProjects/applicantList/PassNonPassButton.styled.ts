@@ -11,9 +11,11 @@ export const PassNonPassButton = styled.button<PassNonPassButtonProps>`
   &:hover {
     opacity: 0.8;
   }
+
   &:disabled {
     cursor: not-allowed;
     opacity: 0.9;
     background-color: ${({ theme }) => theme.color.grey};
   }
+
 `;

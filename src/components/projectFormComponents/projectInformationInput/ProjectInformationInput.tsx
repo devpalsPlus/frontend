@@ -23,7 +23,6 @@ const ProjectInformationInput = ({
   setValue,
   apiData,
 }: ProjectInformationProps) => {
-  const [selectedLanguage, setSelectedLanguage] = useState<number[]>([]);
   const [selectedMozip, setSelectedMozip] = useState<number[]>([]);
   const [selectedMethod, setSelectedMethod] = useState<number>(0);
 
@@ -78,8 +77,6 @@ const ProjectInformationInput = ({
       </S.InfoRow>
       <LanguageComponent
         name='languages'
-        selectedLanguage={selectedLanguage}
-        setSelectedLanguage={setSelectedLanguage}
         errors={errors}
         setValue={setValue}
         apiDataSkillTags={apiData?.skillTags}
