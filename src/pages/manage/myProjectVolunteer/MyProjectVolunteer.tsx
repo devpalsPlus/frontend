@@ -12,7 +12,7 @@ import useGetProjectData from '../../../hooks/useJoinProject';
 import { useApllicantList } from '../../../hooks/useApllicantList';
 
 import { applicantsMenuItems } from '../../../constants/sidebarItems';
-import { useAppllicantInfo } from '../../../hooks/useApplicantInfo';
+import { useApplicantInfo } from '../../../hooks/useApplicantInfo';
 import PassNonPassButton from '../../../components/manageProjects/applicantList/PassNonPassButton';
 import { usePassNonPass } from '../../../hooks/usePassNonPass';
 import NoContent from '../../../components/common/noContent/NoContent';
@@ -21,24 +21,27 @@ import MainLogo from '../../../assets/mainlogo.svg';
 
 const MyProjectVolunteer = () => {
   const { projectId } = useParams();
-  const { data: ProjectData } = useGetProjectData(Number(projectId));
   const sidebarMenuItem = applicantsMenuItems(Number(projectId));
+
+  const { data: projectData } = useGetProjectData(Number(projectId));
+  const { handlePassNonPassStatus } = usePassNonPass(Number(projectId));
   const { applicantsData, isApplicantLoading } = useApllicantList(
     Number(projectId)
   );
-  const { selectedApplicant, handleApplicantInfo } = useAppllicantInfo(
-    Number(projectId)
-  );
-  const { handlePassNonPassStatus } = usePassNonPass(Number(projectId));
+  const { applicantInfo, selectedApplicant, handleSelectedApplicant } =
+    useApplicantInfo(Number(projectId));
 
   return (
     <S.Container>
       <Sidebar profileImage={MainLogo} menuItems={sidebarMenuItem} />
       <InfoCard>
-        <div className='title-wrap'>
-          {ProjectData && <Title size='semiLarge'>{ProjectData.title} </Title>}
-        </div>
-        {ProjectData && <RecruitmentDate ProjectData={ProjectData} />}
+        <S.TitleWrapper>
+          {projectData && <Title size='semiLarge'>{projectData.title} </Title>}
+          {projectData?.isDone && (
+            <S.RecruitmentEnd>공고 마감</S.RecruitmentEnd>
+          )}
+        </S.TitleWrapper>
+        {projectData && <RecruitmentDate ProjectData={projectData} />}
 
         {isApplicantLoading ||
         (applicantsData && applicantsData?.length > 0) ? (
@@ -47,8 +50,8 @@ const MyProjectVolunteer = () => {
               <S.Title>지원자 리스트</S.Title>
               {applicantsData && (
                 <ApplicantList
-                  selectedApplicant={selectedApplicant?.userId}
-                  onClick={handleApplicantInfo}
+                  selectedApplicant={selectedApplicant!}
+                  onClick={handleSelectedApplicant}
                   applicantsData={applicantsData}
                 />
               )}
@@ -62,23 +65,27 @@ const MyProjectVolunteer = () => {
                     <PassNonPassButton
                       isPass={true}
                       onClick={() =>
-                        handlePassNonPassStatus(true, selectedApplicant.userId)
+                        handlePassNonPassStatus(true, selectedApplicant)
                       }
+                      disabled={projectData?.isDone}
                     >
                       합격 리스트에 추가
                     </PassNonPassButton>
                     <PassNonPassButton
                       isPass={false}
                       onClick={() =>
-                        handlePassNonPassStatus(false, selectedApplicant.userId)
+                        handlePassNonPassStatus(false, selectedApplicant)
                       }
+                      disabled={projectData?.isDone}
                     >
                       불합격 리스트에 추가
                     </PassNonPassButton>
                   </S.ButtonWrapper>
                 </S.TitleWithButtonWrapper>
 
-                <ApplicantInfo applicantInfo={selectedApplicant} />
+                {applicantInfo && (
+                  <ApplicantInfo applicantInfo={applicantInfo} />
+                )}
               </S.ApplicantInfoWrapper>
             )}
           </S.ContentWrapper>

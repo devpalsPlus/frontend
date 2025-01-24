@@ -7,9 +7,14 @@ export interface PassNonPassButtonProps
 }
 function PassNonPassButton({
   children,
+  disabled,
   ...props
 }: PropsWithChildren<PassNonPassButtonProps>) {
-  return <S.PassNonPassButton {...props}>{children}</S.PassNonPassButton>;
+  return (
+    <S.PassNonPassButton disabled={disabled} {...props}>
+      {children}
+    </S.PassNonPassButton>
+  );
 }
 
 export default PassNonPassButton;
