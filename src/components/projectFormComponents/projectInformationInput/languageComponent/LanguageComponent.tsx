@@ -40,7 +40,7 @@ const LanguageComponent = ({
     apiDataSkillTags?.forEach((tag) => {
       handleUpdateFilters('skillTag', tag.id);
     });
-  }, [apiDataSkillTags, handleUpdateFilters]);
+  }, [apiDataSkillTags]);
 
   useEffect(() => {
     if (filterData) {

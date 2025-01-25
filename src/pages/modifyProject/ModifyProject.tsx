@@ -31,8 +31,6 @@ const ModifyProject = () => {
     },
   });
 
-  console.log(projectData);
-
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },

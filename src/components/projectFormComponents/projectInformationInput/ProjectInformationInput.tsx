@@ -15,8 +15,8 @@ interface ProjectInformationProps {
   control: Control<CreateProjectFormValues>;
   setValue: UseFormSetValue<CreateProjectFormValues>;
   apiData?: ProjectDetailExtended;
-  isSubmit: boolean;
-  setIsSubmit: Dispatch<SetStateAction<boolean>>;
+  isSubmit?: boolean;
+  setIsSubmit?: Dispatch<SetStateAction<boolean>>;
 }
 
 const ProjectInformationInput = ({

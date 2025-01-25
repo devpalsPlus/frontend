@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { putProject } from '../api/joinProject.api';
 import { FormData } from '../models/createProject';
 
@@ -13,9 +13,15 @@ const useUpdateProject = ({
   onSuccess,
   onError,
 }: UseUpdateProjectProps) => {
+  const queryClient = useQueryClient();
+
   const mutation = useMutation({
     mutationFn: (formData: FormData) => putProject(formData, id),
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['projectDataAll', id],
+        exact: true,
+      });
       onSuccess?.();
     },
     onError: (error) => {

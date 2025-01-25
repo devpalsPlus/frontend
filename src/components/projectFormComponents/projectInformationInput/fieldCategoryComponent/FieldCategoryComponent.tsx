@@ -27,15 +27,15 @@ const FieldCategoryComponent = ({
 
   const handleClick = (idx: number) => {
     setSelectedMethod(idx);
-    setValue('field', idx + 1);
+    setValue('field', idx);
   };
 
   useEffect(() => {
     if (apiDataMethodId) {
-      setSelectedMethod(apiDataMethodId);
+      setSelectedMethod(apiDataMethodId - 1);
       setValue('field', apiDataMethodId);
     }
-  }, [apiDataMethodId]);
+  }, [apiDataMethodId, setSelectedMethod, setValue]);
 
   return (
     <S.Container>
