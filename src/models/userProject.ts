@@ -38,9 +38,15 @@ export interface UserJoinedProject {
   ProjectPositionTag: ProjectPositionTagItem[];
 }
 
-export type UserJoinedProjectList = UserJoinedProject[];
+export type MyJoinedProjectList = UserJoinedProject[];
+
+export interface UserJoinedProjectList {
+  acceptedProjects: UserJoinedProject[];
+  ownProjects: UserJoinedProject[];
+}
 
 export interface MyAppliedProjectStatus {
+  id: number;
   projectTitle: string;
   status: string;
 }

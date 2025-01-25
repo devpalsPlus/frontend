@@ -148,9 +148,13 @@ const AppRoutes = () => {
     {
       path: ROUTES.mypage,
       element: (
-        <Layout>
-          <MyPage />
-        </Layout>
+        <ProtectRoute redirectUrl={ROUTES.login}>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Layout>
+              <MyPage />
+            </Layout>
+          </Suspense>
+        </ProtectRoute>
       ),
       children: [
         {
@@ -170,9 +174,13 @@ const AppRoutes = () => {
     {
       path: `${ROUTES.userpage}/:userId`,
       element: (
-        <Layout>
-          <UserPage />
-        </Layout>
+        <ProtectRoute redirectUrl={ROUTES.login}>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Layout>
+              <UserPage />
+            </Layout>
+          </Suspense>
+        </ProtectRoute>
       ),
       children: [
         {

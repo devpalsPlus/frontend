@@ -15,7 +15,7 @@ import { myInfoKey, ProjectListKey } from './queries/keys';
 import useAuthStore from '../store/authStore';
 import {
   MyAppliedProjectStatusList,
-  UserJoinedProjectList,
+  MyJoinedProjectList,
 } from '../models/userProject';
 
 export const useMyProfileInfo = () => {
@@ -84,7 +84,7 @@ export const useUploadProfileImg = () => {
 export const useMyJoinedProjectList = () => {
   const { isLoggedIn } = useAuthStore();
 
-  const { data, isLoading } = useQuery<UserJoinedProjectList>({
+  const { data, isLoading } = useQuery<MyJoinedProjectList>({
     queryKey: ProjectListKey.myJoinedList,
     queryFn: () => getMyJoinedProjectList(),
     enabled: isLoggedIn,
