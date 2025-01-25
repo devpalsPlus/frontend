@@ -2,11 +2,11 @@ import styled, { DefaultTheme } from 'styled-components';
 
 interface ButtonProps {
   $isSelected: boolean;
-  passStatus: 'REJECTED' | 'ACCEPTED' | string;
+  $passStatus: 'REJECTED' | 'ACCEPTED' | string;
 }
 
-export const getBorderColor = (passStatus: string, theme: DefaultTheme) => {
-  switch (passStatus) {
+export const getBorderColor = ($passStatus: string, theme: DefaultTheme) => {
+  switch ($passStatus) {
     case 'REJECTED':
       return theme.color.red;
     case 'ACCEPTED':
@@ -28,7 +28,7 @@ export const Button = styled.button<ButtonProps>`
   color: ${({ $isSelected, theme }) =>
     $isSelected ? theme.buttonScheme.primary.color : theme.color.primary};
   border: 1px solid
-    ${({ passStatus, theme }) => getBorderColor(passStatus, theme)};
+    ${({ $passStatus, theme }) => getBorderColor($passStatus, theme)};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
 
   &:hover {
