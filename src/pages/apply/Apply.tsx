@@ -8,9 +8,9 @@ import { formatDate } from '../../util/format';
 import { postApplicantProject } from '../../api/joinProject.api';
 import { joinProject } from '../../models/joinProject';
 import useGetProjectData from '../../hooks/useJoinProject';
-import Button from '../../components/common/Button/Button';
 import CareersComponent from '../../components/applyComponents/careersComponent/CareersComponent';
 import PhoneComponent from '../../components/applyComponents/phoneComponent/PhoneComponent';
+import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
 
 const ApplyScheme = z.object({
   email: z
@@ -39,7 +39,7 @@ export type ApplySchemeType = z.infer<typeof ApplyScheme>;
 const Apply = () => {
   const { projectId } = useParams();
   const id = Number(projectId);
-  const { data, isLoading, isFetching } = useGetProjectData(id);
+  const { data: projectData, isLoading, isFetching } = useGetProjectData(id);
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
@@ -78,6 +78,9 @@ const Apply = () => {
         case 401:
           alert('세션이 만료되었습니다. 로그인 해주세요.');
           break;
+        case 403:
+          alert('본인의 프로젝트는 지원할 수 없습니다.');
+          break;
         case 404:
           alert('해당 페이지가 존재하지 않습니다');
           break;
@@ -90,19 +93,19 @@ const Apply = () => {
     });
   };
 
-  if (!data) {
+  if (!projectData) {
     return <div>데이터가 없습니다.</div>;
   }
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isFetching) return <div>isFetching...</div>;
+  if (isLoading) return <LoadingSpinner />;
+  if (isFetching) return <LoadingSpinner />;
 
   return (
     <S.Container>
       <S.Title>프로젝트 지원</S.Title>
-      <S.Subtitle>{data.title}</S.Subtitle>
-      <S.Dates>{`${formatDate(data.recruitmentStartDate)} ~ ${formatDate(
-        data?.recruitmentEndDate
+      <S.Subtitle>{projectData.title}</S.Subtitle>
+      <S.Dates>{`${formatDate(projectData.recruitmentStartDate)} ~ ${formatDate(
+        projectData?.recruitmentEndDate
       )}`}</S.Dates>
 
       <S.Form onSubmit={onSubmitHandler(handleSubmit)}>

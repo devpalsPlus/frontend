@@ -1,11 +1,28 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+export interface UserData {
+  id: number;
+  email: string;
+  nickname: string;
+}
+
 interface AuthState {
   isLoggedIn: boolean;
-  storeLogin: (accessToken: string, refreshToken: string) => void;
+  userData: UserData | null;
+  storeLogin: (
+    accessToken: string,
+    refreshToken: string,
+    userData: UserData
+  ) => void;
   storeLogout: () => void;
 }
+
+const initialUserData: UserData = {
+  id: 0,
+  email: '',
+  nickname: '',
+};
 
 export const getTokens = () => {
   const accessToken = localStorage.getItem('accessToken');
@@ -28,14 +45,19 @@ const useAuthStore = create(
   persist<AuthState>(
     (set) => ({
       isLoggedIn: getTokens()?.accessToken ? true : false,
+      userData: getTokens()?.accessToken ? initialUserData : null,
 
-      storeLogin: (accessToken: string, refreshToken: string) => {
+      storeLogin: (
+        accessToken: string,
+        refreshToken: string,
+        userData: UserData
+      ) => {
         setTokens(accessToken, refreshToken);
-        set({ isLoggedIn: true });
+        set({ isLoggedIn: true, userData });
       },
       storeLogout: () => {
         removeTokens();
-        set({ isLoggedIn: false });
+        set({ isLoggedIn: false, userData: null });
       },
     }),
     {

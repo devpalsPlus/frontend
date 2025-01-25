@@ -20,7 +20,7 @@ const ModifyProject = () => {
   const { showAlert } = useAlert();
 
   const { data: projectData } = useGetProjectData(id);
-  const { updateProject, isLoading } = useUpdateProject({
+  const { updateProject } = useUpdateProject({
     id,
     onSuccess: () => {
       showAlert('수정 되었습니다.');
@@ -30,6 +30,8 @@ const ModifyProject = () => {
       console.error('Error updating project:', error);
     },
   });
+
+  console.log(projectData);
 
   const {
     handleSubmit: onSubmitHandler,
@@ -65,7 +67,6 @@ const ModifyProject = () => {
       skillTagId: data.languages,
       description: data.markdownEditor,
     };
-    console.log(formData);
 
     try {
       await updateProject(formData);

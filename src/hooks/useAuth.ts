@@ -59,12 +59,13 @@ export const useAuth = () => {
     mutationFn: async ({ email, password }) => {
       const response = await postLogin({ email, password });
       const { accessToken, refreshToken } = response.data;
-      return { accessToken, refreshToken };
+      const userData = response.user;
+      return { accessToken, refreshToken, userData };
     },
     onSuccess: (data) => {
-      const { accessToken, refreshToken } = data;
+      const { accessToken, refreshToken, userData } = data;
       showAlert('로그인 되었습니다.');
-      storeLogin(accessToken, refreshToken);
+      storeLogin(accessToken, refreshToken, userData);
       navigate(ROUTES.home);
     },
     onError: () => {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import MozipCategoryComponent from './positionComponent/PositionComponent';
 import LanguageComponent from './languageComponent/LanguageComponent';
 import FieldCategoryComponent from './fieldCategoryComponent/FieldCategoryComponent';
@@ -15,6 +15,8 @@ interface ProjectInformationProps {
   control: Control<CreateProjectFormValues>;
   setValue: UseFormSetValue<CreateProjectFormValues>;
   apiData?: ProjectDetailExtended;
+  isSubmit: boolean;
+  setIsSubmit: Dispatch<SetStateAction<boolean>>;
 }
 
 const ProjectInformationInput = ({
@@ -22,11 +24,20 @@ const ProjectInformationInput = ({
   control,
   setValue,
   apiData,
+  isSubmit,
+  setIsSubmit,
 }: ProjectInformationProps) => {
   const [selectedMozip, setSelectedMozip] = useState<number[]>([]);
   const [selectedMethod, setSelectedMethod] = useState<number>(0);
 
   const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
+
+  useEffect(() => {
+    if (isSubmit) {
+      setSelectedMozip([]);
+      setSelectedMethod(0);
+    }
+  }, [isSubmit, setIsSubmit]);
 
   return (
     <>

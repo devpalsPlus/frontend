@@ -7,12 +7,14 @@ import Button from '../../components/common/Button/Button';
 import MarkdownEditorView from '../../components/projectFormComponents/editor/MarkdownEditorView';
 import Avatar from '../../components/common/avatar/Avatar';
 import { EyeIcon } from '@heroicons/react/24/outline';
+import useAuthStore from '../../store/authStore';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
   const id = Number(projectId);
   const navigate = useNavigate();
   const { data, isLoading, isFetching } = useGetProjectData(id);
+  const { userData } = useAuthStore((state) => state);
 
   if (!data) {
     return <div>데이터가 없습니다.</div>;
@@ -22,7 +24,12 @@ const ProjectDetail = () => {
   if (isFetching) return <div>isFetching...</div>;
 
   const handleApplyClick = () => {
-    navigate(`/apply/${id}`);
+    if (userData?.id === data.User.id) {
+      alert('본인의 프로젝트는 지원할 수 없습니다.');
+      return;
+    } else {
+      navigate(`/apply/${id}`);
+    }
   };
 
   return (
