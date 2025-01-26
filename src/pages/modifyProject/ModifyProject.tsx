@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { formatDate } from '../../util/format';
 import useUpdateProject from '../../hooks/useUpdateProject';
 import { useAlert } from '../../hooks/useAlert';
+import { ROUTES } from '../../constants/routes';
 
 const ModifyProject = () => {
   const navigate = useNavigate();
@@ -24,14 +25,12 @@ const ModifyProject = () => {
     id,
     onSuccess: () => {
       showAlert('수정 되었습니다.');
-      navigate(`/project-detail/${id}`);
+      navigate(`${ROUTES.projectDetail}/${id}`);
     },
     onError: (error) => {
       console.error('Error updating project:', error);
     },
   });
-
-  console.log(projectData);
 
   const {
     handleSubmit: onSubmitHandler,
