@@ -1,5 +1,5 @@
 import { createContext, PropsWithChildren, useEffect, useState } from 'react';
-import type { SearchFilters } from '../models/searchFilters';
+import type { SearchFilters } from '../models/SearchFilters';
 
 type SearchFilteringKey =
   | 'skillTag'
