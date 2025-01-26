@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './LayoutSidebar.styled';
-import Sidebar from '../../sidebar/Sidebar';
 interface LayoutSidebarProps {
   children: React.ReactNode;
 }
@@ -11,7 +10,7 @@ const LayoutSidebar = ({ children }: LayoutSidebarProps) => {
 
   return (
     <S.Container>
-      <Sidebar />
+      {/* <Sidebar /> */}
       {children}
     </S.Container>
   );

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import * as S from './PositionComponent.styled';
 import { FieldErrors } from 'react-hook-form';
-import { handleClick } from '../../../../util/handleClick.util';
 import { PositionTag } from '../../../../models/tags';
 import { ProjectPositionTag } from '../../../../models/projectDetail';
 
@@ -26,6 +25,19 @@ const MozipCategoryComponent = ({
 }: MozipCategoryComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
+  const handleClick = (idx: number) => {
+    setSelectedMozip((prev) => {
+      const isAlreadySelected = prev.some((item) => item === idx);
+
+      const updated = isAlreadySelected
+        ? prev.filter((item) => item !== idx)
+        : [...prev, idx];
+
+      setValue('position', updated);
+      return updated;
+    });
+  };
+
   useEffect(() => {
     const positionTagIdList: number[] = [];
     apiDataPosition?.map((tag) => {
@@ -44,9 +56,7 @@ const MozipCategoryComponent = ({
             <S.PositionButtonFeat
               position={position.name}
               isSelected={isSelected}
-              onClick={() =>
-                handleClick(idx + 1, setValue, name, setSelectedMozip)
-              }
+              onClick={() => handleClick(idx + 1)}
               key={idx + 1}
               isHover={true}
             />
