@@ -9,6 +9,7 @@ import ProjectInformationInput from '../../components/projectFormComponents/proj
 import { createProject } from '../../api/joinProject.api';
 import { useState } from 'react';
 import { useSaveSearchFiltering } from '../../hooks/useSaveSearchFiltering';
+import { ROUTES } from '../../constants/routes';
 
 export const createProjectScheme = z.object({
   startDate: z
@@ -98,7 +99,7 @@ const CreateProject = () => {
         alert('프로젝트가 성공적으로 생성되었습니다.');
         setIsSubmit(true);
         handleUpdateFilters('skillTag', []);
-        navigate(`/main`);
+        navigate(ROUTES.main);
       }
     });
   };

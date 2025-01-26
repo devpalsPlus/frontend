@@ -3,7 +3,7 @@ import Input from '../../components/projectFormComponents/inputComponent/inputCo
 import { useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Route, useNavigate, useParams } from 'react-router-dom';
 import { formatDate } from '../../util/format';
 import { postApplicantProject } from '../../api/joinProject.api';
 import { joinProject } from '../../models/joinProject';
@@ -11,6 +11,7 @@ import useGetProjectData from '../../hooks/useJoinProject';
 import CareersComponent from '../../components/applyComponents/careersComponent/CareersComponent';
 import PhoneComponent from '../../components/applyComponents/phoneComponent/PhoneComponent';
 import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
+import { ROUTES } from '../../constants/routes';
 
 const ApplyScheme = z.object({
   email: z
@@ -72,7 +73,7 @@ const Apply = () => {
       switch (status) {
         case 201:
           alert('지원서가 성공적으로 제출되었습니다.');
-          navigate(`/main`);
+          navigate(ROUTES.main);
           break;
         case 400:
           alert('잘못된 요청입니다.');

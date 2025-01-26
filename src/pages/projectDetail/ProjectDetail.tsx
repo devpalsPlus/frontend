@@ -8,6 +8,7 @@ import MarkdownEditorView from '../../components/projectFormComponents/editor/Ma
 import Avatar from '../../components/common/avatar/Avatar';
 import { EyeIcon } from '@heroicons/react/24/outline';
 import useAuthStore from '../../store/authStore';
+import { ROUTES } from '../../constants/routes';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -28,7 +29,7 @@ const ProjectDetail = () => {
       alert('본인의 프로젝트는 지원할 수 없습니다.');
       return;
     } else {
-      navigate(`/apply/${id}`);
+      navigate(`${ROUTES.apply}/${id}`);
     }
   };
 
