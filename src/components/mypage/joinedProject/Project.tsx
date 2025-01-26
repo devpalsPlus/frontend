@@ -32,7 +32,7 @@ const Project = ({ project }: ProjectProps) => {
           </S.Beginner>
           <span>{project.totalMember}명</span>
         </S.Wrapper>
-        <S.State>{project.isDone ? '마감' : '모집 중'}</S.State>
+        <S.State>{project.isDone ? '모집 마감' : '모집 중'}</S.State>
       </S.Member>
       <S.Skill>
         {skillsShow.map((skill) => (

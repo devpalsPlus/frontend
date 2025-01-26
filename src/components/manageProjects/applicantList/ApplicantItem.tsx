@@ -18,7 +18,7 @@ function ApplicantItem({
       <S.Button
         $isSelected={isSelected}
         onClick={() => onClick(applicantData.userId)}
-        passStatus={applicantData.status}
+        $passStatus={applicantData.status}
       >
         {applicantData.User.nickname}
       </S.Button>

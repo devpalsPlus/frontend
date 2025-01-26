@@ -100,7 +100,7 @@ export const Wrapper = styled.div`
   ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 13px;
 
     li {
       display: flex;

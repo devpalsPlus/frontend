@@ -9,6 +9,12 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.color.white};
   border-radius: 20px;
   border: 1px solid #ededed;
+
+  &:hover {
+    background-color: #eee;
+  }
+
+  transition: background-color 0.2s ease-in-out;
 `;
 
 export const Title = styled.div`

@@ -13,6 +13,7 @@ export const myInfoKey = {
 
 export const userInfoKey = {
   userProfile: ['userProfile'],
+  userJoinedList: ['userJoinedProjectList'],
 } as const;
 
 export const ProjectListKey = {

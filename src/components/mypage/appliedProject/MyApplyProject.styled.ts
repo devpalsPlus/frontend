@@ -4,6 +4,12 @@ export const TitleWrapper = styled.div`
   padding: 1rem 0 1rem 1.2rem;
 `;
 
+export const NoWrapper = styled.div`
+  width: 100%;
+  height: 80%;
+  padding: 2rem 0 5rem;
+`;
+
 export const Container = styled.div`
   background-color: rgb(246 246 246);
   border-radius: ${({ theme }) => theme.borderRadius.large};
