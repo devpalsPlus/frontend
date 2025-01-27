@@ -1,35 +1,47 @@
 import * as S from './MyProjectVolunteersPass.styled';
 import Sidebar from '../../../components/common/sidebar/Sidebar';
-import {
-  DocumentTextIcon,
-  PencilSquareIcon,
-  UserIcon,
-} from '@heroicons/react/24/outline';
-import { ROUTES } from '../../../constants/routes';
 import { useParams } from 'react-router-dom';
-
+import { applicantsMenuItems } from '../../../constants/sidebarItems';
+import InfoCard from '../../../components/common/infoCard/InfoCard';
+import MainLogo from '../../../assets/mainlogo.svg';
+import { usePassNonPassList } from '../../../hooks/usePassNonPassList';
+import useGetProjectData from '../../../hooks/useJoinProject';
+import ProjectHeader from '../../../components/manageProjects/ProjectHeader';
+import PassNonPassList from '../../../components/manageProjects/passNonPassList/PassNonPassList';
+import NoContent from '../../../components/common/noContent/NoContent';
 const MyProjectVolunteersPass = () => {
   const { projectId } = useParams();
-  const menuItems = [
-    {
-      label: '지원자 보기',
-      path: `${ROUTES.manageProjectsRoot}/${projectId}`,
-      icon: <UserIcon />,
-    },
-    {
-      label: '지원자 합/불 관리',
-      path: `${ROUTES.manageProjectsPassNonPass}/${projectId}`,
-      icon: <DocumentTextIcon />,
-    },
-    {
-      label: '공고 관리',
-      path: '/mypage/apply-projects',
-      icon: <PencilSquareIcon />,
-    },
-  ];
+  const { data: projectData } = useGetProjectData(Number(projectId));
+  const { passNonPassListData } = usePassNonPassList(Number(projectId));
+
   return (
     <S.Container>
-      <Sidebar menuItems={menuItems} />
+      <Sidebar
+        profileImage={MainLogo}
+        menuItems={applicantsMenuItems(Number(projectId))}
+      />
+      <InfoCard>
+        {projectData && <ProjectHeader projectData={projectData} />}
+        {passNonPassListData?.accepted.length > 0 ||
+        passNonPassListData?.rejected.length > 0 ? (
+          <S.ResultContainer>
+            <S.ListWrapper>
+              <S.Title>합격자 리스트</S.Title>
+              <PassNonPassList
+                passNonPassListData={passNonPassListData?.accepted}
+              />
+            </S.ListWrapper>
+            <S.ListWrapper>
+              <S.Title>불 합격자 리스트</S.Title>
+              <PassNonPassList
+                passNonPassListData={passNonPassListData?.rejected}
+              />
+            </S.ListWrapper>
+          </S.ResultContainer>
+        ) : (
+          <NoContent type='applicants' />
+        )}
+      </InfoCard>
     </S.Container>
   );
 };
