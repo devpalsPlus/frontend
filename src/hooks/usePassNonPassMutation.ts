@@ -9,7 +9,7 @@ interface useMutationParams {
   userId: number;
 }
 
-export const usePassNonPass = (
+export const usePassNonPassMutation = (
   projectId: number,
   openModal: (message: string) => void
 ) => {
