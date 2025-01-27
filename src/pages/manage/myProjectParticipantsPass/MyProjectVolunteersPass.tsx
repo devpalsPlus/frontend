@@ -39,7 +39,7 @@ const MyProjectVolunteersPass = () => {
             </S.ListWrapper>
           </S.ResultContainer>
         ) : (
-          <NoContent type='applicants' />
+          <NoContent type='passNonPass' />
         )}
       </InfoCard>
     </S.Container>
