@@ -3,6 +3,7 @@ import { myProjectList } from './manageProjectList';
 import { applicantInfo, applicantList, passNonPass } from './applicant';
 import { projectDetail } from './projectDetail';
 import {
+  myPageAppliedProjectList,
   myPageJoinedProjectList,
   myPagePositionTag,
   myPageProfile,
@@ -19,6 +20,7 @@ export const handlers = [
   myPagePositionTag,
   myPageSkillTag,
   myPageJoinedProjectList,
+  myPageAppliedProjectList,
 ];
 
 export const worker = setupWorker(...handlers);
