@@ -8,6 +8,10 @@ export const Container = styled.div`
   border: 1px solid #ededed;
   width: 100%;
 
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 1.3rem;
+  }
+
   &:hover {
     background-color: #eee;
   }
@@ -24,6 +28,10 @@ export const Title = styled.p`
   font-weight: 600;
 
   margin-bottom: 1rem;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: 1rem;
+  }
 `;
 
 export const Date = styled.div`
@@ -35,6 +43,10 @@ export const Date = styled.div`
   span {
     font-size: 0.9rem;
     color: #777777;
+
+    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+      font-size: 0.7rem;
+    }
   }
 `;
 
@@ -45,11 +57,21 @@ export const DateWrapper = styled.div`
   padding: 0.2rem 0.65rem;
   background-color: #3e5879;
   border-radius: 10px;
+  text-align: center;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 0.3rem;
+  }
 
   span {
     font-weight: 500;
     font-size: 0.78rem;
     color: #fff;
+    word-break: keep-all;
+
+    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+      font-size: 0.6rem;
+    }
   }
 `;
 
@@ -61,6 +83,10 @@ export const Member = styled.div`
 
   span {
     font-size: 0.9rem;
+
+    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+      font-size: 0.7rem;
+    }
   }
 `;
 
@@ -92,10 +118,20 @@ export const Skill = styled.div`
   align-items: center;
   gap: 0.6rem;
 
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    gap: 0.25rem;
+  }
+
   img {
     width: 40px;
+    height: 40px;
     border: 1px solid rgb(196 196 196);
     border-radius: 50%;
+
+    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   svg {
