@@ -14,6 +14,10 @@ export const Container = styled.div`
   padding: 2.5rem 3rem;
   margin-top: 1rem;
 
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 2rem;
+  }
+
   form {
     display: flex;
     flex-direction: column;
@@ -33,6 +37,12 @@ export const BackgroundWrapper = styled.div`
 
     @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
+    }
+  }
+
+  li {
+    span {
+      font-size: 0.7rem;
     }
   }
 `;
@@ -145,7 +155,9 @@ export const Wrapper = styled.div`
   }
 
   button {
-    margin-right: 1rem;
+    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+      font-size: 0.9rem;
+    }
   }
 `;
 
@@ -184,7 +196,7 @@ export const EditWrapper = styled.div`
   gap: 1rem;
   width: 100%;
   align-items: center;
-  margin-bottom: 2.6rem;
+  margin-bottom: 3rem;
 
   label {
     font-weight: 700;
