@@ -119,7 +119,7 @@ export const Skill = styled.div`
   gap: 0.6rem;
 
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
-    gap: 0.25rem;
+    gap: 0.2rem;
   }
 
   img {

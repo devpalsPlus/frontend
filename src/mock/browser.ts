@@ -9,7 +9,7 @@ import {
   myPageProfile,
   myPageSkillTag,
 } from './mypage';
-import { userPageProfile } from './userpage';
+import { userPageAppliedProjectList, userPageProfile } from './userpage';
 
 export const handlers = [
   myProjectList,
@@ -23,6 +23,7 @@ export const handlers = [
   myPageJoinedProjectList,
   myPageAppliedProjectList,
   userPageProfile,
+  userPageAppliedProjectList,
 ];
 
 export const worker = setupWorker(...handlers);
