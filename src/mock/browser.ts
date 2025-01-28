@@ -9,12 +9,12 @@ import {
 import { projectDetail } from './projectDetail';
 
 export const handlers = [
+  passNonPassList,
   myProjectList,
   applicantList,
   projectDetail,
   applicantInfo,
   passNonPass,
-  passNonPassList,
 ];
 
 export const worker = setupWorker(...handlers);
