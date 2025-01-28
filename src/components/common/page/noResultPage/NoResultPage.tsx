@@ -9,7 +9,7 @@ export default function NoResultPage({ height }: NoResultPageProps) {
   return (
     <S.Container height={height}>
       <S.Wrapper>
-        <span className='noResultTitle'>검색 결과가 없습니다.</span>
+        <S.Title className='noResultTitle'>검색 결과가 없습니다.</S.Title>
         <FaceFrownIcon />
       </S.Wrapper>
     </S.Container>

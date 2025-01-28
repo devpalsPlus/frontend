@@ -39,21 +39,21 @@ export default function FilteringContents() {
 
   return (
     <S.Container>
-      <div className='filteringButton skillTagButton' ref={filteringRef}>
-        <button onClick={handleSkillTagBoxToggle}>
+      <S.SkillTagButtonWrapper ref={filteringRef}>
+        <S.SkillTagButton onClick={handleSkillTagBoxToggle}>
           언어선택
           <ChevronDownIcon />
-        </button>
+        </S.SkillTagButton>
         {skillTagButtonToggle && (
-          <div className='skillTagBox' onClick={handleSkillTagFilterClick}>
+          <S.SkillTagBoxWrapper onClick={handleSkillTagFilterClick}>
             <SkillTagBox
               width='130%'
               onHandleSkillTagReset={handleSkillTagReset}
               isMain={true}
             />
-          </div>
+          </S.SkillTagBoxWrapper>
         )}
-      </div>
+      </S.SkillTagButtonWrapper>
       <Filtering
         selects={positionTagsData}
         defaultValue={SEARCH_FILTERING_DEFAULT_VALUE.POSITION}
@@ -62,19 +62,20 @@ export default function FilteringContents() {
         selects={methodTagsData}
         defaultValue={SEARCH_FILTERING_DEFAULT_VALUE.METHOD}
       />
-      <S.BeginnerDiv
+      <S.BeginnerButtonWrapper
         className='filteringButton beginnerButton'
         $toggle={searchFilters.isBeginner}
       >
-        <button
+        <S.BeginnerButton
+          $toggle={searchFilters.isBeginner}
           onClick={() =>
             handleUpdateFilters('isBeginner', !searchFilters.isBeginner)
           }
         >
           새싹 모집
-          <img className='isBeginner' src={beginner} alt='plant' />
-        </button>
-      </S.BeginnerDiv>
+          <S.BeginnerImg src={beginner} alt='plant' />
+        </S.BeginnerButton>
+      </S.BeginnerButtonWrapper>
     </S.Container>
   );
 }

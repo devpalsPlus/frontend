@@ -8,11 +8,11 @@ interface ProjectStatProps {
 export default function ProjectStat({ title, count }: ProjectStatProps) {
   return (
     <S.Container>
-      <div className='border'></div>
-      <div className='stat'>
-        <div className='number'>{count}</div>
-        <div className='title'>{title}</div>
-      </div>
+      <S.Border></S.Border>
+      <S.StatWrapper>
+        <S.StatNumber>{count}</S.StatNumber>
+        <S.StatTitle>{title}</S.StatTitle>
+      </S.StatWrapper>
     </S.Container>
   );
 }

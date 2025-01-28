@@ -1,9 +1,9 @@
 import {
-  fetchMethodTag,
-  fetchPositionTag,
+  getMethodTag,
+  getPositionTag,
 } from './../api/projectSearchFiltering.api';
 import { useQueries } from '@tanstack/react-query';
-import { fetchSkillTag } from '../api/projectSearchFiltering.api';
+import { getSkillTag } from '../api/projectSearchFiltering.api';
 import { useEffect, useState } from 'react';
 import type { MethodTag, PositionTag, SkillTag } from '../models/tags';
 
@@ -16,19 +16,19 @@ export const useSearchFilteringSkillTag = () => {
     queries: [
       {
         queryKey: ['skillTagsData', skillTagsData],
-        queryFn: async () => await fetchSkillTag(),
+        queryFn: async () => await getSkillTag(),
         staleTime: Infinity,
         gcTime: Infinity,
       },
       {
         queryKey: ['positionsData', positionTagsData],
-        queryFn: async () => await fetchPositionTag(),
+        queryFn: async () => await getPositionTag(),
         staleTime: Infinity,
         gcTime: Infinity,
       },
       {
         queryKey: ['fetchMethodTag', methodTagsData],
-        queryFn: async () => await fetchMethodTag(),
+        queryFn: async () => await getMethodTag(),
         staleTime: Infinity,
         gcTime: Infinity,
       },
