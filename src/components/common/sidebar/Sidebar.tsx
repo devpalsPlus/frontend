@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import Avatar from '../avatar/Avatar';
 import * as S from './Sidebar.styled';
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import EditMyProfileImg from './editMyProfileImg/EditMyProfileImg';
 import useAuthStore from '../../../store/authStore';
 
@@ -69,4 +69,4 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
   );
 };
 
-export default Sidebar;
+export default React.memo(Sidebar);
