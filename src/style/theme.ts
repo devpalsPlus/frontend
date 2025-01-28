@@ -25,11 +25,15 @@ export type ButtonSchema = 'primary';
 export type LayoutWidth = 'desktop' | 'tablet' | 'mobile';
 
 export type BorderRadiusSize = 'primary' | 'large';
+
+export type MediaQuery = 'mobile' | 'tablet' | 'desktop';
+
 interface Theme {
   color: Record<ColorKey, string>;
   heading: {
     [key in HeadingSize]: {
       fontSize: string;
+      tabletFontSize: string;
     };
   };
   buttonSize: {
@@ -52,6 +56,9 @@ interface Theme {
       [key in LayoutWidth]: string;
     };
   };
+  mediaQuery: {
+    [key in MediaQuery]: string;
+  };
 }
 
 export const defaultTheme: Theme = {
@@ -68,12 +75,12 @@ export const defaultTheme: Theme = {
     navy: '#213555',
   },
   heading: {
-    large: { fontSize: '1.75rem' },
-    semiLarge: { fontSize: '1.5rem' },
-    medium: { fontSize: '1.25rem' },
-    semiSmall: { fontSize: '1.1rem' },
-    small: { fontSize: '1rem' },
-    verySmall: { fontSize: '0.5rem' },
+    large: { fontSize: '1.75rem', tabletFontSize: '1.5rem' },
+    semiLarge: { fontSize: '1.5rem', tabletFontSize: '1.25rem' },
+    medium: { fontSize: '1.25rem', tabletFontSize: '1.1rem' },
+    semiSmall: { fontSize: '1.1rem', tabletFontSize: '0.9rem' },
+    small: { fontSize: '1rem', tabletFontSize: '0.8rem' },
+    verySmall: { fontSize: '0.5rem', tabletFontSize: '0.4rem' },
   },
   buttonSize: {
     primary: {
@@ -101,5 +108,10 @@ export const defaultTheme: Theme = {
       tablet: '768px',
       mobile: '320px',
     },
+  },
+  mediaQuery: {
+    mobile: '(max-width: 768px)',
+    tablet: '(max-width: 1024px)',
+    desktop: '(min-width: 1025px)',
   },
 };
