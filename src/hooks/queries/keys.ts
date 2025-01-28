@@ -5,6 +5,7 @@ export const managedProjectsKey = {
 export const applicantKey = {
   all: ['applicantList'],
   info: ['applicantInfo'],
+  passNonPass: ['passNonPassList'],
 };
 
 export const myInfoKey = {

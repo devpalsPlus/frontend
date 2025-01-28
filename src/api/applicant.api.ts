@@ -26,3 +26,10 @@ export const patchPassNonPassStatus = async (
   );
   return response.data;
 };
+
+export const getPassNonPassList = async (projectId: number) => {
+  const response = await httpClient.get(
+    `/project/${projectId}/applicant/summary`
+  );
+  return response.data;
+};
