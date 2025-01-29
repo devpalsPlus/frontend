@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
 import * as S from './Modal.styled';
 import ScrollPreventor from './ScrollPreventor';
 interface ModalProps {
@@ -43,6 +43,9 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
           <S.ModalCloseButton onClick={handleClose}>
             <XMarkIcon />
           </S.ModalCloseButton>
+          <S.ModalIconWrapper>
+            <CheckCircleIcon />
+          </S.ModalIconWrapper>
           <S.ModalContents>{children}</S.ModalContents>
         </S.ModalBody>
       </S.ModalContainer>

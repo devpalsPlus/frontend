@@ -41,28 +41,44 @@ export const ModalCloseButton = styled.button`
   position: absolute;
   top: 0;
   right: 0;
-  padding: 12px;
+  margin: 0.8rem;
+  background: #ccc;
+  border-radius: 50%;
+  padding: 0.1rem;
 
   svg {
-    color: #fff;
+    color: ${({ theme }) => theme.color.white};
     width: 20px;
     height: 20px;
   }
 `;
 
+export const ModalIconWrapper = styled.div`
+  margin-bottom: 1rem;
+
+  svg {
+    color: #385a91;
+    width: 40px;
+    height: 40px;
+  }
+`;
+
 export const ModalContents = styled.p`
-  font-size: 2rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.color.white};
+  color: #393939;
 `;
 
 export const ModalBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 56px 32px 32px;
+  padding: 4rem 3rem;
   border-radius: ${({ theme }) => theme.borderRadius.primary};
-  background-color: ${({ theme }) => theme.color.navy};
+  background-color: ${({ theme }) => theme.color.white};
   max-width: 80%;
 `;
