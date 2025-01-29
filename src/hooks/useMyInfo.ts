@@ -7,7 +7,6 @@ import {
   putMyInfo,
 } from '../api/mypage.api';
 import { EditMyInfo, UserInfo } from '../models/userInfo';
-import { useAlert } from './useAlert';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../constants/routes';
@@ -17,6 +16,7 @@ import {
   MyAppliedProjectStatusList,
   MyJoinedProjectList,
 } from '../models/userProject';
+import { MODAL_MESSAGE } from '../constants/modalMessage';
 
 export const useMyProfileInfo = () => {
   const { isLoggedIn } = useAuthStore();
@@ -31,9 +31,10 @@ export const useMyProfileInfo = () => {
   return { myData: data, isLoading };
 };
 
-export const useEditMyProfileInfo = () => {
+export const useEditMyProfileInfo = (
+  handleModalOpen: (message: string) => void
+) => {
   const navigate = useNavigate();
-  const { showAlert } = useAlert();
   const queryClient = useQueryClient();
 
   const editProfileMutation = useMutation<void, AxiosError, EditMyInfo>({
@@ -42,11 +43,11 @@ export const useEditMyProfileInfo = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: myInfoKey.myProfile });
-      showAlert('프로필 수정이 완료되었습니다.');
+      handleModalOpen(MODAL_MESSAGE.myProfileSuccess);
       navigate(ROUTES.mypage);
     },
     onError: () => {
-      showAlert('프로필 수정에 실패했습니다.');
+      handleModalOpen(MODAL_MESSAGE.myProfileFail);
     },
   });
 
@@ -57,9 +58,10 @@ export const useEditMyProfileInfo = () => {
   return { editMyProfile };
 };
 
-export const useUploadProfileImg = () => {
+export const useUploadProfileImg = (
+  handleModalOpen: (message: string) => void
+) => {
   const queryClient = useQueryClient();
-  const { showAlert } = useAlert();
 
   const uploadProfileImgMutation = useMutation<void, AxiosError, File>({
     mutationFn: async (data: File) => {
@@ -67,10 +69,10 @@ export const useUploadProfileImg = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: myInfoKey.myProfile });
-      showAlert('프로필 이미지가 업로드 되었습니다.');
+      handleModalOpen(MODAL_MESSAGE.profileImgSuccess);
     },
     onError: () => {
-      showAlert(`이미지는 5MB 이하, .png.jpg.jpeg.svg 형식만 가능합니다.`);
+      handleModalOpen(MODAL_MESSAGE.profileImgFail);
     },
   });
 
