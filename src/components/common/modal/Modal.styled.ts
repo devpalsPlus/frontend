@@ -67,6 +67,7 @@ export const ModalContents = styled.p`
   font-size: 1.1rem;
   font-weight: 600;
   color: #393939;
+  text-align: center;
 `;
 
 export const ModalBody = styled.div`
