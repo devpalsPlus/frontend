@@ -10,6 +10,7 @@ import Error from '../pages/error/Error';
 import { ROUTES } from '../constants/routes';
 import useAuthStore from '../store/authStore';
 import ProtectRoute from '../components/common/ProtectRoute';
+import NotFoundPage from '../components/common/page/notFoundPage/NotFoundPage';
 const Login = lazy(() => import('../pages/login/Login'));
 const Register = lazy(() => import('../pages/register/Register'));
 const ChangePassword = lazy(
@@ -216,6 +217,10 @@ const AppRoutes = () => {
           </Suspense>
         </ProtectRoute>
       ),
+    },
+    {
+      path: ROUTES.notFound,
+      element: <NotFoundPage />,
     },
   ];
 
