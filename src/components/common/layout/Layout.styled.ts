@@ -5,4 +5,8 @@ export const LayoutContainer = styled.div`
   margin: 0 auto;
   max-width: ${({ theme }) => theme.layout.width.desktop};
   padding: 0 120px;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 0 60px;
+  }
 `;

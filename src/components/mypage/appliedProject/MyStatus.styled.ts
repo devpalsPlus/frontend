@@ -3,12 +3,17 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.3rem;
   background-color: ${({ theme }) => theme.color.white};
   border-radius: 20px;
   border: 1px solid #ededed;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: 0.9rem;
+  }
 
   &:hover {
     background-color: #eee;
@@ -42,5 +47,9 @@ export const Status = styled.div<{ $isAccepted: boolean }>`
   span {
     font-size: 0.8rem;
     font-weight: 800;
+
+    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+      font-size: 0.6rem;
+    }
   }
 `;
