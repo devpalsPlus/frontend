@@ -1,0 +1,182 @@
+{
+  "accepted": [
+    {
+      "id": 18,
+      "userId": 1,
+      "projectId": 72,
+      "message": null,
+      "email": null,
+      "phoneNumber": null,
+      "career": null,
+      "status": "ACCEPTED",
+      "createdAt": "2025-01-23T09:08:13.000Z",
+      "updatedAt": "2025-01-23T09:08:13.000Z",
+      "User": {
+        "id": 1,
+        "nickname": "Jeny"
+      }
+    },
+    {
+      "id": 18,
+      "userId": 2,
+      "projectId": 72,
+      "message": null,
+      "email": null,
+      "phoneNumber": null,
+      "career": null,
+      "status": "ACCEPTED",
+      "createdAt": "2025-01-23T09:08:13.000Z",
+      "updatedAt": "2025-01-23T09:08:13.000Z",
+      "User": {
+        "id": 2,
+        "nickname": "Jeny1"
+      }
+    },
+    {
+      "id": 18,
+      "userId": 3,
+      "projectId": 72,
+      "message": null,
+      "email": null,
+      "phoneNumber": null,
+      "career": null,
+      "status": "ACCEPTED",
+      "createdAt": "2025-01-23T09:08:13.000Z",
+      "updatedAt": "2025-01-23T09:08:13.000Z",
+      "User": {
+        "id": 3,
+        "nickname": "Jeny3"
+      }
+    },
+    {
+      "id": 18,
+      "userId": 4,
+      "projectId": 72,
+      "message": null,
+      "email": null,
+      "phoneNumber": null,
+      "career": null,
+      "status": "ACCEPTED",
+      "createdAt": "2025-01-23T09:08:13.000Z",
+      "updatedAt": "2025-01-23T09:08:13.000Z",
+      "User": {
+        "id": 4,
+        "nickname": "Jeny"
+      }
+    },
+    {
+      "id": 18,
+      "userId": 5,
+      "projectId": 72,
+      "message": null,
+      "email": null,
+      "phoneNumber": null,
+      "career": null,
+      "status": "ACCEPTED",
+      "createdAt": "2025-01-23T09:08:13.000Z",
+      "updatedAt": "2025-01-23T09:08:13.000Z",
+      "User": {
+        "id": 5,
+        "nickname": "Jeny1"
+      }
+    },
+    {
+      "id": 18,
+      "userId": 6,
+      "projectId": 72,
+      "message": null,
+      "email": null,
+      "phoneNumber": null,
+      "career": null,
+      "status": "ACCEPTED",
+      "createdAt": "2025-01-23T09:08:13.000Z",
+      "updatedAt": "2025-01-23T09:08:13.000Z",
+      "User": {
+        "id": 6,
+        "nickname": "Jeny"
+      }
+    },
+    {
+      "id": 18,
+      "userId": 7,
+      "projectId": 72,
+      "message": null,
+      "email": null,
+      "phoneNumber": null,
+      "career": null,
+      "status": "ACCEPTED",
+      "createdAt": "2025-01-23T09:08:13.000Z",
+      "updatedAt": "2025-01-23T09:08:13.000Z",
+      "User": {
+        "id": 7,
+        "nickname": "Jeny1"
+      }
+    },
+    {
+      "id": 18,
+      "userId": 8,
+      "projectId": 72,
+      "message": null,
+      "email": null,
+      "phoneNumber": null,
+      "career": null,
+      "status": "ACCEPTED",
+      "createdAt": "2025-01-23T09:08:13.000Z",
+      "updatedAt": "2025-01-23T09:08:13.000Z",
+      "User": {
+        "id": 8,
+        "nickname": "Jeny"
+      }
+    },
+    {
+      "id": 18,
+      "userId": 9,
+      "projectId": 72,
+      "message": null,
+      "email": null,
+      "phoneNumber": null,
+      "career": null,
+      "status": "ACCEPTED",
+      "createdAt": "2025-01-23T09:08:13.000Z",
+      "updatedAt": "2025-01-23T09:08:13.000Z",
+      "User": {
+        "id": 9,
+        "nickname": "Jeny1"
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "id": 19,
+      "userId": 10,
+      "projectId": 72,
+      "message": null,
+      "email": null,
+      "phoneNumber": null,
+      "career": null,
+      "status": "REJECTED",
+      "createdAt": "2025-01-23T09:08:20.000Z",
+      "updatedAt": "2025-01-23T09:08:20.000Z",
+      "User": {
+        "id": 10,
+        "nickname": "룰루"
+      }
+    },
+    {
+      "id": 20,
+      "userId": 11,
+      "projectId": 72,
+      "message": null,
+      "email": null,
+      "phoneNumber": null,
+      "career": null,
+      "status": "REJECTED",
+      "createdAt": "2025-01-23T09:08:25.000Z",
+      "updatedAt": "2025-01-23T09:08:25.000Z",
+      "User": {
+        "id": 11,
+        "nickname": "종다리"
+      }
+    }
+  ]
+}

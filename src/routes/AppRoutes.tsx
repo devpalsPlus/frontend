@@ -209,11 +209,11 @@ const AppRoutes = () => {
       path: `${ROUTES.manageProjectsPassNonPass}/:projectId`,
       element: (
         <ProtectRoute redirectUrl={ROUTES.login}>
-          <ApplicantViewLayout>
-            <Suspense fallback={<LoadingSpinner />}>
+          <Suspense fallback={<LoadingSpinner />}>
+            <ApplicantViewLayout>
               <MyProjectVolunteersPass />
-            </Suspense>
-          </ApplicantViewLayout>
+            </ApplicantViewLayout>
+          </Suspense>
         </ProtectRoute>
       ),
     },

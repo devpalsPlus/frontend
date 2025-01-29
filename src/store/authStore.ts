@@ -13,7 +13,7 @@ interface AuthState {
   storeLogin: (
     accessToken: string,
     refreshToken: string,
-    userData: UserData
+    userData?: UserData
   ) => void;
   storeLogout: () => void;
 }
@@ -50,7 +50,7 @@ const useAuthStore = create(
       storeLogin: (
         accessToken: string,
         refreshToken: string,
-        userData: UserData
+        userData?: UserData
       ) => {
         setTokens(accessToken, refreshToken);
         set({ isLoggedIn: true, userData });

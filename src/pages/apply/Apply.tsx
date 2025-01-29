@@ -3,7 +3,7 @@ import Input from '../../components/projectFormComponents/inputComponent/inputCo
 import { useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Route, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { formatDate } from '../../util/format';
 import { postApplicantProject } from '../../api/joinProject.api';
 import { joinProject } from '../../models/joinProject';

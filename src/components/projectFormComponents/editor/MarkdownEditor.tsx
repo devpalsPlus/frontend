@@ -1,6 +1,11 @@
+import { UseControllerReturn } from 'react-hook-form';
 import * as S from './MarkdownEditor.styled';
 
-const MdEditorInput = ({ field }) => {
+interface MdEditorInputProps {
+  field: UseControllerReturn['field'];
+}
+
+const MdEditorInput = ({ field }: MdEditorInputProps) => {
   return (
     <>
       {/* 그냥 ...field 형태로 전달하니 동작 X */}
