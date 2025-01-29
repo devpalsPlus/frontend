@@ -29,8 +29,11 @@ export const Container = styled.div`
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 5%;
+  justify-content: space-between;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 1rem 2rem;
+  }
 
   a {
     display: inline-block;

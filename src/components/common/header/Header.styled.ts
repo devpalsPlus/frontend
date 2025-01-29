@@ -12,6 +12,11 @@ export const HeaderContainer = styled.div`
   img {
     width: 80px;
     height: 80px;
+
+    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+      width: 70px;
+      height: 70px;
+    }
   }
 
   .panel {
@@ -57,5 +62,9 @@ export const HeaderContainer = styled.div`
         padding: 1rem;
       }
     }
+  }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 10px 60px;
   }
 `;

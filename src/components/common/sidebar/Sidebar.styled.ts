@@ -6,11 +6,12 @@ export const Container = styled.div`
   border: 2px solid #f0f0f0;
   border-radius: ${({ theme }) => theme.borderRadius.large};
   width: 22%;
-  min-width: 140px;
+  min-width: 130px;
   height: 80vh;
   margin-right: 1.25rem;
   padding-bottom: 1rem;
 `;
+
 export const AvartarContainer = styled.div`
   width: 100%;
   display: flex;
@@ -44,6 +45,10 @@ export const MenuItem = styled.div<{ $isActive: boolean }>`
   background-color: ${({ $isActive }) =>
     $isActive ? '#f9f9f9' : 'transparent'};
 
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
+  }
+
   &:hover {
     background-color: #f9f9f9;
   }
@@ -52,6 +57,11 @@ export const MenuItem = styled.div<{ $isActive: boolean }>`
     color: #6d6d6d;
     width: 30px;
     height: 30px;
+
+    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+      width: 23px;
+      height: 23px;
+    }
   }
 `;
 export const IconWrapper = styled.div`

@@ -35,7 +35,7 @@ const UserProfile = () => {
           </S.Wrapper>
           <S.Wrapper>
             <label>스킬셋</label>
-            <S.BackgroundWrapper>
+            <S.BackgroundBox>
               <ul>
                 {userData?.skills.map((skill) => (
                   <li key={skill.skillName}>
@@ -49,7 +49,7 @@ const UserProfile = () => {
                   </li>
                 ))}
               </ul>
-            </S.BackgroundWrapper>
+            </S.BackgroundBox>
           </S.Wrapper>
           <S.Wrapper>
             <label>포지션</label>

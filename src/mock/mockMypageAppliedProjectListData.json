@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "projectTitle": "클론코딩 사이드 프로젝트 팀원 모집",
+    "status": "ACCEPTED"
+  },
+  {
+    "id": 2,
+    "projectTitle": "클론코딩 모집",
+    "status": "REJECTED"
+  }
+]

@@ -7,6 +7,14 @@ import {
   passNonPassList,
 } from './applicant';
 import { projectDetail } from './projectDetail';
+import {
+  myPageAppliedProjectList,
+  myPageJoinedProjectList,
+  myPagePositionTag,
+  myPageProfile,
+  myPageSkillTag,
+} from './mypage';
+import { userPageAppliedProjectList, userPageProfile } from './userpage';
 
 export const handlers = [
   myProjectList,
@@ -14,6 +22,13 @@ export const handlers = [
   projectDetail,
   applicantInfo,
   passNonPass,
+  myPageProfile,
+  myPagePositionTag,
+  myPageSkillTag,
+  myPageJoinedProjectList,
+  myPageAppliedProjectList,
+  userPageProfile,
+  userPageAppliedProjectList,
   passNonPassList,
 ];
 
