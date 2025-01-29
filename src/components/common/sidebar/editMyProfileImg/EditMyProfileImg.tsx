@@ -2,9 +2,12 @@ import React from 'react';
 import { useUploadProfileImg } from '../../../../hooks/useMyInfo';
 import * as S from './EditMyProfileImg.styled';
 import { PhotoIcon } from '@heroicons/react/24/outline';
+import { useModal } from '../../../../hooks/useModal';
+import Modal from '../../modal/Modal';
 
 const EditMyProfileImg = () => {
-  const { uploadProfileImg } = useUploadProfileImg();
+  const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
+  const { uploadProfileImg } = useUploadProfileImg(handleModalOpen);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -24,6 +27,9 @@ const EditMyProfileImg = () => {
           onChange={handleFileChange}
         />
       </label>
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Container>
   );
 };
