@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useEffect, useState } from 'react';
+import { createContext, PropsWithChildren, useState } from 'react';
 import type { SearchFilters } from '../models/SearchFilters';
 
 type SearchFilteringKey =
@@ -72,10 +72,6 @@ export function SearchFilteringProvider({ children }: PropsWithChildren) {
       }
     });
   };
-
-  useEffect(() => {
-    console.log('searchFilters', searchFilters);
-  }, [searchFilters]);
 
   return (
     <SearchFilteringContext.Provider

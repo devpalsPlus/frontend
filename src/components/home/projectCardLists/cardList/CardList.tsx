@@ -27,15 +27,11 @@ export default function CardList({ list }: CardListProps) {
 
   return (
     <S.Container>
-      <div className='deadLine'>
-        마감일: {formatDate(list.recruitmentEndDate)}
-      </div>
-      <div className='title'>
-        <span>{list.title}</span>
-      </div>
-      <div className='position'>
-        <div className='positionTitle'>모집 분야</div>
-        <div className='positionTags'>
+      <S.Deadline>마감일: {formatDate(list.recruitmentEndDate)}</S.Deadline>
+      <S.Title>{list.title}</S.Title>
+      <S.PositionWrapper>
+        <S.PositionTitle>모집 분야</S.PositionTitle>
+        <S.TagsWrapper>
           {Boolean(list.positionTags.length) &&
             listPositionTag.map((tag) => (
               <PositionButton position={tag.name} key={tag.id} />
@@ -56,9 +52,9 @@ export default function CardList({ list }: CardListProps) {
               <EllipsisHorizontalIcon />
             </S.EllipsisIcon>
           )}
-        </div>
-      </div>
-      <div className='skillTag'>
+        </S.TagsWrapper>
+      </S.PositionWrapper>
+      <S.TagsWrapper>
         {Boolean(list.skillTags.length) &&
           listSkillTag.map((tag) => (
             <SkillTagImg image={tag.img} key={tag.id} skillTag={tag.name} />
@@ -79,20 +75,20 @@ export default function CardList({ list }: CardListProps) {
             <EllipsisHorizontalIcon />
           </S.EllipsisIcon>
         )}
-      </div>
-      <div className='info'>
-        <div className='nickname'>
+      </S.TagsWrapper>
+      <S.InfoWrapper>
+        <S.ProfileWrapper>
           <Avatar size={'2.8rem'} image={list.User.profileImg} />
-          <span>{list.User.nickname}</span>
-        </div>
-        <div className='etc'>
-          {list.isBeginner && <img src={beginner} alt='plant' />}
-          <div className='view'>
+          <S.NickName>{list.User.nickname}</S.NickName>
+        </S.ProfileWrapper>
+        <S.StatusWrapper>
+          {list.isBeginner && <S.BeginnerImg src={beginner} alt='plant' />}
+          <S.ViewWrapper>
             <EyeIcon />
-            <span>{list.views}</span>
-          </div>
-        </div>
-      </div>
+            <S.ViewCount>{list.views}</S.ViewCount>
+          </S.ViewWrapper>
+        </S.StatusWrapper>
+      </S.InfoWrapper>
     </S.Container>
   );
 }

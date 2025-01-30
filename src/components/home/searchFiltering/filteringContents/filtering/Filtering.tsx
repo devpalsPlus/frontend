@@ -68,25 +68,25 @@ export default function Filtering({ selects, defaultValue }: FilteringProps) {
   return (
     <S.Container>
       <S.Wrapper ref={filteringRef}>
-        <div className='refWrapper'>
-          <button className='defaultValue' onClick={handleDropDownToggle}>
+        <S.RefWrapper>
+          <S.DefaultValueButton onClick={handleDropDownToggle}>
             {changeValue}
             <ChevronDownIcon />
-          </button>
+          </S.DefaultValueButton>
           {dropDownToggle && (
-            <div className='select'>
+            <S.SelectWrapper>
               {addAll.map((select) => (
-                <div
+                <S.SelectButton
                   className='option'
                   key={select.id}
                   onClick={() => handleValueClick(select.name, select.id)}
                 >
                   {select.name}
-                </div>
+                </S.SelectButton>
               ))}
-            </div>
+            </S.SelectWrapper>
           )}
-        </div>
+        </S.RefWrapper>
       </S.Wrapper>
     </S.Container>
   );

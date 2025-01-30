@@ -1,25 +1,21 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.nav`
   display: flex;
   justify-content: center;
   padding: 3rem 0;
 `;
 
 export const Wrapper = styled.div`
-  .paginationWrapper {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 
-    svg {
-      width: 1.5rem;
-    }
-    .doubleButton {
-      font-size: 1.1rem;
-      font-weight: 500;
-    }
+  svg {
+    width: 1.5rem;
   }
 `;
+
+export const PaginationWrapper = styled.div``;
 
 export const Pagination = styled.button<{ $select: boolean }>`
   display: flex;
@@ -33,4 +29,11 @@ export const Pagination = styled.button<{ $select: boolean }>`
   background-color: ${({ $select, theme }) =>
     $select ? theme.color.navy : 'initial'};
   color: ${({ $select, theme }) => ($select ? theme.color.white : 'initial')};
+`;
+
+export const PaginationButton = styled.button``;
+
+export const PaginationDoubleButton = styled.button`
+  font-size: 1.1rem;
+  font-weight: 500;
 `;

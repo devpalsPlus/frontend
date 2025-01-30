@@ -1,30 +1,30 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{
+export const Container = styled.div``;
+
+export const PositionButton = styled.button<{
   $isSelected: boolean;
   $isHover: boolean;
 }>`
-  .positionButton {
-    background-color: ${({ $isSelected, theme }) =>
-      $isSelected ? theme.buttonScheme.primary.bg : theme.color.lightgrey};
-    width: fit-content;
-    border: 1px solid
-      ${({ $isSelected, theme }) =>
-        $isSelected ? theme.buttonScheme.primary.bg : theme.color.border};
-    border-radius: ${({ theme }) => theme.borderRadius.primary};
-    padding: 0.2rem 0.4rem;
-    color: ${({ $isSelected, theme }) => $isSelected && theme.color.white};
+  background-color: ${({ $isSelected, theme }) =>
+    $isSelected ? theme.buttonScheme.primary.bg : theme.color.lightgrey};
+  width: fit-content;
+  border: 1px solid
+    ${({ $isSelected, theme }) =>
+      $isSelected ? theme.buttonScheme.primary.bg : theme.color.border};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
+  padding: 0.3rem 0.4rem;
+  color: ${({ $isSelected, theme }) => $isSelected && theme.color.white};
 
-    cursor: pointer;
-    transition: all 0.2s;
+  cursor: pointer;
+  transition: all 0.2s;
 
-    ${({ $isHover }) =>
-      $isHover &&
-      `
+  ${({ $isHover }) =>
+    $isHover &&
+    `
         &:hover {
           transform: scale(1.1);
           transition: all 100ms ease-in-out;
         }
       `}
-  }
 `;

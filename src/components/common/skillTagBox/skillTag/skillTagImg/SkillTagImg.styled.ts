@@ -4,10 +4,11 @@ import { SkillTagImgProps } from './SkillTagImg';
 export const Wrapper = styled.div<Pick<SkillTagImgProps, '$select'>>`
   background-color: ${({ theme }) => theme.color.white};
   border-radius: 50%;
-  img {
-    width: 2.2rem;
-    border-radius: 50%;
-    border: 1px solid
-      ${({ theme, $select }) => ($select ? 'none' : theme.color.border)};
-  }
+`;
+
+export const SkillImg = styled.img<Pick<SkillTagImgProps, '$select'>>`
+  width: 2.2rem;
+  border-radius: 50%;
+  border: 1px solid
+    ${({ theme, $select }) => ($select ? 'none' : theme.color.border)};
 `;
