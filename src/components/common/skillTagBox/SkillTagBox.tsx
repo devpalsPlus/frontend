@@ -26,7 +26,7 @@ export default function SkillTagBox({
     <S.Container width={width}>
       {Boolean(skillTagsData.length) && (
         <S.Wrapper>
-          <div className='skillTagWrapper'>
+          <S.SkillTagWrapper>
             {skillTagsData?.map((skillTagData) => (
               <SkillTag
                 skillTagData={skillTagData}
@@ -40,14 +40,14 @@ export default function SkillTagBox({
                 }
               />
             ))}
-          </div>
+          </S.SkillTagWrapper>
           {isMain && Boolean(searchFiltersSkillTag?.length) && (
-            <div className='buttonWrapper'>
-              <button className='resetButton' onClick={onHandleSkillTagReset}>
+            <S.ButtonWrapper>
+              <S.ResetButton onClick={onHandleSkillTagReset}>
                 <ArrowUturnLeftIcon />
-                <span>초기화</span>
-              </button>
-            </div>
+                <S.ResetSpan>초기화</S.ResetSpan>
+              </S.ResetButton>
+            </S.ButtonWrapper>
           )}
         </S.Wrapper>
       )}

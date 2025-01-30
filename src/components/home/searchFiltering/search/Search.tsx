@@ -23,28 +23,25 @@ export default function Search() {
   return (
     <S.Container>
       <S.Wrapper>
-        <form onSubmit={handleSubmitSearch}>
-          <input
+        <S.SearchForm onSubmit={handleSubmitSearch}>
+          <S.SearchInput
             type='text'
             className='search'
             placeholder='제목, 글 내용 검색'
             value={searchText}
             onChange={handleTextChange}
           />
-          <div className='buttonWrapper'>
+          <S.ButtonWrapper>
             {searchFilters.keyword && (
-              <button
-                className='searchIcon xMarkIcon'
-                onClick={handleSearchResetClick}
-              >
+              <S.SearchButton onClick={handleSearchResetClick}>
                 <XCircleIcon />
-              </button>
+              </S.SearchButton>
             )}
-            <button className='searchIcon'>
+            <S.SearchButton className='searchIcon'>
               <MagnifyingGlassIcon />
-            </button>
-          </div>
-        </form>
+            </S.SearchButton>
+          </S.ButtonWrapper>
+        </S.SearchForm>
       </S.Wrapper>
     </S.Container>
   );
