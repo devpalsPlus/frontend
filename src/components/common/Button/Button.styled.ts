@@ -9,4 +9,8 @@ export const CommonButton = styled.button<Omit<ButtonProps, 'children'>>`
   border-radius: ${({ theme, radius }) => theme.borderRadius[radius]};
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
   cursor: ${({ disabled }) => (disabled ? 'none' : 'pointer')};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

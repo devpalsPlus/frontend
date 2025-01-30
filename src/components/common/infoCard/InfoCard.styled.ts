@@ -10,4 +10,5 @@ export const Container = styled.div`
   min-width: 530px;
   height: 80vh;
   padding-bottom: 1rem;
+  position: relative;
 `;

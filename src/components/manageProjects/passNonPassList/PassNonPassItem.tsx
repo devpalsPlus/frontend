@@ -1,18 +1,20 @@
+import { useMutationParams } from '../../../hooks/usePassNonPassMutation';
 import { ApplicantInfo } from '../../../models/applicant';
+import DeleteButton from './DeleteButton';
 import * as S from './PassNonPassItem.styled';
-import { XCircleIcon } from '@heroicons/react/24/outline';
 
 interface PassNonPassItemProps {
   userInfo: ApplicantInfo;
+  onClick: ({ status, userId }: useMutationParams) => void;
 }
 
-function PassNonPassItem({ userInfo }: PassNonPassItemProps) {
+function PassNonPassItem({ userInfo, onClick }: PassNonPassItemProps) {
   return (
     <S.ItemWrapper>
       <S.NickName>{userInfo.User.nickname}</S.NickName>
-      <S.DeleteButton>
-        <XCircleIcon />
-      </S.DeleteButton>
+      <DeleteButton
+        onClick={() => onClick({ status: 'WAITING', userId: userInfo.userId })}
+      />
     </S.ItemWrapper>
   );
 }
