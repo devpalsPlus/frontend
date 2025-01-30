@@ -14,8 +14,10 @@ export default function PositionButton({
   isHover = false,
 }: PositionButtonProps) {
   return (
-    <S.Container onClick={onClick} $isSelected={isSelected} $isHover={isHover}>
-      <div className='positionButton'>{position}</div>
+    <S.Container onClick={onClick}>
+      <S.PositionButton $isSelected={isSelected} $isHover={isHover}>
+        {position}
+      </S.PositionButton>
     </S.Container>
   );
 }

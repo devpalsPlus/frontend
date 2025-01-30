@@ -64,47 +64,47 @@ export default function Pagination() {
 
   return (
     <S.Container>
-      <S.Wrapper>
-        <div className='paginationWrapper' onClick={handleMovePaginationClick}>
-          {currentPage !== 1 && (
-            <>
-              <button onClick={() => handleUpdateFilters('page', lastPage)}>
-                <ChevronLeftIcon />
-              </button>
-              <button
-                className='doubleButton'
-                onClick={() => handleChevronClick('pageFirst')}
-              >
-                1
-              </button>
-              <EllipsisHorizontalIcon />
-            </>
-          )}
-
-          {pagination.map((pageIndex) => (
-            <S.Pagination
-              key={pageIndex}
-              data-id={pageIndex}
-              $select={currentPage === pageIndex ? true : false}
+      <S.Wrapper onClick={handleMovePaginationClick}>
+        {currentPage !== 1 && (
+          <>
+            <S.PaginationButton
+              onClick={() => handleUpdateFilters('page', lastPage)}
             >
-              {pageIndex}
-            </S.Pagination>
-          ))}
-          {currentPage !== lastPage && (
-            <>
-              <EllipsisHorizontalIcon />
-              <button
-                className='doubleButton'
-                onClick={() => handleChevronClick('pageEnd')}
-              >
-                {lastPage}
-              </button>
-              <button onClick={() => handleChevronClick('pageNext')}>
-                <ChevronRightIcon />
-              </button>
-            </>
-          )}
-        </div>
+              <ChevronLeftIcon />
+            </S.PaginationButton>
+            <S.PaginationDoubleButton
+              className='doubleButton'
+              onClick={() => handleChevronClick('pageFirst')}
+            >
+              1
+            </S.PaginationDoubleButton>
+            <EllipsisHorizontalIcon />
+          </>
+        )}
+
+        {pagination.map((pageIndex) => (
+          <S.Pagination
+            key={pageIndex}
+            data-id={pageIndex}
+            $select={currentPage === pageIndex ? true : false}
+          >
+            {pageIndex}
+          </S.Pagination>
+        ))}
+        {currentPage !== lastPage && (
+          <>
+            <EllipsisHorizontalIcon />
+            <S.PaginationDoubleButton
+              className='doubleButton'
+              onClick={() => handleChevronClick('pageEnd')}
+            >
+              {lastPage}
+            </S.PaginationDoubleButton>
+            <S.PaginationButton onClick={() => handleChevronClick('pageNext')}>
+              <ChevronRightIcon />
+            </S.PaginationButton>
+          </>
+        )}
       </S.Wrapper>
     </S.Container>
   );

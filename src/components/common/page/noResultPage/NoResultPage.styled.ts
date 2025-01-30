@@ -13,11 +13,11 @@ export const Wrapper = styled.div`
   display: flex;
   gap: 0.5rem;
 
-  .noResultTitle {
-    font-size: 1.5rem;
-  }
-
   svg {
     width: 1.5rem;
   }
+`;
+
+export const Title = styled.span`
+  font-size: 1.5rem;
 `;

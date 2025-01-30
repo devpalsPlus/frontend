@@ -23,9 +23,9 @@ export default function ProjectCardLists() {
 
   return (
     <S.Container>
-      <div className='title'>
-        <h1>프로젝트 리스트</h1>
-      </div>
+      <S.CardListTitleWrapper>
+        <S.CardListTitle>프로젝트 리스트</S.CardListTitle>
+      </S.CardListTitleWrapper>
       <S.Wrapper $flex={isFlex}>
         {projectListsData && Boolean(projectListsData.projects.length) ? (
           projectListsData.projects.map((list) => (

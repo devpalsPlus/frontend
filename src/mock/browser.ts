@@ -17,8 +17,20 @@ import {
 } from './mypage';
 import { userPageAppliedProjectList, userPageProfile } from './userpage';
 import { login } from './auth';
+import { fetchProjectLists, fetchProjectStatistic } from './projectLists';
+import {
+  fetchMethodTag,
+  fetchPositionTag,
+  fetchSkillTag,
+} from './projectSearchFiltering';
 
 export const handlers = [
+  fetchProjectLists,
+  fetchProjectStatistic,
+  fetchMethodTag,
+  fetchPositionTag,
+  fetchSkillTag,
+  passNonPassList,
   myProjectList,
   applicantList,
   projectDetail,
