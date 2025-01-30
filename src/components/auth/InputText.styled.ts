@@ -8,6 +8,9 @@ export const Container = styled.div`
   border-radius: 30px;
   background-color: ${({ theme }) => theme.color.white};
   width: 100%;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+      padding: 0.5rem 0.75rem;
 `;
 
 export const IconContainer = styled.div`

@@ -1,0 +1,42 @@
+{
+  "id": 1,
+  "nickname": "Jenny",
+  "email": "jenny@example.com",
+  "bio": "안녕하세요, 저는 프론트엔드 개발자입니다.",
+  "profileImg": "https://example.com/profile.jpg",
+  "userLevel": "Beginner",
+  "github": "https://github.com/jennywithlove",
+  "career": [
+    {
+      "name": "Google",
+      "periodStart": "2020-01-01",
+      "periodEnd": "2022-01-01",
+      "role": "Software Engineer"
+    },
+    {
+      "name": "Facebook",
+      "periodStart": "2018-06-01",
+      "periodEnd": "2019-12-31",
+      "role": "Backend Developer"
+    }
+  ],
+  "positionTag": {
+    "id": 2,
+    "name": "프론트엔드"
+  },
+  "skills": [
+    {
+      "skillName": "JavaScript",
+      "skillImg": ""
+    },
+    {
+      "skillName": "TypeScript",
+      "skillImg": ""
+    },
+    {
+      "skillName": "React",
+      "skillImg": ""
+    }
+  ],
+  "createdAt": "2023-01-01T00:00:00.000Z"
+}

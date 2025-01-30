@@ -7,6 +7,14 @@ import {
   passNonPassList,
 } from './applicant';
 import { projectDetail } from './projectDetail';
+import {
+  myPageAppliedProjectList,
+  myPageJoinedProjectList,
+  myPagePositionTag,
+  myPageProfile,
+  myPageSkillTag,
+} from './mypage';
+import { userPageAppliedProjectList, userPageProfile } from './userpage';
 import { fetchProjectLists, fetchProjectStatistic } from './projectLists';
 import {
   fetchMethodTag,
@@ -15,17 +23,24 @@ import {
 } from './projectSearchFiltering';
 
 export const handlers = [
-  // myProjectList,
-  // applicantList,
-  // projectDetail,
-  // applicantInfo,
-  // passNonPass,
-  // passNonPassList,
   fetchProjectLists,
   fetchProjectStatistic,
   fetchMethodTag,
   fetchPositionTag,
   fetchSkillTag,
+  passNonPassList,
+  myProjectList,
+  applicantList,
+  projectDetail,
+  applicantInfo,
+  passNonPass,
+  myPageProfile,
+  myPagePositionTag,
+  myPageSkillTag,
+  myPageJoinedProjectList,
+  myPageAppliedProjectList,
+  userPageProfile,
+  userPageAppliedProjectList,
 ];
 
 export const worker = setupWorker(...handlers);

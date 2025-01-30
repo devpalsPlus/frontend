@@ -20,4 +20,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 2rem;
+  }
 `;
