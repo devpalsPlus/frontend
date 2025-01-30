@@ -1,5 +1,5 @@
 import { setupWorker } from 'msw/browser';
-import { myProjectList } from './manageProjectList';
+import { myProjectList, sendResult } from './manageProjectList';
 import {
   applicantInfo,
   applicantList,
@@ -18,6 +18,7 @@ import { userPageAppliedProjectList, userPageProfile } from './userpage';
 
 export const handlers = [
   passNonPassList,
+  sendResult,
   myProjectList,
   applicantList,
   projectDetail,
