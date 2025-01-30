@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchProjectStatistic } from '../api/projectLists.api';
+import { getProjectStatistic } from '../api/projectLists.api';
 import { useEffect, useState } from 'react';
 
 interface ProjectStatDataReset {
@@ -15,7 +15,7 @@ export const useProjectStatistic = () => {
   // 실시간성 데이터가 필요할까?
   const { data } = useQuery({
     queryKey: ['projectStat'],
-    queryFn: async () => await fetchProjectStatistic(),
+    queryFn: async () => await getProjectStatistic(),
     staleTime: Infinity,
     gcTime: Infinity,
   });

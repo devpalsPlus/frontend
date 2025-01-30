@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.article`
   position: relative;
   cursor: pointer;
   width: 22.4rem;
@@ -12,86 +12,52 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+`;
 
-  .deadLine {
-    color: #3c3c3c;
-    font-size: 0.9rem;
-  }
+export const Deadline = styled.div`
+  color: #3c3c3c;
+  font-size: 0.9rem;
+`;
 
-  .title {
-    height: 4rem;
-    font-size: 1.25rem;
-    font-weight: bold;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
+export const Title = styled.div`
+  height: 4rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+`;
 
-  .position {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
+export const PositionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+`;
 
-  .positionTitle {
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: #5f5f5f;
-  }
+export const PositionTitle = styled.div`
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #5f5f5f;
+`;
 
-  .skillTag,
-  .positionTags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    position: relative;
-  }
+export const TagsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  position: relative;
+`;
 
-  .positionTags {
-    font-size: 0.8rem;
-  }
-
-  .info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-
-    .nickname {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      span {
-        font-size: 0.95rem;
-        font-weight: 500;
-        color: #646464;
-      }
-    }
-    .etc {
-      display: flex;
-      align-items: end;
-      gap: 0.5rem;
-      img {
-        width: 2rem;
-      }
-      .view {
-        display: flex;
-        gap: 0.3rem;
-
-        svg {
-          width: 1.3rem;
-          color: #5f5f5f;
-        }
-        span {
-          flex-direction: row;
-          color: #5f5f5f;
-        }
-      }
-    }
-  }
+export const TagWrapper = styled.div<{ $positionPadding?: boolean }>`
+  background-color: ${({ theme }) => theme.color.white};
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
+  padding-bottom: ${({ $positionPadding }) => ($positionPadding ? '1rem' : '')};
+  gap: 0.5rem;
+  z-index: 10;
 `;
 
 export const EllipsisIcon = styled.button<{ $hiddenIcon: boolean }>`
@@ -110,13 +76,46 @@ export const EllipsisIcon = styled.button<{ $hiddenIcon: boolean }>`
   }
 `;
 
-export const TagWrapper = styled.div<{ $positionPadding?: boolean }>`
-  background-color: ${({ theme }) => theme.color.white};
-  position: absolute;
+export const InfoWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  border-radius: ${({ theme }) => theme.borderRadius.primary};
-  padding-bottom: ${({ $positionPadding }) => ($positionPadding ? '1rem' : '')};
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
+export const ProfileWrapper = styled.div`
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
-  z-index: 10;
+`;
+
+export const NickName = styled.span`
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #646464;
+`;
+
+export const StatusWrapper = styled.div`
+  display: flex;
+  align-items: end;
+  gap: 0.5rem;
+`;
+
+export const BeginnerImg = styled.img`
+  width: 2rem;
+`;
+
+export const ViewWrapper = styled.div`
+  display: flex;
+  gap: 0.3rem;
+
+  svg {
+    width: 1.3rem;
+    color: #5f5f5f;
+  }
+`;
+
+export const ViewCount = styled.span`
+  flex-direction: row;
+  color: #5f5f5f;
 `;

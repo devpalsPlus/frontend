@@ -13,23 +13,26 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  form {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 1.2rem;
-    input {
-      width: 100%;
-    }
+`;
 
-    .buttonWrapper {
-      display: flex;
-      gap: 0.4rem;
-      .searchIcon {
-        svg {
-          width: 1.6rem;
-        }
-      }
-    }
+export const SearchForm = styled.form`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1.2rem;
+`;
+
+export const SearchInput = styled.input`
+  width: 100%;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 0.4rem;
+`;
+
+export const SearchButton = styled.button`
+  svg {
+    width: 1.6rem;
   }
 `;

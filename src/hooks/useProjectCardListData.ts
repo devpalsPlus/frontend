@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchProjectLists } from '../api/projectLists.api';
+import { getProjectLists } from '../api/projectLists.api';
 import { useSaveSearchFiltering } from './useSaveSearchFiltering';
 export const useProjectCardListData = () => {
   const { searchFilters } = useSaveSearchFiltering();
@@ -9,7 +9,7 @@ export const useProjectCardListData = () => {
     data: projectListsData,
   } = useQuery({
     queryKey: ['searchFilters', searchFilters],
-    queryFn: () => fetchProjectLists(searchFilters),
+    queryFn: () => getProjectLists(searchFilters),
   });
 
   return {

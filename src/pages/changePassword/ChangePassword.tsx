@@ -13,6 +13,8 @@ import Button from '../../components/common/Button/Button';
 import { ERROR_MESSAGES } from '../../constants/authConstants';
 import { useAuth } from '../../hooks/useAuth';
 import { ROUTES } from '../../constants/routes';
+import { useModal } from '../../hooks/useModal';
+import Modal from '../../components/common/modal/Modal';
 
 const changePasswordSchema = z
   .object({
@@ -38,7 +40,8 @@ const changePasswordSchema = z
 export type changePasswordFormValues = z.infer<typeof changePasswordSchema>;
 
 const ChangePassword = () => {
-  const { resetPassword } = useAuth();
+  const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
+  const { resetPassword } = useAuth(handleModalOpen);
 
   const {
     emailMessage,
@@ -234,6 +237,9 @@ const ChangePassword = () => {
           </Button>
         </S.ButtonWrapper>
       </form>
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Container>
   );
 };

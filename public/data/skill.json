@@ -1,0 +1,188 @@
+[
+  {
+    "id": 1,
+    "name": "JavaScript",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/JavaScript.png",
+    "createdAt": "2025-01-02T15:07:03.000Z"
+  },
+  {
+    "id": 2,
+    "name": "TypeScript",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/TypeScript.png",
+    "createdAt": "2025-01-02T15:07:23.000Z"
+  },
+  {
+    "id": 3,
+    "name": "React",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/React.png",
+    "createdAt": "2025-01-02T15:07:31.000Z"
+  },
+  {
+    "id": 4,
+    "name": "Vue",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Vue.png",
+    "createdAt": "2025-01-02T15:07:37.000Z"
+  },
+  {
+    "id": 5,
+    "name": "Svelte",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Svelte.png",
+    "createdAt": "2025-01-02T15:07:42.000Z"
+  },
+  {
+    "id": 6,
+    "name": "Nextjs",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Nextjs.png",
+    "createdAt": "2025-01-02T15:07:48.000Z"
+  },
+  {
+    "id": 7,
+    "name": "Nodejs",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Nodejs.png",
+    "createdAt": "2025-01-02T15:07:55.000Z"
+  },
+  {
+    "id": 8,
+    "name": "Java",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Java.png",
+    "createdAt": "2025-01-02T15:08:55.000Z"
+  },
+  {
+    "id": 9,
+    "name": "Spring",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Spring.png",
+    "createdAt": "2025-01-02T15:09:02.000Z"
+  },
+  {
+    "id": 10,
+    "name": "Go",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Go.png",
+    "createdAt": "2025-01-02T15:09:08.000Z"
+  },
+  {
+    "id": 11,
+    "name": "Nestjs",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Nestjs.png",
+    "createdAt": "2025-01-02T15:09:13.000Z"
+  },
+  {
+    "id": 12,
+    "name": "Kotlin",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Kotlin.png",
+    "createdAt": "2025-01-02T15:09:19.000Z"
+  },
+  {
+    "id": 13,
+    "name": "Express",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Express.png",
+    "createdAt": "2025-01-02T15:09:26.000Z"
+  },
+  {
+    "id": 14,
+    "name": "MySQL",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/MySQL.png",
+    "createdAt": "2025-01-02T15:09:32.000Z"
+  },
+  {
+    "id": 15,
+    "name": "MongoDB",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/MongoDB.png",
+    "createdAt": "2025-01-02T15:09:38.000Z"
+  },
+  {
+    "id": 16,
+    "name": "Python",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Python.png",
+    "createdAt": "2025-01-02T15:09:49.000Z"
+  },
+  {
+    "id": 17,
+    "name": "Django",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Django.png",
+    "createdAt": "2025-01-02T15:10:03.000Z"
+  },
+  {
+    "id": 18,
+    "name": "php",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/php.png",
+    "createdAt": "2025-01-02T15:10:06.000Z"
+  },
+  {
+    "id": 19,
+    "name": "GraphQL",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/GraphQL.png",
+    "createdAt": "2025-01-02T15:10:13.000Z"
+  },
+  {
+    "id": 20,
+    "name": "Firebase",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Firebase.png",
+    "createdAt": "2025-01-02T15:10:22.000Z"
+  },
+  {
+    "id": 21,
+    "name": "Flutter",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Flutter.png",
+    "createdAt": "2025-01-02T15:10:28.000Z"
+  },
+  {
+    "id": 22,
+    "name": "Swift",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Swift.png",
+    "createdAt": "2025-01-02T15:10:34.000Z"
+  },
+  {
+    "id": 23,
+    "name": "ReactNative",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/React.png",
+    "createdAt": "2025-01-02T15:10:43.000Z"
+  },
+  {
+    "id": 24,
+    "name": "Unity",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Unity.png",
+    "createdAt": "2025-01-02T15:10:49.000Z"
+  },
+  {
+    "id": 25,
+    "name": "AWS",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/AWS.png",
+    "createdAt": "2025-01-02T15:10:54.000Z"
+  },
+  {
+    "id": 26,
+    "name": "Docker",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Docker.png",
+    "createdAt": "2025-01-02T15:11:05.000Z"
+  },
+  {
+    "id": 27,
+    "name": "Git",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Git.png",
+    "createdAt": "2025-01-02T15:11:07.000Z"
+  },
+  {
+    "id": 28,
+    "name": "Figma",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Figma.png",
+    "createdAt": "2025-01-02T15:11:15.000Z"
+  },
+  {
+    "id": 29,
+    "name": "Zeplin",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Zeplin.png",
+    "createdAt": "2025-01-02T15:11:21.000Z"
+  },
+  {
+    "id": 30,
+    "name": "Jest",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Jest.png",
+    "createdAt": "2025-01-02T15:11:26.000Z"
+  },
+  {
+    "id": 31,
+    "name": "C",
+    "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/C(%2B%2B).png",
+    "createdAt": "2025-01-02T15:17:55.000Z"
+  }
+]
