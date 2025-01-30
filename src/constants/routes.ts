@@ -15,5 +15,4 @@ export const ROUTES = {
   userpage: '/user',
   userJoinedProject: 'join-projects',
   modifyProject: '/project-modify',
-  notFound: '/not-found',
 } as const;
