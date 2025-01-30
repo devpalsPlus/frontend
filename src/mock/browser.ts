@@ -31,7 +31,6 @@ export const handlers = [
   myPageAppliedProjectList,
   userPageProfile,
   userPageAppliedProjectList,
-  passNonPassList,
 ];
 
 export const worker = setupWorker(...handlers);
