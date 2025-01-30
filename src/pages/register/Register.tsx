@@ -18,6 +18,8 @@ import { ERROR_MESSAGES } from '../../constants/authConstants';
 import { useAuth } from '../../hooks/useAuth';
 import useNickNameVerification from '../../hooks/useNicknameVerification';
 import { ROUTES } from '../../constants/routes';
+import { useModal } from '../../hooks/useModal';
+import Modal from '../../components/common/modal/Modal';
 
 const registerSchema = z
   .object({
@@ -49,7 +51,8 @@ const registerSchema = z
 export type registerFormValues = z.infer<typeof registerSchema>;
 
 const Register = () => {
-  const { userSignup } = useAuth();
+  const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
+  const { userSignup } = useAuth(handleModalOpen);
 
   const {
     control,
@@ -294,6 +297,9 @@ const Register = () => {
           </Button>
         </S.ButtonWrapper>
       </form>
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Container>
   );
 };

@@ -4,17 +4,16 @@ import { registerFormValues } from '../pages/register/Register';
 import { changePasswordFormValues } from '../pages/changePassword/ChangePassword';
 import { loginFormValues } from '../pages/login/Login';
 import useAuthStore from '../store/authStore';
-import { useAlert } from './useAlert';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { LoginResponse } from '../models/auth';
 import { ROUTES } from '../constants/routes';
 import { AxiosError } from 'axios';
 import { myInfoKey } from './queries/keys';
+import { MODAL_MESSAGE } from '../constants/modalMessage';
 
-export const useAuth = () => {
+export const useAuth = (handleModalOpen: (message: string) => void) => {
   const navigate = useNavigate();
   const { storeLogin, storeLogout } = useAuthStore.getState();
-  const { showAlert } = useAlert();
   const queryClient = useQueryClient();
 
   const signupMutation = useMutation<
@@ -26,11 +25,11 @@ export const useAuth = () => {
       await postSignUp({ email, password, nickname });
     },
     onSuccess: () => {
-      showAlert('회원가입 완료되었습니다.');
+      handleModalOpen(MODAL_MESSAGE.signUpSuccess);
       navigate(ROUTES.login);
     },
     onError: () => {
-      showAlert('회원가입 실패하였습니다.');
+      handleModalOpen(MODAL_MESSAGE.signUpFail);
     },
   });
 
@@ -43,11 +42,11 @@ export const useAuth = () => {
       await postResetPassword({ email, newPassword });
     },
     onSuccess: () => {
-      showAlert('비밀번호가 성공적으로 재설정 되었습니다.');
+      handleModalOpen(MODAL_MESSAGE.changePasswordSuccess);
       navigate(ROUTES.login);
     },
     onError: () => {
-      showAlert('비밀번호 재설정에 실패하였습니다.');
+      handleModalOpen(MODAL_MESSAGE.changePasswordFail);
     },
   });
 
@@ -64,12 +63,12 @@ export const useAuth = () => {
     },
     onSuccess: (data) => {
       const { accessToken, refreshToken, userData } = data;
-      showAlert('로그인 되었습니다.');
+      handleModalOpen(MODAL_MESSAGE.loginSuccess);
       storeLogin(accessToken, refreshToken, userData);
       navigate(ROUTES.home);
     },
     onError: () => {
-      showAlert('가입되지 않은 계정입니다.');
+      handleModalOpen(MODAL_MESSAGE.loginFail);
     },
   });
 
@@ -92,7 +91,7 @@ export const useAuth = () => {
   const userLogout = () => {
     storeLogout();
     queryClient.removeQueries({ queryKey: myInfoKey.myProfile });
-    showAlert('로그아웃 되었습니다.');
+    handleModalOpen(MODAL_MESSAGE.logout);
     navigate(ROUTES.home);
   };
 

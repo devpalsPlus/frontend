@@ -23,6 +23,9 @@ import { Link } from 'react-router-dom';
 import BeginnerIcon from '../../../assets/beginner.svg';
 import OptionBox from './optionBox';
 import TextareaAutosize from 'react-textarea-autosize';
+import Modal from '../../common/modal/Modal';
+import { useModal } from '../../../hooks/useModal';
+import Spinner from '../Spinner';
 
 const profileSchema = z.object({
   nickname: z
@@ -76,7 +79,8 @@ const MyProfile = () => {
     useNickNameVerification();
 
   const { myData, isLoading } = useMyProfileInfo();
-  const { editMyProfile } = useEditMyProfileInfo();
+  const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
+  const { editMyProfile } = useEditMyProfileInfo(handleModalOpen);
 
   const {
     control,
@@ -139,8 +143,9 @@ const MyProfile = () => {
   };
 
   if (isLoading) {
-    return <div>로딩중...</div>;
+    return <Spinner size='50px' color='#3e5879;' />;
   }
+
   if (!myData) {
     return <div>유저 정보를 불러 올 수 없습니다.</div>;
   }
@@ -525,6 +530,9 @@ const MyProfile = () => {
           </form>
         )}
       </S.Container>
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Box>
   );
 };

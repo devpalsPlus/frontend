@@ -9,14 +9,28 @@ import {
 import { projectDetail } from './projectDetail';
 import {
   myPageAppliedProjectList,
+  mypageEditProfile,
   myPageJoinedProjectList,
   myPagePositionTag,
   myPageProfile,
   myPageSkillTag,
 } from './mypage';
 import { userPageAppliedProjectList, userPageProfile } from './userpage';
+import { login } from './auth';
+import { fetchProjectLists, fetchProjectStatistic } from './projectLists';
+import {
+  fetchMethodTag,
+  fetchPositionTag,
+  fetchSkillTag,
+} from './projectSearchFiltering';
 
 export const handlers = [
+  fetchProjectLists,
+  fetchProjectStatistic,
+  fetchMethodTag,
+  fetchPositionTag,
+  fetchSkillTag,
+  passNonPassList,
   myProjectList,
   applicantList,
   projectDetail,
@@ -30,6 +44,8 @@ export const handlers = [
   userPageProfile,
   userPageAppliedProjectList,
   passNonPassList,
+  mypageEditProfile,
+  login,
 ];
 
 export const worker = setupWorker(...handlers);
