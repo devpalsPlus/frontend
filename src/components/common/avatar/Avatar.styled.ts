@@ -11,4 +11,9 @@ export const AvatarContainer = styled.div<Omit<AvatarProps, 'image'>>`
     height: 100%;
     border-radius: 50%;
   }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    width: calc(${({ size }) => size} * 0.85);
+    height: calc(${({ size }) => size} * 0.85);
+  }
 `;

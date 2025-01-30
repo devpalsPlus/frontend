@@ -1,0 +1,143 @@
+[
+  {
+    "projectId": 10,
+    "title": "클론코딩 사이드 프로젝트 모집 공고",
+    "description": "string",
+    "totalMember": 3,
+    "startDate": "2025-01-25T00:00:00.000Z",
+    "estimatedPeriod": "3개월",
+    "methodId": 1,
+    "isBeginner": true,
+    "isDone": true,
+    "recruitmentStartDate": "2025-01-06T00:00:00.000Z",
+    "recruitmentEndDate": "2025-02-15T00:00:00.000Z",
+    "status": "ACCEPTED",
+    "ProjectSkillTag": [
+      {
+        "projectId": 10,
+        "skillTagId": 1,
+        "SkillTag": {
+          "id": 1,
+          "name": "JavaScript",
+          "img": "이미지"
+        }
+      }
+    ],
+    "ProjectPositionTag": [
+      {
+        "projectId": 10,
+        "positionTagId": 1,
+        "PositionTag": {
+          "id": 1,
+          "name": "백엔드"
+        }
+      }
+    ]
+  },
+  {
+    "projectId": 10,
+    "title": "클론코딩 사이드 프로젝트 모집 공고",
+    "description": "string",
+    "totalMember": 3,
+    "startDate": "2025-01-25T00:00:00.000Z",
+    "estimatedPeriod": "3개월",
+    "methodId": 1,
+    "isBeginner": true,
+    "isDone": true,
+    "recruitmentStartDate": "2025-01-06T00:00:00.000Z",
+    "recruitmentEndDate": "2025-02-15T00:00:00.000Z",
+    "status": "ACCEPTED",
+    "ProjectSkillTag": [
+      {
+        "projectId": 10,
+        "skillTagId": 1,
+        "SkillTag": {
+          "id": 1,
+          "name": "JavaScript",
+          "img": "이미지"
+        }
+      }
+    ],
+    "ProjectPositionTag": [
+      {
+        "projectId": 10,
+        "positionTagId": 1,
+        "PositionTag": {
+          "id": 1,
+          "name": "백엔드"
+        }
+      }
+    ]
+  },
+  {
+    "projectId": 10,
+    "title": "클론코딩 사이드 프로젝트 모집 공고",
+    "description": "string",
+    "totalMember": 3,
+    "startDate": "2025-01-25T00:00:00.000Z",
+    "estimatedPeriod": "3개월",
+    "methodId": 1,
+    "isBeginner": true,
+    "isDone": true,
+    "recruitmentStartDate": "2025-01-06T00:00:00.000Z",
+    "recruitmentEndDate": "2025-02-15T00:00:00.000Z",
+    "status": "ACCEPTED",
+    "ProjectSkillTag": [
+      {
+        "projectId": 10,
+        "skillTagId": 1,
+        "SkillTag": {
+          "id": 1,
+          "name": "JavaScript",
+          "img": "이미지"
+        }
+      },
+      {
+        "projectId": 10,
+        "skillTagId": 1,
+        "SkillTag": {
+          "id": 1,
+          "name": "JavaScript",
+          "img": "이미지"
+        }
+      },
+      {
+        "projectId": 10,
+        "skillTagId": 1,
+        "SkillTag": {
+          "id": 1,
+          "name": "JavaScript",
+          "img": "이미지"
+        }
+      },
+      {
+        "projectId": 10,
+        "skillTagId": 1,
+        "SkillTag": {
+          "id": 1,
+          "name": "JavaScript",
+          "img": "이미지"
+        }
+      },
+      {
+        "projectId": 10,
+        "skillTagId": 1,
+        "SkillTag": {
+          "id": 1,
+          "name": "JavaScript",
+          "img": "이미지"
+        }
+      }
+    ],
+    "ProjectPositionTag": [
+      {
+        "projectId": 10,
+        "positionTagId": 1,
+        "PositionTag": {
+          "id": 1,
+          "name": "백엔드"
+        }
+      }
+    ]
+  }
+]
