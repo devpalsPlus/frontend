@@ -39,6 +39,22 @@ export const CareerInput = styled.input`
     flex: 2;
     font-size: ${({ theme }) => theme.heading.small.fontSize};
   }
+
+  @media (max-width: 963px) {
+    width: 100%;
+    flex: 1;
+    margin-bottom: 10px;
+
+    &:nth-child(1),
+    &:nth-child(4) {
+      flex: 1;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      flex: 1;
+    }
+  }
 `;
 
 export const FormError = styled.p`

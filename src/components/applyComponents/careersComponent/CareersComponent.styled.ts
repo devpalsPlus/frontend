@@ -10,10 +10,15 @@ export const CareerContainer = styled.div`
   gap: 15px;
   width: 100%;
   margin-bottom: 10px;
+
+  @media (max-width: 963px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 export const AddButton = styled(Button)`
-  width: 5%;
+  width: 50px;
   padding: 10px;
   cursor: pointer;
   border: 1px solid ${({ theme }) => theme.color.border};
