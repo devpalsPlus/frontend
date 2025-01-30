@@ -17,6 +17,7 @@ import {
 import { userPageAppliedProjectList, userPageProfile } from './userpage';
 
 export const handlers = [
+  passNonPassList,
   myProjectList,
   applicantList,
   projectDetail,
@@ -29,7 +30,6 @@ export const handlers = [
   myPageAppliedProjectList,
   userPageProfile,
   userPageAppliedProjectList,
-  passNonPassList,
 ];
 
 export const worker = setupWorker(...handlers);

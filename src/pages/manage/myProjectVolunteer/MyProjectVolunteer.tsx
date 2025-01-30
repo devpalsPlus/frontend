@@ -19,15 +19,19 @@ import MainLogo from '../../../assets/mainlogo.svg';
 import Modal from '../../../components/common/modal/Modal';
 import { useModal } from '../../../hooks/useModal';
 import ProjectHeader from '../../../components/manageProjects/ProjectHeader';
+import { useMemo } from 'react';
 
 const MyProjectVolunteer = () => {
   const { projectId } = useParams();
-  const sidebarMenuItem = applicantsMenuItems(Number(projectId));
   const { data: projectData } = useGetProjectData(Number(projectId));
   const { isOpen, handleModalClose, handleModalOpen, message } = useModal();
   const { handlePassNonPassStatus } = usePassNonPassMutation(
     Number(projectId),
     handleModalOpen
+  );
+  const sidebarMenuItem = useMemo(
+    () => applicantsMenuItems(Number(projectId)),
+    [projectId]
   );
   const { applicantsData, isApplicantLoading } = useApllicantList(
     Number(projectId)
