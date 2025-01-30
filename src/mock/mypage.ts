@@ -49,3 +49,12 @@ export const myPageAppliedProjectList = http.get(
     });
   }
 );
+
+export const mypageEditProfile = http.put(
+  `${import.meta.env.VITE_API_BASE_URL}/user/me`,
+  () => {
+    return HttpResponse.json({
+      status: 200,
+    });
+  }
+);

@@ -10,9 +10,12 @@ import { useMyProfileInfo } from '../../../hooks/useMyInfo';
 import DefaultImg from '../../../assets/defaultImg.png';
 import { UserCircleIcon } from '@heroicons/react/24/outline';
 import loadingImg from '../../../assets/loadingImg.svg';
+import { useModal } from '../../../hooks/useModal';
+import Modal from '../modal/Modal';
 
 function Header() {
-  const { userLogout } = useAuth();
+  const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
+  const { userLogout } = useAuth(handleModalOpen);
   const { isLoggedIn } = useAuthStore((state) => state);
   const { myData, isLoading } = useMyProfileInfo();
 
@@ -64,6 +67,9 @@ function Header() {
           </>
         </DropDown>
       </nav>
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.HeaderContainer>
   );
 }

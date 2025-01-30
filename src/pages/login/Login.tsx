@@ -11,6 +11,8 @@ import Button from '../../components/common/Button/Button';
 import { ERROR_MESSAGES } from '../../constants/authConstants';
 import { useAuth } from '../../hooks/useAuth';
 import { ROUTES } from '../../constants/routes';
+import { useModal } from '../../hooks/useModal';
+import Modal from '../../components/common/modal/Modal';
 
 const loginSchema = z.object({
   email: z
@@ -23,7 +25,9 @@ const loginSchema = z.object({
 export type loginFormValues = z.infer<typeof loginSchema>;
 
 const Login = () => {
-  const { userLogin } = useAuth();
+  const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
+  const { userLogin } = useAuth(handleModalOpen);
+
   const {
     control,
     handleSubmit,
@@ -109,6 +113,9 @@ const Login = () => {
           </Button>
         </Link>
       </S.WrapperRegister>
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Container>
   );
 };
