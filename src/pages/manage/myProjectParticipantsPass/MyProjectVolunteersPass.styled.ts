@@ -8,11 +8,15 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 1.25rem;
+  font-size: ${({ theme }) => theme.heading.medium.fontSize};
   font-weight: 700;
   color: ${({ theme }) => theme.color.deepGrey};
   margin-left: 1rem;
   margin-bottom: 1rem;
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: ${({ theme }) => theme.heading.medium.tabletFontSize};
+  }
 `;
 
 export const ResultContainer = styled.div`
