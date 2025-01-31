@@ -20,5 +20,6 @@ export const Wrapper = styled.ul`
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     min-width: 9rem;
+    padding: 1rem;
   }
 `;

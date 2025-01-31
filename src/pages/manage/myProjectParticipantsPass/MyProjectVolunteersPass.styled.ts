@@ -15,7 +15,7 @@ export const Title = styled.h1`
   margin-bottom: 1rem;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
-    font-size: ${({ theme }) => theme.heading.medium.tabletFontSize};
+    font-size: ${({ theme }) => theme.heading.semiSmall.tabletFontSize};
   }
 `;
 

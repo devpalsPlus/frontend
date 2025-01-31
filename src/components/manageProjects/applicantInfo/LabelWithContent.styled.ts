@@ -6,7 +6,7 @@ export const Label = styled.p`
   color: ${({ theme }) => theme.color.deepGrey};
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
-    font-size: ${({ theme }) => theme.heading.medium.tabletFontSize};
+    font-size: ${({ theme }) => theme.heading.semiSmall.tabletFontSize};
   }
 `;
 

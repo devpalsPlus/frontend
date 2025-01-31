@@ -41,6 +41,6 @@ export const Button = styled.button<ButtonProps>`
     width: 6.5rem;
     height: 1.9rem;
     border-radius: ${({ theme }) => theme.borderRadius.small};
-    font-size: ${({ theme }) => theme.heading.small.tabletFontSize};
+    font-size: 0.6rem;
   }
 `;
