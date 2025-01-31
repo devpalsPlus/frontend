@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   align-items: center;
   position: absolute;
   top: 7rem;
-  right: 2.5rem;
+  right: 2rem;
 `;
 
 export const SendEmailButton = styled(Button)`
@@ -24,11 +24,12 @@ export const SendEmailButton = styled(Button)`
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     width: 7rem;
-    font-size: ${({ theme }) => theme.buttonSize.small.fontSize};
+    font-size: ${({ theme }) => theme.heading.small.tabletFontSize};
     padding: ${({ theme }) => theme.buttonSize.small.padding};
 
     svg {
-      width: 1.2rem;
+      width: 15px;
+      height: 15px;
     }
   }
 `;
