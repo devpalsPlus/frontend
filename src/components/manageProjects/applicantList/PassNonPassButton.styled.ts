@@ -3,6 +3,7 @@ import { PassNonPassButtonProps } from './PassNonPassButton';
 
 export const PassNonPassButton = styled.button<PassNonPassButtonProps>`
   padding: 0.5rem 0.6rem;
+  font-size: 0.8rem;
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   color: ${({ theme }) => theme.color.white};
   background-color: ${({ theme, isPass }) =>
@@ -18,4 +19,8 @@ export const PassNonPassButton = styled.button<PassNonPassButtonProps>`
     background-color: ${({ theme }) => theme.color.grey};
   }
 
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.4rem;
+  }
 `;

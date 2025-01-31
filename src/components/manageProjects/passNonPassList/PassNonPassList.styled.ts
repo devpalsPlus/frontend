@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.ul`
   width: 100%;
-  height: 27rem;
-  min-width: 22rem;
+  height: 100%;
+  min-width: 16rem;
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   border: 1px solid ${({ theme }) => theme.color.border};
   padding: 1.6rem 2rem;
@@ -16,5 +16,9 @@ export const Wrapper = styled.ul`
   overflow-y: auto;
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    min-width: 9rem;
   }
 `;

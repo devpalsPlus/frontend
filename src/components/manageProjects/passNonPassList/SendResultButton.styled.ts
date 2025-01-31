@@ -21,4 +21,14 @@ export const SendEmailButton = styled(Button)`
   &:hover {
     opacity: 0.8;
   }
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    width: 7rem;
+    font-size: ${({ theme }) => theme.buttonSize.small.fontSize};
+    padding: ${({ theme }) => theme.buttonSize.small.padding};
+
+    svg {
+      width: 1.2rem;
+    }
+  }
 `;

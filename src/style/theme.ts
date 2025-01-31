@@ -18,13 +18,13 @@ export type HeadingSize =
   | 'small'
   | 'verySmall';
 
-export type ButtonSize = 'primary' | 'large';
+export type ButtonSize = 'primary' | 'large' | 'small';
 
 export type ButtonSchema = 'primary';
 
 export type LayoutWidth = 'desktop' | 'tablet' | 'mobile';
 
-export type BorderRadiusSize = 'primary' | 'large';
+export type BorderRadiusSize = 'primary' | 'large' | 'small';
 
 export type MediaQuery = 'mobile' | 'tablet' | 'desktop';
 
@@ -83,6 +83,10 @@ export const defaultTheme: Theme = {
     verySmall: { fontSize: '0.5rem', tabletFontSize: '0.4rem' },
   },
   buttonSize: {
+    small: {
+      fontSize: '0.8rem',
+      padding: '0.35rem 1rem',
+    },
     primary: {
       fontSize: '1rem',
       padding: '0.5rem 1.375rem',
@@ -93,6 +97,7 @@ export const defaultTheme: Theme = {
     },
   },
   borderRadius: {
+    small: '10px',
     primary: '15px',
     large: '30px',
   },

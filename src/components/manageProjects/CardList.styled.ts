@@ -29,4 +29,9 @@ export const CreateButton = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.color.grey};
   }
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    width: 19rem;
+    height: 14rem;
+  }
 `;
