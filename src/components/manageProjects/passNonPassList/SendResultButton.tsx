@@ -4,9 +4,10 @@ import { EnvelopeIcon } from '@heroicons/react/24/outline';
 export interface SendResultButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   onSubmit: () => void;
+  disabled?: boolean;
 }
 
-function SendResultButton({ onSubmit }: SendResultButtonProps) {
+function SendResultButton({ onSubmit, disabled }: SendResultButtonProps) {
   return (
     <S.Wrapper>
       <S.SendEmailButton
@@ -14,6 +15,7 @@ function SendResultButton({ onSubmit }: SendResultButtonProps) {
         schema='primary'
         radius='primary'
         onClick={onSubmit}
+        disabled={disabled}
       >
         결과 전송 <EnvelopeIcon />
       </S.SendEmailButton>

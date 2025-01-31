@@ -52,7 +52,7 @@ export const SectionInput = styled.div`
 `;
 
 export const SubmitButton = styled.button`
-  width: 10%;
+  width: 70px;
   padding: 15px;
   background-color: ${({ theme }) => theme.buttonScheme.primary.bg};
   color: ${({ theme }) => theme.color.white};

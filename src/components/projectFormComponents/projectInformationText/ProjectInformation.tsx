@@ -18,28 +18,28 @@ const ProjectInformation = ({ data }: ProjectInformationProps) => {
     <S.SectionInput>
       <S.InfoRow>
         {data.isBeginner && <S.BeginnerIcon src={beginner} alt='초보자 환영' />}
-        {data.isBeginner && <p>초보 환영</p>}
+        {data.isBeginner && <S.BeginnerText>초보 환영</S.BeginnerText>}
       </S.InfoRow>
 
       {PROJECT_DATA_GET.map((input, index) => (
         <S.InfoRow key={index}>
-          <label htmlFor={input.name}>{input.label}</label>
-          <p>{data[input.name as keyof ProjectDetail]}</p>
+          <S.InfoLabel>{input.label}</S.InfoLabel>
+          <S.InfoText>{data[input.name as keyof ProjectDetail]}</S.InfoText>
         </S.InfoRow>
       ))}
 
       <S.InfoRow>
-        <label htmlFor='position'>모집 분야</label>
-        <p>
+        <S.InfoLabel>모집 분야</S.InfoLabel>
+        <S.InfoText>
           {data.ProjectPositionTag.map(
             (position) => position.PositionTag.name
           ).join(', ')}
-        </p>
+        </S.InfoText>
       </S.InfoRow>
 
       <S.InfoRow>
-        <label htmlFor='method'>진행 방식</label>
-        <p>{data.Method.name}</p>
+        <S.InfoLabel>진행 방식</S.InfoLabel>
+        <S.InfoText>{data.Method.name}</S.InfoText>
       </S.InfoRow>
 
       <S.InfoRow>
@@ -52,7 +52,7 @@ const ProjectInformation = ({ data }: ProjectInformationProps) => {
                 src={skillTag.SkillTag.img}
                 alt={skillTag.SkillTag.name}
               />
-              <p>{skillTag.SkillTag.name}</p>
+              <S.InfoText>{skillTag.SkillTag.name}</S.InfoText>
             </S.SkillTagImage>
           ))}
         </S.SkillTagContainer>
