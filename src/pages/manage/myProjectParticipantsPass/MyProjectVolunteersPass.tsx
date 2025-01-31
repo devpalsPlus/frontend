@@ -14,7 +14,8 @@ import { useSendResultMutation } from '../../../hooks/useSendResultMutation';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../../components/common/modal/Modal';
 import { usePassNonPassMutation } from '../../../hooks/usePassNonPassMutation';
-import { useMemo } from 'react';
+import { Suspense, useMemo } from 'react';
+import LoadingSpinner from '../../../components/common/loadingSpinner/LoadingSpinner';
 
 const MyProjectVolunteersPass = () => {
   const { projectId } = useParams();
@@ -37,32 +38,42 @@ const MyProjectVolunteersPass = () => {
   return (
     <S.Container>
       <Sidebar profileImage={MainLogo} menuItems={sidebarMenuItem} />
-      <InfoCard>
-        {projectData && <ProjectHeader projectData={projectData} />}
-        <SendResultButton onSubmit={handleSendResult} />
-
-        {passNonPassListData?.accepted.length > 0 ||
-        passNonPassListData?.rejected.length > 0 ? (
-          <S.ResultContainer>
-            <S.ListWrapper>
-              <S.Title>합격자 리스트</S.Title>
-              <PassNonPassList
-                onClick={handlePassNonPassStatus}
-                passNonPassListData={passNonPassListData.accepted}
-              />
-            </S.ListWrapper>
-            <S.ListWrapper>
-              <S.Title>불 합격자 리스트</S.Title>
-              <PassNonPassList
-                onClick={handlePassNonPassStatus}
-                passNonPassListData={passNonPassListData.rejected}
-              />
-            </S.ListWrapper>
-          </S.ResultContainer>
-        ) : (
-          <NoContent type='passNonPass' />
-        )}
-      </InfoCard>
+      <Suspense fallback={<LoadingSpinner />}>
+        <InfoCard>
+          {projectData && <ProjectHeader projectData={projectData} />}
+          <SendResultButton
+            onSubmit={handleSendResult}
+            disabled={projectData?.isDone}
+          />
+          {passNonPassListData?.accepted.length > 0 ||
+          passNonPassListData?.rejected.length > 0 ? (
+            <S.ResultContainer>
+              <S.ListWrapper>
+                <S.Title>합격자 리스트</S.Title>
+                {projectData && (
+                  <PassNonPassList
+                    onClick={handlePassNonPassStatus}
+                    projectData={projectData}
+                    passNonPassListData={passNonPassListData.accepted}
+                  />
+                )}
+              </S.ListWrapper>
+              <S.ListWrapper>
+                <S.Title>불 합격자 리스트</S.Title>
+                {projectData && (
+                  <PassNonPassList
+                    onClick={handlePassNonPassStatus}
+                    projectData={projectData!}
+                    passNonPassListData={passNonPassListData.rejected}
+                  />
+                )}
+              </S.ListWrapper>
+            </S.ResultContainer>
+          ) : (
+            <NoContent type='passNonPass' />
+          )}
+        </InfoCard>
+      </Suspense>
 
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         {message}

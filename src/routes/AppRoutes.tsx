@@ -6,10 +6,10 @@ import {
 import { lazy, Suspense } from 'react';
 
 import LoadingSpinner from '../components/common/loadingSpinner/LoadingSpinner';
-import Error from '../pages/error/Error';
 import { ROUTES } from '../constants/routes';
 import useAuthStore from '../store/authStore';
 import ProtectRoute from '../components/common/ProtectRoute';
+import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 const Login = lazy(() => import('../pages/login/Login'));
 const Register = lazy(() => import('../pages/register/Register'));
 const ChangePassword = lazy(
@@ -222,7 +222,7 @@ const AppRoutes = () => {
   const newRouteList = routeList.map((item) => {
     return {
       ...item,
-      errorElement: <Error />,
+      errorElement: <NotFoundPage />,
     };
   });
 

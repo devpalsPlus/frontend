@@ -6,4 +6,9 @@ export const DeleteButton = styled.button`
     width: 1.2rem;
     height: 1.2rem;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.9;
+  }
 `;
