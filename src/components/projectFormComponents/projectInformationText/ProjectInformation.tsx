@@ -18,7 +18,9 @@ const ProjectInformation = ({ data }: ProjectInformationProps) => {
     <S.SectionInput>
       <S.InfoRow>
         {data.isBeginner && <S.BeginnerIcon src={beginner} alt='초보자 환영' />}
-        {data.isBeginner && <S.BeginnerText>초보 환영</S.BeginnerText>}
+        {data.isBeginner && (
+          <S.BeginnerText>새싹 멤버(초보)도 환영해요!</S.BeginnerText>
+        )}
       </S.InfoRow>
 
       {PROJECT_DATA_GET.map((input, index) => (
@@ -46,7 +48,7 @@ const ProjectInformation = ({ data }: ProjectInformationProps) => {
         <S.InfoLabel>사용 언어</S.InfoLabel>
         <S.SkillTagContainer>
           {data.ProjectSkillTag.map((skillTag) => (
-            <S.SkillTagImage>
+            <S.SkillTagImage key={skillTag.SkillTag.id}>
               <img
                 key={skillTag.SkillTag.id}
                 src={skillTag.SkillTag.img}

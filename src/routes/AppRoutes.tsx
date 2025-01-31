@@ -116,9 +116,11 @@ const AppRoutes = () => {
     {
       path: `${ROUTES.projectDetail}/:projectId`,
       element: (
-        <Layout>
-          <ProjectDetail />
-        </Layout>
+        <Suspense fallback={<LoadingSpinner />}>
+          <Layout>
+            <ProjectDetail />
+          </Layout>
+        </Suspense>
       ),
     },
     {
