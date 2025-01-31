@@ -5,6 +5,10 @@ export const Container = styled.div`
   max-width: 100%;
   margin: 0 auto;
   padding: 40px;
+
+  @media (max-width: 870px) {
+    padding: 25px;
+  }
 `;
 
 export const Header = styled.div`
@@ -17,6 +21,10 @@ export const Title = styled.h1`
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 10px;
+
+  @media (max-width: 870px) {
+    font-size: 28px;
+  }
 `;
 
 export const ProfileContainer = styled.div`
@@ -33,16 +41,29 @@ export const UserInfo = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
+
+  @media (max-width: 870px) {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 `;
 
 export const UserName = styled.div`
   font-size: 21px;
   font-weight: bold;
+
+  @media (max-width: 870px) {
+    font-size: 18px;
+  }
 `;
 
 export const PostDate = styled.div`
   font-size: ${({ theme }) => theme.heading.semiSmall};
   color: ${({ theme }) => theme.color.deepGrey};
+
+  @media (max-width: 870px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const ViewCount = styled.div`
@@ -57,6 +78,15 @@ export const ViewCount = styled.div`
     width: 16px;
     height: 16px;
     color: ${({ theme }) => theme.color.deepGrey};
+  }
+
+  @media (max-width: 870px) {
+    font-size: 0.9rem;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
   }
 `;
 
