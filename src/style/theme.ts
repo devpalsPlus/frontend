@@ -16,7 +16,7 @@ export type HeadingSize =
   | 'medium'
   | 'semiSmall'
   | 'small'
-  | 'verySmall';
+  | 'xSmall';
 
 export type ButtonSize = 'primary' | 'large' | 'small';
 
@@ -80,7 +80,7 @@ export const defaultTheme: Theme = {
     medium: { fontSize: '1.25rem', tabletFontSize: '1.1rem' },
     semiSmall: { fontSize: '1.1rem', tabletFontSize: '0.9rem' },
     small: { fontSize: '1rem', tabletFontSize: '0.8rem' },
-    verySmall: { fontSize: '0.5rem', tabletFontSize: '0.4rem' },
+    xSmall: { fontSize: '0.5rem', tabletFontSize: '0.4rem' },
   },
   buttonSize: {
     small: {
