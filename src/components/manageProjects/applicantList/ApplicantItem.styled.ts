@@ -18,7 +18,7 @@ export const getBorderColor = ($passStatus: string, theme: DefaultTheme) => {
 
 export const Button = styled.button<ButtonProps>`
   text-align: center;
-  font-size: ${({ theme }) => theme.heading.small};
+  font-size: ${({ theme }) => theme.heading.small.fontSize};
   font-weight: 500;
   flex-shrink: 0;
   width: 10rem;
@@ -35,5 +35,12 @@ export const Button = styled.button<ButtonProps>`
     background-color: ${({ theme }) => theme.buttonScheme.primary.bg};
     color: ${({ theme }) => theme.buttonScheme.primary.color};
     border: none;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    width: 6.5rem;
+    height: 1.9rem;
+    border-radius: ${({ theme }) => theme.borderRadius.small};
+    font-size: 0.6rem;
   }
 `;
