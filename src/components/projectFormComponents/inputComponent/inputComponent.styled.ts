@@ -10,7 +10,7 @@ export const InputStyle = styled.input<{ type?: string }>`
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
-  font-size: ${({ theme }) => theme.heading.semiSmall.fontSize};
+  font-size: ${({ theme }) => theme.heading.small.fontSize};
 
   ${({ type }) => {
     switch (type) {
@@ -24,7 +24,6 @@ export const InputStyle = styled.input<{ type?: string }>`
           flex: 0.1;
           background-color: #ffffff;
           color: #aaa;
-          font-family: 'Arial', sans-serif;
 
           &::placeholder {
             color: #aaa;
@@ -74,7 +73,7 @@ export const InputInfoStyle = styled.input<{ type?: string }>`
 
 export const FormError = styled.p`
   margin-top: 0.3px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: ${({ theme }) => theme.color.red};
   position: absolute;
   top: 100%;
