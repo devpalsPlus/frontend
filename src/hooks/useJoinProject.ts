@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { getProjectData } from '../api/joinProject.api';
+import { managedProjectKey } from './queries/keys';
 
-const useGetProjectData = (id: number) => {
+const useGetProjectData = (projectId: number) => {
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: ['projectDataAll', id],
-    queryFn: async () => await getProjectData(id),
+    queryKey: [managedProjectKey.detail, projectId],
+    queryFn: async () => await getProjectData(projectId),
     staleTime: 1000 * 60 * 5,
   });
 
