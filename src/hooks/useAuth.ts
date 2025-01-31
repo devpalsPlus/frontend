@@ -26,7 +26,9 @@ export const useAuth = (handleModalOpen: (message: string) => void) => {
     },
     onSuccess: () => {
       handleModalOpen(MODAL_MESSAGE.signUpSuccess);
-      navigate(ROUTES.login);
+      setTimeout(() => {
+        navigate(ROUTES.login);
+      }, 1000);
     },
     onError: () => {
       handleModalOpen(MODAL_MESSAGE.signUpFail);
@@ -41,9 +43,11 @@ export const useAuth = (handleModalOpen: (message: string) => void) => {
     mutationFn: async ({ email, newPassword }) => {
       await postResetPassword({ email, newPassword });
     },
-    onSuccess: () => {
+    onSuccess: async () => {
       handleModalOpen(MODAL_MESSAGE.changePasswordSuccess);
-      navigate(ROUTES.login);
+      setTimeout(() => {
+        navigate(ROUTES.login);
+      }, 1000);
     },
     onError: () => {
       handleModalOpen(MODAL_MESSAGE.changePasswordFail);
@@ -61,11 +65,13 @@ export const useAuth = (handleModalOpen: (message: string) => void) => {
       const userData = response.user;
       return { accessToken, refreshToken, userData };
     },
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       const { accessToken, refreshToken, userData } = data;
       handleModalOpen(MODAL_MESSAGE.loginSuccess);
-      storeLogin(accessToken, refreshToken, userData);
-      navigate(ROUTES.home);
+      setTimeout(() => {
+        storeLogin(accessToken, refreshToken, userData);
+        navigate(ROUTES.main);
+      }, 1000);
     },
     onError: () => {
       handleModalOpen(MODAL_MESSAGE.loginFail);
@@ -92,7 +98,9 @@ export const useAuth = (handleModalOpen: (message: string) => void) => {
     storeLogout();
     queryClient.removeQueries({ queryKey: myInfoKey.myProfile });
     handleModalOpen(MODAL_MESSAGE.logout);
-    navigate(ROUTES.home);
+    setTimeout(() => {
+      navigate(ROUTES.main);
+    }, 1000);
   };
 
   return { userSignup, resetPassword, userLogin, userLogout };

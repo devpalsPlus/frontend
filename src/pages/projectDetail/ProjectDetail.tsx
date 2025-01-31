@@ -9,28 +9,35 @@ import Avatar from '../../components/common/avatar/Avatar';
 import { EyeIcon } from '@heroicons/react/24/outline';
 import useAuthStore from '../../store/authStore';
 import { ROUTES } from '../../constants/routes';
+import { useModal } from '../../hooks/useModal';
+import Modal from '../../components/common/modal/Modal';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
   const id = Number(projectId);
   const navigate = useNavigate();
   const { data, isLoading, isFetching } = useGetProjectData(id);
+  const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userData } = useAuthStore((state) => state);
 
+  if (isLoading) return <div>Loading...</div>;
+  if (isFetching) return <div>isFetching...</div>;
   if (!data) {
     return <div>데이터가 없습니다.</div>;
   }
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isFetching) return <div>isFetching...</div>;
-
   const handleApplyClick = () => {
     if (userData?.id === data.User.id) {
-      alert('본인의 프로젝트는 지원할 수 없습니다.');
+      handleModalOpen('본인의 프로젝트는 지원할 수 없습니다.');
       return;
     } else {
       navigate(`${ROUTES.apply}/${id}`);
     }
+  };
+
+  const handleMovetoUserPage = () => {
+    const userId = data.User.id;
+    navigate(`/user/${userId}`);
   };
 
   return (
@@ -38,11 +45,13 @@ const ProjectDetail = () => {
       <S.Header>
         <S.Title>{data.title}</S.Title>
         <S.ProfileContainer>
-          <S.ProfileImageContainer>
-            <Avatar size='3.3rem' image={data.User.profileImg} />
+          <S.ProfileImageContainer onClick={handleMovetoUserPage}>
+            <Avatar size='2.5rem' image={data.User.profileImg} />
           </S.ProfileImageContainer>
           <S.UserInfo>
-            <S.UserName>{data.User.nickname}</S.UserName>
+            <S.UserName onClick={handleMovetoUserPage}>
+              {data.User.nickname}
+            </S.UserName>
             <S.PostDate>{formatDate(data.recruitmentEndDate)}</S.PostDate>
             <S.ViewCount>
               <EyeIcon />
@@ -71,6 +80,9 @@ const ProjectDetail = () => {
       </S.ApplyButtonContainer>
 
       <hr></hr>
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Container>
   );
 };

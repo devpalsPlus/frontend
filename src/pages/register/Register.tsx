@@ -114,7 +114,7 @@ const Register = () => {
   return (
     <S.Container>
       <h1 className='logo'>
-        <Link to={ROUTES.home}>
+        <Link to={ROUTES.main}>
           <img src={Mainlogo} alt='logo' />
         </Link>
       </h1>

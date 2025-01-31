@@ -36,6 +36,7 @@ export const Section = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 1.5rem;
 `;
 
 export const Label = styled.label`
