@@ -21,8 +21,8 @@ export const CreateButton = styled.button`
   align-items: center;
 
   img {
-    width: 1.875rem;
-    height: 1.875rem;
+    width: 30px;
+    height: 30px;
     margin-bottom: 0.75rem;
   }
 
@@ -33,5 +33,10 @@ export const CreateButton = styled.button`
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     width: 19rem;
     height: 14rem;
+    font-size: ${({ theme }) => theme.heading.small.fontSize};
+    img {
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
