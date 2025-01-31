@@ -33,7 +33,7 @@ export const Title = styled.h2`
 `;
 
 export const Label = styled.p`
-  font-size: ${({ theme }) => theme.heading.medium.fontSize};
+  font-size: ${({ theme }) => theme.heading.semiSmall.fontSize};
   font-weight: 700;
   color: ${({ theme }) => theme.color.deepGrey};
 

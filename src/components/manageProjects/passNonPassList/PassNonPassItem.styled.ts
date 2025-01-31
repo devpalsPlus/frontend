@@ -8,9 +8,12 @@ export const ItemWrapper = styled.li`
   padding: 1rem;
   border: 1px solid ${({ theme }) => theme.color.grey};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
+  transition: all 0.2s ease;
+
   &:hover {
     background-color: ${({ theme }) => theme.color.navy};
     color: ${({ theme }) => theme.color.white};
+    transition: all 0.2s ease;
   }
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
