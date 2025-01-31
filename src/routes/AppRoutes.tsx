@@ -15,7 +15,7 @@ const Register = lazy(() => import('../pages/register/Register'));
 const ChangePassword = lazy(
   () => import('../pages/changePassword/ChangePassword')
 );
-const Main = lazy(() => import('../pages/main/Main'));
+// const Main = lazy(() => import('../pages/main/Main'));
 const Layout = lazy(() => import('../components/common/layout/Layout'));
 const Home = lazy(() => import('../pages/home/Home'));
 const MyPage = lazy(() => import('../pages/mypage/MyPage'));
@@ -65,18 +65,18 @@ const AppRoutes = () => {
   const { isLoggedIn } = useAuthStore();
 
   const routeList = [
-    {
-      path: ROUTES.main,
-      element: <Main />,
-    },
+    // {
+    //   path: ROUTES.main,
+    //   element: <Main />,
+    // },
     {
       path: ROUTES.login,
-      element: isLoggedIn ? <Navigate to={ROUTES.home} replace /> : <Login />,
+      element: isLoggedIn ? <Navigate to={ROUTES.main} replace /> : <Login />,
     },
     {
       path: ROUTES.signup,
       element: isLoggedIn ? (
-        <Navigate to={ROUTES.home} replace />
+        <Navigate to={ROUTES.main} replace />
       ) : (
         <Register />
       ),
@@ -86,7 +86,7 @@ const AppRoutes = () => {
       element: <ChangePassword />,
     },
     {
-      path: ROUTES.home,
+      path: ROUTES.main,
       element: (
         <Layout>
           <Home />
