@@ -11,6 +11,5 @@ export const ManageProjectsContainer = styled.div`
 `;
 
 export const TitleWrapper = styled.header`
-  margin-left: 2rem;
   margin-bottom: 2rem;
 `;
