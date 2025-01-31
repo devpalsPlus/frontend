@@ -1,5 +1,6 @@
-export const managedProjectsKey = {
-  mine: ['myManagedProjects'],
+export const managedProjectKey = {
+  managedProjectList: ['myManagedProjectList'],
+  detail: ['projectDataAll'],
 } as const;
 
 export const applicantKey = {

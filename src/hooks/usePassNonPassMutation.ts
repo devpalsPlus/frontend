@@ -4,8 +4,8 @@ import { AxiosError } from 'axios';
 import { applicantKey } from './queries/keys';
 import { MODAL_MESSAGE } from '../constants/modalMessage';
 
-interface useMutationParams {
-  isPass: boolean;
+export interface useMutationParams {
+  status: 'ACCEPTED' | 'REJECTED' | 'WAITING';
   userId: number;
 }
 
@@ -16,19 +16,33 @@ export const usePassNonPassMutation = (
   const queryClient = useQueryClient();
 
   const passNonPassMutation = useMutation<void, AxiosError, useMutationParams>({
-    mutationFn: async ({ isPass, userId }: useMutationParams) => {
-      const data = { status: isPass ? 'ACCEPTED' : 'REJECTED' };
+    mutationFn: async ({ status, userId }: useMutationParams) => {
+      const data = { status: status };
       await patchPassNonPassStatus(data, projectId, userId);
     },
 
-    onSuccess: (_, { isPass }) => {
+    onSuccess: (_, { status }) => {
       queryClient.invalidateQueries({
         queryKey: [applicantKey.all, projectId],
       });
 
-      const successMessage = isPass
-        ? MODAL_MESSAGE.pass
-        : MODAL_MESSAGE.nonPass;
+      queryClient.invalidateQueries({
+        queryKey: [applicantKey.passNonPass, projectId],
+      });
+
+      let successMessage;
+      switch (status) {
+        case 'ACCEPTED':
+          successMessage = MODAL_MESSAGE.pass;
+          break;
+        case 'REJECTED':
+          successMessage = MODAL_MESSAGE.nonPass;
+          break;
+        case 'WAITING':
+          successMessage = MODAL_MESSAGE.waiting;
+          break;
+      }
+
       openModal(successMessage);
     },
 
@@ -38,8 +52,8 @@ export const usePassNonPassMutation = (
     },
   });
 
-  const handlePassNonPassStatus = (isPass: boolean, userId: number) => {
-    passNonPassMutation.mutate({ isPass, userId });
+  const handlePassNonPassStatus = ({ status, userId }: useMutationParams) => {
+    passNonPassMutation.mutate({ status, userId });
   };
 
   return { handlePassNonPassStatus };

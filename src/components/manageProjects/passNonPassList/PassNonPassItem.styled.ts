@@ -12,17 +12,9 @@ export const ItemWrapper = styled.li`
     background-color: ${({ theme }) => theme.color.navy};
     color: ${({ theme }) => theme.color.white};
   }
-
-  svg {
-    color: #e69191;
-    width: 1.2rem;
-    height: 1.2rem;
-  }
 `;
 
 export const NickName = styled.p`
   font-size: ${({ theme }) => theme.heading.small.fontSize};
   font-weight: 400;
 `;
-
-export const DeleteButton = styled.button``;

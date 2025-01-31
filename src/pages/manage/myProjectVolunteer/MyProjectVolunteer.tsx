@@ -66,7 +66,10 @@ const MyProjectVolunteer = () => {
                     <PassNonPassButton
                       isPass={true}
                       onClick={() =>
-                        handlePassNonPassStatus(true, selectedApplicant)
+                        handlePassNonPassStatus({
+                          status: 'ACCEPTED',
+                          userId: selectedApplicant,
+                        })
                       }
                       disabled={projectData?.isDone}
                     >
@@ -75,7 +78,10 @@ const MyProjectVolunteer = () => {
                     <PassNonPassButton
                       isPass={false}
                       onClick={() =>
-                        handlePassNonPassStatus(false, selectedApplicant)
+                        handlePassNonPassStatus({
+                          status: 'REJECTED',
+                          userId: selectedApplicant,
+                        })
                       }
                       disabled={projectData?.isDone}
                     >

@@ -65,7 +65,7 @@ export const InputInfoStyle = styled.input<{ type?: string }>`
           height: 15px;
           cursor: pointer;
           padding-left: 10px;
-          margin-left: 10px;
+          margin-left: 5px;
         `;
     }
   }}
@@ -76,7 +76,7 @@ export const FormError = styled.p`
   font-size: 0.9rem;
   color: ${({ theme }) => theme.color.red};
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: 115%;
+  left: 5px;
   white-space: nowrap;
 `;

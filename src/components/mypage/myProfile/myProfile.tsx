@@ -26,6 +26,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Modal from '../../common/modal/Modal';
 import { useModal } from '../../../hooks/useModal';
 import Spinner from '../Spinner';
+import NoMyInfo from './NoMyInfo';
 
 const profileSchema = z.object({
   nickname: z
@@ -147,7 +148,7 @@ const MyProfile = () => {
   }
 
   if (!myData) {
-    return <div>유저 정보를 불러 올 수 없습니다.</div>;
+    return <NoMyInfo />;
   }
 
   return (

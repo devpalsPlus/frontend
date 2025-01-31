@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 import * as S from './Button.styled';
 import {
   BorderRadiusSize,
@@ -7,7 +7,6 @@ import {
 } from '../../../style/theme';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
   size: ButtonSize;
   schema: ButtonSchema;
   radius: BorderRadiusSize;
@@ -21,7 +20,7 @@ function Button({
   radius,
   disabled,
   ...props
-}: ButtonProps) {
+}: PropsWithChildren<ButtonProps>) {
   return (
     <S.CommonButton
       size={size}

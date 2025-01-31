@@ -1,16 +1,29 @@
+import { useMutationParams } from '../../../hooks/usePassNonPassMutation';
 import { ApplicantInfo } from '../../../models/applicant';
+import { ProjectDetailExtended } from '../../../models/projectDetail';
 import PassNonPassItem from './PassNonPassItem';
 import * as S from './PassNonPassList.styled';
 
 interface PassNonPassListProps {
   passNonPassListData: ApplicantInfo[];
+  projectData: ProjectDetailExtended;
+  onClick: ({ status, userId }: useMutationParams) => void;
 }
 
-function PassNonPassList({ passNonPassListData }: PassNonPassListProps) {
+function PassNonPassList({
+  passNonPassListData,
+  projectData,
+  onClick,
+}: PassNonPassListProps) {
   return (
     <S.Wrapper>
       {passNonPassListData.map((data) => (
-        <PassNonPassItem key={data.userId} userInfo={data} />
+        <PassNonPassItem
+          key={data.userId}
+          onClick={onClick}
+          userInfo={data}
+          projectData={projectData}
+        />
       ))}
     </S.Wrapper>
   );

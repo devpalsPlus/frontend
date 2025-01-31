@@ -7,11 +7,11 @@ export const CategoryContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  margin-top: 5px;
+  margin-top: -20px;
   padding: 3px 0;
   background-color: ${({ theme }) => theme.color.white};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
-  margin-bottom: 3px;
+  margin-bottom: 15px;
 `;
 
 export const PositionButtonFeat = styled(PositionButton)<{
@@ -44,7 +44,8 @@ export const PositionButtonFeat = styled(PositionButton)<{
 `;
 
 export const FormError = styled.p`
-  margin-top: 1px;
+  margin-top: -15px;
+  margin-bottom: 20px;
   font-size: 0.9rem;
   color: ${({ theme }) => theme.color.red};
   top: 100%;

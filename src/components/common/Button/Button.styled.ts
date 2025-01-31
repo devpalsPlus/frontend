@@ -7,6 +7,15 @@ export const CommonButton = styled.button<Omit<ButtonProps, 'children'>>`
   color: ${({ theme, schema }) => theme.buttonScheme[schema].color};
   background-color: ${({ theme, schema }) => theme.buttonScheme[schema].bg};
   border-radius: ${({ theme, radius }) => theme.borderRadius[radius]};
-  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
-  cursor: ${({ disabled }) => (disabled ? 'none' : 'pointer')};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.9;
+    background-color: ${({ theme }) => theme.color.grey};
+  }
 `;

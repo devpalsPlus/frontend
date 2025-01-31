@@ -23,7 +23,7 @@ function Header() {
 
   return (
     <S.HeaderContainer>
-      <Link to={ROUTES.home}>
+      <Link to={ROUTES.main}>
         <img src={Mainlogo} alt='logo' />
       </Link>
       <nav className='auth'>

@@ -13,12 +13,12 @@ export const SectionInput = styled.div`
 
 export const InfoRow = styled.div`
   display: flex;
-  align-items: flex-start;
-  margin-bottom: 20px;
+  align-items: center;
+  margin-bottom: 1rem;
 
   img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border: 1px solid ${({ theme }) => theme.color.border};
     border-radius: ${({ theme }) => theme.borderRadius.primary};
     margin-bottom: 5px;
@@ -27,8 +27,7 @@ export const InfoRow = styled.div`
 
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
     align-items: flex-start;
-    margin-bottom: 15px;
-  }
+     margin-bottom: 15px;
 `;
 
 export const InfoLabel = styled.label`
@@ -113,7 +112,7 @@ export const BeginnerIcon = styled.img`
   border-radius: 50%;
   border: 1px solid ${({ theme }) => theme.color.border};
   background-color: #fff;
-  padding: 5px;
+  padding: 3px;
   object-fit: contain;
   margin-bottom: 15px;
 
@@ -127,8 +126,7 @@ export const BeginnerIcon = styled.img`
 export const BeginnerText = styled.p`
   font-size: 1rem;
   font-weight: bold;
-  color: #000;
+  color: #3e5879;
   flex: 0.8;
   text-align: left;
-  margin-top: 20px;
 `;
