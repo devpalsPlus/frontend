@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useProjectCardListData } from '../../../hooks/useProjectCardListData';
-import EmptyLoadingPage from '../../common/page/emptyLoadingPage/EmptyLoadingPage';
-import NoResultPage from '../../common/page/noResultPage/NoResultPage';
+import EmptyLoadingPage from '../../common/emptyLoadingPage/EmptyLoadingPage';
+import NoResultPage from '../../common/noResultPage/NoResultPage';
 import CardList from './cardList/CardList';
 import Pagination from './pagination/Pagination';
 import * as S from './ProjectCardLists.styled';
