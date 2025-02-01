@@ -4,9 +4,18 @@ import { SkillTagBoxProps } from './SkillTagBox';
 export const Container = styled.div<Pick<SkillTagBoxProps, 'width'>>`
   width: ${({ width }) => width};
   border: 1px solid ${({ theme }) => theme.color.border};
-  border-radius: 3rem;
+  border-radius: ${({ theme }) => theme.borderRadius.large};
   background-color: ${({ theme }) => theme.color.white};
   padding: 2rem;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 1.5rem;
+  }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    border-radius: ${({ theme }) => theme.borderRadius.primary};
+    padding: 1rem;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -45,8 +54,36 @@ export const ResetButton = styled.button`
     transform: scale(1.1);
     transition: all 100ms ease-in;
   }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 0.4rem;
+    gap: 0.4rem;
+    svg {
+      width: 0.9rem;
+    }
+    &:hover {
+      transform: none;
+      transition: none;
+    }
+  }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    padding: 0.2rem;
+    gap: 0.2rem;
+    svg {
+      width: 0.8rem;
+    }
+  }
 `;
 
 export const ResetSpan = styled.span`
   font-size: 1rem;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: 0.9rem;
+  }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    font-size: 0.7rem;
+  }
 `;

@@ -1,7 +1,7 @@
 import { HttpResponse, http } from 'msw';
-import skill from '../../public/data/skill.json';
-import position from '../../public/data/position.json';
-import method from '../../public/data/method.json';
+import skill from './mockSkill.json';
+import position from './mockPosition.json';
+import method from './mockMethod.json';
 
 export const fetchSkillTag = http.get(
   `${import.meta.env.VITE_API_BASE_URL}/skill-tag`,

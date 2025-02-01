@@ -47,7 +47,7 @@ export default function FilteringContents() {
         {skillTagButtonToggle && (
           <S.SkillTagBoxWrapper onClick={handleSkillTagFilterClick}>
             <SkillTagBox
-              width='130%'
+              width='100%'
               onHandleSkillTagReset={handleSkillTagReset}
               isMain={true}
             />
