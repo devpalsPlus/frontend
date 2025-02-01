@@ -4,32 +4,25 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '../../components/projectFormComponents/inputComponent/inputComponent';
 import { CreateProjectFormValues, FormData } from '../../models/createProject';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ProjectInformationInput from '../../components/projectFormComponents/projectInformationInput/ProjectInformationInput';
 import { createProjectScheme } from '../createProject/CreateProject';
 import useGetProjectData from '../../hooks/useJoinProject';
 import { useEffect } from 'react';
 import { formatDate } from '../../util/format';
 import useUpdateProject from '../../hooks/useUpdateProject';
-import { useAlert } from '../../hooks/useAlert';
-import { ROUTES } from '../../constants/routes';
+import { useModal } from '../../hooks/useModal';
+import Modal from '../../components/common/modal/Modal';
 
 const ModifyProject = () => {
-  const navigate = useNavigate();
   const { projectId } = useParams();
   const id = Number(projectId);
-  const { showAlert } = useAlert();
+  const { isOpen, handleModalOpen, handleModalClose, message } = useModal();
 
   const { data: projectData } = useGetProjectData(id);
   const { updateProject } = useUpdateProject({
     id,
-    onSuccess: () => {
-      showAlert('수정 되었습니다.');
-      navigate(`${ROUTES.projectDetail}/${id}`);
-    },
-    onError: (error) => {
-      console.error('Error updating project:', error);
-    },
+    handleModalOpen,
   });
 
   const {
@@ -67,11 +60,7 @@ const ModifyProject = () => {
       description: data.markdownEditor,
     };
 
-    try {
-      await updateProject(formData);
-    } catch (e) {
-      console.error(e);
-    }
+    updateProject(formData);
   };
 
   useEffect(() => {
@@ -148,6 +137,9 @@ const ModifyProject = () => {
 
         <S.SubmitButton type='submit'>제출</S.SubmitButton>
       </form>
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Container>
   );
 };

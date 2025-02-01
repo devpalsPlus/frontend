@@ -1,19 +1,18 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { putProject } from '../api/joinProject.api';
 import { FormData } from '../models/createProject';
+import { MODAL_MESSAGE } from '../constants/modalMessage';
+import { ROUTES } from '../constants/routes';
+import { useNavigate } from 'react-router-dom';
 
 interface UseUpdateProjectProps {
   id: number;
-  onSuccess?: () => void;
-  onError?: (error: unknown) => void;
+  handleModalOpen: (newMessage: string) => void;
 }
 
-const useUpdateProject = ({
-  id,
-  onSuccess,
-  onError,
-}: UseUpdateProjectProps) => {
+const useUpdateProject = ({ id, handleModalOpen }: UseUpdateProjectProps) => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: (formData: FormData) => putProject(formData, id),
@@ -22,11 +21,15 @@ const useUpdateProject = ({
         queryKey: ['projectDataAll', id],
         exact: true,
       });
-      onSuccess?.();
+      handleModalOpen(MODAL_MESSAGE.ModifyProjectSuccess);
+
+      setTimeout(() => {
+        navigate(`${ROUTES.projectDetail}/${id}`);
+      }, 3000);
     },
     onError: (error) => {
-      console.error('Project update failed:', error);
-      onError?.(error);
+      handleModalOpen(MODAL_MESSAGE.ModifyProjectFail);
+      console.log(error);
     },
   });
 
@@ -34,7 +37,7 @@ const useUpdateProject = ({
     try {
       await mutation.mutateAsync(formData);
     } catch (error) {
-      console.error('Error updating project:', error);
+      console.error(error);
       throw error;
     }
   };

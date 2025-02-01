@@ -11,6 +11,7 @@ import useAuthStore from '../../store/authStore';
 import { ROUTES } from '../../constants/routes';
 import { useModal } from '../../hooks/useModal';
 import Modal from '../../components/common/modal/Modal';
+import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -20,10 +21,10 @@ const ProjectDetail = () => {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userData } = useAuthStore((state) => state);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isFetching) return <div>isFetching...</div>;
+  if (isLoading) return <LoadingSpinner />;
+  if (isFetching) return <LoadingSpinner />;
   if (!data) {
-    return <div>데이터가 없습니다.</div>;
+    return <LoadingSpinner />;
   }
 
   const handleApplyClick = () => {

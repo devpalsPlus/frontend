@@ -1,8 +1,10 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { XMarkIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
 import * as S from './Modal.styled';
 import ScrollPreventor from './ScrollPreventor';
+import { useOutsideClick } from '../../../hooks/useOutsideClick';
+
 interface ModalProps {
   children: React.ReactNode;
   isOpen: boolean;
@@ -10,17 +12,11 @@ interface ModalProps {
 }
 
 const Modal = ({ children, isOpen, onClose }: ModalProps) => {
-  const modalRef = useRef<HTMLDivElement | null>(null);
+  const modalRefs = useOutsideClick(() => handleClose());
   const [isFadingOut, setIsFadingOut] = useState(false);
 
   const handleClose = () => {
     setIsFadingOut(true);
-  };
-
-  const handleOverlayClick = (e: React.MouseEvent) => {
-    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-      handleClose();
-    }
   };
 
   const handleAnimationEnd = () => {
@@ -36,10 +32,9 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
     <ScrollPreventor>
       <S.ModalContainer
         className={isFadingOut ? 'fade-out' : 'fade-in'}
-        onClick={handleOverlayClick}
         onAnimationEnd={handleAnimationEnd}
       >
-        <S.ModalBody ref={modalRef}>
+        <S.ModalBody ref={modalRefs}>
           <S.ModalCloseButton onClick={handleClose}>
             <XMarkIcon />
           </S.ModalCloseButton>

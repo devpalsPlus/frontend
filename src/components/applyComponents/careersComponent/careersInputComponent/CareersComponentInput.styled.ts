@@ -13,7 +13,7 @@ const dateStyle = css`
 export const CareerInput = styled.input`
   ${basicStyle}
   padding: 10px;
-  font-size: 18px;
+  font-size: 16px;
 
   &:focus {
     outline: none;
@@ -40,18 +40,19 @@ export const CareerInput = styled.input`
     font-size: ${({ theme }) => theme.heading.small.fontSize};
   }
 
-  @media (max-width: 963px) {
-    width: 100%;
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
     flex: 1;
     margin-bottom: 10px;
 
     &:nth-child(1),
     &:nth-child(4) {
+      width: 60%;
       flex: 1;
     }
 
     &:nth-child(2),
     &:nth-child(3) {
+      width: 20%;
       flex: 1;
     }
   }

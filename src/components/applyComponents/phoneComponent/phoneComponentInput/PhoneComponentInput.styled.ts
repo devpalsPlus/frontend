@@ -6,20 +6,9 @@ export const PhoneInput = styled.input`
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   text-align: center;
-  font-size: 19px;
+  font-size: 17px;
 
-  &:focus {
-    outline: none;
-    border-color: #888;
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: 15px;
   }
-`;
-
-export const FormError = styled.p`
-  margin-top: 0.3px;
-  font-size: 1rem;
-  color: ${({ theme }) => theme.color.red};
-  position: absolute;
-  top: 100%;
-  left: 0;
-  white-space: nowrap;
 `;
