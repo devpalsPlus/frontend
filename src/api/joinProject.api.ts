@@ -10,7 +10,7 @@ export const getProjectData = async (
   return response.data;
 };
 
-export const createProject = async (formData: FormData) => {
+export const postProject = async (formData: FormData) => {
   const response = await httpClient.post(`/project`, formData);
   return response.status;
 };

@@ -4,12 +4,11 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '../../components/projectFormComponents/inputComponent/inputComponent';
 import { CreateProjectFormValues, FormData } from '../../models/createProject';
-import { useNavigate } from 'react-router-dom';
 import ProjectInformationInput from '../../components/projectFormComponents/projectInformationInput/ProjectInformationInput';
-import { createProject } from '../../api/joinProject.api';
 import { useState } from 'react';
-import { useSaveSearchFiltering } from '../../hooks/useSaveSearchFiltering';
-import { ROUTES } from '../../constants/routes';
+import Modal from '../../components/common/modal/Modal';
+import { useModal } from '../../hooks/useModal';
+import useCreateProject from '../../hooks/useCreateProject';
 
 export const createProjectScheme = z.object({
   startDate: z
@@ -55,7 +54,6 @@ export const createProjectScheme = z.object({
 });
 
 const CreateProject = () => {
-  const navigate = useNavigate();
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
@@ -77,7 +75,11 @@ const CreateProject = () => {
   });
 
   const [isSubmit, setIsSubmit] = useState(false);
-  const { handleUpdateFilters } = useSaveSearchFiltering();
+  const { isOpen, message, handleModalClose, handleModalOpen } = useModal();
+  const { createProject } = useCreateProject({
+    handleModalOpen,
+    setIsSubmit,
+  });
 
   const handleSubmit = (data: z.infer<typeof createProjectScheme>) => {
     const formData: FormData = {
@@ -94,14 +96,7 @@ const CreateProject = () => {
       description: data.markdownEditor,
     };
 
-    createProject(formData).then((status: number) => {
-      if (status === 201) {
-        alert('프로젝트가 성공적으로 생성되었습니다.');
-        setIsSubmit(true);
-        handleUpdateFilters('skillTag', []);
-        navigate(ROUTES.main);
-      }
-    });
+    createProject(formData);
   };
 
   return (
@@ -166,6 +161,9 @@ const CreateProject = () => {
 
         <S.SubmitButton type='submit'>제출</S.SubmitButton>
       </form>
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Container>
   );
 };
