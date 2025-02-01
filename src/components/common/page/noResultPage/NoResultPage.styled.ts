@@ -7,6 +7,10 @@ export const Container = styled.div<Pick<NoResultPageProps, 'height'>>`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    height: ${({ height }) => `calc(${height}*0.5)`};
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -20,4 +24,8 @@ export const Wrapper = styled.div`
 
 export const Title = styled.span`
   font-size: 1.5rem;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    font-size: 1rem;
+  }
 `;

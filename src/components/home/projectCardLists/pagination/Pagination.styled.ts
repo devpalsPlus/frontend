@@ -8,10 +8,18 @@ export const Container = styled.nav`
 
 export const Wrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 1rem;
 
   svg {
     width: 1.5rem;
+  }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    gap: 0.8rem;
+    svg {
+      width: 1rem;
+    }
   }
 `;
 
@@ -29,6 +37,12 @@ export const Pagination = styled.button<{ $select: boolean }>`
   background-color: ${({ $select, theme }) =>
     $select ? theme.color.navy : 'initial'};
   color: ${({ $select, theme }) => ($select ? theme.color.white : 'initial')};
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    width: 1rem;
+    height: 1rem;
+    font-size: 1rem;
+  }
 `;
 
 export const PaginationButton = styled.button``;
@@ -36,4 +50,8 @@ export const PaginationButton = styled.button``;
 export const PaginationDoubleButton = styled.button`
   font-size: 1.1rem;
   font-weight: 500;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    font-size: 1rem;
+  }
 `;

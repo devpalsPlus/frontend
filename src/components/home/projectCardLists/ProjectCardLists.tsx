@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useProjectCardListData } from '../../../hooks/useProjectCardListData';
 import EmptyLoadingPage from '../../common/page/emptyLoadingPage/EmptyLoadingPage';
 import NoResultPage from '../../common/page/noResultPage/NoResultPage';
@@ -7,10 +7,20 @@ import Pagination from './pagination/Pagination';
 import * as S from './ProjectCardLists.styled';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
+import { useModal } from '../../../hooks/useModal';
 
 export default function ProjectCardLists() {
+  const { isOpen } = useModal();
   const { projectListsData, isLoading } = useProjectCardListData();
   const [isFlex, setIsFlex] = useState(false);
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    if (isOpen) {
+      e.preventDefault();
+      return;
+    }
+  };
+
   useEffect(() => {
     if (projectListsData && Boolean(projectListsData.projects.length)) {
       setIsFlex(false);
@@ -19,7 +29,10 @@ export default function ProjectCardLists() {
     setIsFlex(true);
   }, [projectListsData]);
 
-  if (isLoading) return <EmptyLoadingPage height='115.2rem' />;
+  if (isLoading)
+    return (
+      <EmptyLoadingPage height='115.2rem' tHeight='142rem' mHeight='275rem' />
+    );
 
   return (
     <S.Container>
@@ -29,7 +42,11 @@ export default function ProjectCardLists() {
       <S.Wrapper $flex={isFlex}>
         {projectListsData && Boolean(projectListsData.projects.length) ? (
           projectListsData.projects.map((list) => (
-            <Link to={`${ROUTES.projectDetail}/${list.id}`} key={list.id}>
+            <Link
+              to={`${ROUTES.projectDetail}/${list.id}`}
+              key={list.id}
+              onClick={handleClick}
+            >
               <CardList list={list} data-cardId={list.id} />
             </Link>
           ))
@@ -37,7 +54,9 @@ export default function ProjectCardLists() {
           <NoResultPage height='40rem' />
         )}
       </S.Wrapper>
-      <Pagination />
+      <div className='PaginationWrapper'>
+        <Pagination />
+      </div>
     </S.Container>
   );
 }

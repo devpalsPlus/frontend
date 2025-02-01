@@ -111,7 +111,7 @@ export const defaultTheme: Theme = {
   },
   mediaQuery: {
     mobile: '(max-width: 768px)',
-    tablet: '(max-width: 1024px)',
-    desktop: '(min-width: 1025px)',
+    tablet: '(max-width: 1023px)',
+    desktop: '(min-width: 1024px)',
   },
 };

@@ -7,6 +7,14 @@ export const Container = styled.div`
   flex-direction: row;
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: 1.5rem;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    width: 50vw;
+  }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    padding: 0.4rem 0;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -20,6 +28,10 @@ export const SearchForm = styled.form`
   display: flex;
   justify-content: space-between;
   padding: 0 1.2rem;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    padding: 0 1rem;
+  }
 `;
 
 export const SearchInput = styled.input`
@@ -34,5 +46,11 @@ export const ButtonWrapper = styled.div`
 export const SearchButton = styled.button`
   svg {
     width: 1.6rem;
+  }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    svg {
+      width: 1.2rem;
+    }
   }
 `;
