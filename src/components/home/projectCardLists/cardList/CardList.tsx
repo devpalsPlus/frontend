@@ -3,10 +3,9 @@ import SkillTagImg from '../../../common/skillTagBox/skillTag/skillTagImg/SkillT
 import * as S from './CardList.styled';
 import beginner from '../../../../assets/beginner.svg';
 import Avatar from '../../../common/avatar/Avatar';
-import { EllipsisHorizontalIcon, EyeIcon } from '@heroicons/react/24/outline';
+import { EyeIcon } from '@heroicons/react/24/outline';
 import type { ProjectList } from '../../../../models/mainProjectLists';
 import { formatDate } from '../../../../util/formatDate';
-import React, { useState } from 'react';
 
 interface CardListProps {
   list: ProjectList;
