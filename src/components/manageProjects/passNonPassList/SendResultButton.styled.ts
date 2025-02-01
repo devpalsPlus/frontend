@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   align-items: center;
   position: absolute;
   top: 7rem;
-  right: 2.5rem;
+  right: 2rem;
 `;
 
 export const SendEmailButton = styled(Button)`
@@ -20,5 +20,16 @@ export const SendEmailButton = styled(Button)`
   }
   &:hover {
     opacity: 0.8;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    width: 7rem;
+    font-size: ${({ theme }) => theme.heading.small.tabletFontSize};
+    padding: ${({ theme }) => theme.buttonSize.small.padding};
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
   }
 `;

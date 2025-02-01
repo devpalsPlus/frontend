@@ -1,5 +1,8 @@
 name: 'front ci'
-on: pull_request
+on:
+  pull_request:
+    branches:
+      - develop
 jobs:
   Component-test:
     runs-on: ubuntu-latest

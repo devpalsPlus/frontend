@@ -45,8 +45,8 @@ export const MenuItem = styled.div<{ $isActive: boolean }>`
   background-color: ${({ $isActive }) =>
     $isActive ? '#f9f9f9' : 'transparent'};
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
-    font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: 0.7rem;
   }
 
   &:hover {
@@ -58,9 +58,9 @@ export const MenuItem = styled.div<{ $isActive: boolean }>`
     width: 30px;
     height: 30px;
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
-      width: 23px;
-      height: 23px;
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
+      width: 20px;
+      height: 20px;
     }
   }
 `;

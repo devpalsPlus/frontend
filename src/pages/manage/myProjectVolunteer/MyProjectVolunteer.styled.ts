@@ -2,12 +2,16 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  margin-top: 24px;
 `;
 
 export const ContentWrapper = styled.div`
   display: flex;
   width: 100%;
   margin-top: 1rem;
+  height: 40rem;
+  padding-bottom: 3rem;
+  overflow-y: hidden;
 `;
 
 export const ApplicantListWrapper = styled.div`
@@ -25,10 +29,14 @@ export const TitleWithButtonWrapper = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 1.25rem;
+  font-size: ${({ theme }) => theme.heading.semiSmall.fontSize};
   font-weight: 700;
   color: ${({ theme }) => theme.color.deepGrey};
   margin-bottom: 1rem;
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: ${({ theme }) => theme.heading.semiSmall.tabletFontSize};
+  }
 `;
 
 export const ButtonWrapper = styled.div`

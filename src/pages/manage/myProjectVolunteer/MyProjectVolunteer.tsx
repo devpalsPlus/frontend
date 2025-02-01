@@ -73,7 +73,7 @@ const MyProjectVolunteer = () => {
                       }
                       disabled={projectData?.isDone}
                     >
-                      합격 리스트에 추가
+                      합격 리스트 추가
                     </PassNonPassButton>
                     <PassNonPassButton
                       isPass={false}
@@ -85,7 +85,7 @@ const MyProjectVolunteer = () => {
                       }
                       disabled={projectData?.isDone}
                     >
-                      불합격 리스트에 추가
+                      불합격 리스트 추가
                     </PassNonPassButton>
                   </S.ButtonWrapper>
                 </S.TitleWithButtonWrapper>

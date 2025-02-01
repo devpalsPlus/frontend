@@ -12,9 +12,17 @@ export const ItemWrapper = styled.li`
     background-color: ${({ theme }) => theme.color.navy};
     color: ${({ theme }) => theme.color.white};
   }
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 0.8rem;
+  }
 `;
 
 export const NickName = styled.p`
   font-size: ${({ theme }) => theme.heading.small.fontSize};
   font-weight: 400;
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: ${({ theme }) => theme.heading.small.tabletFontSize};
+  }
 `;

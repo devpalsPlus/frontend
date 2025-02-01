@@ -57,9 +57,6 @@ const UserJoinProject = lazy(
 const ModifyProject = lazy(
   () => import('../pages/modifyProject/ModifyProject')
 );
-const ApplicantViewLayout = lazy(
-  () => import('../components/common/layout/ApplicantViewLayout')
-);
 
 const AppRoutes = () => {
   const { isLoggedIn } = useAuthStore();
@@ -200,9 +197,9 @@ const AppRoutes = () => {
       element: (
         <ProtectRoute redirectUrl={ROUTES.login}>
           <Suspense fallback={<LoadingSpinner />}>
-            <ApplicantViewLayout>
+            <Layout>
               <MyProjectVolunteer />
-            </ApplicantViewLayout>
+            </Layout>
           </Suspense>
         </ProtectRoute>
       ),
@@ -212,9 +209,9 @@ const AppRoutes = () => {
       element: (
         <ProtectRoute redirectUrl={ROUTES.login}>
           <Suspense fallback={<LoadingSpinner />}>
-            <ApplicantViewLayout>
+            <Layout>
               <MyProjectVolunteersPass />
-            </ApplicantViewLayout>
+            </Layout>
           </Suspense>
         </ProtectRoute>
       ),
