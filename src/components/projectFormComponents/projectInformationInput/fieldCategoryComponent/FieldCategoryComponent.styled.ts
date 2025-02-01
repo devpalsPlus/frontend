@@ -6,11 +6,11 @@ export const CategoryContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  margin-top: 5px;
+  margin-top: -20px;
   padding: 3px 0;
   background-color: ${({ theme }) => theme.color.white};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
-  margin-bottom: 3px;
+  margin-bottom: 20px;
 `;
 
 export const CategoryItem = styled.div<{ isSelected: boolean }>`

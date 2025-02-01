@@ -5,6 +5,10 @@ export const Container = styled.div`
   max-width: 100%;
   margin: 0 auto;
   padding: 40px;
+
+  @media (max-width: 870px) {
+    padding: 25px;
+  }
 `;
 
 export const Header = styled.div`
@@ -14,9 +18,14 @@ export const Header = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 36px;
+  font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 0.8rem;
+  margin-top: 1rem;
+
+  @media (max-width: 870px) {
+    font-size: 28px;
+  }
 `;
 
 export const ProfileContainer = styled.div`
@@ -26,30 +35,45 @@ export const ProfileContainer = styled.div`
 `;
 
 export const ProfileImageContainer = styled.div`
-  margin-right: 15px;
+  padding-right: 15px;
+  cursor: pointer;
 `;
 
 export const UserInfo = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
+
+  @media (max-width: 870px) {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 `;
 
 export const UserName = styled.div`
-  font-size: 21px;
+  font-size: ${({ theme }) => theme.heading['small'].fontSize};
   font-weight: bold;
+  cursor: pointer;
+
+  @media (max-width: 870px) {
+    font-size: 18px;
+  }
 `;
 
 export const PostDate = styled.div`
-  font-size: ${({ theme }) => theme.heading.semiSmall};
+  font-size: 0.9rem;
   color: ${({ theme }) => theme.color.deepGrey};
+
+  @media (max-width: 870px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const ViewCount = styled.div`
   display: flex;
   gap: 5px;
   text-align: center;
-  font-size: ${({ theme }) => theme.heading.semiSmall};
+  font-size: 0.9rem;
   color: ${({ theme }) => theme.color.deepGrey};
 
   svg {
@@ -58,10 +82,19 @@ export const ViewCount = styled.div`
     height: 16px;
     color: ${({ theme }) => theme.color.deepGrey};
   }
+
+  @media (max-width: 870px) {
+    font-size: 0.9rem;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
 `;
 
 export const Content = styled.div`
-  margin-top: 20px;
+  margin-top: 3.5rem;
   margin-bottom: 60px;
 `;
 
@@ -88,7 +121,7 @@ export const Value = styled.span`
 `;
 
 export const ProjectDescription = styled.div`
-  margin-top: 30px;
+  margin-top: 4rem;
 `;
 
 export const SectionTitle = styled.h3`
@@ -104,9 +137,17 @@ export const Description = styled.div`
 `;
 
 export const ApplyButtonContainer = styled.div`
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 50px;
   margin-bottom: 50px;
+
+  button {
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.8rem 1.8rem;
+  }
 `;
 
 export const ActionButton = styled(Button)`

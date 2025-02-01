@@ -1,18 +1,24 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { patchSendResult } from '../api/myProjectList.api';
 import { MODAL_MESSAGE } from '../constants/modalMessage';
+import { managedProjectKey } from './queries/keys';
 
 export const useSendResultMutation = (
   projectId: number,
   openModal: (message: string) => void
 ) => {
+  const queryClient = useQueryClient();
+
   const sendResultMutaition = useMutation<void, AxiosError>({
     mutationFn: async () => {
       await patchSendResult(projectId);
     },
 
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [managedProjectKey.detail, projectId],
+      });
       openModal(MODAL_MESSAGE.sendResult);
     },
 

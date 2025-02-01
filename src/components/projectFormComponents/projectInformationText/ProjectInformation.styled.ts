@@ -5,36 +5,28 @@ export const SectionInput = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1px;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 25px;
+  }
 `;
 
 export const InfoRow = styled.div`
   display: flex;
-  align-items: flex-start;
-  margin-bottom: 20px;
-
-  label {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #666;
-    text-align: left;
-    margin-right: 30px;
-  }
+  align-items: center;
+  margin-bottom: 1rem;
 
   img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border: 1px solid ${({ theme }) => theme.color.border};
-    border-radius: 50%;
+    border-radius: ${({ theme }) => theme.borderRadius.primary};
     margin-bottom: 5px;
     margin-right: 10px;
   }
 
-  p {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #000;
-    flex: 0.8;
-    text-align: left;
+  @media (max-width: 1024px) {
+    margin-bottom: 15px;
   }
 `;
 
@@ -46,13 +38,38 @@ export const InfoLabel = styled.label`
   text-align: left;
   margin-right: 15px;
   white-space: nowrap;
+
+  @media (max-width: 1024px) {
+    margin-right: 30px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+`;
+
+export const InfoText = styled.p`
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
+  flex: 0.8;
+  text-align: left;
+
+  @media (max-width: 1024px) {
+    font-size: 0.95rem;
+    flex: 1;
+  }
 `;
 
 export const SkillTagContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   gap: 10px;
-  flex: 0.6;
+  flex: 0.9;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
 `;
 
 export const SkillTagImage = styled.div`
@@ -66,8 +83,9 @@ export const SkillTagImage = styled.div`
     width: 40px;
     height: 40px;
     border: 1px solid ${({ theme }) => theme.color.border};
-    border-radius: 50%;
+    border-radius: ${({ theme }) => theme.borderRadius.primary};
     margin-bottom: 5px;
+    margin-left: 10px;
   }
 
   p {
@@ -75,15 +93,40 @@ export const SkillTagImage = styled.div`
     color: ${({ theme }) => theme.color.primary};
     margin-top: 2px;
   }
+
+  @media (max-width: 1024px) {
+    img {
+      width: 35px;
+      height: 35px;
+    }
+
+    p {
+      font-size: 0.75rem;
+    }
+  }
 `;
 
 export const BeginnerIcon = styled.img`
   width: 21px;
   height: 21px;
   border-radius: 50%;
-  border: 1px solid #ccc;
+  border: 1px solid ${({ theme }) => theme.color.border};
   background-color: #fff;
-  padding: 5px;
+  padding: 3px;
   object-fit: contain;
   margin-bottom: 15px;
+
+  @media (max-width: 1024px) {
+    width: 18px;
+    height: 18px;
+    margin-bottom: 10px;
+  }
+`;
+
+export const BeginnerText = styled.p`
+  font-size: 1rem;
+  font-weight: bold;
+  color: #3e5879;
+  flex: 0.8;
+  text-align: left;
 `;

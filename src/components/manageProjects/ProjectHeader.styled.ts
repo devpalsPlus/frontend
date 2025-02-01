@@ -12,4 +12,5 @@ export const RecruitmentEnd = styled.h3`
   font-size: 1rem;
   font-weight: 400;
   color: ${({ theme }) => theme.color.red};
+  flex-shrink: 0;
 `;

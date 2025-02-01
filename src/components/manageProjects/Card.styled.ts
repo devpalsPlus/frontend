@@ -22,6 +22,10 @@ export const CardWrapper = styled.div`
   &:hover {
     background-color: ${({ theme }) => theme.color.grey};
   }
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    width: 19rem;
+    height: 14rem;
+  }
 `;
 
 export const CardTitle = styled.h3`
@@ -33,20 +37,35 @@ export const CardTitle = styled.h3`
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   overflow: hidden;
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: ${({ theme }) => theme.heading.small.fontSize};
+    margin-bottom: 0.8rem;
+  }
 `;
 
 export const RecruitmentDate = styled.small`
-  font-size: 1rem;
+  font-size: ${({ theme }) => theme.heading.small.fontSize};
   font-weight: 400;
   color: ${({ theme }) => theme.color.deepgrey};
   margin-bottom: 0.25rem;
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: ${({ theme }) => theme.heading.small.tabletFontSize};
+    margin-bottom: 0.7rem;
+  }
 `;
 
 export const TotalMember = styled.small`
-  font-size: 1rem;
+  font-size: ${({ theme }) => theme.heading.small.fontSize};
   font-weight: 400;
   color: ${({ theme }) => theme.color.deepgrey};
   margin-bottom: 1.125rem;
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: ${({ theme }) => theme.heading.small.tabletFontSize};
+    margin-bottom: 1rem;
+  }
 `;
 
 export const RecruitmentEnd = styled.span`

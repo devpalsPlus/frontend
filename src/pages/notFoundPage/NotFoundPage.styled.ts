@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import notFoundImg from '../../../../assets/notFoundImg.svg';
+import notFoundImg from '../../assets/notFoundImg.svg';
 
 export const Container = styled.div`
   width: 100vw;

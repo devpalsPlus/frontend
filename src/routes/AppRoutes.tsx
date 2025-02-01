@@ -6,16 +6,16 @@ import {
 import { lazy, Suspense } from 'react';
 
 import LoadingSpinner from '../components/common/loadingSpinner/LoadingSpinner';
-import Error from '../pages/error/Error';
 import { ROUTES } from '../constants/routes';
 import useAuthStore from '../store/authStore';
 import ProtectRoute from '../components/common/ProtectRoute';
+import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 const Login = lazy(() => import('../pages/login/Login'));
 const Register = lazy(() => import('../pages/register/Register'));
 const ChangePassword = lazy(
   () => import('../pages/changePassword/ChangePassword')
 );
-const Main = lazy(() => import('../pages/main/Main'));
+// const Main = lazy(() => import('../pages/main/Main'));
 const Layout = lazy(() => import('../components/common/layout/Layout'));
 const Home = lazy(() => import('../pages/home/Home'));
 const MyPage = lazy(() => import('../pages/mypage/MyPage'));
@@ -57,26 +57,23 @@ const UserJoinProject = lazy(
 const ModifyProject = lazy(
   () => import('../pages/modifyProject/ModifyProject')
 );
-const ApplicantViewLayout = lazy(
-  () => import('../components/common/layout/ApplicantViewLayout')
-);
 
 const AppRoutes = () => {
   const { isLoggedIn } = useAuthStore();
 
   const routeList = [
-    {
-      path: ROUTES.main,
-      element: <Main />,
-    },
+    // {
+    //   path: ROUTES.main,
+    //   element: <Main />,
+    // },
     {
       path: ROUTES.login,
-      element: isLoggedIn ? <Navigate to={ROUTES.home} replace /> : <Login />,
+      element: isLoggedIn ? <Navigate to={ROUTES.main} replace /> : <Login />,
     },
     {
       path: ROUTES.signup,
       element: isLoggedIn ? (
-        <Navigate to={ROUTES.home} replace />
+        <Navigate to={ROUTES.main} replace />
       ) : (
         <Register />
       ),
@@ -86,7 +83,7 @@ const AppRoutes = () => {
       element: <ChangePassword />,
     },
     {
-      path: ROUTES.home,
+      path: ROUTES.main,
       element: (
         <Layout>
           <Home />
@@ -116,9 +113,11 @@ const AppRoutes = () => {
     {
       path: `${ROUTES.projectDetail}/:projectId`,
       element: (
-        <Layout>
-          <ProjectDetail />
-        </Layout>
+        <Suspense fallback={<LoadingSpinner />}>
+          <Layout>
+            <ProjectDetail />
+          </Layout>
+        </Suspense>
       ),
     },
     {
@@ -198,9 +197,9 @@ const AppRoutes = () => {
       element: (
         <ProtectRoute redirectUrl={ROUTES.login}>
           <Suspense fallback={<LoadingSpinner />}>
-            <ApplicantViewLayout>
+            <Layout>
               <MyProjectVolunteer />
-            </ApplicantViewLayout>
+            </Layout>
           </Suspense>
         </ProtectRoute>
       ),
@@ -210,9 +209,9 @@ const AppRoutes = () => {
       element: (
         <ProtectRoute redirectUrl={ROUTES.login}>
           <Suspense fallback={<LoadingSpinner />}>
-            <ApplicantViewLayout>
+            <Layout>
               <MyProjectVolunteersPass />
-            </ApplicantViewLayout>
+            </Layout>
           </Suspense>
         </ProtectRoute>
       ),
@@ -222,7 +221,7 @@ const AppRoutes = () => {
   const newRouteList = routeList.map((item) => {
     return {
       ...item,
-      errorElement: <Error />,
+      errorElement: <NotFoundPage />,
     };
   });
 

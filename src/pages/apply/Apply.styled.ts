@@ -36,6 +36,7 @@ export const Section = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 1.5rem;
 `;
 
 export const Label = styled.label`
@@ -61,7 +62,7 @@ export const TextArea = styled.textarea`
 `;
 
 export const SubmitButton = styled(Button)`
-  width: 10%;
+  width: 100px;
   padding: 15px;
   margin: 0 auto;
   cursor: pointer;

@@ -38,7 +38,7 @@ export const SectionTitle = styled.label`
 `;
 
 export const Section = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 2.7rem;
 `;
 
 export const SectionInput = styled.div`
@@ -52,7 +52,7 @@ export const SectionInput = styled.div`
 `;
 
 export const SubmitButton = styled.button`
-  width: 10%;
+  width: 70px;
   padding: 15px;
   background-color: ${({ theme }) => theme.buttonScheme.primary.bg};
   color: ${({ theme }) => theme.color.white};
@@ -60,6 +60,7 @@ export const SubmitButton = styled.button`
   font-weight: bold;
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   cursor: pointer;
+  margin-top: 3.5rem;
 
   &:hover {
     background-color: #0056b3;
