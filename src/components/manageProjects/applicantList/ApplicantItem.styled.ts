@@ -30,11 +30,13 @@ export const Button = styled.button<ButtonProps>`
   border: 1px solid
     ${({ $passStatus, theme }) => getBorderColor($passStatus, theme)};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
+  transition: all 0.2s ease;
 
   &:hover {
     background-color: ${({ theme }) => theme.buttonScheme.primary.bg};
     color: ${({ theme }) => theme.buttonScheme.primary.color};
     border: none;
+    transition: all 0.2s ease-out;
   }
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {

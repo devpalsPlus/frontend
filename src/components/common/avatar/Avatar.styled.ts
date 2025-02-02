@@ -1,15 +1,21 @@
 import styled from 'styled-components';
 import { AvatarProps } from './Avatar';
 
-export const AvatarContainer = styled.div<Omit<AvatarProps, 'image'>>`
+interface AvatarContainerProps extends Omit<AvatarProps, 'image'> {
+  $isMainLogo?: boolean;
+}
+
+export const AvatarContainer = styled.div<AvatarContainerProps>`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
-  border: 1px solid ${({ theme }) => theme.color.border};
-  border-radius: 50%;
+  border-radius: ${({ $isMainLogo }) => ($isMainLogo ? '0' : '50%')};
+  border: ${({ $isMainLogo, theme }) =>
+    $isMainLogo ? 'none' : `1px solid ${theme.color.border}`};
+
   .avatar {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
+    border-radius: ${({ $isMainLogo }) => ($isMainLogo ? '0' : '50%')};
   }
 
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {

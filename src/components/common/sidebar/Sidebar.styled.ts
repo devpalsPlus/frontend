@@ -46,7 +46,7 @@ export const MenuItem = styled.div<{ $isActive: boolean }>`
     $isActive ? '#f9f9f9' : 'transparent'};
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
   }
 
   &:hover {
