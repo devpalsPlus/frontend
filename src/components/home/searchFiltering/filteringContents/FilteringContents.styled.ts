@@ -22,7 +22,7 @@ export const Container = styled.div`
 
   @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(45%, auto));
+    grid-template-columns: repeat(auto-fit, minmax(45%, auto));
     gap: 0.5rem;
     > * {
       width: 100%;

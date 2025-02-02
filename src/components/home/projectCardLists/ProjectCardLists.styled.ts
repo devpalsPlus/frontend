@@ -23,7 +23,7 @@ export const Wrapper = styled.div<{ $flex: boolean }>`
   width: 100%;
   display: ${({ $flex }) => ($flex ? 'flex' : 'grid')};
   grid-template-columns: ${({ $flex }) =>
-    $flex ? '' : 'repeat(auto-fit, minmax(30%, auto))'};
+    $flex ? '' : 'repeat(auto-fit, minmax(30%, 1fr))'};
   place-items: ${({ $flex }) => ($flex ? '' : 'center')};
   /* justify-content: space-evenly; */
   gap: 3rem;
@@ -34,14 +34,14 @@ export const Wrapper = styled.div<{ $flex: boolean }>`
 
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
     grid-template-columns: ${({ $flex }) =>
-      $flex ? '' : 'repeat(auto-fit, minmax(40%, auto))'};
+      $flex ? '' : 'repeat(auto-fit, minmax(40%, 1fr))'};
     gap: 2rem;
   }
 
   @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
     width: 100%;
     grid-template-columns: ${({ $flex }) =>
-      $flex ? '' : 'repeat(auto-fit, minmax(50%, auto))'};
+      $flex ? '' : 'repeat(auto-fit, minmax(50%, 1fr))'};
     gap: 1rem;
   }
 `;
