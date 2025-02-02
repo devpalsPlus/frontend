@@ -15,7 +15,7 @@ export const MODAL_MESSAGE = {
   myProfileSuccess: '프로필 수정이 완료되었습니다.',
   myProfileFail: '프로필 수정에 실패했습니다.',
   profileImgSuccess: '프로필 이미지가 업로드 되었습니다.',
-  profileImgFail: '이미지는 5MB 이하, .png.jpg.jpeg.svg 형식만 가능합니다.',
+  profileImgFail: '이미지는 5MB 이하, .png.jpg.jpeg 형식만 가능합니다.',
   ModifyProjectSuccess: '공고 수정이 정상적으로 완료 되었습니다.',
   ModifyProjectFail: '공고 수정을 실패 했습니다.',
   createProjectSuccess: '공고 생성을 완료 했습니다.',

@@ -1,9 +1,10 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import Avatar from '../avatar/Avatar';
 import * as S from './Sidebar.styled';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import EditMyProfileImg from './editMyProfileImg/EditMyProfileImg';
 import useAuthStore from '../../../store/authStore';
+import MainLogo from '../../../assets/mainlogo.svg';
 
 interface MenuItem {
   label: string;
@@ -18,7 +19,7 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
-  const { isLoggedIn } = useAuthStore((state) => state);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const location = useLocation();
   const isUserPage = location.pathname.includes('/user');
   const isManagePage = location.pathname.includes('/manage');
@@ -27,27 +28,20 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
 
   const getActiveIndex = useCallback(() => {
     const currentPath = location.pathname;
-    const matchedIndex = menuItems.findIndex(
-      (item) => currentPath === item.path
-    );
-    return matchedIndex !== -1 ? matchedIndex : 0;
+    return menuItems.findIndex((item) => currentPath === item.path) ?? 0;
   }, [location.pathname, menuItems]);
-
-  const [activeIndex, setActiveIndex] = useState<number>(getActiveIndex);
-
-  useEffect(() => {
-    setActiveIndex(getActiveIndex());
-  }, [location.pathname, menuItems, getActiveIndex]);
-
-  const handleClick = (index: number) => {
-    setActiveIndex(index);
-  };
 
   return (
     <S.Container>
       <S.AvartarContainer>
         <S.AvartarWrapper>
-          <Avatar size='120px' image={profileImage} />
+          {profileImage === MainLogo ? (
+            <S.LogoContainer>
+              <img src={MainLogo} alt='main logo' />
+            </S.LogoContainer>
+          ) : (
+            <Avatar size='120px' image={profileImage} />
+          )}
           {isMyProfile && <EditMyProfileImg />}
         </S.AvartarWrapper>
         <span>{nickname ? nickname : ''}</span>
@@ -55,10 +49,7 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
       <S.MenuList>
         {menuItems.map(({ label, path, icon }, index) => (
           <NavLink key={path} to={path}>
-            <S.MenuItem
-              $isActive={activeIndex === index}
-              onClick={() => handleClick(index)}
-            >
+            <S.MenuItem $isActive={getActiveIndex() === index}>
               {icon && <S.IconWrapper>{icon}</S.IconWrapper>}
               {label}
             </S.MenuItem>

@@ -16,7 +16,7 @@ import Modal from '../modal/Modal';
 function Header() {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userLogout } = useAuth(handleModalOpen);
-  const { isLoggedIn } = useAuthStore((state) => state);
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
 
   const profileImg = myData?.profileImg || DefaultImg;
