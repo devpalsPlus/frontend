@@ -66,7 +66,7 @@ export const ModalIconWrapper = styled.div`
 export const ModalContents = styled.p`
   font-size: 1.1rem;
   font-weight: 600;
-  color: #393939;
+  color: #333333;
   text-align: center;
 `;
 
