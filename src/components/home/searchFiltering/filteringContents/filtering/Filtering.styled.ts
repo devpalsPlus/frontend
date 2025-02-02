@@ -44,12 +44,16 @@ export const SelectWrapper = styled.div`
 export const SelectButton = styled.button`
   width: 100%;
   display: block;
-  font-size: 01rem;
+  font-size: 1rem;
   text-align: initial;
   padding: 0.5rem;
 
   &:hover {
     background-color: ${({ theme }) => theme.color.navy};
     color: ${({ theme }) => theme.color.white};
+  }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    font-size: 0.9rem;
   }
 `;

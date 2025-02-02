@@ -14,6 +14,7 @@ export const Container = styled.div`
 
   @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 0.4rem 0;
+    width: 100%;
   }
 `;
 

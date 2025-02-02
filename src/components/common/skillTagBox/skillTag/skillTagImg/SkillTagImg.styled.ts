@@ -17,6 +17,6 @@ export const SkillImg = styled.img<Pick<SkillTagImgProps, '$select'>>`
   }
 
   @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
-    width: 1.8rem;
+    width: 1.5rem;
   }
 `;
