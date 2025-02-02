@@ -1,10 +1,13 @@
 import { getApplicantInfo } from '../api/applicant.api';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { applicantKey } from './queries/keys';
+import { useLocation } from 'react-router-dom';
 
 export const useApplicantInfo = (projectId: number) => {
   const [selectedApplicant, setSelectedUser] = useState<number | null>(null);
+  const location = useLocation();
+  const userId = new URLSearchParams(location.search).get('userId');
 
   const { data } = useQuery({
     queryKey: [applicantKey.info, projectId, selectedApplicant],
@@ -14,8 +17,12 @@ export const useApplicantInfo = (projectId: number) => {
   });
 
   const handleSelectedApplicant = (userId: number) => {
-    setSelectedUser(userId);
+    if (userId) setSelectedUser(userId);
   };
+
+  useEffect(() => {
+    handleSelectedApplicant(Number(userId));
+  }, [location.search]);
 
   return { applicantInfo: data, selectedApplicant, handleSelectedApplicant };
 };

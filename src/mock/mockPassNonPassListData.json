@@ -164,7 +164,7 @@
     },
     {
       "id": 20,
-      "userId": 11,
+      "userId": 23,
       "projectId": 72,
       "message": null,
       "email": null,
@@ -175,7 +175,7 @@
       "updatedAt": "2025-01-23T09:08:25.000Z",
       "User": {
         "id": 11,
-        "nickname": "종다리"
+        "nickname": "김개발20"
       }
     }
   ]

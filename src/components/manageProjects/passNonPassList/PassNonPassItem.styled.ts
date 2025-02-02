@@ -21,6 +21,7 @@ export const ItemWrapper = styled.li`
 export const NickName = styled.p`
   font-size: ${({ theme }) => theme.heading.small.fontSize};
   font-weight: 400;
+  cursor: pointer;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: ${({ theme }) => theme.heading.small.tabletFontSize};

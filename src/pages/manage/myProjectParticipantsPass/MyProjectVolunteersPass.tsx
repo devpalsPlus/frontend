@@ -52,7 +52,7 @@ const MyProjectVolunteersPass = () => {
                 <S.Title>합격자 리스트</S.Title>
                 {projectData && (
                   <PassNonPassList
-                    onClick={handlePassNonPassStatus}
+                    handleStatus={handlePassNonPassStatus}
                     projectData={projectData}
                     passNonPassListData={passNonPassListData.accepted}
                   />
@@ -62,7 +62,7 @@ const MyProjectVolunteersPass = () => {
                 <S.Title>불 합격자 리스트</S.Title>
                 {projectData && (
                   <PassNonPassList
-                    onClick={handlePassNonPassStatus}
+                    handleStatus={handlePassNonPassStatus}
                     projectData={projectData!}
                     passNonPassListData={passNonPassListData.rejected}
                   />

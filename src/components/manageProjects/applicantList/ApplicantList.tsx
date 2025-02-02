@@ -16,9 +16,9 @@ function ApplicantList({
     <S.Container>
       {applicantsData.map((data) => (
         <ApplicantItem
+          key={data.userId}
           selectedApplicant={selectedApplicant}
           onClick={onClick}
-          key={data.userId}
           applicantData={data}
         />
       ))}

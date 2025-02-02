@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { XMarkIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import * as S from './Modal.styled';
 import ScrollPreventor from './ScrollPreventor';
+import ModalCloseButton from './ModalCloseButton';
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
 
 interface ModalProps {
@@ -35,9 +36,7 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
         onAnimationEnd={handleAnimationEnd}
       >
         <S.ModalBody ref={modalRefs}>
-          <S.ModalCloseButton onClick={handleClose}>
-            <XMarkIcon />
-          </S.ModalCloseButton>
+          <ModalCloseButton onClose={handleClose} />
           <S.ModalIconWrapper>
             <CheckCircleIcon />
           </S.ModalIconWrapper>
