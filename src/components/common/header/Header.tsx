@@ -48,9 +48,7 @@ function Header() {
                   <li>공고관리</li>
                 </Link>
                 <Link to='#' onClick={(e) => e.preventDefault()}>
-                  <li>
-                    <button onClick={userLogout}>로그아웃</button>
-                  </li>
+                  <li onClick={userLogout}>로그아웃</li>
                 </Link>
               </ul>
             )}
