@@ -12,7 +12,7 @@ export const CareerContainer = styled.div`
   margin-bottom: 10px;
 
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
-    flex-direction: column;
+    display: flex;
     gap: 10px;
   }
 `;
