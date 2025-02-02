@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useMutationParams } from '../../../hooks/usePassNonPassMutation';
 import { ApplicantInfo } from '../../../models/applicant';
 import { ProjectDetailExtended } from '../../../models/projectDetail';
@@ -7,20 +8,26 @@ import * as S from './PassNonPassList.styled';
 interface PassNonPassListProps {
   passNonPassListData: ApplicantInfo[];
   projectData: ProjectDetailExtended;
-  onClick: ({ status, userId }: useMutationParams) => void;
+  handleStatus: ({ status, userId }: useMutationParams) => void;
 }
 
 function PassNonPassList({
   passNonPassListData,
   projectData,
-  onClick,
+  handleStatus,
 }: PassNonPassListProps) {
+  const navigate = useNavigate();
+  const handleUserInfo = (userId: number) => {
+    navigate(`/manage/${projectData.id}?userId=${userId}`);
+  };
+
   return (
     <S.Wrapper>
       {passNonPassListData.map((data) => (
         <PassNonPassItem
           key={data.userId}
-          onClick={onClick}
+          handleUserInfo={handleUserInfo}
+          hanldeStatus={handleStatus}
           userInfo={data}
           projectData={projectData}
         />
