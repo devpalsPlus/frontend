@@ -8,13 +8,13 @@ export const Wrapper = styled.div`
   align-items: center;
   position: relative;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     flex-direction: column;
     align-items: flex-end;
     gap: 1.5rem;
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     gap: 1rem;
   }
 `;

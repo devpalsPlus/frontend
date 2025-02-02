@@ -5,11 +5,11 @@ export const Container = styled.div<EmptyLoadingPageProps>`
   width: 100%;
   height: ${({ height }) => height};
 
-  @media screen ${({ theme }) => theme.mediaQuery.tablet} {
-    height: ${({ tHeight }) => tHeight};
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    height: ${({ $tHeight }) => $tHeight};
   }
 
-  @media screen ${({ theme }) => theme.mediaQuery.mobile} {
-    height: ${({ mHeight }) => mHeight};
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
+    height: ${({ $mHeight }) => $mHeight};
   }
 `;

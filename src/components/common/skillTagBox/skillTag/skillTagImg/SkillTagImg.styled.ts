@@ -12,11 +12,11 @@ export const SkillImg = styled.img<Pick<SkillTagImgProps, '$select'>>`
   border: 1px solid
     ${({ theme, $select }) => ($select ? 'none' : theme.color.border)};
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     width: 2rem;
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     width: 1.5rem;
   }
 `;

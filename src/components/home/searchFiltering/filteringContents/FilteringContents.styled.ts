@@ -20,7 +20,7 @@ export const Container = styled.div`
     width: 1rem;
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(45%, auto));
     gap: 0.5rem;
@@ -52,7 +52,7 @@ export const SkillTagBoxWrapper = styled.div`
   position: absolute;
   top: 3rem;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     top: 2.5rem;
   }
 `;
@@ -74,7 +74,7 @@ export const BeginnerButton = styled.button<{ $toggle: boolean | null }>`
   color: ${({ theme, $toggle }) => ($toggle ? theme.color.navy : 'initial')};
   font-weight: ${({ $toggle }) => ($toggle ? 'bold' : 'initial')};
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 0 1rem;
   }
 `;

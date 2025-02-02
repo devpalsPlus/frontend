@@ -8,11 +8,11 @@ export const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: 1.5rem;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     width: 50vw;
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 0.4rem 0;
     width: 100%;
   }
@@ -30,7 +30,7 @@ export const SearchForm = styled.form`
   justify-content: space-between;
   padding: 0 1.2rem;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 0 1rem;
   }
 `;
@@ -49,7 +49,7 @@ export const SearchButton = styled.button`
     width: 1.6rem;
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     svg {
       width: 1.2rem;
     }

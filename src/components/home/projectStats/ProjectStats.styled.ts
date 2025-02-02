@@ -3,25 +3,25 @@ import styled from 'styled-components';
 export const Container = styled.section`
   padding: 8rem 0;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 3rem 0;
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 2rem 0;
   }
 `;
 export const Wrapper = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+  grid-template-columns: repeat(auto-fit, minmax(30%, auto));
   justify-content: space-evenly;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
-    grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
+    grid-template-columns: repeat(auto-fit, minmax(30%, auto));
     gap: 1rem;
     padding: 0;
   }
