@@ -6,6 +6,10 @@ export const Container = styled.section`
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 3rem 0;
   }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    padding: 2rem 0;
+  }
 `;
 export const Wrapper = styled.div`
   width: 100%;

@@ -17,6 +17,11 @@ export const HeaderContainer = styled.div`
       width: 70px;
       height: 70px;
     }
+
+    @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+      width: 50px;
+      height: 50px;
+    }
   }
 
   .panel {
@@ -68,6 +73,6 @@ export const HeaderContainer = styled.div`
     padding: 10px 60px;
   }
   @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
-    padding: 10px 20px;
+    padding: 10px 16px;
   }
 `;
