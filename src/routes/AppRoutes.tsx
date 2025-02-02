@@ -59,7 +59,7 @@ const ModifyProject = lazy(
 );
 
 const AppRoutes = () => {
-  const { isLoggedIn } = useAuthStore();
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const routeList = [
     // {

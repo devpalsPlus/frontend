@@ -19,7 +19,7 @@ import {
 import { MODAL_MESSAGE } from '../constants/modalMessage';
 
 export const useMyProfileInfo = () => {
-  const { isLoggedIn } = useAuthStore();
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const { data, isLoading } = useQuery<UserInfo>({
     queryKey: myInfoKey.myProfile,
@@ -84,7 +84,7 @@ export const useUploadProfileImg = (
 };
 
 export const useMyJoinedProjectList = () => {
-  const { isLoggedIn } = useAuthStore();
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const { data, isLoading } = useQuery<MyJoinedProjectList>({
     queryKey: ProjectListKey.myJoinedList,
@@ -96,7 +96,7 @@ export const useMyJoinedProjectList = () => {
 };
 
 export const useMyAppliedStatusList = () => {
-  const { isLoggedIn } = useAuthStore();
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const { data, isLoading } = useQuery<MyAppliedProjectStatusList>({
     queryKey: ProjectListKey.myAppliedStatusList,

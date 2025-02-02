@@ -6,7 +6,7 @@ import useAuthStore from '../store/authStore';
 import { UserJoinedProjectList } from '../models/userProject';
 
 export const useUserProfileInfo = (id: number) => {
-  const { isLoggedIn } = useAuthStore();
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const { data, isLoading } = useQuery<UserInfo>({
     queryKey: [userInfoKey.userProfile, id],
@@ -19,7 +19,7 @@ export const useUserProfileInfo = (id: number) => {
 };
 
 export const useUserJoinedProjectList = (id: number) => {
-  const { isLoggedIn } = useAuthStore();
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const { data, isLoading } = useQuery<UserJoinedProjectList>({
     queryKey: [userInfoKey.userJoinedList, id],
