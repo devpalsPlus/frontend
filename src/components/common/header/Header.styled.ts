@@ -67,4 +67,7 @@ export const HeaderContainer = styled.div`
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 10px 60px;
   }
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    padding: 10px 20px;
+  }
 `;

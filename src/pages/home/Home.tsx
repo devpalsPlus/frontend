@@ -9,9 +9,11 @@ const Home = () => {
   return (
     <S.Container>
       <Banner />
-      <ProjectStats />
-      <SearchFiltering />
-      <ProjectCardLists />
+      <S.Wrapper>
+        <ProjectStats />
+        <SearchFiltering />
+        <ProjectCardLists />
+      </S.Wrapper>
       <ReactQueryDevtools initialIsOpen={false} />
     </S.Container>
   );

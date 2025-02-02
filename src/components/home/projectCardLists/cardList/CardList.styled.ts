@@ -4,7 +4,7 @@ export const Container = styled.article`
   position: relative;
   cursor: pointer;
   width: 100%;
-  min-width: 19rem;
+  min-width: 15rem;
   height: 22rem;
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: 2rem;

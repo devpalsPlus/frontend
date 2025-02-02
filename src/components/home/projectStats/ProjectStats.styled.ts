@@ -11,15 +11,14 @@ export const Wrapper = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+  justify-content: space-evenly;
 
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(40%, auto));
-    padding: 0 4rem;
-    gap: 1rem;
   }
 
   @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+    gap: 1rem;
     padding: 0;
   }
 `;
