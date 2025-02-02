@@ -10,7 +10,7 @@ export const Container = styled.h1<Omit<TitleProps, 'children'>>`
   text-overflow: ellipsis;
   overflow: hidden;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: ${({ theme, size }) => theme.heading[size].tabletFontSize};
   }
 `;
