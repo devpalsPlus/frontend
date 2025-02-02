@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { ApplicantInfo } from '../../../models/applicant';
 import * as S from './ApplicantItem.styled';
 
@@ -13,9 +14,21 @@ function ApplicantItem({
   onClick,
 }: ApplicantItemProps) {
   const isSelected = selectedApplicant === applicantData.userId;
+  const itemRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (isSelected && itemRef.current) {
+      itemRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      });
+    }
+  }, [isSelected]);
+
   return (
     <>
       <S.Button
+        ref={itemRef}
         $isSelected={isSelected}
         onClick={() => onClick(applicantData.userId)}
         $passStatus={applicantData.status}
