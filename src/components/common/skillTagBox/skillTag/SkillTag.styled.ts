@@ -21,7 +21,7 @@ export const Wrapper = styled.div<{ $select: boolean }>`
     transition: all 100ms ease-in-out;
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 0.4rem;
     gap: 0.4rem;
     font-size: 0.9rem;
@@ -31,7 +31,7 @@ export const Wrapper = styled.div<{ $select: boolean }>`
     }
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 0.2rem;
     gap: 0.2rem;
     font-size: 0.8rem;

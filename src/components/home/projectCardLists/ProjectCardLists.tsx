@@ -22,7 +22,7 @@ export default function ProjectCardLists() {
 
   if (isLoading)
     return (
-      <EmptyLoadingPage height='115.2rem' tHeight='142rem' mHeight='275rem' />
+      <EmptyLoadingPage height='115.2rem' $tHeight='142rem' $mHeight='275rem' />
     );
 
   return (

@@ -6,11 +6,11 @@ export const LayoutContainer = styled.div`
   max-width: ${({ theme }) => theme.layout.width.desktop};
   padding: 0 120px;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 0 60px;
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 0;
   }
 `;

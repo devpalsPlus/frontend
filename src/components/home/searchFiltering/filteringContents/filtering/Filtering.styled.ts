@@ -36,7 +36,7 @@ export const SelectWrapper = styled.div`
   overflow: hidden;
   background-color: ${({ theme }) => theme.color.white};
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     top: 2.2rem;
   }
 `;
@@ -53,7 +53,7 @@ export const SelectButton = styled.button`
     color: ${({ theme }) => theme.color.white};
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     font-size: 0.9rem;
   }
 `;

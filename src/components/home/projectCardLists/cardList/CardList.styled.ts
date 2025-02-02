@@ -14,7 +14,7 @@ export const Container = styled.article`
   flex-direction: column;
   gap: 1rem;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 1.5rem;
     gap: 0.5rem;
     height: 18rem;
@@ -105,7 +105,7 @@ export const StatusWrapper = styled.div`
 export const BeginnerImg = styled.img`
   width: 2rem;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     width: 1.5rem;
   }
 `;
@@ -119,7 +119,7 @@ export const ViewWrapper = styled.div`
     color: #5f5f5f;
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     svg {
       width: 1rem;
     }
@@ -130,7 +130,7 @@ export const ViewCount = styled.span`
   flex-direction: row;
   color: #5f5f5f;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     align-items: end;
     font-size: 0.9rem;
   }

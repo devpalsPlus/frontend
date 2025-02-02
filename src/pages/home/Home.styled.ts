@@ -5,7 +5,7 @@ export const Container = styled.main`
 `;
 
 export const Wrapper = styled.div`
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 0 20px;
   }
 `;

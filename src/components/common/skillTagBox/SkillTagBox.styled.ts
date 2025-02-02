@@ -8,11 +8,11 @@ export const Container = styled.div<Pick<SkillTagBoxProps, 'width'>>`
   background-color: ${({ theme }) => theme.color.white};
   padding: 2rem;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 1.5rem;
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     border-radius: ${({ theme }) => theme.borderRadius.primary};
     padding: 1rem;
   }
@@ -55,7 +55,7 @@ export const ResetButton = styled.button`
     transition: all 100ms ease-in;
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 0.4rem;
     gap: 0.4rem;
     svg {
@@ -67,7 +67,7 @@ export const ResetButton = styled.button`
     }
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 0.2rem;
     gap: 0.2rem;
     svg {
@@ -79,11 +79,11 @@ export const ResetButton = styled.button`
 export const ResetSpan = styled.span`
   font-size: 1rem;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: 0.9rem;
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     font-size: 0.7rem;
   }
 `;
