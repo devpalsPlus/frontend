@@ -2,15 +2,18 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
-  flex: 1;
-  padding-left: 1.25rem;
+  padding-left: 2rem;
   align-items: center;
   gap: 1rem;
 
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
-    justify-content: start;
-    padding-left: 2rem;
+    gap: 0.5rem;
+  }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    padding-left: 1rem;
+    gap: 0.3rem;
+    align-items: start;
   }
 `;
 
@@ -24,7 +27,7 @@ export const Border = styled.div`
   }
 
   @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
-    height: 2rem;
+    width: 0.1rem;
   }
 `;
 
