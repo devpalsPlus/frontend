@@ -34,10 +34,10 @@ const DropDown = ({
 
   return (
     <S.DropDownContainer ref={dropdownRef}>
-      <button className="toggle" onClick={() => setOpen(!open)}>
+      <div className='toggle' onClick={() => setOpen(!open)}>
         {toggleButton}
-      </button>
-      {open && <div className="panel">{children}</div>}
+      </div>
+      {open && <div className='panel'>{children}</div>}
     </S.DropDownContainer>
   );
 };
