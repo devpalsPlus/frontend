@@ -12,6 +12,17 @@ export const Container = styled.div`
   padding-bottom: 1rem;
 `;
 
+export const LogoContainer = styled.div`
+  width: 110px;
+  height: 110px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
 export const AvartarContainer = styled.div`
   width: 100%;
   display: flex;

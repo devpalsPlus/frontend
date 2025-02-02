@@ -4,6 +4,7 @@ import * as S from './Sidebar.styled';
 import React, { useCallback } from 'react';
 import EditMyProfileImg from './editMyProfileImg/EditMyProfileImg';
 import useAuthStore from '../../../store/authStore';
+import MainLogo from '../../../assets/mainlogo.svg';
 
 interface MenuItem {
   label: string;
@@ -34,7 +35,13 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
     <S.Container>
       <S.AvartarContainer>
         <S.AvartarWrapper>
-          <Avatar size='120px' image={profileImage} />
+          {profileImage === MainLogo ? (
+            <S.LogoContainer>
+              <img src={MainLogo} alt='main logo' />
+            </S.LogoContainer>
+          ) : (
+            <Avatar size='120px' image={profileImage} />
+          )}
           {isMyProfile && <EditMyProfileImg />}
         </S.AvartarWrapper>
         <span>{nickname ? nickname : ''}</span>
