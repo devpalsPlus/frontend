@@ -12,13 +12,13 @@ jobs:
 
     steps:
       - name: Checkout Github Action
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Get npm cache directory
         id: npm-cache-dir
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: npm-cache
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
@@ -42,17 +42,30 @@ jobs:
         run: ls -la dist/
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_S3_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY_ID }}
           aws-region: ap-northeast-2
 
-      - name: Upload to S3 Bucket
+      - name: Upload compressed files to S3 with header
         env:
           BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
         run: |
-          aws s3 sync dist/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete
+          for file in $(find dist/ -type f -name "*.gz"); do
+            original=$(echo "$file" | sed 's/\.gz$//')
+            filename=$(basename "$original")
+            echo "Uploading $file as $filename with Content-Encoding: gzip"
+            aws s3 cp "$file" "s3://${BUCKET_NAME}/${filename}" \
+              --content-encoding gzip \
+              --metadata-directive REPLACE
+          done
+
+      - name: Upload non-compressed files to S3
+        env:
+          BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
+        run: |
+          aws s3 sync dist/ s3://${BUCKET_NAME} --exclude "*.gz" --delete
 
       - name: CloudFront Invalidation
         env:
