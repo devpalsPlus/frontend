@@ -41,6 +41,14 @@ jobs:
       - name: Verify Build Directory
         run: ls -la dist/
 
+      - name: Compress text-based files (gzip)
+        run: |
+          echo "Compressing text-based files..."
+          for file in $(find dist/ -type f \( -iname "*.html" -o -iname "*.css" -o -iname "*.js" \)); do
+            echo "Compressing $file"
+            gzip -c "$file" > "$file.gz"
+          done
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -52,24 +60,28 @@ jobs:
         env:
           BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
         run: |
+          echo "Uploading compressed files with gzip header..."
           for file in $(find dist/ -type f -name "*.gz"); do
             original=$(echo "$file" | sed 's/\.gz$//')
             filename=$(basename "$original")
             echo "Uploading $file as $filename with Content-Encoding: gzip"
             aws s3 cp "$file" "s3://${BUCKET_NAME}/${filename}" \
               --content-encoding gzip \
-              --metadata-directive REPLACE
+              --metadata-directive REPLACE \
+              --cache-control "max-age=31536000"
           done
 
       - name: Upload non-compressed files to S3
         env:
           BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
         run: |
+          echo "Uploading non-compressed files..."
           aws s3 sync dist/ s3://${BUCKET_NAME} --exclude "*.gz" --delete
 
       - name: CloudFront Invalidation
         env:
           CLOUD_FRONT_ID: ${{ secrets.AWS_CLOUDFRONT_ID }}
         run: |
+          echo "Creating CloudFront invalidation..."
           aws cloudfront create-invalidation \
             --distribution-id $CLOUD_FRONT_ID --paths /*
