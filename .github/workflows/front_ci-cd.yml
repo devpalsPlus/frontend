@@ -65,7 +65,7 @@ jobs:
             original=$(echo "$file" | sed 's/\.gz$//')
             filename=$(basename "$original")
             echo "Uploading $file as $filename with Content-Encoding: gzip"
-            aws s3 cp "$file" "s3://${BUCKET_NAME}/${filename}" \
+            aws s3 cp "$file" "s3://${{ secrets.AWS_S3_BUCKET_NAME }}/${filename}" \
               --content-encoding gzip \
               --metadata-directive REPLACE \
               --cache-control "max-age=31536000"
@@ -76,7 +76,7 @@ jobs:
           BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
         run: |
           echo "Uploading non-compressed files..."
-          aws s3 sync dist/ s3://${BUCKET_NAME} --exclude "*.gz" --delete
+          aws s3 sync dist/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --exclude "*.gz" --delete
 
       - name: CloudFront Invalidation
         env:
