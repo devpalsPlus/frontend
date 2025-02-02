@@ -25,17 +25,21 @@ const MyProjectVolunteer = () => {
   const { projectId } = useParams();
   const { data: projectData } = useGetProjectData(Number(projectId));
   const { isOpen, handleModalClose, handleModalOpen, message } = useModal();
+
   const { handlePassNonPassStatus } = usePassNonPassMutation(
     Number(projectId),
     handleModalOpen
   );
+
   const sidebarMenuItem = useMemo(
     () => applicantsMenuItems(Number(projectId)),
     [projectId]
   );
+
   const { applicantsData, isApplicantLoading } = useApllicantList(
     Number(projectId)
   );
+
   const { applicantInfo, selectedApplicant, handleSelectedApplicant } =
     useApplicantInfo(Number(projectId));
 
