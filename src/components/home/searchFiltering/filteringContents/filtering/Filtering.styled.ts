@@ -35,6 +35,10 @@ export const SelectWrapper = styled.div`
   cursor: pointer;
   overflow: hidden;
   background-color: ${({ theme }) => theme.color.white};
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    top: 2.2rem;
+  }
 `;
 
 export const SelectButton = styled.button`

@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 60vw;
+  width: 100%;
   display: flex;
   gap: 1rem;
-  position: relative;
   z-index: 1000;
 
   > * {
@@ -20,9 +19,21 @@ export const Container = styled.div`
   svg {
     width: 1rem;
   }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(45%, auto));
+    gap: 0.5rem;
+    > * {
+      width: 100%;
+      height: 2rem;
+    }
+  }
 `;
 
-export const SkillTagButtonWrapper = styled.div``;
+export const SkillTagButtonWrapper = styled.div`
+  z-index: 1000;
+`;
 
 export const SkillTagButton = styled.button`
   border-radius: 1.5rem;
@@ -39,7 +50,11 @@ export const SkillTagBoxWrapper = styled.div`
   height: 100%;
   border: none;
   position: absolute;
-  top: 110%;
+  top: 3rem;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    top: 2.5rem;
+  }
 `;
 
 export const BeginnerButtonWrapper = styled.div<{ $toggle: boolean | null }>`
@@ -58,6 +73,10 @@ export const BeginnerButton = styled.button<{ $toggle: boolean | null }>`
   padding: 0 1.5rem;
   color: ${({ theme, $toggle }) => ($toggle ? theme.color.navy : 'initial')};
   font-weight: ${({ $toggle }) => ($toggle ? 'bold' : 'initial')};
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    padding: 0 1rem;
+  }
 `;
 
 export const BeginnerImg = styled.img``;

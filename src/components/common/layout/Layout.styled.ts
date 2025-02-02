@@ -9,4 +9,8 @@ export const LayoutContainer = styled.div`
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 0 60px;
   }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    padding: 0;
+  }
 `;

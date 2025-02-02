@@ -42,39 +42,19 @@ export default function Pagination() {
     handleUpdateFilters('page', Number(dataId));
   };
 
-  type Action = 'pagePrev' | 'pageFirst' | 'pageEnd' | 'pageNext';
-  const handleChevronClick = (action: Action) => {
-    switch (action) {
-      case 'pagePrev':
-        handleUpdateFilters('page', currentPage - 1);
-        break;
-      case 'pageFirst':
-        handleUpdateFilters('page', 1);
-        break;
-      case 'pageEnd':
-        handleUpdateFilters('page', lastPage);
-        break;
-      case 'pageNext':
-        handleUpdateFilters('page', currentPage + 1);
-        break;
-      default:
-        break;
-    }
-  };
-
   return (
     <S.Container>
       <S.Wrapper onClick={handleMovePaginationClick}>
         {currentPage !== 1 && (
           <>
             <S.PaginationButton
-              onClick={() => handleUpdateFilters('page', lastPage)}
+              onClick={() => handleUpdateFilters('page', currentPage - 1)}
             >
               <ChevronLeftIcon />
             </S.PaginationButton>
             <S.PaginationDoubleButton
               className='doubleButton'
-              onClick={() => handleChevronClick('pageFirst')}
+              onClick={() => handleUpdateFilters('page', 1)}
             >
               1
             </S.PaginationDoubleButton>
@@ -96,11 +76,13 @@ export default function Pagination() {
             <EllipsisHorizontalIcon />
             <S.PaginationDoubleButton
               className='doubleButton'
-              onClick={() => handleChevronClick('pageEnd')}
+              onClick={() => handleUpdateFilters('page', lastPage)}
             >
               {lastPage}
             </S.PaginationDoubleButton>
-            <S.PaginationButton onClick={() => handleChevronClick('pageNext')}>
+            <S.PaginationButton
+              onClick={() => handleUpdateFilters('page', currentPage + 1)}
+            >
               <ChevronRightIcon />
             </S.PaginationButton>
           </>

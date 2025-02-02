@@ -6,7 +6,7 @@ export const SectionInput = styled.div`
   flex-direction: column;
   gap: 1px;
 
-  @media (max-width: 1024px) {
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
     margin-bottom: 25px;
   }
 `;
@@ -25,9 +25,9 @@ export const InfoRow = styled.div`
     margin-right: 10px;
   }
 
-  @media (max-width: 1024px) {
-    margin-bottom: 15px;
-  }
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    align-items: flex-start;
+     margin-bottom: 15px;
 `;
 
 export const InfoLabel = styled.label`
@@ -39,7 +39,7 @@ export const InfoLabel = styled.label`
   margin-right: 15px;
   white-space: nowrap;
 
-  @media (max-width: 1024px) {
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
     margin-right: 30px;
     margin-bottom: 8px;
     font-size: 0.9rem;
@@ -53,7 +53,7 @@ export const InfoText = styled.p`
   flex: 0.8;
   text-align: left;
 
-  @media (max-width: 1024px) {
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: 0.95rem;
     flex: 1;
   }
@@ -65,7 +65,7 @@ export const SkillTagContainer = styled.div`
   gap: 10px;
   flex: 0.9;
 
-  @media (max-width: 1024px) {
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
     grid-template-columns: repeat(6, 1fr);
     gap: 8px;
     width: 100%;
@@ -94,7 +94,7 @@ export const SkillTagImage = styled.div`
     margin-top: 2px;
   }
 
-  @media (max-width: 1024px) {
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
     img {
       width: 35px;
       height: 35px;
@@ -116,7 +116,7 @@ export const BeginnerIcon = styled.img`
   object-fit: contain;
   margin-bottom: 15px;
 
-  @media (max-width: 1024px) {
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
     width: 18px;
     height: 18px;
     margin-bottom: 10px;

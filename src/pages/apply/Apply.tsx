@@ -3,15 +3,16 @@ import Input from '../../components/projectFormComponents/inputComponent/inputCo
 import { useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { formatDate } from '../../util/format';
-import { postApplicantProject } from '../../api/joinProject.api';
 import { joinProject } from '../../models/joinProject';
 import useGetProjectData from '../../hooks/useJoinProject';
 import CareersComponent from '../../components/applyComponents/careersComponent/CareersComponent';
 import PhoneComponent from '../../components/applyComponents/phoneComponent/PhoneComponent';
 import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
-import { ROUTES } from '../../constants/routes';
+import Modal from '../../components/common/modal/Modal';
+import { useModal } from '../../hooks/useModal';
+import useApplyProject from '../../hooks/useApplyProject';
 
 const ApplyScheme = z.object({
   email: z
@@ -39,9 +40,10 @@ export type ApplySchemeType = z.infer<typeof ApplyScheme>;
 
 const Apply = () => {
   const { projectId } = useParams();
-  const navigate = useNavigate();
   const id = Number(projectId);
+  const { isOpen, handleModalOpen, handleModalClose, message } = useModal();
   const { data: projectData, isLoading, isFetching } = useGetProjectData(id);
+  const { applyProject } = useApplyProject({ id, handleModalOpen });
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
@@ -69,31 +71,7 @@ const Apply = () => {
       career: data.careers,
     };
 
-    postApplicantProject(formData, id).then((status) => {
-      switch (status) {
-        case 201:
-          alert('지원서가 성공적으로 제출되었습니다.');
-          navigate(ROUTES.main);
-          break;
-        case 400:
-          alert('잘못된 요청입니다.');
-          break;
-        case 401:
-          alert('세션이 만료되었습니다. 로그인 해주세요.');
-          break;
-        case 403:
-          alert('본인의 프로젝트는 지원할 수 없습니다.');
-          break;
-        case 404:
-          alert('해당 페이지가 존재하지 않습니다');
-          break;
-        case 500:
-          alert('서버 오류.');
-          break;
-        default:
-          alert('알 수 없는 에러.');
-      }
-    });
+    applyProject(formData);
   };
 
   if (!projectData) {
@@ -158,6 +136,9 @@ const Apply = () => {
           지원하기
         </S.SubmitButton>
       </S.Form>
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Container>
   );
 };

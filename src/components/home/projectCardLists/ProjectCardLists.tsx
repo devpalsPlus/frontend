@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useProjectCardListData } from '../../../hooks/useProjectCardListData';
-import EmptyLoadingPage from '../../common/page/emptyLoadingPage/EmptyLoadingPage';
-import NoResultPage from '../../common/page/noResultPage/NoResultPage';
+import EmptyLoadingPage from '../../common/emptyLoadingPage/EmptyLoadingPage';
+import NoResultPage from '../../common/noResultPage/NoResultPage';
 import CardList from './cardList/CardList';
 import Pagination from './pagination/Pagination';
 import * as S from './ProjectCardLists.styled';
@@ -11,6 +11,7 @@ import { ROUTES } from '../../../constants/routes';
 export default function ProjectCardLists() {
   const { projectListsData, isLoading } = useProjectCardListData();
   const [isFlex, setIsFlex] = useState(false);
+
   useEffect(() => {
     if (projectListsData && Boolean(projectListsData.projects.length)) {
       setIsFlex(false);
@@ -19,7 +20,10 @@ export default function ProjectCardLists() {
     setIsFlex(true);
   }, [projectListsData]);
 
-  if (isLoading) return <EmptyLoadingPage height='115.2rem' />;
+  if (isLoading)
+    return (
+      <EmptyLoadingPage height='115.2rem' tHeight='142rem' mHeight='275rem' />
+    );
 
   return (
     <S.Container>

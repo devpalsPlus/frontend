@@ -1,13 +1,28 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  display: flex;
   padding: 8rem 0;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 3rem 0;
+  }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    padding: 2rem 0;
+  }
 `;
 export const Wrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 7.25rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+  justify-content: space-evenly;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+    gap: 1rem;
+    padding: 0;
+  }
 `;

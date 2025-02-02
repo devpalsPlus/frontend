@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.article`
   position: relative;
   cursor: pointer;
-  width: 22.4rem;
+  width: 100%;
+  min-width: 15rem;
   height: 22rem;
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: 2rem;
@@ -12,6 +13,12 @@ export const Container = styled.article`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    padding: 1.5rem;
+    gap: 0.5rem;
+    height: 18rem;
+  }
 `;
 
 export const Deadline = styled.div`
@@ -60,21 +67,15 @@ export const TagWrapper = styled.div<{ $positionPadding?: boolean }>`
   z-index: 10;
 `;
 
-export const EllipsisIcon = styled.button<{ $hiddenIcon: boolean }>`
+export const EllipsisIconButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2rem;
   padding-left: 0.8rem;
-  cursor: pointer;
-  z-index: ${({ $hiddenIcon }) => ($hiddenIcon ? '0' : '100')};
-
-  &:hover {
-    transform: scale(1.3);
-    transition: all 200ms ease-in;
-    opacity: 0;
-  }
+  font-size: 0.7rem;
 `;
+
+export const MoreSpan = styled.span``;
 
 export const InfoWrapper = styled.div`
   display: flex;
@@ -103,6 +104,10 @@ export const StatusWrapper = styled.div`
 
 export const BeginnerImg = styled.img`
   width: 2rem;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    width: 1.5rem;
+  }
 `;
 
 export const ViewWrapper = styled.div`
@@ -113,9 +118,20 @@ export const ViewWrapper = styled.div`
     width: 1.3rem;
     color: #5f5f5f;
   }
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    svg {
+      width: 1rem;
+    }
+  }
 `;
 
 export const ViewCount = styled.span`
   flex-direction: row;
   color: #5f5f5f;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    align-items: end;
+    font-size: 0.9rem;
+  }
 `;
