@@ -24,10 +24,6 @@ export const HeaderContainer = styled.div`
     }
   }
 
-  .panel {
-    border-radius: ${({ theme }) => theme.borderRadius.primary};
-  }
-
   .auth {
     ul {
       display: flex;
