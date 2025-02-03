@@ -9,6 +9,7 @@ import { useState } from 'react';
 import Modal from '../../components/common/modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import useCreateProject from '../../hooks/useCreateProject';
+import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
 
 export const createProjectScheme = z.object({
   startDate: z
@@ -76,7 +77,7 @@ const CreateProject = () => {
 
   const [isSubmit, setIsSubmit] = useState(false);
   const { isOpen, message, handleModalClose, handleModalOpen } = useModal();
-  const { createProject } = useCreateProject({
+  const { createProject, isLoading } = useCreateProject({
     handleModalOpen,
     setIsSubmit,
   });
@@ -98,6 +99,8 @@ const CreateProject = () => {
 
     createProject(formData);
   };
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <S.Container>
