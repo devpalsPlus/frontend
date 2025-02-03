@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.main`
   width: 100%;
+  min-width: 22.7rem;
 `;
 
 export const Wrapper = styled.div`
