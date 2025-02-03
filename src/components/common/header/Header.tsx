@@ -12,6 +12,7 @@ import { UserCircleIcon } from '@heroicons/react/24/outline';
 import loadingImg from '../../../assets/loadingImg.svg';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../modal/Modal';
+import { formatImgPath } from '../../../util/formatImgPath';
 
 function Header() {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
@@ -32,7 +33,14 @@ function Header() {
             isLoading ? (
               <Avatar size='45px' image={loadingImg} />
             ) : isLoggedIn ? (
-              <Avatar size='45px' image={profileImg} />
+              <Avatar
+                size='45px'
+                image={`${
+                  import.meta.env.VITE_APP_IMAGE_CDN_URL
+                }/${formatImgPath(
+                  profileImg
+                )}?w=86&h=86&fit=crop&crop=entropy&auto=format,enhance&q=60`}
+              />
             ) : (
               <UserCircleIcon color='#6D6D6D' width='48' height='48' />
             )
