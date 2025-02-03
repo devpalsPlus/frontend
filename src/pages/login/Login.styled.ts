@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
   max-width: ${({ theme }) => theme.layout.width.desktop};
+  min-width: 310px;
   margin: 0 auto;
   flex-direction: column;
   align-items: center;
@@ -32,6 +33,7 @@ export const Container = styled.div`
 
 export const InputContainer = styled.div`
   display: flex;
+  min-width: 310px;
   gap: 0.6rem;
 
   button {
@@ -44,7 +46,7 @@ export const InputContainer = styled.div`
 
 export const InputWrapper = styled.div`
   max-width: 310px;
-  width: 70%;
+  width: inherit;
   margin-bottom: 1.875rem;
   position: relative;
 `;

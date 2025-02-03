@@ -131,9 +131,7 @@ const MyProfile = () => {
   const { fields, append, remove } = useFieldArray({ control, name: 'career' });
 
   const handleCheckNickName = (nickname: string) => {
-    if (nickname !== myData?.nickname) {
-      handleNickname(nickname);
-    }
+    handleNickname(nickname);
   };
 
   const onSubmit = (data: ProfileFormData, e?: React.BaseSyntheticEvent) => {
