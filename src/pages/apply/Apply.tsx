@@ -13,6 +13,8 @@ import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinne
 import Modal from '../../components/common/modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import useApplyProject from '../../hooks/useApplyProject';
+import useAuthStore from '../../store/authStore';
+import { useEffect } from 'react';
 
 const ApplyScheme = z.object({
   email: z
@@ -44,10 +46,12 @@ const Apply = () => {
   const { isOpen, handleModalOpen, handleModalClose, message } = useModal();
   const { data: projectData, isLoading, isFetching } = useGetProjectData(id);
   const { applyProject } = useApplyProject({ id, handleModalOpen });
+  const userEmail = useAuthStore((state) => state.userData?.email);
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
     control,
+    setValue,
   } = useForm<ApplySchemeType>({
     resolver: zodResolver(ApplyScheme),
     defaultValues: {
@@ -57,6 +61,10 @@ const Apply = () => {
       careers: [],
     },
   });
+
+  useEffect(() => {
+    if (userEmail) setValue('email', userEmail);
+  }, [userEmail, setValue]);
 
   const { fields: fieldsCareers, append: appendCareers } = useFieldArray({
     name: 'careers',
@@ -75,7 +83,11 @@ const Apply = () => {
   };
 
   if (!projectData) {
-    return <div>데이터가 없습니다.</div>;
+    return (
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
+    );
   }
 
   if (isLoading) return <LoadingSpinner />;
