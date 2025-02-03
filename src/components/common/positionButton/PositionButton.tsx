@@ -15,7 +15,11 @@ export default function PositionButton({
 }: PositionButtonProps) {
   return (
     <S.Container onClick={onClick}>
-      <S.PositionButton $isSelected={isSelected} $isHover={isHover}>
+      <S.PositionButton
+        $isSelected={isSelected}
+        $isHover={isHover}
+        type='button'
+      >
         {position}
       </S.PositionButton>
     </S.Container>

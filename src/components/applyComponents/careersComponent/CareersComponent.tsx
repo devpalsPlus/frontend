@@ -38,6 +38,7 @@ const CareersComponent = ({
         size='primary'
         schema='primary'
         radius='primary'
+        type='button'
         onClick={() =>
           appendCareers({
             name: '',
