@@ -4,6 +4,7 @@ import { FormData } from '../models/createProject';
 import { MODAL_MESSAGE } from '../constants/modalMessage';
 import { ROUTES } from '../constants/routes';
 import { useNavigate } from 'react-router-dom';
+import { managedProjectKey } from './queries/keys';
 
 interface UseUpdateProjectProps {
   id: number;
@@ -18,7 +19,7 @@ const useUpdateProject = ({ id, handleModalOpen }: UseUpdateProjectProps) => {
     mutationFn: (formData: FormData) => putProject(formData, id),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['projectDataAll', id],
+        queryKey: [managedProjectKey.detail, id],
         exact: true,
       });
       handleModalOpen(MODAL_MESSAGE.ModifyProjectSuccess);
