@@ -8,37 +8,37 @@ export const Container = styled.div`
   font-family: Arial, sans-serif;
 
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
-    padding: 25px;
+    padding: 20px;
   }
 `;
 
 export const Title = styled.h1`
-  font-size: 32px;
+  font-size: 2.3rem;
   font-weight: bold;
   margin-bottom: 50px;
 
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
-    font-size: 27px;
+    font-size: 1.8rem;
   }
 `;
 
 export const Subtitle = styled.h2`
-  font-size: 25px;
+  font-size: 1.5rem;
   color: ${({ theme }) => theme.color.primary};
   margin-bottom: 20px;
 
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
-    font-size: 22px;
+    font-size: 1.4rem;
   }
 `;
 
 export const Dates = styled.p`
-  font-size: 20px;
+  font-size: ${({ theme }) => theme.heading.small.fontSize};
   color: ${({ theme }) => theme.color.placeholder};
   margin-bottom: 50px;
 
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.heading.small.fontSize};
   }
 `;
 
@@ -56,12 +56,12 @@ export const Section = styled.div`
 `;
 
 export const Label = styled.label`
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: bold;
   color: ${({ theme }) => theme.color.black};
 
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
-    font-size: 18px;
+    font-size: 1.1rem;
   }
 `;
 

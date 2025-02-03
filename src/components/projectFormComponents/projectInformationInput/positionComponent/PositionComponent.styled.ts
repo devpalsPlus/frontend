@@ -46,7 +46,7 @@ export const PositionButtonFeat = styled(PositionButton)<{
 export const FormError = styled.p`
   margin-top: -15px;
   margin-bottom: 20px;
-  font-size: 0.9rem;
+  font-size: ${({ theme }) => theme.heading.small.fontSize};
   color: ${({ theme }) => theme.color.red};
   top: 100%;
   left: 0;

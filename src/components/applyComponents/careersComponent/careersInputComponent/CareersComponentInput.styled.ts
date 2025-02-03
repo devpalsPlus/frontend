@@ -13,12 +13,12 @@ const dateStyle = css`
 export const CareerInput = styled.input`
   ${basicStyle}
   padding: 10px;
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.heading.semiSmall.fontSize};
 
   &:nth-child(1),
   &:nth-child(4) {
     flex: 2;
-    font-size: ${({ theme }) => theme.heading.small.fontSize};
+    font-size: ${({ theme }) => theme.heading.semiSmall.fontSize};
   }
 
   &:nth-child(2),
@@ -29,13 +29,13 @@ export const CareerInput = styled.input`
   @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
     width: 100%;
     margin-bottom: 12px;
-    font-size: 14px;
+    font-size: ${({ theme }) => theme.heading.small.fontSize};
   }
 `;
 
 export const FormError = styled.p`
   margin-top: 0.3px;
-  font-size: 1rem;
+  font-size: ${({ theme }) => theme.heading.small.fontSize};
   color: ${({ theme }) => theme.color.red};
   position: absolute;
   top: 100%;
