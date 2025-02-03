@@ -73,10 +73,14 @@ export const InputInfoStyle = styled.input<{ type?: string }>`
 
 export const FormError = styled.p`
   margin-top: 0.3px;
-  font-size: ${({ theme }) => theme.heading.small.fontSize};
+  font-size: 0.9rem;
   color: ${({ theme }) => theme.color.red};
   position: absolute;
   top: 115%;
   left: 5px;
   white-space: nowrap;
+
+  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: ${({ theme }) => theme.heading.small.tabletFontSize};
+  }
 `;

@@ -44,7 +44,7 @@ const ProjectInformationInput = ({
       {PROJECT_DATA.map((input, index) => (
         <>
           <S.InfoRow key={index}>
-            <label htmlFor={input.name}>{input.label}</label>
+            <S.InfoLabel htmlFor={input.name}>{input.label}</S.InfoLabel>
             <Input
               indexInfo={input.id}
               control={control}
@@ -61,7 +61,7 @@ const ProjectInformationInput = ({
       ))}
 
       <S.InfoRow>
-        <label htmlFor='field'>진행 방식</label>
+        <S.InfoLabel htmlFor='field'>진행 방식</S.InfoLabel>
       </S.InfoRow>
       <FieldCategoryComponent
         name='field'
@@ -74,7 +74,7 @@ const ProjectInformationInput = ({
       />
 
       <S.InfoRow>
-        <label htmlFor='position'>모집 분야</label>
+        <S.InfoLabel htmlFor='position'>모집 분야</S.InfoLabel>
       </S.InfoRow>
       <MozipCategoryComponent
         name='position'
@@ -87,7 +87,7 @@ const ProjectInformationInput = ({
       />
 
       <S.InfoRow>
-        <label htmlFor='languages'>사용 언어</label>
+        <S.InfoLabel htmlFor='languages'>사용 언어</S.InfoLabel>
       </S.InfoRow>
       <LanguageComponent
         name='languages'
