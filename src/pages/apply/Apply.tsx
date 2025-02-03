@@ -102,7 +102,7 @@ const Apply = () => {
         </S.Section>
 
         <S.Section>
-          <S.Label>전화번호</S.Label>
+          <S.Label>휴대폰 전화번호</S.Label>
           <PhoneComponent control={control} errors={errors} />
         </S.Section>
 
