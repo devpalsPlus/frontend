@@ -2,6 +2,7 @@ import * as S from './AvatarList.styled';
 import { ProjectSkillTag } from '../../../models/manageMyProject';
 import Avatar from './Avatar';
 import { UserSkillTag } from '../../../models/applicant';
+import { formatImgPath } from '../../../util/formatImgPath';
 export interface AvartarListProps {
   avatars: ProjectSkillTag[] | UserSkillTag[] | null;
   size?: string;
@@ -22,7 +23,9 @@ function AvartarList({
         <Avatar
           key={avatar.skillTagId}
           size={size}
-          image={avatar.SkillTag.img}
+          image={`${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
+            avatar.SkillTag.img
+          )}?w=62&h=62&fit=crop&crop=entropy&q=60`}
         />
       ))}
     </S.Wrapper>
