@@ -28,12 +28,30 @@ const ApplyScheme = z.object({
   wantToSay: z.string().optional(),
   careers: z
     .array(
-      z.object({
-        name: z.string(),
-        periodStart: z.string(),
-        periodEnd: z.string(),
-        role: z.string(),
-      })
+      z
+        .object({
+          name: z.string().nonempty({ message: '경력명을 입력해주세요.' }),
+          periodStart: z
+            .string()
+            .nonempty({ message: '시작 날짜를 입력해주세요.' })
+            .refine((date) => !isNaN(Date.parse(date)), {
+              message: '유효한 날짜를 입력해주세요.',
+            }),
+          periodEnd: z
+            .string()
+            .nonempty({ message: '종료 날짜를 입력해주세요.' })
+            .refine((date) => !isNaN(Date.parse(date)), {
+              message: '유효한 날짜를 입력해주세요.',
+            }),
+          role: z.string().nonempty({ message: '역할을 입력해주세요.' }),
+        })
+        .refine(
+          (data) => new Date(data.periodStart) < new Date(data.periodEnd),
+          {
+            message: '시작 날짜는 종료 날짜보다 이전이어야 합니다.',
+            path: ['periodStart'],
+          }
+        )
     )
     .optional(),
 });
