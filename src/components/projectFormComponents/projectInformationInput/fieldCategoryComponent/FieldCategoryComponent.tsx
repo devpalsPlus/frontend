@@ -27,7 +27,7 @@ const FieldCategoryComponent = ({
 
   const handleClick = (idx: number) => {
     setSelectedMethod(idx);
-    setValue('field', idx);
+    setValue('field', idx + 1);
   };
 
   useEffect(() => {
