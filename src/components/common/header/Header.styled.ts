@@ -13,19 +13,15 @@ export const HeaderContainer = styled.div`
     width: 80px;
     height: 80px;
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       width: 70px;
       height: 70px;
     }
 
-    @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+    @media ${({ theme }) => theme.mediaQuery.mobile} {
       width: 50px;
       height: 50px;
     }
-  }
-
-  .panel {
-    border-radius: ${({ theme }) => theme.borderRadius.primary};
   }
 
   .auth {
@@ -69,10 +65,10 @@ export const HeaderContainer = styled.div`
     }
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 10px 60px;
   }
-  @media screen and ${({ theme }) => theme.mediaQuery.mobile} {
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 10px 16px;
   }
 `;

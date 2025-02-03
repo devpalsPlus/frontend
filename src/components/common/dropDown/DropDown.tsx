@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import * as S from './DropDown.styled';
+import { useOutsideClick } from '../../../hooks/useOutsideClick';
 
 interface DropDownProps {
   children: React.ReactNode;
@@ -13,31 +14,17 @@ const DropDown = ({
   isOpen = false,
 }: DropDownProps) => {
   const [open, setOpen] = useState(isOpen);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event?.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleOutsideClick);
-
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [dropdownRef]);
+  const dropdownRef = useOutsideClick(() => handleCloseModal());
+  const handleCloseModal = () => {
+    setOpen(false);
+  };
 
   return (
     <S.DropDownContainer ref={dropdownRef}>
-      <button className="toggle" onClick={() => setOpen(!open)}>
+      <S.DropDownButtonWrapper onClick={() => setOpen(!open)}>
         {toggleButton}
-      </button>
-      {open && <div className="panel">{children}</div>}
+      </S.DropDownButtonWrapper>
+      {open && <S.Panel>{children}</S.Panel>}
     </S.DropDownContainer>
   );
 };

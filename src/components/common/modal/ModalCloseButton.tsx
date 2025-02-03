@@ -6,7 +6,7 @@ interface ModalCloseButtonProps {
 
 function ModalCloseButton({ onClose }: ModalCloseButtonProps) {
   return (
-    <S.ModalCloseButton onClick={onClose}>
+    <S.ModalCloseButton onClick={onClose} aria-label='Close modal'>
       <XMarkIcon />
     </S.ModalCloseButton>
   );
