@@ -5,7 +5,7 @@ import {
   UserPlusIcon,
 } from '@heroicons/react/24/outline';
 
-export const applicantsMenuItems = (projectId: number) => {
+export const applicantsMenuItems = (projectId: number, isDone?: boolean) => {
   return [
     {
       label: '지원자 보기',
@@ -21,6 +21,7 @@ export const applicantsMenuItems = (projectId: number) => {
       label: '공고 관리',
       path: `${ROUTES.modifyProject}/${projectId}`,
       icon: <PencilSquareIcon />,
+      isDone: isDone,
     },
   ];
 };

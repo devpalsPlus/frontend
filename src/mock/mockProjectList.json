@@ -74,6 +74,66 @@
           "img": "스킬 태그 이미지 주소",
           "createdAt": "2025-01-02T15:09:19.000Z"
         }
+      },
+      {
+        "projectId": 68,
+        "skillTagId": 12,
+        "SkillTag": {
+          "id": 12,
+          "name": "Kotlin",
+          "img": "스킬 태그 이미지 주소",
+          "createdAt": "2025-01-02T15:09:19.000Z"
+        }
+      },
+      {
+        "projectId": 68,
+        "skillTagId": 12,
+        "SkillTag": {
+          "id": 12,
+          "name": "Kotlin",
+          "img": "스킬 태그 이미지 주소",
+          "createdAt": "2025-01-02T15:09:19.000Z"
+        }
+      },
+      {
+        "projectId": 68,
+        "skillTagId": 12,
+        "SkillTag": {
+          "id": 12,
+          "name": "Kotlin",
+          "img": "스킬 태그 이미지 주소",
+          "createdAt": "2025-01-02T15:09:19.000Z"
+        }
+      },
+      {
+        "projectId": 68,
+        "skillTagId": 12,
+        "SkillTag": {
+          "id": 12,
+          "name": "Kotlin",
+          "img": "스킬 태그 이미지 주소",
+          "createdAt": "2025-01-02T15:09:19.000Z"
+        }
+      },
+      {
+        "projectId": 68,
+        "skillTagId": 12,
+        "SkillTag": {
+          "id": 12,
+          "name": "Kotlin",
+          "img": "스킬 태그 이미지 주소",
+          "createdAt": "2025-01-02T15:09:19.000Z"
+        }
+      },
+      {
+        "projectId": 68,
+        "skillTagId": 12,
+        "SkillTag": {
+          "id": 12,
+          "name": "Kotlin",
+          "img": "스킬 태그 이미지 주소",
+          "createdAt": "2025-01-02T15:09:19.000Z"
+        }
       }
     ],
     "ProjectPositionTag": [

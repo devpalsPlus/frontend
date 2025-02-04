@@ -33,10 +33,11 @@ jobs:
       - name: Set environment variables
         run: |
           echo "VITE_APP_API_BASE_URL=${{ secrets.VITE_APP_API_BASE_URL }}" >> .env.local
-
+          echo "VITE_APP_IMAGE_CDN_URL=${{ secrets.VITE_APP_IMAGE_CDN_URL }}" >> .env.local
       - name: React Build
         env:
           VITE_APP_API_BASE_URL: ${{ secrets.VITE_APP_API_BASE_URL }}
+          VITE_APP_IMAGE_CDN_URL: ${{ secrets.VITE_APP_IMAGE_CDN_URL }}
         run: npm run build
 
       - name: Verify Build Directory

@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Avatar from '../avatar/Avatar';
 import * as S from './Sidebar.styled';
 import React, { useCallback } from 'react';
@@ -10,6 +10,7 @@ interface MenuItem {
   label: string;
   path: string;
   icon?: React.ReactNode;
+  isDone?: boolean;
 }
 
 interface SidebarProps {
@@ -47,14 +48,19 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
         <span>{nickname ? nickname : ''}</span>
       </S.AvartarContainer>
       <S.MenuList>
-        {menuItems.map(({ label, path, icon }, index) => (
-          <NavLink key={path} to={path}>
-            <S.MenuItem $isActive={getActiveIndex() === index}>
-              {icon && <S.IconWrapper>{icon}</S.IconWrapper>}
-              {label}
-            </S.MenuItem>
-          </NavLink>
-        ))}
+        {menuItems.map(({ label, path, icon, isDone = false }, index) => {
+          return (
+            <Link key={index} to={path}>
+              <S.MenuItem
+                $isActive={getActiveIndex() === index}
+                $isHidden={index === 2 && isDone}
+              >
+                {icon && <S.IconWrapper>{icon}</S.IconWrapper>}
+                {icon && <S.Label>{label}</S.Label>}
+              </S.MenuItem>
+            </Link>
+          );
+        })}
       </S.MenuList>
     </S.Container>
   );

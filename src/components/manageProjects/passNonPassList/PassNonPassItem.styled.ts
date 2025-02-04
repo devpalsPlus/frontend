@@ -13,7 +13,6 @@ export const ItemWrapper = styled.li`
   &:hover {
     background-color: ${({ theme }) => theme.color.navy};
     color: ${({ theme }) => theme.color.white};
-    transition: all 0.2s ease;
   }
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
