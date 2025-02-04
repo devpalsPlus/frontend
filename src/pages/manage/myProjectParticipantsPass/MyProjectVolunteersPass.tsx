@@ -31,7 +31,7 @@ const MyProjectVolunteersPass = () => {
     handleModalOpen
   );
   const sidebarMenuItem = useMemo(
-    () => applicantsMenuItems(Number(projectId), projectData!.isDone),
+    () => applicantsMenuItems(Number(projectId), projectData?.isDone),
     [projectId, projectData]
   );
 
