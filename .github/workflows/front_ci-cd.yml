@@ -14,75 +14,96 @@ jobs:
       - name: Checkout Github Action
         uses: actions/checkout@v4
 
-      - name: Get npm cache directory
-        id: npm-cache-dir
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
-      - uses: actions/cache@v4
-        id: npm-cache
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          path: ${{ steps.npm-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          node-version: '16'
 
       - name: Install npm dependencies
         run: npm install
 
-      - name: Set environment variables
+      - name: Set environment variables and Build
         run: |
           echo "VITE_APP_API_BASE_URL=${{ secrets.VITE_APP_API_BASE_URL }}" >> .env.local
           echo "VITE_APP_IMAGE_CDN_URL=${{ secrets.VITE_APP_IMAGE_CDN_URL }}" >> .env.local
-      - name: React Build
-        env:
-          VITE_APP_API_BASE_URL: ${{ secrets.VITE_APP_API_BASE_URL }}
-          VITE_APP_IMAGE_CDN_URL: ${{ secrets.VITE_APP_IMAGE_CDN_URL }}
-        run: npm run build
+          npm run build
 
       - name: Verify Build Directory
         run: ls -la dist/
 
-      - name: Compress text-based files (gzip)
-        run: |
-          echo "Compressing text-based files..."
-          for file in $(find dist/ -type f \( -iname "*.html" -o -iname "*.css" -o -iname "*.js" \)); do
-            echo "Compressing $file"
-            gzip -c "$file" > "$file.gz"
-          done
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_S3_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY_ID }}
-          aws-region: ap-northeast-2
-
-      - name: Upload compressed files to S3 with header
+      - name: Process and Upload Files to S3
         env:
-          BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
+          AWS_S3_ACCESS_KEY_ID: ${{ secrets.AWS_S3_ACCESS_KEY_ID }}
+          AWS_S3_SECRET_ACCESS_KEY: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY }}
+          AWS_REGION: ap-northeast-2
+          BUCKET: devpals
+          SRC_DIR: dist
+          FINAL_DIR: dist_final
+          COMPRESSED_LIST: compressed_files.txt
         run: |
-          echo "Uploading compressed files with gzip header..."
-          for file in $(find dist/ -type f -name "*.gz"); do
-            original=$(echo "$file" | sed 's/\.gz$//')
-            filename=$(basename "$original")
-            echo "Uploading $file as $filename with Content-Encoding: gzip"
-            aws s3 cp "$file" "s3://${{ secrets.AWS_S3_BUCKET_NAME }}/${filename}" \
-              --content-encoding gzip \
-              --metadata-directive REPLACE \
-              --cache-control "max-age=31536000"
-          done
+          echo "Cleaning up temporary folder and compressed files list..."
+          rm -rf "$FINAL_DIR" "$COMPRESSED_LIST"
+          mkdir -p "$FINAL_DIR"
 
-      - name: Upload non-compressed files to S3
-        env:
-          BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
-        run: |
-          echo "Uploading non-compressed files..."
-          aws s3 sync dist/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --exclude "*.gz" --delete
+          echo "Processing files from '$SRC_DIR'..."
+          while IFS= read -r file; do 
+              relpath="${file#$SRC_DIR/}"
+              if [[ "$file" == *.gz ]]; then
+                  target_rel="${relpath%.gz}"
+                  target="$FINAL_DIR/$target_rel"
+                  mkdir -p "$(dirname "$target")"
+                  cp "$file" "$target"
+                  echo "$target_rel" >> "$COMPRESSED_LIST"
+                  echo "Compressed file processed: '$relpath' -> '$target_rel'"
+              else
+                  compressed_candidate="${file}.gz"
+                  if [ -f "$compressed_candidate" ]; then
+                      echo "Skipping non-compressed file: '$relpath' because compressed version exists"
+                  else
+                      target="$FINAL_DIR/$relpath"
+                      mkdir -p "$(dirname "$target")"
+                      cp "$file" "$target"
+                      echo "Non-compressed file processed: '$relpath' remains unchanged"
+                  fi
+              fi
+          done < <(find "$SRC_DIR" -type f)
+
+          echo "Final upload directory structure:"
+          find "$FINAL_DIR" -type f
+
+          echo "Contents of compressed files list:"
+          cat "$COMPRESSED_LIST"
+
+          echo "Deleting all existing objects from S3 bucket '$BUCKET'..."
+          aws s3 rm "s3://${BUCKET}" --recursive
+
+          echo "Uploading files to S3 bucket '$BUCKET'..."
+          while IFS= read -r file; do
+              relpath="${file#$FINAL_DIR/}"
+              relpath_trimmed=$(echo "$relpath" | xargs)
+              if grep -Fqx "$relpath_trimmed" "$COMPRESSED_LIST"; then
+                  echo "Uploading compressed file: '$relpath_trimmed' with Content-Encoding: gzip"
+                  aws s3 cp "$file" "s3://${BUCKET}/$relpath_trimmed" \
+                    --content-encoding gzip \
+                    --metadata-directive REPLACE \
+                    --cache-control "max-age=31536000"
+              else
+                  echo "Uploading non-compressed file: '$relpath_trimmed'"
+                  aws s3 cp "$file" "s3://${BUCKET}/$relpath_trimmed" \
+                    --metadata-directive REPLACE \
+                    --cache-control "max-age=31536000"
+              fi
+          done < <(find "$FINAL_DIR" -type f)
+
+          echo "Upload completed."
+
+          echo "Cleaning up temporary folder and compressed files list..."
+          rm -rf "$FINAL_DIR" "$COMPRESSED_LIST"
+          echo "Cleanup completed."
 
       - name: CloudFront Invalidation
         env:
           CLOUD_FRONT_ID: ${{ secrets.AWS_CLOUDFRONT_ID }}
         run: |
           echo "Creating CloudFront invalidation..."
-          aws cloudfront create-invalidation \
-            --distribution-id $CLOUD_FRONT_ID --paths /*
+          aws cloudfront create-invalidation --distribution-id $CLOUD_FRONT_ID --paths "/*"
