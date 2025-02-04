@@ -31,21 +31,23 @@ jobs:
       - name: Verify Build Directory
         run: ls -la dist/
 
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_S3_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
       - name: Process and Upload Files to S3
         env:
-          AWS_S3_ACCESS_KEY_ID: ${{ secrets.AWS_S3_ACCESS_KEY_ID }}
-          AWS_S3_SECRET_ACCESS_KEY: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY }}
-          AWS_REGION: ap-northeast-2
           BUCKET: devpals
           SRC_DIR: dist
           FINAL_DIR: dist_final
           COMPRESSED_LIST: compressed_files.txt
         run: |
-          echo "Cleaning up temporary folder and compressed files list..."
+          set -euo pipefail
           rm -rf "$FINAL_DIR" "$COMPRESSED_LIST"
           mkdir -p "$FINAL_DIR"
-
-          echo "Processing files from '$SRC_DIR'..."
           while IFS= read -r file; do 
               relpath="${file#$SRC_DIR/}"
               if [[ "$file" == *.gz ]]; then
@@ -67,16 +69,12 @@ jobs:
                   fi
               fi
           done < <(find "$SRC_DIR" -type f)
-
           echo "Final upload directory structure:"
           find "$FINAL_DIR" -type f
-
           echo "Contents of compressed files list:"
           cat "$COMPRESSED_LIST"
-
           echo "Deleting all existing objects from S3 bucket '$BUCKET'..."
           aws s3 rm "s3://${BUCKET}" --recursive
-
           echo "Uploading files to S3 bucket '$BUCKET'..."
           while IFS= read -r file; do
               relpath="${file#$FINAL_DIR/}"
@@ -94,10 +92,7 @@ jobs:
                     --cache-control "max-age=31536000"
               fi
           done < <(find "$FINAL_DIR" -type f)
-
           echo "Upload completed."
-
-          echo "Cleaning up temporary folder and compressed files list..."
           rm -rf "$FINAL_DIR" "$COMPRESSED_LIST"
           echo "Cleanup completed."
 
@@ -105,5 +100,4 @@ jobs:
         env:
           CLOUD_FRONT_ID: ${{ secrets.AWS_CLOUDFRONT_ID }}
         run: |
-          echo "Creating CloudFront invalidation..."
           aws cloudfront create-invalidation --distribution-id $CLOUD_FRONT_ID --paths "/*"
