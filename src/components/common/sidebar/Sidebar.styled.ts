@@ -46,19 +46,16 @@ export const MenuList = styled.div`
   width: 100%;
   margin-top: 3rem;
 `;
-export const MenuItem = styled.div<{ $isActive: boolean }>`
-  display: flex;
+export const MenuItem = styled.div<{
+  $isActive: boolean;
+  $isHidden?: boolean;
+}>`
+  display: ${({ $isHidden }) => ($isHidden ? 'none' : 'flex')};
   align-items: center;
   padding: 0.625rem 1.25rem;
-  font-weight: 500;
-  color: #6d6d6d;
   margin: 0.5rem 0;
   background-color: ${({ $isActive }) =>
     $isActive ? '#f9f9f9' : 'transparent'};
-
-  @media ${({ theme }) => theme.mediaQuery.tablet} {
-    font-size: 0.9rem;
-  }
 
   &:hover {
     background-color: #f9f9f9;
@@ -77,4 +74,12 @@ export const MenuItem = styled.div<{ $isActive: boolean }>`
 `;
 export const IconWrapper = styled.div`
   margin-right: 0.625rem;
+`;
+export const Label = styled.p`
+  font-weight: 500;
+  color: #6d6d6d;
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: 0.9rem;
+  }
 `;

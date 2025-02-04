@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CardListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 20px;
 `;
