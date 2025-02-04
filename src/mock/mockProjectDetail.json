@@ -9,7 +9,7 @@
   "authorId": 8,
   "views": 1,
   "isBeginner": true,
-  "isDone": false,
+  "isDone": true,
   "recruitmentEndDate": "2025-02-15T00:00:00.000Z",
   "recruitmentStartDate": "2025-01-06T00:00:00.000Z",
   "createdAt": "2025-01-06T07:05:01.000Z",

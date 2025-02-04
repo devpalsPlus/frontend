@@ -32,8 +32,8 @@ const MyProjectVolunteer = () => {
   );
 
   const sidebarMenuItem = useMemo(
-    () => applicantsMenuItems(Number(projectId)),
-    [projectId]
+    () => applicantsMenuItems(Number(projectId), projectData?.isDone),
+    [projectId, projectData]
   );
 
   const { applicantsData, isApplicantLoading } = useApllicantList(
