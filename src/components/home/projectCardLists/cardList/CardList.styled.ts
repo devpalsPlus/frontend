@@ -67,6 +67,15 @@ export const TagWrapper = styled.div<{ $positionPadding?: boolean }>`
   z-index: 10;
 `;
 
+export const SkillTagImgWrapper = styled.div`
+  border: 1px solid ${({ theme }) => theme.color.grey};
+  border-radius: 50%;
+`;
+
+export const SkillTagImg = styled.img`
+  width: 2rem;
+`;
+
 export const EllipsisIconButton = styled.button`
   display: flex;
   justify-content: center;

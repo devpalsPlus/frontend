@@ -1,5 +1,4 @@
 import PositionButton from '../../../common/positionButton/PositionButton';
-import SkillTagImg from '../../../common/skillTagBox/skillTag/skillTagImg/SkillTagImg';
 import * as S from './CardList.styled';
 import beginner from '../../../../assets/beginner.svg';
 import Avatar from '../../../common/avatar/Avatar';
@@ -35,7 +34,9 @@ export default function CardList({ list }: CardListProps) {
       <S.TagsWrapper>
         {Boolean(list.skillTags.length) &&
           listSkillTag.map((tag) => (
-            <SkillTagImg image={tag.img} key={tag.id} skillTag={tag.name} />
+            <S.SkillTagImgWrapper key={tag.id}>
+              <S.SkillTagImg src={tag.img} alt={tag.name} />
+            </S.SkillTagImgWrapper>
           ))}
         {list.skillTags.length > listSkillTag.length && (
           <S.EllipsisIconButton>+{othersSkill}</S.EllipsisIconButton>
