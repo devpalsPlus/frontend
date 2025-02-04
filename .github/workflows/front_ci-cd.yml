@@ -18,6 +18,7 @@ jobs:
         id: npm-cache-dir
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
+
       - uses: actions/cache@v4
         id: npm-cache
         with:
@@ -41,19 +42,23 @@ jobs:
       - name: Verify Build Directory
         run: ls -la dist/
 
-      - name: Compress text-based files (gzip)
+      - name: Remove original text files that have a compressed version
         run: |
-          echo "Compressing text-based files..."
-          for file in $(find dist/ -type f \( -iname "*.html" -o -iname "*.css" -o -iname "*.js" \)); do
-            echo "Compressing $file"
-            gzip -c "$file" > "$file.gz"
+          echo "Removing original text files if compressed version exists..."
+          find dist/ -type f \( -iname "*.html" -o -iname "*.css" -o -iname "*.js" \) | while IFS= read -r file; do
+            if [ -f "$file.gz" ]; then
+              echo "Removing original file: $file (compressed version exists)"
+              rm "$file"
+            else
+              echo "Keeping original file: $file (no compressed version found)"
+            fi
           done
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_S3_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
       - name: Upload compressed files to S3 with header
@@ -61,11 +66,10 @@ jobs:
           BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
         run: |
           echo "Uploading compressed files with gzip header..."
-          for file in $(find dist/ -type f -name "*.gz"); do
-            original=$(echo "$file" | sed 's/\.gz$//')
-            filename=$(basename "$original")
-            echo "Uploading $file as $filename with Content-Encoding: gzip"
-            aws s3 cp "$file" "s3://${{ secrets.AWS_S3_BUCKET_NAME }}/${filename}" \
+          find dist/ -type f -name "*.gz" | while IFS= read -r file; do
+            key="${file%.gz}"
+            echo "Uploading '$file' as '$key' with Content-Encoding: gzip"
+            aws s3 cp "$file" "s3://${BUCKET_NAME}/${key}" \
               --content-encoding gzip \
               --metadata-directive REPLACE \
               --cache-control "max-age=31536000"
@@ -76,12 +80,11 @@ jobs:
           BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
         run: |
           echo "Uploading non-compressed files..."
-          aws s3 sync dist/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --exclude "*.gz" --delete
+          aws s3 sync dist/ "s3://${BUCKET_NAME}" --exclude "*.gz" --delete
 
       - name: CloudFront Invalidation
         env:
           CLOUD_FRONT_ID: ${{ secrets.AWS_CLOUDFRONT_ID }}
         run: |
           echo "Creating CloudFront invalidation..."
-          aws cloudfront create-invalidation \
-            --distribution-id $CLOUD_FRONT_ID --paths /*
+          aws cloudfront create-invalidation --distribution-id $CLOUD_FRONT_ID --paths "/*"
