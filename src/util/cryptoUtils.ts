@@ -1,7 +1,7 @@
 import CryptoJS from 'crypto-js';
 import { UserData } from '../store/authStore';
 
-export const encryptData = (data: UserData) => {
+export const encryptData = (data: UserData | undefined) => {
   return CryptoJS.AES.encrypt(
     JSON.stringify(data),
     `${import.meta.env.CRYPTO_SECRET_KEY}`
