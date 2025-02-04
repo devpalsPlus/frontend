@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Avatar from '../avatar/Avatar';
 import * as S from './Sidebar.styled';
 import React, { useCallback } from 'react';
@@ -50,7 +50,7 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
       <S.MenuList>
         {menuItems.map(({ label, path, icon, isDone = false }, index) => {
           return (
-            <NavLink key={path} to={path}>
+            <Link key={index} to={path}>
               <S.MenuItem
                 $isActive={getActiveIndex() === index}
                 $isHidden={index === 2 && isDone}
@@ -58,7 +58,7 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
                 {icon && <S.IconWrapper>{icon}</S.IconWrapper>}
                 {icon && <S.Label>{label}</S.Label>}
               </S.MenuItem>
-            </NavLink>
+            </Link>
           );
         })}
       </S.MenuList>
