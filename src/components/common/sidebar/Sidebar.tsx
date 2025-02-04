@@ -1,10 +1,10 @@
+import MainLogo from '../../../assets/mainlogo.svg';
+import EditMyProfileImg from './editMyProfileImg/EditMyProfileImg';
 import { Link, useLocation } from 'react-router-dom';
 import Avatar from '../avatar/Avatar';
 import * as S from './Sidebar.styled';
 import React, { useCallback } from 'react';
-import EditMyProfileImg from './editMyProfileImg/EditMyProfileImg';
 import useAuthStore from '../../../store/authStore';
-import MainLogo from '../../../assets/mainlogo.svg';
 
 interface MenuItem {
   label: string;
@@ -38,7 +38,7 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
         <S.AvartarWrapper>
           {profileImage === MainLogo ? (
             <S.LogoContainer>
-              <img src={MainLogo} alt='main logo' />
+              <img src={MainLogo} alt='main logo' loading='eager' />
             </S.LogoContainer>
           ) : (
             <Avatar size='120px' image={profileImage} />
