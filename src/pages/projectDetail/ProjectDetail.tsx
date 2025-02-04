@@ -9,8 +9,6 @@ import Avatar from '../../components/common/avatar/Avatar';
 import { EyeIcon } from '@heroicons/react/24/outline';
 import useAuthStore from '../../store/authStore';
 import { ROUTES } from '../../constants/routes';
-import { useModal } from '../../hooks/useModal';
-import Modal from '../../components/common/modal/Modal';
 import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
 
 const ProjectDetail = () => {
@@ -18,7 +16,6 @@ const ProjectDetail = () => {
   const id = Number(projectId);
   const navigate = useNavigate();
   const { data, isLoading, isFetching } = useGetProjectData(id);
-  const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userData } = useAuthStore((state) => state);
 
   if (isLoading) return <LoadingSpinner />;
@@ -28,12 +25,7 @@ const ProjectDetail = () => {
   }
 
   const handleApplyClick = () => {
-    if (userData?.id === data.User.id) {
-      handleModalOpen('본인의 프로젝트는 지원할 수 없습니다.');
-      return;
-    } else {
-      navigate(`${ROUTES.apply}/${id}`);
-    }
+    navigate(`${ROUTES.apply}/${id}`);
   };
 
   const handleMovetoUserPage = () => {
@@ -70,20 +62,19 @@ const ProjectDetail = () => {
         </S.ProjectDescription>
       </S.Content>
       <S.ApplyButtonContainer>
-        <Button
-          size='primary'
-          schema='primary'
-          radius='primary'
-          onClick={handleApplyClick}
-        >
-          프로젝트 함께하기
-        </Button>
+        {userData?.id !== data.User.id ? (
+          <Button
+            size='primary'
+            schema='primary'
+            radius='primary'
+            onClick={handleApplyClick}
+          >
+            프로젝트 함께하기
+          </Button>
+        ) : null}
       </S.ApplyButtonContainer>
 
       <hr></hr>
-      <Modal isOpen={isOpen} onClose={handleModalClose}>
-        {message}
-      </Modal>
     </S.Container>
   );
 };

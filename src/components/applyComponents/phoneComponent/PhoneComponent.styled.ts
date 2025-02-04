@@ -10,13 +10,13 @@ export const PhoneInputContainer = styled.div`
 
 export const Dash = styled.span`
   align-self: center;
-  font-size: 25px;
+  font-size: ${({ theme }) => theme.heading.semiLarge.fontSize};
   color: #888;
 `;
 
 export const FormError = styled.p`
   margin-top: 0.3px;
-  font-size: 0.9rem;
+  font-size: ${({ theme }) => theme.heading.small.fontSize};
   color: ${({ theme }) => theme.color.red};
   position: absolute;
   top: 115%;

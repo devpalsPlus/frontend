@@ -33,7 +33,15 @@ const PhoneComponent = ({ control, errors }: PhoneComponentProps) => {
       />
 
       {errors.phone && (
-        <S.FormError>{String(errors?.phone[0]?.message)}</S.FormError>
+        <S.FormError>
+          {String(
+            errors?.phone[0]?.message
+              ? errors?.phone[0]?.message
+              : errors?.phone[1]?.message
+              ? errors?.phone[1].message
+              : errors?.phone[2]?.message
+          )}
+        </S.FormError>
       )}
     </S.PhoneInputContainer>
   );

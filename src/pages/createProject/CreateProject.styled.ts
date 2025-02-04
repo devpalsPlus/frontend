@@ -42,7 +42,6 @@ export const Section = styled.div`
 `;
 
 export const SectionInput = styled.div`
-  margin-bottom: 40px;
   padding: 20px;
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius.primary};

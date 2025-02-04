@@ -36,7 +36,7 @@ export const PositionButtonFeat = styled(PositionButton)<{
   }
 
   .name {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 200;
     color: ${({ isSelected, theme }) =>
       isSelected ? theme.color.white : theme.color.primary};

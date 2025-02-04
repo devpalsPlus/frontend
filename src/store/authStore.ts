@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { decryptData, encryptData } from '../util/cryptoUtils';
 
 export interface UserData {
   id: number;
@@ -13,7 +14,7 @@ interface AuthState {
   storeLogin: (
     accessToken: string,
     refreshToken: string,
-    userData?: UserData
+    userData: UserData
   ) => void;
   storeLogout: () => void;
 }
@@ -22,6 +23,11 @@ const initialUserData: UserData = {
   id: 0,
   email: '',
   nickname: '',
+};
+
+export const getStoredUserData = () => {
+  const encryptedData = localStorage.getItem('userData');
+  return encryptedData ? decryptData(encryptedData) : null;
 };
 
 export const getTokens = () => {
@@ -50,9 +56,10 @@ const useAuthStore = create(
       storeLogin: (
         accessToken: string,
         refreshToken: string,
-        userData?: UserData
+        userData: UserData
       ) => {
         setTokens(accessToken, refreshToken);
+        localStorage.setItem('userData', encryptData(userData));
         set({ isLoggedIn: true, userData });
       },
       storeLogout: () => {

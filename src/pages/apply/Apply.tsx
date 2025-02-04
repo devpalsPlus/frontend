@@ -13,6 +13,8 @@ import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinne
 import Modal from '../../components/common/modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import useApplyProject from '../../hooks/useApplyProject';
+import useAuthStore from '../../store/authStore';
+import { useEffect } from 'react';
 
 const ApplyScheme = z.object({
   email: z
@@ -26,12 +28,30 @@ const ApplyScheme = z.object({
   wantToSay: z.string().optional(),
   careers: z
     .array(
-      z.object({
-        name: z.string(),
-        periodStart: z.string(),
-        periodEnd: z.string(),
-        role: z.string(),
-      })
+      z
+        .object({
+          name: z.string().nonempty({ message: '경력명을 입력해주세요.' }),
+          periodStart: z
+            .string()
+            .nonempty({ message: '시작 날짜를 입력해주세요.' })
+            .refine((date) => !isNaN(Date.parse(date)), {
+              message: '유효한 날짜를 입력해주세요.',
+            }),
+          periodEnd: z
+            .string()
+            .nonempty({ message: '종료 날짜를 입력해주세요.' })
+            .refine((date) => !isNaN(Date.parse(date)), {
+              message: '유효한 날짜를 입력해주세요.',
+            }),
+          role: z.string().nonempty({ message: '역할을 입력해주세요.' }),
+        })
+        .refine(
+          (data) => new Date(data.periodStart) < new Date(data.periodEnd),
+          {
+            message: '시작 날짜는 종료 날짜보다 이전이어야 합니다.',
+            path: ['periodStart'],
+          }
+        )
     )
     .optional(),
 });
@@ -44,10 +64,12 @@ const Apply = () => {
   const { isOpen, handleModalOpen, handleModalClose, message } = useModal();
   const { data: projectData, isLoading, isFetching } = useGetProjectData(id);
   const { applyProject } = useApplyProject({ id, handleModalOpen });
+  const userEmail = useAuthStore((state) => state.userData?.email);
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
     control,
+    setValue,
   } = useForm<ApplySchemeType>({
     resolver: zodResolver(ApplyScheme),
     defaultValues: {
@@ -57,6 +79,10 @@ const Apply = () => {
       careers: [],
     },
   });
+
+  useEffect(() => {
+    if (userEmail) setValue('email', userEmail);
+  }, [userEmail, setValue]);
 
   const { fields: fieldsCareers, append: appendCareers } = useFieldArray({
     name: 'careers',
@@ -75,7 +101,11 @@ const Apply = () => {
   };
 
   if (!projectData) {
-    return <div>데이터가 없습니다.</div>;
+    return (
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
+    );
   }
 
   if (isLoading) return <LoadingSpinner />;
@@ -102,7 +132,7 @@ const Apply = () => {
         </S.Section>
 
         <S.Section>
-          <S.Label>전화번호</S.Label>
+          <S.Label>휴대폰 전화번호</S.Label>
           <PhoneComponent control={control} errors={errors} />
         </S.Section>
 
