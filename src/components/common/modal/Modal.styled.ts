@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
 export const ModalContainer = styled.div<{
-  $fade: boolean;
+  $fadeOut: boolean;
 }>`
-  @keyframes ${({ $fade }) => !$fade && 'fade-in'} {
+  animation: ${({ $fadeOut }) => ($fadeOut ? 'fade-out' : 'fade-in')} 0.3s
+    ease-in-out forwards;
+
+  @keyframes fade-in {
     from {
       opacity: 0;
     }
@@ -12,20 +15,13 @@ export const ModalContainer = styled.div<{
     }
   }
 
-  @keyframes ${({ $fade }) => $fade && 'fade-out'} {
+  @keyframes fade-out {
     from {
       opacity: 1;
     }
     to {
       opacity: 0;
     }
-  }
-
-  &.fade-in {
-    animation: fade-in 0.3s ease-in-out forwards;
-  }
-  &.fade-out {
-    animation: fade-out 0.3s ease-in-out forwards;
   }
 
   position: fixed;

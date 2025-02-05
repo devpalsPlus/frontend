@@ -8,7 +8,7 @@ export const PhoneInput = styled.input`
   text-align: center;
   font-size: ${({ theme }) => theme.heading.semiSmall.fontSize};
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: ${({ theme }) => theme.heading.small.fontSize};
   }
 `;

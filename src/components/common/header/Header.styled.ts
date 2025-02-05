@@ -17,45 +17,7 @@ export const HeaderContainer = styled.div`
   }
 `;
 
-export const Wrapper = styled.nav`
-  ul {
-    display: flex;
-    flex-direction: column;
-    width: 9rem;
-
-    a,
-    button {
-      font-size: 0.9rem;
-      font-weight: 600;
-      width: 100%;
-      line-height: 1;
-      text-align: center;
-      color: inherit;
-
-      &:hover {
-        color: ${({ theme }) => theme.color.white};
-        background-color: ${({ theme }) => theme.color.navy};
-      }
-    }
-
-    a {
-      &:first-child {
-        border-top-left-radius: ${({ theme }) => theme.borderRadius.primary};
-        border-top-right-radius: ${({ theme }) => theme.borderRadius.primary};
-      }
-      &:last-child {
-        border-bottom-left-radius: ${({ theme }) => theme.borderRadius.primary};
-        border-bottom-right-radius: ${({ theme }) =>
-          theme.borderRadius.primary};
-      }
-    }
-
-    li {
-      width: 100%;
-      padding: 1rem;
-    }
-  }
-`;
+export const Wrapper = styled.nav``;
 
 export const LogoImg = styled.img`
   width: 80px;
@@ -101,11 +63,6 @@ export const List = styled.ul`
       border-bottom-left-radius: ${({ theme }) => theme.borderRadius.primary};
       border-bottom-right-radius: ${({ theme }) => theme.borderRadius.primary};
     }
-  }
-
-  li {
-    width: 100%;
-    padding: 1rem;
   }
 `;
 
