@@ -7,7 +7,7 @@ export const Container = styled.div`
   padding: 40px;
   font-family: Arial, sans-serif;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 20px;
   }
 `;
@@ -17,7 +17,7 @@ export const Title = styled.h1`
   font-weight: bold;
   margin-bottom: 50px;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: 1.8rem;
   }
 `;
@@ -27,7 +27,7 @@ export const Subtitle = styled.h2`
   color: ${({ theme }) => theme.color.primary};
   margin-bottom: 20px;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: 1.4rem;
   }
 `;
@@ -37,7 +37,7 @@ export const Dates = styled.p`
   color: ${({ theme }) => theme.color.placeholder};
   margin-bottom: 50px;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: ${({ theme }) => theme.heading.small.fontSize};
   }
 `;
@@ -60,7 +60,7 @@ export const Label = styled.label`
   font-weight: bold;
   color: ${({ theme }) => theme.color.black};
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: 1.1rem;
   }
 `;

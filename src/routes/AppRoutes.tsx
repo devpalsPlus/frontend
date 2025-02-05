@@ -32,7 +32,7 @@ const MyProjectList = lazy(
   () => import('../pages/manage/myProjectList/MyProjectList')
 );
 const MyProfile = lazy(
-  () => import('../components/mypage/myProfile/myProfile')
+  () => import('../components/mypage/myProfile/MyProfile')
 );
 const MyApplyProject = lazy(
   () => import('../components/mypage/appliedProject/MyApplyProject')

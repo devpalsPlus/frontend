@@ -11,7 +11,7 @@ export const Container = styled.div`
   border-radius: 20px;
   border: 1px solid #ededed;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: 0.9rem;
   }
 
@@ -48,7 +48,7 @@ export const Status = styled.div<{ $isAccepted: boolean }>`
     font-size: 0.8rem;
     font-weight: 800;
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: 0.6rem;
     }
   }

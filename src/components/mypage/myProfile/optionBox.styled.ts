@@ -31,7 +31,7 @@ export const OptionLabel = styled.label<{ $isSelected: boolean }>`
     color: ${({ $isSelected }) => ($isSelected ? '#3e5879' : '#a1a1a1')};
     transition: border-color 0.3s;
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: 0.7rem;
   }
 `;

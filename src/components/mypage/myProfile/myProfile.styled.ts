@@ -14,7 +14,7 @@ export const Container = styled.div`
   padding: 2.5rem 3rem;
   margin-top: 1rem;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 2rem;
   }
 
@@ -35,7 +35,7 @@ export const BackgroundWrapper = styled.div`
     word-break: break-all;
     overflow-wrap: break-word;
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
     }
   }
@@ -53,7 +53,7 @@ export const BackgroundBox = styled.div`
   padding: 1rem 1.3rem;
   border-radius: 15px;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 1.2rem;
     font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
   }
@@ -71,7 +71,7 @@ export const ProfileSection = styled.div`
     padding: 0.5rem;
     border-radius: 50%;
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       padding: 0.4rem;
     }
 
@@ -124,7 +124,7 @@ export const Wrapper = styled.div`
     font-weight: 700;
     color: ${({ theme }) => theme.color.deepGrey};
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
     }
   }
@@ -142,7 +142,7 @@ export const Wrapper = styled.div`
       font-size: 0.7rem;
       color: #a1a1a1;
 
-      @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+      @media ${({ theme }) => theme.mediaQuery.tablet} {
         font-size: 0.7rem;
       }
 
@@ -155,7 +155,7 @@ export const Wrapper = styled.div`
   }
 
   button {
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: 0.9rem;
     }
   }
@@ -171,7 +171,7 @@ export const List = styled.div`
     font-weight: 700;
     color: ${({ theme }) => theme.color.deepGrey};
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
     }
   }
@@ -202,7 +202,7 @@ export const EditWrapper = styled.div`
     font-weight: 700;
     color: ${({ theme }) => theme.color.deepGrey};
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
     }
   }
@@ -213,7 +213,7 @@ export const EditWrapper = styled.div`
     min-width: 60px;
     font-size: 0.9rem;
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
     }
   }
@@ -227,7 +227,7 @@ export const InputTextNickname = styled.div`
 export const InputTextGithub = styled.div`
   width: 90%;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     width: 100%;
   }
 `;
@@ -242,7 +242,7 @@ export const InputWrapper = styled.div`
   position: relative;
   width: 85%;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     width: 100%;
   }
 `;
@@ -274,7 +274,7 @@ export const EditContainer = styled.div`
     font-weight: 700;
     color: ${({ theme }) => theme.color.deepGrey};
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
     }
   }
@@ -317,7 +317,7 @@ export const CareerList = styled.div`
   border-radius: 20px;
   padding: 0.5rem;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     gap: 0.4rem;
   }
 
@@ -338,7 +338,7 @@ export const CareerWrapper = styled.div`
   flex: 1;
   position: relative;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     flex: auto;
   }
 `;

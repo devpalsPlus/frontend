@@ -8,7 +8,7 @@ export const Container = styled.div`
   border: 1px solid #ededed;
   width: 100%;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 1.3rem;
   }
 
@@ -29,7 +29,7 @@ export const Title = styled.p`
 
   margin-bottom: 1rem;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: 1rem;
   }
 `;
@@ -44,7 +44,7 @@ export const Date = styled.div`
     font-size: 0.9rem;
     color: #777777;
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: 0.7rem;
     }
   }
@@ -59,7 +59,7 @@ export const DateWrapper = styled.div`
   border-radius: 10px;
   text-align: center;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 0.3rem;
   }
 
@@ -69,7 +69,7 @@ export const DateWrapper = styled.div`
     color: #fff;
     word-break: keep-all;
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: 0.6rem;
     }
   }
@@ -84,7 +84,7 @@ export const Member = styled.div`
   span {
     font-size: 0.9rem;
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: 0.7rem;
     }
   }
@@ -118,7 +118,7 @@ export const Skill = styled.div`
   align-items: center;
   gap: 0.6rem;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     gap: 0.2rem;
   }
 
@@ -128,7 +128,7 @@ export const Skill = styled.div`
     border: 1px solid rgb(196 196 196);
     border-radius: 50%;
 
-    @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+    @media ${({ theme }) => theme.mediaQuery.tablet} {
       width: 20px;
       height: 20px;
     }
