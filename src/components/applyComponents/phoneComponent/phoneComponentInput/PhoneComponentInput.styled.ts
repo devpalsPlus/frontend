@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+export const PhoneDiv = styled.div``;
+
 export const PhoneInput = styled.input`
   width: 70px;
   padding: 10px;
