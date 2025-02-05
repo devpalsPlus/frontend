@@ -12,7 +12,7 @@ export default function ProjectStats() {
           <ProjectStat
             title={data.label}
             count={data.count}
-            key={`projectStat-${data.count}`}
+            key={`projectStat-${data.label}`}
           />
         ))}
       </S.Wrapper>
