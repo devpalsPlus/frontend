@@ -33,7 +33,10 @@ export default function ProjectCardLists() {
       <S.Wrapper $flex={isFlex}>
         {projectListsData && Boolean(projectListsData.projects.length) ? (
           projectListsData.projects.map((list) => (
-            <Link to={`${ROUTES.projectDetail}/${list.id}`} key={list.id}>
+            <Link
+              to={`${ROUTES.projectDetail}/${list.id}`}
+              key={`projectCardLists-${list.id}`}
+            >
               <CardList list={list} data-cardId={list.id} />
             </Link>
           ))

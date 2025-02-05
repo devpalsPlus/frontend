@@ -1,5 +1,5 @@
 import Title from '../../common/title/Title';
-import * as S from '../../mypage/myProfile/myProfile.styled';
+import * as S from '../../mypage/myProfile/MyProfile.styled';
 import BeginnerIcon from '../../../assets/beginner.svg';
 import { useUserProfileInfo } from '../../../hooks/useUserInfo';
 import { useParams } from 'react-router-dom';

@@ -24,7 +24,10 @@ export default function CardList({ list }: CardListProps) {
         <S.TagsWrapper>
           {Boolean(list.positionTags.length) &&
             listPositionTag.map((tag) => (
-              <PositionButton position={tag.name} key={tag.id} />
+              <PositionButton
+                position={tag.name}
+                key={`cardListPosition-${tag.id}`}
+              />
             ))}
           {list.positionTags.length > listPositionTag.length && (
             <S.EllipsisIconButton>+{othersPosition}</S.EllipsisIconButton>
@@ -34,7 +37,7 @@ export default function CardList({ list }: CardListProps) {
       <S.TagsWrapper>
         {Boolean(list.skillTags.length) &&
           listSkillTag.map((tag) => (
-            <S.SkillTagImgWrapper key={tag.id}>
+            <S.SkillTagImgWrapper key={`cardListSkill-${tag.id}`}>
               <S.SkillTagImg src={tag.img} alt={tag.name} />
             </S.SkillTagImgWrapper>
           ))}

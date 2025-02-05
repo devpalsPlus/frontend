@@ -9,7 +9,11 @@ export default function ProjectStats() {
     <S.Container>
       <S.Wrapper>
         {projectStatData.map((data) => (
-          <ProjectStat title={data.label} count={data.count} key={data.count} />
+          <ProjectStat
+            title={data.label}
+            count={data.count}
+            key={`projectStat-${data.count}`}
+          />
         ))}
       </S.Wrapper>
     </S.Container>

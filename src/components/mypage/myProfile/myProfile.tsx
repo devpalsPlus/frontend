@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import * as S from './myProfile.styled';
+import * as S from './MyProfile.styled';
 import { ERROR_MESSAGES } from '../../../constants/authConstants';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';

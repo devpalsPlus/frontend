@@ -30,7 +30,7 @@ export default function SkillTagBox({
             {skillTagsData?.map((skillTagData) => (
               <SkillTag
                 skillTagData={skillTagData}
-                key={skillTagData.id}
+                key={`skillTagBox-${skillTagData.id}`}
                 $select={
                   (isMain &&
                     searchFiltersSkillTag?.includes(skillTagData.id)) ||

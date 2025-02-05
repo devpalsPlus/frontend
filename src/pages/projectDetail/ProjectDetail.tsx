@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { ScrollRestoration, useNavigate, useParams } from 'react-router-dom';
 import ProjectInformation from '../../components/projectFormComponents/projectInformationText/ProjectInformation';
 import useGetProjectData from '../../hooks/useJoinProject';
 import * as S from './ProjectDetail.styled';
@@ -10,13 +10,8 @@ import { EyeIcon } from '@heroicons/react/24/outline';
 import useAuthStore from '../../store/authStore';
 import { ROUTES } from '../../constants/routes';
 import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
-import { useEffect } from 'react';
 
 const ProjectDetail = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const { projectId } = useParams();
   const id = Number(projectId);
   const navigate = useNavigate();
@@ -40,6 +35,7 @@ const ProjectDetail = () => {
 
   return (
     <S.Container>
+      <ScrollRestoration />
       <S.Header>
         <S.Title>{data.title}</S.Title>
         <S.ProfileContainer>
