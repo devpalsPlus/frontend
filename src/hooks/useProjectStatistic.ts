@@ -12,7 +12,6 @@ export const useProjectStatistic = () => {
     ProjectStatDataReset[]
   >([]);
 
-  // 실시간성 데이터가 필요할까?
   const { data } = useQuery({
     queryKey: ['projectStat'],
     queryFn: async () => await getProjectStatistic(),

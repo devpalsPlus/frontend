@@ -10,8 +10,13 @@ import { EyeIcon } from '@heroicons/react/24/outline';
 import useAuthStore from '../../store/authStore';
 import { ROUTES } from '../../constants/routes';
 import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
+import { useEffect } from 'react';
 
 const ProjectDetail = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { projectId } = useParams();
   const id = Number(projectId);
   const navigate = useNavigate();
