@@ -20,7 +20,11 @@ function Header() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
 
-  const profileImg = myData?.profileImg || DefaultImg;
+  const profileImg = myData?.profileImg
+    ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
+        myData.profileImg
+      )}?w=86&h=86&fit=crop&crop=entropy&auto=format,enhance&q=60`
+    : DefaultImg;
 
   return (
     <S.HeaderContainer>
@@ -33,14 +37,7 @@ function Header() {
             isLoading ? (
               <Avatar size='45px' image={loadingImg} />
             ) : isLoggedIn ? (
-              <Avatar
-                size='45px'
-                image={`${
-                  import.meta.env.VITE_APP_IMAGE_CDN_URL
-                }/${formatImgPath(
-                  profileImg
-                )}?w=86&h=86&fit=crop&crop=entropy&auto=format,enhance&q=60`}
-              />
+              <Avatar size='45px' image={profileImg} />
             ) : (
               <UserCircleIcon color='#6D6D6D' width='48' height='48' />
             )
