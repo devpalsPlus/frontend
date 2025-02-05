@@ -64,7 +64,7 @@ export default function Pagination() {
 
         {pagination.map((pageIndex) => (
           <S.Pagination
-            key={pageIndex}
+            key={`pagination-${pageIndex}`}
             data-id={pageIndex}
             $select={currentPage === pageIndex ? true : false}
           >

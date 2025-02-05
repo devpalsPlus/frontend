@@ -21,7 +21,7 @@ function CardList({ projects }: CardListProps) {
 
       {projects?.map((data) => (
         <Link key={data.id} to={`${ROUTES.manageProjectsRoot}/${data.id}`}>
-          <Card key={data.id} project={data} />
+          <Card project={data} />
         </Link>
       ))}
     </S.CardListWrapper>

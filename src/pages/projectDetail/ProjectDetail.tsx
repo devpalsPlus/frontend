@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { ScrollRestoration, useNavigate, useParams } from 'react-router-dom';
 import ProjectInformation from '../../components/projectFormComponents/projectInformationText/ProjectInformation';
 import useGetProjectData from '../../hooks/useJoinProject';
 import * as S from './ProjectDetail.styled';
@@ -35,6 +35,7 @@ const ProjectDetail = () => {
 
   return (
     <S.Container>
+      <ScrollRestoration />
       <S.Header>
         <S.Title>{data.title}</S.Title>
         <S.ProfileContainer>
