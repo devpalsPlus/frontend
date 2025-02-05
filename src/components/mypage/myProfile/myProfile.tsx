@@ -21,7 +21,7 @@ import {
 import { ROUTES } from '../../../constants/routes';
 import { Link } from 'react-router-dom';
 import BeginnerIcon from '../../../assets/beginner.svg';
-import OptionBox from './optionBox';
+import OptionBox from './OptionBox';
 import TextareaAutosize from 'react-textarea-autosize';
 import Modal from '../../common/modal/Modal';
 import { useModal } from '../../../hooks/useModal';

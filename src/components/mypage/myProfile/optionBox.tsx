@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './optionBox.styled';
+import * as S from './OptionBox.styled';
 
 interface OptionBoxProps {
   id: number;

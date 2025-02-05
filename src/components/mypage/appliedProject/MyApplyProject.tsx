@@ -23,7 +23,7 @@ const MyApplyProject = () => {
         <S.Container>
           {myAppliedStatusListData?.map((status) => (
             <Link key={status.id} to={`${ROUTES.projectDetail}/${status.id}`}>
-              <MyStatus key={status.id} status={status} />
+              <MyStatus status={status} />
             </Link>
           ))}
         </S.Container>
