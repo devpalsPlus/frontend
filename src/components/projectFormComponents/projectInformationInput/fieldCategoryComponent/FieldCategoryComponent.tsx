@@ -47,7 +47,7 @@ const FieldCategoryComponent = ({
               isSelected={selectedMethod === idx}
               onClick={() => handleClick(idx)}
             >
-              <span className='name'>{data.name}</span>
+              <S.NameSpan>{data.name}</S.NameSpan>
             </S.CategoryItem>
           );
         })}

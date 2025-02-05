@@ -11,7 +11,7 @@ export const CareerContainer = styled.div`
   width: 100%;
   margin-bottom: 10px;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     display: flex;
     gap: 10px;
   }

@@ -9,7 +9,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.color.white};
   width: 100%;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
       padding: 0.5rem 0.75rem;
 `;
 

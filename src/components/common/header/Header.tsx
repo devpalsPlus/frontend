@@ -29,9 +29,9 @@ function Header() {
   return (
     <S.HeaderContainer>
       <Link to={ROUTES.main}>
-        <img src={Mainlogo} alt='logo' />
+        <S.LogoImg src={Mainlogo} alt='logo' />
       </Link>
-      <nav className='auth'>
+      <S.Wrapper>
         <DropDown
           toggleButton={
             isLoading ? (
@@ -45,31 +45,31 @@ function Header() {
         >
           <>
             {isLoggedIn && (
-              <ul>
+              <S.List>
                 <Link to={ROUTES.mypage}>
-                  <li>마이페이지</li>
+                  <S.Item>마이페이지</S.Item>
                 </Link>
                 <Link to={ROUTES.manageProjectsRoot}>
-                  <li>공고관리</li>
+                  <S.Item>공고관리</S.Item>
                 </Link>
                 <Link to='#' onClick={(e) => e.preventDefault()}>
-                  <li onClick={userLogout}>로그아웃</li>
+                  <S.Item onClick={userLogout}>로그아웃</S.Item>
                 </Link>
-              </ul>
+              </S.List>
             )}
             {!isLoggedIn && (
-              <ul>
+              <S.List>
                 <Link to={ROUTES.login}>
-                  <li>로그인</li>
+                  <S.Item>로그인</S.Item>
                 </Link>
                 <Link to={ROUTES.signup}>
-                  <li>회원가입</li>
+                  <S.Item>회원가입</S.Item>
                 </Link>
-              </ul>
+              </S.List>
             )}
           </>
         </DropDown>
-      </nav>
+      </S.Wrapper>
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         {message}
       </Modal>

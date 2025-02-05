@@ -113,11 +113,11 @@ const Register = () => {
 
   return (
     <S.Container>
-      <h1 className='logo'>
+      <S.LogoH1>
         <Link to={ROUTES.main}>
           <img src={Mainlogo} alt='logo' />
         </Link>
-      </h1>
+      </S.LogoH1>
       <Title size='semiLarge'>회원가입</Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* email */}

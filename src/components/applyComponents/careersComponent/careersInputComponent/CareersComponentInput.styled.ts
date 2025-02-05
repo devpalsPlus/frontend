@@ -26,7 +26,7 @@ export const CareerInput = styled.input`
     ${dateStyle}
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     width: 100%;
     margin-bottom: 12px;
     font-size: ${({ theme }) => theme.heading.small.fontSize};

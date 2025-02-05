@@ -27,9 +27,10 @@ export const CategoryItem = styled.div<{ isSelected: boolean }>`
     transform: scale(1.1);
     transition: all 100ms ease-in-out;
   }
+`;
 
-  .name {
-    color : ${({ theme, isSelected }) => isSelected && theme.color.white}
+export const NameSpan = styled.span<{ isSelected: boolean }>`
+  color: ${({ theme, isSelected }) => isSelected && theme.color.white};
 `;
 
 export const FormError = styled.p`

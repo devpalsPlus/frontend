@@ -28,6 +28,13 @@ export const CardWrapper = styled.div`
   }
 `;
 
+export const ButtonWrapper = styled.div`
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+`;
+
 export const CardTitle = styled.h3`
   font-size: 1.125rem;
   color: ${({ theme }) => theme.color.primary};

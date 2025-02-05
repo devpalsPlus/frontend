@@ -21,7 +21,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 2rem;
   }
 `;

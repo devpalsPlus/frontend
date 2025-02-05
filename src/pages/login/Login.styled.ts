@@ -31,6 +31,8 @@ export const Container = styled.div`
   }
 `;
 
+export const LogoH1 = styled.h1``;
+
 export const InputContainer = styled.div`
   display: flex;
   min-width: 310px;

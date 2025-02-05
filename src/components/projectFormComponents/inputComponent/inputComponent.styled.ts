@@ -80,7 +80,7 @@ export const FormError = styled.p`
   left: 5px;
   white-space: nowrap;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: ${({ theme }) => theme.heading.small.tabletFontSize};
   }
 `;

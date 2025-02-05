@@ -31,7 +31,7 @@ export const Container = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 1rem 2rem;
   }
 

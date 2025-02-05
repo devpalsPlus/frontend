@@ -13,7 +13,7 @@ function Avatar({ size, image }: AvatarProps) {
   return (
     <S.AvatarContainer size={size}>
       {typeof image === 'string' || !image ? (
-        <img className='avatar' src={releasedImg} alt='Avatar' />
+        <S.AvatarImg src={releasedImg} alt='Avatar' />
       ) : (
         image
       )}

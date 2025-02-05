@@ -6,7 +6,7 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 40px;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 25px;
   }
 `;
@@ -23,7 +23,7 @@ export const Title = styled.h1`
   margin-bottom: 0.8rem;
   margin-top: 1rem;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: 28px;
   }
 `;
@@ -44,7 +44,7 @@ export const UserInfo = styled.div`
   gap: 12px;
   align-items: center;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     flex-wrap: wrap;
     gap: 8px;
   }
@@ -55,7 +55,7 @@ export const UserName = styled.div`
   font-weight: bold;
   cursor: pointer;
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: 18px;
   }
 `;
@@ -64,7 +64,7 @@ export const PostDate = styled.div`
   font-size: 0.9rem;
   color: ${({ theme }) => theme.color.deepGrey};
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: 0.8rem;
   }
 `;
@@ -83,7 +83,7 @@ export const ViewCount = styled.div`
     color: ${({ theme }) => theme.color.deepGrey};
   }
 
-  @media screen and ${({ theme }) => theme.mediaQuery.tablet} {
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: 0.9rem;
 
     svg {

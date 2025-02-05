@@ -31,10 +31,7 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
 
   return createPortal(
     <ScrollPreventor>
-      <S.ModalContainer
-        className={isFadingOut ? 'fade-out' : 'fade-in'}
-        onAnimationEnd={handleAnimationEnd}
-      >
+      <S.ModalContainer $fade={isFadingOut} onAnimationEnd={handleAnimationEnd}>
         <S.ModalBody ref={modalRefs}>
           <ModalCloseButton onClose={handleClose} />
           <S.ModalIconWrapper>
