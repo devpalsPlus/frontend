@@ -48,11 +48,11 @@ const Login = () => {
 
   return (
     <S.Container>
-      <h1 className='logo'>
+      <S.LogoH1>
         <Link to={ROUTES.main}>
           <img src={Mainlogo} alt='logo' />
         </Link>
-      </h1>
+      </S.LogoH1>
       <Title size='semiLarge'>로그인</Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller

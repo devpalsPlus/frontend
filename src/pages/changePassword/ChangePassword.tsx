@@ -94,11 +94,11 @@ const ChangePassword = () => {
 
   return (
     <S.Container>
-      <h1 className='logo'>
+      <S.LogoH1>
         <Link to={ROUTES.main}>
           <img src={Mainlogo} alt='logo' />
         </Link>
-      </h1>
+      </S.LogoH1>
       <Title size='semiLarge'>비밀번호 재설정</Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* email */}

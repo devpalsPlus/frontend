@@ -77,7 +77,6 @@ export default function Filtering({ selects, defaultValue }: FilteringProps) {
             <S.SelectWrapper>
               {addAll.map((select) => (
                 <S.SelectButton
-                  className='option'
                   key={`${defaultValue}-${select.id}`}
                   onClick={() => handleValueClick(select.name, select.id)}
                 >

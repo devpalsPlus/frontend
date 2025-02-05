@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
-export const ModalContainer = styled.div`
-  @keyframes fade-in {
+export const ModalContainer = styled.div<{
+  $fade: boolean;
+}>`
+  @keyframes ${({ $fade }) => !$fade && 'fade-in'} {
     from {
       opacity: 0;
     }
@@ -10,7 +12,7 @@ export const ModalContainer = styled.div`
     }
   }
 
-  @keyframes fade-out {
+  @keyframes ${({ $fade }) => $fade && 'fade-out'} {
     from {
       opacity: 1;
     }

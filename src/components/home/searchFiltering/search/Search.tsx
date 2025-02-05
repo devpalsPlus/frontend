@@ -26,7 +26,6 @@ export default function Search() {
         <S.SearchForm onSubmit={handleSubmitSearch}>
           <S.SearchInput
             type='text'
-            className='search'
             placeholder='제목, 글 내용 검색'
             value={searchText}
             onChange={handleTextChange}
@@ -37,7 +36,7 @@ export default function Search() {
                 <XCircleIcon />
               </S.SearchButton>
             )}
-            <S.SearchButton className='searchIcon'>
+            <S.SearchButton>
               <MagnifyingGlassIcon />
             </S.SearchButton>
           </S.ButtonWrapper>

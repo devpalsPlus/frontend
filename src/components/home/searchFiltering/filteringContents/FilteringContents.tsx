@@ -62,10 +62,7 @@ export default function FilteringContents() {
         selects={methodTagsData}
         defaultValue={SEARCH_FILTERING_DEFAULT_VALUE.METHOD}
       />
-      <S.BeginnerButtonWrapper
-        className='filteringButton beginnerButton'
-        $toggle={searchFilters.isBeginner}
-      >
+      <S.BeginnerButtonWrapper $toggle={searchFilters.isBeginner}>
         <S.BeginnerButton
           $toggle={searchFilters.isBeginner}
           onClick={() =>

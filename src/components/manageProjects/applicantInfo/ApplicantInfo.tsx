@@ -1,6 +1,6 @@
 import * as S from './ApplicantInfo.styled';
 import { ApplicantInfo as MApplicantInfo } from '../../../models/applicant';
-import AvartarList from '../../common/avatar/AvartarList';
+import AvatarList from '../../common/avatar/AvatarList';
 import { LabelWithContent } from './LabelWithContent';
 import { formatDate } from '../../../util/format';
 interface ApplicantInfoProps {
@@ -13,17 +13,17 @@ const ApplicantInfo = ({ applicantInfo }: ApplicantInfoProps) => {
       <S.Title>{applicantInfo.User.nickname}</S.Title>
       <LabelWithContent label='이메일' content={applicantInfo.email} />
       <LabelWithContent label='휴대폰' content={applicantInfo.phoneNumber} />
-      <div className='skillset-wrap'>
+      <S.SkillSetWrapper>
         <S.Label>스킬셋</S.Label>
-        <AvartarList avatars={applicantInfo.User.UserSkillTag} />
-      </div>
+        <AvatarList avatars={applicantInfo.User.UserSkillTag} />
+      </S.SkillSetWrapper>
 
       <S.Label>경력</S.Label>
       {applicantInfo.career?.map((data) => (
         <S.Text>
-          <span className='period'>
+          <S.PeriodSpan>
             [{formatDate(data.periodStart)} ~ {formatDate(data.periodEnd)}]
-          </span>
+          </S.PeriodSpan>
           {data.name} - {data.role}
         </S.Text>
       ))}

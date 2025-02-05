@@ -9,66 +9,107 @@ export const HeaderContainer = styled.div`
   align-items: center;
   padding: 10px 120px;
 
-  img {
-    width: 80px;
-    height: 80px;
-
-    @media ${({ theme }) => theme.mediaQuery.tablet} {
-      width: 70px;
-      height: 70px;
-    }
-
-    @media ${({ theme }) => theme.mediaQuery.mobile} {
-      width: 50px;
-      height: 50px;
-    }
-  }
-
-  .auth {
-    ul {
-      display: flex;
-      flex-direction: column;
-      width: 9rem;
-
-      a,
-      button {
-        font-size: 0.9rem;
-        font-weight: 600;
-        width: 100%;
-        line-height: 1;
-        text-align: center;
-        color: inherit;
-
-        &:hover {
-          color: ${({ theme }) => theme.color.white};
-          background-color: ${({ theme }) => theme.color.navy};
-        }
-      }
-
-      a {
-        &:first-child {
-          border-top-left-radius: ${({ theme }) => theme.borderRadius.primary};
-          border-top-right-radius: ${({ theme }) => theme.borderRadius.primary};
-        }
-        &:last-child {
-          border-bottom-left-radius: ${({ theme }) =>
-            theme.borderRadius.primary};
-          border-bottom-right-radius: ${({ theme }) =>
-            theme.borderRadius.primary};
-        }
-      }
-
-      li {
-        width: 100%;
-        padding: 1rem;
-      }
-    }
-  }
-
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 10px 60px;
   }
   @media ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 10px 16px;
   }
+`;
+
+export const Wrapper = styled.nav`
+  ul {
+    display: flex;
+    flex-direction: column;
+    width: 9rem;
+
+    a,
+    button {
+      font-size: 0.9rem;
+      font-weight: 600;
+      width: 100%;
+      line-height: 1;
+      text-align: center;
+      color: inherit;
+
+      &:hover {
+        color: ${({ theme }) => theme.color.white};
+        background-color: ${({ theme }) => theme.color.navy};
+      }
+    }
+
+    a {
+      &:first-child {
+        border-top-left-radius: ${({ theme }) => theme.borderRadius.primary};
+        border-top-right-radius: ${({ theme }) => theme.borderRadius.primary};
+      }
+      &:last-child {
+        border-bottom-left-radius: ${({ theme }) => theme.borderRadius.primary};
+        border-bottom-right-radius: ${({ theme }) =>
+          theme.borderRadius.primary};
+      }
+    }
+
+    li {
+      width: 100%;
+      padding: 1rem;
+    }
+  }
+`;
+
+export const LogoImg = styled.img`
+  width: 80px;
+  height: 80px;
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    width: 70px;
+    height: 70px;
+  }
+
+  @media ${({ theme }) => theme.mediaQuery.mobile} {
+    width: 50px;
+    height: 50px;
+  }
+`;
+
+export const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  width: 9rem;
+
+  a,
+  button {
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: 100%;
+    line-height: 1;
+    text-align: center;
+    color: inherit;
+
+    &:hover {
+      color: ${({ theme }) => theme.color.white};
+      background-color: ${({ theme }) => theme.color.navy};
+    }
+  }
+
+  a {
+    &:first-child {
+      border-top-left-radius: ${({ theme }) => theme.borderRadius.primary};
+      border-top-right-radius: ${({ theme }) => theme.borderRadius.primary};
+    }
+    &:last-child {
+      border-bottom-left-radius: ${({ theme }) => theme.borderRadius.primary};
+      border-bottom-right-radius: ${({ theme }) => theme.borderRadius.primary};
+    }
+  }
+
+  li {
+    width: 100%;
+    padding: 1rem;
+  }
+`;
+
+export const Item = styled.li`
+  width: 100%;
+  padding: 1rem;
 `;

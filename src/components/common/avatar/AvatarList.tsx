@@ -3,17 +3,13 @@ import { ProjectSkillTag } from '../../../models/manageMyProject';
 import Avatar from './Avatar';
 import { UserSkillTag } from '../../../models/applicant';
 import { formatImgPath } from '../../../util/formatImgPath';
-export interface AvartarListProps {
+export interface AvatarListProps {
   avatars: ProjectSkillTag[] | UserSkillTag[] | null;
   size?: string;
   maxCount?: number;
 }
 
-function AvartarList({
-  avatars,
-  size = '33px',
-  maxCount = 8,
-}: AvartarListProps) {
+function AvatarList({ avatars, size = '33px', maxCount = 8 }: AvatarListProps) {
   if (!avatars) return;
   const displayAvatars = avatars.slice(0, maxCount);
 
@@ -32,4 +28,4 @@ function AvartarList({
   );
 }
 
-export default AvartarList;
+export default AvatarList;

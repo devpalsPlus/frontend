@@ -15,10 +15,10 @@ export const Container = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
 
-  .skillset-wrap {
-    margin-bottom: 1rem;
-  }
+export const SkillSetWrapper = styled.div`
+  margin-bottom: 1rem;
 `;
 
 export const Title = styled.h2`
@@ -55,4 +55,8 @@ export const Text = styled.p`
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: ${({ theme }) => theme.heading.small.tabletFontSize};
   }
+`;
+
+export const PeriodSpan = styled.span`
+  color: ${({ theme }) => theme.color.deepGrey};
 `;

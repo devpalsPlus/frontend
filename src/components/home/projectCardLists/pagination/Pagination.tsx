@@ -53,7 +53,6 @@ export default function Pagination() {
               <ChevronLeftIcon />
             </S.PaginationButton>
             <S.PaginationDoubleButton
-              className='doubleButton'
               onClick={() => handleUpdateFilters('page', 1)}
             >
               1
@@ -75,7 +74,6 @@ export default function Pagination() {
           <>
             <EllipsisHorizontalIcon />
             <S.PaginationDoubleButton
-              className='doubleButton'
               onClick={() => handleUpdateFilters('page', lastPage)}
             >
               {lastPage}
