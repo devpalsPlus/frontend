@@ -6,9 +6,9 @@ import { Control, FieldErrors, UseFormSetValue } from 'react-hook-form';
 import { PROJECT_DATA } from '../../../constants/projectConstants';
 import { CreateProjectFormValues } from '../../../models/createProject';
 import * as S from './ProjectInformationInput.styled';
-import Input from '../inputComponent/inputComponent';
 import { useSearchFilteringSkillTag } from '../../../hooks/useSearchFilteringSkillTag';
 import { ProjectDetailExtended } from '../../../models/projectDetail';
+import Input from '../inputComponent/InputComponent';
 
 interface ProjectInformationProps {
   errors: FieldErrors;

@@ -33,6 +33,7 @@ export const OptionLabel = styled.label<{ $isSelected: boolean }>`
 
     @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: 0.7rem;
+    }
   }
 `;
 

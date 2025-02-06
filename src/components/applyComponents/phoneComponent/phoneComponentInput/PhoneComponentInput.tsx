@@ -20,14 +20,14 @@ const PhoneInput = ({
   });
 
   return (
-    <div>
+    <S.PhoneDiv>
       <S.PhoneInput
         {...field}
         maxLength={maxLength}
         placeholder={placeholder}
         name={name}
       />
-    </div>
+    </S.PhoneDiv>
   );
 };
 
