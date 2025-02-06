@@ -2,7 +2,7 @@ import * as S from './ModifyProject.styled';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Input from '../../components/projectFormComponents/inputComponent/inputComponent';
+import Input from '../../components/projectFormComponents/inputComponent/InputComponent';
 import { CreateProjectFormValues, FormData } from '../../models/createProject';
 import { useParams } from 'react-router-dom';
 import ProjectInformationInput from '../../components/projectFormComponents/projectInformationInput/ProjectInformationInput';

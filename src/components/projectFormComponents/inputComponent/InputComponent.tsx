@@ -1,5 +1,5 @@
 import { Control, FieldErrors, useController } from 'react-hook-form';
-import * as S from './inputComponent.styled';
+import * as S from './InputComponent.styled';
 import MdEditorInput from '../editor/MarkdownEditor';
 
 type InputProps = {
