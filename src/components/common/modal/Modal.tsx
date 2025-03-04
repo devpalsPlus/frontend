@@ -1,18 +1,20 @@
-import { useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
-import * as S from './Modal.styled';
 import ScrollPreventor from './ScrollPreventor';
-import ModalCloseButton from './ModalCloseButton';
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
+import { ModalWrapper } from './ModalWrapper';
 
 interface ModalProps {
-  children: React.ReactNode;
   isOpen: boolean;
   onClose: () => void;
 }
 
-const Modal = ({ children, isOpen, onClose }: ModalProps) => {
+const Modal = ({
+  children,
+  isOpen,
+  onClose,
+}: PropsWithChildren<ModalProps>) => {
   const modalRefs = useOutsideClick(() => handleClose());
   const [isFadingOut, setIsFadingOut] = useState(false);
 
@@ -31,18 +33,18 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
 
   return createPortal(
     <ScrollPreventor>
-      <S.ModalContainer
-        $fadeOut={isFadingOut}
-        onAnimationEnd={handleAnimationEnd}
-      >
-        <S.ModalBody ref={modalRefs}>
-          <ModalCloseButton onClose={handleClose} />
-          <S.ModalIconWrapper>
-            <CheckCircleIcon />
-          </S.ModalIconWrapper>
-          <S.ModalContents>{children}</S.ModalContents>
-        </S.ModalBody>
-      </S.ModalContainer>
+      <ModalWrapper isOpen={isOpen} onClose={onClose}>
+        <ModalWrapper.Container
+          $fadeOut={isFadingOut}
+          onAnimationEnd={handleAnimationEnd}
+        >
+          <ModalWrapper.Body ref={modalRefs}>
+            <ModalWrapper.CloseButton onClose={handleClose} />
+            <ModalWrapper.ContentIcon Icon={<CheckCircleIcon />} />
+            <ModalWrapper.Contents>{children}</ModalWrapper.Contents>
+          </ModalWrapper.Body>
+        </ModalWrapper.Container>
+      </ModalWrapper>
     </ScrollPreventor>,
     document.body
   );
