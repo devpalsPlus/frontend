@@ -3,6 +3,7 @@ import { myProjectList, sendResult } from './manageProjectList';
 import {
   applicantInfo,
   applicantList,
+  createApplicant,
   passNonPass,
   passNonPassList,
 } from './applicant';
@@ -23,6 +24,7 @@ import {
   fetchPositionTag,
   fetchSkillTag,
 } from './projectSearchFiltering';
+import { createProject } from './createProject.ts';
 
 export const handlers = [
   fetchProjectLists,
@@ -47,6 +49,8 @@ export const handlers = [
   passNonPassList,
   mypageEditProfile,
   login,
+  createApplicant,
+  createProject,
 ];
 
 export const worker = setupWorker(...handlers);
