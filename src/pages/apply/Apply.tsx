@@ -1,6 +1,6 @@
 import * as S from './Apply.styled';
 import Input from '../../components/projectFormComponents/inputComponent/InputComponent';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useParams } from 'react-router-dom';
@@ -84,11 +84,6 @@ const Apply = () => {
     if (userEmail) setValue('email', userEmail);
   }, [userEmail, setValue]);
 
-  const { fields: fieldsCareers, append: appendCareers } = useFieldArray({
-    name: 'careers',
-    control,
-  });
-
   const handleSubmit = (data: ApplySchemeType) => {
     const formData: joinProject = {
       email: data.email,
@@ -150,11 +145,7 @@ const Apply = () => {
         <S.Section>
           <S.Label>경력사항 / 수상이력</S.Label>
 
-          <CareersComponent
-            fieldsCareers={fieldsCareers}
-            appendCareers={appendCareers}
-            control={control}
-          />
+          <CareersComponent control={control} />
         </S.Section>
 
         <S.SubmitButton
