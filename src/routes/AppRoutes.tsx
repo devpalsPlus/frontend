@@ -20,7 +20,7 @@ const Layout = lazy(() => import('../components/common/layout/Layout'));
 const Home = lazy(() => import('../pages/home/Home'));
 const MyPage = lazy(() => import('../pages/mypage/MyPage'));
 const UserPage = lazy(() => import('../pages/userpage/UserPage'));
-const Apply = lazy(() => import('../pages/apply/Apply'));
+const Apply = lazy(() => import('../pages/apply/ApplyStep'));
 
 const CreateProject = lazy(
   () => import('../pages/createProject/CreateProject')
@@ -103,11 +103,11 @@ const AppRoutes = () => {
     {
       path: `${ROUTES.apply}/:projectId`,
       element: (
-        <ProtectRoute redirectUrl={ROUTES.login}>
-          <Layout>
-            <Apply />
-          </Layout>
-        </ProtectRoute>
+        // <ProtectRoute redirectUrl={ROUTES.login}>
+        <Layout>
+          <Apply />
+        </Layout>
+        // </ProtectRoute>
       ),
     },
     {
