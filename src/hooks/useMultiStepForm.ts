@@ -2,7 +2,7 @@ import { useState, ReactElement } from 'react';
 import { UseFormGetValues } from 'react-hook-form';
 import { ApplySchemeType } from '../pages/apply/Apply';
 
-type StepProp = {
+export type StepProp = {
   title: string;
   element: ReactElement;
 };
