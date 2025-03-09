@@ -28,10 +28,11 @@ const useMultiStepForm = (
     currentStepIndex,
     currentTitle: steps[currentStepIndex].title,
     currentStep: steps[currentStepIndex].element,
-    isFirstStep: currentStepIndex === 0,
-    isLastStep: currentStepIndex === steps.length - 1,
+    FirstStep: currentStepIndex === 0,
+    LastStep: currentStepIndex === steps.length - 1,
     prev,
     next,
+    setCurrentStepIndex,
   };
 };
 
