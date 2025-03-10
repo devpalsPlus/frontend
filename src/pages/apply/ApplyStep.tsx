@@ -84,45 +84,54 @@ const Apply = () => {
     },
   });
 
+  const stepList = [
+    {
+      title: '이메일',
+      element: (
+        <Input
+          control={control}
+          errors={errors}
+          name='email'
+          type='text'
+          placeholder='이메일을 입력해주세요.'
+        />
+      ),
+    },
+    {
+      title: '전화번호',
+      element: <PhoneComponent control={control} errors={errors} />,
+    },
+    {
+      title: '팀장에게 전하는 말',
+      element: (
+        <Input
+          control={control}
+          errors={errors}
+          name='wantToSay'
+          type='textarea'
+          placeholder='하고 싶은 말을 입력해주세요.'
+        />
+      ),
+    },
+    {
+      title: '수상/이력 사항',
+      element: <CareersComponent control={control} />,
+    },
+  ];
+
   useEffect(() => {
     if (userEmail) setValue('email', userEmail);
   }, [userEmail, setValue]);
 
-  const { currentStepIndex, currentTitle, currentStep, prev, next } =
-    useMultiStepForm(getValues, [
-      {
-        title: '이메일',
-        element: (
-          <Input
-            control={control}
-            errors={errors}
-            name='email'
-            type='text'
-            placeholder='이메일을 입력해주세요.'
-          />
-        ),
-      },
-      {
-        title: '전화번호',
-        element: <PhoneComponent control={control} errors={errors} />,
-      },
-      {
-        title: '팀장에게 전하는 말',
-        element: (
-          <Input
-            control={control}
-            errors={errors}
-            name='wantToSay'
-            type='textarea'
-            placeholder='하고 싶은 말을 입력해주세요.'
-          />
-        ),
-      },
-      {
-        title: '수상/이력 사항',
-        element: <CareersComponent control={control} />,
-      },
-    ]);
+  const {
+    currentStepIndex,
+    currentTitle,
+    currentStep,
+    LastStep,
+    prev,
+    next,
+    setCurrentStepIndex,
+  } = useMultiStepForm(getValues, stepList);
 
   const handleSubmit = (data: ApplySchemeType) => {
     const formData: joinProject = {
@@ -155,67 +164,49 @@ const Apply = () => {
       )}`}</S.Dates>
 
       <StepComponent
-        steps={[
-          {
-            title: '이메일',
-            element: (
-              <Input
-                control={control}
-                errors={errors}
-                name='email'
-                type='text'
-                placeholder='이메일을 입력해주세요.'
-              />
-            ),
-          },
-          {
-            title: '전화번호',
-            element: <PhoneComponent control={control} errors={errors} />,
-          },
-          {
-            title: '팀장에게 전하는 말',
-            element: (
-              <Input
-                control={control}
-                errors={errors}
-                name='wantToSay'
-                type='textarea'
-                placeholder='하고 싶은 말을 입력해주세요.'
-              />
-            ),
-          },
-          {
-            title: '수상/이력 사항',
-            element: <CareersComponent control={control} />,
-          },
-        ]}
+        steps={stepList}
         currentStepIndex={currentStepIndex}
+        setCurrentStepIndex={setCurrentStepIndex}
       />
 
       <form onSubmit={onSubmitHandler(handleSubmit)}>
-        <S.StepLabel>{currentTitle}</S.StepLabel>
+        <S.StepWrapper>
+          <S.StepLabel>{currentTitle}</S.StepLabel>
+          <S.StepButton>
+            <Button
+              size={'small'}
+              schema={'primary'}
+              radius={'primary'}
+              onClick={prev}
+            >
+              이전
+            </Button>
+            {currentStepIndex !== stepList.length - 1 && (
+              <Button
+                size={'small'}
+                schema={'primary'}
+                radius={'primary'}
+                onClick={next}
+              >
+                다음
+              </Button>
+            )}
+          </S.StepButton>
+        </S.StepWrapper>
 
         <S.StepContainer>{currentStep}</S.StepContainer>
-      </form>
 
-      <S.StepButton>
-        <Button
-          size={'small'}
-          schema={'primary'}
-          radius={'primary'}
-          onClick={prev}
-        >
-          이전으로
-        </Button>
-        <Button
-          size={'small'}
-          schema={'primary'}
-          radius={'primary'}
-          onClick={next}
-        >
-          다음으로
-        </Button>
-      </S.StepButton>
+        {currentStepIndex == stepList.length - 1 && (
+          <S.SubmitButton
+            size={'small'}
+            schema={'primary'}
+            radius={'primary'}
+            type='submit'
+          >
+            지원 완료하기
+          </S.SubmitButton>
+        )}
+      </form>
     </S.Container>
   );
 };

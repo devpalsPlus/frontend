@@ -3,9 +3,7 @@ import Button from '../../components/common/Button/Button';
 
 export const Container = styled.div`
   max-width: 100%;
-  margin: 0 auto;
   padding: 40px;
-  font-family: Arial, sans-serif;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 20px;
@@ -48,10 +46,7 @@ export const StepContainer = styled.div`
 
 export const StepButton = styled.button`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  margin-top: 50px;
+  gap: 20px;
 `;
 
 export const StepLabel = styled.div`
@@ -63,6 +58,12 @@ export const StepLabel = styled.div`
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: 1.1rem;
   }
+`;
+
+export const StepWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const SubmitButton = styled(Button)`
