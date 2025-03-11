@@ -223,6 +223,10 @@ const Apply = () => {
           </S.SubmitButton>
         )}
       </form>
+
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Container>
   );
 };
