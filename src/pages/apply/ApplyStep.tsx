@@ -73,7 +73,7 @@ const Apply = () => {
     formState: { errors },
     control,
     setValue,
-    getValues,
+    trigger,
   } = useForm<ApplySchemeType>({
     resolver: zodResolver(ApplyScheme),
     defaultValues: {
@@ -83,6 +83,13 @@ const Apply = () => {
       careers: [],
     },
   });
+
+  const stepFields: (keyof ApplySchemeType)[][] = [
+    ['email'],
+    ['phone'],
+    ['wantToSay'],
+    ['careers'],
+  ];
 
   const stepList = [
     {
@@ -127,11 +134,19 @@ const Apply = () => {
     currentStepIndex,
     currentTitle,
     currentStep,
-    LastStep,
+    isLastStep,
     prev,
     next,
     setCurrentStepIndex,
-  } = useMultiStepForm(getValues, stepList);
+  } = useMultiStepForm(stepList);
+
+  const handleNextStep = async () => {
+    const fieldsToValidate = stepFields[currentStepIndex];
+    const isValid = await trigger(fieldsToValidate);
+    if (isValid) {
+      next();
+    }
+  };
 
   const handleSubmit = (data: ApplySchemeType) => {
     const formData: joinProject = {
@@ -140,7 +155,6 @@ const Apply = () => {
       message: data.wantToSay,
       career: data.careers,
     };
-
     applyProject(formData);
   };
 
@@ -177,6 +191,7 @@ const Apply = () => {
               size={'small'}
               schema={'primary'}
               radius={'primary'}
+              type='button'
               onClick={prev}
             >
               이전
@@ -186,7 +201,8 @@ const Apply = () => {
                 size={'small'}
                 schema={'primary'}
                 radius={'primary'}
-                onClick={next}
+                type='button'
+                onClick={handleNextStep}
               >
                 다음
               </Button>
@@ -196,11 +212,11 @@ const Apply = () => {
 
         <S.StepContainer>{currentStep}</S.StepContainer>
 
-        {currentStepIndex == stepList.length - 1 && (
+        {isLastStep && (
           <S.SubmitButton
-            size={'small'}
-            schema={'primary'}
-            radius={'primary'}
+            size='primary'
+            schema='primary'
+            radius='primary'
             type='submit'
           >
             지원 완료하기

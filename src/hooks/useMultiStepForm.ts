@@ -1,16 +1,11 @@
 import { useState, ReactElement } from 'react';
-import { UseFormGetValues } from 'react-hook-form';
-import { ApplySchemeType } from '../pages/apply/Apply';
 
 export type StepProp = {
   title: string;
   element: ReactElement;
 };
 
-const useMultiStepForm = (
-  getValues: UseFormGetValues<ApplySchemeType>,
-  steps: StepProp[]
-) => {
+const useMultiStepForm = (steps: StepProp[]) => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   const prev = () => {
@@ -18,7 +13,6 @@ const useMultiStepForm = (
   };
 
   const next = () => {
-    console.log(getValues());
     setCurrentStepIndex((index) =>
       index >= steps.length - 1 ? index : index + 1
     );
@@ -28,8 +22,8 @@ const useMultiStepForm = (
     currentStepIndex,
     currentTitle: steps[currentStepIndex].title,
     currentStep: steps[currentStepIndex].element,
-    FirstStep: currentStepIndex === 0,
-    LastStep: currentStepIndex === steps.length - 1,
+    isFirstStep: currentStepIndex === 0,
+    isLastStep: currentStepIndex === steps.length - 1,
     prev,
     next,
     setCurrentStepIndex,

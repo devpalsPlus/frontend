@@ -44,7 +44,7 @@ export const StepContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-export const StepButton = styled.button`
+export const StepButton = styled.div`
   display: flex;
   gap: 20px;
 `;
