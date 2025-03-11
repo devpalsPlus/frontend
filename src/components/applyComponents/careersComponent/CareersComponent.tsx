@@ -1,24 +1,19 @@
-import {
-  Control,
-  FieldArrayWithId,
-  UseFieldArrayAppend,
-} from 'react-hook-form';
+import { Control, useFieldArray } from 'react-hook-form';
 import { ApplySchemeType } from '../../../pages/apply/Apply';
 import * as S from './CareersComponent.styled';
 import CareerInput from './careersInputComponent/CareersComponentInput';
 import { CAREER_INPUT } from '../../../constants/projectConstants';
 
 interface CareersComponentProps {
-  fieldsCareers: FieldArrayWithId<ApplySchemeType, 'careers'>[];
-  appendCareers: UseFieldArrayAppend<ApplySchemeType, 'careers'>;
   control: Control<ApplySchemeType>;
 }
 
-const CareersComponent = ({
-  fieldsCareers,
-  appendCareers,
-  control,
-}: CareersComponentProps) => {
+const CareersComponent = ({ control }: CareersComponentProps) => {
+  const { fields: fieldsCareers, append: appendCareers } = useFieldArray({
+    name: 'careers',
+    control,
+  });
+
   return (
     <S.Container>
       {fieldsCareers.map((field, index) => (

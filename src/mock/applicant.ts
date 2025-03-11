@@ -43,3 +43,12 @@ export const passNonPass = http.patch(
     );
   }
 );
+
+export const createApplicant = http.post(
+  `${import.meta.env.VITE_API_BASE_URL}/project/:projectId/applicant`,
+  () => {
+    return HttpResponse.json({
+      status: 200,
+    });
+  }
+);

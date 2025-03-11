@@ -1,4 +1,4 @@
-import * as S from './Apply.styled';
+import * as S from './ApplyStep.styled';
 import Input from '../../components/projectFormComponents/inputComponent/InputComponent';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -15,6 +15,9 @@ import { useModal } from '../../hooks/useModal';
 import useApplyProject from '../../hooks/useApplyProject';
 import useAuthStore from '../../store/authStore';
 import { useEffect } from 'react';
+import useMultiStepForm from '../../hooks/useMultiStepForm';
+import StepComponent from '../../components/projectFormComponents/\bstepComponent/StepComponent';
+import Button from '../../components/common/Button/Button';
 
 const ApplyScheme = z.object({
   email: z
@@ -70,6 +73,7 @@ const Apply = () => {
     formState: { errors },
     control,
     setValue,
+    trigger,
   } = useForm<ApplySchemeType>({
     resolver: zodResolver(ApplyScheme),
     defaultValues: {
@@ -80,9 +84,69 @@ const Apply = () => {
     },
   });
 
+  const stepFields: (keyof ApplySchemeType)[][] = [
+    ['email'],
+    ['phone'],
+    ['wantToSay'],
+    ['careers'],
+  ];
+
+  const stepList = [
+    {
+      title: '이메일',
+      element: (
+        <Input
+          control={control}
+          errors={errors}
+          name='email'
+          type='text'
+          placeholder='이메일을 입력해주세요.'
+        />
+      ),
+    },
+    {
+      title: '전화번호',
+      element: <PhoneComponent control={control} errors={errors} />,
+    },
+    {
+      title: '팀장에게 전하는 말',
+      element: (
+        <Input
+          control={control}
+          errors={errors}
+          name='wantToSay'
+          type='textarea'
+          placeholder='하고 싶은 말을 입력해주세요.'
+        />
+      ),
+    },
+    {
+      title: '수상/이력 사항',
+      element: <CareersComponent control={control} />,
+    },
+  ];
+
   useEffect(() => {
     if (userEmail) setValue('email', userEmail);
   }, [userEmail, setValue]);
+
+  const {
+    currentStepIndex,
+    currentTitle,
+    currentStep,
+    isLastStep,
+    prev,
+    next,
+    setCurrentStepIndex,
+  } = useMultiStepForm(stepList);
+
+  const handleNextStep = async () => {
+    const fieldsToValidate = stepFields[currentStepIndex];
+    const isValid = await trigger(fieldsToValidate);
+    if (isValid) {
+      next();
+    }
+  };
 
   const handleSubmit = (data: ApplySchemeType) => {
     const formData: joinProject = {
@@ -91,7 +155,6 @@ const Apply = () => {
       message: data.wantToSay,
       career: data.careers,
     };
-
     applyProject(formData);
   };
 
@@ -114,49 +177,53 @@ const Apply = () => {
         projectData?.recruitmentEndDate
       )}`}</S.Dates>
 
-      <S.Form onSubmit={onSubmitHandler(handleSubmit)}>
-        <S.Section>
-          <S.Label>이메일</S.Label>
-          <Input
-            control={control}
-            errors={errors}
-            name='email'
-            type='text'
-            placeholder='이메일을 입력해주세요.'
-          />
-        </S.Section>
+      <StepComponent
+        steps={stepList}
+        currentStepIndex={currentStepIndex}
+        setCurrentStepIndex={setCurrentStepIndex}
+      />
 
-        <S.Section>
-          <S.Label>휴대폰 전화번호</S.Label>
-          <PhoneComponent control={control} errors={errors} />
-        </S.Section>
+      <form onSubmit={onSubmitHandler(handleSubmit)}>
+        <S.StepWrapper>
+          <S.StepLabel>{currentTitle}</S.StepLabel>
+          <S.StepButton>
+            <Button
+              size={'small'}
+              schema={'primary'}
+              radius={'primary'}
+              type='button'
+              onClick={prev}
+            >
+              이전
+            </Button>
+            {currentStepIndex !== stepList.length - 1 && (
+              <Button
+                size={'small'}
+                schema={'primary'}
+                radius={'primary'}
+                type='button'
+                onClick={handleNextStep}
+              >
+                다음
+              </Button>
+            )}
+          </S.StepButton>
+        </S.StepWrapper>
 
-        <S.Section>
-          <S.Label>기획자에게 하고 싶은 말</S.Label>
-          <Input
-            control={control}
-            errors={errors}
-            name='wantToSay'
-            type='textarea'
-            placeholder='하고 싶은 말을 입력해주세요.'
-          />
-        </S.Section>
+        <S.StepContainer>{currentStep}</S.StepContainer>
 
-        <S.Section>
-          <S.Label>경력사항 / 수상이력</S.Label>
+        {isLastStep && (
+          <S.SubmitButton
+            size='primary'
+            schema='primary'
+            radius='primary'
+            type='submit'
+          >
+            지원 완료하기
+          </S.SubmitButton>
+        )}
+      </form>
 
-          <CareersComponent control={control} />
-        </S.Section>
-
-        <S.SubmitButton
-          size='large'
-          schema='primary'
-          radius='primary'
-          type='submit'
-        >
-          지원하기
-        </S.SubmitButton>
-      </S.Form>
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         {message}
       </Modal>
