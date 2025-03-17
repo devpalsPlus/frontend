@@ -1,7 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import * as S from './StepComponent.styled';
-import { FaCheck } from 'react-icons/fa';
-import { IoClose } from 'react-icons/io5';
 import { StepProp } from '../../../hooks/useMultiStepForm';
 
 type StepComponentProps = {

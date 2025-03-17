@@ -16,7 +16,7 @@ import useApplyProject from '../../hooks/useApplyProject';
 import useAuthStore from '../../store/authStore';
 import { useEffect } from 'react';
 import useMultiStepForm from '../../hooks/useMultiStepForm';
-import StepComponent from '../../components/projectFormComponents/\bstepComponent/StepComponent';
+import StepComponent from '../../components/projectFormComponents/stepComponent/StepComponent';
 import Button from '../../components/common/Button/Button';
 
 const ApplyScheme = z.object({
