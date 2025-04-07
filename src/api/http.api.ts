@@ -12,7 +12,10 @@ export const createClient = (config?: AxiosRequestConfig) => {
     timeout: DEFAULT_TIMEOUT,
     headers: {
       'content-type': 'application/json',
-      authorization: getTokens() ? `Bearer ${getTokens().accessToken}` : '',
+      authorization:
+        getTokens().accessToken || getTokens().refreshToken
+          ? `Bearer ${getTokens().accessToken}`
+          : '',
     },
     withCredentials: true,
     ...config,
