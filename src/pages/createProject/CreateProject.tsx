@@ -10,6 +10,7 @@ import Modal from '../../components/common/modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import useCreateProject from '../../hooks/useCreateProject';
 import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
+import useAuthStore from '../../store/authStore';
 
 export const createProjectScheme = z.object({
   startDate: z
@@ -81,6 +82,14 @@ const CreateProject = () => {
     handleModalOpen,
     setIsSubmit,
   });
+  const userId = useAuthStore((state) => state.userData?.id);
+  if (!userId) {
+    return (
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
+    );
+  }
 
   const handleSubmit = (data: z.infer<typeof createProjectScheme>) => {
     const formData: FormData = {
@@ -89,12 +98,13 @@ const CreateProject = () => {
       recruitmentStartDate: data.startDate,
       recruitmentEndDate: data.endDate,
       startDate: data.startDatePre,
-      positionTagId: data.position,
+      positionTagIds: data.position,
       estimatedPeriod: `${data.duration}개월`,
-      methodId: data.field,
+      methodType: data.field,
       isBeginner: data.newBy,
-      skillTagId: data.languages,
+      skillTagIds: data.languages,
       description: data.markdownEditor,
+      authorId: userId,
     };
 
     createProject(formData);

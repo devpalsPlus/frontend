@@ -2,13 +2,13 @@ import * as S from './ProjectInformation.styled';
 import { PROJECT_DATA_GET } from '../../../constants/projectConstants';
 import beginner from '/src/assets/beginner.svg';
 import {
-  ProjectDetail,
-  ProjectDetailExtended,
+  ProjectDetailPlus,
+  ProjectDetailPlusExtended,
 } from '../../../models/projectDetail';
 import { formatDate } from '../../../util/format';
 
 interface ProjectInformationProps {
-  data: ProjectDetailExtended;
+  data: ProjectDetailPlusExtended;
 }
 
 const ProjectInformation = ({ data }: ProjectInformationProps) => {
@@ -26,35 +26,33 @@ const ProjectInformation = ({ data }: ProjectInformationProps) => {
       {PROJECT_DATA_GET.map((input, index) => (
         <S.InfoRow key={index}>
           <S.InfoLabel>{input.label}</S.InfoLabel>
-          <S.InfoText>{data[input.name as keyof ProjectDetail]}</S.InfoText>
+          <S.InfoText>{data[input.name as keyof ProjectDetailPlus]}</S.InfoText>
         </S.InfoRow>
       ))}
 
       <S.InfoRow>
         <S.InfoLabel>모집 분야</S.InfoLabel>
         <S.InfoText>
-          {data.ProjectPositionTag.map(
-            (position) => position.PositionTag.name
-          ).join(', ')}
+          {data.positions.map((position) => position.name).join(', ')}
         </S.InfoText>
       </S.InfoRow>
 
       <S.InfoRow>
         <S.InfoLabel>진행 방식</S.InfoLabel>
-        <S.InfoText>{data.Method.name}</S.InfoText>
+        <S.InfoText>{data.methodType.name}</S.InfoText>
       </S.InfoRow>
 
       <S.InfoRow>
         <S.InfoLabel>사용 언어</S.InfoLabel>
         <S.SkillTagContainer>
-          {data.ProjectSkillTag.map((skillTag) => (
-            <S.SkillTagImage key={skillTag.SkillTag.id}>
+          {data.skills.map((skillTag) => (
+            <S.SkillTagImage key={skillTag.id}>
               <img
-                key={skillTag.SkillTag.id}
-                src={skillTag.SkillTag.img}
-                alt={skillTag.SkillTag.name}
+                key={skillTag.id}
+                src={skillTag.skillImg}
+                alt={skillTag.skillName}
               />
-              <S.InfoText>{skillTag.SkillTag.name}</S.InfoText>
+              <S.InfoText>{skillTag.skillName}</S.InfoText>
             </S.SkillTagImage>
           ))}
         </S.SkillTagContainer>

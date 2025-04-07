@@ -24,6 +24,7 @@ const ModifyProject = () => {
     id,
     handleModalOpen,
   });
+  const userId = projectData?.authorId;
 
   const {
     handleSubmit: onSubmitHandler,
@@ -45,24 +46,6 @@ const ModifyProject = () => {
     },
   });
 
-  const handleSubmit = async (data: z.infer<typeof createProjectScheme>) => {
-    const formData: FormData = {
-      title: data.title,
-      totalMember: data.maxVolunteers,
-      recruitmentStartDate: data.startDate,
-      recruitmentEndDate: data.endDate,
-      startDate: data.startDatePre,
-      positionTagId: data.position,
-      estimatedPeriod: `${data.duration}개월`,
-      methodId: data.field,
-      isBeginner: data.newBy,
-      skillTagId: data.languages,
-      description: data.markdownEditor,
-    };
-
-    updateProject(formData);
-  };
-
   useEffect(() => {
     if (projectData) {
       setValue('startDatePre', formatDate(projectData.startDate));
@@ -75,6 +58,33 @@ const ModifyProject = () => {
       setValue('markdownEditor', projectData.description);
     }
   }, [projectData]);
+
+  if (!userId) {
+    return (
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
+    );
+  }
+
+  const handleSubmit = async (data: z.infer<typeof createProjectScheme>) => {
+    const formData: FormData = {
+      title: data.title,
+      totalMember: data.maxVolunteers,
+      recruitmentStartDate: data.startDate,
+      recruitmentEndDate: data.endDate,
+      startDate: data.startDatePre,
+      positionTagIds: data.position,
+      estimatedPeriod: `${data.duration}개월`,
+      methodType: data.field,
+      isBeginner: data.newBy,
+      skillTagIds: data.languages,
+      description: data.markdownEditor,
+      authorId: userId,
+    };
+
+    updateProject(formData);
+  };
 
   return (
     <S.Container>

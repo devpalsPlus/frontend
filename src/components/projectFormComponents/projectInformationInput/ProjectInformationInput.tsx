@@ -7,14 +7,14 @@ import { PROJECT_DATA } from '../../../constants/projectConstants';
 import { CreateProjectFormValues } from '../../../models/createProject';
 import * as S from './ProjectInformationInput.styled';
 import { useSearchFilteringSkillTag } from '../../../hooks/useSearchFilteringSkillTag';
-import { ProjectDetailExtended } from '../../../models/projectDetail';
+import { ProjectDetailPlusExtended } from '../../../models/projectDetail';
 import Input from '../inputComponent/InputComponent';
 
 interface ProjectInformationProps {
   errors: FieldErrors;
   control: Control<CreateProjectFormValues>;
   setValue: UseFormSetValue<CreateProjectFormValues>;
-  apiData?: ProjectDetailExtended;
+  apiData?: ProjectDetailPlusExtended;
   isSubmit?: boolean;
   setIsSubmit?: Dispatch<SetStateAction<boolean>>;
 }
@@ -70,7 +70,7 @@ const ProjectInformationInput = ({
         errors={errors}
         setValue={setValue}
         methodTagsData={methodTagsData}
-        apiDataMethodId={apiData?.Method.id}
+        apiDataMethodId={apiData?.methodType.id}
       />
 
       <S.InfoRow>
@@ -83,7 +83,7 @@ const ProjectInformationInput = ({
         errors={errors}
         setValue={setValue}
         positionTagsData={positionTagsData}
-        apiDataPosition={apiData?.ProjectPositionTag}
+        apiDataPosition={apiData?.positions}
       />
 
       <S.InfoRow>
@@ -93,7 +93,7 @@ const ProjectInformationInput = ({
         name='languages'
         errors={errors}
         setValue={setValue}
-        apiDataSkillTags={apiData?.skillTags}
+        apiDataSkillTags={apiData?.skills}
       />
     </>
   );

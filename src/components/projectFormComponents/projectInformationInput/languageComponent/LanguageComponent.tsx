@@ -5,12 +5,13 @@ import { CreateProjectFormValues } from '../../../../models/createProject';
 import { SkillTag } from '../../../../models/tags';
 import { useSaveSearchFiltering } from '../../../../hooks/useSaveSearchFiltering';
 import { useEffect } from 'react';
+import { Skill } from '../../../../models/projectDetail';
 
 interface LanguageComponentProps {
   errors: FieldErrors;
   name: string;
   setValue: UseFormSetValue<CreateProjectFormValues>;
-  apiDataSkillTags: SkillTag[] | undefined;
+  apiDataSkillTags: Skill[] | undefined;
 }
 
 const LanguageComponent = ({
