@@ -16,11 +16,12 @@ export type HeadingSize =
   | 'medium'
   | 'semiSmall'
   | 'small'
+  | 'xsSmall'
   | 'xSmall';
 
 export type ButtonSize = 'primary' | 'large' | 'small';
 
-export type ButtonSchema = 'primary';
+export type ButtonSchema = 'primary' | 'grey';
 
 export type LayoutWidth = 'desktop' | 'tablet' | 'mobile';
 
@@ -80,6 +81,7 @@ export const defaultTheme: Theme = {
     medium: { fontSize: '1.25rem', tabletFontSize: '1.1rem' },
     semiSmall: { fontSize: '1.1rem', tabletFontSize: '0.9rem' },
     small: { fontSize: '1rem', tabletFontSize: '0.8rem' },
+    xsSmall: { fontSize: '0.9rem', tabletFontSize: '0.6rem' },
     xSmall: { fontSize: '0.5rem', tabletFontSize: '0.4rem' },
   },
   buttonSize: {
@@ -105,6 +107,10 @@ export const defaultTheme: Theme = {
     primary: {
       color: '#ffffff',
       bg: '#3E5879',
+    },
+    grey: {
+      color: '#6D6D6D',
+      bg: '#ececec',
     },
   },
   layout: {
