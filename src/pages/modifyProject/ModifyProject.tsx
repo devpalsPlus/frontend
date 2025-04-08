@@ -24,7 +24,7 @@ const ModifyProject = () => {
     id,
     handleModalOpen,
   });
-  const userId = projectData?.authorId;
+  const userId = projectData?.user.id;
 
   const {
     handleSubmit: onSubmitHandler,
@@ -46,6 +46,8 @@ const ModifyProject = () => {
     },
   });
 
+  console.log(projectData);
+
   useEffect(() => {
     if (projectData) {
       setValue('startDatePre', formatDate(projectData.startDate));
@@ -57,7 +59,7 @@ const ModifyProject = () => {
       setValue('duration', Number(projectData.estimatedPeriod.slice(0, 1)));
       setValue('markdownEditor', projectData.description);
     }
-  }, [projectData]);
+  }, [projectData, setValue]);
 
   if (!userId) {
     return (

@@ -106,6 +106,7 @@ const CreateProject = () => {
       description: data.markdownEditor,
       authorId: userId,
     };
+    console.log(formData);
 
     createProject(formData);
   };
