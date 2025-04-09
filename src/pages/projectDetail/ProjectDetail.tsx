@@ -3,25 +3,42 @@ import ProjectInformation from '../../components/projectFormComponents/projectIn
 import useGetProjectData from '../../hooks/useJoinProject';
 import * as S from './ProjectDetail.styled';
 import { formatDate } from '../../util/format';
-import Button from '../../components/common/Button/Button';
 import MarkdownEditorView from '../../components/projectFormComponents/editor/MarkdownEditorView';
-import Avatar from '../../components/common/avatar/Avatar';
 import { EyeIcon } from '@heroicons/react/24/outline';
 import useAuthStore from '../../store/authStore';
 import { ROUTES } from '../../constants/routes';
 import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
+import Modal from '../../components/common/modal/Modal';
+import { useModal } from '../../hooks/useModal';
+import { MODAL_MESSAGE } from '../../constants/modalMessage';
+import { useEffect } from 'react';
+import CommandLayout from '../../components/command/CommandLayout';
+import Avatar from '../../components/common/avatar/Avatar';
+import Button from '../../components/common/Button/Button';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
   const id = Number(projectId);
   const navigate = useNavigate();
+  const { isOpen, message, handleModalClose, handleModalOpen } = useModal();
   const { data, isLoading, isFetching } = useGetProjectData(id);
   const { userData } = useAuthStore((state) => state);
 
+  useEffect(() => {
+    if (!data) {
+      handleModalOpen(MODAL_MESSAGE.projectDetailFail);
+    }
+  }, [data, handleModalOpen]);
+
   if (isLoading) return <LoadingSpinner />;
   if (isFetching) return <LoadingSpinner />;
+
   if (!data) {
-    return <LoadingSpinner />;
+    return (
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
+    );
   }
 
   const handleApplyClick = () => {
@@ -29,7 +46,7 @@ const ProjectDetail = () => {
   };
 
   const handleMovetoUserPage = () => {
-    const userId = data.User.id;
+    const userId = data.user.id;
     navigate(`/user/${userId}`);
   };
 
@@ -40,11 +57,11 @@ const ProjectDetail = () => {
         <S.Title>{data.title}</S.Title>
         <S.ProfileContainer>
           <S.ProfileImageContainer onClick={handleMovetoUserPage}>
-            <Avatar size='2.5rem' image={data.User.profileImg} />
+            <Avatar size='2.5rem' image={data.user.img} />
           </S.ProfileImageContainer>
           <S.UserInfo>
             <S.UserName onClick={handleMovetoUserPage}>
-              {data.User.nickname}
+              {data.user.nickname}
             </S.UserName>
             <S.PostDate>{formatDate(data.recruitmentEndDate)}</S.PostDate>
             <S.ViewCount>
@@ -63,7 +80,7 @@ const ProjectDetail = () => {
         </S.ProjectDescription>
       </S.Content>
       <S.ApplyButtonContainer>
-        {userData?.id !== data.User.id ? (
+        {userData?.id !== data.user.id ? (
           <Button
             size='primary'
             schema='primary'
@@ -76,6 +93,8 @@ const ProjectDetail = () => {
       </S.ApplyButtonContainer>
 
       <hr></hr>
+
+      <CommandLayout />
     </S.Container>
   );
 };

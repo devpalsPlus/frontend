@@ -1,9 +1,13 @@
-import type { MethodTag, PositionTag, SkillTag } from '../models/tags';
+import type {
+  MethodTagHeader,
+  PositionTagHeader,
+  SillTagHeader,
+} from '../models/tags';
 import { httpClient } from './http.api';
 
 export const getSkillTag = async () => {
   try {
-    const response = await httpClient.get<SkillTag[]>('/skill-tag');
+    const response = await httpClient.get<SillTagHeader>('/skill-tag');
     return response.data;
   } catch (e) {
     console.log('getSkillTag', e);
@@ -12,7 +16,7 @@ export const getSkillTag = async () => {
 
 export const getPositionTag = async () => {
   try {
-    const response = await httpClient.get<PositionTag[]>('/position-tag');
+    const response = await httpClient.get<PositionTagHeader>('/position-tag');
     return response.data;
   } catch (e) {
     console.log('getPositionTag', e);
@@ -21,7 +25,7 @@ export const getPositionTag = async () => {
 
 export const getMethodTag = async () => {
   try {
-    const response = await httpClient.get<MethodTag[]>('/method');
+    const response = await httpClient.get<MethodTagHeader>('/method-type');
     return response.data;
   } catch (e) {
     console.log('getMethodTag', e);
