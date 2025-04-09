@@ -46,8 +46,6 @@ const ModifyProject = () => {
     },
   });
 
-  console.log(projectData);
-
   useEffect(() => {
     if (projectData) {
       setValue('startDatePre', formatDate(projectData.startDate));
@@ -69,6 +67,8 @@ const ModifyProject = () => {
     );
   }
 
+  console.log(projectData);
+
   const handleSubmit = async (data: z.infer<typeof createProjectScheme>) => {
     const formData: FormData = {
       title: data.title,
@@ -78,12 +78,14 @@ const ModifyProject = () => {
       startDate: data.startDatePre,
       positionTagIds: data.position,
       estimatedPeriod: `${data.duration}개월`,
-      methodType: data.field,
+      methodTypeId: data.field,
       isBeginner: data.newBy,
       skillTagIds: data.languages,
       description: data.markdownEditor,
-      authorId: userId,
+      isDone: projectData.isDone,
     };
+
+    console.log(formData);
 
     updateProject(formData);
   };

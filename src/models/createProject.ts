@@ -9,11 +9,11 @@ export interface FormData {
   totalMember: number;
   startDate: string;
   estimatedPeriod: string;
-  methodType: number;
+  methodTypeId: number;
   isBeginner?: boolean;
   recruitmentStartDate: string;
   recruitmentEndDate: string;
-  authorId: number;
   positionTagIds: number[];
   skillTagIds: number[];
+  isDone?: boolean;
 }

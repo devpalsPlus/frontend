@@ -71,8 +71,8 @@ export interface Position {
 
 export interface Skill {
   id: number;
-  skillName: string;
-  skillImg: string;
+  name: string;
+  img: string;
 }
 
 export interface ProjectDetailPlus {
