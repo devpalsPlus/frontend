@@ -25,7 +25,7 @@ export const getPositionTag = async () => {
 
 export const getMethodTag = async () => {
   try {
-    const response = await httpClient.get<MethodTagHeader>('/method');
+    const response = await httpClient.get<MethodTagHeader>('/method-type');
     return response.data;
   } catch (e) {
     console.log('getMethodTag', e);
