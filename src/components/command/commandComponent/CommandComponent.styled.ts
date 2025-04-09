@@ -3,14 +3,17 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
+  flex-grow: 1;
 `;
 
 export const CommandWrapper = styled.div`
   margin-top: 4px;
+  flex: 1;
 `;
 
 export const NickName = styled.p`

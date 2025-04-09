@@ -5,6 +5,7 @@ import DefaultImg from '../../../assets/defaultImg.png';
 import Avatar from '../../common/avatar/Avatar';
 import { useForm } from 'react-hook-form';
 import useInputFocus from '../../../hooks/useInputFocus';
+import { useEffect } from 'react';
 
 type FormValue = {
   commandInput: string;
@@ -12,14 +13,23 @@ type FormValue = {
 
 interface CommandInputProps {
   reply?: boolean;
+  isEditMode?: boolean;
+  onEdit?: () => void;
+  command?: string;
 }
 
-const CommandInput = ({ reply }: CommandInputProps) => {
+const CommandInput = ({
+  reply,
+  isEditMode,
+  onEdit,
+  command,
+}: CommandInputProps) => {
   const { myData } = useMyProfileInfo();
   const {
     handleSubmit: onSubmitHandler,
     watch,
     register,
+    setValue,
   } = useForm<FormValue>();
   const { isFocused, handleFocus, handleClick } = useInputFocus();
 
@@ -32,12 +42,17 @@ const CommandInput = ({ reply }: CommandInputProps) => {
   const hasInput = Boolean(watch('commandInput', ''));
 
   const handleSubmit = (data) => {
+    // reply, edit-reply, command, command-reply
     console.log(data);
   };
 
+  useEffect(() => {
+    if (command) setValue('commandInput', command);
+  }, [command, setValue]);
+
   return (
     <S.InputContainer>
-      <Avatar size='55px' image={profileImg} />
+      {!isEditMode && <Avatar size='55px' image={profileImg} />}
       <S.InputWrapper>
         <form
           onSubmit={
@@ -67,7 +82,7 @@ const CommandInput = ({ reply }: CommandInputProps) => {
                 radius='primary'
                 type='submit'
               >
-                등록
+                {isEditMode ? '수정' : '등록'}
               </S.ButtonSubmit>
             </S.ButtonWrapper>
           )}

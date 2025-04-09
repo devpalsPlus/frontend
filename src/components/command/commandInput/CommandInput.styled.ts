@@ -3,9 +3,12 @@ import Button from '../../common/Button/Button';
 
 export const InputContainer = styled.div`
   display: flex;
+  margin-left: 8px;
 `;
 
-export const Input = styled.input``;
+export const Input = styled.input`
+  width: 100%;
+`;
 
 export const InputWrapper = styled.div`
   width: 100%;
