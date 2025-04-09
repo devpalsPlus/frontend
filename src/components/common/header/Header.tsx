@@ -13,6 +13,9 @@ import loadingImg from '../../../assets/loadingImg.svg';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../modal/Modal';
 import { formatImgPath } from '../../../util/formatImgPath';
+import { GoBell } from 'react-icons/go';
+import { useState } from 'react';
+import Notification from './Notification/Notification';
 
 function Header() {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
@@ -20,11 +23,17 @@ function Header() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
 
+  const [isAlarmClicked, setIsAlarmClicked] = useState<boolean>(false);
+
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
         myData.profileImg
       )}?w=86&h=86&fit=crop&crop=entropy&auto=format,enhance&q=60`
     : DefaultImg;
+
+  const handleClick = () => {
+    setIsAlarmClicked(!isAlarmClicked);
+  };
 
   return (
     <S.HeaderContainer>
@@ -32,6 +41,11 @@ function Header() {
         <S.LogoImg src={Mainlogo} alt='logo' />
       </Link>
       <S.Wrapper>
+        <S.Alarm>
+          <DropDown toggleButton={<GoBell size='40' onClick={handleClick} />}>
+            <Notification />
+          </DropDown>
+        </S.Alarm>
         <DropDown
           toggleButton={
             isLoading ? (
@@ -51,6 +65,9 @@ function Header() {
                 </Link>
                 <Link to={ROUTES.manageProjectsRoot}>
                   <S.Item>공고관리</S.Item>
+                </Link>
+                <Link to={ROUTES.support}>
+                  <S.Item>문의하기</S.Item>
                 </Link>
                 <Link to='#' onClick={(e) => e.preventDefault()}>
                   <S.Item onClick={userLogout}>로그아웃</S.Item>

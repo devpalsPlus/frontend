@@ -17,7 +17,13 @@ export const HeaderContainer = styled.div`
   }
 `;
 
-export const Wrapper = styled.nav``;
+export const Wrapper = styled.nav`
+  display: flex;
+`;
+
+export const Alarm = styled.div`
+  margin-right: 20px;
+`;
 
 export const LogoImg = styled.img`
   width: 80px;
