@@ -60,9 +60,9 @@ const ProjectDetail = () => {
             <Avatar size='2.5rem' image={data.user.img} />
           </S.ProfileImageContainer>
           <S.UserInfo>
-            {/* <S.UserName onClick={handleMovetoUserPage}>
-              {data.User.nickname}
-            </S.UserName> */}
+            <S.UserName onClick={handleMovetoUserPage}>
+              {data.user.nickname}
+            </S.UserName>
             <S.PostDate>{formatDate(data.recruitmentEndDate)}</S.PostDate>
             <S.ViewCount>
               <EyeIcon />
