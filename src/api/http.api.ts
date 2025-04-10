@@ -16,6 +16,7 @@ export const createClient = (config?: AxiosRequestConfig) => {
         getTokens().accessToken || getTokens().refreshToken
           ? `Bearer ${getTokens().accessToken}`
           : '',
+      // authorization: getTokens().accessToken || getTokens().refreshToken,
     },
     withCredentials: true,
     ...config,
