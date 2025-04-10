@@ -11,10 +11,12 @@ interface CardListProps {
 }
 
 export default function CardList({ list }: CardListProps) {
-  const listPositionTag = list.positionTags.slice(0, 2);
-  const listSkillTag = list.skillTags.slice(0, 4);
-  const othersPosition = list.positionTags.length - 2;
-  const othersSkill = list.skillTags.length - 4;
+  console.log('리스트*-*-*-*-*-*-*', list);
+
+  const listPositionTag = list.positions.slice(0, 2);
+  const listSkillTag = list.skills.slice(0, 4);
+  const othersPosition = list.positions.length - 2;
+  const othersSkill = list.skills.length - 4;
   return (
     <S.Container>
       <S.Deadline>마감일: {formatDate(list.recruitmentEndDate)}</S.Deadline>
@@ -22,33 +24,33 @@ export default function CardList({ list }: CardListProps) {
       <S.PositionWrapper>
         <S.PositionTitle>모집 분야</S.PositionTitle>
         <S.TagsWrapper>
-          {Boolean(list.positionTags.length) &&
+          {Boolean(list.positions.length) &&
             listPositionTag.map((tag) => (
               <PositionButton
                 position={tag.name}
                 key={`cardListPosition-${tag.id}`}
               />
             ))}
-          {list.positionTags.length > listPositionTag.length && (
+          {list.positions.length > listPositionTag.length && (
             <S.EllipsisIconButton>+{othersPosition}</S.EllipsisIconButton>
           )}
         </S.TagsWrapper>
       </S.PositionWrapper>
       <S.TagsWrapper>
-        {Boolean(list.skillTags.length) &&
+        {Boolean(list.skills.length) &&
           listSkillTag.map((tag) => (
             <S.SkillTagImgWrapper key={`cardListSkill-${tag.id}`}>
               <S.SkillTagImg src={tag.img} alt={tag.name} />
             </S.SkillTagImgWrapper>
           ))}
-        {list.skillTags.length > listSkillTag.length && (
+        {list.skills.length > listSkillTag.length && (
           <S.EllipsisIconButton>+{othersSkill}</S.EllipsisIconButton>
         )}
       </S.TagsWrapper>
       <S.InfoWrapper>
         <S.ProfileWrapper>
-          <Avatar size={'2.8rem'} image={list.User.profileImg} />
-          <S.NickName>{list.User.nickname}</S.NickName>
+          <Avatar size={'2.8rem'} image={list.user.img} />
+          <S.NickName>{list.user.nickname}</S.NickName>
         </S.ProfileWrapper>
         <S.StatusWrapper>
           {list.isBeginner && <S.BeginnerImg src={beginner} alt='plant' />}
