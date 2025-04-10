@@ -10,7 +10,7 @@ import type { MethodTag, PositionTag, SkillTag } from '../models/tags';
 export const useSearchFilteringSkillTag = () => {
   const [skillTagsData, setSkillTagsData] = useState<SkillTag[]>([]);
   const [positionTagsData, setPositionTagsData] = useState<PositionTag[]>([]);
-  const [methodTagsData, setMethodTagsData] = useState<MethodTag[]>();
+  const [methodTagsData, setMethodTagsData] = useState<MethodTag[]>([]);
 
   const queries = useQueries({
     queries: [
@@ -38,11 +38,8 @@ export const useSearchFilteringSkillTag = () => {
   const [skillQuery, positionQuery, methodQuery] = queries;
 
   useEffect(() => {
-    if (!skillQuery.data || !positionQuery.data) return;
+    if (!skillQuery.data || !positionQuery.data || !methodQuery.data) return;
 
-    console.log('skillQuery*-*-*-*', skillQuery.data);
-    console.log('positionQuery*-*-*-*', positionQuery.data);
-    console.log('methodQuery*-*-*-*', methodQuery.data);
     setSkillTagsData(skillQuery.data);
     setPositionTagsData(positionQuery.data);
     setMethodTagsData(methodQuery.data);
