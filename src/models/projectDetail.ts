@@ -3,11 +3,7 @@ import { joinProject } from './joinProject';
 export interface User {
   id: number;
   nickname: string;
-  email: string;
-  bio: string | null;
-  profileImg: string;
-  createdAt: string;
-  updatedAt: string;
+  img: string;
 }
 
 export interface SkillTag {
@@ -66,4 +62,43 @@ export interface ProjectDetailExtended extends ProjectDetail {
   Method: Method;
   ProjectPositionTag: ProjectPositionTag[];
   Applicant: joinProject[];
+}
+
+export interface Position {
+  id: number;
+  name: string;
+}
+
+export interface Skill {
+  id: number;
+  skillName: string;
+  skillImg: string;
+}
+
+export interface ProjectDetailPlus {
+  id: number;
+  title: string;
+  description: string;
+  totalMember: number;
+  startDate: string;
+  estimatedPeriod: string;
+  views: number;
+  isBeginner: boolean;
+  isDone: boolean;
+  recruitmentStartDate: string;
+  recruitmentEndDate: string;
+  authorId: number;
+}
+
+export interface ProjectDetailPlusExtended extends ProjectDetailPlus {
+  user: User;
+  methodType: Method;
+  positions: Position[];
+  skills: Skill[];
+}
+
+export interface dataPlus {
+  success: boolean;
+  message: string;
+  data: ProjectDetailPlus;
 }

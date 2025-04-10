@@ -22,4 +22,5 @@ export const MODAL_MESSAGE = {
   createProjectFail: '공고 생성을 실패 했습니다.',
   applyProjectSuccess: '해당 공고에 지원을 완료 되었습니다.',
   applyProjectFail: '해당 공고에 지원을 실패 되었습니다.',
+  projectDetailFail: '해당 공고가 존재하지 않습니다.',
 } as const;

@@ -1,10 +1,11 @@
-import type { MethodTag, PositionTag, SkillTag } from '../models/tags';
+import type { ApiMethodTag, ApiPositionTag, ApiSkillTag } from '../models/tags';
 import { httpClient } from './http.api';
 
 export const getSkillTag = async () => {
   try {
-    const response = await httpClient.get<SkillTag[]>('/skill-tag');
-    return response.data;
+    const response = await httpClient.get<ApiSkillTag>('/skill-tag');
+
+    return response.data.data;
   } catch (e) {
     console.log('getSkillTag', e);
   }
@@ -12,8 +13,8 @@ export const getSkillTag = async () => {
 
 export const getPositionTag = async () => {
   try {
-    const response = await httpClient.get<PositionTag[]>('/position-tag');
-    return response.data;
+    const response = await httpClient.get<ApiPositionTag>('/position-tag');
+    return response.data.data;
   } catch (e) {
     console.log('getPositionTag', e);
   }
@@ -21,8 +22,8 @@ export const getPositionTag = async () => {
 
 export const getMethodTag = async () => {
   try {
-    const response = await httpClient.get<MethodTag[]>('/method');
-    return response.data;
+    const response = await httpClient.get<ApiMethodTag>('/method-type');
+    return response.data.data;
   } catch (e) {
     console.log('getMethodTag', e);
   }

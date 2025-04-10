@@ -103,11 +103,11 @@ const AppRoutes = () => {
     {
       path: `${ROUTES.apply}/:projectId`,
       element: (
-        // <ProtectRoute redirectUrl={ROUTES.login}>
-        <Layout>
-          <Apply />
-        </Layout>
-        // </ProtectRoute>
+        <ProtectRoute redirectUrl={ROUTES.login}>
+          <Layout>
+            <Apply />
+          </Layout>
+        </ProtectRoute>
       ),
     },
     {

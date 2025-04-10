@@ -5,14 +5,15 @@ export type CreateProjectFormValues = z.infer<typeof createProjectScheme>;
 
 export interface FormData {
   title: string;
+  description: string;
   totalMember: number;
+  startDate: string;
+  estimatedPeriod: string;
+  methodType: number;
+  isBeginner?: boolean;
   recruitmentStartDate: string;
   recruitmentEndDate: string;
-  startDate: string;
-  positionTagId: number[];
-  estimatedPeriod: string;
-  methodId: number;
-  isBeginner?: boolean;
-  skillTagId: number[];
-  description: string;
+  authorId: number;
+  positionTagIds: number[];
+  skillTagIds: number[];
 }

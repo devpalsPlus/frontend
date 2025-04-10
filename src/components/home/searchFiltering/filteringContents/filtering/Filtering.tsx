@@ -24,7 +24,7 @@ export default function Filtering({ selects, defaultValue }: FilteringProps) {
   useEffect(() => {
     if (!selects.length) return;
     setChangeValue((prev) => {
-      if (searchFilters.positionTag !== 0 || searchFilters.methodId !== 0) {
+      if (searchFilters.positionTag !== 0 || searchFilters.methodType !== 0) {
         if (defaultValue === SEARCH_FILTERING_DEFAULT_VALUE.POSITION) {
           const positionTag = selects.find(
             (data) => data.id === searchFilters.positionTag
@@ -33,7 +33,7 @@ export default function Filtering({ selects, defaultValue }: FilteringProps) {
           return positionTag ?? SEARCH_FILTERING_DEFAULT_VALUE.METHOD;
         } else if (defaultValue === SEARCH_FILTERING_DEFAULT_VALUE.METHOD) {
           const methodTag = selects.find(
-            (data) => data.id === searchFilters.methodId
+            (data) => data.id === searchFilters.methodType
           )?.name;
 
           return methodTag ?? SEARCH_FILTERING_DEFAULT_VALUE.METHOD;
@@ -42,7 +42,7 @@ export default function Filtering({ selects, defaultValue }: FilteringProps) {
       return prev;
     });
   }, [
-    searchFilters.methodId,
+    searchFilters.methodType,
     searchFilters.positionTag,
     selects,
     defaultValue,
@@ -55,7 +55,7 @@ export default function Filtering({ selects, defaultValue }: FilteringProps) {
     if (defaultValue === SEARCH_FILTERING_DEFAULT_VALUE.POSITION) {
       handleUpdateFilters('positionTag', tagId);
     } else if (defaultValue === SEARCH_FILTERING_DEFAULT_VALUE.METHOD) {
-      handleUpdateFilters('methodId', tagId);
+      handleUpdateFilters('methodType', tagId);
     }
   };
 

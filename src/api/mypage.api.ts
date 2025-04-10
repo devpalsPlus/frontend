@@ -7,7 +7,7 @@ import { httpClient } from './http.api';
 
 export const getMyInfo = async () => {
   try {
-    const response = await httpClient.get<UserInfo>('/user/me');
+    const response = await httpClient.get<UserInfo>('/user');
     return response.data;
   } catch (error) {
     console.error('mypage-myinfo:', error);

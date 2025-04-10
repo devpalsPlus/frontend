@@ -4,7 +4,7 @@ import type { SearchFilters } from '../models/SearchFilters';
 type SearchFilteringKey =
   | 'skillTag'
   | 'positionTag'
-  | 'methodId'
+  | 'methodType'
   | 'isBeginner'
   | 'keyword'
   | 'page';
@@ -25,7 +25,7 @@ export function SearchFilteringProvider({ children }: PropsWithChildren) {
   const [searchFilters, setSearchFilters] = useState<SearchFilters>({
     skillTag: [],
     positionTag: 0,
-    methodId: 0,
+    methodType: 0,
     isBeginner: false,
     keyword: '',
     page: 1,

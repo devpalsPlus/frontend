@@ -10,7 +10,7 @@ interface FieldCategoryComponentProps {
   errors: FieldErrors;
   name: string;
   setValue: UseFormSetValue<CreateProjectFormValues>;
-  methodTagsData: MethodTag[];
+  methodTagsData: MethodTag[] | undefined;
   apiDataMethodId?: number;
 }
 
@@ -40,7 +40,7 @@ const FieldCategoryComponent = ({
   return (
     <S.Container>
       <S.CategoryContainer>
-        {methodTagsData.map((data, idx) => {
+        {methodTagsData?.map((data, idx) => {
           return (
             <S.CategoryItem
               key={idx}

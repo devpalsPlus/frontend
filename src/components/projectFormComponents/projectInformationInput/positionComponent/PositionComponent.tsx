@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import * as S from './PositionComponent.styled';
 import { FieldErrors } from 'react-hook-form';
 import { PositionTag } from '../../../../models/tags';
-import { ProjectPositionTag } from '../../../../models/projectDetail';
+import { Position } from '../../../../models/projectDetail';
 
 interface MozipCategoryComponentProps {
   selectedMozip: number[];
@@ -11,7 +11,7 @@ interface MozipCategoryComponentProps {
   name: string;
   setValue: any;
   positionTagsData: PositionTag[];
-  apiDataPosition: ProjectPositionTag[] | undefined;
+  apiDataPosition: Position[] | undefined;
 }
 
 const MozipCategoryComponent = ({
@@ -41,7 +41,7 @@ const MozipCategoryComponent = ({
   useEffect(() => {
     const positionTagIdList: number[] = [];
     apiDataPosition?.map((tag) => {
-      positionTagIdList.push(tag.positionTagId);
+      positionTagIdList.push(tag.id);
     });
     setSelectedMozip(positionTagIdList);
     setValue('position', positionTagIdList);

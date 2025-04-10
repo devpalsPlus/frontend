@@ -1,13 +1,21 @@
 import { FormData } from '../models/createProject';
 import { joinProject } from '../models/joinProject';
-import { ProjectDetailExtended } from '../models/projectDetail';
+import { ProjectDetailPlusExtended } from '../models/projectDetail';
 import { httpClient } from './http.api';
 
 export const getProjectData = async (
   id: number
-): Promise<ProjectDetailExtended> => {
-  const response = await httpClient.get(`/project/${id}`);
-  return response.data;
+): Promise<ProjectDetailPlusExtended> => {
+  try {
+    const response = await httpClient.get(`/project/${id}`);
+    if (response.status !== 200) {
+      throw new Error(`${response.status}`);
+    }
+    return response.data.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
 export const postProject = async (formData: FormData) => {
@@ -19,7 +27,7 @@ export const postApplicantProject = async (
   formData: joinProject,
   id: number
 ) => {
-  const response = await httpClient.post(`/project/${id}/applicant`, formData);
+  const response = await httpClient.post(`/project/${id}/apply`, formData);
   return response.status;
 };
 
