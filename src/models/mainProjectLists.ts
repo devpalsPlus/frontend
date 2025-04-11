@@ -1,13 +1,10 @@
 import type { PositionTag, SkillTag, MethodTag } from './tags';
+import type { ApiCommonType } from './apiCommon';
 
 export interface User {
   id: number;
   nickname: string;
-  email: string;
-  bio?: string;
-  profileImg?: string;
-  createdAt?: string;
-  updatedAt?: string;
+  img: string;
 }
 
 export interface ProjectList {
@@ -17,26 +14,15 @@ export interface ProjectList {
   totalMember: number;
   startDate: string;
   estimatedPeriod: string;
-  methodId: number;
-  authorId: number;
   views: number;
   isBeginner: boolean;
   isDone: boolean;
   recruitmentEndDate: string;
   recruitmentStartDate: string;
-  createdAt: string;
-  updatedAt: string;
-  User: User;
-  positionTags: PositionTag[];
-  skillTags: SkillTag[];
-  ProjectSkillTag: string[];
-  Method: MethodTag[];
-  ProjectPositionTag: string[];
-}
-
-export interface Pagination {
-  currentPage: number;
-  lastPage: number;
+  user: User;
+  positions: Omit<PositionTag, 'createdAt'>[];
+  skills: Omit<SkillTag, 'createdAt'>[];
+  MethodType: Omit<MethodTag, 'createdAt'>;
 }
 
 export interface ProjectLists {
@@ -46,8 +32,16 @@ export interface ProjectLists {
   total: number;
 }
 
+export interface ApiProjectLists extends ApiCommonType {
+  data: ProjectLists;
+}
+
 export interface ProjectStatistic {
   ongoingProjectCount: number;
   endProjectCount: number;
   totalProjectCount: number;
+}
+
+export interface ApiProjectStatistic extends ApiCommonType {
+  data: ProjectStatistic;
 }

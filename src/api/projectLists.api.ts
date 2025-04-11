@@ -1,4 +1,6 @@
 import type {
+  ApiProjectLists,
+  ApiProjectStatistic,
   ProjectLists,
   ProjectStatistic,
 } from '../models/mainProjectLists';
@@ -7,11 +9,11 @@ import { httpClient } from './http.api';
 
 export const getProjectLists = async (params: SearchFilters) => {
   try {
-    const response = await httpClient.get<ProjectLists>('/project', {
+    const response = await httpClient.get<ApiProjectLists>('/project', {
       params,
     });
 
-    return response.data;
+    return response.data.data;
   } catch (e) {
     console.log('getProjectLists', e);
   }
@@ -19,8 +21,11 @@ export const getProjectLists = async (params: SearchFilters) => {
 
 export const getProjectStatistic = async () => {
   try {
-    const response = await httpClient.get<ProjectStatistic>('/project/count');
-    return response.data;
+    const response = await httpClient.get<ApiProjectStatistic>(
+      '/project/count'
+    );
+
+    return response.data.data;
   } catch (e) {
     console.log('getProjectStatistic', e);
   }

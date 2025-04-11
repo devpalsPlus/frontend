@@ -1,3 +1,5 @@
+import type { ApiCommonType } from './apiCommon';
+
 export interface SkillTag {
   id: number;
   name: string;
@@ -17,20 +19,14 @@ export interface MethodTag {
   createdAt: string;
 }
 
-export interface SillTagHeader {
-  success: boolean;
-  message: string;
+export interface ApiSkillTag extends ApiCommonType {
   data: SkillTag[];
 }
 
-export interface PositionTagHeader {
-  success: boolean;
-  message: string;
+export interface ApiPositionTag extends ApiCommonType {
   data: PositionTag[];
 }
 
-export interface MethodTagHeader {
-  success: boolean;
-  message: string;
+export interface ApiMethodTag extends ApiCommonType {
   data: MethodTag[];
 }
