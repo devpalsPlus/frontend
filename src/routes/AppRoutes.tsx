@@ -221,7 +221,7 @@ const AppRoutes = () => {
   const newRouteList = routeList.map((item) => {
     return {
       ...item,
-      errorElement: <NotFoundPage />,
+      //errorElement: <NotFoundPage />,
     };
   });
 

@@ -20,7 +20,7 @@ function AvatarList({ avatars, size = '33px', maxCount = 8 }: AvatarListProps) {
           key={avatar.skillTagId}
           size={size}
           image={`${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
-            avatar.SkillTag.img
+            avatar.img
           )}?w=62&h=62&fit=crop&crop=entropy&q=60`}
         />
       ))}

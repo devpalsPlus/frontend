@@ -1,14 +1,33 @@
 import { SkillTag } from './tags';
 
-//model
 export interface ManagedProject {
   id: number;
   title: string;
+  description: string;
   totalMember: number;
-  recruitmentEndDate: string;
-  isDone: boolean;
+  startDate: string;
+  estimatedPeriod: string;
+  authorId: number;
+  views: number;
   isBeginner: boolean;
-  ProjectSkillTag: ProjectSkillTag[];
+  isDone: boolean;
+  recruitmentStartDate: string;
+  recruitmentEndDate: string;
+  createAt: string;
+  updateAt: string;
+  methodType: MethodType;
+  positions: PositionTag[];
+  skills: ProjectSkillTag[];
+}
+
+export interface MethodType {
+  id: number;
+  name: string;
+}
+
+export interface PositionTag {
+  id: number;
+  name: string;
 }
 
 export interface ProjectSkillTag {
