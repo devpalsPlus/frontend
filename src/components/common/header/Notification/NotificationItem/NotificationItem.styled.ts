@@ -11,7 +11,9 @@ export const Container = styled.div`
   }
 `;
 
-export const Message = styled.p``;
+export const Message = styled.p`
+  margin-left: 6px;
+`;
 
 export const Time = styled.span`
   margin-left: 6px;

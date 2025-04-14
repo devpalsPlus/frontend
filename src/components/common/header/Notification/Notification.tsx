@@ -4,31 +4,31 @@ import NotificationItem from './NotificationItem/NotificationItem';
 const Notification = () => {
   const dummyNotifications = [
     {
+      type: 'command' as const,
+      id: 40,
+      nickName: '운영자',
       message: '1111111111',
-      time: '8분 전',
-      type: 'command',
+      time: '2025.04.12 15:30',
     },
     {
-      message: '2222222222',
-      time: '13분 전',
-      type: 'pass/nonPass',
+      type: 'pass/nonPass' as const,
+      id: 1,
+      message: '프로젝트 AI',
+      pass: true,
+      time: '2025.04.12 15:30',
     },
     {
-      message: '33333333333',
-      time: '14분 전',
-      type: 'inquiry',
+      type: 'inquiry' as const,
+      id: 1,
+      message: '이거 이렇게 하는 거 맞나요?',
+      time: '2025.04.12 15:30',
     },
   ];
 
   return (
     <S.Container>
       {dummyNotifications.map((item, index) => (
-        <NotificationItem
-          key={index}
-          message={item.message}
-          time={item.time}
-          type={item.type}
-        />
+        <NotificationItem key={index} NotificationData={item} />
       ))}
     </S.Container>
   );
