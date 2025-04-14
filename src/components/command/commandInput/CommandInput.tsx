@@ -6,22 +6,23 @@ import Avatar from '../../common/avatar/Avatar';
 import { useForm } from 'react-hook-form';
 import useInputFocus from '../../../hooks/useInputFocus';
 import { useEffect } from 'react';
+import useCommand from '../../../hooks/useCommand';
 
 type FormValue = {
   commandInput: string;
 };
 
 interface CommandInputProps {
+  projectId: number;
   reply?: boolean;
   isEditMode?: boolean;
-  onEdit?: () => void;
   command?: string;
 }
 
 const CommandInput = ({
+  projectId,
   reply,
   isEditMode,
-  onEdit,
   command,
 }: CommandInputProps) => {
   const { myData } = useMyProfileInfo();
@@ -32,6 +33,7 @@ const CommandInput = ({
     setValue,
   } = useForm<FormValue>();
   const { isFocused, handleFocus, handleClick } = useInputFocus();
+  const { createCommand } = useCommand(projectId);
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -41,9 +43,12 @@ const CommandInput = ({
 
   const hasInput = Boolean(watch('commandInput', ''));
 
-  const handleSubmit = (data) => {
+  const handleSubmit = (data: { commandInput: string }) => {
     // reply, edit-reply, command, command-reply
-    console.log(data);
+
+    createCommand(data.commandInput);
+    setValue('commandInput', '');
+    handleClick();
   };
 
   useEffect(() => {

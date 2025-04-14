@@ -94,7 +94,7 @@ const ProjectDetail = () => {
 
       <hr></hr>
 
-      <CommandLayout />
+      <CommandLayout projectId={data.id} />
     </S.Container>
   );
 };

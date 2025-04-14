@@ -1,3 +1,4 @@
+import { ApiCommonType } from './apiCommon';
 import { joinProject } from './joinProject';
 
 export interface User {
@@ -97,8 +98,6 @@ export interface ProjectDetailPlusExtended extends ProjectDetailPlus {
   skills: Skill[];
 }
 
-export interface dataPlus {
-  success: boolean;
-  message: string;
+export interface dataPlus extends ApiCommonType {
   data: ProjectDetailPlus;
 }

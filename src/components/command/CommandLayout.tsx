@@ -6,7 +6,11 @@ import { IoIosArrowUp } from 'react-icons/io';
 
 import CommandInput from './commandInput/CommandInput';
 
-const CommandLayout = () => {
+interface CommandLayoutProps {
+  projectId: number;
+}
+
+const CommandLayout = ({ projectId }: CommandLayoutProps) => {
   const [isShowReply, setIsShowReply] = useState<boolean>(false);
 
   const handleClick = () => {
@@ -20,7 +24,7 @@ const CommandLayout = () => {
       </S.CommandCountsContainer>
 
       <S.CommandInput>
-        <CommandInput />
+        <CommandInput projectId={projectId} />
       </S.CommandInput>
 
       <S.CommandContainer>
