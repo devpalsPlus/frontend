@@ -13,7 +13,6 @@ const DropDownItem = ({
   onReport,
   onEdit,
   onDelete,
-  commandId,
   isEditMode,
 }: DropdownProps) => {
   return (

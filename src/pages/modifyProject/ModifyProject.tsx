@@ -85,8 +85,6 @@ const ModifyProject = () => {
       isDone: projectData.isDone,
     };
 
-    console.log(formData);
-
     updateProject(formData);
   };
 

@@ -16,12 +16,14 @@ import { formatImgPath } from '../../../util/formatImgPath';
 import { GoBell } from 'react-icons/go';
 import { useState } from 'react';
 import Notification from './Notification/Notification';
+import useNotification from '../../../hooks/useNotification';
 
 function Header() {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userLogout } = useAuth(handleModalOpen);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
+  const { isSignal } = useNotification();
 
   const [isAlarmClicked, setIsAlarmClicked] = useState<boolean>(false);
 
@@ -41,9 +43,18 @@ function Header() {
         <S.LogoImg src={Mainlogo} alt='logo' />
       </Link>
       <S.Wrapper>
+        <S.HeaderLinkContainer>
+          <Link to={ROUTES.FAQ}>
+            <S.HeaderLink>FAQ</S.HeaderLink>
+          </Link>
+          <Link to={ROUTES.notice}>
+            <S.HeaderLink>공지사항</S.HeaderLink>
+          </Link>
+        </S.HeaderLinkContainer>
         <S.Alarm>
           <DropDown toggleButton={<GoBell size='40' onClick={handleClick} />}>
             <Notification />
+            {isSignal && '가능'}
           </DropDown>
         </S.Alarm>
         <DropDown

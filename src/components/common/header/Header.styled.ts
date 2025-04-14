@@ -23,6 +23,9 @@ export const Wrapper = styled.nav`
 
 export const Alarm = styled.div`
   margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const LogoImg = styled.img`
@@ -38,6 +41,13 @@ export const LogoImg = styled.img`
     width: 50px;
     height: 50px;
   }
+`;
+
+export const HeaderLinkContainer = styled.div`
+  display: flex;
+  justify-center: center;
+  align-items: center;
+  // item과 content의 차이가 뭘까?
 `;
 
 export const List = styled.ul`
@@ -70,6 +80,13 @@ export const List = styled.ul`
       border-bottom-right-radius: ${({ theme }) => theme.borderRadius.primary};
     }
   }
+`;
+
+export const HeaderLink = styled.span`
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 15px;
 `;
 
 export const Item = styled.li`
