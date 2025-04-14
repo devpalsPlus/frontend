@@ -1,24 +1,16 @@
-export interface SkillTag {
-  id: number;
-  name: string;
-  img: string;
-}
-
-export interface PositionTag {
-  id: number;
-  name: string;
-}
+import type { ApiCommonType } from './apiCommon';
+import type { PositionTag, SkillTag } from './tags';
 
 export interface ProjectSkillTagItem {
   projectId: number;
   skillTagId: number;
-  SkillTag: SkillTag;
+  SkillTag: Omit<SkillTag, 'createdAt'>;
 }
 
 export interface ProjectPositionTagItem {
   projectId: number;
   positionTagId: number;
-  PositionTag: PositionTag;
+  PositionTag: Omit<PositionTag, 'createdAt'>;
 }
 
 export interface UserJoinedProject {
@@ -45,6 +37,10 @@ export interface UserJoinedProjectList {
   ownProjects: UserJoinedProject[];
 }
 
+export interface ApiUserJoinedProjectList {
+  data: UserJoinedProject;
+}
+
 export interface MyAppliedProjectStatus {
   id: number;
   projectTitle: string;
@@ -52,3 +48,24 @@ export interface MyAppliedProjectStatus {
 }
 
 export type MyAppliedProjectStatusList = MyAppliedProjectStatus[];
+
+// 새로하는중
+export interface JoinedProject {
+  title: string;
+  recruitmentEndDate: string;
+  TotalMember: number;
+  skills: Omit<SkillTag, 'createdAt'>[];
+}
+
+export interface ApiJoinedProject extends ApiCommonType {
+  data: JoinedProject[] | null;
+}
+
+export interface AppliedProject {
+  title: string;
+  status: string;
+}
+
+export interface ApiAppliedProject extends ApiCommonType {
+  data: AppliedProject[] | null;
+}

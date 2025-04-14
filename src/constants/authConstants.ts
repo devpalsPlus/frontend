@@ -12,7 +12,7 @@ export const ERROR_MESSAGES = {
   NICKNAME_FORMAT:
     '특수문자는 (~,`,!,@,#,$,%,^,&,*,(,),-,_,+)만 사용할 수 있습니다.',
   SKILL_REQUIRED: '스킬을 최소 1개 선택해주세요.',
-  POSITION_REQUIRED: '주요 포지션을 선택해주세요.',
+  POSITION_REQUIRED: '주요 포지션을 최소 1개 선택해주세요.',
   GITHUB_SPECIAL: '유효한 깃허브 링크를 입력해주세요.',
   CAREERNAME_REQUIRED: '회사나 참여한 프로젝트 이름을 입력해주세요.',
   STARTPERIOD_REQUIRED: '시작 날짜를 입력해주세요.',

@@ -6,29 +6,29 @@ import {
   patchMyProfileImg,
   putMyInfo,
 } from '../api/mypage.api';
-import { EditMyInfo, UserInfo } from '../models/userInfo';
+import type { ApiUserInfo, EditMyInfo } from '../models/userInfo';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../constants/routes';
 import { myInfoKey, ProjectListKey } from './queries/keys';
 import useAuthStore from '../store/authStore';
-import {
-  MyAppliedProjectStatusList,
-  MyJoinedProjectList,
+import type {
+  ApiAppliedProject,
+  ApiJoinedProject,
 } from '../models/userProject';
 import { MODAL_MESSAGE } from '../constants/modalMessage';
 
 export const useMyProfileInfo = () => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  const { data, isLoading } = useQuery<UserInfo>({
+  const { data, isLoading } = useQuery<ApiUserInfo>({
     queryKey: myInfoKey.myProfile,
     queryFn: () => getMyInfo(),
     staleTime: 1 * 60 * 1000,
     enabled: isLoggedIn,
   });
 
-  return { myData: data, isLoading };
+  return { myData: data?.data, isLoading };
 };
 
 export const useEditMyProfileInfo = (
@@ -86,7 +86,7 @@ export const useUploadProfileImg = (
 export const useMyJoinedProjectList = () => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  const { data, isLoading } = useQuery<MyJoinedProjectList>({
+  const { data, isLoading } = useQuery<ApiJoinedProject>({
     queryKey: ProjectListKey.myJoinedList,
     queryFn: () => getMyJoinedProjectList(),
     enabled: isLoggedIn,
@@ -98,7 +98,7 @@ export const useMyJoinedProjectList = () => {
 export const useMyAppliedStatusList = () => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  const { data, isLoading } = useQuery<MyAppliedProjectStatusList>({
+  const { data, isLoading } = useQuery<ApiAppliedProject>({
     queryKey: ProjectListKey.myAppliedStatusList,
     queryFn: () => getMyAppliedStatusList(),
     enabled: isLoggedIn,

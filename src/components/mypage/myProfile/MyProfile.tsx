@@ -38,12 +38,9 @@ const profileSchema = z.object({
       ERROR_MESSAGES.NICKNAME_FORMAT
     ),
   skillTagIds: z.array(z.number()).min(1, ERROR_MESSAGES.SKILL_REQUIRED),
-  positionTagId: z.number().refine((id) => id > 0, {
-    message: ERROR_MESSAGES.POSITION_REQUIRED,
-  }),
+  positionTagIds: z.array(z.number()).min(1, ERROR_MESSAGES.POSITION_REQUIRED),
   github: z
     .string()
-    .optional()
     .optional()
     .refine(
       (val) => !val || /^https?:\/\/[^\s$.?#].[^\s]*$/.test(val),
@@ -82,6 +79,7 @@ const MyProfile = () => {
   const { myData, isLoading } = useMyProfileInfo();
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { editMyProfile } = useEditMyProfileInfo(handleModalOpen);
+  console.log('myData*-*-*-*', myData);
 
   const {
     control,
@@ -93,7 +91,7 @@ const MyProfile = () => {
     defaultValues: {
       nickname: '',
       skillTagIds: [],
-      positionTagId: 0,
+      positionTagIds: [],
       github: '',
       career: [],
       bio: '',
@@ -105,17 +103,23 @@ const MyProfile = () => {
     if (myData) {
       const skillTagIds = myData.skills
         .map(
-          (skill) =>
-            skillTagsData.find((tag) => tag.name === skill.skillName)?.id
+          (skill) => skillTagsData.find((tag) => tag.name === skill.name)?.id
+        )
+        .filter((id): id is number => id !== undefined);
+
+      const positionTagIds = myData.positions
+        .map(
+          (position) =>
+            positionTagsData.find((tag) => tag.id === position.id)?.id
         )
         .filter((id): id is number => id !== undefined);
 
       reset({
         nickname: myData.nickname,
         bio: myData.bio || '',
-        positionTagId: myData.positionTag?.id || 0,
+        positionTagIds,
         github: myData.github || '',
-        skillTagIds: skillTagIds,
+        skillTagIds,
         career: myData.career?.length
           ? myData.career.map((item) => ({
               name: item.name,
@@ -126,7 +130,7 @@ const MyProfile = () => {
           : [{ name: '', periodStart: '', periodEnd: '', role: '' }],
       });
     }
-  }, [myData, skillTagsData, reset]);
+  }, [myData, skillTagsData, positionTagsData, reset]);
 
   const { fields, append, remove } = useFieldArray({ control, name: 'career' });
 
@@ -180,14 +184,14 @@ const MyProfile = () => {
               <S.BackgroundBox>
                 <ul>
                   {myData.skills.map((skill) => (
-                    <li key={skill.skillName}>
+                    <li key={skill.name}>
                       <img
-                        src={skill.skillImg}
-                        alt={skill.skillName}
+                        src={skill.img}
+                        alt={skill.name}
                         width='40'
                         height='40'
                       />
-                      <span>{skill.skillName}</span>
+                      <span>{skill.name}</span>
                     </li>
                   ))}
                 </ul>
@@ -196,13 +200,17 @@ const MyProfile = () => {
             <S.Wrapper>
               <label>포지션</label>
               <S.BackgroundWrapper>
-                <span>{myData.positionTag?.name}</span>
+                <div>
+                  {myData.positions.sort().map((position) => (
+                    <span>{position.name}</span>
+                  ))}
+                </div>
               </S.BackgroundWrapper>
             </S.Wrapper>
             <S.Wrapper>
               <label>깃허브</label>
               <S.BackgroundWrapper>
-                <span>{myData.github}</span>
+                <span>{myData.github || '-'}</span>
               </S.BackgroundWrapper>
             </S.Wrapper>
             <S.List>
@@ -293,7 +301,7 @@ const MyProfile = () => {
                         isSelected={field.value.includes(skill.id)}
                         onChange={(id, isChecked) => {
                           if (isChecked) {
-                            field.onChange([...field.value, id]);
+                            field.onChange([...field.value, id].sort());
                           } else {
                             field.onChange(
                               field.value.filter((value) => value !== id)
@@ -317,7 +325,7 @@ const MyProfile = () => {
             <S.EditContainer>
               <label>포지션</label>
               <Controller
-                name='positionTagId'
+                name='positionTagIds'
                 control={control}
                 render={({ field }) => (
                   <S.EditList>
@@ -328,14 +336,22 @@ const MyProfile = () => {
                           key={position.id}
                           id={position.id}
                           label={position.name}
-                          type='radio'
-                          isSelected={field.value === position.id}
-                          onChange={(id) => field.onChange(id)}
+                          type='checkbox'
+                          isSelected={field.value.includes(position.id)}
+                          onChange={(id, isChecked) => {
+                            if (isChecked) {
+                              field.onChange([...field.value, id].sort());
+                            } else {
+                              field.onChange(
+                                field.value.filter((value) => value !== id)
+                              );
+                            }
+                          }}
                         />
                       ))}
-                    {errors.positionTagId && (
+                    {errors.positionTagIds && (
                       <S.ErrorMessage>
-                        {errors.positionTagId.message}
+                        {errors.positionTagIds.message}
                       </S.ErrorMessage>
                     )}
                   </S.EditList>

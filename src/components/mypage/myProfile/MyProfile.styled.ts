@@ -28,12 +28,18 @@ export const Container = styled.div`
 export const BackgroundWrapper = styled.div`
   background-color: #fff;
   display: flex;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.3rem;
   border-radius: 15px;
 
-  span {
-    word-break: break-all;
-    overflow-wrap: break-word;
+  div {
+    width: 100%;
+    display: flex;
+    gap: 13px;
+    span {
+      width: content;
+      word-break: break-all;
+      overflow-wrap: break-word;
+    }
 
     @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
