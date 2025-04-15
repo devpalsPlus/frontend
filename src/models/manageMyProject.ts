@@ -1,3 +1,4 @@
+import { ApiCommonType } from './apiCommon';
 import { SkillTag } from './tags';
 
 export interface ManagedProject {
@@ -17,7 +18,7 @@ export interface ManagedProject {
   updateAt: string;
   methodType: MethodType;
   positions: PositionTag[];
-  skills: ProjectSkillTag[];
+  skills: SkillTag[];
 }
 
 export interface MethodType {
@@ -34,4 +35,8 @@ export interface ProjectSkillTag {
   projectId: number;
   skillTagId: number;
   SkillTag: SkillTag;
+}
+
+export interface ApiManagedProjects extends ApiCommonType {
+  data: ManagedProject[];
 }

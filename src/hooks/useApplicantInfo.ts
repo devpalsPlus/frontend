@@ -3,13 +3,14 @@ import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { applicantKey } from './queries/keys';
 import { useLocation } from 'react-router-dom';
+import { ApiApplicantInfo } from '../models/applicant';
 
 export const useApplicantInfo = (projectId: number) => {
   const [selectedApplicant, setSelectedUser] = useState<number | null>(null);
   const location = useLocation();
   const userId = new URLSearchParams(location.search).get('userId');
 
-  const { data } = useQuery({
+  const { data } = useQuery<ApiApplicantInfo>({
     queryKey: [applicantKey.info, projectId, selectedApplicant],
     queryFn: () => getApplicantInfo(projectId, selectedApplicant!),
     enabled: !!selectedApplicant,
@@ -24,5 +25,9 @@ export const useApplicantInfo = (projectId: number) => {
     handleSelectedApplicant(Number(userId));
   }, [location.search]);
 
-  return { applicantInfo: data, selectedApplicant, handleSelectedApplicant };
+  return {
+    applicantInfo: data?.data,
+    selectedApplicant,
+    handleSelectedApplicant,
+  };
 };

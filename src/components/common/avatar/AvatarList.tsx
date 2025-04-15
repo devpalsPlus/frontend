@@ -1,10 +1,9 @@
 import * as S from './AvatarList.styled';
-import { ProjectSkillTag } from '../../../models/manageMyProject';
 import Avatar from './Avatar';
-import { UserSkillTag } from '../../../models/applicant';
 import { formatImgPath } from '../../../util/formatImgPath';
+import { SkillTag } from '../../../models/tags';
 export interface AvatarListProps {
-  avatars: ProjectSkillTag[] | UserSkillTag[] | null;
+  avatars: SkillTag[] | null;
   size?: string;
   maxCount?: number;
 }
@@ -17,7 +16,7 @@ function AvatarList({ avatars, size = '33px', maxCount = 8 }: AvatarListProps) {
     <S.Wrapper>
       {displayAvatars.map((avatar) => (
         <Avatar
-          key={avatar.skillTagId}
+          key={avatar.id}
           size={size}
           image={`${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
             avatar.img

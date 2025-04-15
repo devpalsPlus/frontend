@@ -1,12 +1,12 @@
 import { useMutationParams } from '../../../hooks/usePassNonPassMutation';
 import { ApplicantInfo } from '../../../models/applicant';
-import { ProjectDetailExtended } from '../../../models/projectDetail';
+import { ProjectDetailPlusExtended } from '../../../models/projectDetail';
 import DeleteButton from './DeleteButton';
 import * as S from './PassNonPassItem.styled';
 
 interface PassNonPassItemProps {
   userInfo: ApplicantInfo;
-  projectData: ProjectDetailExtended;
+  projectData: ProjectDetailPlusExtended;
   hanldeStatus: ({ status, userId }: useMutationParams) => void;
   handleUserInfo: (userId: number) => void;
 }
@@ -20,7 +20,7 @@ function PassNonPassItem({
   return (
     <S.ItemWrapper>
       <S.NickName onClick={() => handleUserInfo(userInfo.userId)}>
-        {userInfo.User.nickname}
+        {userInfo.user.nickname}
       </S.NickName>
       <DeleteButton
         disabled={projectData.isDone}

@@ -7,6 +7,8 @@ import { SearchFilteringProvider } from './context/SearchFilteringContext';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      throwOnError: true,
+      //retry: 0,
       gcTime: 20000,
     },
   },
