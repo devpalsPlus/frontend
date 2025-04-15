@@ -53,4 +53,15 @@ export const CommandInput = styled.div`
 export const ReplyInput = styled.div`
   width: 100%;
   padding-left: 15px;
+  margin-bottom: 10px;
+`;
+
+export const ErrorMessage = styled.div`
+  padding-left: 15px;
+  margin-bottom: 10px;
+`;
+
+export const Message = styled.p`
+  color: ${({ theme }) => theme.color.red};
+  font-size: 10px;
 `;

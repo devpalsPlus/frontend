@@ -10,9 +10,15 @@ import LoadingSpinner from '../common/loadingSpinner/LoadingSpinner';
 
 interface CommandLayoutProps {
   projectId: number;
+  createrId: number;
+  loginUserId: number | undefined;
 }
 
-const CommandLayout = ({ projectId }: CommandLayoutProps) => {
+const CommandLayout = ({
+  projectId,
+  createrId,
+  loginUserId,
+}: CommandLayoutProps) => {
   const [isShowReply, setIsShowReply] = useState<boolean>(false);
 
   const { getCommandList, isLoading, isFetching, isError } =
@@ -44,15 +50,18 @@ const CommandLayout = ({ projectId }: CommandLayoutProps) => {
         <CommandComponent
           getCommandList={getCommandList}
           projectId={projectId}
+          createrId={createrId}
+          loginUserId={loginUserId}
         />
+        <S.ShowReply onClick={handleClick}>
+          <S.ShowReplyButton>
+            <S.Icon>
+              {isShowReply ? <IoIosArrowUp /> : <IoIosArrowDown />}
+            </S.Icon>
+            <S.Content>답글 확인하기</S.Content>
+          </S.ShowReplyButton>
+        </S.ShowReply>
       </S.CommandContainer>
-
-      <S.ShowReply onClick={handleClick}>
-        <S.ShowReplyButton>
-          <S.Icon>{isShowReply ? <IoIosArrowUp /> : <IoIosArrowDown />}</S.Icon>
-          <S.Content>답글 확인하기</S.Content>
-        </S.ShowReplyButton>
-      </S.ShowReply>
 
       {isShowReply && (
         <S.ReplyContainer>

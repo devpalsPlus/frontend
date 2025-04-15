@@ -94,7 +94,11 @@ const ProjectDetail = () => {
 
       <hr></hr>
 
-      <CommandLayout projectId={data.id} />
+      <CommandLayout
+        projectId={data.id}
+        createrId={data.user.id}
+        loginUserId={userData?.id}
+      />
     </S.Container>
   );
 };
