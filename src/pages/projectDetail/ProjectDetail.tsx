@@ -1,6 +1,6 @@
 import { ScrollRestoration, useNavigate, useParams } from 'react-router-dom';
 import ProjectInformation from '../../components/projectFormComponents/projectInformationText/ProjectInformation';
-import useGetProjectData from '../../hooks/useJoinProject';
+import useGetProjectData from '../../hooks/useGetProjectData';
 import * as S from './ProjectDetail.styled';
 import { formatDate } from '../../util/format';
 import MarkdownEditorView from '../../components/projectFormComponents/editor/MarkdownEditorView';

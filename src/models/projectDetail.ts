@@ -1,11 +1,5 @@
-import { ApiCommonType } from './apiCommon';
+import { ApiCommonType, User } from './apiCommon';
 import { joinProject } from './joinProject';
-
-export interface User {
-  id: number;
-  nickname: string;
-  img: string;
-}
 
 export interface SkillTag {
   id: number;

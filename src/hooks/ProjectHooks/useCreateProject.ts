@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { FormData } from '../models/createProject';
-import { MODAL_MESSAGE } from '../constants/modalMessage';
-import { postProject } from '../api/joinProject.api';
 import { Dispatch, SetStateAction } from 'react';
-import { useSaveSearchFiltering } from './useSaveSearchFiltering';
-import { ROUTES } from '../constants/routes';
 import { useNavigate } from 'react-router-dom';
-import { managedProjectKey } from './queries/keys';
+import { useSaveSearchFiltering } from '../useSaveSearchFiltering';
+import { postProject } from '../../api/joinProject.api';
+import { MODAL_MESSAGE } from '../../constants/modalMessage';
+import { managedProjectKey } from '../queries/keys';
+import { ROUTES } from '../../constants/routes';
+import { FormData } from '../../models/createProject';
 
 interface UseCreateProjectProps {
   handleModalOpen: (newMessage: string) => void;

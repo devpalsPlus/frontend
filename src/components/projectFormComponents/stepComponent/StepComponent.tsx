@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import * as S from './StepComponent.styled';
-import { StepProp } from '../../../hooks/useMultiStepForm';
+import { StepProp } from '../../../hooks/ProjectHooks/useMultiStepForm';
 
 type StepComponentProps = {
   steps: StepProp[];
