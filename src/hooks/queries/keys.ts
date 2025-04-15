@@ -22,3 +22,7 @@ export const ProjectListKey = {
   myJoinedList: ['myJoinedProjectList'],
   myAppliedStatusList: ['myAppliedProjectStatusList'],
 } as const;
+
+export const ProjectCommandList = {
+  projectCommand: ['projectCommand'],
+};

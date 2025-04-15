@@ -6,7 +6,7 @@ import Avatar from '../../common/avatar/Avatar';
 import { useForm } from 'react-hook-form';
 import useInputFocus from '../../../hooks/useInputFocus';
 import { useEffect } from 'react';
-import useCommand from '../../../hooks/useCommand';
+import usePostCommand from '../../../hooks/CommandHooks/usePostCommand';
 
 type FormValue = {
   commandInput: string;
@@ -15,14 +15,14 @@ type FormValue = {
 interface CommandInputProps {
   projectId: number;
   reply?: boolean;
-  isEditMode?: boolean;
+  activateEditMode?: number | null;
   command?: string;
 }
 
 const CommandInput = ({
   projectId,
   reply,
-  isEditMode,
+  activateEditMode,
   command,
 }: CommandInputProps) => {
   const { myData } = useMyProfileInfo();
@@ -33,7 +33,8 @@ const CommandInput = ({
     setValue,
   } = useForm<FormValue>();
   const { isFocused, handleFocus, handleClick } = useInputFocus();
-  const { createCommand } = useCommand(projectId);
+  const { createCommand } = usePostCommand(projectId);
+  // const {putCommand} = usePutCommand(projectId)
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -44,9 +45,14 @@ const CommandInput = ({
   const hasInput = Boolean(watch('commandInput', ''));
 
   const handleSubmit = (data: { commandInput: string }) => {
-    // reply, edit-reply, command, command-reply
+    // reply, edit-reply
+    if (activateEditMode) {
+      // putCommand(data.commandInput);
+      console.log(data.commandInput);
+    } else {
+      createCommand(data.commandInput);
+    }
 
-    createCommand(data.commandInput);
     setValue('commandInput', '');
     handleClick();
   };
@@ -57,7 +63,7 @@ const CommandInput = ({
 
   return (
     <S.InputContainer>
-      {!isEditMode && <Avatar size='55px' image={profileImg} />}
+      {!activateEditMode && <Avatar size='55px' image={profileImg} />}
       <S.InputWrapper>
         <form
           onSubmit={
@@ -87,7 +93,7 @@ const CommandInput = ({
                 radius='primary'
                 type='submit'
               >
-                {isEditMode ? '수정' : '등록'}
+                {activateEditMode ? '수정' : '등록'}
               </S.ButtonSubmit>
             </S.ButtonWrapper>
           )}

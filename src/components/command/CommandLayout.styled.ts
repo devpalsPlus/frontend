@@ -6,7 +6,11 @@ export const CommandCountsContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-export const Count = styled.span``;
+export const Count = styled.span`
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+`;
 
 export const CommandContainer = styled.div``;
 

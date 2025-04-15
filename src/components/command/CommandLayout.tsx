@@ -5,6 +5,8 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { IoIosArrowUp } from 'react-icons/io';
 
 import CommandInput from './commandInput/CommandInput';
+import useGetCommand from '../../hooks/CommandHooks/useGetCommand';
+import LoadingSpinner from '../common/loadingSpinner/LoadingSpinner';
 
 interface CommandLayoutProps {
   projectId: number;
@@ -13,14 +15,25 @@ interface CommandLayoutProps {
 const CommandLayout = ({ projectId }: CommandLayoutProps) => {
   const [isShowReply, setIsShowReply] = useState<boolean>(false);
 
+  const { getCommandList, isLoading, isFetching, isError } =
+    useGetCommand(projectId);
+
   const handleClick = () => {
     setIsShowReply(!isShowReply);
   };
 
+  if (isLoading || isFetching) {
+    return <LoadingSpinner />;
+  }
+
+  if (isError) {
+    console.error(isError);
+  }
+
   return (
     <S.Container>
       <S.CommandCountsContainer>
-        <S.Count>댓글 {2}개</S.Count>
+        <S.Count>댓글 {getCommandList?.length}개</S.Count>
       </S.CommandCountsContainer>
 
       <S.CommandInput>
@@ -28,7 +41,10 @@ const CommandLayout = ({ projectId }: CommandLayoutProps) => {
       </S.CommandInput>
 
       <S.CommandContainer>
-        <CommandComponent data={[]} />
+        <CommandComponent
+          getCommandList={getCommandList}
+          projectId={projectId}
+        />
       </S.CommandContainer>
 
       <S.ShowReply onClick={handleClick}>
@@ -40,7 +56,11 @@ const CommandLayout = ({ projectId }: CommandLayoutProps) => {
 
       {isShowReply && (
         <S.ReplyContainer>
-          <CommandComponent data={[]} reply={true} />
+          <CommandComponent
+            getCommandList={getCommandList}
+            reply={true}
+            projectId={projectId}
+          />
         </S.ReplyContainer>
       )}
     </S.Container>
