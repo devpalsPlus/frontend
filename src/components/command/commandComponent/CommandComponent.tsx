@@ -13,8 +13,8 @@ interface CommandLayoutProps {
   projectId: number;
   getCommandList: CommandType[] | undefined;
   reply?: boolean;
-  createrId: number;
-  loginUserId: number | undefined;
+  createrId?: number;
+  loginUserId?: number | undefined;
 }
 
 const CommandComponent = ({
@@ -61,6 +61,8 @@ const CommandComponent = ({
                   activateEditMode={activateEditMode}
                   command={item.content}
                   projectId={projectId}
+                  commandId={item.id}
+                  setActivateEditMode={setActivateEditMode}
                 />
               ) : (
                 <S.Command>{item.content}</S.Command>
@@ -83,7 +85,11 @@ const CommandComponent = ({
               )}
               {activeReplyId === item.id && createrId === loginUserId && (
                 <S.ReplyInput>
-                  <CommandInput reply={true} projectId={projectId} />
+                  <CommandInput
+                    reply={true}
+                    projectId={projectId}
+                    commandId={item.id}
+                  />
                 </S.ReplyInput>
               )}
             </S.CommandWrapper>
@@ -93,6 +99,8 @@ const CommandComponent = ({
               projectId={projectId}
               commandId={item.id}
               onEdit={() => onEdit(item.id)}
+              loginUserId={loginUserId}
+              commandUserId={item.user.id}
               activateEditMode={activateEditMode}
             />
           </DropDown>

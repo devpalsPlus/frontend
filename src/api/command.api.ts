@@ -37,3 +37,19 @@ export const deleteCommand = async (id: number, commandId: number) => {
     throw ErrorEvent;
   }
 };
+
+export const patchCommand = async (
+  id: number,
+  commandId: number,
+  content: string
+) => {
+  try {
+    const response = await httpClient.patch(
+      `/project/${id}/comment/${commandId}?content=${content}`
+    );
+    return response.status;
+  } catch (error) {
+    console.error(error);
+    throw ErrorEvent;
+  }
+};

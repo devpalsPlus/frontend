@@ -43,7 +43,7 @@ const CommandLayout = ({
       </S.CommandCountsContainer>
 
       <S.CommandInput>
-        <CommandInput projectId={projectId} />
+        <CommandInput projectId={projectId} commandId={0} />
       </S.CommandInput>
 
       <S.CommandContainer>

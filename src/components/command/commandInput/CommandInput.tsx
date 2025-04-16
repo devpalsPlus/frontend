@@ -5,8 +5,9 @@ import DefaultImg from '../../../assets/defaultImg.png';
 import Avatar from '../../common/avatar/Avatar';
 import { useForm } from 'react-hook-form';
 import useInputFocus from '../../../hooks/useInputFocus';
-import { useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import usePostCommand from '../../../hooks/CommandHooks/usePostCommand';
+import usePutCommand from '../../../hooks/CommandHooks/usePutCommand';
 
 type FormValue = {
   commandInput: string;
@@ -17,6 +18,8 @@ interface CommandInputProps {
   reply?: boolean;
   activateEditMode?: number | null;
   command?: string;
+  commandId: number;
+  setActivateEditMode?: Dispatch<SetStateAction<number | null>>;
 }
 
 const CommandInput = ({
@@ -24,6 +27,8 @@ const CommandInput = ({
   reply,
   activateEditMode,
   command,
+  commandId,
+  setActivateEditMode,
 }: CommandInputProps) => {
   const { myData } = useMyProfileInfo();
   const {
@@ -32,9 +37,10 @@ const CommandInput = ({
     register,
     setValue,
   } = useForm<FormValue>();
+
   const { isFocused, handleFocus, handleClick } = useInputFocus();
   const { createCommand } = usePostCommand(projectId);
-  // const {putCommand} = usePutCommand(projectId)
+  const { changeCommand } = usePutCommand(projectId, commandId);
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -47,8 +53,8 @@ const CommandInput = ({
   const handleSubmit = (data: { commandInput: string }) => {
     // reply, edit-reply
     if (activateEditMode) {
-      // putCommand(data.commandInput);
-      console.log(data.commandInput);
+      changeCommand(data.commandInput);
+      setActivateEditMode?.((prev) => (prev === commandId ? null : commandId));
     } else {
       createCommand(data.commandInput);
     }
