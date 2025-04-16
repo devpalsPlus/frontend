@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import * as S from './CommandLayout.styled';
 import CommandComponent from './commandComponent/CommandComponent';
-import { IoIosArrowDown } from 'react-icons/io';
-import { IoIosArrowUp } from 'react-icons/io';
-
 import CommandInput from './commandInput/CommandInput';
 import useGetCommand from '../../hooks/CommandHooks/useGetCommand';
 import LoadingSpinner from '../common/loadingSpinner/LoadingSpinner';
+import ArrowDown from '../../assets/ArrowDown.svg';
+import ArrowUp from '../../assets/ArrowUp.svg';
 
 interface CommandLayoutProps {
   projectId: number;
@@ -56,7 +55,7 @@ const CommandLayout = ({
         <S.ShowReply onClick={handleClick}>
           <S.ShowReplyButton>
             <S.Icon>
-              {isShowReply ? <IoIosArrowUp /> : <IoIosArrowDown />}
+              {isShowReply ? <img src={ArrowUp} /> : <img src={ArrowDown} />}
             </S.Icon>
             <S.Content>답글 확인하기</S.Content>
           </S.ShowReplyButton>

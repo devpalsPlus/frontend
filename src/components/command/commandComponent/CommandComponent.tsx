@@ -2,12 +2,12 @@ import { useState } from 'react';
 import * as S from './CommandComponent.styled';
 import Avatar from '../../common/avatar/Avatar';
 import DefaultImg from '../../../assets/defaultImg.png';
-import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
 import CommandInput from '../commandInput/CommandInput';
-import { CiMenuKebab } from 'react-icons/ci';
 import DropDown from '../../common/dropDown/DropDown';
 import DropDownItem from '../../common/dropDown/DropDownItem';
 import { CommandType } from '../../../models/command';
+import chat from '../../../assets/chat.svg';
+import dropdownButton from '../../../assets/dropdownButton.svg';
 
 interface CommandLayoutProps {
   projectId: number;
@@ -70,7 +70,7 @@ const CommandComponent = ({
               {!reply && (
                 <S.ReplyButton onClick={() => handleClick(item.id)}>
                   <S.Icon>
-                    <IoChatbubbleEllipsesOutline />
+                    <img src={chat} />
                   </S.Icon>
                   <S.ReplyContent>댓글 달기</S.ReplyContent>
                 </S.ReplyButton>
@@ -94,7 +94,9 @@ const CommandComponent = ({
               )}
             </S.CommandWrapper>
           </S.Wrapper>
-          <DropDown toggleButton={<CiMenuKebab size='20' onClick={onClick} />}>
+          <DropDown
+            toggleButton={<img src={dropdownButton} onClick={onClick} />}
+          >
             <DropDownItem
               projectId={projectId}
               commandId={item.id}
