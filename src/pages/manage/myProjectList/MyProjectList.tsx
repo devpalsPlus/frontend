@@ -12,7 +12,7 @@ const MyProjectList = () => {
         <Title size='large'>모집 프로젝트 리스트</Title>
       </S.TitleWrapper>
 
-      <CardList projects={managedProjects ?? []} />
+      <CardList projects={managedProjects?.data ?? []} />
     </S.ManageProjectsContainer>
   );
 };

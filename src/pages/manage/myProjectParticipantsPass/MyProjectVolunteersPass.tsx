@@ -45,8 +45,9 @@ const MyProjectVolunteersPass = () => {
             onSubmit={handleSendResult}
             disabled={projectData?.isDone}
           />
-          {passNonPassListData?.accepted.length > 0 ||
-          passNonPassListData?.rejected.length > 0 ? (
+          {passNonPassListData.data &&
+          (passNonPassListData.data.accepted.length > 0 ||
+            passNonPassListData.data.rejected.length > 0) ? (
             <S.ResultContainer>
               <S.ListWrapper>
                 <S.Title>합격자 리스트</S.Title>
@@ -54,7 +55,7 @@ const MyProjectVolunteersPass = () => {
                   <PassNonPassList
                     handleStatus={handlePassNonPassStatus}
                     projectData={projectData}
-                    passNonPassListData={passNonPassListData.accepted}
+                    passNonPassListData={passNonPassListData.data.accepted}
                   />
                 )}
               </S.ListWrapper>
@@ -64,7 +65,7 @@ const MyProjectVolunteersPass = () => {
                   <PassNonPassList
                     handleStatus={handlePassNonPassStatus}
                     projectData={projectData!}
-                    passNonPassListData={passNonPassListData.rejected}
+                    passNonPassListData={passNonPassListData.data.rejected}
                   />
                 )}
               </S.ListWrapper>

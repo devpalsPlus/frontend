@@ -14,7 +14,7 @@ function Card({ project }: CardProps) {
       <S.CardTitle>{project.title}</S.CardTitle>
       <S.RecruitmentDate>{formatEndDate}까지</S.RecruitmentDate>
       <S.TotalMember>{project.totalMember}명</S.TotalMember>
-      <AvatarList maxCount={5} avatars={project.ProjectSkillTag} />
+      <AvatarList maxCount={5} avatars={project.skills} />
 
       <S.ButtonWrapper>
         {project.isDone && <S.RecruitmentEnd>모집 종료</S.RecruitmentEnd>}

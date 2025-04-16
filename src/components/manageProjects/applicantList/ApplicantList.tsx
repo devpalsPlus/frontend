@@ -14,7 +14,7 @@ function ApplicantList({
 }: ApplicantListProps) {
   return (
     <S.Container>
-      {applicantsData.map((data) => (
+      {applicantsData?.map((data) => (
         <ApplicantItem
           key={data.userId}
           selectedApplicant={selectedApplicant}

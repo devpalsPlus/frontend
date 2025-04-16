@@ -10,6 +10,7 @@ import { ROUTES } from '../constants/routes';
 import useAuthStore from '../store/authStore';
 import ProtectRoute from '../components/common/ProtectRoute';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
+import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
 const Login = lazy(() => import('../pages/login/Login'));
 const Register = lazy(() => import('../pages/register/Register'));
 const ChangePassword = lazy(
@@ -85,55 +86,65 @@ const AppRoutes = () => {
     {
       path: ROUTES.main,
       element: (
-        <Layout>
-          <Home />
-        </Layout>
+        <QueryErrorBoundary>
+          <Layout>
+            <Home />
+          </Layout>
+        </QueryErrorBoundary>
       ),
     },
     {
       path: ROUTES.createProject,
       element: (
-        <ProtectRoute redirectUrl={ROUTES.login}>
-          <Layout>
-            <CreateProject />
-          </Layout>
-        </ProtectRoute>
+        <QueryErrorBoundary>
+          <ProtectRoute redirectUrl={ROUTES.login}>
+            <Layout>
+              <CreateProject />
+            </Layout>
+          </ProtectRoute>
+        </QueryErrorBoundary>
       ),
     },
     {
       path: `${ROUTES.apply}/:projectId`,
       element: (
-        <ProtectRoute redirectUrl={ROUTES.login}>
-          <Layout>
-            <Apply />
-          </Layout>
-        </ProtectRoute>
+        <QueryErrorBoundary>
+          <ProtectRoute redirectUrl={ROUTES.login}>
+            <Layout>
+              <Apply />
+            </Layout>
+          </ProtectRoute>
+        </QueryErrorBoundary>
       ),
     },
     {
       path: `${ROUTES.projectDetail}/:projectId`,
       element: (
-        <Suspense fallback={<LoadingSpinner />}>
-          <Layout>
-            <ProjectDetail />
-          </Layout>
-        </Suspense>
+        <QueryErrorBoundary>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Layout>
+              <ProjectDetail />
+            </Layout>
+          </Suspense>
+        </QueryErrorBoundary>
       ),
     },
     {
       path: `${ROUTES.modifyProject}/:projectId`,
       element: (
-        <ProtectRoute redirectUrl={ROUTES.login}>
-          <Layout>
-            <ModifyProject />
-          </Layout>
-        </ProtectRoute>
+        <QueryErrorBoundary>
+          <ProtectRoute redirectUrl={ROUTES.login}>
+            <Layout>
+              <ModifyProject />
+            </Layout>
+          </ProtectRoute>
+        </QueryErrorBoundary>
       ),
     },
     {
       path: ROUTES.manageProjectsRoot,
       element: (
-        <>
+        <QueryErrorBoundary>
           <ProtectRoute redirectUrl={ROUTES.login}>
             <Suspense fallback={<LoadingSpinner />}>
               <Layout>
@@ -141,19 +152,21 @@ const AppRoutes = () => {
               </Layout>
             </Suspense>
           </ProtectRoute>
-        </>
+        </QueryErrorBoundary>
       ),
     },
     {
       path: ROUTES.mypage,
       element: (
-        <ProtectRoute redirectUrl={ROUTES.login}>
-          <Suspense fallback={<LoadingSpinner />}>
-            <Layout>
-              <MyPage />
-            </Layout>
-          </Suspense>
-        </ProtectRoute>
+        <QueryErrorBoundary>
+          <ProtectRoute redirectUrl={ROUTES.login}>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Layout>
+                <MyPage />
+              </Layout>
+            </Suspense>
+          </ProtectRoute>
+        </QueryErrorBoundary>
       ),
       children: [
         {
@@ -173,13 +186,15 @@ const AppRoutes = () => {
     {
       path: `${ROUTES.userpage}/:userId`,
       element: (
-        <ProtectRoute redirectUrl={ROUTES.login}>
-          <Suspense fallback={<LoadingSpinner />}>
-            <Layout>
-              <UserPage />
-            </Layout>
-          </Suspense>
-        </ProtectRoute>
+        <QueryErrorBoundary>
+          <ProtectRoute redirectUrl={ROUTES.login}>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Layout>
+                <UserPage />
+              </Layout>
+            </Suspense>
+          </ProtectRoute>
+        </QueryErrorBoundary>
       ),
       children: [
         {
@@ -195,25 +210,29 @@ const AppRoutes = () => {
     {
       path: `${ROUTES.manageProjectsRoot}/:projectId`,
       element: (
-        <ProtectRoute redirectUrl={ROUTES.login}>
-          <Suspense fallback={<LoadingSpinner />}>
-            <Layout>
-              <MyProjectVolunteer />
-            </Layout>
-          </Suspense>
-        </ProtectRoute>
+        <QueryErrorBoundary>
+          <ProtectRoute redirectUrl={ROUTES.login}>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Layout>
+                <MyProjectVolunteer />
+              </Layout>
+            </Suspense>
+          </ProtectRoute>
+        </QueryErrorBoundary>
       ),
     },
     {
       path: `${ROUTES.manageProjectsPassNonPass}/:projectId`,
       element: (
-        <ProtectRoute redirectUrl={ROUTES.login}>
-          <Suspense fallback={<LoadingSpinner />}>
-            <Layout>
-              <MyProjectVolunteersPass />
-            </Layout>
-          </Suspense>
-        </ProtectRoute>
+        <QueryErrorBoundary>
+          <ProtectRoute redirectUrl={ROUTES.login}>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Layout>
+                <MyProjectVolunteersPass />
+              </Layout>
+            </Suspense>
+          </ProtectRoute>
+        </QueryErrorBoundary>
       ),
     },
   ];

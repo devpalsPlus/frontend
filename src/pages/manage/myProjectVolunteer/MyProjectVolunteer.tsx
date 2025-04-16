@@ -49,7 +49,8 @@ const MyProjectVolunteer = () => {
       <InfoCard>
         {projectData && <ProjectHeader projectData={projectData} />}
 
-        {isApplicantLoading || (applicantsData && applicantsData.length > 0) ? (
+        {isApplicantLoading ||
+        (applicantsData && applicantsData.data?.length > 0) ? (
           <S.ContentWrapper>
             <S.ApplicantListWrapper>
               <S.Title>지원자 리스트</S.Title>
@@ -57,7 +58,7 @@ const MyProjectVolunteer = () => {
                 <ApplicantList
                   selectedApplicant={selectedApplicant!}
                   onClick={handleSelectedApplicant}
-                  applicantsData={applicantsData}
+                  applicantsData={applicantsData.data}
                 />
               )}
             </S.ApplicantListWrapper>

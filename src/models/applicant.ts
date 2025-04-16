@@ -1,3 +1,4 @@
+import { ApiCommonType } from './apiCommon';
 import { SkillTag } from './tags';
 
 export interface ApplicantInfo {
@@ -7,7 +8,11 @@ export interface ApplicantInfo {
   career: Career[];
   email: string;
   status: string;
-  User: UserInfo;
+  skills: SkillTag[];
+  user: {
+    id: string;
+    nickname: string;
+  };
 }
 
 export interface UserInfo {
@@ -27,4 +32,12 @@ export interface Career {
   role: string;
   periodEnd: string;
   periodStart: string;
+}
+
+export interface ApiApplicants extends ApiCommonType {
+  data: ApplicantInfo[];
+}
+
+export interface ApiApplicantInfo extends ApiCommonType {
+  data: ApplicantInfo;
 }

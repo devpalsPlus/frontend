@@ -10,8 +10,8 @@ export const myProjectList = http.get(
   }
 );
 
-export const sendResult = http.patch(
-  `${import.meta.env.VITE_API_BASE_URL}/project/:projectId/is-done`,
+export const sendResult = http.put(
+  `${import.meta.env.VITE_API_BASE_URL}/project/:projectId/close`,
   () => {
     return HttpResponse.json(
       { message: '지원자들에게 결과를 전송했어요' },

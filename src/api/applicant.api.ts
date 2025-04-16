@@ -1,16 +1,16 @@
-import { ApplicantInfo } from '../models/applicant';
+import { ApiApplicantInfo, ApiApplicants } from '../models/applicant';
 import { httpClient } from './http.api';
 
 export const getApplicantList = async (projectId: number) => {
-  const response = await httpClient.get<ApplicantInfo[]>(
-    `/project/${projectId}/applicant`
+  const response = await httpClient.get<ApiApplicants>(
+    `/project/${projectId}/applicants`
   );
   return response.data;
 };
 
 export const getApplicantInfo = async (projectId: number, userId: number) => {
-  const response = await httpClient.get<ApplicantInfo>(
-    `/project/${projectId}/applicant/${userId}`
+  const response = await httpClient.get<ApiApplicantInfo>(
+    `/project/${projectId}/applicants/${userId}`
   );
   return response.data;
 };
@@ -20,16 +20,21 @@ export const patchPassNonPassStatus = async (
   projectId: number,
   userId: number
 ) => {
-  const response = await httpClient.patch(
-    `/project/${projectId}/applicant/${userId}/status`,
-    data
+  const requestBody = {
+    applicantUserId: userId,
+    status: data.status,
+  };
+  const response = await httpClient.put(
+    `/project/${projectId}/applicant`,
+    requestBody
   );
+
   return response.data;
 };
 
 export const getPassNonPassList = async (projectId: number) => {
   const response = await httpClient.get(
-    `/project/${projectId}/applicant/summary`
+    `/project/${projectId}/applicants/results`
   );
   return response.data;
 };

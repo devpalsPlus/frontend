@@ -10,12 +10,11 @@ interface ApplicantInfoProps {
 const ApplicantInfo = ({ applicantInfo }: ApplicantInfoProps) => {
   return (
     <S.Container>
-      <S.Title>{applicantInfo.User.nickname}</S.Title>
       <LabelWithContent label='이메일' content={applicantInfo.email} />
       <LabelWithContent label='휴대폰' content={applicantInfo.phoneNumber} />
       <S.SkillSetWrapper>
         <S.Label>스킬셋</S.Label>
-        <AvatarList avatars={applicantInfo.User.UserSkillTag} />
+        <AvatarList avatars={applicantInfo.skills} />
       </S.SkillSetWrapper>
 
       <S.Label>경력</S.Label>
@@ -27,7 +26,6 @@ const ApplicantInfo = ({ applicantInfo }: ApplicantInfoProps) => {
           {data.name} - {data.role}
         </S.Text>
       ))}
-      <LabelWithContent label='자기 소개' content={applicantInfo.User.bio} />
       <LabelWithContent label='하고 싶은 말' content={applicantInfo.message} />
     </S.Container>
   );
