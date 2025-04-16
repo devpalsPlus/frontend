@@ -1,182 +1,49 @@
 {
-  "accepted": [
-    {
-      "id": 18,
-      "userId": 1,
-      "projectId": 72,
-      "message": null,
-      "email": null,
-      "phoneNumber": null,
-      "career": null,
-      "status": "ACCEPTED",
-      "createdAt": "2025-01-23T09:08:13.000Z",
-      "updatedAt": "2025-01-23T09:08:13.000Z",
-      "User": {
-        "id": 1,
-        "nickname": "Jeny"
-      }
-    },
-    {
-      "id": 18,
-      "userId": 2,
-      "projectId": 72,
-      "message": null,
-      "email": null,
-      "phoneNumber": null,
-      "career": null,
-      "status": "ACCEPTED",
-      "createdAt": "2025-01-23T09:08:13.000Z",
-      "updatedAt": "2025-01-23T09:08:13.000Z",
-      "User": {
-        "id": 2,
-        "nickname": "Jeny1"
-      }
-    },
-    {
-      "id": 18,
-      "userId": 3,
-      "projectId": 72,
-      "message": null,
-      "email": null,
-      "phoneNumber": null,
-      "career": null,
-      "status": "ACCEPTED",
-      "createdAt": "2025-01-23T09:08:13.000Z",
-      "updatedAt": "2025-01-23T09:08:13.000Z",
-      "User": {
-        "id": 3,
-        "nickname": "Jeny3"
-      }
-    },
-    {
-      "id": 18,
-      "userId": 4,
-      "projectId": 72,
-      "message": null,
-      "email": null,
-      "phoneNumber": null,
-      "career": null,
-      "status": "ACCEPTED",
-      "createdAt": "2025-01-23T09:08:13.000Z",
-      "updatedAt": "2025-01-23T09:08:13.000Z",
-      "User": {
-        "id": 4,
-        "nickname": "Jeny"
-      }
-    },
-    {
-      "id": 18,
-      "userId": 5,
-      "projectId": 72,
-      "message": null,
-      "email": null,
-      "phoneNumber": null,
-      "career": null,
-      "status": "ACCEPTED",
-      "createdAt": "2025-01-23T09:08:13.000Z",
-      "updatedAt": "2025-01-23T09:08:13.000Z",
-      "User": {
-        "id": 5,
-        "nickname": "Jeny1"
-      }
-    },
-    {
-      "id": 18,
-      "userId": 6,
-      "projectId": 72,
-      "message": null,
-      "email": null,
-      "phoneNumber": null,
-      "career": null,
-      "status": "ACCEPTED",
-      "createdAt": "2025-01-23T09:08:13.000Z",
-      "updatedAt": "2025-01-23T09:08:13.000Z",
-      "User": {
-        "id": 6,
-        "nickname": "Jeny"
-      }
-    },
-    {
-      "id": 18,
-      "userId": 7,
-      "projectId": 72,
-      "message": null,
-      "email": null,
-      "phoneNumber": null,
-      "career": null,
-      "status": "ACCEPTED",
-      "createdAt": "2025-01-23T09:08:13.000Z",
-      "updatedAt": "2025-01-23T09:08:13.000Z",
-      "User": {
+  "success": true,
+  "message": "공고 합격자/불합격자 목록 가져오기 성공",
+  "data": {
+    "accepted": [
+      {
         "id": 7,
-        "nickname": "Jeny1"
+        "userId": 2,
+        "projectId": 40,
+        "message": "뽑아주세요.",
+        "email": "skaehus119@gmail.com",
+        "phoneNumber": "010-0000-0000",
+        "career": [
+          {
+            "name": "Google",
+            "role": "Software Engineer",
+            "periodStart": "2020-01-01",
+            "periodEnd": "2022-01-01"
+          }
+        ],
+        "status": "ACCEPTED",
+        "createAt": "2025-04-11T15:42:20.889291",
+        "updatedAt": "2025-04-11T15:42:20.889291",
+        "user": {
+          "id": 2,
+          "nickname": "DoHyun",
+          "email": "skaehgus119@gmail.com",
+          "bio": "새로운 소개글입니다.",
+          "profileImg": "https://devpal.s3.ap-northeast-2.amazonaws.com/devpals_user2_profile.jpeg",
+          "userSkillTags": [
+            {
+              "id": 1,
+              "name": "Spring",
+              "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Spring.png",
+              "createdAt": "2025-03-25T19:05:55.506164"
+            },
+            {
+              "id": 2,
+              "name": "Django",
+              "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Django.png",
+              "createdAt": "2025-03-25T19:07:04.306443"
+            }
+          ]
+        }
       }
-    },
-    {
-      "id": 18,
-      "userId": 8,
-      "projectId": 72,
-      "message": null,
-      "email": null,
-      "phoneNumber": null,
-      "career": null,
-      "status": "ACCEPTED",
-      "createdAt": "2025-01-23T09:08:13.000Z",
-      "updatedAt": "2025-01-23T09:08:13.000Z",
-      "User": {
-        "id": 8,
-        "nickname": "Jeny"
-      }
-    },
-    {
-      "id": 18,
-      "userId": 9,
-      "projectId": 72,
-      "message": null,
-      "email": null,
-      "phoneNumber": null,
-      "career": null,
-      "status": "ACCEPTED",
-      "createdAt": "2025-01-23T09:08:13.000Z",
-      "updatedAt": "2025-01-23T09:08:13.000Z",
-      "User": {
-        "id": 9,
-        "nickname": "Jeny1"
-      }
-    }
-  ],
-  "rejected": [
-    {
-      "id": 19,
-      "userId": 10,
-      "projectId": 72,
-      "message": null,
-      "email": null,
-      "phoneNumber": null,
-      "career": null,
-      "status": "REJECTED",
-      "createdAt": "2025-01-23T09:08:20.000Z",
-      "updatedAt": "2025-01-23T09:08:20.000Z",
-      "User": {
-        "id": 10,
-        "nickname": "룰루"
-      }
-    },
-    {
-      "id": 20,
-      "userId": 23,
-      "projectId": 72,
-      "message": null,
-      "email": null,
-      "phoneNumber": null,
-      "career": null,
-      "status": "REJECTED",
-      "createdAt": "2025-01-23T09:08:25.000Z",
-      "updatedAt": "2025-01-23T09:08:25.000Z",
-      "User": {
-        "id": 11,
-        "nickname": "김개발20"
-      }
-    }
-  ]
+    ],
+    "rejected": []
+  }
 }
