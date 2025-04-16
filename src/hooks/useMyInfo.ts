@@ -92,7 +92,7 @@ export const useMyJoinedProjectList = () => {
     enabled: isLoggedIn,
   });
 
-  return { myJoinedProjectListData: data, isLoading };
+  return { myJoinedProjectListData: data?.data, isLoading };
 };
 
 export const useMyAppliedStatusList = () => {
@@ -104,5 +104,5 @@ export const useMyAppliedStatusList = () => {
     enabled: isLoggedIn,
   });
 
-  return { myAppliedStatusListData: data, isLoading };
+  return { myAppliedStatusListData: data?.data, isLoading };
 };

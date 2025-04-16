@@ -4,16 +4,16 @@ import mockApplicantData from './mockApplicantData.json';
 import mockPassNonPassListData from './mockPassNonPassListData.json';
 
 export const applicantList = http.get(
-  `${import.meta.env.VITE_API_BASE_URL}/project/:projectId/applicant`,
+  `${import.meta.env.VITE_API_BASE_URL}/project/:projectId/applicants`,
   () => {
     return HttpResponse.json(mockApplicantsData, {
-      status: 200,
+      status: 400,
     });
   }
 );
 
 export const applicantInfo = http.get(
-  `${import.meta.env.VITE_API_BASE_URL}/project/:projectId/applicant/:userId`,
+  `${import.meta.env.VITE_API_BASE_URL}/project/:projectId/applicants/:userId`,
   () => {
     return HttpResponse.json(mockApplicantData, {
       status: 200,
@@ -22,7 +22,7 @@ export const applicantInfo = http.get(
 );
 
 export const passNonPassList = http.get(
-  `${import.meta.env.VITE_API_BASE_URL}/project/:projectId/applicant/summary`,
+  `${import.meta.env.VITE_API_BASE_URL}/project/:projectId/applicants/results`,
   () => {
     return HttpResponse.json(mockPassNonPassListData, {
       status: 200,
@@ -30,10 +30,8 @@ export const passNonPassList = http.get(
   }
 );
 
-export const passNonPass = http.patch(
-  `${
-    import.meta.env.VITE_API_BASE_URL
-  }/project/:projectId/applicant/:userId/status`,
+export const passNonPass = http.put(
+  `${import.meta.env.VITE_API_BASE_URL}/project/:projectId/applicant`,
   () => {
     return HttpResponse.json(
       { message: '합/불합 상태가 수정되었습니다.' },

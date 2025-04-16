@@ -79,7 +79,6 @@ const MyProfile = () => {
   const { myData, isLoading } = useMyProfileInfo();
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { editMyProfile } = useEditMyProfileInfo(handleModalOpen);
-  console.log('myData*-*-*-*', myData);
 
   const {
     control,
@@ -218,7 +217,7 @@ const MyProfile = () => {
               <S.BackgroundBox>
                 <ul>
                   {myData.career?.map((career) => (
-                    <li key={career.name}>
+                    <li key={`-${career.name}`}>
                       <span>{career.name}</span> (
                       {career.periodStart.slice(0, 10)} ~{' '}
                       {career.periodEnd.slice(0, 10)}{' '}

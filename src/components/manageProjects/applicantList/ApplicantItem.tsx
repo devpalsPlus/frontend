@@ -33,7 +33,7 @@ function ApplicantItem({
         onClick={() => onClick(applicantData.userId)}
         $passStatus={applicantData.status}
       >
-        {applicantData.User.nickname}
+        {applicantData.user.nickname}
       </S.Button>
     </>
   );

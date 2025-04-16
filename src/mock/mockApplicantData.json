@@ -1,94 +1,129 @@
 {
-  "id": 7,
-  "userId": 8,
-  "projectId": 6,
-  "message": "하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말하고싶은말",
-  "email": "lhj6364@naver.com",
-  "phoneNumber": "010-1111-1111",
-  "career": [
-    {
-      "name": "NAVER",
-      "role": "FrontEnd",
-      "periodEnd": "2024-01-01",
-      "periodStart": "2025-01-11"
-    },
-    {
-      "name": "TOSS",
-      "role": "FrontEnd",
-      "periodEnd": "2024-01-01",
-      "periodStart": "2025-01-11"
-    },
-    {
-      "name": "우아한형제들",
-      "role": "FrontEnd",
-      "periodEnd": "2024-01-01",
-      "periodStart": "2025-01-11"
-    }
-  ],
-  "status": "REJECTED",
-  "createdAt": "2025-01-08T17:54:43.000Z",
-  "updatedAt": "2025-01-10T09:29:06.000Z",
-  "User": {
-    "id": 8,
-    "nickname": "김개발1",
-    "email": "devpals@mail.com",
-    "bio": "새로운 소개글입니다.",
-    "profileImg": "프로필이미지",
-    "UserSkillTag": [
+  "success": true,
+  "message": "지원서 조회 성공",
+  "data": {
+    "email": "skaehgus119@gmail.com",
+    "phoneNumber": "010-0000-0000",
+    "message": "뽑아주세요.",
+    "skills": [
       {
-        "userId": 8,
-        "skillTagId": 1,
-        "createdAt": "2025-01-13T09:26:01.000Z",
-        "SkillTag": {
-          "id": 1,
-          "name": "JavaScript",
-          "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/JavaScript.png",
-          "createdAt": "2025-01-02T15:07:03.000Z"
-        }
+        "id": 2,
+        "name": "Django",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Django.png"
       },
       {
-        "userId": 8,
-        "skillTagId": 1,
-        "createdAt": "2025-01-13T09:26:01.000Z",
-        "SkillTag": {
-          "id": 1,
-          "name": "JavaScript",
-          "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/TypeScript.png",
-          "createdAt": "2025-01-02T15:07:03.000Z"
-        }
+        "id": 5,
+        "name": "GraphQL",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/GraphQL.png"
       },
       {
-        "userId": 8,
-        "skillTagId": 1,
-        "createdAt": "2025-01-13T09:26:01.000Z",
-        "SkillTag": {
-          "id": 1,
-          "name": "JavaScript",
-          "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/React.png",
-          "createdAt": "2025-01-02T15:07:03.000Z"
-        }
+        "id": 6,
+        "name": "JavaScript",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/JavaScript.png"
       },
       {
-        "userId": 8,
-        "skillTagId": 1,
-        "createdAt": "2025-01-13T09:26:01.000Z",
-        "SkillTag": {
-          "id": 1,
-          "name": "JavaScript",
-          "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Java.png",
-          "createdAt": "2025-01-02T15:07:03.000Z"
-        }
+        "id": 3,
+        "name": "Express",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Express.png"
       },
       {
-        "userId": 8,
-        "skillTagId": 1,
-        "createdAt": "2025-01-13T09:26:01.000Z",
-        "SkillTag": {
-          "id": 1,
-          "name": "JavaScript",
-          "img": "https://devpals-imgs.s3.ap-northeast-2.amazonaws.com/skill-tags/Svelte.png",
-          "createdAt": "2025-01-02T15:07:03.000Z"
-        }
+        "id": 7,
+        "name": "Next.js",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Next.js.png"
+      },
+      {
+        "id": 4,
+        "name": "Figma",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Figma.png"
+      },
+      {
+        "id": 8,
+        "name": "Node.js",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Node.js.png"
+      },
+      {
+        "id": 13,
+        "name": "Sass",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Sass.png"
+      },
+      {
+        "id": 12,
+        "name": "Flutter",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Flutter.png"
+      },
+      {
+        "id": 11,
+        "name": "C++",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/C%2B%2B.png"
+      },
+      {
+        "id": 21,
+        "name": "Go",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Go.png"
+      },
+      {
+        "id": 26,
+        "name": "Nest.js",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Nest.js.png"
+      },
+      {
+        "id": 16,
+        "name": "MongoDB",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/MongoDB.png"
+      },
+      {
+        "id": 17,
+        "name": "Kotlin",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Kotlin.png"
+      },
+      {
+        "id": 22,
+        "name": "Docker",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Docker.png"
+      },
+      {
+        "id": 27,
+        "name": "Ruby",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Ruby.png"
+      },
+      {
+        "id": 28,
+        "name": "Unity",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Unity.png"
+      },
+      {
+        "id": 25,
+        "name": "Java",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Java.png"
+      },
+      {
+        "id": 20,
+        "name": "Firebase",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Firebase.png"
+      },
+      {
+        "id": 15,
+        "name": "PHP",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/PHP.png"
+      },
+      {
+        "id": 10,
+        "name": "Swift",
+        "img": "https://devpal.s3.ap-northeast-2.amazonaws.com/Swift.png"
+      }
+    ],
+    "career": [
+      {
+        "name": "Google",
+        "role": "Software Engineer",
+        "periodStart": "2020-01-01",
+        "periodEnd": "2022-01-01"
+      },
+      {
+        "name": "Google",
+        "role": "Software Engineer",
+        "periodStart": "2020-01-01",
+        "periodEnd": "2022-01-01"
       }
     ]
   }

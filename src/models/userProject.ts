@@ -52,8 +52,9 @@ export type MyAppliedProjectStatusList = MyAppliedProjectStatus[];
 // 새로하는중
 export interface JoinedProject {
   title: string;
+  id: number;
   recruitmentEndDate: string;
-  TotalMember: number;
+  totalMember: number;
   skills: Omit<SkillTag, 'createdAt'>[];
 }
 
@@ -64,8 +65,18 @@ export interface ApiJoinedProject extends ApiCommonType {
 export interface AppliedProject {
   title: string;
   status: string;
+  id: number;
 }
 
 export interface ApiAppliedProject extends ApiCommonType {
   data: AppliedProject[] | null;
+}
+
+export interface SelectUserProject {
+  acceptedProjects: JoinedProject[];
+  ownProjects: AppliedProject[];
+}
+
+export interface ApiSelectUserProject extends ApiCommonType {
+  data: SelectUserProject;
 }

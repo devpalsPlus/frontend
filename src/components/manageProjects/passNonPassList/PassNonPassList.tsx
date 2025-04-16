@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutationParams } from '../../../hooks/usePassNonPassMutation';
 import { ApplicantInfo } from '../../../models/applicant';
-import { ProjectDetailExtended } from '../../../models/projectDetail';
+import { ProjectDetailPlusExtended } from '../../../models/projectDetail';
 import PassNonPassItem from './PassNonPassItem';
 import * as S from './PassNonPassList.styled';
 
 interface PassNonPassListProps {
   passNonPassListData: ApplicantInfo[];
-  projectData: ProjectDetailExtended;
+  projectData: ProjectDetailPlusExtended;
   handleStatus: ({ status, userId }: useMutationParams) => void;
 }
 

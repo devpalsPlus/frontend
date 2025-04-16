@@ -14,6 +14,8 @@ const MyJoinProjects = () => {
     return <Spinner size='50px' color='#3e5879;' />;
   }
 
+  console.log('myJoinedProjectListData', myJoinedProjectListData);
+
   return (
     <>
       <S.TitleWrapper>
@@ -22,11 +24,8 @@ const MyJoinProjects = () => {
       {myJoinedProjectListData && myJoinedProjectListData?.length > 0 ? (
         <S.Container>
           {myJoinedProjectListData?.map((project) => (
-            <Link
-              key={project.projectId}
-              to={`${ROUTES.projectDetail}/${project.projectId}`}
-            >
-              <Project key={project.projectId} project={project} />
+            <Link key={project.id} to={`${ROUTES.projectDetail}/${project.id}`}>
+              <Project project={project} />
             </Link>
           ))}
         </S.Container>

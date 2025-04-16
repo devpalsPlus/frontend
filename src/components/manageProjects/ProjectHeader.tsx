@@ -1,10 +1,10 @@
 import * as S from './ProjectHeader.styled';
 import Title from '../common/title/Title';
-import { ProjectDetailExtended } from '../../models/projectDetail';
+import { ProjectDetailPlusExtended } from '../../models/projectDetail';
 import RecruitmentDate from './RecruitmentDate';
 import React from 'react';
 interface ProjectHeaderProps {
-  projectData: ProjectDetailExtended;
+  projectData: ProjectDetailPlusExtended;
 }
 
 function ProjectHeader({ projectData }: ProjectHeaderProps) {

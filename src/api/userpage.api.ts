@@ -1,11 +1,11 @@
 import type { ApiUserInfo } from '../models/userInfo';
-import type { ApiJoinedProject } from '../models/userProject';
+import type { ApiSelectUserProject } from '../models/userProject';
 import { httpClient } from './http.api';
 
 export const getUserInfo = async (id: number) => {
   try {
     const response = await httpClient.get<ApiUserInfo>(`/user/${id}`);
-    console.log('다른 유저 정보*-*-*-*', response.data.data);
+    console.log('다른 유저 정보*-*-*-*', response.data);
 
     return response.data;
   } catch (error) {
@@ -16,7 +16,7 @@ export const getUserInfo = async (id: number) => {
 
 export const getUserJoinedProjectList = async (id: number) => {
   try {
-    const response = await httpClient.get<ApiJoinedProject>(
+    const response = await httpClient.get<ApiSelectUserProject>(
       `/user/${id}/project`
     );
     console.log('다른 유저 참여 프로젝트*-*-*-*', response.data.data);

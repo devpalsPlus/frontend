@@ -1,17 +1,17 @@
 import { MY_STATUS } from '../../../constants/authConstants';
-import { MyAppliedProjectStatus } from '../../../models/userProject';
+import type { AppliedProject } from '../../../models/userProject';
 import * as S from './MyStatus.styled';
 
 interface StatusProps {
-  status: MyAppliedProjectStatus;
+  list: AppliedProject;
 }
 
-const MyStatus = ({ status }: StatusProps) => {
+const MyStatus = ({ list }: StatusProps) => {
   return (
     <S.Container>
-      <S.Title>{status.projectTitle}</S.Title>
-      <S.Status $isAccepted={status.status === MY_STATUS.ACCEPTED}>
-        <span>{status.status}</span>
+      <S.Title>{list.title}</S.Title>
+      <S.Status $isAccepted={list.status === MY_STATUS.ACCEPTED}>
+        <span>{list.status}</span>
       </S.Status>
     </S.Container>
   );

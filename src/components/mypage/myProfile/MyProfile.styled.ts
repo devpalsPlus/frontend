@@ -184,10 +184,10 @@ export const List = styled.div`
   ul {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 
     li {
       color: #a1a1a1;
-      margin-bottom: 0.5rem;
 
       span {
         color: ${({ theme }) => theme.color.primary};

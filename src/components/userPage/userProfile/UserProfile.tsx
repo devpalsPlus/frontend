@@ -8,6 +8,8 @@ const UserProfile = () => {
   const { userId } = useParams();
   const { userData } = useUserProfileInfo(Number(userId));
 
+  console.log('userData', userData);
+
   return (
     <>
       <S.TitleWrapper>
@@ -38,14 +40,14 @@ const UserProfile = () => {
             <S.BackgroundBox>
               <ul>
                 {userData?.skills.map((skill) => (
-                  <li key={skill.skillName}>
+                  <li key={skill.name}>
                     <img
-                      src={skill.skillImg}
-                      alt={skill.skillName}
+                      src={skill.img}
+                      alt={skill.name}
                       width='40'
                       height='40'
                     />
-                    <span>{skill.skillName}</span>
+                    <span>{skill.name}</span>
                   </li>
                 ))}
               </ul>
@@ -54,7 +56,9 @@ const UserProfile = () => {
           <S.Wrapper>
             <label>포지션</label>
             <S.BackgroundWrapper>
-              <span>{userData?.positionTag?.name}</span>
+              {userData?.positions.map((position) => (
+                <span key={position.name}>{position.name}</span>
+              ))}
             </S.BackgroundWrapper>
           </S.Wrapper>
           <S.Wrapper>

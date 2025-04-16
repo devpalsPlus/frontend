@@ -51,7 +51,7 @@ export const patchMyProfileImg = async (file: File) => {
 export const getMyJoinedProjectList = async () => {
   try {
     const response = await httpClient.get<ApiJoinedProject>('/user/project');
-    console.log('내 프로젝트 리스트 조회*-*-*-*', response.data.data);
+    console.log('내 프로젝트 리스트 조회*-*-*-*', response.data);
 
     return response.data;
   } catch (error) {
@@ -65,7 +65,7 @@ export const getMyAppliedStatusList = async () => {
     const response = await httpClient.get<ApiAppliedProject>(
       '/user/applications'
     );
-    console.log('내가 지원한 프로젝트 리스트 조회*-*-*-*', response.data.data);
+    console.log('내가 지원한 프로젝트 리스트 조회*-*-*-*', response.data);
 
     return response.data;
   } catch (error) {
