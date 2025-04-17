@@ -5,7 +5,6 @@ import { httpClient } from './http.api';
 export const getUserInfo = async (id: number) => {
   try {
     const response = await httpClient.get<ApiUserInfo>(`/user/${id}`);
-    console.log('다른 유저 정보*-*-*-*', response.data);
 
     return response.data;
   } catch (error) {
@@ -19,7 +18,6 @@ export const getUserJoinedProjectList = async (id: number) => {
     const response = await httpClient.get<ApiSelectUserProject>(
       `/user/${id}/project`
     );
-    console.log('다른 유저 참여 프로젝트*-*-*-*', response.data.data);
 
     return response.data;
   } catch (error) {

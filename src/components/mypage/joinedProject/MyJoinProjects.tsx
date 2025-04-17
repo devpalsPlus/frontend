@@ -13,8 +13,7 @@ const MyJoinProjects = () => {
   if (isLoading) {
     return <Spinner size='50px' color='#3e5879;' />;
   }
-
-  console.log('myJoinedProjectListData', myJoinedProjectListData);
+  if (!myJoinedProjectListData) return;
 
   return (
     <>

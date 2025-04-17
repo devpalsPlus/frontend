@@ -37,6 +37,7 @@ const profileSchema = z.object({
       /^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ0-9~`!@#$%^&*()\-_=+]{1,6}$/,
       ERROR_MESSAGES.NICKNAME_FORMAT
     ),
+  beginner: z.boolean(),
   skillTagIds: z.array(z.number()).min(1, ERROR_MESSAGES.SKILL_REQUIRED),
   positionTagIds: z.array(z.number()).min(1, ERROR_MESSAGES.POSITION_REQUIRED),
   github: z
@@ -72,8 +73,9 @@ type ProfileFormData = z.infer<typeof profileSchema>;
 
 const MyProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const [nickname, setNickname] = useState('');
   const { skillTagsData, positionTagsData } = useSearchFilteringSkillTag();
-  const { nicknameMessage, handleNickNameChange, handleNickname } =
+  const { nicknameMessage, handleDuplicationNickname } =
     useNickNameVerification();
 
   const { myData, isLoading } = useMyProfileInfo();
@@ -89,6 +91,7 @@ const MyProfile = () => {
     resolver: zodResolver(profileSchema),
     defaultValues: {
       nickname: '',
+      beginner: false,
       skillTagIds: [],
       positionTagIds: [],
       github: '',
@@ -116,6 +119,7 @@ const MyProfile = () => {
       reset({
         nickname: myData.nickname,
         bio: myData.bio || '',
+        beginner: myData.beginner,
         positionTagIds,
         github: myData.github || '',
         skillTagIds,
@@ -132,10 +136,6 @@ const MyProfile = () => {
   }, [myData, skillTagsData, positionTagsData, reset]);
 
   const { fields, append, remove } = useFieldArray({ control, name: 'career' });
-
-  const handleCheckNickName = (nickname: string) => {
-    handleNickname(nickname);
-  };
 
   const onSubmit = (data: ProfileFormData, e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
@@ -162,21 +162,19 @@ const MyProfile = () => {
           <S.ProfileSection>
             <S.Wrapper>
               <label>닉네임</label>
-              <S.BackgroundWrapper>
-                <span>{myData.nickname}</span>
-                <S.IconWrapper>
-                  {myData.userLevel === 'Beginner' ? (
+              <S.NicknameBackgroundBox>
+                <S.NicknameSpan>{myData.nickname}</S.NicknameSpan>
+                {Boolean(myData.beginner) && (
+                  <S.IconWrapper>
                     <img
                       src={BeginnerIcon}
                       alt='beginner'
-                      width='16'
-                      height='16'
+                      width='20'
+                      height='20'
                     />
-                  ) : (
-                    ''
-                  )}
-                </S.IconWrapper>
-              </S.BackgroundWrapper>
+                  </S.IconWrapper>
+                )}
+              </S.NicknameBackgroundBox>
             </S.Wrapper>
             <S.Wrapper>
               <label>스킬셋</label>
@@ -257,14 +255,14 @@ const MyProfile = () => {
                         onChange={(e) => {
                           const value = e.target.value;
                           field.onChange(e);
-                          handleNickNameChange(value);
+                          setNickname(value);
                         }}
                       />
                     </S.InputTextNickname>
                     {errors.nickname && (
                       <S.ErrorMessage>{errors.nickname.message}</S.ErrorMessage>
                     )}
-                    {!errors.nickname && nicknameMessage && (
+                    {!errors.nickname && (
                       <S.ErrorMessage>{nicknameMessage}</S.ErrorMessage>
                     )}
                     <Button
@@ -273,12 +271,31 @@ const MyProfile = () => {
                       radius='large'
                       type='button'
                       onClick={() => {
-                        handleCheckNickName(field.value);
+                        handleDuplicationNickname(nickname);
                       }}
                     >
                       중복확인
                     </Button>
                   </S.InputWrapper>
+                )}
+              />
+            </S.EditWrapper>
+            <S.EditWrapper>
+              <label>새싹여부</label>
+              <Controller
+                name='beginner'
+                control={control}
+                render={({ field }) => (
+                  <S.InputBeginner
+                    type='checkbox'
+                    checked={field.value}
+                    name=''
+                    id=''
+                    onChange={(e) => {
+                      const checked = e.target.checked;
+                      field.onChange(checked);
+                    }}
+                  />
                 )}
               />
             </S.EditWrapper>

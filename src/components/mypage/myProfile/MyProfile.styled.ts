@@ -68,6 +68,7 @@ export const BackgroundBox = styled.div`
 export const ProfileSection = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 1.25rem;
 
   button {
     position: absolute;
@@ -100,14 +101,30 @@ export const ProfileSection = styled.div`
   }
 `;
 
+export const NicknameBackgroundBox = styled.div`
+  background-color: #fff;
+  display: flex;
+  padding: 1rem 1.3rem;
+  gap: 1rem;
+  border-radius: 15px;
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 1.2rem;
+    font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
+  }
+`;
+
+export const NicknameSpan = styled.span`
+  display: flex;
+  align-items: center;
+`;
+
 export const IconWrapper = styled.div`
   width: fit-content;
   height: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 0.5rem;
-  margin-top: -0.1rem;
   background-color: ${({ theme }) => theme.color.white};
   padding: 0.2rem;
   border-radius: 50%;
@@ -124,7 +141,6 @@ export const Wrapper = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
-  margin-bottom: 1.25rem;
 
   label {
     font-weight: 700;
@@ -171,7 +187,6 @@ export const List = styled.div`
   display: flex;
   gap: 1rem;
   flex-direction: column;
-  margin-bottom: 1.25rem;
 
   label {
     font-weight: 700;
@@ -228,6 +243,10 @@ export const EditWrapper = styled.div`
 export const InputTextNickname = styled.div`
   width: 20%;
   min-width: 125px;
+`;
+
+export const InputBeginner = styled.input`
+  accent-color: ${({ theme }) => theme.color.navy};
 `;
 
 export const InputTextGithub = styled.div`

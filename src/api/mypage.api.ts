@@ -16,7 +16,6 @@ export const getMyInfo = async () => {
 export const putMyInfo = async (data: EditMyInfo) => {
   try {
     const response = await httpClient.put<ApiUserInfo>('/user', data);
-    console.log('내 정보 수정*-*-*-*', response.data.data);
 
     return response.data.data;
   } catch (error) {
@@ -31,7 +30,7 @@ export const patchMyProfileImg = async (file: File) => {
 
   try {
     const response = await httpClient.patch<ApiUserInfoImg>(
-      '/user/me/profile-img',
+      '/user/profile-img',
       formData,
       {
         headers: {
@@ -39,7 +38,6 @@ export const patchMyProfileImg = async (file: File) => {
         },
       }
     );
-    console.log('프로필 이미지 업데이트*-*-*-*', response.data.data);
 
     return response.data.data;
   } catch (error) {
@@ -51,7 +49,6 @@ export const patchMyProfileImg = async (file: File) => {
 export const getMyJoinedProjectList = async () => {
   try {
     const response = await httpClient.get<ApiJoinedProject>('/user/project');
-    console.log('내 프로젝트 리스트 조회*-*-*-*', response.data);
 
     return response.data;
   } catch (error) {
@@ -65,7 +62,6 @@ export const getMyAppliedStatusList = async () => {
     const response = await httpClient.get<ApiAppliedProject>(
       '/user/applications'
     );
-    console.log('내가 지원한 프로젝트 리스트 조회*-*-*-*', response.data);
 
     return response.data;
   } catch (error) {

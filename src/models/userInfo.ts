@@ -14,7 +14,7 @@ export interface UserInfo {
   email: string;
   bio?: string;
   profileImg?: string;
-  userLevel: 'Advanced' | 'Beginner' | 'Intermediate';
+  beginner: boolean;
   github?: string;
   career?: Career[];
   positions: Omit<PositionTag, 'createdAt'>[];
@@ -30,11 +30,12 @@ export interface EditMyInfo {
   nickname: string;
   bio?: string;
   github?: string;
+  beginner: boolean;
   positionTagIds: number[];
   skillTagIds: number[];
   career?: Career[];
 }
 
 export interface ApiUserInfoImg extends ApiCommonType {
-  data: string | null;
+  data: string;
 }

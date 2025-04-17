@@ -3,7 +3,7 @@ import type { ApiUserInfo } from '../models/userInfo';
 import { userInfoKey } from './queries/keys';
 import { getUserInfo, getUserJoinedProjectList } from '../api/userpage.api';
 import useAuthStore from '../store/authStore';
-import type { ApiJoinedProject } from '../models/userProject';
+import type { ApiSelectUserProject } from '../models/userProject';
 
 export const useUserProfileInfo = (id: number) => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -21,7 +21,7 @@ export const useUserProfileInfo = (id: number) => {
 export const useUserJoinedProjectList = (id: number) => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  const { data, isLoading } = useQuery<ApiJoinedProject>({
+  const { data, isLoading } = useQuery<ApiSelectUserProject>({
     queryKey: [userInfoKey.userJoinedList, id],
     queryFn: () => getUserJoinedProjectList(id),
     staleTime: 1 * 60 * 1000,

@@ -8,8 +8,6 @@ const UserProfile = () => {
   const { userId } = useParams();
   const { userData } = useUserProfileInfo(Number(userId));
 
-  console.log('userData', userData);
-
   return (
     <>
       <S.TitleWrapper>
