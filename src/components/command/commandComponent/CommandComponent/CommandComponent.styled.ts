@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 20px;
-`;
+export const Container = styled.div``;
 
 export const Wrapper = styled.div`
   display: flex;
@@ -27,12 +22,7 @@ export const Command = styled.span`
   margin-left: 11px;
 `;
 
-export const ReplyContainer = styled.div`
-  margin-top: 11px;
-  margin-left: 11px;
-`;
-
-export const ReplyButton = styled.div`
+export const ReplyInputButton = styled.div`
   display: flex;
   margin-top: 11px;
 `;
@@ -44,10 +34,6 @@ export const Icon = styled.div`
 export const ReplyContent = styled.p`
   margin-left: 10px;
   margin-bottom: 10px;
-`;
-
-export const CommandInput = styled.div`
-  text-indent: 20px;
 `;
 
 export const ReplyInput = styled.div`
