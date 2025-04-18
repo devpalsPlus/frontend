@@ -26,7 +26,6 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
   const isManagePage = location.pathname.includes('/manage');
 
   const isMyProfile = isLoggedIn && !isUserPage && !isManagePage;
-
   const getActiveIndex = useCallback(() => {
     const currentPath = location.pathname;
     return menuItems.findIndex((item) => currentPath === item.path) ?? 0;
@@ -34,8 +33,8 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
 
   return (
     <S.Container>
-      <S.AvartarContainer>
-        <S.AvartarWrapper>
+      <S.AvatarContainer>
+        <S.AvatarWrapper>
           {profileImage === MainLogo ? (
             <S.LogoContainer>
               <img src={MainLogo} alt='main logo' loading='eager' />
@@ -44,9 +43,9 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
             <Avatar size='120px' image={profileImage} />
           )}
           {isMyProfile && <EditMyProfileImg />}
-        </S.AvartarWrapper>
+        </S.AvatarWrapper>
         <span>{nickname ? nickname : ''}</span>
-      </S.AvartarContainer>
+      </S.AvatarContainer>
       <S.MenuList>
         {menuItems.map(({ label, path, icon, isDone = false }, index) => {
           return (

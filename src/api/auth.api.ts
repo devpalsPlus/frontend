@@ -1,4 +1,4 @@
-import { VerifyEmail, VerifyNickname } from '../models/auth';
+import { ApiVerifyNickname, VerifyEmail } from '../models/auth';
 import { httpClient } from './http.api';
 import { registerFormValues } from '../pages/register/Register';
 import { changePasswordFormValues } from '../pages/changePassword/ChangePassword';
@@ -24,16 +24,16 @@ export const postVerifyEmailCode = async (data: VerifyEmail) => {
   }
 };
 
-export const postCheckNickname = async (nickname: string) => {
+export const getCheckNickname = async (nickname: string) => {
   try {
-    const response = await httpClient.post<VerifyNickname>(
+    const response = await httpClient.get<ApiVerifyNickname>(
       '/user/nickname-check',
-      { nickname }
+      { params: { nickname } }
     );
-    return response;
+
+    return response.data.message;
   } catch (error) {
     console.error('checkNickname:', error);
-    throw error;
   }
 };
 

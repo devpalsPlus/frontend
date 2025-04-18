@@ -1,8 +1,6 @@
 import type {
   ApiProjectLists,
   ApiProjectStatistic,
-  ProjectLists,
-  ProjectStatistic,
 } from '../models/mainProjectLists';
 import { SearchFilters } from '../models/SearchFilters';
 import { httpClient } from './http.api';

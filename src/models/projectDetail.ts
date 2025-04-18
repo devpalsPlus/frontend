@@ -1,4 +1,5 @@
 import { joinProject } from './joinProject';
+import type { PositionTag, SkillTag } from './tags';
 
 export interface User {
   id: number;
@@ -6,23 +7,10 @@ export interface User {
   img: string;
 }
 
-export interface SkillTag {
-  id: number;
-  name: string;
-  img: string;
-  createdAt: string;
-}
-
 export interface ProjectSkillTagList {
   SkillTag: SkillTag;
   projectId: number;
   skillTagId: number;
-}
-
-export interface PositionTag {
-  id: number;
-  name: string;
-  createdAt: string;
 }
 
 export interface ProjectPositionTag {

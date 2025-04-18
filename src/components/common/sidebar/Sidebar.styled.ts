@@ -23,7 +23,7 @@ export const LogoContainer = styled.div`
   }
 `;
 
-export const AvartarContainer = styled.div`
+export const AvatarContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@ export const AvartarContainer = styled.div`
   }
 `;
 
-export const AvartarWrapper = styled.div`
+export const AvatarWrapper = styled.div`
   position: relative;
 `;
 export const MenuList = styled.div`
