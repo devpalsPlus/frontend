@@ -27,7 +27,8 @@ export const InfoRow = styled.div`
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     align-items: flex-start;
-     margin-bottom: 15px;
+    margin-bottom: 15px;
+  }
 `;
 
 export const InfoLabel = styled.label`
