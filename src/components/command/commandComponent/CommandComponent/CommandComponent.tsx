@@ -70,6 +70,7 @@ const CommandComponent = ({
               <S.Message>프로젝트 생성자만 답글을 달 수 있습니다.</S.Message>
             </S.ErrorMessage>
           )}
+
           {activateId === item.id &&
             (createrId === loginUserId || item.user.id === loginUserId) && (
               <S.ReplyInput>

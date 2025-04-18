@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  flex: 1;
+`;
 
 export const Wrapper = styled.div`
   display: flex;
@@ -38,12 +40,12 @@ export const ReplyContent = styled.p`
 
 export const ReplyInput = styled.div`
   width: 100%;
-  padding-left: 15px;
+  margin-left: 15px;
   margin-bottom: 10px;
 `;
 
 export const ErrorMessage = styled.div`
-  padding-left: 15px;
+  margin-left: 15px;
   margin-bottom: 10px;
 `;
 

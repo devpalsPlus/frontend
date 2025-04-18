@@ -60,6 +60,7 @@ export const SubmitButton = styled.button`
   font-weight: bold;
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   cursor: pointer;
+  margin-top: 3.5rem;
 
   &:hover {
     background-color: #0056b3;

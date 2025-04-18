@@ -5,6 +5,7 @@ import { managedProjectKey } from '../queries/keys';
 import { FormData } from '../../models/createProject';
 import { MODAL_MESSAGE } from '../../constants/modalMessage';
 import { ROUTES } from '../../constants/routes';
+import { useSaveSearchFiltering } from '../useSaveSearchFiltering';
 
 interface UseUpdateProjectProps {
   id: number;
@@ -14,6 +15,7 @@ interface UseUpdateProjectProps {
 const useUpdateProject = ({ id, handleModalOpen }: UseUpdateProjectProps) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { handleUpdateFilters } = useSaveSearchFiltering();
 
   const mutation = useMutation({
     mutationFn: (formData: FormData) => putProject(formData, id),
@@ -23,10 +25,11 @@ const useUpdateProject = ({ id, handleModalOpen }: UseUpdateProjectProps) => {
         exact: true,
       });
       handleModalOpen(MODAL_MESSAGE.ModifyProjectSuccess);
+      handleUpdateFilters('skillTag', []);
 
       setTimeout(() => {
         navigate(`${ROUTES.projectDetail}/${id}`);
-      }, 3000);
+      }, 2000);
     },
     onError: (error) => {
       handleModalOpen(MODAL_MESSAGE.ModifyProjectFail);

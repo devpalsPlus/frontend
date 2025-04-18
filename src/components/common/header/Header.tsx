@@ -16,7 +16,7 @@ import { formatImgPath } from '../../../util/formatImgPath';
 import bell from '../../../assets/bell.svg';
 import Notification from './Notification/Notification';
 import useNotification from '../../../hooks/useNotification';
-import bellLogined from '../../../assets/bell.svg';
+import bellLogined from '../../../assets/bellLogined.svg';
 
 function Header() {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
