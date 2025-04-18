@@ -8,9 +8,10 @@ import ProjectInformationInput from '../../components/projectFormComponents/proj
 import { useState } from 'react';
 import Modal from '../../components/common/modal/Modal';
 import { useModal } from '../../hooks/useModal';
-import useCreateProject from '../../hooks/useCreateProject';
+
 import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
 import useAuthStore from '../../store/authStore';
+import useCreateProject from '../../hooks/ProjectHooks/useCreateProject';
 
 export const createProjectScheme = z.object({
   startDate: z
