@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import useAuthStore, { getTokens } from '../store/authStore';
 
-const BASE_URL = `${import.meta.env.VITE_APP_API_BASE_URL}`;
+export const BASE_URL = `${import.meta.env.VITE_APP_API_BASE_URL}`;
 const DEFAULT_TIMEOUT = 15000;
 
 export const createClient = (config?: AxiosRequestConfig) => {

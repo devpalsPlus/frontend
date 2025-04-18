@@ -6,7 +6,7 @@ import InfoCard from '../../../components/common/infoCard/InfoCard';
 import ApplicantList from '../../../components/manageProjects/applicantList/ApplicantList';
 import ApplicantInfo from '../../../components/manageProjects/applicantInfo/ApplicantInfo';
 
-import useGetProjectData from '../../../hooks/useJoinProject';
+import useGetProjectData from '../../../hooks/useGetProjectData';
 import { useApllicantList } from '../../../hooks/useApllicantList';
 
 import { applicantsMenuItems } from '../../../constants/sidebarItems';

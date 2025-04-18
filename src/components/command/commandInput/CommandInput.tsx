@@ -5,24 +5,30 @@ import DefaultImg from '../../../assets/defaultImg.png';
 import Avatar from '../../common/avatar/Avatar';
 import { useForm } from 'react-hook-form';
 import useInputFocus from '../../../hooks/useInputFocus';
-import { useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
+import usePostCommand from '../../../hooks/CommandHooks/usePostCommand';
+import usePutCommand from '../../../hooks/CommandHooks/usePutCommand';
 
 type FormValue = {
   commandInput: string;
 };
 
 interface CommandInputProps {
+  projectId: number;
   reply?: boolean;
-  isEditMode?: boolean;
-  onEdit?: () => void;
+  activateEditMode?: number | null;
   command?: string;
+  commandId: number;
+  setActivateEditMode?: Dispatch<SetStateAction<number | null>>;
 }
 
 const CommandInput = ({
+  projectId,
   reply,
-  isEditMode,
-  onEdit,
+  activateEditMode,
   command,
+  commandId,
+  setActivateEditMode,
 }: CommandInputProps) => {
   const { myData } = useMyProfileInfo();
   const {
@@ -31,7 +37,10 @@ const CommandInput = ({
     register,
     setValue,
   } = useForm<FormValue>();
+
   const { isFocused, handleFocus, handleClick } = useInputFocus();
+  const { createCommand } = usePostCommand(projectId);
+  const { changeCommand } = usePutCommand(projectId, commandId);
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -41,9 +50,17 @@ const CommandInput = ({
 
   const hasInput = Boolean(watch('commandInput', ''));
 
-  const handleSubmit = (data) => {
-    // reply, edit-reply, command, command-reply
-    console.log(data);
+  const handleSubmit = (data: { commandInput: string }) => {
+    // reply, edit-reply
+    if (activateEditMode) {
+      changeCommand(data.commandInput);
+      setActivateEditMode?.((prev) => (prev === commandId ? null : commandId));
+    } else {
+      createCommand(data.commandInput);
+    }
+
+    setValue('commandInput', '');
+    handleClick();
   };
 
   useEffect(() => {
@@ -52,7 +69,7 @@ const CommandInput = ({
 
   return (
     <S.InputContainer>
-      {!isEditMode && <Avatar size='55px' image={profileImg} />}
+      {!activateEditMode && <Avatar size='55px' image={profileImg} />}
       <S.InputWrapper>
         <form
           onSubmit={
@@ -82,7 +99,7 @@ const CommandInput = ({
                 radius='primary'
                 type='submit'
               >
-                {isEditMode ? '수정' : '등록'}
+                {activateEditMode ? '수정' : '등록'}
               </S.ButtonSubmit>
             </S.ButtonWrapper>
           )}

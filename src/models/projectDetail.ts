@@ -1,10 +1,12 @@
+import { ApiCommonType, User } from './apiCommon';
 import { joinProject } from './joinProject';
 import type { PositionTag, SkillTag } from './tags';
 
-export interface User {
+export interface SkillTag {
   id: number;
-  nickname: string;
+  name: string;
   img: string;
+  createdAt: string;
 }
 
 export interface ProjectSkillTagList {
@@ -59,8 +61,8 @@ export interface Position {
 
 export interface Skill {
   id: number;
-  skillName: string;
-  skillImg: string;
+  name: string;
+  img: string;
 }
 
 export interface ProjectDetailPlus {
@@ -85,8 +87,6 @@ export interface ProjectDetailPlusExtended extends ProjectDetailPlus {
   skills: Skill[];
 }
 
-export interface dataPlus {
-  success: boolean;
-  message: string;
+export interface dataPlus extends ApiCommonType {
   data: ProjectDetailPlus;
 }

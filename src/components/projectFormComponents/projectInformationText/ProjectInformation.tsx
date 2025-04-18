@@ -47,12 +47,8 @@ const ProjectInformation = ({ data }: ProjectInformationProps) => {
         <S.SkillTagContainer>
           {data.skills.map((skillTag) => (
             <S.SkillTagImage key={skillTag.id}>
-              <img
-                key={skillTag.id}
-                src={skillTag.skillImg}
-                alt={skillTag.skillName}
-              />
-              <S.InfoText>{skillTag.skillName}</S.InfoText>
+              <img key={skillTag.id} src={skillTag.img} alt={skillTag.name} />
+              <S.InfoText>{skillTag.name}</S.InfoText>
             </S.SkillTagImage>
           ))}
         </S.SkillTagContainer>

@@ -16,4 +16,7 @@ export const ROUTES = {
   userJoinedProject: 'join-projects',
   modifyProject: '/project-modify',
   notFound: '/not-found',
+  support: '/inquiry',
+  FAQ: '/faq',
+  notice: '/notice',
 } as const;

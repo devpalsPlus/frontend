@@ -1,28 +1,47 @@
-import useDropDownItem from '../../../hooks/useDropDownItem';
+import useDeleteCommand from '../../../hooks/CommandHooks/useDeleteCommand';
 import * as S from './DropDownItem.styled';
 
 interface DropdownProps {
-  isEditMode?: boolean;
-  commandId?: number;
-  onReport?: () => void;
+  projectId: number;
+  activateEditMode?: number | null;
+  commandId: number;
+  loginUserId?: number;
+  commandUserId: number;
   onEdit?: () => void;
-  onDelete?: () => void;
 }
 
 const DropDownItem = ({
-  onReport,
+  projectId,
   onEdit,
-  onDelete,
+  activateEditMode,
   commandId,
-  isEditMode,
+  commandUserId,
+  loginUserId,
 }: DropdownProps) => {
+  const { removeCommand } = useDeleteCommand(projectId);
+
+  const onReport = () => {};
+
+  const onDelete = (commandId: number) => {
+    if (confirm('댓글을 완성히 삭제할까요?')) {
+      removeCommand(commandId);
+    }
+  };
+
+  console.log(loginUserId);
+
   return (
     <S.Container>
       <S.Item onClick={onReport}>신고하기</S.Item>
-      <S.Item onClick={onEdit}>
-        {isEditMode ? '수정 취소하기' : '수정하기'}
-      </S.Item>
-      <S.Item onClick={onDelete}>삭제하기</S.Item>
+
+      {loginUserId === commandUserId && (
+        <>
+          <S.Item onClick={onEdit}>
+            {activateEditMode === commandId ? '수정 취소하기' : '수정하기'}
+          </S.Item>
+          <S.Item onClick={() => onDelete(commandId)}>삭제하기</S.Item>{' '}
+        </>
+      )}
     </S.Container>
   );
 };

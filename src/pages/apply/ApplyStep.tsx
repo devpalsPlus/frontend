@@ -6,18 +6,18 @@ import { z } from 'zod';
 import { useParams } from 'react-router-dom';
 import { formatDate } from '../../util/format';
 import { joinProject } from '../../models/joinProject';
-import useGetProjectData from '../../hooks/useJoinProject';
 import CareersComponent from '../../components/applyComponents/careersComponent/CareersComponent';
 import PhoneComponent from '../../components/applyComponents/phoneComponent/PhoneComponent';
 import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
 import Modal from '../../components/common/modal/Modal';
 import { useModal } from '../../hooks/useModal';
-import useApplyProject from '../../hooks/useApplyProject';
 import useAuthStore from '../../store/authStore';
 import { useEffect } from 'react';
-import useMultiStepForm from '../../hooks/useMultiStepForm';
+import useMultiStepForm from '../../hooks/ProjectHooks/useMultiStepForm';
 import StepComponent from '../../components/projectFormComponents/stepComponent/StepComponent';
 import Button from '../../components/common/Button/Button';
+import useGetProjectData from '../../hooks/useGetProjectData';
+import useApplyProject from '../../hooks/ProjectHooks/useApplyProject';
 
 const ApplyScheme = z.object({
   email: z

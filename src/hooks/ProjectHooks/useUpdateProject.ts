@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { putProject } from '../api/joinProject.api';
-import { FormData } from '../models/createProject';
-import { MODAL_MESSAGE } from '../constants/modalMessage';
-import { ROUTES } from '../constants/routes';
 import { useNavigate } from 'react-router-dom';
-import { managedProjectKey } from './queries/keys';
+import { putProject } from '../../api/joinProject.api';
+import { managedProjectKey } from '../queries/keys';
+import { FormData } from '../../models/createProject';
+import { MODAL_MESSAGE } from '../../constants/modalMessage';
+import { ROUTES } from '../../constants/routes';
 
 interface UseUpdateProjectProps {
   id: number;

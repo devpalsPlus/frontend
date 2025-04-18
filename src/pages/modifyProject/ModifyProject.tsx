@@ -7,12 +7,12 @@ import { CreateProjectFormValues, FormData } from '../../models/createProject';
 import { useParams } from 'react-router-dom';
 import ProjectInformationInput from '../../components/projectFormComponents/projectInformationInput/ProjectInformationInput';
 import { createProjectScheme } from '../createProject/CreateProject';
-import useGetProjectData from '../../hooks/useJoinProject';
 import { useEffect } from 'react';
 import { formatDate } from '../../util/format';
-import useUpdateProject from '../../hooks/useUpdateProject';
 import { useModal } from '../../hooks/useModal';
 import Modal from '../../components/common/modal/Modal';
+import useGetProjectData from '../../hooks/useGetProjectData';
+import useUpdateProject from '../../hooks/ProjectHooks/useUpdateProject';
 
 const ModifyProject = () => {
   const { projectId } = useParams();
@@ -46,8 +46,6 @@ const ModifyProject = () => {
     },
   });
 
-  console.log(projectData);
-
   useEffect(() => {
     if (projectData) {
       setValue('startDatePre', formatDate(projectData.startDate));
@@ -69,6 +67,8 @@ const ModifyProject = () => {
     );
   }
 
+  console.log(projectData);
+
   const handleSubmit = async (data: z.infer<typeof createProjectScheme>) => {
     const formData: FormData = {
       title: data.title,
@@ -78,11 +78,11 @@ const ModifyProject = () => {
       startDate: data.startDatePre,
       positionTagIds: data.position,
       estimatedPeriod: `${data.duration}개월`,
-      methodType: data.field,
+      methodTypeId: data.field,
       isBeginner: data.newBy,
       skillTagIds: data.languages,
       description: data.markdownEditor,
-      authorId: userId,
+      isDone: projectData.isDone,
     };
 
     updateProject(formData);

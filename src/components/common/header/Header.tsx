@@ -13,12 +13,19 @@ import loadingImg from '../../../assets/loadingImg.svg';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../modal/Modal';
 import { formatImgPath } from '../../../util/formatImgPath';
+import { GoBell } from 'react-icons/go';
+import { useState } from 'react';
+import Notification from './Notification/Notification';
+import useNotification from '../../../hooks/useNotification';
 
 function Header() {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userLogout } = useAuth(handleModalOpen);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
+  const { isSignal } = useNotification();
+
+  const [isAlarmClicked, setIsAlarmClicked] = useState<boolean>(false);
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -26,12 +33,30 @@ function Header() {
       )}?w=86&h=86&fit=crop&crop=entropy&auto=format,enhance&q=60`
     : DefaultImg;
 
+  const handleClick = () => {
+    setIsAlarmClicked(!isAlarmClicked);
+  };
+
   return (
     <S.HeaderContainer>
       <Link to={ROUTES.main}>
         <S.LogoImg src={Mainlogo} alt='logo' />
       </Link>
       <S.Wrapper>
+        <S.HeaderLinkContainer>
+          <Link to={ROUTES.FAQ}>
+            <S.HeaderLink>FAQ</S.HeaderLink>
+          </Link>
+          <Link to={ROUTES.notice}>
+            <S.HeaderLink>공지사항</S.HeaderLink>
+          </Link>
+        </S.HeaderLinkContainer>
+        <S.Alarm>
+          <DropDown toggleButton={<GoBell size='40' onClick={handleClick} />}>
+            <Notification />
+            {isSignal && '가능'}
+          </DropDown>
+        </S.Alarm>
         <DropDown
           toggleButton={
             isLoading ? (
@@ -51,6 +76,9 @@ function Header() {
                 </Link>
                 <Link to={ROUTES.manageProjectsRoot}>
                   <S.Item>공고관리</S.Item>
+                </Link>
+                <Link to={ROUTES.support}>
+                  <S.Item>문의하기</S.Item>
                 </Link>
                 <Link to='#' onClick={(e) => e.preventDefault()}>
                   <S.Item onClick={userLogout}>로그아웃</S.Item>

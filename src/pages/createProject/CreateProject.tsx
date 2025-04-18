@@ -100,11 +100,10 @@ const CreateProject = () => {
       startDate: data.startDatePre,
       positionTagIds: data.position,
       estimatedPeriod: `${data.duration}개월`,
-      methodType: data.field,
+      methodTypeId: data.field,
       isBeginner: data.newBy,
       skillTagIds: data.languages,
       description: data.markdownEditor,
-      authorId: userId,
     };
     console.log(formData);
 
