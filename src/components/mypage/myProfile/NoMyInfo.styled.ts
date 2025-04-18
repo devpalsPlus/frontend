@@ -12,10 +12,9 @@ export const Container = styled.div`
     height: 40px;
     color: #ccc;
   }
+`;
 
-  span {
-    font-size: 1.1rem;
-    color: $ccc;
-    margin-top: 1rem;
-  }
+export const Span = styled.span`
+  font-size: 1.1rem;
+  color: #ccc;
 `;

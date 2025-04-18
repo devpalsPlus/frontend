@@ -11,8 +11,6 @@ interface CardListProps {
 }
 
 export default function CardList({ list }: CardListProps) {
-  console.log('리스트*-*-*-*-*-*-*', list);
-
   const listPositionTag = list.positions.slice(0, 2);
   const listSkillTag = list.skills.slice(0, 4);
   const othersPosition = list.positions.length - 2;

@@ -1,15 +1,15 @@
 //model
 
 import { UserData } from '../store/authStore';
+import { ApiCommonType } from './apiCommon';
 
 export interface VerifyEmail {
   email: string;
   code: string;
 }
 
-export interface VerifyNickname {
-  nickname: string;
-  message: string;
+export interface ApiVerifyNickname extends ApiCommonType {
+  data: null;
 }
 
 export interface LoginResponse {

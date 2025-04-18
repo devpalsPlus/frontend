@@ -37,13 +37,11 @@ const profileSchema = z.object({
       /^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ0-9~`!@#$%^&*()\-_=+]{1,6}$/,
       ERROR_MESSAGES.NICKNAME_FORMAT
     ),
+  beginner: z.boolean(),
   skillTagIds: z.array(z.number()).min(1, ERROR_MESSAGES.SKILL_REQUIRED),
-  positionTagId: z.number().refine((id) => id > 0, {
-    message: ERROR_MESSAGES.POSITION_REQUIRED,
-  }),
+  positionTagIds: z.array(z.number()).min(1, ERROR_MESSAGES.POSITION_REQUIRED),
   github: z
     .string()
-    .optional()
     .optional()
     .refine(
       (val) => !val || /^https?:\/\/[^\s$.?#].[^\s]*$/.test(val),
@@ -75,8 +73,9 @@ type ProfileFormData = z.infer<typeof profileSchema>;
 
 const MyProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const [nickname, setNickname] = useState('');
   const { skillTagsData, positionTagsData } = useSearchFilteringSkillTag();
-  const { nicknameMessage, handleNickNameChange, handleNickname } =
+  const { nicknameMessage, handleDuplicationNickname } =
     useNickNameVerification();
 
   const { myData, isLoading } = useMyProfileInfo();
@@ -92,8 +91,9 @@ const MyProfile = () => {
     resolver: zodResolver(profileSchema),
     defaultValues: {
       nickname: '',
+      beginner: false,
       skillTagIds: [],
-      positionTagId: 0,
+      positionTagIds: [],
       github: '',
       career: [],
       bio: '',
@@ -105,17 +105,24 @@ const MyProfile = () => {
     if (myData) {
       const skillTagIds = myData.skills
         .map(
-          (skill) =>
-            skillTagsData.find((tag) => tag.name === skill.skillName)?.id
+          (skill) => skillTagsData.find((tag) => tag.name === skill.name)?.id
+        )
+        .filter((id): id is number => id !== undefined);
+
+      const positionTagIds = myData.positions
+        .map(
+          (position) =>
+            positionTagsData.find((tag) => tag.id === position.id)?.id
         )
         .filter((id): id is number => id !== undefined);
 
       reset({
         nickname: myData.nickname,
         bio: myData.bio || '',
-        positionTagId: myData.positionTag?.id || 0,
+        beginner: myData.beginner,
+        positionTagIds,
         github: myData.github || '',
-        skillTagIds: skillTagIds,
+        skillTagIds,
         career: myData.career?.length
           ? myData.career.map((item) => ({
               name: item.name,
@@ -126,13 +133,9 @@ const MyProfile = () => {
           : [{ name: '', periodStart: '', periodEnd: '', role: '' }],
       });
     }
-  }, [myData, skillTagsData, reset]);
+  }, [myData, skillTagsData, positionTagsData, reset]);
 
   const { fields, append, remove } = useFieldArray({ control, name: 'career' });
-
-  const handleCheckNickName = (nickname: string) => {
-    handleNickname(nickname);
-  };
 
   const onSubmit = (data: ProfileFormData, e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
@@ -159,35 +162,33 @@ const MyProfile = () => {
           <S.ProfileSection>
             <S.Wrapper>
               <label>닉네임</label>
-              <S.BackgroundWrapper>
-                <span>{myData.nickname}</span>
-                <S.IconWrapper>
-                  {myData.userLevel === 'Beginner' ? (
+              <S.NicknameBackgroundBox>
+                <S.NicknameSpan>{myData.nickname}</S.NicknameSpan>
+                {Boolean(myData.beginner) && (
+                  <S.IconWrapper>
                     <img
                       src={BeginnerIcon}
                       alt='beginner'
-                      width='16'
-                      height='16'
+                      width='20'
+                      height='20'
                     />
-                  ) : (
-                    ''
-                  )}
-                </S.IconWrapper>
-              </S.BackgroundWrapper>
+                  </S.IconWrapper>
+                )}
+              </S.NicknameBackgroundBox>
             </S.Wrapper>
             <S.Wrapper>
               <label>스킬셋</label>
               <S.BackgroundBox>
                 <ul>
                   {myData.skills.map((skill) => (
-                    <li key={skill.skillName}>
+                    <li key={skill.name}>
                       <img
-                        src={skill.skillImg}
-                        alt={skill.skillName}
+                        src={skill.img}
+                        alt={skill.name}
                         width='40'
                         height='40'
                       />
-                      <span>{skill.skillName}</span>
+                      <span>{skill.name}</span>
                     </li>
                   ))}
                 </ul>
@@ -196,13 +197,17 @@ const MyProfile = () => {
             <S.Wrapper>
               <label>포지션</label>
               <S.BackgroundWrapper>
-                <span>{myData.positionTag?.name}</span>
+                <div>
+                  {myData.positions.sort().map((position) => (
+                    <span>{position.name}</span>
+                  ))}
+                </div>
               </S.BackgroundWrapper>
             </S.Wrapper>
             <S.Wrapper>
               <label>깃허브</label>
               <S.BackgroundWrapper>
-                <span>{myData.github}</span>
+                <span>{myData.github || '-'}</span>
               </S.BackgroundWrapper>
             </S.Wrapper>
             <S.List>
@@ -210,7 +215,7 @@ const MyProfile = () => {
               <S.BackgroundBox>
                 <ul>
                   {myData.career?.map((career) => (
-                    <li key={career.name}>
+                    <li key={`-${career.name}`}>
                       <span>{career.name}</span> (
                       {career.periodStart.slice(0, 10)} ~{' '}
                       {career.periodEnd.slice(0, 10)}{' '}
@@ -232,7 +237,7 @@ const MyProfile = () => {
             </button>
           </S.ProfileSection>
         ) : (
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <S.Form onSubmit={handleSubmit(onSubmit)}>
             {/* 닉네임 */}
             <S.EditWrapper>
               <label>닉네임</label>
@@ -250,14 +255,14 @@ const MyProfile = () => {
                         onChange={(e) => {
                           const value = e.target.value;
                           field.onChange(e);
-                          handleNickNameChange(value);
+                          setNickname(value);
                         }}
                       />
                     </S.InputTextNickname>
                     {errors.nickname && (
                       <S.ErrorMessage>{errors.nickname.message}</S.ErrorMessage>
                     )}
-                    {!errors.nickname && nicknameMessage && (
+                    {!errors.nickname && (
                       <S.ErrorMessage>{nicknameMessage}</S.ErrorMessage>
                     )}
                     <Button
@@ -266,12 +271,31 @@ const MyProfile = () => {
                       radius='large'
                       type='button'
                       onClick={() => {
-                        handleCheckNickName(field.value);
+                        handleDuplicationNickname(nickname);
                       }}
                     >
                       중복확인
                     </Button>
                   </S.InputWrapper>
+                )}
+              />
+            </S.EditWrapper>
+            <S.EditWrapper>
+              <label>새싹여부</label>
+              <Controller
+                name='beginner'
+                control={control}
+                render={({ field }) => (
+                  <S.InputBeginner
+                    type='checkbox'
+                    checked={field.value}
+                    name=''
+                    id=''
+                    onChange={(e) => {
+                      const checked = e.target.checked;
+                      field.onChange(checked);
+                    }}
+                  />
                 )}
               />
             </S.EditWrapper>
@@ -293,7 +317,7 @@ const MyProfile = () => {
                         isSelected={field.value.includes(skill.id)}
                         onChange={(id, isChecked) => {
                           if (isChecked) {
-                            field.onChange([...field.value, id]);
+                            field.onChange([...field.value, id].sort());
                           } else {
                             field.onChange(
                               field.value.filter((value) => value !== id)
@@ -317,7 +341,7 @@ const MyProfile = () => {
             <S.EditContainer>
               <label>포지션</label>
               <Controller
-                name='positionTagId'
+                name='positionTagIds'
                 control={control}
                 render={({ field }) => (
                   <S.EditList>
@@ -328,14 +352,22 @@ const MyProfile = () => {
                           key={position.id}
                           id={position.id}
                           label={position.name}
-                          type='radio'
-                          isSelected={field.value === position.id}
-                          onChange={(id) => field.onChange(id)}
+                          type='checkbox'
+                          isSelected={field.value.includes(position.id)}
+                          onChange={(id, isChecked) => {
+                            if (isChecked) {
+                              field.onChange([...field.value, id].sort());
+                            } else {
+                              field.onChange(
+                                field.value.filter((value) => value !== id)
+                              );
+                            }
+                          }}
                         />
                       ))}
-                    {errors.positionTagId && (
+                    {errors.positionTagIds && (
                       <S.ErrorMessage>
-                        {errors.positionTagId.message}
+                        {errors.positionTagIds.message}
                       </S.ErrorMessage>
                     )}
                   </S.EditList>
@@ -461,9 +493,9 @@ const MyProfile = () => {
                         </S.CareerWrapper>
                       )}
                     />
-                    <button onClick={() => remove(index)}>
+                    <S.CareerAddButton onClick={() => remove(index)}>
                       <XMarkIcon width='16' height='16' />
-                    </button>
+                    </S.CareerAddButton>
                   </S.CareerList>
                 ))}
               </S.EditList>
@@ -526,7 +558,7 @@ const MyProfile = () => {
                 취소
               </Button>
             </S.Wrapper>
-          </form>
+          </S.Form>
         )}
       </S.Container>
       <Modal isOpen={isOpen} onClose={handleModalClose}>

@@ -1,5 +1,6 @@
 import { ApiCommonType, User } from './apiCommon';
 import { joinProject } from './joinProject';
+import type { PositionTag, SkillTag } from './tags';
 
 export interface SkillTag {
   id: number;
@@ -12,12 +13,6 @@ export interface ProjectSkillTagList {
   SkillTag: SkillTag;
   projectId: number;
   skillTagId: number;
-}
-
-export interface PositionTag {
-  id: number;
-  name: string;
-  createdAt: string;
 }
 
 export interface ProjectPositionTag {

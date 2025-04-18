@@ -1,25 +1,23 @@
-import { UserJoinedProject } from '../../../models/userProject';
+import type { JoinedProject } from '../../../models/userProject';
 import * as S from './Project.styled';
 import BeginnerIcon from '../../../assets/beginner.svg';
-import { formatDate } from '../../../util/formatDate';
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 
 interface ProjectProps {
-  project: UserJoinedProject;
+  project: JoinedProject;
 }
 
 const Project = ({ project }: ProjectProps) => {
-  const startProjectDate = formatDate(project.startDate);
   const maxSkills = 4;
-  const skillsShow = project.ProjectSkillTag.slice(0, maxSkills);
+  const skillsShow = project.skills.slice(0, maxSkills);
   return (
     <S.Container>
       <S.Title>{project.title}</S.Title>
       <S.Date>
         <S.DateWrapper>
-          <span>프로젝트 시작</span>
+          <span>시작일</span>
         </S.DateWrapper>
-        <span>{startProjectDate}</span>
+        <span>{project.recruitmentEndDate}</span>
       </S.Date>
       <S.Member>
         <S.Wrapper>
@@ -36,9 +34,9 @@ const Project = ({ project }: ProjectProps) => {
       </S.Member>
       <S.Skill>
         {skillsShow.map((skill) => (
-          <img key={skill.SkillTag.id} src={skill.SkillTag.img} />
+          <img key={skill.id} src={skill.img} />
         ))}
-        {project.ProjectSkillTag.length > maxSkills && (
+        {project.skills.length > maxSkills && (
           <EllipsisHorizontalIcon width='20' height='20' />
         )}
       </S.Skill>

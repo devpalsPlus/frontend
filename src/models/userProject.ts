@@ -1,54 +1,35 @@
-export interface SkillTag {
-  id: number;
-  name: string;
-  img: string;
-}
+import type { ApiCommonType } from './apiCommon';
+import type { SkillTag } from './tags';
 
-export interface PositionTag {
-  id: number;
-  name: string;
-}
-
-export interface ProjectSkillTagItem {
-  projectId: number;
-  skillTagId: number;
-  SkillTag: SkillTag;
-}
-
-export interface ProjectPositionTagItem {
-  projectId: number;
-  positionTagId: number;
-  PositionTag: PositionTag;
-}
-
-export interface UserJoinedProject {
-  projectId: number;
+export interface JoinedProject {
   title: string;
-  description: string;
-  totalMember: number;
-  startDate: string;
-  estimatedPeriod: string;
-  methodId: number;
+  id: number;
   isBeginner: boolean;
   isDone: boolean;
-  recruitmentStartDate: string;
   recruitmentEndDate: string;
+  totalMember: number;
+  skills: Omit<SkillTag, 'createdAt'>[];
+}
+
+export interface ApiJoinedProject extends ApiCommonType {
+  data: JoinedProject[] | null;
+}
+
+export interface AppliedProject {
+  title: string;
   status: string;
-  ProjectSkillTag: ProjectSkillTagItem[];
-  ProjectPositionTag: ProjectPositionTagItem[];
-}
-
-export type MyJoinedProjectList = UserJoinedProject[];
-
-export interface UserJoinedProjectList {
-  acceptedProjects: UserJoinedProject[];
-  ownProjects: UserJoinedProject[];
-}
-
-export interface MyAppliedProjectStatus {
   id: number;
-  projectTitle: string;
-  status: string;
 }
 
-export type MyAppliedProjectStatusList = MyAppliedProjectStatus[];
+export interface ApiAppliedProject extends ApiCommonType {
+  data: AppliedProject[] | null;
+}
+
+export interface SelectUserProject {
+  acceptedProjects: JoinedProject[];
+  ownProjects: AppliedProject[];
+}
+
+export interface ApiSelectUserProject extends ApiCommonType {
+  data: SelectUserProject;
+}

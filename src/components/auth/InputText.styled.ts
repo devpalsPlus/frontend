@@ -30,7 +30,7 @@ export const Input = styled.input`
   border: none;
   outline: none;
   font-size: 0.9em;
-  width: 85%;
+  width: 100%;
   color: ${({ theme }) => theme.color.primary}
 
   &::placeholder {

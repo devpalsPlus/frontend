@@ -20,13 +20,13 @@ export interface MethodTag {
 }
 
 export interface ApiSkillTag extends ApiCommonType {
-  data: SkillTag[];
+  data: SkillTag[] | null;
 }
 
 export interface ApiPositionTag extends ApiCommonType {
-  data: PositionTag[];
+  data: PositionTag[] | null;
 }
 
 export interface ApiMethodTag extends ApiCommonType {
-  data: MethodTag[];
+  data: MethodTag[] | null;
 }

@@ -5,7 +5,7 @@ const NoMyInfo = () => {
   return (
     <S.Container>
       <IdentificationIcon />
-      <span>유저 정보를 불러올 수 없습니다.</span>
+      <S.Span>유저 정보를 불러올 수 없습니다.</S.Span>
     </S.Container>
   );
 };

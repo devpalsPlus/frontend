@@ -33,7 +33,7 @@ export interface ProjectLists {
 }
 
 export interface ApiProjectLists extends ApiCommonType {
-  data: ProjectLists;
+  data: ProjectLists | null;
 }
 
 export interface ProjectStatistic {
@@ -43,5 +43,5 @@ export interface ProjectStatistic {
 }
 
 export interface ApiProjectStatistic extends ApiCommonType {
-  data: ProjectStatistic;
+  data: ProjectStatistic | null;
 }
