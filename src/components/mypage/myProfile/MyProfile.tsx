@@ -237,7 +237,7 @@ const MyProfile = () => {
             </button>
           </S.ProfileSection>
         ) : (
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <S.Form onSubmit={handleSubmit(onSubmit)}>
             {/* 닉네임 */}
             <S.EditWrapper>
               <label>닉네임</label>
@@ -493,9 +493,9 @@ const MyProfile = () => {
                         </S.CareerWrapper>
                       )}
                     />
-                    <button onClick={() => remove(index)}>
+                    <S.CareerAddButton onClick={() => remove(index)}>
                       <XMarkIcon width='16' height='16' />
-                    </button>
+                    </S.CareerAddButton>
                   </S.CareerList>
                 ))}
               </S.EditList>
@@ -558,7 +558,7 @@ const MyProfile = () => {
                 취소
               </Button>
             </S.Wrapper>
-          </form>
+          </S.Form>
         )}
       </S.Container>
       <Modal isOpen={isOpen} onClose={handleModalClose}>

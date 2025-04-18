@@ -211,13 +211,17 @@ export const List = styled.div`
   }
 `;
 
+export const Form = styled.form`
+  display: flex;
+  gap: 3rem;
+`;
+
 export const EditWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
   align-items: center;
-  margin-bottom: 3rem;
 
   label {
     font-weight: 700;
@@ -250,7 +254,7 @@ export const InputBeginner = styled.input`
 `;
 
 export const InputTextGithub = styled.div`
-  width: 90%;
+  width: 100%;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     width: 100%;
@@ -266,6 +270,10 @@ export const InputWrapper = styled.div`
   align-items: center;
   position: relative;
   width: 85%;
+
+  input {
+    width: 100%;
+  }
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     width: 100%;
@@ -324,7 +332,7 @@ export const EditList = styled.div`
   gap: 1rem;
   width: 100%;
   position: relative;
-  margin-bottom: 3rem;
+
   background-color: ${({ theme }) => theme.color.white};
   padding: 1rem;
   border-radius: 20px;
@@ -366,4 +374,8 @@ export const CareerWrapper = styled.div`
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     flex: auto;
   }
+`;
+
+export const CareerAddButton = styled.button`
+  /* display: flex; */
 `;
