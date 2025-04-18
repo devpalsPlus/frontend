@@ -21,9 +21,9 @@ const MyApplyProject = () => {
       </S.TitleWrapper>
       {myAppliedStatusListData && myAppliedStatusListData?.length > 0 ? (
         <S.Container>
-          {myAppliedStatusListData?.map((status) => (
-            <Link key={status.id} to={`${ROUTES.projectDetail}/${status.id}`}>
-              <MyStatus status={status} />
+          {myAppliedStatusListData?.map((data) => (
+            <Link key={data.id} to={`${ROUTES.projectDetail}/${data.id}`}>
+              <MyStatus list={data} />
             </Link>
           ))}
         </S.Container>

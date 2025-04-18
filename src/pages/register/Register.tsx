@@ -5,7 +5,7 @@ import Title from '../../components/common/title/Title';
 import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
+import React, { useState } from 'react';
 import InputText from '../../components/auth/InputText';
 import {
   EnvelopeIcon,
@@ -51,6 +51,7 @@ const registerSchema = z
 export type registerFormValues = z.infer<typeof registerSchema>;
 
 const Register = () => {
+  const [nicknameText, setNicknameText] = useState('');
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userSignup } = useAuth(handleModalOpen);
 
@@ -80,7 +81,7 @@ const Register = () => {
     handleEmailChange,
   } = useEmailVerification();
 
-  const { nicknameMessage, handleNickNameChange, handleNickname } =
+  const { nicknameMessage, handleDuplicationNickname } =
     useNickNameVerification();
 
   const handleClickEmail = (email: string) => {
@@ -89,10 +90,6 @@ const Register = () => {
 
   const handleClickCode = (email: string, code: string) => {
     handleVerifyCode(email, code);
-  };
-
-  const handleCheckNickname = (nickname: string) => {
-    handleNickname(nickname);
   };
 
   const onSubmit = (
@@ -261,13 +258,12 @@ const Register = () => {
                   onChange={(e) => {
                     const value = e.target.value;
                     field.onChange(e);
-                    handleNickNameChange(value);
+                    setNicknameText(value);
                   }}
                 />
-                {errors.nickname && (
+                {errors.nickname ? (
                   <S.ErrorMessage>{errors.nickname.message}</S.ErrorMessage>
-                )}
-                {!errors.nickname && nicknameMessage && (
+                ) : (
                   <S.ErrorMessage>{nicknameMessage}</S.ErrorMessage>
                 )}
               </S.InputWrapper>
@@ -277,7 +273,7 @@ const Register = () => {
                 radius='large'
                 type='button'
                 onClick={() => {
-                  handleCheckNickname(field.value);
+                  handleDuplicationNickname(text);
                 }}
               >
                 중복 확인

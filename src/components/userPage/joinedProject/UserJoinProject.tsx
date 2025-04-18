@@ -17,6 +17,8 @@ const UserJoinProject = () => {
     return <Spinner size='50px' color='#3e5879;' />;
   }
 
+  console.log('userJoinedProjectListData', userJoinedProjectListData);
+
   return (
     <S.Section>
       <S.Wrapper>
@@ -28,10 +30,10 @@ const UserJoinProject = () => {
           <S.Container>
             {userJoinedProjectListData?.acceptedProjects?.map((project) => (
               <Link
-                key={project.projectId}
-                to={`${ROUTES.projectDetail}/${project.projectId}`}
+                key={project.id}
+                to={`${ROUTES.projectDetail}/${project.id}`}
               >
-                <Project key={project.projectId} project={project} />
+                <Project key={project.id} project={project} />
               </Link>
             ))}
           </S.Container>
@@ -50,10 +52,10 @@ const UserJoinProject = () => {
           <S.Container>
             {userJoinedProjectListData?.ownProjects?.map((project) => (
               <Link
-                key={project.projectId}
-                to={`${ROUTES.projectDetail}/${project.projectId}`}
+                key={project.id}
+                to={`${ROUTES.projectDetail}/${project.id}`}
               >
-                <Project key={project.projectId} project={project} />
+                <Project key={project.id} project={project} />
               </Link>
             ))}
           </S.Container>

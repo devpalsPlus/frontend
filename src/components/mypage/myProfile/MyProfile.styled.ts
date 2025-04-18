@@ -28,12 +28,18 @@ export const Container = styled.div`
 export const BackgroundWrapper = styled.div`
   background-color: #fff;
   display: flex;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.3rem;
   border-radius: 15px;
 
-  span {
-    word-break: break-all;
-    overflow-wrap: break-word;
+  div {
+    width: 100%;
+    display: flex;
+    gap: 13px;
+    span {
+      width: content;
+      word-break: break-all;
+      overflow-wrap: break-word;
+    }
 
     @media ${({ theme }) => theme.mediaQuery.tablet} {
       font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
@@ -62,6 +68,7 @@ export const BackgroundBox = styled.div`
 export const ProfileSection = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 1.25rem;
 
   button {
     position: absolute;
@@ -94,14 +101,30 @@ export const ProfileSection = styled.div`
   }
 `;
 
+export const NicknameBackgroundBox = styled.div`
+  background-color: #fff;
+  display: flex;
+  padding: 1rem 1.3rem;
+  gap: 1rem;
+  border-radius: 15px;
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 1.2rem;
+    font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
+  }
+`;
+
+export const NicknameSpan = styled.span`
+  display: flex;
+  align-items: center;
+`;
+
 export const IconWrapper = styled.div`
   width: fit-content;
   height: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 0.5rem;
-  margin-top: -0.1rem;
   background-color: ${({ theme }) => theme.color.white};
   padding: 0.2rem;
   border-radius: 50%;
@@ -118,7 +141,6 @@ export const Wrapper = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
-  margin-bottom: 1.25rem;
 
   label {
     font-weight: 700;
@@ -165,7 +187,6 @@ export const List = styled.div`
   display: flex;
   gap: 1rem;
   flex-direction: column;
-  margin-bottom: 1.25rem;
 
   label {
     font-weight: 700;
@@ -178,10 +199,10 @@ export const List = styled.div`
   ul {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 
     li {
       color: #a1a1a1;
-      margin-bottom: 0.5rem;
 
       span {
         color: ${({ theme }) => theme.color.primary};
@@ -190,13 +211,17 @@ export const List = styled.div`
   }
 `;
 
+export const Form = styled.form`
+  display: flex;
+  gap: 3rem;
+`;
+
 export const EditWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
   align-items: center;
-  margin-bottom: 3rem;
 
   label {
     font-weight: 700;
@@ -224,8 +249,12 @@ export const InputTextNickname = styled.div`
   min-width: 125px;
 `;
 
+export const InputBeginner = styled.input`
+  accent-color: ${({ theme }) => theme.color.navy};
+`;
+
 export const InputTextGithub = styled.div`
-  width: 90%;
+  width: 100%;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     width: 100%;
@@ -241,6 +270,10 @@ export const InputWrapper = styled.div`
   align-items: center;
   position: relative;
   width: 85%;
+
+  input {
+    width: 100%;
+  }
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     width: 100%;
@@ -299,7 +332,7 @@ export const EditList = styled.div`
   gap: 1rem;
   width: 100%;
   position: relative;
-  margin-bottom: 3rem;
+
   background-color: ${({ theme }) => theme.color.white};
   padding: 1rem;
   border-radius: 20px;
@@ -341,4 +374,8 @@ export const CareerWrapper = styled.div`
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     flex: auto;
   }
+`;
+
+export const CareerAddButton = styled.button`
+  /* display: flex; */
 `;
