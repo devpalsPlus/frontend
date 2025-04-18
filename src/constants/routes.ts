@@ -1,9 +1,9 @@
 export const ROUTES = {
-  main: '/',
+  main: '/main',
   login: '/login',
   signup: '/signup',
   changePw: '/change-password',
-  home: '/main',
+  home: '/',
   createProject: '/create',
   apply: '/apply',
   projectDetail: '/project-detail',
