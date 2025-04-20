@@ -16,7 +16,7 @@ const Register = lazy(() => import('../pages/register/Register'));
 const ChangePassword = lazy(
   () => import('../pages/changePassword/ChangePassword')
 );
-// const Main = lazy(() => import('../pages/main/Main'));
+const Main = lazy(() => import('../pages/main/Index'));
 const Layout = lazy(() => import('../components/common/layout/Layout'));
 const Home = lazy(() => import('../pages/home/Home'));
 const MyPage = lazy(() => import('../pages/mypage/MyPage'));
@@ -63,10 +63,10 @@ const AppRoutes = () => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const routeList = [
-    // {
-    //   path: ROUTES.main,
-    //   element: <Main />,
-    // },
+    {
+      path: ROUTES.home,
+      element: <Main />,
+    },
     {
       path: ROUTES.login,
       element: isLoggedIn ? <Navigate to={ROUTES.main} replace /> : <Login />,
