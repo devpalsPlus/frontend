@@ -8,6 +8,7 @@ import { useSaveSearchFiltering } from '../../../hooks/useSaveSearchFiltering';
 export interface SkillTagBoxProps {
   width: string;
   onHandleSkillTagReset?: React.MouseEventHandler<HTMLButtonElement>;
+  selectedTag?: number[];
   isMain?: boolean;
   isCreate?: boolean;
 }
@@ -15,6 +16,7 @@ export interface SkillTagBoxProps {
 export default function SkillTagBox({
   width,
   onHandleSkillTagReset,
+  selectedTag,
   isMain = false,
   isCreate = false,
 }: SkillTagBoxProps) {
@@ -34,7 +36,7 @@ export default function SkillTagBox({
                 $select={
                   (isMain &&
                     searchFiltersSkillTag?.includes(skillTagData.id)) ||
-                  (isCreate && searchFiltersSkillTag?.includes(skillTagData.id))
+                  (isCreate && selectedTag?.includes(skillTagData.id))
                     ? true
                     : false
                 }

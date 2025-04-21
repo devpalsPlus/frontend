@@ -67,8 +67,6 @@ const ModifyProject = () => {
     );
   }
 
-  console.log(projectData);
-
   const handleSubmit = async (data: z.infer<typeof createProjectScheme>) => {
     const formData: FormData = {
       title: data.title,

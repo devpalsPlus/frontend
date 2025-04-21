@@ -5,6 +5,7 @@ import { CreateProjectFormValues } from '../../../../models/createProject';
 import { useSaveSearchFiltering } from '../../../../hooks/useSaveSearchFiltering';
 import { useEffect } from 'react';
 import { Skill } from '../../../../models/projectDetail';
+import useTagSelectors from '../../../../hooks/ProjectHooks/useTagSelectors';
 
 interface LanguageComponentProps {
   errors: FieldErrors;
@@ -21,36 +22,15 @@ const LanguageComponent = ({
 }: LanguageComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
-  const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
-  const filterData = searchFilters.skillTag;
-
-  const handleSkillClick = (e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation();
-    const target = e.target as HTMLElement;
-
-    const id = Number(
-      target.dataset.id || target.closest('[data-id]')?.getAttribute('data-id')
-    );
-    if (!id) return;
-
-    handleUpdateFilters('skillTag', id);
-  };
-
-  useEffect(() => {
-    apiDataSkillTags?.forEach((tag) => {
-      handleUpdateFilters('skillTag', tag.id);
-    });
-  }, [apiDataSkillTags]);
-
-  useEffect(() => {
-    if (filterData) {
-      setValue?.('languages', filterData);
-    }
-  }, [filterData, setValue]);
+  const { selectedTag, handleClick } = useTagSelectors({
+    apiTagData: apiDataSkillTags,
+    setValue,
+    fieldName: 'languages',
+  });
 
   return (
-    <S.Container onClick={handleSkillClick}>
-      <SkillTagBox width='100%' isCreate={true} />
+    <S.Container onClick={(e) => handleClick(e, 0)}>
+      <SkillTagBox width='100%' isCreate={true} selectedTag={selectedTag} />
 
       {hasError && <S.FormError>{String(errors[name]?.message)}</S.FormError>}
     </S.Container>

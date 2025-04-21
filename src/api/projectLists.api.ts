@@ -9,6 +9,7 @@ export const getProjectLists = async (params: SearchFilters) => {
   try {
     const response = await httpClient.get<ApiProjectLists>('/project', {
       params,
+      paramsSerializer: { indexes: null },
     });
     console.log(response);
     return response.data.data;

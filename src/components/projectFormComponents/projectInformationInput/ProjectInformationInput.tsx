@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import MozipCategoryComponent from './positionComponent/PositionComponent';
 import LanguageComponent from './languageComponent/LanguageComponent';
 import FieldCategoryComponent from './fieldCategoryComponent/FieldCategoryComponent';
@@ -15,8 +14,6 @@ interface ProjectInformationProps {
   control: Control<CreateProjectFormValues>;
   setValue: UseFormSetValue<CreateProjectFormValues>;
   apiData?: ProjectDetailPlusExtended;
-  isSubmit?: boolean;
-  setIsSubmit?: Dispatch<SetStateAction<boolean>>;
 }
 
 const ProjectInformationInput = ({
@@ -24,20 +21,8 @@ const ProjectInformationInput = ({
   control,
   setValue,
   apiData,
-  isSubmit,
-  setIsSubmit,
 }: ProjectInformationProps) => {
-  const [selectedMozip, setSelectedMozip] = useState<number[]>([]);
-  const [selectedMethod, setSelectedMethod] = useState<number>(0);
-
   const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
-
-  useEffect(() => {
-    if (isSubmit) {
-      setSelectedMozip([]);
-      setSelectedMethod(0);
-    }
-  }, [isSubmit, setIsSubmit]);
 
   return (
     <>
@@ -65,8 +50,6 @@ const ProjectInformationInput = ({
       </S.InfoRow>
       <FieldCategoryComponent
         name='field'
-        selectedMethod={selectedMethod}
-        setSelectedMethod={setSelectedMethod}
         errors={errors}
         setValue={setValue}
         methodTagsData={methodTagsData}
@@ -78,8 +61,6 @@ const ProjectInformationInput = ({
       </S.InfoRow>
       <MozipCategoryComponent
         name='position'
-        selectedMozip={selectedMozip}
-        setSelectedMozip={setSelectedMozip}
         errors={errors}
         setValue={setValue}
         positionTagsData={positionTagsData}

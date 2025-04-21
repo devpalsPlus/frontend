@@ -1,7 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSaveSearchFiltering } from '../useSaveSearchFiltering';
 import { postProject } from '../../api/joinProject.api';
 import { MODAL_MESSAGE } from '../../constants/modalMessage';
 import { managedProjectKey } from '../queries/keys';
@@ -10,23 +8,16 @@ import { FormData } from '../../models/createProject';
 
 interface UseCreateProjectProps {
   handleModalOpen: (newMessage: string) => void;
-  setIsSubmit: Dispatch<SetStateAction<boolean>>;
 }
 
-const useCreateProject = ({
-  handleModalOpen,
-  setIsSubmit,
-}: UseCreateProjectProps) => {
+const useCreateProject = ({ handleModalOpen }: UseCreateProjectProps) => {
   const navigate = useNavigate();
-  const { handleUpdateFilters } = useSaveSearchFiltering();
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: (formData: FormData) => postProject(formData),
     onSuccess: () => {
       handleModalOpen(MODAL_MESSAGE.createProjectSuccess);
-      setIsSubmit(true);
-      handleUpdateFilters('skillTag', []);
 
       queryClient.invalidateQueries({
         queryKey: [managedProjectKey.managedProjectList],
