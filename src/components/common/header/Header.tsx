@@ -23,7 +23,7 @@ function Header() {
   const { userLogout } = useAuth(handleModalOpen);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
-  const { isSignal } = useNotification();
+  // const { isSignal } = useNotification();
 
   const [isAlarmClicked, setIsAlarmClicked] = useState<boolean>(false);
 
@@ -51,12 +51,12 @@ function Header() {
             <S.HeaderLink>공지사항</S.HeaderLink>
           </Link>
         </S.HeaderLinkContainer>
-        <S.Alarm>
+        {/* <S.Alarm>
           <DropDown toggleButton={<GoBell size='40' onClick={handleClick} />}>
             <Notification />
             {isSignal && '가능'}
           </DropDown>
-        </S.Alarm>
+        </S.Alarm> */}
         <DropDown
           toggleButton={
             isLoading ? (

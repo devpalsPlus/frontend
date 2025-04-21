@@ -12,6 +12,8 @@ export const ROUTES = {
   mypage: '/mypage',
   mypageJoinedProjects: 'join-projects',
   mypageAppliedProjects: 'apply-projects',
+  myPageNotifications: 'notifications',
+  myPageActivityLog: 'activity-log',
   userpage: '/user',
   userJoinedProject: 'join-projects',
   modifyProject: '/project-modify',

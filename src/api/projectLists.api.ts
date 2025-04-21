@@ -6,8 +6,6 @@ import { SearchFilters } from '../models/SearchFilters';
 import { httpClient } from './http.api';
 
 export const getProjectLists = async (params: SearchFilters) => {
-  console.log('필터링 파람*-*-*-*-*-*-*', params);
-
   try {
     const response = await httpClient.get<ApiProjectLists>('/project', {
       params,

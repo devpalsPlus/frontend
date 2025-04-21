@@ -39,7 +39,6 @@ export const useSearchFilteringSkillTag = () => {
 
   useEffect(() => {
     if (!skillQuery.data || !positionQuery.data || !methodQuery.data) return;
-
     setSkillTagsData(skillQuery.data);
     setPositionTagsData(positionQuery.data);
     setMethodTagsData(methodQuery.data);

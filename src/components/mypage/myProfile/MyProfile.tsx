@@ -3,7 +3,6 @@ import * as S from './MyProfile.styled';
 import { ERROR_MESSAGES } from '../../../constants/authConstants';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Title from '../../common/title/Title';
 import { useEffect, useState } from 'react';
 import { useSearchFilteringSkillTag } from '../../../hooks/useSearchFilteringSkillTag';
 import useNickNameVerification from '../../../hooks/useNicknameVerification';
@@ -154,413 +153,431 @@ const MyProfile = () => {
 
   return (
     <S.Box>
-      <S.TitleWrapper>
-        <Title size='semiLarge'>나의 정보</Title>
-      </S.TitleWrapper>
-      <S.Container>
-        {!isEditing ? (
-          <S.ProfileSection>
-            <S.Wrapper>
-              <label>닉네임</label>
-              <S.NicknameBackgroundBox>
-                <S.NicknameSpan>{myData.nickname}</S.NicknameSpan>
-                {Boolean(myData.beginner) && (
-                  <S.IconWrapper>
-                    <img
-                      src={BeginnerIcon}
-                      alt='beginner'
-                      width='20'
-                      height='20'
-                    />
-                  </S.IconWrapper>
-                )}
-              </S.NicknameBackgroundBox>
-            </S.Wrapper>
-            <S.Wrapper>
-              <label>스킬셋</label>
-              <S.BackgroundBox>
-                <ul>
-                  {myData.skills.map((skill) => (
-                    <li key={skill.name}>
+      <S.FilterWrapper>
+        <S.FilterTitle>프로필</S.FilterTitle>
+      </S.FilterWrapper>
+      <S.ScrollWrapper>
+        <S.Container>
+          {!isEditing ? (
+            <S.ProfileSection>
+              <S.Wrapper>
+                <label>닉네임</label>
+                <S.NicknameBackgroundBox>
+                  <S.NicknameSpan>{myData.nickname}</S.NicknameSpan>
+                  {Boolean(myData.beginner) && (
+                    <S.IconWrapper>
                       <img
-                        src={skill.img}
-                        alt={skill.name}
-                        width='40'
-                        height='40'
+                        src={BeginnerIcon}
+                        alt='beginner'
+                        width='20'
+                        height='20'
                       />
-                      <span>{skill.name}</span>
-                    </li>
-                  ))}
-                </ul>
-              </S.BackgroundBox>
-            </S.Wrapper>
-            <S.Wrapper>
-              <label>포지션</label>
-              <S.BackgroundWrapper>
-                <div>
-                  {myData.positions.sort().map((position) => (
-                    <span>{position.name}</span>
-                  ))}
-                </div>
-              </S.BackgroundWrapper>
-            </S.Wrapper>
-            <S.Wrapper>
-              <label>깃허브</label>
-              <S.BackgroundWrapper>
-                <span>{myData.github || '-'}</span>
-              </S.BackgroundWrapper>
-            </S.Wrapper>
-            <S.List>
-              <label>경&nbsp;&nbsp;&nbsp;력</label>
-              <S.BackgroundBox>
-                <ul>
-                  {myData.career?.map((career) => (
-                    <li key={`-${career.name}`}>
-                      <span>{career.name}</span> (
-                      {career.periodStart.slice(0, 10)} ~{' '}
-                      {career.periodEnd.slice(0, 10)}{' '}
-                      <span> - {career.role}</span>)
-                    </li>
-                  ))}
-                </ul>
-              </S.BackgroundBox>
-            </S.List>
-            <S.List>
-              <label>소&nbsp;&nbsp;&nbsp;개</label>
-              <S.BackgroundBox>
-                <S.Bio>{myData.bio}</S.Bio>
-              </S.BackgroundBox>
-            </S.List>
-            <Link to={ROUTES.changePw}>비밀번호 재설정</Link>
-            <button onClick={() => setIsEditing(true)}>
-              <PencilIcon />
-            </button>
-          </S.ProfileSection>
-        ) : (
-          <S.Form onSubmit={handleSubmit(onSubmit)}>
-            {/* 닉네임 */}
-            <S.EditWrapper>
-              <label>닉네임</label>
-              <Controller
-                name='nickname'
-                control={control}
-                render={({ field }) => (
-                  <S.InputWrapper>
-                    <S.InputTextNickname>
-                      <InputText
-                        inputType='text'
-                        placeholder='닉네임'
-                        autoComplete='auto'
-                        {...field}
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          field.onChange(e);
-                          setNickname(value);
-                        }}
-                      />
-                    </S.InputTextNickname>
-                    {errors.nickname && (
-                      <S.ErrorMessage>{errors.nickname.message}</S.ErrorMessage>
-                    )}
-                    {!errors.nickname && (
-                      <S.ErrorMessage>{nicknameMessage}</S.ErrorMessage>
-                    )}
-                    <Button
-                      size='primary'
-                      schema='primary'
-                      radius='large'
-                      type='button'
-                      onClick={() => {
-                        handleDuplicationNickname(nickname);
-                      }}
-                    >
-                      중복확인
-                    </Button>
-                  </S.InputWrapper>
-                )}
-              />
-            </S.EditWrapper>
-            <S.EditWrapper>
-              <label>새싹여부</label>
-              <Controller
-                name='beginner'
-                control={control}
-                render={({ field }) => (
-                  <S.InputBeginner
-                    type='checkbox'
-                    checked={field.value}
-                    name=''
-                    id=''
-                    onChange={(e) => {
-                      const checked = e.target.checked;
-                      field.onChange(checked);
-                    }}
-                  />
-                )}
-              />
-            </S.EditWrapper>
-
-            {/* 스킬셋 */}
-            <S.EditContainer>
-              <label>스킬셋</label>
-              <Controller
-                name='skillTagIds'
-                control={control}
-                render={({ field }) => (
-                  <S.EditList>
-                    {skillTagsData.map((skill) => (
-                      <OptionBox
-                        key={skill.id}
-                        id={skill.id}
-                        label={skill.name}
-                        type='checkbox'
-                        isSelected={field.value.includes(skill.id)}
-                        onChange={(id, isChecked) => {
-                          if (isChecked) {
-                            field.onChange([...field.value, id].sort());
-                          } else {
-                            field.onChange(
-                              field.value.filter((value) => value !== id)
-                            );
-                          }
-                        }}
-                        imgSrc={skill.img}
-                      />
-                    ))}
-                    {errors.skillTagIds && (
-                      <S.ErrorMessage>
-                        {errors.skillTagIds.message}
-                      </S.ErrorMessage>
-                    )}
-                  </S.EditList>
-                )}
-              />
-            </S.EditContainer>
-
-            {/* 포지션 */}
-            <S.EditContainer>
-              <label>포지션</label>
-              <Controller
-                name='positionTagIds'
-                control={control}
-                render={({ field }) => (
-                  <S.EditList>
-                    {positionTagsData
-                      .filter((position) => position.name !== '전체')
-                      .map((position) => (
-                        <OptionBox
-                          key={position.id}
-                          id={position.id}
-                          label={position.name}
-                          type='checkbox'
-                          isSelected={field.value.includes(position.id)}
-                          onChange={(id, isChecked) => {
-                            if (isChecked) {
-                              field.onChange([...field.value, id].sort());
-                            } else {
-                              field.onChange(
-                                field.value.filter((value) => value !== id)
-                              );
-                            }
-                          }}
+                    </S.IconWrapper>
+                  )}
+                </S.NicknameBackgroundBox>
+              </S.Wrapper>
+              <S.Wrapper>
+                <label>스킬셋</label>
+                <S.BackgroundBox>
+                  <ul>
+                    {myData.skills.map((skill) => (
+                      <li key={skill.name}>
+                        <img
+                          src={skill.img}
+                          alt={skill.name}
+                          width='40'
+                          height='40'
                         />
-                      ))}
-                    {errors.positionTagIds && (
-                      <S.ErrorMessage>
-                        {errors.positionTagIds.message}
-                      </S.ErrorMessage>
+                        <span>{skill.name}</span>
+                      </li>
+                    )) || '스킬을 선택해주세요.'}
+                  </ul>
+                </S.BackgroundBox>
+              </S.Wrapper>
+              <S.Wrapper>
+                <label>포지션</label>
+                <S.BackgroundWrapper>
+                  <div>
+                    {myData.positions
+                      .sort()
+                      .map((position) => <span>{position.name}</span>) ||
+                      '포지션을 선택해주세요.'}
+                  </div>
+                </S.BackgroundWrapper>
+              </S.Wrapper>
+              <S.Wrapper>
+                <label>깃허브</label>
+                <S.BackgroundWrapper>
+                  <span>{myData.github || '깃허브 링크를 올려보세요.'}</span>
+                </S.BackgroundWrapper>
+              </S.Wrapper>
+              <S.List>
+                <label>경&nbsp;&nbsp;&nbsp;력</label>
+                <S.BackgroundBox>
+                  <ul>
+                    {myData && !!myData.career?.length ? (
+                      myData.career?.map((career) => (
+                        <li key={`-${career.name}`}>
+                          <span>{career.name}</span> (
+                          {career.periodStart.slice(0, 10)} ~{' '}
+                          {career.periodEnd.slice(0, 10)}{' '}
+                          <span> - {career.role}</span>)
+                        </li>
+                      ))
+                    ) : (
+                      <li>경력으로 채워주세요.</li>
                     )}
-                  </S.EditList>
-                )}
-              />
-            </S.EditContainer>
-
-            {/* 깃허브 */}
-            <S.EditWrapper>
-              <label>깃허브</label>
-              <Controller
-                name='github'
-                control={control}
-                render={({ field }) => (
-                  <S.InputWrapper>
-                    <S.InputTextGithub>
-                      <InputText
-                        inputType='text'
-                        placeholder='깃허브 주소를 입력해주세요.'
-                        autoComplete='auto'
-                        {...field}
-                      />
-                    </S.InputTextGithub>
-                    {errors.github && (
-                      <S.ErrorMessage>{errors.github.message}</S.ErrorMessage>
-                    )}
-                  </S.InputWrapper>
-                )}
-              />
-            </S.EditWrapper>
-
-            {/* 경력 */}
-            <S.EditContainer>
-              <label>경&nbsp;&nbsp;&nbsp;력</label>
-              <S.EditList>
-                {fields.map((field, index) => (
-                  <S.CareerList key={field.id}>
-                    <Controller
-                      name={`career.${index}.name`}
-                      control={control}
-                      render={({ field }) => (
-                        <S.CareerWrapper>
-                          <S.InputTextCareer>
-                            <InputText
-                              inputType='text'
-                              placeholder='회사 이름'
-                              autoComplete='auto'
-                              {...field}
-                            />
-                          </S.InputTextCareer>
-                          {errors.career?.[index]?.name && (
-                            <S.ErrorCareerMessage>
-                              {errors.career[index]?.name?.message}
-                            </S.ErrorCareerMessage>
-                          )}
-                        </S.CareerWrapper>
-                      )}
-                    />
-                    <Controller
-                      name={`career.${index}.periodStart`}
-                      control={control}
-                      render={({ field }) => (
-                        <S.CareerWrapper>
-                          <S.InputTextCareer>
-                            <InputText
-                              inputType='date'
-                              placeholder='시작 날짜'
-                              autoComplete='auto'
-                              value={field.value || ''}
-                              onChange={(e) => field.onChange(e.target.value)}
-                            />
-                          </S.InputTextCareer>
-                          {errors.career?.[index]?.periodStart && (
-                            <S.ErrorCareerMessage>
-                              {errors.career[index]?.periodStart?.message}
-                            </S.ErrorCareerMessage>
-                          )}
-                        </S.CareerWrapper>
-                      )}
-                    />
-                    <Controller
-                      name={`career.${index}.periodEnd`}
-                      control={control}
-                      render={({ field }) => (
-                        <S.CareerWrapper>
-                          <S.InputTextCareer>
-                            <InputText
-                              inputType='date'
-                              placeholder='종료 날짜'
-                              autoComplete='auto'
-                              value={field.value || ''}
-                              onChange={(e) => field.onChange(e.target.value)}
-                            />
-                          </S.InputTextCareer>
-                          {errors.career?.[index]?.periodEnd && (
-                            <S.ErrorCareerMessage>
-                              {errors.career[index]?.periodEnd?.message}
-                            </S.ErrorCareerMessage>
-                          )}
-                        </S.CareerWrapper>
-                      )}
-                    />
-                    <Controller
-                      name={`career.${index}.role`}
-                      control={control}
-                      render={({ field }) => (
-                        <S.CareerWrapper>
-                          <S.CareerWrapper>
-                            <S.InputTextCareer>
-                              <InputText
-                                inputType='text'
-                                placeholder='역할'
-                                autoComplete='auto'
-                                {...field}
-                              />
-                            </S.InputTextCareer>
-                          </S.CareerWrapper>
-                          {errors.career?.[index]?.role && (
-                            <S.ErrorCareerMessage>
-                              {errors.career[index]?.role?.message}
-                            </S.ErrorCareerMessage>
-                          )}
-                        </S.CareerWrapper>
-                      )}
-                    />
-                    <S.CareerAddButton onClick={() => remove(index)}>
-                      <XMarkIcon width='16' height='16' />
-                    </S.CareerAddButton>
-                  </S.CareerList>
-                ))}
-              </S.EditList>
-              <button
-                type='button'
-                onClick={() =>
-                  append({ name: '', periodStart: '', periodEnd: '', role: '' })
-                }
-              >
-                <SquaresPlusIcon width='20' height='20' />
+                  </ul>
+                </S.BackgroundBox>
+              </S.List>
+              <S.List>
+                <label>소&nbsp;&nbsp;&nbsp;개</label>
+                <S.BackgroundBox>
+                  <S.Bio>{myData.bio || '내 소개를 해보세요.'}</S.Bio>
+                </S.BackgroundBox>
+              </S.List>
+              <Link to={ROUTES.changePw}>비밀번호 재설정</Link>
+              <button onClick={() => setIsEditing(true)}>
+                <PencilIcon />
               </button>
-              {errors.career && (
-                <S.ErrorMessage>{errors.career.message}</S.ErrorMessage>
-              )}
-            </S.EditContainer>
-
-            {/* 소개 */}
-            <S.EditContainer>
-              <label>소&nbsp;&nbsp;&nbsp;개</label>
-              <S.EditList>
+            </S.ProfileSection>
+          ) : (
+            <S.Form onSubmit={handleSubmit(onSubmit)}>
+              {/* 닉네임 */}
+              <S.EditWrapper>
+                <label>닉네임</label>
                 <Controller
-                  name='bio'
+                  name='nickname'
                   control={control}
                   render={({ field }) => (
-                    <TextareaAutosize
-                      {...field}
-                      placeholder='자신의 소개를 입력해주세요. 최대 10줄 입력 가능합니다.'
-                      minRows={3}
-                      maxRows={10}
-                      style={{
-                        width: '100%',
-                        padding: '0.5rem',
-                        fontSize: '0.9em',
-                        resize: 'none',
+                    <S.InputWrapper>
+                      <S.InputTextNickname>
+                        <InputText
+                          inputType='text'
+                          placeholder='닉네임'
+                          autoComplete='auto'
+                          {...field}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            field.onChange(e);
+                            setNickname(value);
+                          }}
+                        />
+                      </S.InputTextNickname>
+                      {errors.nickname && (
+                        <S.ErrorMessage>
+                          {errors.nickname.message}
+                        </S.ErrorMessage>
+                      )}
+                      {!errors.nickname && (
+                        <S.ErrorMessage>{nicknameMessage}</S.ErrorMessage>
+                      )}
+                      <Button
+                        size='primary'
+                        schema='primary'
+                        radius='large'
+                        type='button'
+                        onClick={() => {
+                          handleDuplicationNickname(nickname);
+                        }}
+                      >
+                        중복확인
+                      </Button>
+                    </S.InputWrapper>
+                  )}
+                />
+              </S.EditWrapper>
+              <S.EditWrapper>
+                <label>새싹여부</label>
+                <Controller
+                  name='beginner'
+                  control={control}
+                  render={({ field }) => (
+                    <S.InputBeginner
+                      type='checkbox'
+                      checked={field.value}
+                      name=''
+                      id=''
+                      onChange={(e) => {
+                        const checked = e.target.checked;
+                        field.onChange(checked);
                       }}
                     />
                   )}
                 />
-                {errors.bio && (
-                  <S.ErrorMessage>{errors.bio.message}</S.ErrorMessage>
+              </S.EditWrapper>
+
+              {/* 스킬셋 */}
+              <S.EditContainer>
+                <label>스킬셋</label>
+                <Controller
+                  name='skillTagIds'
+                  control={control}
+                  render={({ field }) => (
+                    <S.EditList>
+                      {skillTagsData
+                        .filter((skill) => skill.id !== 0)
+                        .map((skill) => (
+                          <OptionBox
+                            key={skill.id}
+                            id={skill.id}
+                            label={skill.name}
+                            type='checkbox'
+                            isSelected={field.value.includes(skill.id)}
+                            onChange={(id, isChecked) => {
+                              if (isChecked) {
+                                field.onChange([...field.value, id].sort());
+                              } else {
+                                field.onChange(
+                                  field.value.filter((value) => value !== id)
+                                );
+                              }
+                            }}
+                            imgSrc={skill.img}
+                          />
+                        ))}
+                      {errors.skillTagIds && (
+                        <S.ErrorMessage>
+                          {errors.skillTagIds.message}
+                        </S.ErrorMessage>
+                      )}
+                    </S.EditList>
+                  )}
+                />
+              </S.EditContainer>
+
+              {/* 포지션 */}
+              <S.EditContainer>
+                <label>포지션</label>
+                <Controller
+                  name='positionTagIds'
+                  control={control}
+                  render={({ field }) => (
+                    <S.EditList>
+                      {positionTagsData
+                        .filter((position) => position.name !== '전체')
+                        .map((position) => (
+                          <OptionBox
+                            key={position.id}
+                            id={position.id}
+                            label={position.name}
+                            type='checkbox'
+                            isSelected={field.value.includes(position.id)}
+                            onChange={(id, isChecked) => {
+                              if (isChecked) {
+                                field.onChange([...field.value, id].sort());
+                              } else {
+                                field.onChange(
+                                  field.value.filter((value) => value !== id)
+                                );
+                              }
+                            }}
+                          />
+                        ))}
+                      {errors.positionTagIds && (
+                        <S.ErrorMessage>
+                          {errors.positionTagIds.message}
+                        </S.ErrorMessage>
+                      )}
+                    </S.EditList>
+                  )}
+                />
+              </S.EditContainer>
+
+              {/* 깃허브 */}
+              <S.EditWrapper>
+                <label>깃허브</label>
+                <Controller
+                  name='github'
+                  control={control}
+                  render={({ field }) => (
+                    <S.InputWrapper>
+                      <S.InputTextGithub>
+                        <InputText
+                          inputType='text'
+                          placeholder='깃허브 주소를 입력해주세요.'
+                          autoComplete='auto'
+                          {...field}
+                        />
+                      </S.InputTextGithub>
+                      {errors.github && (
+                        <S.ErrorMessage>{errors.github.message}</S.ErrorMessage>
+                      )}
+                    </S.InputWrapper>
+                  )}
+                />
+              </S.EditWrapper>
+
+              {/* 경력 */}
+              <S.EditContainer>
+                <label>경&nbsp;&nbsp;&nbsp;력</label>
+                <S.EditList>
+                  {fields.map((field, index) => (
+                    <S.CareerList key={field.id}>
+                      <Controller
+                        name={`career.${index}.name`}
+                        control={control}
+                        render={({ field }) => (
+                          <S.CareerWrapper>
+                            <S.InputTextCareer>
+                              <InputText
+                                inputType='text'
+                                placeholder='회사 이름'
+                                autoComplete='auto'
+                                {...field}
+                              />
+                            </S.InputTextCareer>
+                            {errors.career?.[index]?.name && (
+                              <S.ErrorCareerMessage>
+                                {errors.career[index]?.name?.message}
+                              </S.ErrorCareerMessage>
+                            )}
+                          </S.CareerWrapper>
+                        )}
+                      />
+                      <Controller
+                        name={`career.${index}.periodStart`}
+                        control={control}
+                        render={({ field }) => (
+                          <S.CareerWrapper>
+                            <S.InputTextCareer>
+                              <InputText
+                                inputType='date'
+                                placeholder='시작 날짜'
+                                autoComplete='auto'
+                                value={field.value || ''}
+                                onChange={(e) => field.onChange(e.target.value)}
+                              />
+                            </S.InputTextCareer>
+                            {errors.career?.[index]?.periodStart && (
+                              <S.ErrorCareerMessage>
+                                {errors.career[index]?.periodStart?.message}
+                              </S.ErrorCareerMessage>
+                            )}
+                          </S.CareerWrapper>
+                        )}
+                      />
+                      <Controller
+                        name={`career.${index}.periodEnd`}
+                        control={control}
+                        render={({ field }) => (
+                          <S.CareerWrapper>
+                            <S.InputTextCareer>
+                              <InputText
+                                inputType='date'
+                                placeholder='종료 날짜'
+                                autoComplete='auto'
+                                value={field.value || ''}
+                                onChange={(e) => field.onChange(e.target.value)}
+                              />
+                            </S.InputTextCareer>
+                            {errors.career?.[index]?.periodEnd && (
+                              <S.ErrorCareerMessage>
+                                {errors.career[index]?.periodEnd?.message}
+                              </S.ErrorCareerMessage>
+                            )}
+                          </S.CareerWrapper>
+                        )}
+                      />
+                      <Controller
+                        name={`career.${index}.role`}
+                        control={control}
+                        render={({ field }) => (
+                          <S.CareerWrapper>
+                            <S.CareerWrapper>
+                              <S.InputTextCareer>
+                                <InputText
+                                  inputType='text'
+                                  placeholder='역할'
+                                  autoComplete='auto'
+                                  {...field}
+                                />
+                              </S.InputTextCareer>
+                            </S.CareerWrapper>
+                            {errors.career?.[index]?.role && (
+                              <S.ErrorCareerMessage>
+                                {errors.career[index]?.role?.message}
+                              </S.ErrorCareerMessage>
+                            )}
+                          </S.CareerWrapper>
+                        )}
+                      />
+                      <S.CareerWrapper>
+                        <S.XMarkButton onClick={() => remove(index)}>
+                          <XMarkIcon width='16' height='16' />
+                        </S.XMarkButton>
+                      </S.CareerWrapper>
+                    </S.CareerList>
+                  ))}
+                </S.EditList>
+                <S.CareerAddButton
+                  type='button'
+                  onClick={() =>
+                    append({
+                      name: '',
+                      periodStart: '',
+                      periodEnd: '',
+                      role: '',
+                    })
+                  }
+                >
+                  <SquaresPlusIcon width='20' height='20' />
+                </S.CareerAddButton>
+                {errors.career && (
+                  <S.ErrorMessage>{errors.career.message}</S.ErrorMessage>
                 )}
-              </S.EditList>
-            </S.EditContainer>
-            <S.Wrapper>
-              <Button
-                size='primary'
-                schema='primary'
-                radius='large'
-                type='submit'
-              >
-                확인
-              </Button>
-              <Button
-                size='primary'
-                schema='primary'
-                radius='large'
-                type='button'
-                onClick={() => setIsEditing(false)}
-              >
-                취소
-              </Button>
-            </S.Wrapper>
-          </S.Form>
-        )}
-      </S.Container>
+              </S.EditContainer>
+
+              {/* 소개 */}
+              <S.EditContainer>
+                <label>소&nbsp;&nbsp;&nbsp;개</label>
+                <S.EditList>
+                  <Controller
+                    name='bio'
+                    control={control}
+                    render={({ field }) => (
+                      <TextareaAutosize
+                        {...field}
+                        placeholder='자신의 소개를 입력해주세요. 최대 10줄 입력 가능합니다.'
+                        minRows={3}
+                        maxRows={10}
+                        style={{
+                          width: '100%',
+                          padding: '0.5rem',
+                          fontSize: '0.9em',
+                          resize: 'none',
+                        }}
+                      />
+                    )}
+                  />
+                  {errors.bio && (
+                    <S.ErrorMessage>{errors.bio.message}</S.ErrorMessage>
+                  )}
+                </S.EditList>
+              </S.EditContainer>
+              <S.Wrapper>
+                <Button
+                  size='primary'
+                  schema='primary'
+                  radius='large'
+                  type='submit'
+                >
+                  확인
+                </Button>
+                <Button
+                  size='primary'
+                  schema='primary'
+                  radius='large'
+                  type='button'
+                  onClick={() => setIsEditing(false)}
+                >
+                  취소
+                </Button>
+              </S.Wrapper>
+            </S.Form>
+          )}
+        </S.Container>
+      </S.ScrollWrapper>
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         {message}
       </Modal>

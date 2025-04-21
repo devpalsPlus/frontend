@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  background-color: rgb(246 246 246);
+  background-color: ${({ theme }) => theme.color.lightgrey};
   border-radius: ${({ theme }) => theme.borderRadius.large};
   padding: 2rem 3rem;
   margin: 1rem 0 3rem;

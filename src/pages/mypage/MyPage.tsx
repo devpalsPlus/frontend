@@ -5,6 +5,7 @@ import {
   UserIcon,
   DocumentTextIcon,
   PencilSquareIcon,
+  BellIcon,
 } from '@heroicons/react/24/outline';
 import { ROUTES } from '../../constants/routes';
 import { useMyProfileInfo } from '../../hooks/useMyInfo';
@@ -23,9 +24,19 @@ const MyPage = () => {
       icon: <DocumentTextIcon />,
     },
     {
+      label: '알림',
+      path: `${ROUTES.mypage}/${ROUTES.myPageNotifications}`,
+      icon: <BellIcon />,
+    },
+    {
+      label: '활동기록',
+      path: `${ROUTES.mypage}/${ROUTES.myPageActivityLog}`,
+      icon: <PencilSquareIcon />,
+    },
+    {
       label: '지원한 프로젝트 현황',
       path: `${ROUTES.mypage}/${ROUTES.mypageAppliedProjects}`,
-      icon: <PencilSquareIcon />,
+      icon: <BellIcon />,
     },
   ];
   const { myData, isLoading } = useMyProfileInfo();
@@ -38,9 +49,14 @@ const MyPage = () => {
         profileImage={isLoading ? loadingImg : myData?.profileImg}
       />
       <S.Wrapper>
-        <S.ScrollWrapper>
-          <Outlet />
-        </S.ScrollWrapper>
+        {/* <S.FilterWrapper $justifyContent={$justifyContent}>
+              {filter.map((filter) => (
+                <S.FilterTitle>{filter}</S.FilterTitle>
+              ))}
+            </S.FilterWrapper> */}
+        {/* <S.ScrollWrapper> */}
+        <Outlet />
+        {/* </S.ScrollWrapper> */}
       </S.Wrapper>
     </S.Container>
   );

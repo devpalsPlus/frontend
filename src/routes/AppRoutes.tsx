@@ -11,6 +11,8 @@ import useAuthStore from '../store/authStore';
 import ProtectRoute from '../components/common/ProtectRoute';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
+import ActivityLog from '../components/mypage/activityLog/ActivityLog';
+import Notifications from '../components/mypage/notifications/Notifications';
 const Login = lazy(() => import('../pages/login/Login'));
 const Register = lazy(() => import('../pages/register/Register'));
 const ChangePassword = lazy(
@@ -47,6 +49,12 @@ const MyProjectVolunteersPass = lazy(
 );
 const MyJoinProjects = lazy(
   () => import('../components/mypage/joinedProject/MyJoinProjects')
+);
+const MyNotifications = lazy(
+  () => import('../components/mypage/notifications/Notifications')
+);
+const MyActivityLog = lazy(
+  () => import('../components/mypage/activityLog/ActivityLog')
 );
 const UserProfile = lazy(
   () => import('../components/userPage/userProfile/UserProfile')
@@ -176,6 +184,14 @@ const AppRoutes = () => {
         {
           path: ROUTES.mypageJoinedProjects,
           element: <MyJoinProjects />,
+        },
+        {
+          path: ROUTES.myPageNotifications,
+          element: <MyNotifications />,
+        },
+        {
+          path: ROUTES.myPageActivityLog,
+          element: <MyActivityLog />,
         },
         {
           path: ROUTES.mypageAppliedProjects,

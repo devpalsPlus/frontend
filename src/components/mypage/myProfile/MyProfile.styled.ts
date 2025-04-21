@@ -1,18 +1,23 @@
 import styled from 'styled-components';
 
-export const TitleWrapper = styled.div`
-  padding: 1rem 0 1rem 1.2rem;
-`;
-
 export const Box = styled.div`
   position: relative;
 `;
 
+export const FilterWrapper = styled.div`
+  display: flex;
+  padding: 1rem 1.2rem;
+  justify-content: start;
+`;
+
+export const FilterTitle = styled.h1`
+  font-size: 1.5em;
+`;
+
 export const Container = styled.div`
-  background-color: rgb(246 246 246);
+  background-color: ${({ theme }) => theme.color.lightgrey};
   border-radius: ${({ theme }) => theme.borderRadius.large};
-  padding: 2.5rem 3rem;
-  margin-top: 1rem;
+  padding: 2rem;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 2rem;
@@ -311,19 +316,6 @@ export const EditContainer = styled.div`
       font-size: ${({ theme }) => theme.heading['semiSmall'].tabletFontSize};
     }
   }
-
-  button {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: #3e5879;
-    svg {
-      color: ${({ theme }) => theme.color.white};
-    }
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-  }
 `;
 
 export const EditList = styled.div`
@@ -340,42 +332,76 @@ export const EditList = styled.div`
 `;
 
 export const CareerList = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 0.2fr;
   align-items: center;
-  position: relative;
-  flex-wrap: wrap;
   width: 100%;
-  gap: 1rem;
-  background-color: rgba(237, 237, 237, 0.73);
+  gap: 0.5rem;
+  background-color: ${({ theme }) => theme.color.lightgrey};
   border-radius: 20px;
   padding: 0.5rem;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     gap: 0.4rem;
   }
-
-  button {
-    position: static;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    top: 0;
-    right: 0.5rem;
-  }
 `;
 
 export const CareerWrapper = styled.div`
-  flex: 1;
-  position: relative;
-
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     flex: auto;
   }
 `;
 
+export const XMarkButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #3e5879;
+  svg {
+    color: ${({ theme }) => theme.color.white};
+  }
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+`;
+
 export const CareerAddButton = styled.button`
-  /* display: flex; */
+  background-color: #3e5879;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -2rem;
+  right: 0;
+  svg {
+    color: ${({ theme }) => theme.color.white};
+  }
+`;
+
+export const ScrollWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  max-height: 60vh;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #3e5879;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(65, 100, 146);
+  }
 `;
