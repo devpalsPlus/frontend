@@ -2,8 +2,6 @@ import * as S from './LanguageComponent.styled';
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
 import SkillTagBox from '../../../common/skillTagBox/SkillTagBox';
 import { CreateProjectFormValues } from '../../../../models/createProject';
-import { useSaveSearchFiltering } from '../../../../hooks/useSaveSearchFiltering';
-import { useEffect } from 'react';
 import { Skill } from '../../../../models/projectDetail';
 import useTagSelectors from '../../../../hooks/ProjectHooks/useTagSelectors';
 

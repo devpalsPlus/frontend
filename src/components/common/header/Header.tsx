@@ -17,6 +17,7 @@ import bell from '../../../assets/bell.svg';
 import Notification from './Notification/Notification';
 import useNotification from '../../../hooks/useNotification';
 import bellLogined from '../../../assets/bellLogined.svg';
+import { getSendAlarm } from '../../../api/alarm.api';
 
 function Header() {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
@@ -24,6 +25,8 @@ function Header() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
   const { isSignal } = useNotification();
+
+  getSendAlarm();
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(

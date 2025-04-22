@@ -26,3 +26,7 @@ export const ProjectListKey = {
 export const ProjectCommandList = {
   projectCommand: ['projectCommand'],
 };
+
+export const AlarmList = {
+  myAlarmList: ['AlarmList'],
+};
