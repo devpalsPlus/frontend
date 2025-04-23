@@ -5,17 +5,15 @@ export const Container = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 20px;
-  margin-left: 110px;
+  padding-left: 110px;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
-  flex-grow: 1;
 `;
 
 export const CommandWrapper = styled.div`
   margin-top: 4px;
-  flex: 1;
 `;
 
 export const NickName = styled.p`
