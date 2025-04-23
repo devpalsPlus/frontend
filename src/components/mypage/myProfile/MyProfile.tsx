@@ -225,7 +225,7 @@ const MyProfile = () => {
                         </li>
                       ))
                     ) : (
-                      <li>경력으로 채워주세요.</li>
+                      <li>경력을 기록하세요.</li>
                     )}
                   </ul>
                 </S.BackgroundBox>
@@ -233,7 +233,7 @@ const MyProfile = () => {
               <S.List>
                 <label>소&nbsp;&nbsp;&nbsp;개</label>
                 <S.BackgroundBox>
-                  <S.Bio>{myData.bio || '내 소개를 해보세요.'}</S.Bio>
+                  <S.Bio>{myData.bio || '내 소개를 적어주세요.'}</S.Bio>
                 </S.BackgroundBox>
               </S.List>
               <Link to={ROUTES.changePw}>비밀번호 재설정</Link>

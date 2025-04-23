@@ -49,14 +49,7 @@ const MyPage = () => {
         profileImage={isLoading ? loadingImg : myData?.profileImg}
       />
       <S.Wrapper>
-        {/* <S.FilterWrapper $justifyContent={$justifyContent}>
-              {filter.map((filter) => (
-                <S.FilterTitle>{filter}</S.FilterTitle>
-              ))}
-            </S.FilterWrapper> */}
-        {/* <S.ScrollWrapper> */}
         <Outlet />
-        {/* </S.ScrollWrapper> */}
       </S.Wrapper>
     </S.Container>
   );

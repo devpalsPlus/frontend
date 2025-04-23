@@ -11,8 +11,6 @@ import useAuthStore from '../store/authStore';
 import ProtectRoute from '../components/common/ProtectRoute';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
-import ActivityLog from '../components/mypage/activityLog/ActivityLog';
-import Notifications from '../components/mypage/notifications/Notifications';
 const Login = lazy(() => import('../pages/login/Login'));
 const Register = lazy(() => import('../pages/register/Register'));
 const ChangePassword = lazy(
@@ -53,8 +51,34 @@ const MyJoinProjects = lazy(
 const MyNotifications = lazy(
   () => import('../components/mypage/notifications/Notifications')
 );
+const NotificationsAll = lazy(
+  () => import('../components/mypage/notifications/all/All')
+);
+const NotificationsAppliedProjects = lazy(
+  () =>
+    import('../components/mypage/notifications/appliedProjects/AppliedProjects')
+);
+const NotificationsCheckedApplicants = lazy(
+  () =>
+    import(
+      '../components/mypage/notifications/checkedApplicants/CheckedApplicants'
+    )
+);
+const NotificationsComments = lazy(
+  () =>
+    import(
+      '../components/mypage/notifications/commentsNotifications/CommentsNotifications'
+    )
+);
 const MyActivityLog = lazy(
   () => import('../components/mypage/activityLog/ActivityLog')
+);
+const ActivityLogComments = lazy(
+  () =>
+    import('../components/mypage/activityLog/commentsActivity/CommentsActivity')
+);
+const ActivityLogInquiries = lazy(
+  () => import('../components/mypage/activityLog/inquiries/Inquiries')
 );
 const UserProfile = lazy(
   () => import('../components/userPage/userProfile/UserProfile')
@@ -188,10 +212,33 @@ const AppRoutes = () => {
         {
           path: ROUTES.myPageNotifications,
           element: <MyNotifications />,
+          children: [
+            { index: true, element: <NotificationsAll /> },
+            {
+              path: ROUTES.notificationsAppliedProjects,
+              element: <NotificationsAppliedProjects />,
+            },
+            {
+              path: ROUTES.notificationsCheckedApplicants,
+              element: <NotificationsCheckedApplicants />,
+            },
+            {
+              path: ROUTES.comments,
+              element: <NotificationsComments />,
+            },
+          ],
         },
         {
           path: ROUTES.myPageActivityLog,
           element: <MyActivityLog />,
+          children: [
+            { index: true, element: <Navigate to={ROUTES.comments} replace /> },
+            { path: ROUTES.comments, element: <ActivityLogComments /> },
+            {
+              path: ROUTES.activityInquiries,
+              element: <ActivityLogInquiries />,
+            },
+          ],
         },
         {
           path: ROUTES.mypageAppliedProjects,

@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { useMyJoinedProjectList } from '../../../hooks/useMyInfo';
-import Title from '../../common/title/Title';
 import * as S from './MyJoinProjects.styled';
 import Project from './Project';
 import { ROUTES } from '../../../constants/routes';
@@ -17,17 +16,22 @@ const MyJoinProjects = () => {
 
   return (
     <>
-      <S.TitleWrapper>
-        <Title size='semiLarge'>참여한 프로젝트 리스트</Title>
-      </S.TitleWrapper>
+      <S.FilterWrapper>
+        <S.FilterTitle>참여한 프로젝트 리스트</S.FilterTitle>
+      </S.FilterWrapper>
       {myJoinedProjectListData && myJoinedProjectListData?.length > 0 ? (
-        <S.Container>
-          {myJoinedProjectListData?.map((project) => (
-            <Link key={project.id} to={`${ROUTES.projectDetail}/${project.id}`}>
-              <Project project={project} />
-            </Link>
-          ))}
-        </S.Container>
+        <S.ScrollWrapper>
+          <S.Container>
+            {myJoinedProjectListData?.map((project) => (
+              <Link
+                key={project.id}
+                to={`${ROUTES.projectDetail}/${project.id}`}
+              >
+                <Project project={project} />
+              </Link>
+            ))}
+          </S.Container>
+        </S.ScrollWrapper>
       ) : (
         <S.NoWrapper>
           <NoContent type='projects' />

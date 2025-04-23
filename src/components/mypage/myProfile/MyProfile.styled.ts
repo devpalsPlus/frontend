@@ -16,7 +16,8 @@ export const FilterTitle = styled.h1`
 
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.color.lightgrey};
-  border-radius: ${({ theme }) => theme.borderRadius.large};
+  border-radius: ${({ theme }) =>
+    `${theme.borderRadius.large} 0 0 ${theme.borderRadius.large}`};
   padding: 2rem;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
