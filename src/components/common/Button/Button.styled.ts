@@ -18,4 +18,8 @@ export const CommonButton = styled.button<Omit<ButtonProps, 'children'>>`
     opacity: 0.9;
     background-color: ${({ theme }) => theme.color.grey};
   }
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
