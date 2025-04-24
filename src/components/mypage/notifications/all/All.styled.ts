@@ -1,3 +1,11 @@
 import styled from 'styled-components';
 
-export const container = styled.div``;
+export const container = styled.section`
+  height: 100%;
+`;
+
+export const WrapperNoContent = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;

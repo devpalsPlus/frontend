@@ -220,11 +220,11 @@ const AppRoutes = () => {
             },
             {
               path: ROUTES.notificationsCheckedApplicants,
-              element: <NotificationsCheckedApplicants />,
+              element: <NotificationsAll />,
             },
             {
               path: ROUTES.comments,
-              element: <NotificationsComments />,
+              element: <NotificationsAll />,
             },
           ],
         },
