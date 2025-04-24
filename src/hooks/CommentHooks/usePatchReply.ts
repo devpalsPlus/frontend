@@ -13,7 +13,7 @@ const usePatchReply = (
     mutationFn: (content: string) => putReply(recommentId, content),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [ProjectReplyList.commandReply, commentId, projectId],
+        queryKey: [ProjectReplyList.commentReply, commentId, projectId],
         exact: true,
       });
     },

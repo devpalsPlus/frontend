@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div``;
 
-export const CommandContainer = styled.div`
+export const CommentContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -19,7 +19,7 @@ export const ReplyContent = styled.p`
   margin-bottom: 30px;
 `;
 
-export const CommandInput = styled.div`
+export const CommentInput = styled.div`
   text-indent: 20px;
 `;
 

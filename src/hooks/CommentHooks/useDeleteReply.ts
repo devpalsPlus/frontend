@@ -10,7 +10,7 @@ const useDeleteReply = (commentId: number, projectId: number) => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [ProjectReplyList.commandReply, commentId, projectId],
+        queryKey: [ProjectReplyList.commentReply, commentId, projectId],
         exact: true,
       });
     },

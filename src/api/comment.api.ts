@@ -1,7 +1,7 @@
-import { CommandType } from '../models/command';
+import { CommentType } from '../models/comment';
 import { httpClient } from './http.api';
 
-export const postCommand = async (id: number, content: string) => {
+export const postComment = async (id: number, content: string) => {
   try {
     const response = await httpClient.post(`/project/${id}/comment`, {
       content: content,
@@ -16,7 +16,7 @@ export const postCommand = async (id: number, content: string) => {
   }
 };
 
-export const getCommand = async (id: number): Promise<CommandType[]> => {
+export const getComment = async (id: number): Promise<CommentType[]> => {
   try {
     const response = await httpClient.get(`/project/${id}/comment`);
     return response.data.data;
@@ -26,10 +26,10 @@ export const getCommand = async (id: number): Promise<CommandType[]> => {
   }
 };
 
-export const deleteCommand = async (id: number, commandId: number) => {
+export const deleteComment = async (id: number, commentId: number) => {
   try {
     const response = await httpClient.delete(
-      `/project/${id}/comment/${commandId}`
+      `/project/${id}/comment/${commentId}`
     );
     return response;
   } catch (error) {
@@ -38,14 +38,14 @@ export const deleteCommand = async (id: number, commandId: number) => {
   }
 };
 
-export const patchCommand = async (
+export const patchComment = async (
   id: number,
-  commandId: number,
+  commentId: number,
   content: string
 ) => {
   try {
     const response = await httpClient.patch(
-      `/project/${id}/comment/${commandId}?content=${content}`
+      `/project/${id}/comment/${commentId}?content=${content}`
     );
     return response.status;
   } catch (error) {

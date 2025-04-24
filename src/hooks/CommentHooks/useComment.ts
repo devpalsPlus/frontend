@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useCommand = () => {
+const useComment = () => {
   const [activateId, setActivateId] = useState<number | null>(null);
   const [activateEditMode, setActivateEditMode] = useState<number | null>(null);
   const [onReplyMessage, setOnReplyMessage] = useState<boolean>(false);
@@ -45,4 +45,4 @@ const useCommand = () => {
   };
 };
 
-export default useCommand;
+export default useComment;

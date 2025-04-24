@@ -4,7 +4,7 @@ import { getReply } from '../../api/reply.api';
 
 const useGetReply = (projectId: number, commentId: number) => {
   const { data, isLoading, isFetching, isError } = useQuery({
-    queryKey: [ProjectReplyList.commandReply, commentId, projectId],
+    queryKey: [ProjectReplyList.commentReply, commentId, projectId],
     queryFn: () => getReply(projectId, commentId),
     staleTime: 1000 * 60 * 5,
   });

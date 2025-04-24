@@ -1,4 +1,4 @@
-import { ReplyType } from '../models/command';
+import { ReplyType } from '../models/comment';
 import { httpClient } from './http.api';
 
 export const getReply = async (

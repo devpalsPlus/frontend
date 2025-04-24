@@ -1,14 +1,14 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import * as S from './CommandComponent.styled';
+import { Dispatch, SetStateAction } from 'react';
+import * as S from './CommentComponent.styled';
 import Avatar from '../../../common/avatar/Avatar';
-import { CommandType } from '../../../../models/command';
+import { CommentType } from '../../../../models/comment';
 import chat from '../../../../assets/chat.svg';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
-import CommandInput from '../../commandInput/CommandInput';
+import CommentInput from '../../commentInput/CommentInput';
 
-interface CommandComponentProps {
-  item: CommandType;
+interface CommentComponentProps {
+  item: CommentType;
   index: number;
   activateEditMode: number | null;
   setActivateEditMode: Dispatch<SetStateAction<number | null>>;
@@ -25,7 +25,7 @@ interface CommandComponentProps {
   projectId: number;
 }
 
-const CommandComponent = ({
+const CommentComponent = ({
   item,
   index,
   activateEditMode,
@@ -36,25 +36,25 @@ const CommandComponent = ({
   activateId,
   onReplyMessage,
   projectId,
-}: CommandComponentProps) => {
+}: CommentComponentProps) => {
   return (
     <S.Container>
       <S.Wrapper key={index}>
         <Link to={`${ROUTES.userpage}/${item.user.id}`}>
           <Avatar size={'55px'} image={item.user.img} />
         </Link>
-        <S.CommandWrapper>
+        <S.CommentWrapper>
           <S.NickName>{item.user.nickname}</S.NickName>
           {activateEditMode === item.id ? (
-            <CommandInput
+            <CommentInput
               activateEditMode={activateEditMode}
-              command={item.content}
+              comment={item.content}
               projectId={projectId}
-              commandId={item.id}
+              commentId={item.id}
               setActivateEditMode={setActivateEditMode}
             />
           ) : (
-            <S.Command>{item.content}</S.Command>
+            <S.Comment>{item.content}</S.Comment>
           )}
 
           <S.ReplyInputButton
@@ -78,17 +78,17 @@ const CommandComponent = ({
 
           {activateId === item.id && !onReplyMessage && (
             <S.ReplyInput>
-              <CommandInput
+              <CommentInput
                 reply={true}
                 projectId={projectId}
-                commandId={item.id}
+                commentId={item.id}
               />
             </S.ReplyInput>
           )}
-        </S.CommandWrapper>
+        </S.CommentWrapper>
       </S.Wrapper>
     </S.Container>
   );
 };
 
-export default CommandComponent;
+export default CommentComponent;

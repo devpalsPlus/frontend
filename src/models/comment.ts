@@ -1,7 +1,7 @@
 import { ApiCommonType, User } from './apiCommon';
 
-export interface GetCommandType extends ApiCommonType {
-  data: CommandType[];
+export interface GetCommentType extends ApiCommonType {
+  data: CommentType[];
 }
 
 export interface ReplyType {
@@ -10,6 +10,6 @@ export interface ReplyType {
   user: User;
 }
 
-export interface CommandType extends ReplyType {
+export interface CommentType extends ReplyType {
   recommentCount: number;
 }

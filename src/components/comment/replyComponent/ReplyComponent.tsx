@@ -1,12 +1,12 @@
 import Avatar from '../../common/avatar/Avatar';
 import * as S from './ReplyComponent.styled';
 import DefaultImg from '../../../assets/defaultImg.png';
-import useCommand from '../../../hooks/CommandHooks/useCommand';
+import useComment from '../../../hooks/CommentHooks/useComment';
 import DropDown from '../../common/dropDown/DropDown';
 import DropDownItem from '../../common/dropDown/DropDownItem';
 import dropdownButton from '../../../assets/dropdownButton.svg';
-import CommandInput from '../commandInput/CommandInput';
-import useGetReply from '../../../hooks/CommandHooks/useGetReply';
+import CommentInput from '../commentInput/CommentInput';
+import useGetReply from '../../../hooks/CommentHooks/useGetReply';
 import LoadingSpinner from '../../common/loadingSpinner/LoadingSpinner';
 
 interface ReplyComponentProps {
@@ -21,7 +21,7 @@ const ReplyComponent = ({
   commentId,
 }: ReplyComponentProps) => {
   const { onEdit, setActivateEditMode, handleDropDownClick, activateEditMode } =
-    useCommand();
+    useComment();
 
   const { getReplyList, isLoading, isFetching } = useGetReply(
     projectId,
@@ -36,22 +36,22 @@ const ReplyComponent = ({
     <S.Container key={index}>
       <S.Wrapper>
         <Avatar size={'45px'} image={DefaultImg} />
-        <S.CommandWrapper>
+        <S.CommentWrapper>
           <S.NickName>{item.user.nickname}</S.NickName>
           {activateEditMode === item.id ? (
-            <CommandInput
+            <CommentInput
               activateEditMode={activateEditMode}
               recomment={item.content}
               projectId={projectId}
-              commandId={commentId}
+              commentId={commentId}
               recommentId={item.id}
               setActivateEditMode={setActivateEditMode}
               reply={true}
             />
           ) : (
-            <S.Command>{item.content}</S.Command>
+            <S.Comment>{item.content}</S.Comment>
           )}
-        </S.CommandWrapper>
+        </S.CommentWrapper>
       </S.Wrapper>
       <DropDown
         toggleButton={
@@ -60,11 +60,11 @@ const ReplyComponent = ({
       >
         <DropDownItem
           projectId={projectId}
-          commandId={commentId}
+          commentId={commentId}
           recommentId={item.id}
           onEdit={() => onEdit(item.id)}
           loginUserId={loginUserId}
-          commandUserId={item.user.id}
+          commentUserId={item.user.id}
           activateEditMode={activateEditMode}
           reply={true}
         />
