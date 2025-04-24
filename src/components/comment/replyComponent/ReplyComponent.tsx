@@ -8,6 +8,8 @@ import dropdownButton from '../../../assets/dropdownButton.svg';
 import CommentInput from '../commentInput/CommentInput';
 import useGetReply from '../../../hooks/CommentHooks/useGetReply';
 import LoadingSpinner from '../../common/loadingSpinner/LoadingSpinner';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../../constants/routes';
 
 interface ReplyComponentProps {
   projectId: number;
@@ -35,9 +37,26 @@ const ReplyComponent = ({
   return getReplyList?.map((item, index) => (
     <S.Container key={index}>
       <S.Wrapper>
-        <Avatar size={'45px'} image={DefaultImg} />
+        <Link
+          to={
+            item.user.id === loginUserId
+              ? `${ROUTES.mypage}`
+              : `${ROUTES.userpage}/${item.user.id}`
+          }
+        >
+          <Avatar size={'50px'} image={DefaultImg} />
+        </Link>
         <S.CommentWrapper>
-          <S.NickName>{item.user.nickname}</S.NickName>
+          <Link
+            to={
+              item.user.id === loginUserId
+                ? `${ROUTES.mypage}`
+                : `${ROUTES.userpage}/${item.user.id}`
+            }
+          >
+            <S.NickName>{item.user.nickname}</S.NickName>
+          </Link>
+
           {activateEditMode === item.id ? (
             <CommentInput
               activateEditMode={activateEditMode}

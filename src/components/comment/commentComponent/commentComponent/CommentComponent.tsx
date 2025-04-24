@@ -40,11 +40,26 @@ const CommentComponent = ({
   return (
     <S.Container>
       <S.Wrapper key={index}>
-        <Link to={`${ROUTES.userpage}/${item.user.id}`}>
+        <Link
+          to={
+            item.user.id === loginUserId
+              ? `${ROUTES.mypage}`
+              : `${ROUTES.userpage}/${item.user.id}`
+          }
+        >
           <Avatar size={'55px'} image={item.user.img} />
         </Link>
         <S.CommentWrapper>
-          <S.NickName>{item.user.nickname}</S.NickName>
+          <Link
+            to={
+              item.user.id === loginUserId
+                ? `${ROUTES.mypage}`
+                : `${ROUTES.userpage}/${item.user.id}`
+            }
+          >
+            <S.NickName>{item.user.nickname}</S.NickName>
+          </Link>
+
           {activateEditMode === item.id ? (
             <CommentInput
               activateEditMode={activateEditMode}
@@ -57,23 +72,22 @@ const CommentComponent = ({
             <S.Comment>{item.content}</S.Comment>
           )}
 
-          <S.ReplyInputButton
-            onClick={() =>
-              handleActivateClick(item.id, createrId, loginUserId, item.user.id)
-            }
-          >
-            <S.Icon>
-              <img src={chat} />
-            </S.Icon>
-            <S.ReplyContent>댓글 달기</S.ReplyContent>
-          </S.ReplyInputButton>
-
-          {activateId === item.id && onReplyMessage && (
-            <S.ErrorMessage>
-              <S.Message>
-                프로젝트 생성자와 댓글 작성자만 답글 작성이 가능합니다.
-              </S.Message>
-            </S.ErrorMessage>
+          {(loginUserId === item.user.id || createrId === loginUserId) && (
+            <S.ReplyInputButton
+              onClick={() =>
+                handleActivateClick(
+                  item.id,
+                  createrId,
+                  loginUserId,
+                  item.user.id
+                )
+              }
+            >
+              <S.Icon>
+                <img src={chat} />
+              </S.Icon>
+              <S.ReplyContent>댓글 달기</S.ReplyContent>
+            </S.ReplyInputButton>
           )}
 
           {activateId === item.id && !onReplyMessage && (
