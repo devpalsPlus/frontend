@@ -32,7 +32,7 @@ function Header() {
   return (
     <S.HeaderContainer>
       <Link to={ROUTES.main}>
-        <S.LogoImg src={Mainlogo} alt='logo' />
+        <S.LogoImg src={Mainlogo} alt='logo' aria-label='메인로고' />
       </Link>
       <S.Wrapper>
         <S.HeaderLinkContainer>
@@ -43,7 +43,7 @@ function Header() {
             <S.HeaderLink>공지사항</S.HeaderLink>
           </Link>
         </S.HeaderLinkContainer>
-        <S.Alarm>
+        <S.Alarm role='button' tabIndex={0} aria-label='알림 메세지'>
           {isLoggedIn ? (
             <DropDown toggleButton={<img src={bellLogined} />}>
               <Notification />
@@ -54,6 +54,7 @@ function Header() {
           )}
         </S.Alarm>
         <DropDown
+          aria-label='프로필 드롭다운'
           toggleButton={
             isLoading ? (
               <Avatar size='45px' image={loadingImg} />
@@ -77,17 +78,26 @@ function Header() {
                   <S.Item>문의하기</S.Item>
                 </Link>
                 <Link to='#' onClick={(e) => e.preventDefault()}>
-                  <S.Item onClick={userLogout}>로그아웃</S.Item>
+                  <S.Item
+                    aria-label='클릭시 로그아웃 됩니다.'
+                    onClick={userLogout}
+                  >
+                    로그아웃
+                  </S.Item>
                 </Link>
               </S.List>
             )}
             {!isLoggedIn && (
               <S.List>
                 <Link to={ROUTES.login}>
-                  <S.Item>로그인</S.Item>
+                  <S.Item aria-label='클릭시 로그인 화면으로 이동합니다.'>
+                    로그인
+                  </S.Item>
                 </Link>
                 <Link to={ROUTES.signup}>
-                  <S.Item>회원가입</S.Item>
+                  <S.Item aria-label='클릭시 회원가입 화면으로 이동합니다.'>
+                    회원가입
+                  </S.Item>
                 </Link>
               </S.List>
             )}
