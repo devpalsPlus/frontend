@@ -3,11 +3,11 @@ import {
   INQUIRY,
   PASSNONPASS,
 } from '../../../../../constants/commandConstants';
-import { AlarmAll } from '../../../../../models/alarm';
+import { Alarm } from '../../../../../models/alarm';
 import * as S from './NotificationItem.styled';
 
 interface NotificationItemProps {
-  item: AlarmAll;
+  item: Alarm;
 }
 
 const NotificationItem = ({ item }: NotificationItemProps) => {
