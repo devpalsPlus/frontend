@@ -4,9 +4,12 @@ export interface GetCommandType extends ApiCommonType {
   data: CommandType[];
 }
 
-export interface CommandType {
+export interface ReplyType {
   id: number;
   content: string;
   user: User;
+}
+
+export interface CommandType extends ReplyType {
   commentCount: number;
 }
