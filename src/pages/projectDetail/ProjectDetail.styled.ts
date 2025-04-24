@@ -4,7 +4,6 @@ import Button from '../../components/common/Button/Button';
 export const Container = styled.div`
   max-width: 100%;
   margin: 0 auto;
-  padding: 40px;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 25px;

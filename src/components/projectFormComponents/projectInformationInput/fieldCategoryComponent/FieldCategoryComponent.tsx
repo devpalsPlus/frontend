@@ -2,11 +2,9 @@ import * as S from './FieldCategoryComponent.styled';
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
 import { CreateProjectFormValues } from '../../../../models/createProject';
 import { MethodTag } from '../../../../models/tags';
-import { useEffect } from 'react';
+import useTagSelectors from '../../../../hooks/ProjectHooks/useTagSelectors';
 
 interface FieldCategoryComponentProps {
-  selectedMethod: number;
-  setSelectedMethod: React.Dispatch<React.SetStateAction<number>>;
   errors: FieldErrors;
   name: string;
   setValue: UseFormSetValue<CreateProjectFormValues>;
@@ -15,8 +13,6 @@ interface FieldCategoryComponentProps {
 }
 
 const FieldCategoryComponent = ({
-  selectedMethod,
-  setSelectedMethod,
   errors,
   name,
   setValue,
@@ -25,17 +21,11 @@ const FieldCategoryComponent = ({
 }: FieldCategoryComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
-  const handleClick = (idx: number) => {
-    setSelectedMethod(idx);
-    setValue('field', idx + 1);
-  };
-
-  useEffect(() => {
-    if (apiDataMethodId) {
-      setSelectedMethod(apiDataMethodId - 1);
-      setValue('field', apiDataMethodId);
-    }
-  }, [apiDataMethodId, setSelectedMethod, setValue]);
+  const { selectedTag, handleClick } = useTagSelectors({
+    apiTagData: apiDataMethodId,
+    setValue,
+    fieldName: 'field',
+  });
 
   return (
     <S.Container>
@@ -44,10 +34,10 @@ const FieldCategoryComponent = ({
           return (
             <S.CategoryItem
               key={idx}
-              isSelected={selectedMethod === idx}
-              onClick={() => handleClick(idx)}
+              isSelected={selectedTag[0] === idx}
+              onClick={(e) => handleClick(e, idx)}
             >
-              <S.NameSpan isSelected={selectedMethod === idx}>
+              <S.NameSpan isSelected={selectedTag[0] === idx}>
                 {data.name}
               </S.NameSpan>
             </S.CategoryItem>

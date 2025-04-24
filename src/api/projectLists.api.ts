@@ -11,7 +11,7 @@ export const getProjectLists = async (params: SearchFilters) => {
       params,
       paramsSerializer: { indexes: null },
     });
-
+    console.log(response);
     return response.data.data;
   } catch (e) {
     console.log('getProjectLists', e);

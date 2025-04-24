@@ -5,10 +5,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '../../components/projectFormComponents/inputComponent/InputComponent';
 import { CreateProjectFormValues, FormData } from '../../models/createProject';
 import ProjectInformationInput from '../../components/projectFormComponents/projectInformationInput/ProjectInformationInput';
-import { useState } from 'react';
 import Modal from '../../components/common/modal/Modal';
 import { useModal } from '../../hooks/useModal';
-
 import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
 import useAuthStore from '../../store/authStore';
 import useCreateProject from '../../hooks/ProjectHooks/useCreateProject';
@@ -77,11 +75,9 @@ const CreateProject = () => {
     },
   });
 
-  const [isSubmit, setIsSubmit] = useState(false);
   const { isOpen, message, handleModalClose, handleModalOpen } = useModal();
   const { createProject, isLoading } = useCreateProject({
     handleModalOpen,
-    setIsSubmit,
   });
   const userId = useAuthStore((state) => state.userData?.id);
   if (!userId) {
@@ -106,8 +102,6 @@ const CreateProject = () => {
       skillTagIds: data.languages,
       description: data.markdownEditor,
     };
-    console.log(formData);
-
     createProject(formData);
   };
 
@@ -157,8 +151,6 @@ const CreateProject = () => {
               errors={errors}
               control={control}
               setValue={setValue}
-              isSubmit={isSubmit}
-              setIsSubmit={setIsSubmit}
             />
           </S.SectionInput>
         </S.Section>

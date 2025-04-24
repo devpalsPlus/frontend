@@ -406,3 +406,57 @@ export const ScrollWrapper = styled.div`
     background: rgb(65, 100, 146);
   }
 `;
+
+export const LabelBox = styled.div`
+  display: flex;
+  overflow: visible;
+  position: relative;
+`;
+
+export const ChartBox = styled.div`
+  width: 250px;
+  height: 250px;
+`;
+
+export const TooltipContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  margin-left: 15px;
+`;
+
+export const ExplainBox = styled.div`
+  position: relative;
+  margin-left: 12px;
+`;
+
+export const TooltipBox = styled.div`
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(20%) translateY(50px);
+
+  width: 220px;
+  background-color: ${({ theme }) => theme.buttonScheme.primary.bg};
+  color: ${({ theme }) => theme.color.white};
+  font-size: 0.65rem;
+  padding: 0.6rem;
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
+
+  visibility: hidden;
+  z-index: 1000;
+
+  ${explainBox}:hover & {
+    visibility: visible;
+  }
+`;
+
+export const Explain = styled.p`
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: ${({ theme }) => theme.buttonScheme.primary.bg};
+  color: ${({ theme }) => theme.color.white};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
+  font-size: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+`;

@@ -7,7 +7,7 @@ export const applicantList = http.get(
   `${import.meta.env.VITE_API_BASE_URL}/project/:projectId/applicants`,
   () => {
     return HttpResponse.json(mockApplicantsData, {
-      status: 400,
+      status: 200,
     });
   }
 );
