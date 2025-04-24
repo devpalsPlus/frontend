@@ -10,6 +10,13 @@ export interface AlarmAll {
   user_id: number;
   content: string;
   enabled: boolean;
-  alramFilter: string;
+  alarmFilter: string;
   createdAt: number;
+}
+
+export interface AlarmLive {
+  routingId: number;
+  message: string;
+  AlarmFilterId: number;
+  createAt: string;
 }
