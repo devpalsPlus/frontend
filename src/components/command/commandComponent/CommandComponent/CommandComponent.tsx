@@ -15,7 +15,8 @@ interface CommandComponentProps {
   handleActivateClick: (
     id: number,
     createrId: number | undefined,
-    loginUserId: number | undefined
+    loginUserId: number | undefined,
+    commentUserId: number
   ) => void;
   createrId: number | undefined;
   loginUserId: number | undefined;
@@ -57,7 +58,9 @@ const CommandComponent = ({
           )}
 
           <S.ReplyInputButton
-            onClick={() => handleActivateClick(item.id, createrId, loginUserId)}
+            onClick={() =>
+              handleActivateClick(item.id, createrId, loginUserId, item.user.id)
+            }
           >
             <S.Icon>
               <img src={chat} />
@@ -67,20 +70,21 @@ const CommandComponent = ({
 
           {activateId === item.id && onReplyMessage && (
             <S.ErrorMessage>
-              <S.Message>프로젝트 생성자만 답글을 달 수 있습니다.</S.Message>
+              <S.Message>
+                프로젝트 생성자와 댓글 작성자만 답글 작성이 가능합니다.
+              </S.Message>
             </S.ErrorMessage>
           )}
 
-          {activateId === item.id &&
-            (createrId === loginUserId || item.user.id === loginUserId) && (
-              <S.ReplyInput>
-                <CommandInput
-                  reply={true}
-                  projectId={projectId}
-                  commandId={item.id}
-                />
-              </S.ReplyInput>
-            )}
+          {activateId === item.id && !onReplyMessage && (
+            <S.ReplyInput>
+              <CommandInput
+                reply={true}
+                projectId={projectId}
+                commandId={item.id}
+              />
+            </S.ReplyInput>
+          )}
         </S.CommandWrapper>
       </S.Wrapper>
     </S.Container>

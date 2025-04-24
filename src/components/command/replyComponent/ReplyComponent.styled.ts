@@ -10,9 +10,11 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   display: flex;
+  flex: 1;
 `;
 
 export const CommandWrapper = styled.div`
+  flex: 1;
   margin-top: 4px;
 `;
 

@@ -11,5 +11,5 @@ export interface ReplyType {
 }
 
 export interface CommandType extends ReplyType {
-  commentCount: number;
+  recommentCount: number;
 }

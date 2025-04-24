@@ -8,6 +8,8 @@ import useInputFocus from '../../../hooks/useInputFocus';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import usePostCommand from '../../../hooks/CommandHooks/usePostCommand';
 import usePutCommand from '../../../hooks/CommandHooks/usePutCommand';
+import usePostReply from '../../../hooks/CommandHooks/usePostReply';
+import usePatchReply from '../../../hooks/CommandHooks/usePatchReply';
 
 type FormValue = {
   commandInput: string;
@@ -18,7 +20,9 @@ interface CommandInputProps {
   reply?: boolean;
   activateEditMode?: number | null;
   command?: string;
+  recomment?: string;
   commandId: number;
+  recommentId?: number;
   setActivateEditMode?: Dispatch<SetStateAction<number | null>>;
 }
 
@@ -28,6 +32,8 @@ const CommandInput = ({
   activateEditMode,
   command,
   commandId,
+  recomment,
+  recommentId,
   setActivateEditMode,
 }: CommandInputProps) => {
   const { myData } = useMyProfileInfo();
@@ -41,6 +47,8 @@ const CommandInput = ({
   const { isFocused, handleFocus, handleClick } = useInputFocus();
   const { createCommand } = usePostCommand(projectId);
   const { changeCommand } = usePutCommand(projectId, commandId);
+  const { createReply } = usePostReply(projectId, commandId);
+  const { changeReply } = usePatchReply(recommentId, commandId, projectId);
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -51,12 +59,24 @@ const CommandInput = ({
   const hasInput = Boolean(watch('commandInput', ''));
 
   const handleSubmit = (data: { commandInput: string }) => {
-    // reply, edit-reply
-    if (activateEditMode) {
-      changeCommand(data.commandInput);
-      setActivateEditMode?.((prev) => (prev === commandId ? null : commandId));
+    if (reply) {
+      if (activateEditMode) {
+        changeReply(data.commandInput);
+        setActivateEditMode?.((prev) =>
+          prev === commandId ? null : commandId
+        );
+      } else {
+        createReply(data.commandInput);
+      }
     } else {
-      createCommand(data.commandInput);
+      if (activateEditMode) {
+        changeCommand(data.commandInput);
+        setActivateEditMode?.((prev) =>
+          prev === commandId ? null : commandId
+        );
+      } else {
+        createCommand(data.commandInput);
+      }
     }
 
     setValue('commandInput', '');
@@ -65,7 +85,8 @@ const CommandInput = ({
 
   useEffect(() => {
     if (command) setValue('commandInput', command);
-  }, [command, setValue]);
+    if (recomment) setValue('commandInput', recomment);
+  }, [command, recomment, setValue]);
 
   return (
     <S.InputContainer>

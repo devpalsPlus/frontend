@@ -10,16 +10,13 @@ const useCommand = () => {
   const handleActivateClick = (
     id: number,
     createrId: number | undefined,
-    loginUserId: number | undefined
+    loginUserId: number | undefined,
+    commentUserId: number
   ) => {
     setActivateId((prev) => (prev === id ? null : id));
 
-    if (createrId !== loginUserId) {
-      setOnReplyMessage(true);
-      setTimeout(() => {
-        setOnReplyMessage(false);
-      }, 2000);
-    }
+    const canReply = loginUserId === createrId || loginUserId === commentUserId;
+    setOnReplyMessage(!canReply);
   };
 
   const onEdit = (id: number) => {
