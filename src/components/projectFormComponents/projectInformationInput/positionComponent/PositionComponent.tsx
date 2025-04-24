@@ -1,22 +1,19 @@
-import React, { useEffect } from 'react';
 import * as S from './PositionComponent.styled';
-import { FieldErrors } from 'react-hook-form';
+import { FieldErrors, UseFormSetValue } from 'react-hook-form';
 import { PositionTag } from '../../../../models/tags';
 import { Position } from '../../../../models/projectDetail';
+import useTagSelectors from '../../../../hooks/ProjectHooks/useTagSelectors';
+import { CreateProjectFormValues } from '../../../../models/createProject';
 
 interface MozipCategoryComponentProps {
-  selectedMozip: number[];
-  setSelectedMozip: React.Dispatch<React.SetStateAction<number[]>>;
   errors: FieldErrors;
   name: string;
-  setValue: any;
+  setValue: UseFormSetValue<CreateProjectFormValues>;
   positionTagsData: PositionTag[];
   apiDataPosition: Position[] | undefined;
 }
 
 const MozipCategoryComponent = ({
-  selectedMozip,
-  setSelectedMozip,
   errors,
   name,
   setValue,
@@ -25,38 +22,22 @@ const MozipCategoryComponent = ({
 }: MozipCategoryComponentProps) => {
   const hasError = Boolean(errors?.[name]);
 
-  const handleClick = (idx: number) => {
-    setSelectedMozip((prev) => {
-      const isAlreadySelected = prev.some((item) => item === idx);
-
-      const updated = isAlreadySelected
-        ? prev.filter((item) => item !== idx)
-        : [...prev, idx];
-
-      setValue('position', updated);
-      return updated;
-    });
-  };
-
-  useEffect(() => {
-    const positionTagIdList: number[] = [];
-    apiDataPosition?.map((tag) => {
-      positionTagIdList.push(tag.id);
-    });
-    setSelectedMozip(positionTagIdList);
-    setValue('position', positionTagIdList);
-  }, [apiDataPosition]);
+  const { selectedTag, handleClick } = useTagSelectors({
+    apiTagData: apiDataPosition,
+    setValue,
+    fieldName: 'position',
+  });
 
   return (
     <S.Container>
       <S.CategoryContainer>
         {positionTagsData.map((position, idx) => {
-          const isSelected = selectedMozip.some((item) => item === idx + 1);
+          const isSelected = selectedTag.some((item) => item === idx + 1);
           return (
             <S.PositionButtonFeat
               position={position.name}
               isSelected={isSelected}
-              onClick={() => handleClick(idx + 1)}
+              onClick={(e) => handleClick(e, idx + 1)}
               key={idx + 1}
               isHover={true}
             />

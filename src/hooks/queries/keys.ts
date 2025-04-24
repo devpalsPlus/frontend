@@ -24,5 +24,17 @@ export const ProjectListKey = {
 } as const;
 
 export const ProjectCommandList = {
-  projectCommand: ['projectCommand'],
+  projectCommand: ['projectCommandList'],
+};
+
+export const AlarmList = {
+  myAlarmList: ['AlarmList'],
+};
+
+export const ProjectReplyList = {
+  commandReply: ['CommandReplyList'],
+};
+
+export const ChartDataList = {
+  chartData: ['ChartDataList'],
 };

@@ -27,6 +27,9 @@ import Modal from '../../common/modal/Modal';
 import { useModal } from '../../../hooks/useModal';
 import Spinner from '../Spinner';
 import NoMyInfo from './NoMyInfo';
+import 'chart.js/auto';
+import { Radar } from 'react-chartjs-2';
+import { ChartOptions } from 'chart.js';
 
 const profileSchema = z.object({
   nickname: z
@@ -70,6 +73,67 @@ const profileSchema = z.object({
 });
 
 type ProfileFormData = z.infer<typeof profileSchema>;
+
+const chartData = {
+  labels: ['책임감', '기획력', '협업능력', '성실도', '문제해결', '기술력'],
+  datasets: [
+    {
+      label: '팀 점수',
+      data: [6.6, 5.2, 9.1, 5.6, 5.5, 8.4],
+      backgroundColor: 'rgba(255, 108, 61, 0.2)',
+    },
+  ],
+};
+
+const chartOptions: ChartOptions<'radar'> & ChartOptions = {
+  elements: {
+    //데이터 속성.
+    line: {
+      borderWidth: 2,
+      borderColor: '#ff0000',
+    },
+    //데이터 꼭짓점.
+    // point: {
+    //   pointBackgroundColor: '#ff0000',
+    // },
+  },
+  scales: {
+    r: {
+      ticks: {
+        stepSize: 2.5,
+        display: false,
+      },
+      grid: {
+        color: '#ececec',
+      },
+      //라벨 속성 지정.
+      pointLabels: {
+        font: {
+          size: 12,
+          weight: 200,
+          family: 'Pretendard',
+        },
+        color: '#000000',
+      },
+      angleLines: {
+        display: false,
+      },
+      suggestedMin: 0,
+      suggestedMax: 10,
+    },
+  },
+  responsive: true,
+  //위에 생기는 데이터 속성 label 타이틀을 지워줍니다.
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+  //기본 값은 가운데에서 펴져나가는 애니메이션 형태입니다.
+  animation: {
+    duration: 0,
+  },
+};
 
 const MyProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -229,6 +293,25 @@ const MyProfile = () => {
               <label>소&nbsp;&nbsp;&nbsp;개</label>
               <S.BackgroundBox>
                 <S.Bio>{myData.bio}</S.Bio>
+              </S.BackgroundBox>
+            </S.List>
+            <S.List>
+              <S.LabelBox>
+                <label>평가도</label>
+                <S.explainBox>
+                  <S.explain>평가도란?</S.explain>
+                  <S.TooltipBox>
+                    평가도는 프로젝트 평가 단계에서 팀원들의 평가로 점수가
+                    부여됩니다.
+                    <br />
+                    공고자가 회원을 평가하는 지표로 활용될 수 있습니다.
+                  </S.TooltipBox>
+                </S.explainBox>
+              </S.LabelBox>
+              <S.BackgroundBox>
+                <S.ChartBox>
+                  <Radar data={chartData} options={chartOptions} />
+                </S.ChartBox>
               </S.BackgroundBox>
             </S.List>
             <Link to={ROUTES.changePw}>비밀번호 재설정</Link>
@@ -539,6 +622,7 @@ const MyProfile = () => {
                 )}
               </S.EditList>
             </S.EditContainer>
+
             <S.Wrapper>
               <Button
                 size='primary'

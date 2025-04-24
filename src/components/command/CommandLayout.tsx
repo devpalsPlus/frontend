@@ -1,9 +1,5 @@
-import { useState } from 'react';
 import * as S from './CommandLayout.styled';
-import CommandComponent from './commandComponent/CommandComponent';
-import { IoIosArrowDown } from 'react-icons/io';
-import { IoIosArrowUp } from 'react-icons/io';
-
+import CommandComponent from './commandComponent/CommandComponentLayout';
 import CommandInput from './commandInput/CommandInput';
 import useGetCommand from '../../hooks/CommandHooks/useGetCommand';
 import LoadingSpinner from '../common/loadingSpinner/LoadingSpinner';
@@ -19,14 +15,8 @@ const CommandLayout = ({
   createrId,
   loginUserId,
 }: CommandLayoutProps) => {
-  const [isShowReply, setIsShowReply] = useState<boolean>(false);
-
   const { getCommandList, isLoading, isFetching, isError } =
     useGetCommand(projectId);
-
-  const handleClick = () => {
-    setIsShowReply(!isShowReply);
-  };
 
   if (isLoading || isFetching) {
     return <LoadingSpinner />;
@@ -53,25 +43,7 @@ const CommandLayout = ({
           createrId={createrId}
           loginUserId={loginUserId}
         />
-        <S.ShowReply onClick={handleClick}>
-          <S.ShowReplyButton>
-            <S.Icon>
-              {isShowReply ? <IoIosArrowUp /> : <IoIosArrowDown />}
-            </S.Icon>
-            <S.Content>답글 확인하기</S.Content>
-          </S.ShowReplyButton>
-        </S.ShowReply>
       </S.CommandContainer>
-
-      {isShowReply && (
-        <S.ReplyContainer>
-          <CommandComponent
-            getCommandList={getCommandList}
-            reply={true}
-            projectId={projectId}
-          />
-        </S.ReplyContainer>
-      )}
     </S.Container>
   );
 };

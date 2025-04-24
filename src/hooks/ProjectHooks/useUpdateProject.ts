@@ -26,7 +26,7 @@ const useUpdateProject = ({ id, handleModalOpen }: UseUpdateProjectProps) => {
 
       setTimeout(() => {
         navigate(`${ROUTES.projectDetail}/${id}`);
-      }, 3000);
+      }, 2000);
     },
     onError: (error) => {
       handleModalOpen(MODAL_MESSAGE.ModifyProjectFail);
