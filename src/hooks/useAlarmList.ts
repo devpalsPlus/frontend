@@ -11,8 +11,9 @@ const useAlarmList = () => {
 
   const { data, isLoading, isFetching } = useQuery({
     queryKey: [AlarmList.myAlarmList, userId],
-    queryFn: async () => await getAlarmList(),
+    queryFn: () => getAlarmList(),
     staleTime: 1000 * 60 * 5,
+    enabled: !!userId,
   });
 
   return { data, isLoading, isFetching };

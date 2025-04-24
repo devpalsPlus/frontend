@@ -15,18 +15,20 @@ const useTagSelectors = ({
   setValue,
   fieldName,
 }: useTagSelectorsProps) => {
-  const [selectedTag, setsSelectedTag] = useState<number[]>([]);
+  const [selectedTag, setSelectedTag] = useState<number[]>([]);
 
   useEffect(() => {
     if (!apiTagData) return;
 
     if (Array.isArray(apiTagData)) {
       const ids = apiTagData.map((item) => item.id);
-      setsSelectedTag(ids);
+      setSelectedTag(ids);
       setValue(fieldName, ids);
     } else {
-      setsSelectedTag(apiTagData ? [apiTagData - 1] : []);
-      setValue(fieldName, apiTagData ?? null);
+      const id = typeof apiTagData === 'number' ? apiTagData : null;
+      if (id === null) return;
+      setSelectedTag(id ? [id - 1] : []);
+      setValue(fieldName, id);
     }
   }, [apiTagData, fieldName, setValue]);
 
@@ -41,7 +43,7 @@ const useTagSelectors = ({
       );
       if (!id) return;
 
-      setsSelectedTag((prev) => {
+      setSelectedTag((prev) => {
         const isAlreadySelected = prev.some((item) => item === id);
 
         const updated = isAlreadySelected
@@ -52,7 +54,7 @@ const useTagSelectors = ({
         return updated;
       });
     } else if (fieldName === 'position') {
-      setsSelectedTag((prev) => {
+      setSelectedTag((prev) => {
         const isAlreadySelected = prev.some((item) => item === idx);
 
         const updated = isAlreadySelected
@@ -63,7 +65,7 @@ const useTagSelectors = ({
         return updated;
       });
     } else {
-      setsSelectedTag([idx]);
+      setSelectedTag([idx]);
 
       setValue(fieldName, idx);
     }

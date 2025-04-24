@@ -37,7 +37,7 @@ const CommandComponentLayout = ({
   return (
     <>
       {getCommandList?.map((item, index) => (
-        <S.Container>
+        <S.Container key={index}>
           <S.CommandContainer>
             <CommandComponent
               item={item}
@@ -86,6 +86,7 @@ const CommandComponentLayout = ({
                   projectId={projectId}
                   createrId={createrId}
                   loginUserId={loginUserId}
+                  commentId={item.id}
                 />
               </S.ReplyContainer>
             )}

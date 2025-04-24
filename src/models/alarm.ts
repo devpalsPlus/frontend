@@ -1,7 +1,7 @@
 import { ApiCommonType } from './apiCommon';
 
 export interface AlarmList extends ApiCommonType {
-  data: AlarmAll[];
+  data: Alarm[];
 }
 
 export interface AlarmAll {
@@ -14,7 +14,7 @@ export interface AlarmAll {
   createdAt: number;
 }
 
-export interface AlarmLive {
+export interface Alarm {
   routingId: number;
   message: string;
   AlarmFilterId: number;
