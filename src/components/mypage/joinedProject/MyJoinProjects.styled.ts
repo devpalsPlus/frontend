@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const Container = styled.section`
+  width: 100%;
+  height: 85%;
+`;
+
 export const FilterWrapper = styled.div`
   display: flex;
   padding: 1rem 1.2rem;
@@ -26,19 +31,17 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export const Container = styled.div`
+export const WrapperProject = styled.div`
   background-color: ${({ theme }) => theme.color.lightgrey};
   border-radius: ${({ theme }) => theme.borderRadius.large};
   padding: 2rem;
-  /* margin: 1rem 0 3rem; */
-  width: 100%;
-
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 2rem;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
-    padding: 1rem 2rem;
+    padding: 1rem;
   }
 
   a {

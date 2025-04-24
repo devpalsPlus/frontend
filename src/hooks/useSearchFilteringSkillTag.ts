@@ -16,19 +16,19 @@ export const useSearchFilteringSkillTag = () => {
     queries: [
       {
         queryKey: ['skillTagsData', skillTagsData],
-        queryFn: async () => await getSkillTag(),
+        queryFn: () => getSkillTag(),
         staleTime: Infinity,
         gcTime: Infinity,
       },
       {
         queryKey: ['positionsData', positionTagsData],
-        queryFn: async () => await getPositionTag(),
+        queryFn: () => getPositionTag(),
         staleTime: Infinity,
         gcTime: Infinity,
       },
       {
         queryKey: ['fetchMethodTag', methodTagsData],
-        queryFn: async () => await getMethodTag(),
+        queryFn: () => getMethodTag(),
         staleTime: Infinity,
         gcTime: Infinity,
       },
