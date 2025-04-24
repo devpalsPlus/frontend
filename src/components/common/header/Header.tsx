@@ -15,18 +15,13 @@ import Modal from '../modal/Modal';
 import { formatImgPath } from '../../../util/formatImgPath';
 import bell from '../../../assets/bell.svg';
 import Notification from './Notification/Notification';
-import useNotification from '../../../hooks/useNotification';
 import bellLogined from '../../../assets/bellLogined.svg';
-import { getSendAlarm } from '../../../api/alarm.api';
 
 function Header() {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userLogout } = useAuth(handleModalOpen);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
-  const { isSignal } = useNotification();
-
-  getSendAlarm();
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -52,7 +47,7 @@ function Header() {
           {isLoggedIn ? (
             <DropDown toggleButton={<img src={bellLogined} />}>
               <Notification />
-              {isSignal && '가능'}
+              {/* {isSignal && '가능'} */}
             </DropDown>
           ) : (
             <img src={bell} />

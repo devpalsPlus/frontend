@@ -1,4 +1,3 @@
-import { getSendAlarm } from '../../../../api/alarm.api';
 import useAlarmList from '../../../../hooks/useAlarmList';
 import LoadingSpinner from '../../loadingSpinner/LoadingSpinner';
 import * as S from './Notification.styled';
@@ -8,7 +7,7 @@ const Notification = () => {
   const { data: AlarmData, isLoading, isFetching } = useAlarmList();
 
   if (!AlarmData) {
-    return '알림이 없습니다.';
+    return <S.Message>알림이 없습니다.</S.Message>;
   }
 
   if (isLoading || isFetching) {
