@@ -5,7 +5,7 @@ export const Container = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 20px;
-  padding-left: 110px;
+  padding-left: 85px;
 `;
 
 export const Wrapper = styled.div`
@@ -15,7 +15,6 @@ export const Wrapper = styled.div`
 
 export const CommentWrapper = styled.div`
   flex: 1;
-  margin-top: 4px;
 `;
 
 export const NickName = styled.p`

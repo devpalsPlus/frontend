@@ -10,7 +10,7 @@ export const CommentContainer = styled.div`
 `;
 
 export const Icon = styled.div`
-  margin-left: 11px;
+  margin-right: 8px;
 `;
 
 export const ReplyContainer = styled.div``;
@@ -24,7 +24,7 @@ export const CommentInput = styled.div`
 `;
 
 export const ShowReply = styled.div`
-  padding-left: 100px;
+  padding-left: 85px;
 `;
 
 export const ShowReplyButton = styled.span`
