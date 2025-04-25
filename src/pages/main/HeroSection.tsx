@@ -20,18 +20,34 @@ const HeroSection = ({ handleScrollToSection }: HeroSectionProps) => {
         </S.Title>
       </S.ImgWrapper>
       <S.ButtonWrapper>
-        <Link to={ROUTES.main}>
-          <Button size='primary' schema='primary' radius='large'>
+        <Link to={ROUTES.main} role='none'>
+          <Button
+            size='primary'
+            schema='primary'
+            radius='large'
+            aria-label='클릭시 프로젝트보기 페이지로 이동합니다.'
+          >
             프로젝트보기
           </Button>
         </Link>
-        <Link to={ROUTES.createProject}>
-          <Button size='primary' schema='primary' radius='large'>
+        <Link to={ROUTES.createProject} role='none'>
+          <Button
+            size='primary'
+            schema='primary'
+            radius='large'
+            aria-label='클릭시 팀원모집하기 페이지로 이동합니다.'
+          >
             팀원모집하기
           </Button>
         </Link>
       </S.ButtonWrapper>
-      <S.DownArrow src={DownArrow} onClick={() => handleScrollToSection(0)} />
+      <S.DownArrow
+        src={DownArrow}
+        onClick={() => handleScrollToSection(0)}
+        role='button'
+        tabIndex={0}
+        alt='아래로 스크롤하는 화살표 아이콘'
+      />
     </S.MainContainer>
   );
 };

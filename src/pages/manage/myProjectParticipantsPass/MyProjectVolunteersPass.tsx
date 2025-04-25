@@ -5,7 +5,7 @@ import { applicantsMenuItems } from '../../../constants/sidebarItems';
 import InfoCard from '../../../components/common/infoCard/InfoCard';
 import MainLogo from '../../../assets/mainlogo.svg';
 import { usePassNonPassList } from '../../../hooks/usePassNonPassList';
-import useGetProjectData from '../../../hooks/useJoinProject';
+import useGetProjectData from '../../../hooks/useGetProjectData';
 import ProjectHeader from '../../../components/manageProjects/ProjectHeader';
 import PassNonPassList from '../../../components/manageProjects/passNonPassList/PassNonPassList';
 import NoContent from '../../../components/common/noContent/NoContent';
