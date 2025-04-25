@@ -45,12 +45,12 @@ function Header() {
         </S.HeaderLinkContainer>
         <S.Alarm role='button' tabIndex={0} aria-label='알림 메세지'>
           {isLoggedIn ? (
-            <DropDown toggleButton={<img src={bellLogined} />}>
+            <DropDown toggleButton={<img src={bellLogined} alt='알림' />}>
               <Notification />
               {/* {isSignal && '가능'} */}
             </DropDown>
           ) : (
-            <img src={bell} />
+            <img src={bell} alt='알림' />
           )}
         </S.Alarm>
         <DropDown
