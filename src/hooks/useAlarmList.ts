@@ -6,14 +6,18 @@ import useAuthStore from '../store/authStore';
 const useAlarmList = () => {
   const userId = useAuthStore((state) => state.userData?.id);
 
-  const { data, isLoading, isFetching } = useQuery({
+  const {
+    data: alarmListData,
+    isLoading,
+    isFetching,
+  } = useQuery({
     queryKey: [AlarmList.myAlarmList, userId],
     queryFn: () => getAlarmList(),
     staleTime: 1000 * 60 * 5,
     enabled: !!userId,
   });
 
-  return { data, isLoading, isFetching };
+  return { alarmListData, isLoading, isFetching };
 };
 
 export default useAlarmList;

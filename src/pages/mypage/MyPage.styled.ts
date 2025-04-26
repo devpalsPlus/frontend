@@ -15,6 +15,16 @@ export const Wrapper = styled.div`
   padding: 2rem;
 `;
 
+// export const FilterWrapper = styled.div<{ $justifyContent: string }>`
+//   display: flex;
+//   padding: 1rem 1.2rem;
+//   justify-content: ${({ $justifyContent }) => $justifyContent};
+// `;
+
+// export const FilterTitle = styled.h1`
+//   font-size: 1.5em;
+// `;
+
 export const ScrollWrapper = styled.div`
   width: 100%;
   height: 100%;

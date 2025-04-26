@@ -16,7 +16,6 @@ import { formatImgPath } from '../../../util/formatImgPath';
 import bell from '../../../assets/bell.svg';
 import Notification from './Notification/Notification';
 import bellLogined from '../../../assets/bellLogined.svg';
-import useAlarmList from '../../../hooks/useAlarmList';
 import useNotification from '../../../hooks/useNotification';
 import Toast from '../Toast/Toast';
 import useToast from '../../../hooks/useToast';
@@ -26,7 +25,6 @@ function Header() {
   const { userLogout } = useAuth(handleModalOpen);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
-  const { data: AlarmData } = useAlarmList();
   const { isSignal } = useNotification();
   const { handleToastOpen, handleToastClose } = useToast();
 
@@ -39,7 +37,7 @@ function Header() {
   return (
     <S.HeaderContainer>
       <Link to={ROUTES.main}>
-        <S.LogoImg src={Mainlogo} alt='logo' />
+        <S.LogoImg src={Mainlogo} alt='logo' aria-label='메인로고' />
       </Link>
       <S.Wrapper>
         <S.HeaderLinkContainer>
@@ -50,16 +48,17 @@ function Header() {
             <S.HeaderLink>공지사항</S.HeaderLink>
           </Link>
         </S.HeaderLinkContainer>
-        <S.Alarm>
+        <S.Alarm role='button' tabIndex={0} aria-label='알림 메세지'>
           {isLoggedIn ? (
-            <DropDown toggleButton={<img src={bellLogined} />}>
-              <Notification alarmData={AlarmData} />
+            <DropDown toggleButton={<img src={bellLogined} alt='알림' />}>
+              <Notification />
             </DropDown>
           ) : (
-            <img src={bell} />
+            <img src={bell} alt='알림' />
           )}
         </S.Alarm>
         <DropDown
+          aria-label='프로필 드롭다운'
           toggleButton={
             isLoading ? (
               <Avatar size='45px' image={loadingImg} />
@@ -83,17 +82,26 @@ function Header() {
                   <S.Item>문의하기</S.Item>
                 </Link>
                 <Link to='#' onClick={(e) => e.preventDefault()}>
-                  <S.Item onClick={userLogout}>로그아웃</S.Item>
+                  <S.Item
+                    aria-label='클릭시 로그아웃 됩니다.'
+                    onClick={userLogout}
+                  >
+                    로그아웃
+                  </S.Item>
                 </Link>
               </S.List>
             )}
             {!isLoggedIn && (
               <S.List>
                 <Link to={ROUTES.login}>
-                  <S.Item>로그인</S.Item>
+                  <S.Item aria-label='클릭시 로그인 화면으로 이동합니다.'>
+                    로그인
+                  </S.Item>
                 </Link>
                 <Link to={ROUTES.signup}>
-                  <S.Item>회원가입</S.Item>
+                  <S.Item aria-label='클릭시 회원가입 화면으로 이동합니다.'>
+                    회원가입
+                  </S.Item>
                 </Link>
               </S.List>
             )}

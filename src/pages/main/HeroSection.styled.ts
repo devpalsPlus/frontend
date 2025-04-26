@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 export const Container = styled.div`
   max-width: ${({ theme }) => theme.layout.width.desktop};
 `;
-export const MainContainer = styled.div`
+export const MainContainer = styled.section`
   display: flex;
   width: 100%;
   height: 100vh;

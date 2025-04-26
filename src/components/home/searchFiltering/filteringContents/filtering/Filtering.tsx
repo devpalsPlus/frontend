@@ -18,8 +18,12 @@ export default function Filtering({ selects, defaultValue }: FilteringProps) {
   const [addAll, setAddAll] = useState<MethodTag[] | PositionTag[]>([]);
 
   useEffect(() => {
-    setAddAll([{ id: 0, name: '전체', createdAt: '' }, ...selects]);
-  }, [selects]);
+    if (defaultValue === SEARCH_FILTERING_DEFAULT_VALUE.METHOD) {
+      setAddAll([{ id: 0, name: '전체', createdAt: '' }, ...selects]);
+    } else {
+      setAddAll(selects);
+    }
+  }, [selects, defaultValue]);
 
   useEffect(() => {
     if (!selects.length) return;

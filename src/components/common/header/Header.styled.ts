@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.div`
+export const HeaderContainer = styled.header`
   width: 100%;
   margin: 0 auto;
   max-width: ${({ theme }) => theme.layout.width.desktop};
@@ -17,7 +17,7 @@ export const HeaderContainer = styled.div`
   }
 `;
 
-export const Wrapper = styled.nav`
+export const Wrapper = styled.div`
   display: flex;
 `;
 
@@ -45,9 +45,8 @@ export const LogoImg = styled.img`
 
 export const HeaderLinkContainer = styled.div`
   display: flex;
-  justify-center: center;
+  justify-content: center;
   align-items: center;
-  // item과 content의 차이가 뭘까?
 `;
 
 export const List = styled.ul`
@@ -82,7 +81,7 @@ export const List = styled.ul`
   }
 `;
 
-export const HeaderLink = styled.span`
+export const HeaderLink = styled.p`
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;

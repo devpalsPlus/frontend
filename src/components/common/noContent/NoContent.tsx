@@ -2,7 +2,13 @@ import * as S from './NoContent.styled';
 import { DocumentTextIcon } from '@heroicons/react/24/outline';
 
 interface NoContentProps {
-  type: 'projects' | 'applicants' | 'passNonPass';
+  type:
+    | 'projects'
+    | 'applicants'
+    | 'passNonPass'
+    | 'notification'
+    | 'comment'
+    | 'inquiries';
 }
 
 export default function NoContent({ type }: NoContentProps) {
@@ -10,6 +16,9 @@ export default function NoContent({ type }: NoContentProps) {
     projects: '공고가',
     applicants: '지원자가',
     passNonPass: '합/불합격자 리스트가',
+    notification: '알림이',
+    comment: '내 댓글이',
+    inquiries: '내 문의글이',
   };
 
   return (

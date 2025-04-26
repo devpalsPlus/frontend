@@ -1,14 +1,12 @@
 import React from 'react';
-import { Alarm } from '../../../../models/alarm';
 import * as S from './Notification.styled';
 import NotificationItem from './NotificationItem/NotificationItem';
+import useAlarmList from '../../../../hooks/useAlarmList';
 
-interface NotificationProps {
-  alarmData: Alarm[] | undefined;
-}
+const Notification = () => {
+  const { alarmListData: AlarmData, isLoading, isFetching } = useAlarmList();
 
-const Notification = ({ alarmData }: NotificationProps) => {
-  if (!alarmData) {
+  if (!AlarmData) {
     return (
       <S.Container>
         <S.Message>알림이 없습니다.</S.Message>;
@@ -18,10 +16,10 @@ const Notification = ({ alarmData }: NotificationProps) => {
 
   return (
     <S.Container>
-      {alarmData.map((item, index) => (
+      {AlarmData.map((item, index) => (
         <React.Fragment key={index}>
           <NotificationItem item={item} />
-          {index !== alarmData.length - 1 && <S.Line />}
+          {index !== AlarmData.length - 1 && <S.Line />}
         </React.Fragment>
       ))}
     </S.Container>
