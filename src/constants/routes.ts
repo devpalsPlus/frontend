@@ -24,4 +24,5 @@ export const ROUTES = {
   notFound: '/not-found',
   FAQ: '/faq',
   notice: '/notice',
+  inquiry: '/inquiry',
 } as const;

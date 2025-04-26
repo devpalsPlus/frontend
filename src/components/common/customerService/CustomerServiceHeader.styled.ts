@@ -24,7 +24,6 @@ export const WrapperNav = styled.nav`
 
 export const WrapperSearchBar = styled.form`
   display: flex;
-  justify-content: center;
   width: 50%;
   border: 1px solid ${({ theme }) => theme.color.navy};
   border-radius: ${({ theme }) => theme.borderRadius.large};
@@ -43,11 +42,21 @@ export const SearchButton = styled.button`
   }
 `;
 
-export const MoveInquiredButton = styled.button`
+export const MoveInquiredDiv = styled.div`
+  display: flex;
+  justify-content: center;
   font-size: 1rem;
   width: 6rem;
   background: ${({ theme }) => theme.color.navy};
   border-radius: ${({ theme }) => theme.borderRadius.large};
   color: ${({ theme }) => theme.color.white};
+  border: 1px solid ${({ theme }) => theme.color.navy};
   padding: 0.5em;
+
+  &:hover {
+    background: ${({ theme }) => theme.color.lightgrey};
+    color: ${({ theme }) => theme.color.navy};
+    border: 1px solid ${({ theme }) => theme.color.navy};
+    transition: all 0.3s ease-in-out;
+  }
 `;
