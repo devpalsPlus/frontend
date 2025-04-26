@@ -4,7 +4,7 @@ import * as S from './Notification.styled';
 import NotificationItem from './NotificationItem/NotificationItem';
 
 const Notification = () => {
-  const { data: AlarmData, isLoading, isFetching } = useAlarmList();
+  const { alarmListData: AlarmData, isLoading, isFetching } = useAlarmList();
 
   if (!AlarmData) {
     return <S.Message>알림이 없습니다.</S.Message>;

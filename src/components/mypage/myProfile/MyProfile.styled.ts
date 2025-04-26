@@ -445,7 +445,7 @@ export const TooltipBox = styled.div`
   visibility: hidden;
   z-index: 1000;
 
-  ${explainBox}:hover & {
+  ${ExplainBox}:hover & {
     visibility: visible;
   }
 `;

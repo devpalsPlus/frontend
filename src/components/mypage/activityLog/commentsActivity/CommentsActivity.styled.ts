@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const container = styled.section`
+export const container = styled.div`
   height: 100%;
 `;
 

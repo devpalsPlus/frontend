@@ -10,6 +10,7 @@ import {
 import { ROUTES } from '../../constants/routes';
 import { useMyProfileInfo } from '../../hooks/useMyInfo';
 import loadingImg from '../../assets/loadingImg.svg';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const MyPage = () => {
   const menuItems = [
@@ -33,11 +34,6 @@ const MyPage = () => {
       path: `${ROUTES.mypage}/${ROUTES.myPageActivityLog}`,
       icon: <PencilSquareIcon />,
     },
-    {
-      label: '지원한 프로젝트 현황',
-      path: `${ROUTES.mypage}/${ROUTES.mypageAppliedProjects}`,
-      icon: <BellIcon />,
-    },
   ];
   const { myData, isLoading } = useMyProfileInfo();
 
@@ -51,6 +47,7 @@ const MyPage = () => {
       <S.Wrapper>
         <Outlet />
       </S.Wrapper>
+      <ReactQueryDevtools initialIsOpen={true} />
     </S.Container>
   );
 };

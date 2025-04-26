@@ -264,8 +264,9 @@ const MyProfile = () => {
                   <div>
                     {myData.positions
                       .sort()
-                      .map((position) => <span>{position.name}</span>) ||
-                      '포지션을 선택해주세요.'}
+                      .map((position) => (
+                        <span key={position.name}>{position.name}</span>
+                      )) || '포지션을 선택해주세요.'}
                   </div>
                 </S.BackgroundWrapper>
               </S.Wrapper>
