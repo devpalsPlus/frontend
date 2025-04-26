@@ -1,27 +1,27 @@
-import * as S from './CommandComponentLayout.styled';
+import * as S from './CommentComponentLayout.styled';
 import DropDown from '../../common/dropDown/DropDown';
 import DropDownItem from '../../common/dropDown/DropDownItem';
-import { CommandType } from '../../../models/command';
+import { CommentType } from '../../../models/comment';
 import dropdownButton from '../../../assets/dropdownButton.svg';
-import useCommand from '../../../hooks/CommandHooks/useCommand';
+import useComment from '../../../hooks/CommentHooks/useComment';
 import ReplyComponent from '../replyComponent/ReplyComponent';
 import ArrowDown from '../../../assets/ArrowDown.svg';
 import ArrowUp from '../../../assets/ArrowUp.svg';
-import CommandComponent from './CommandComponent/CommandComponent';
+import CommentComponent from './commentComponent/CommentComponent';
 
-interface CommandLayoutProps {
+interface CommentLayoutProps {
   projectId: number;
-  getCommandList: CommandType[] | undefined;
+  getCommentList: CommentType[] | undefined;
   createrId?: number;
   loginUserId?: number | undefined;
 }
 
-const CommandComponentLayout = ({
+const CommentComponentLayout = ({
   projectId,
-  getCommandList,
+  getCommentList,
   createrId,
   loginUserId,
-}: CommandLayoutProps) => {
+}: CommentLayoutProps) => {
   const {
     activateId,
     activateEditMode,
@@ -32,14 +32,14 @@ const CommandComponentLayout = ({
     setActivateEditMode,
     handleActivateClick,
     onEdit,
-  } = useCommand();
+  } = useComment();
 
   return (
     <>
-      {getCommandList?.map((item, index) => (
-        <S.Container key={index}>
-          <S.CommandContainer>
-            <CommandComponent
+      {getCommentList?.map((item, index) => (
+        <S.Container key={item.id}>
+          <S.CommentContainer>
+            <CommentComponent
               item={item}
               activateEditMode={activateEditMode}
               activateId={activateId}
@@ -58,33 +58,37 @@ const CommandComponentLayout = ({
             >
               <DropDownItem
                 projectId={projectId}
-                commandId={item.id}
+                commentId={item.id}
                 onEdit={() => onEdit(item.id)}
                 loginUserId={loginUserId}
-                commandUserId={item.user.id}
+                commentUserId={item.user.id}
                 activateEditMode={activateEditMode}
               />
             </DropDown>
-          </S.CommandContainer>
+          </S.CommentContainer>
 
           <S.ReplyContainer>
-            <S.ShowReply onClick={() => handleShowReplyClick(item.id)}>
-              <S.ShowReplyButton>
-                <S.Icon>
-                  {isShowReply ? (
-                    <img src={ArrowUp} />
-                  ) : (
-                    <img src={ArrowDown} />
-                  )}
-                </S.Icon>
-                <S.ReplyContent>답글 확인하기</S.ReplyContent>
-              </S.ShowReplyButton>
-            </S.ShowReply>
+            {item.recommentCount !== 0 && (
+              <S.ShowReply onClick={() => handleShowReplyClick(item.id)}>
+                <S.ShowReplyButton>
+                  <S.Icon>
+                    {isShowReply ? (
+                      <img src={ArrowUp} />
+                    ) : (
+                      <img src={ArrowDown} />
+                    )}
+                  </S.Icon>
+                  <S.ReplyContent>
+                    {item.recommentCount}개 답글 확인
+                  </S.ReplyContent>
+                </S.ShowReplyButton>
+              </S.ShowReply>
+            )}
+
             {isShowReply === item.id && (
               <S.ReplyContainer>
                 <ReplyComponent
                   projectId={projectId}
-                  createrId={createrId}
                   loginUserId={loginUserId}
                   commentId={item.id}
                 />
@@ -97,4 +101,4 @@ const CommandComponentLayout = ({
   );
 };
 
-export default CommandComponentLayout;
+export default CommentComponentLayout;

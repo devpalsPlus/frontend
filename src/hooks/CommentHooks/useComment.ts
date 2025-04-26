@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useCommand = () => {
+const useComment = () => {
   const [activateId, setActivateId] = useState<number | null>(null);
   const [activateEditMode, setActivateEditMode] = useState<number | null>(null);
   const [onReplyMessage, setOnReplyMessage] = useState<boolean>(false);
@@ -10,16 +10,13 @@ const useCommand = () => {
   const handleActivateClick = (
     id: number,
     createrId: number | undefined,
-    loginUserId: number | undefined
+    loginUserId: number | undefined,
+    commentUserId: number
   ) => {
     setActivateId((prev) => (prev === id ? null : id));
 
-    if (createrId !== loginUserId) {
-      setOnReplyMessage(true);
-      setTimeout(() => {
-        setOnReplyMessage(false);
-      }, 2000);
-    }
+    const canReply = loginUserId === createrId || loginUserId === commentUserId;
+    setOnReplyMessage(!canReply);
   };
 
   const onEdit = (id: number) => {
@@ -48,4 +45,4 @@ const useCommand = () => {
   };
 };
 
-export default useCommand;
+export default useComment;

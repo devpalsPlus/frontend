@@ -11,7 +11,7 @@ import Modal from '../../components/common/modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import { MODAL_MESSAGE } from '../../constants/modalMessage';
 import { useEffect } from 'react';
-import CommandLayout from '../../components/command/CommandLayout';
+import CommentLayout from '../../components/comment/CommentLayout';
 import Avatar from '../../components/common/avatar/Avatar';
 import Button from '../../components/common/Button/Button';
 import useGetProjectData from '../../hooks/useGetProjectData';
@@ -94,7 +94,7 @@ const ProjectDetail = () => {
 
       <hr></hr>
 
-      <CommandLayout
+      <CommentLayout
         projectId={data.id}
         createrId={data.user.id}
         loginUserId={userData?.id}

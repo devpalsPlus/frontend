@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div``;
 
-export const CommandContainer = styled.div`
+export const CommentContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -10,21 +10,23 @@ export const CommandContainer = styled.div`
 `;
 
 export const Icon = styled.div`
-  margin-left: 11px;
+  margin-right: 8px;
 `;
 
-export const ReplyContainer = styled.div``;
+export const ReplyContainer = styled.div`
+  cursor: pointer;
+`;
 
 export const ReplyContent = styled.p`
   margin-bottom: 30px;
 `;
 
-export const CommandInput = styled.div`
+export const CommentInput = styled.div`
   text-indent: 20px;
 `;
 
 export const ShowReply = styled.div`
-  padding-left: 100px;
+  padding-left: 85px;
 `;
 
 export const ShowReplyButton = styled.span`

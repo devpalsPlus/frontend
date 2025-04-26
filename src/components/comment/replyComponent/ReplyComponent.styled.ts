@@ -5,15 +5,16 @@ export const Container = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 20px;
-  padding-left: 110px;
+  padding-left: 85px;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
+  flex: 1;
 `;
 
-export const CommandWrapper = styled.div`
-  margin-top: 4px;
+export const CommentWrapper = styled.div`
+  flex: 1;
 `;
 
 export const NickName = styled.p`
@@ -22,7 +23,7 @@ export const NickName = styled.p`
   margin-bottom: 3px;
 `;
 
-export const Command = styled.span`
+export const Comment = styled.span`
   margin-left: 11px;
 `;
 
@@ -45,7 +46,7 @@ export const ReplyContent = styled.p`
   margin-bottom: 10px;
 `;
 
-export const CommandInput = styled.div`
+export const CommentInput = styled.div`
   text-indent: 20px;
 `;
 
