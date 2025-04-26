@@ -225,10 +225,6 @@ const AppRoutes = () => {
             },
           ],
         },
-        {
-          path: ROUTES.mypageAppliedProjects,
-          element: <MyApplyProject />,
-        },
       ],
     },
     {
