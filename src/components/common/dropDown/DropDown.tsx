@@ -12,6 +12,7 @@ const DropDown = ({
   children,
   toggleButton,
   isOpen = false,
+  ...props
 }: DropDownProps) => {
   const [open, setOpen] = useState(isOpen);
   const dropdownRef = useOutsideClick(() => handleCloseModal());
@@ -21,7 +22,11 @@ const DropDown = ({
 
   return (
     <S.DropDownContainer ref={dropdownRef}>
-      <S.DropDownButtonWrapper onClick={() => setOpen(!open)}>
+      <S.DropDownButtonWrapper
+        onClick={() => setOpen(!open)}
+        tabIndex={0}
+        {...props}
+      >
         {toggleButton}
       </S.DropDownButtonWrapper>
       {open && <S.Panel>{children}</S.Panel>}

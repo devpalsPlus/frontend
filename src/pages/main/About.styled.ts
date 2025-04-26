@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{ $isVisible: boolean }>`
+export const Container = styled.section<{ $isVisible: boolean }>`
   width: 100%;
   height: 100vh;
   display: flex;

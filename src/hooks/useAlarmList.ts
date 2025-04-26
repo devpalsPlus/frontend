@@ -1,22 +1,23 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { AlarmList, userInfoKey } from './queries/keys';
+import { useQuery } from '@tanstack/react-query';
+import { AlarmList } from './queries/keys';
 import { getAlarmList } from '../api/alarm.api';
+import useAuthStore from '../store/authStore';
 
 const useAlarmList = () => {
-  const queryClient = useQueryClient();
-  const userInfo = queryClient.getQueryData(userInfoKey.userProfile) as
-    | { id: number }
-    | undefined;
-  const userId = userInfo?.id;
+  const userId = useAuthStore((state) => state.userData?.id);
 
-  const { data, isLoading, isFetching } = useQuery({
+  const {
+    data: alarmListData,
+    isLoading,
+    isFetching,
+  } = useQuery({
     queryKey: [AlarmList.myAlarmList, userId],
     queryFn: () => getAlarmList(),
     staleTime: 1000 * 60 * 5,
     enabled: !!userId,
   });
 
-  return { data, isLoading, isFetching };
+  return { alarmListData, isLoading, isFetching };
 };
 
 export default useAlarmList;

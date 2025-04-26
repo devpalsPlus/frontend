@@ -43,13 +43,13 @@ export const Status = styled.div<{ $isAccepted: boolean }>`
 
   font-size: 0.9rem;
   color: #fff;
+`;
 
-  span {
-    font-size: 0.8rem;
-    font-weight: 800;
+export const Span = styled.span`
+  font-size: 0.8rem;
+  font-weight: 800;
 
-    @media ${({ theme }) => theme.mediaQuery.tablet} {
-      font-size: 0.6rem;
-    }
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: 0.6rem;
   }
 `;
