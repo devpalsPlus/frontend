@@ -17,18 +17,23 @@ interface ContentProps {
 
 export default function ContentTab({ filter, $justifyContent }: ContentProps) {
   const { pathname } = useLocation();
-  const [filterId, setFilterId] = useState<number>(0);
+  const [filterId, setFilterId] = useState<number>();
 
   function handleChangeId(id: number) {
     setFilterId(id);
   }
 
   useEffect(() => {
-    if (pathname.includes(ROUTES.notificationsAppliedProjects)) {
+    if (
+      pathname.includes(ROUTES.notificationsAppliedProjects) ||
+      pathname.includes(ROUTES.activityInquiries)
+    ) {
       return setFilterId(1);
     } else if (pathname.includes(ROUTES.notificationsCheckedApplicants)) {
       return setFilterId(2);
-    } else if (pathname.includes(ROUTES.comments)) {
+    } else if (
+      pathname.includes(`${ROUTES.myPageNotifications}/${ROUTES.comments}`)
+    ) {
       return setFilterId(3);
     } else {
       return setFilterId(0);
