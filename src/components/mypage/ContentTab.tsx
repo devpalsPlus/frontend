@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './ContentTab.styled';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes';
@@ -22,6 +22,18 @@ export default function ContentTab({ filter, $justifyContent }: ContentProps) {
   function handleChangeId(id: number) {
     setFilterId(id);
   }
+
+  useEffect(() => {
+    if (pathname.includes(ROUTES.notificationsAppliedProjects)) {
+      return setFilterId(1);
+    } else if (pathname.includes(ROUTES.notificationsCheckedApplicants)) {
+      return setFilterId(2);
+    } else if (pathname.includes(ROUTES.comments)) {
+      return setFilterId(3);
+    } else {
+      return setFilterId(0);
+    }
+  }, [setFilterId, pathname]);
 
   return (
     <S.Container>
