@@ -15,6 +15,7 @@ export default function CardList({ list }: CardListProps) {
   const listSkillTag = list.skills.slice(0, 4);
   const othersPosition = list.positions.length - 2;
   const othersSkill = list.skills.length - 4;
+
   return (
     <S.Container>
       <S.Deadline>마감일: {formatDate(list.recruitmentEndDate)}</S.Deadline>

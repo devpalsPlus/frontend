@@ -35,9 +35,6 @@ const MyProjectList = lazy(
 const MyProfile = lazy(
   () => import('../components/mypage/myProfile/MyProfile')
 );
-const MyApplyProject = lazy(
-  () => import('../components/mypage/appliedProject/MyApplyProject')
-);
 const MyProjectVolunteer = lazy(
   () => import('../pages/manage/myProjectVolunteer/MyProjectVolunteer')
 );
@@ -47,6 +44,26 @@ const MyProjectVolunteersPass = lazy(
 );
 const MyJoinProjects = lazy(
   () => import('../components/mypage/joinedProject/MyJoinProjects')
+);
+const MyNotifications = lazy(
+  () => import('../components/mypage/notifications/Notifications')
+);
+const NotificationsAll = lazy(
+  () => import('../components/mypage/notifications/all/All')
+);
+const NotificationsAppliedProjects = lazy(
+  () =>
+    import('../components/mypage/notifications/appliedProjects/AppliedProjects')
+);
+const MyActivityLog = lazy(
+  () => import('../components/mypage/activityLog/ActivityLog')
+);
+const ActivityLogComments = lazy(
+  () =>
+    import('../components/mypage/activityLog/commentsActivity/CommentsActivity')
+);
+const ActivityLogInquiries = lazy(
+  () => import('../components/mypage/activityLog/inquiries/Inquiries')
 );
 const UserProfile = lazy(
   () => import('../components/userPage/userProfile/UserProfile')
@@ -178,8 +195,35 @@ const AppRoutes = () => {
           element: <MyJoinProjects />,
         },
         {
-          path: ROUTES.mypageAppliedProjects,
-          element: <MyApplyProject />,
+          path: ROUTES.myPageNotifications,
+          element: <MyNotifications />,
+          children: [
+            { index: true, element: <NotificationsAll /> },
+            {
+              path: ROUTES.notificationsAppliedProjects,
+              element: <NotificationsAppliedProjects />,
+            },
+            {
+              path: ROUTES.notificationsCheckedApplicants,
+              element: <NotificationsAll />,
+            },
+            {
+              path: ROUTES.comments,
+              element: <NotificationsAll />,
+            },
+          ],
+        },
+        {
+          path: ROUTES.myPageActivityLog,
+          element: <MyActivityLog />,
+          children: [
+            { index: true, element: <Navigate to={ROUTES.comments} replace /> },
+            { path: ROUTES.comments, element: <ActivityLogComments /> },
+            {
+              path: ROUTES.activityInquiries,
+              element: <ActivityLogInquiries />,
+            },
+          ],
         },
       ],
     },

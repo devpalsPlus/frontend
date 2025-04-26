@@ -7,7 +7,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   gap: 3rem;
   svg {
     width: 10rem;

@@ -5,10 +5,12 @@ import {
   UserIcon,
   DocumentTextIcon,
   PencilSquareIcon,
+  BellIcon,
 } from '@heroicons/react/24/outline';
 import { ROUTES } from '../../constants/routes';
 import { useMyProfileInfo } from '../../hooks/useMyInfo';
 import loadingImg from '../../assets/loadingImg.svg';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const MyPage = () => {
   const menuItems = [
@@ -23,8 +25,13 @@ const MyPage = () => {
       icon: <DocumentTextIcon />,
     },
     {
-      label: '지원한 프로젝트 현황',
-      path: `${ROUTES.mypage}/${ROUTES.mypageAppliedProjects}`,
+      label: '알림',
+      path: `${ROUTES.mypage}/${ROUTES.myPageNotifications}`,
+      icon: <BellIcon />,
+    },
+    {
+      label: '활동기록',
+      path: `${ROUTES.mypage}/${ROUTES.myPageActivityLog}`,
       icon: <PencilSquareIcon />,
     },
   ];
@@ -38,10 +45,9 @@ const MyPage = () => {
         profileImage={isLoading ? loadingImg : myData?.profileImg}
       />
       <S.Wrapper>
-        <S.ScrollWrapper>
-          <Outlet />
-        </S.ScrollWrapper>
+        <Outlet />
       </S.Wrapper>
+      <ReactQueryDevtools initialIsOpen={true} />
     </S.Container>
   );
 };
