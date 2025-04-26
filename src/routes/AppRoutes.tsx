@@ -35,9 +35,6 @@ const MyProjectList = lazy(
 const MyProfile = lazy(
   () => import('../components/mypage/myProfile/MyProfile')
 );
-const MyApplyProject = lazy(
-  () => import('../components/mypage/appliedProject/MyApplyProject')
-);
 const MyProjectVolunteer = lazy(
   () => import('../pages/manage/myProjectVolunteer/MyProjectVolunteer')
 );
@@ -57,18 +54,6 @@ const NotificationsAll = lazy(
 const NotificationsAppliedProjects = lazy(
   () =>
     import('../components/mypage/notifications/appliedProjects/AppliedProjects')
-);
-const NotificationsCheckedApplicants = lazy(
-  () =>
-    import(
-      '../components/mypage/notifications/checkedApplicants/CheckedApplicants'
-    )
-);
-const NotificationsComments = lazy(
-  () =>
-    import(
-      '../components/mypage/notifications/commentsNotifications/CommentsNotifications'
-    )
 );
 const MyActivityLog = lazy(
   () => import('../components/mypage/activityLog/ActivityLog')

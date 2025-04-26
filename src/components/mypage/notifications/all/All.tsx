@@ -20,14 +20,17 @@ export default function All() {
       case 2:
         return `/manage/${id}`;
       default:
-        return ``;
+        return `/mypage/notification`;
     }
   };
 
-  if (!alarmListData || (alarmListData && alarmListData?.length === 0))
-    <S.WrapperNoContent>
-      <NoContent type='notification' />
-    </S.WrapperNoContent>;
+  if (!alarmListData || (alarmListData && alarmListData?.length === 0)) {
+    return (
+      <S.WrapperNoContent>
+        <NoContent type='notification' />
+      </S.WrapperNoContent>
+    );
+  }
 
   return (
     <S.container>
@@ -39,9 +42,10 @@ export default function All() {
             } else if (list.alarmFilterId === filterId) {
               return true;
             }
+            return false;
           })
           .map((list) => (
-            <S.WrapperNotification $enabled={list.enabled} key={list.createAt}>
+            <S.WrapperNotification $enabled={list.enabled} key={list.id}>
               <Link
                 to={linkUrl(list.routingId, list.alarmFilterId)}
                 onClick={() => patchAlarm(list.id)}
