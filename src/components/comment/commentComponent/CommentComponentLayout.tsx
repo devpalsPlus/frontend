@@ -37,7 +37,7 @@ const CommentComponentLayout = ({
   return (
     <>
       {getCommentList?.map((item, index) => (
-        <S.Container key={index}>
+        <S.Container key={item.id}>
           <S.CommentContainer>
             <CommentComponent
               item={item}

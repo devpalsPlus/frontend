@@ -5,7 +5,7 @@ import { ProjectCommentList } from '../queries/keys';
 const useGetComment = (id: number) => {
   const { data, isLoading, isFetching, isError } = useQuery({
     queryKey: [ProjectCommentList.projectComment, id],
-    queryFn: async () => await getComment(id),
+    queryFn: () => getComment(id),
     staleTime: 1000 * 60 * 5,
   });
 

@@ -62,18 +62,14 @@ const CommentInput = ({
     if (reply) {
       if (activateEditMode) {
         changeReply(data.commentInput);
-        setActivateEditMode?.((prev) =>
-          prev === commentId ? null : commentId
-        );
+        setActivateEditMode?.(null);
       } else {
         createReply(data.commentInput);
       }
     } else {
       if (activateEditMode) {
         changeComment(data.commentInput);
-        setActivateEditMode?.((prev) =>
-          prev === commentId ? null : commentId
-        );
+        setActivateEditMode?.(null);
       } else {
         createComment(data.commentInput);
       }

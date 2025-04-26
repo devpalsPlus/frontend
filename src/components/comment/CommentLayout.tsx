@@ -24,12 +24,13 @@ const CommentLayout = ({
 
   if (isError) {
     console.error(isError);
+    return '댓글을 불러오는 중 오류가 발생했습니다. 다시 시도해 주세요.';
   }
 
   return (
     <S.Container>
       <S.CommentCountsContainer>
-        <S.Count>댓글 {getCommentList?.length}개</S.Count>
+        <S.Count>댓글 {getCommentList?.length || 0}개</S.Count>
       </S.CommentCountsContainer>
 
       <S.CommentInput>

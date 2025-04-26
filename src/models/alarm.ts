@@ -16,7 +16,7 @@ export interface AlarmAll {
 
 export interface Alarm {
   routingId: number;
-  message: string;
+  content: string;
   AlarmFilterId: number;
-  createAt: string;
+  createdAt: string;
 }

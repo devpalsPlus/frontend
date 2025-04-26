@@ -13,7 +13,9 @@ export const Icon = styled.div`
   margin-right: 8px;
 `;
 
-export const ReplyContainer = styled.div``;
+export const ReplyContainer = styled.div`
+  cursor: pointer;
+`;
 
 export const ReplyContent = styled.p`
   margin-bottom: 30px;

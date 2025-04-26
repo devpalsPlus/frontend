@@ -12,7 +12,7 @@ export const getReply = async (
     return response.data.data;
   } catch (error) {
     console.error(error);
-    throw ErrorEvent;
+    throw error;
   }
 };
 
@@ -43,6 +43,9 @@ export const putReply = async (
   recommentId: number | undefined,
   content: string
 ) => {
+  if (recommentId === undefined) {
+    throw new Error('recommentId가 필요합니다.');
+  }
   try {
     const response = await httpClient.patch(
       `/project/recomment/${recommentId}`,

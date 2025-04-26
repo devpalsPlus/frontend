@@ -30,7 +30,7 @@ const DropDownItem = ({
 
   const onDelete = (commentId: number, recommentId?: number) => {
     if (reply && recommentId) {
-      if (confirm('댓글을 완성히 삭제할까요?')) removeReply(recommentId);
+      if (confirm('답글을 완성히 삭제할까요?')) removeReply(recommentId);
     } else {
       if (confirm('댓글을 완성히 삭제할까요?')) removeComment(commentId);
     }

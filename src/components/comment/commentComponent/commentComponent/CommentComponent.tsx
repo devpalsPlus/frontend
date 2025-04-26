@@ -38,8 +38,8 @@ const CommentComponent = ({
   projectId,
 }: CommentComponentProps) => {
   return (
-    <S.Container>
-      <S.Wrapper key={index}>
+    <S.Container key={index}>
+      <S.Wrapper>
         <Link
           to={
             item.user.id === loginUserId

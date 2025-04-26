@@ -27,6 +27,7 @@ export const Comment = styled.span`
 export const ReplyInputButton = styled.div`
   display: flex;
   margin-top: 11px;
+  cursor: pointer;
 `;
 
 export const Icon = styled.div`
