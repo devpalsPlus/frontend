@@ -36,7 +36,7 @@ export const WrapperTitle = styled.div<{ $selected: boolean }>`
     content: '';
     position: absolute;
     left: 0;
-    bottom: 0.1em;
+    bottom: -0.2em;
     width: 100%;
     height: 3px;
     background: ${({ theme }) => theme.color.navy};
