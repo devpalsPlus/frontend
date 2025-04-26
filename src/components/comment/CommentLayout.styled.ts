@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div``;
 
-export const CommandCountsContainer = styled.div`
+export const CommentCountsContainer = styled.div`
   margin-bottom: 20px;
 `;
 
@@ -12,9 +12,9 @@ export const Count = styled.span`
   margin-top: 10px;
 `;
 
-export const CommandContainer = styled.div``;
+export const CommentContainer = styled.div``;
 
-export const CommandInput = styled.div`
+export const CommentInput = styled.div`
   margin-bottom: 60px;
 `;
 

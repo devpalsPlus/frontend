@@ -18,7 +18,7 @@ export interface Alarm {
   id: number;
   routingId: number;
   content: string;
-  alarmFilterId: number;
-  createAt: string;
+  AlarmFilterId: number;
+  createdAt: string;
   enabled: boolean;
 }

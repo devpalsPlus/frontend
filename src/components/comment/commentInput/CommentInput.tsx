@@ -1,35 +1,41 @@
-import * as S from './CommandInput.styled';
+import * as S from './CommentInput.styled';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useMyProfileInfo } from '../../../hooks/useMyInfo';
 import { formatImgPath } from '../../../util/formatImgPath';
 import DefaultImg from '../../../assets/defaultImg.png';
 import Avatar from '../../common/avatar/Avatar';
 import { useForm } from 'react-hook-form';
 import useInputFocus from '../../../hooks/useInputFocus';
-import { Dispatch, SetStateAction, useEffect } from 'react';
-import usePostCommand from '../../../hooks/CommandHooks/usePostCommand';
-import usePutCommand from '../../../hooks/CommandHooks/usePutCommand';
+import usePostReply from '../../../hooks/CommentHooks/usePostReply';
+import usePatchReply from '../../../hooks/CommentHooks/usePatchReply';
+import usePostComment from '../../../hooks/CommentHooks/usePostComment';
+import usePutComment from '../../../hooks/CommentHooks/usePutComment';
 
 type FormValue = {
-  commandInput: string;
+  commentInput: string;
 };
 
-interface CommandInputProps {
+interface CommentInputProps {
   projectId: number;
   reply?: boolean;
   activateEditMode?: number | null;
-  command?: string;
-  commandId: number;
+  comment?: string;
+  recomment?: string;
+  commentId: number;
+  recommentId?: number;
   setActivateEditMode?: Dispatch<SetStateAction<number | null>>;
 }
 
-const CommandInput = ({
+const CommentInput = ({
   projectId,
   reply,
   activateEditMode,
-  command,
-  commandId,
+  comment,
+  commentId,
+  recomment,
+  recommentId,
   setActivateEditMode,
-}: CommandInputProps) => {
+}: CommentInputProps) => {
   const { myData } = useMyProfileInfo();
   const {
     handleSubmit: onSubmitHandler,
@@ -39,8 +45,10 @@ const CommandInput = ({
   } = useForm<FormValue>();
 
   const { isFocused, handleFocus, handleClick } = useInputFocus();
-  const { createCommand } = usePostCommand(projectId);
-  const { changeCommand } = usePutCommand(projectId, commandId);
+  const { createComment } = usePostComment(projectId);
+  const { changeComment } = usePutComment(projectId, commentId);
+  const { createReply } = usePostReply(projectId, commentId);
+  const { changeReply } = usePatchReply(recommentId, commentId, projectId);
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -48,24 +56,33 @@ const CommandInput = ({
       )}?w=86&h=86&fit=crop&crop=entropy&auto=format,enhance&q=60`
     : DefaultImg;
 
-  const hasInput = Boolean(watch('commandInput', ''));
+  const hasInput = Boolean(watch('commentInput', ''));
 
-  const handleSubmit = (data: { commandInput: string }) => {
-    // reply, edit-reply
-    if (activateEditMode) {
-      changeCommand(data.commandInput);
-      setActivateEditMode?.((prev) => (prev === commandId ? null : commandId));
+  const handleSubmit = (data: { commentInput: string }) => {
+    if (reply) {
+      if (activateEditMode) {
+        changeReply(data.commentInput);
+        setActivateEditMode?.(null);
+      } else {
+        createReply(data.commentInput);
+      }
     } else {
-      createCommand(data.commandInput);
+      if (activateEditMode) {
+        changeComment(data.commentInput);
+        setActivateEditMode?.(null);
+      } else {
+        createComment(data.commentInput);
+      }
     }
 
-    setValue('commandInput', '');
+    setValue('commentInput', '');
     handleClick();
   };
 
   useEffect(() => {
-    if (command) setValue('commandInput', command);
-  }, [command, setValue]);
+    if (comment) setValue('commentInput', comment);
+    if (recomment) setValue('commentInput', recomment);
+  }, [comment, recomment, setValue]);
 
   return (
     <S.InputContainer>
@@ -77,7 +94,7 @@ const CommandInput = ({
           }
         >
           <S.Input
-            {...register('commandInput')}
+            {...register('commentInput')}
             type='text'
             placeholder='댓글을 입력하세요'
             onFocus={handleFocus}
@@ -109,4 +126,4 @@ const CommandInput = ({
   );
 };
 
-export default CommandInput;
+export default CommentInput;

@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   flex-grow: 1;
 `;
 
-export const CommandWrapper = styled.div`
+export const CommentWrapper = styled.div`
   margin-top: 4px;
   flex: 1;
 `;
@@ -20,13 +20,14 @@ export const NickName = styled.p`
   margin-bottom: 3px;
 `;
 
-export const Command = styled.span`
+export const Comment = styled.span`
   margin-left: 11px;
 `;
 
 export const ReplyInputButton = styled.div`
   display: flex;
   margin-top: 11px;
+  cursor: pointer;
 `;
 
 export const Icon = styled.div`

@@ -36,7 +36,7 @@ const useUpdateProject = ({ id, handleModalOpen }: UseUpdateProjectProps) => {
 
   const updateProject = async (formData: FormData) => {
     try {
-      await mutation.mutateAsync(formData);
+      mutation.mutateAsync(formData);
     } catch (error) {
       console.error(error);
       throw error;

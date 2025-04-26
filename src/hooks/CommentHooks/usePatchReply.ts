@@ -1,15 +1,19 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postCommand } from '../../api/command.api';
-import { ProjectCommandList } from '../queries/keys';
+import { putReply } from '../../api/reply.api';
+import { ProjectReplyList } from '../queries/keys';
 
-const usePostCommand = (id: number) => {
+const usePatchReply = (
+  recommentId: number | undefined,
+  commentId: number,
+  projectId: number
+) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: (content: string) => postCommand(id, content),
+    mutationFn: (content: string) => putReply(recommentId, content),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [ProjectCommandList.projectCommand, id],
+        queryKey: [ProjectReplyList.commentReply, commentId, projectId],
         exact: true,
       });
     },
@@ -18,12 +22,12 @@ const usePostCommand = (id: number) => {
     },
   });
 
-  const createCommand = async (content: string) => {
+  const changeReply = async (content: string) => {
     mutation.mutate(content);
   };
 
   return {
-    createCommand,
+    changeReply,
     isLoading: mutation.isPending,
     isError: mutation.isError,
     error: mutation.error,
@@ -31,4 +35,4 @@ const usePostCommand = (id: number) => {
   };
 };
 
-export default usePostCommand;
+export default usePatchReply;

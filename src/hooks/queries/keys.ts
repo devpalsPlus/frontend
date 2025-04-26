@@ -23,8 +23,8 @@ export const ProjectListKey = {
   myAppliedStatusList: ['myAppliedProjectStatusList'],
 } as const;
 
-export const ProjectCommandList = {
-  projectCommand: ['projectCommandList'],
+export const ProjectCommentList = {
+  projectComment: ['projectCommentList'],
 };
 
 export const AlarmList = {
@@ -32,7 +32,7 @@ export const AlarmList = {
 };
 
 export const ProjectReplyList = {
-  commandReply: ['CommandReplyList'],
+  commentReply: ['CommentReplyList'],
 };
 
 export const ChartDataList = {
