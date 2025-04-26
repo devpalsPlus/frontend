@@ -1,10 +1,7 @@
-import {
-  COMMAND,
-  INQUIRY,
-  PASSNONPASS,
-} from '../../../../../constants/commandConstants';
+import { Link } from 'react-router-dom';
 import { Alarm } from '../../../../../models/alarm';
 import * as S from './NotificationItem.styled';
+import { ROUTES } from '../../../../../constants/routes';
 
 interface NotificationItemProps {
   item: Alarm;
@@ -12,18 +9,12 @@ interface NotificationItemProps {
 
 const NotificationItem = ({ item }: NotificationItemProps) => {
   return (
-    <S.Container>
-      <S.Message>
-        {/* {NotificationData.type === 'command'
-          ? `'${NotificationData.nickName}' ${COMMAND}${NotificationData.message}`
-          : NotificationData.type === 'pass/nonPass'
-          ? `'${NotificationData.message}' ${PASSNONPASS} ${
-              NotificationData.pass ? '합격' : '불합격'
-            }`
-          : `'${NotificationData.message}' ${INQUIRY}`} */}
-      </S.Message>
-      <S.Time></S.Time>
-    </S.Container>
+    <Link to={`${ROUTES.notice}/${item.routingId}`}>
+      <S.Container>
+        <S.Message>{item.content}</S.Message>
+        <S.Time>{item.createdAt}</S.Time>
+      </S.Container>
+    </Link>
   );
 };
 

@@ -93,3 +93,5 @@ export const Item = styled.li`
   width: 100%;
   padding: 1rem;
 `;
+
+export const Message = styled.p``;

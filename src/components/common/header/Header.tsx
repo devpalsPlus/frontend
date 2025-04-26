@@ -16,12 +16,19 @@ import { formatImgPath } from '../../../util/formatImgPath';
 import bell from '../../../assets/bell.svg';
 import Notification from './Notification/Notification';
 import bellLogined from '../../../assets/bellLogined.svg';
+import useAlarmList from '../../../hooks/useAlarmList';
+import useNotification from '../../../hooks/useNotification';
+import Toast from '../Toast/Toast';
+import useToast from '../../../hooks/useToast';
 
 function Header() {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userLogout } = useAuth(handleModalOpen);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
+  const { data: AlarmData } = useAlarmList();
+  const { isSignal } = useNotification();
+  const { handleToastOpen, handleToastClose } = useToast();
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -46,8 +53,7 @@ function Header() {
         <S.Alarm>
           {isLoggedIn ? (
             <DropDown toggleButton={<img src={bellLogined} />}>
-              <Notification />
-              {/* {isSignal && '가능'} */}
+              <Notification alarmData={AlarmData} />
             </DropDown>
           ) : (
             <img src={bell} />
@@ -97,6 +103,15 @@ function Header() {
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         {message}
       </Modal>
+
+      {isSignal !== '' && (
+        <Toast
+          handleToastOpen={handleToastOpen}
+          handleToastClose={handleToastClose}
+        >
+          {isSignal}
+        </Toast>
+      )}
     </S.HeaderContainer>
   );
 }

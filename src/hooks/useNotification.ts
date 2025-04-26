@@ -1,15 +1,28 @@
 import { EventSourcePolyfill, NativeEventSource } from 'event-source-polyfill';
-import { useEffect, useState } from 'react';
-import { getTokens } from '../store/authStore';
-import { httpClient } from '../api/http.api';
+import { useEffect, useRef, useState } from 'react';
+import useAuthStore, { getTokens } from '../store/authStore';
+import { useQueryClient } from '@tanstack/react-query';
+import { AlarmList } from './queries/keys';
 
 const useNotification = () => {
-  const [isSignal, setIsSignal] = useState<boolean>(false);
+  const [isSignal, setIsSignal] = useState<string>('');
+  const queryClient = useQueryClient();
+  const userId = useAuthStore((state) => state.userData?.id);
 
-  const EventSource = EventSourcePolyfill || NativeEventSource;
+  const eventSourceRef = useRef<EventSource | null>(null);
+  const EventSourceImpl = EventSourcePolyfill || NativeEventSource;
 
   useEffect(() => {
-    const eventSource = new EventSource(
+    if (eventSourceRef.current) {
+      eventSourceRef.current.close();
+      eventSourceRef.current = null;
+    }
+
+    if (!userId) {
+      return;
+    }
+
+    const eventSource = new EventSourceImpl(
       `${import.meta.env.VITE_APP_API_BASE_URL}user/sse`,
       {
         headers: {
@@ -22,9 +35,26 @@ const useNotification = () => {
         heartbeatTimeout: 12 * 60 * 1000,
       }
     );
+
+    eventSourceRef.current = eventSource;
+
     eventSource.addEventListener('alarm', (e) => {
+      const event = e as MessageEvent;
+
       try {
-        console.log(JSON.parse(e.data));
+        console.log(JSON.parse(event.data));
+
+        if (event.data) {
+          queryClient.invalidateQueries({
+            queryKey: [AlarmList.myAlarmList, userId],
+          });
+        }
+
+        setIsSignal(event.data);
+
+        setTimeout(() => {
+          setIsSignal('');
+        }, 4000);
       } catch (error) {
         console.error(error);
       }
@@ -32,23 +62,16 @@ const useNotification = () => {
     eventSource.onerror = (e) => {
       console.log(e);
     };
-  }, []);
 
-  //테스트용 API. 추후 삭제할 예정
-  const getSendAlarm = async (id: number) => {
-    try {
-      const response = await httpClient.get(
-        `/user/send-alarm?alarmFilter=${id}`
-      );
-      console.log(response);
-      return response;
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  };
+    return () => {
+      if (eventSourceRef.current) {
+        eventSourceRef.current.close();
+        eventSourceRef.current = null;
+      }
+    };
+  }, [queryClient, userId]);
 
-  return { isSignal, getSendAlarm };
+  return { isSignal, setIsSignal };
 };
 
 export default useNotification;
