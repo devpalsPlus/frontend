@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.header`
@@ -23,7 +22,7 @@ export const WrapperNav = styled.nav`
   gap: 2rem;
 `;
 
-export const WrapperSearchBar = styled.form`
+export const SearchBarForm = styled.form`
   display: flex;
   width: 50%;
   border: 1px solid ${({ theme }) => theme.color.navy};

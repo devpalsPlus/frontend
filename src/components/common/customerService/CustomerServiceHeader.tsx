@@ -1,6 +1,5 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import * as S from './CustomerServiceHeader.styled';
-import { ROUTES } from '../../../constants/routes';
 import MovedInquiredLink from './MoveInquiredLink';
 
 interface CustomerServiceHeaderProps {
@@ -16,15 +15,15 @@ export default function CustomerServiceHeader({
         <S.Title>DevPals {title}</S.Title>
       </S.WrapperTitle>
       <S.WrapperNav>
-        <S.WrapperSearchBar>
+        <S.SearchBarForm>
           <S.SearchBarInput
             type='text'
             placeholder='궁금한 내용을 검색해보세요.'
           />
-          <S.SearchButton>
+          <S.SearchButton type='submit' aria-label='search'>
             <MagnifyingGlassIcon />
           </S.SearchButton>
-        </S.WrapperSearchBar>
+        </S.SearchBarForm>
         <MovedInquiredLink />
       </S.WrapperNav>
     </S.Container>
