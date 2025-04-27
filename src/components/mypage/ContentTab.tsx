@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './ContentTab.styled';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { ROUTES } from '../../constants/routes';
+import MovedInquiredLink from '../common/customerService/MoveInquiredLink';
 
 interface Filter {
   title: string;
@@ -16,11 +18,28 @@ interface ContentProps {
 
 export default function ContentTab({ filter, $justifyContent }: ContentProps) {
   const { pathname } = useLocation();
-  const [filterId, setFilterId] = useState<number>(0);
+  const [filterId, setFilterId] = useState<number>();
 
   function handleChangeId(id: number) {
     setFilterId(id);
   }
+
+  useEffect(() => {
+    if (
+      pathname.includes(ROUTES.notificationsAppliedProjects) ||
+      pathname.includes(ROUTES.activityInquiries)
+    ) {
+      return setFilterId(1);
+    } else if (pathname.includes(ROUTES.notificationsCheckedApplicants)) {
+      return setFilterId(2);
+    } else if (
+      pathname.includes(`${ROUTES.myPageNotifications}/${ROUTES.comments}`)
+    ) {
+      return setFilterId(3);
+    } else {
+      return setFilterId(0);
+    }
+  }, [setFilterId, pathname]);
 
   return (
     <S.Container>
@@ -40,8 +59,7 @@ export default function ContentTab({ filter, $justifyContent }: ContentProps) {
       {pathname.includes('inquiries') ? (
         <>
           <S.WrapperButton $height='10%'>
-            <S.Button>FAQ</S.Button>
-            <S.Button>문의하기</S.Button>
+            <MovedInquiredLink />
           </S.WrapperButton>
           <S.ScrollWrapper $height='10%'>
             <S.FilterContainer>
