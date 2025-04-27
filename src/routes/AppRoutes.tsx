@@ -23,6 +23,9 @@ const FAQ = lazy(() => import('../components/common/customerService/faq/FAQ'));
 const Notice = lazy(
   () => import('../components/common/customerService/notice/Notice')
 );
+const Inquiry = lazy(
+  () => import('../components/common/customerService/inquiry/Inquiry')
+);
 const MyPage = lazy(() => import('../pages/mypage/MyPage'));
 const UserPage = lazy(() => import('../pages/userpage/UserPage'));
 const Apply = lazy(() => import('../pages/apply/ApplyStep'));
@@ -128,6 +131,16 @@ const AppRoutes = () => {
         <QueryErrorBoundary>
           <Layout>
             <Notice />
+          </Layout>
+        </QueryErrorBoundary>
+      ),
+    },
+    {
+      path: ROUTES.inquiry,
+      element: (
+        <QueryErrorBoundary>
+          <Layout>
+            <Inquiry />
           </Layout>
         </QueryErrorBoundary>
       ),

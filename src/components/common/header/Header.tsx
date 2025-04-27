@@ -74,7 +74,7 @@ function Header() {
                 <Link to={ROUTES.manageProjectsRoot}>
                   <S.Item>공고관리</S.Item>
                 </Link>
-                <Link to={ROUTES.support}>
+                <Link to={ROUTES.inquiry}>
                   <S.Item>문의하기</S.Item>
                 </Link>
                 <Link to='#' onClick={(e) => e.preventDefault()}>
