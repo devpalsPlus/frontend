@@ -1,7 +1,7 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import * as S from './CustomerServiceHeader.styled';
-import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
+import MovedInquiredLink from './MoveInquiredLink';
 
 interface CustomerServiceHeaderProps {
   title: string;
@@ -25,9 +25,7 @@ export default function CustomerServiceHeader({
             <MagnifyingGlassIcon />
           </S.SearchButton>
         </S.WrapperSearchBar>
-        <Link to={ROUTES.inquiry}>
-          <S.MoveInquiredDiv>문의하기</S.MoveInquiredDiv>
-        </Link>
+        <MovedInquiredLink />
       </S.WrapperNav>
     </S.Container>
   );

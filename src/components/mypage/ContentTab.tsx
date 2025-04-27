@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import * as S from './ContentTab.styled';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes';
+import MovedInquiredLink from '../common/customerService/MoveInquiredLink';
 
 interface Filter {
   title: string;
@@ -58,9 +59,7 @@ export default function ContentTab({ filter, $justifyContent }: ContentProps) {
       {pathname.includes('inquiries') ? (
         <>
           <S.WrapperButton $height='10%'>
-            <Link to={ROUTES.inquiry}>
-              <S.WrapperMovedLink>문의하기</S.WrapperMovedLink>
-            </Link>
+            <MovedInquiredLink />
           </S.WrapperButton>
           <S.ScrollWrapper $height='10%'>
             <S.FilterContainer>
