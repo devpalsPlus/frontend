@@ -21,9 +21,9 @@ export const WrapperTitle = styled.div<{ $selected: boolean }>`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) scaleX(0.7) scaleY(0.6);
-    width: 130%;
+    width: 100%;
     height: 2.2em;
-    background: rgba(33, 53, 85, 0.3);
+    background: rgba(33, 53, 85, 0.2);
     border-radius: 1.2em;
     z-index: 0;
     opacity: 0;
@@ -55,7 +55,7 @@ export const WrapperTitle = styled.div<{ $selected: boolean }>`
   }
   &:hover::after,
   ${({ $selected }) => $selected && css`&::after`} {
-    transform: scaleX(1);
+    transform: scaleX(1.01);
     opacity: 1;
   }
 `;
