@@ -19,10 +19,13 @@ const ChangePassword = lazy(
 const Main = lazy(() => import('../pages/main/Index'));
 const Layout = lazy(() => import('../components/common/layout/Layout'));
 const Home = lazy(() => import('../pages/home/Home'));
+const FAQ = lazy(() => import('../components/common/customerService/faq/FAQ'));
+const Notice = lazy(
+  () => import('../components/common/customerService/notice/Notice')
+);
 const MyPage = lazy(() => import('../pages/mypage/MyPage'));
 const UserPage = lazy(() => import('../pages/userpage/UserPage'));
 const Apply = lazy(() => import('../pages/apply/ApplyStep'));
-
 const CreateProject = lazy(
   () => import('../pages/createProject/CreateProject')
 );
@@ -71,7 +74,6 @@ const UserProfile = lazy(
 const UserJoinProject = lazy(
   () => import('../components/userPage/joinedProject/UserJoinProject')
 );
-
 const ModifyProject = lazy(
   () => import('../pages/modifyProject/ModifyProject')
 );
@@ -106,6 +108,26 @@ const AppRoutes = () => {
         <QueryErrorBoundary>
           <Layout>
             <Home />
+          </Layout>
+        </QueryErrorBoundary>
+      ),
+    },
+    {
+      path: ROUTES.FAQ,
+      element: (
+        <QueryErrorBoundary>
+          <Layout>
+            <FAQ />
+          </Layout>
+        </QueryErrorBoundary>
+      ),
+    },
+    {
+      path: ROUTES.notice,
+      element: (
+        <QueryErrorBoundary>
+          <Layout>
+            <Notice />
           </Layout>
         </QueryErrorBoundary>
       ),

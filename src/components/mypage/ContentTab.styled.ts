@@ -21,9 +21,9 @@ export const WrapperTitle = styled.div<{ $selected: boolean }>`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%) scaleX(0.7) scaleY(0.6);
-    width: 130%;
+    width: 100%;
     height: 2.2em;
-    background: rgba(33, 53, 85, 0.3);
+    background: rgba(33, 53, 85, 0.2);
     border-radius: 1.2em;
     z-index: 0;
     opacity: 0;
@@ -36,7 +36,7 @@ export const WrapperTitle = styled.div<{ $selected: boolean }>`
     content: '';
     position: absolute;
     left: 0;
-    bottom: 0.1em;
+    bottom: -0.2em;
     width: 100%;
     height: 3px;
     background: ${({ theme }) => theme.color.navy};
@@ -55,7 +55,7 @@ export const WrapperTitle = styled.div<{ $selected: boolean }>`
   }
   &:hover::after,
   ${({ $selected }) => $selected && css`&::after`} {
-    transform: scaleX(1);
+    transform: scaleX(1.01);
     opacity: 1;
   }
 `;
@@ -70,14 +70,6 @@ export const WrapperButton = styled.div<{ $height: string }>`
   justify-content: end;
   gap: 1rem;
   padding: 0.5rem;
-`;
-
-export const Button = styled.button`
-  font-size: 1rem;
-  width: 5rem;
-  background: ${({ theme }) => theme.color.navy};
-  border-radius: ${({ theme }) => theme.borderRadius.primary};
-  color: ${({ theme }) => theme.color.white};
 `;
 
 export const ScrollWrapper = styled.div<{ $height: string }>`

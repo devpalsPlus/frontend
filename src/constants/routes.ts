@@ -22,7 +22,7 @@ export const ROUTES = {
   userJoinedProject: 'joined-projects',
   modifyProject: '/project-modify',
   notFound: '/not-found',
-  support: '/inquiry',
   FAQ: '/faq',
   notice: '/notice',
+  inquiry: '/inquiry',
 } as const;
