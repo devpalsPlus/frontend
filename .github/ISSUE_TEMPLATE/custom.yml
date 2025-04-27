@@ -1,21 +1,32 @@
-name: Custom issue template
-description: Describe this issue template's purpose here.
-assignees: YouD0313
+title: "[#이슈번호] "
+assignees:
+  - YouD0313
 body:
-  - type: markdown
-    attributes:
-      value: |
-        ## 구현 내용
-        구현 내용을 적어주세요
-
   - type: textarea
-    id: implementation
+    id: content
     attributes:
       label: 구현 내용
-      description: 구현 내용을 적어주세요.
+      description: 구현하고자 하는 내용을 구체적으로 작성해 주세요. 예: 로그인 기능 추가, UI 개선 등
+      placeholder: 구현 내용을 입력하세요.
+    validations:
+      required: true
 
-  - type: markdown
+  - type: checkboxes
+    id: checklist
     attributes:
-      value: |
-        ## 구현 목록
-        - [ ] list
+      label: 구현 목록
+      description: 필요한 작업 목록을 체크박스로 작성해 주세요.
+      options:
+        - label: 기능 설계
+        - label: 코드 작성
+        - label: 테스트 코드 작성
+        - label: 리뷰 반영
+
+  - type: textarea
+    id: etc
+    attributes:
+      label: 추가 설명
+      description: 참고 자료, 관련 이슈, 기타 논의 사항이 있으면 자유롭게 작성해 주세요.
+      placeholder: (선택 사항)
+    validations:
+      required: false
