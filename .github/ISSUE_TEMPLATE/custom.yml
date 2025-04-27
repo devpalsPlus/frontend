@@ -1,0 +1,23 @@
+name: Custom issue template
+description: Describe this issue template's purpose here.
+title: ''
+labels: ''
+assignees: YouD0313
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 구현 내용
+        구현 내용을 적어주세요
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: 구현 내용
+      description: 구현 내용을 적어주세요.
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 구현 목록
+        - [ ] list
