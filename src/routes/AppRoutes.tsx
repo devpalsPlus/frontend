@@ -139,9 +139,11 @@ const AppRoutes = () => {
       path: ROUTES.inquiry,
       element: (
         <QueryErrorBoundary>
-          <Layout>
-            <Inquiry />
-          </Layout>
+          <ProtectRoute redirectUrl={ROUTES.login}>
+            <Layout>
+              <Inquiry />
+            </Layout>
+          </ProtectRoute>
         </QueryErrorBoundary>
       ),
     },
