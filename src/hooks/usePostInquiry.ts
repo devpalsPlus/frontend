@@ -11,4 +11,6 @@ export const usePostInquiry = () => {
       queryClient.invalidateQueries();
     },
   });
+
+  return mutate;
 };

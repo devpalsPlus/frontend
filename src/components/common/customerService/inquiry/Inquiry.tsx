@@ -7,10 +7,11 @@ import {
 import * as S from './Inquiry.styled';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import React, { useState } from 'react';
-import { postInquiry } from '../../../../api/inquiry.api';
 import type { InquiryFormData } from '../../../../models/inquiry';
+import { usePostInquiry } from '../../../../hooks/usePostInquiry';
 
 export default function Inquiry() {
+  const { mutate: postInquiry } = usePostInquiry();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [categoryValue, setCategoryValue] = useState<string>(
     INQUIRY_MESSAGE.categoryDefault
@@ -20,7 +21,7 @@ export default function Inquiry() {
   const [fileValue, setFileValue] = useState<string>(
     INQUIRY_MESSAGE.fileDefault
   );
-  const [fileImage, setFileImage] = useState<string>(EMPTY_IMAGE);
+  const [fileImage, setFileImage] = useState<string | null>(null);
 
   const handleSubmitInquiry = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,12 +40,24 @@ export default function Inquiry() {
 
     formData.append('inquiryDto', data);
 
-    postInquiry(formData);
-    setCategoryValue(INQUIRY_MESSAGE.categoryDefault);
-    setFileValue(INQUIRY_MESSAGE.fileDefault);
-    setFileImage(EMPTY_IMAGE);
-    setTitle('');
-    setContent('');
+    // 모달처리하기
+    let isValid = true;
+
+    Array.from(formData.entries()).forEach(([key, value]) => {
+      if (key === 'category' && value === INQUIRY_MESSAGE.categoryDefault)
+        return (isValid = false);
+      if (key === 'title' && value === '') return (isValid = false);
+      if (key === 'content' && value === '') return (isValid = false);
+    });
+
+    if (isValid) {
+      postInquiry(formData);
+      setCategoryValue(INQUIRY_MESSAGE.categoryDefault);
+      setFileValue(INQUIRY_MESSAGE.fileDefault);
+      setFileImage(EMPTY_IMAGE);
+      setTitle('');
+      setContent('');
+    }
   };
 
   const handleClickCategoryValue = (value: string) => {
@@ -101,10 +114,16 @@ export default function Inquiry() {
               type='text'
               placeholder='제목을 입력하세요.'
               value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </S.Nav>
           <S.ContentWrapper>
-            <S.Content as='textarea' name='content' value={content}></S.Content>
+            <S.Content
+              as='textarea'
+              name='content'
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            ></S.Content>
             <S.InquiryFileWrapper>
               <S.InquiryFileLabel htmlFor='upload'>파일찾기</S.InquiryFileLabel>
               <S.InquiryShowFile>{fileValue}</S.InquiryShowFile>
@@ -115,7 +134,7 @@ export default function Inquiry() {
                 id='upload'
                 onChange={(e) => handleChangeFile(e)}
               />
-              <S.FileImg src={fileImage} />
+              {fileImage && <S.FileImg src={fileImage || ''} />}
             </S.InquiryFileWrapper>
           </S.ContentWrapper>
           <S.SendButtonWrapper>
