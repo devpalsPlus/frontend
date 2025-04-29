@@ -1,21 +1,7 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { ToastContext } from '../components/common/Toast/ToastContext';
 
-const useToast = () => {
-  const [isToastOpen, setIsToastOpen] = useState<boolean>(false);
-
-  const handleToastOpen = () => {
-    setIsToastOpen(true);
-  };
-
-  const handleToastClose = () => {
-    setIsToastOpen(false);
-  };
-
-  return {
-    isToastOpen,
-    handleToastClose,
-    handleToastOpen,
-  };
+export const useToast = () => {
+  const { addToast, removeToast } = useContext(ToastContext);
+  return { showToast: addToast, hideToast: removeToast };
 };
-
-export default useToast;

@@ -11,7 +11,7 @@ import CommentComponent from './commentComponent/CommentComponent';
 
 interface CommentLayoutProps {
   projectId: number;
-  getCommentList: CommentType[] | undefined;
+  getCommentList: CommentType[];
   createrId?: number;
   loginUserId?: number | undefined;
 }
@@ -62,8 +62,7 @@ const CommentComponentLayout = ({
                 onEdit={() => onEdit(item.id)}
                 loginUserId={loginUserId}
                 commentUserId={item.user.id}
-                userImg={item.user.img}
-                userName={item.user.nickname}
+                reportTitle={item.content}
                 activateEditMode={activateEditMode}
               />
             </DropDown>

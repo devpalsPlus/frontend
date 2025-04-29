@@ -21,7 +21,6 @@ export const postReply = async (
   commentId: number,
   content: string
 ) => {
-  console.log(content);
   try {
     const response = await httpClient.post(
       `/project/${projectId}/comment/${commentId}/recomment`,

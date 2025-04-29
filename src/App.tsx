@@ -4,6 +4,7 @@ import { GlobalStyle } from './style/global';
 import { defaultTheme } from './style/theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SearchFilteringProvider } from './context/SearchFilteringContext';
+import { ToastProvider } from './components/common/Toast/ToastProvider';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -20,7 +21,9 @@ function App() {
       <SearchFilteringProvider>
         <GlobalStyle />
         <QueryClientProvider client={queryClient}>
-          <AppRoutes />
+          <ToastProvider>
+            <AppRoutes />
+          </ToastProvider>
         </QueryClientProvider>
       </SearchFilteringProvider>
     </ThemeProvider>

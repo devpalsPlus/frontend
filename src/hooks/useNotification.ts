@@ -3,11 +3,13 @@ import { useEffect, useRef, useState } from 'react';
 import useAuthStore, { getTokens } from '../store/authStore';
 import { useQueryClient } from '@tanstack/react-query';
 import { AlarmList } from './queries/keys';
+import { useToast } from './useToast';
 
 const useNotification = () => {
-  const [isSignal, setIsSignal] = useState<string>('');
+  const [signalMessage, setSignalMessage] = useState<string>('');
   const queryClient = useQueryClient();
   const userId = useAuthStore((state) => state.userData?.id);
+  const { showToast } = useToast();
 
   const eventSourceRef = useRef<EventSource | null>(null);
   const EventSourceImpl = EventSourcePolyfill || NativeEventSource;
@@ -40,21 +42,17 @@ const useNotification = () => {
 
     eventSource.addEventListener('alarm', (e) => {
       const event = e as MessageEvent;
-
       try {
         console.log(JSON.parse(event.data));
+        const eventData = JSON.parse(event.data);
 
-        if (event.data) {
+        if (eventData) {
           queryClient.invalidateQueries({
             queryKey: [AlarmList.myAlarmList, userId],
           });
         }
 
-        setIsSignal(event.data);
-
-        setTimeout(() => {
-          setIsSignal('');
-        }, 4000);
+        setSignalMessage(eventData.message);
       } catch (error) {
         console.error(error);
       }
@@ -71,7 +69,13 @@ const useNotification = () => {
     };
   }, [queryClient, userId]);
 
-  return { isSignal, setIsSignal };
+  useEffect(() => {
+    if (signalMessage) {
+      console.log(signalMessage);
+      showToast(signalMessage, 3000);
+    }
+  }, [signalMessage, showToast]);
+  return { signalMessage, setSignalMessage };
 };
 
 export default useNotification;

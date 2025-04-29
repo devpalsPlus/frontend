@@ -17,16 +17,19 @@ import bell from '../../../assets/bell.svg';
 import Notification from './Notification/Notification';
 import bellLogined from '../../../assets/bellLogined.svg';
 import useNotification from '../../../hooks/useNotification';
-import Toast from '../Toast/Toast';
-import useToast from '../../../hooks/useToast';
+import { testLiveAlarm } from '../../../api/alarm.api';
+import { useEffect } from 'react';
 
 function Header() {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userLogout } = useAuth(handleModalOpen);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
-  const { isSignal } = useNotification();
-  const { handleToastOpen, handleToastClose } = useToast();
+  const { signalMessage, setSignalMessage } = useNotification();
+
+  useEffect(() => {
+    testLiveAlarm();
+  }, []);
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -50,7 +53,18 @@ function Header() {
         </S.HeaderLinkContainer>
         <S.Alarm role='button' tabIndex={0} aria-label='알림 메세지'>
           {isLoggedIn ? (
-            <DropDown toggleButton={<img src={bellLogined} alt='알림' />}>
+            <DropDown
+              toggleButton={
+                signalMessage ? (
+                  <S.BellButton onClick={() => setSignalMessage('')}>
+                    <img src={bellLogined} alt='알림' />
+                    {signalMessage && <S.Dot />}
+                  </S.BellButton>
+                ) : (
+                  <img src={bellLogined} alt='알림' />
+                )
+              }
+            >
               <Notification />
             </DropDown>
           ) : (
@@ -78,7 +92,7 @@ function Header() {
                 <Link to={ROUTES.manageProjectsRoot}>
                   <S.Item>공고관리</S.Item>
                 </Link>
-                <Link to={ROUTES.support}>
+                <Link to={ROUTES.inquiry}>
                   <S.Item>문의하기</S.Item>
                 </Link>
                 <Link to='#' onClick={(e) => e.preventDefault()}>
@@ -111,15 +125,6 @@ function Header() {
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         {message}
       </Modal>
-
-      {isSignal !== '' && (
-        <Toast
-          handleToastOpen={handleToastOpen}
-          handleToastClose={handleToastClose}
-        >
-          {isSignal}
-        </Toast>
-      )}
     </S.HeaderContainer>
   );
 }

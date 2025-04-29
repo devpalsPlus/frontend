@@ -28,6 +28,18 @@ export const Alarm = styled.div`
   align-items: center;
 `;
 
+export const BellButton = styled.div``;
+
+export const Dot = styled.span`
+  position: absolute;
+  top: 2px;
+  right: -1px;
+  width: 7px;
+  height: 7px;
+  background-color: #ff3b30;
+  border-radius: 50%;
+`;
+
 export const LogoImg = styled.img`
   width: 80px;
   height: 80px;

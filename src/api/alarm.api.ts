@@ -32,3 +32,15 @@ export const patchAlarm = async (id: number) => {
     console.log(e);
   }
 };
+
+export const testLiveAlarm = async () => {
+  try {
+    const response = await httpClient.get<ApiAlarmList>(
+      `/user/send-alarm?alarmFilter=0`
+    );
+
+    return response;
+  } catch (e) {
+    console.log(e);
+  }
+};
