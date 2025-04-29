@@ -18,6 +18,16 @@ const CommentLayout = ({
   const { getCommentList, isLoading, isFetching, isError } =
     useGetComment(projectId);
 
+  if (!getCommentList) {
+    return (
+      <S.Container>
+        <S.CommentCountsContainer>
+          <S.Count>댓글 없음</S.Count>
+        </S.CommentCountsContainer>
+      </S.Container>
+    );
+  }
+
   if (isLoading || isFetching) {
     return <LoadingSpinner />;
   }
@@ -34,7 +44,7 @@ const CommentLayout = ({
   return (
     <S.Container>
       <S.CommentCountsContainer>
-        <S.Count>댓글 {getCommentList?.length || 0}개</S.Count>
+        <S.Count>댓글 {getCommentList.length}개</S.Count>
       </S.CommentCountsContainer>
 
       <S.CommentInput>
