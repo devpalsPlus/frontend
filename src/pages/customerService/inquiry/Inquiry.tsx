@@ -1,14 +1,13 @@
 import { Fragment } from 'react/jsx-runtime';
 import {
-  EMPTY_IMAGE,
   INQUIRY_CATEGORY,
   INQUIRY_MESSAGE,
-} from '../../../../constants/customerService';
+} from '../../../constants/customerService';
 import * as S from './Inquiry.styled';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import React, { useState } from 'react';
-import type { InquiryFormData } from '../../../../models/inquiry';
-import { usePostInquiry } from '../../../../hooks/usePostInquiry';
+import type { InquiryFormData } from '../../../models/inquiry';
+import { usePostInquiry } from '../../../hooks/usePostInquiry';
 
 interface FormStateType {
   category: string;

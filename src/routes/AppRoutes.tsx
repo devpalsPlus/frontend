@@ -19,13 +19,9 @@ const ChangePassword = lazy(
 const Main = lazy(() => import('../pages/main/Index'));
 const Layout = lazy(() => import('../components/common/layout/Layout'));
 const Home = lazy(() => import('../pages/home/Home'));
-const FAQ = lazy(() => import('../components/common/customerService/faq/FAQ'));
-const Notice = lazy(
-  () => import('../components/common/customerService/notice/Notice')
-);
-const Inquiry = lazy(
-  () => import('../components/common/customerService/inquiry/Inquiry')
-);
+const FAQ = lazy(() => import('../pages/customerService/faq/FAQ'));
+const Notice = lazy(() => import('../pages/customerService/notice/Notice'));
+const Inquiry = lazy(() => import('../pages/customerService/inquiry/Inquiry'));
 const MyPage = lazy(() => import('../pages/mypage/MyPage'));
 const UserPage = lazy(() => import('../pages/userpage/UserPage'));
 const Apply = lazy(() => import('../pages/apply/ApplyStep'));
