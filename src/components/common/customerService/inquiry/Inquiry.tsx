@@ -10,18 +10,24 @@ import React, { useState } from 'react';
 import type { InquiryFormData } from '../../../../models/inquiry';
 import { usePostInquiry } from '../../../../hooks/usePostInquiry';
 
+interface FormStateType {
+  category: string;
+  title: string;
+  content: string;
+  fileValue: string;
+  fileImage: string | null;
+}
+
 export default function Inquiry() {
   const { mutate: postInquiry } = usePostInquiry();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [categoryValue, setCategoryValue] = useState<string>(
-    INQUIRY_MESSAGE.categoryDefault
-  );
-  const [title, setTitle] = useState<string>('');
-  const [content, setContent] = useState<string>('');
-  const [fileValue, setFileValue] = useState<string>(
-    INQUIRY_MESSAGE.fileDefault
-  );
-  const [fileImage, setFileImage] = useState<string | null>(null);
+  const [form, setForm] = useState<FormStateType>({
+    category: INQUIRY_MESSAGE.categoryDefault,
+    title: '',
+    content: '',
+    fileValue: INQUIRY_MESSAGE.fileDefault,
+    fileImage: null,
+  });
 
   const handleSubmitInquiry = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -52,23 +58,25 @@ export default function Inquiry() {
 
     if (isValid) {
       postInquiry(formData);
-      setCategoryValue(INQUIRY_MESSAGE.categoryDefault);
-      setFileValue(INQUIRY_MESSAGE.fileDefault);
-      setFileImage(EMPTY_IMAGE);
-      setTitle('');
-      setContent('');
+      setForm({
+        category: INQUIRY_MESSAGE.categoryDefault,
+        title: '',
+        content: '',
+        fileValue: INQUIRY_MESSAGE.fileDefault,
+        fileImage: null,
+      });
     }
   };
 
-  const handleClickCategoryValue = (value: string) => {
-    setCategoryValue(value);
+  const handleClickCategoryValue = (category: string) => {
+    setForm((prev) => ({ ...prev, category }));
     setIsOpen((prev) => !prev);
   };
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    const file = e.target.files?.[0];
-    setFileValue(value);
-    setFileImage(file ? URL.createObjectURL(file) : EMPTY_IMAGE);
+    const fileValue = e.target.value;
+    const image = e.target.files?.[0];
+    const fileImage = image ? URL.createObjectURL(image) : null;
+    setForm((prev) => ({ ...prev, fileValue, fileImage }));
   };
 
   return (
@@ -88,11 +96,11 @@ export default function Inquiry() {
                 onClick={() => setIsOpen((prev) => !prev)}
                 $isOpen={isOpen}
               >
-                {categoryValue} <ChevronDownIcon />
+                {form.category} <ChevronDownIcon />
                 <S.CategoryValueInput
                   type='hidden'
                   name='category'
-                  value={categoryValue}
+                  value={form.category}
                 />
               </S.CategorySelect>
               {isOpen && (
@@ -113,20 +121,24 @@ export default function Inquiry() {
               name='title'
               type='text'
               placeholder='제목을 입력하세요.'
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={form.title}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, title: e.target.value }))
+              }
             />
           </S.Nav>
           <S.ContentWrapper>
             <S.Content
               as='textarea'
               name='content'
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
+              value={form.content}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, content: e.target.value }))
+              }
             ></S.Content>
             <S.InquiryFileWrapper>
               <S.InquiryFileLabel htmlFor='upload'>파일찾기</S.InquiryFileLabel>
-              <S.InquiryShowFile>{fileValue}</S.InquiryShowFile>
+              <S.InquiryShowFile>{form.fileValue}</S.InquiryShowFile>
               <S.InquiryFile
                 name='images'
                 type='file'
@@ -134,7 +146,7 @@ export default function Inquiry() {
                 id='upload'
                 onChange={(e) => handleChangeFile(e)}
               />
-              {fileImage && <S.FileImg src={fileImage || ''} />}
+              {form.fileImage && <S.FileImg src={form.fileImage || ''} />}
             </S.InquiryFileWrapper>
           </S.ContentWrapper>
           <S.SendButtonWrapper>
