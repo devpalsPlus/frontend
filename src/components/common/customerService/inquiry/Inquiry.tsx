@@ -2,25 +2,49 @@ import { Fragment } from 'react/jsx-runtime';
 import {
   EMPTY_IMAGE,
   INQUIRY_CATEGORY,
+  INQUIRY_MESSAGE,
 } from '../../../../constants/customerService';
 import * as S from './Inquiry.styled';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import React, { useState } from 'react';
+import { postInquiry } from '../../../../api/inquiry.api';
+import type { InquiryFormData } from '../../../../models/inquiry';
 
 export default function Inquiry() {
-  const [categoryValue, setCategoryValue] = useState<string>('카테고리');
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [fileValue, setFileValue] = useState<string>('선택된 파일이 없습니다.');
+  const [categoryValue, setCategoryValue] = useState<string>(
+    INQUIRY_MESSAGE.categoryDefault
+  );
+  const [title, setTitle] = useState<string>('');
+  const [content, setContent] = useState<string>('');
+  const [fileValue, setFileValue] = useState<string>(
+    INQUIRY_MESSAGE.fileDefault
+  );
   const [fileImage, setFileImage] = useState<string>(EMPTY_IMAGE);
 
   const handleSubmitInquiry = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
 
     const formData = new FormData(e.currentTarget as HTMLFormElement);
-    for (const [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
+
+    const formDataObj: InquiryFormData = {
+      category: formData.get('category') as string,
+      title: formData.get('title') as string,
+      content: formData.get('content') as string,
+    };
+
+    const data = new Blob([JSON.stringify(formDataObj)], {
+      type: 'application/json',
+    });
+
+    formData.append('inquiryDto', data);
+
+    postInquiry(formData);
+    setCategoryValue(INQUIRY_MESSAGE.categoryDefault);
+    setFileValue(INQUIRY_MESSAGE.fileDefault);
+    setFileImage(EMPTY_IMAGE);
+    setTitle('');
+    setContent('');
   };
 
   const handleClickCategoryValue = (value: string) => {
@@ -76,15 +100,16 @@ export default function Inquiry() {
               name='title'
               type='text'
               placeholder='제목을 입력하세요.'
+              value={title}
             />
           </S.Nav>
           <S.ContentWrapper>
-            <S.Content as='textarea' name='content'></S.Content>
+            <S.Content as='textarea' name='content' value={content}></S.Content>
             <S.InquiryFileWrapper>
               <S.InquiryFileLabel htmlFor='upload'>파일찾기</S.InquiryFileLabel>
               <S.InquiryShowFile>{fileValue}</S.InquiryShowFile>
               <S.InquiryFile
-                name='image'
+                name='images'
                 type='file'
                 accept='.jpg, .jpeg, .png'
                 id='upload'
