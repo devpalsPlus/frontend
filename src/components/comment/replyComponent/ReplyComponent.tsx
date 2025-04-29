@@ -84,8 +84,7 @@ const ReplyComponent = ({
           onEdit={() => onEdit(item.id)}
           loginUserId={loginUserId}
           commentUserId={item.user.id}
-          userImg={item.user.img}
-          userName={item.user.nickname}
+          reportTitle={item.content}
           activateEditMode={activateEditMode}
           reply={true}
         />

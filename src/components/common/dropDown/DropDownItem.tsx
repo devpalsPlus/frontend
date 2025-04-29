@@ -1,7 +1,7 @@
 import useDeleteComment from '../../../hooks/CommentHooks/useDeleteComment';
 import useDeleteReply from '../../../hooks/CommentHooks/useDeleteReply';
 import { useModal } from '../../../hooks/useModal';
-import ReportModal from '../../reportComponent/reportModal';
+import ReportModal from '../../reportComponent/ReportModal';
 import * as S from './DropDownItem.styled';
 
 interface DropdownProps {
@@ -11,8 +11,7 @@ interface DropdownProps {
   recommentId?: number;
   loginUserId?: number;
   commentUserId: number;
-  userImg: string;
-  userName: string;
+  reportTitle: { userImg: string; userName: string } | string;
   reply?: boolean;
   onEdit?: () => void;
 }
@@ -24,10 +23,9 @@ const DropDownItem = ({
   commentId,
   recommentId,
   commentUserId,
-  userImg,
-  userName,
   loginUserId,
   reply,
+  reportTitle,
 }: DropdownProps) => {
   const { removeComment } = useDeleteComment(projectId);
   const { removeReply } = useDeleteReply(commentId, projectId);
@@ -59,8 +57,9 @@ const DropDownItem = ({
       </S.Container>
       {isOpen && (
         <ReportModal
-          avatarUrl={userImg}
-          userName={userName}
+          reportTitle={reportTitle}
+          targetId={recommentId ? recommentId : commentId}
+          type={recommentId ? 'recomment' : 'comment'}
           onClose={handleCloseReportModal}
         />
       )}

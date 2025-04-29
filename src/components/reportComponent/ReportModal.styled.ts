@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Overlay = styled.div`
+export const ModalContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -44,10 +44,19 @@ export const Avatar = styled.div`
   margin-right: 0.75rem;
 `;
 
-export const UserName = styled.div`
+export const UserName = styled.p`
   font-size: 1rem;
   font-weight: 600;
 `;
+
+export const Content = styled.p`
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const ContentContainer = styled.div``;
 
 export const Form = styled.form`
   margin-bottom: 2rem;
@@ -56,6 +65,7 @@ export const Form = styled.form`
 export const SectionTitle = styled.div`
   font-size: 1rem;
   font-weight: 500;
+  opacity: 40%;
   margin-bottom: 0.75rem;
 `;
 
@@ -79,12 +89,6 @@ export const CheckItem = styled.label`
     margin-right: 0.5rem;
     cursor: pointer;
   }
-`;
-
-export const DescriptionLabel = styled.div`
-  font-size: 1rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
 `;
 
 export const TextArea = styled.textarea`

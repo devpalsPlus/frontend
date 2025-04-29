@@ -1,26 +1,22 @@
 import * as S from './ReportModal.styled';
 import Avatar from '../common/avatar/Avatar';
 import { useRef } from 'react';
+import { postReport } from '../../api/report.api';
+import { reasons } from '../../constants/reportConstants';
 
 interface ReportModalProps {
-  avatarUrl: string;
-  userName: string;
+  reportTitle: { userImg: string; userName: string } | string;
+  type: 'user' | 'project' | 'comment' | 'recomment';
+  targetId: number;
   onClose: () => void;
 }
 
-const reasons = [
-  '욕설/비속어',
-  '성적내용/음란물',
-  '광고/스팸',
-  '사기/부정행위',
-  '도배/스팸',
-  '혐오/차별발언',
-  '사생활 침해',
-  '저작권 침해',
-  '기타',
-];
-
-const ReportModal = ({ avatarUrl, userName, onClose }: ReportModalProps) => {
+const ReportModal = ({
+  reportTitle,
+  targetId,
+  type,
+  onClose,
+}: ReportModalProps) => {
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,28 +24,37 @@ const ReportModal = ({ avatarUrl, userName, onClose }: ReportModalProps) => {
     const formData = new FormData(e.currentTarget);
     const selectedReasons = formData.getAll('reason') as string[];
 
-    console.log(selectedReasons);
-    console.log(textAreaRef.current?.value);
-
-    onClose();
+    const postData = {
+      reportTargetId: targetId,
+      reportFilter: type === 'comment' ? 3 : 4,
+      reason: selectedReasons,
+      detail: textAreaRef.current?.value ? textAreaRef.current?.value : '',
+    };
+    console.log(postData);
+    postReport(postData);
   };
 
   return (
-    <S.Overlay onClick={onClose}>
+    <S.ModalContainer onClick={onClose}>
       <S.ModalBox onClick={(e) => e.stopPropagation()}>
         <S.CloseButton onClick={onClose}>×</S.CloseButton>
 
         <S.Header>
-          <S.Avatar>
-            <Avatar size='55px' image={avatarUrl} />
-          </S.Avatar>
-          <S.UserName>{userName}</S.UserName>
+          {typeof reportTitle === 'string' ? (
+            <S.Content>"{reportTitle}"</S.Content>
+          ) : (
+            <>
+              <S.Avatar>
+                <Avatar size='55px' image={reportTitle.userImg} />
+              </S.Avatar>
+
+              <S.UserName>{reportTitle.userName}</S.UserName>
+            </>
+          )}
         </S.Header>
 
         <S.Form onSubmit={handleSubmit}>
-          <S.SectionTitle>
-            해당 유저를 신고하려는 이유를 선택해주세요.
-          </S.SectionTitle>
+          <S.SectionTitle>신고 사유</S.SectionTitle>
 
           <S.CheckboxGrid>
             {reasons.map((reason) => (
@@ -60,7 +65,7 @@ const ReportModal = ({ avatarUrl, userName, onClose }: ReportModalProps) => {
             ))}
           </S.CheckboxGrid>
 
-          <S.DescriptionLabel>상세 작성(생략 가능)</S.DescriptionLabel>
+          <S.SectionTitle>상세 작성(생략 가능)</S.SectionTitle>
           <S.TextArea
             placeholder='신고 내용의 상세한 설명을 작성해 주세요!'
             ref={textAreaRef}
@@ -76,7 +81,7 @@ const ReportModal = ({ avatarUrl, userName, onClose }: ReportModalProps) => {
           </S.Footer>
         </S.Form>
       </S.ModalBox>
-    </S.Overlay>
+    </S.ModalContainer>
   );
 };
 
