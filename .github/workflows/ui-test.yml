@@ -4,26 +4,46 @@ on:
   pull_request:
     branches:
       - develop
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   accessibility-test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        id: cache-deps
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
       - name: Install dependencies
-        run: yarn
+        run: npm ci
+
       - name: Install Playwright
         run: npx playwright install --with-deps
+
       - name: Build Storybook
-        run: yarn build-storybook --quiet
+        run: npm run build-storybook --quiet
+
       - name: Serve Storybook and run tests
         run: npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
           "npx http-server storybook-static --port 6006 --silent" \
-          "npx wait-on tcp:127.0.0.1:6006 && yarn test-storybook"
+          "npx wait-on tcp:127.0.0.1:6006 && npm run test-storybook"
   chromatic:
     needs: accessibility-test
     name: Run Chromatic
@@ -33,12 +53,27 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Install dependencies
+
+      - name: Restore node_modules cache
+        uses: actions/cache@v4
+        id: cache-deps
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Verify dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
         run: npm ci
+
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          onlyChanged: true
