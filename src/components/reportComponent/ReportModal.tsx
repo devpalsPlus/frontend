@@ -32,6 +32,9 @@ const ReportModal = ({
     };
     console.log(postData);
     postReport(postData);
+
+    alert('신고 되었습니다.');
+    onClose();
   };
 
   return (
