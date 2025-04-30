@@ -1,6 +1,6 @@
 import * as S from './CommentComponentLayout.styled';
 import DropDown from '../../common/dropDown/DropDown';
-import DropDownItem from '../../common/dropDown/DropDownItem';
+import DropDownItem from '../DropDownItem';
 import { CommentType } from '../../../models/comment';
 import dropdownButton from '../../../assets/dropdownButton.svg';
 import useComment from '../../../hooks/CommentHooks/useComment';

@@ -35,7 +35,14 @@ const ReportModal = ({
 
     const postData = {
       reportTargetId: targetId,
-      reportFilter: type === 'comment' ? 3 : 4,
+      reportFilter:
+        type === 'user'
+          ? 1
+          : type === 'project'
+          ? 2
+          : type === 'comment'
+          ? 3
+          : 4,
       reason: selectedReasons,
       detail: textAreaRef.current?.value ? textAreaRef.current?.value : '',
     };
@@ -74,8 +81,10 @@ const ReportModal = ({
           <S.CheckboxGrid>
             {reasons.map((reason) => (
               <S.CheckItem key={reason}>
-                <input type='checkbox' name='reason' value={reason} />
-                {reason}
+                <S.CheckInput type='checkbox' name='reason' value={reason} />
+                <S.CheckContent htmlFor={`reason-${reason}`}>
+                  {reason}
+                </S.CheckContent>
               </S.CheckItem>
             ))}
 

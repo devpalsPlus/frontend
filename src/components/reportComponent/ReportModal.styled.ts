@@ -80,13 +80,15 @@ export const CheckRow = styled.div`
   gap: 1.5rem;
 `;
 
-export const CheckItem = styled.label`
-  font-size: 0.9rem;
+export const CheckItem = styled.div``;
+
+export const CheckInput = styled.input`
+  margin-right: 0.5rem;
   cursor: pointer;
-  input {
-    margin-right: 0.5rem;
-    cursor: pointer;
-  }
+`;
+
+export const CheckContent = styled.label`
+  font-size: 0.9rem;
 `;
 
 export const TextArea = styled.textarea`
