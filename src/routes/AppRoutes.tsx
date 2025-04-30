@@ -1,6 +1,7 @@
 import {
   createBrowserRouter,
   Navigate,
+  Outlet,
   RouterProvider,
 } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
@@ -11,6 +12,7 @@ import useAuthStore from '../store/authStore';
 import ProtectRoute from '../components/common/ProtectRoute';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
+import { ToastProvider } from '../components/common/Toast/ToastProvider';
 const Login = lazy(() => import('../pages/login/Login'));
 const Register = lazy(() => import('../pages/register/Register'));
 const ChangePassword = lazy(
@@ -310,7 +312,16 @@ const AppRoutes = () => {
     };
   });
 
-  const router = createBrowserRouter(newRouteList);
+  const router = createBrowserRouter([
+    {
+      element: (
+        <ToastProvider>
+          <Outlet />
+        </ToastProvider>
+      ),
+      children: [...newRouteList, { path: '*', element: <NotFoundPage /> }],
+    },
+  ]);
 
   return <RouterProvider router={router} />;
 };

@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react';
 import * as S from './Toast.styled';
+import { AlarmLive } from '../../../models/alarm';
+import { Link } from 'react-router-dom';
+import { routeSelector } from '../../../util/routeSelector';
 
 interface ToastItemProps {
   id: string;
-  content: string;
+  content: AlarmLive;
   duration: number;
-  onDone: () => void;
+  onRemove: () => void;
 }
 
-const ToastItem = ({ content, duration, onDone }: ToastItemProps) => {
+const ToastItem = ({ content, duration, onRemove }: ToastItemProps) => {
   const [exiting, setExiting] = useState(false);
+  const route = routeSelector(content.routingId, content.alarmFilterId);
 
   useEffect(() => {
     const timer = setTimeout(() => setExiting(true), duration);
@@ -17,13 +21,16 @@ const ToastItem = ({ content, duration, onDone }: ToastItemProps) => {
   }, [duration]);
 
   const handleAnimationEnd = () => {
-    if (exiting) onDone();
+    if (exiting) onRemove();
   };
 
   return (
-    <S.Item $exiting={exiting} onAnimationEnd={handleAnimationEnd}>
-      {content}
-    </S.Item>
+    <Link to={route}>
+      <S.Item $exiting={exiting} onAnimationEnd={handleAnimationEnd}>
+        <S.LiveMessage>{content.message}</S.LiveMessage>
+        <S.LiveDate>{content.createAt}</S.LiveDate>
+      </S.Item>
+    </Link>
   );
 };
 

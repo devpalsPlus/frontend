@@ -1,11 +1,12 @@
 import { PropsWithChildren, useCallback, useEffect, useState } from 'react';
-import { ToastContext, ToastMessage } from './ToastContext';
+import { ToastContext, ToastMessage } from '../../../context/ToastContext';
 import ToastContainer from './ToastContainer';
+import { AlarmLive } from '../../../models/alarm';
 
 export const ToastProvider = ({ children }: PropsWithChildren) => {
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 
-  const addToast = useCallback((content: string, duration = 4000) => {
+  const addToast = useCallback((content: AlarmLive, duration = 4000) => {
     const id = Date.now().toString() + Math.random();
     setToasts((prev) => [...prev, { id, content, duration }]);
   }, []);

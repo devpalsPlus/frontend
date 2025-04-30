@@ -21,14 +21,25 @@ export const Container = styled.div`
 `;
 
 export const Item = styled.div<{ $exiting: boolean }>`
-  background-color: rgba(50, 50, 50, 0.9);
-  color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.buttonScheme.grey.color};
   padding: 12px 20px;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borderRadius.small};
+  animation: ${fadeInUp} 0.3s ease-out,
+    ${({ $exiting }) => $exiting && fadeOut} 0.3s ease-in forwards;
+`;
+
+export const LiveMessage = styled.p`
+  color: ${({ theme }) => theme.color.white};
   font-size: 0.95rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  animation: ${fadeInUp} 0.3s ease-out,
-    ${({ $exiting }) => $exiting && fadeOut} 0.3s ease-in forwards;
+`;
+
+export const LiveDate = styled.p`
+  color: ${({ theme }) => theme.color.white};
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

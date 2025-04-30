@@ -17,15 +17,15 @@ import bell from '../../../assets/bell.svg';
 import Notification from './Notification/Notification';
 import bellLogined from '../../../assets/bellLogined.svg';
 import useNotification from '../../../hooks/useNotification';
-import { testLiveAlarm } from '../../../api/alarm.api';
 import { useEffect } from 'react';
+import { testLiveAlarm } from '../../../api/alarm.api';
 
 function Header() {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userLogout } = useAuth(handleModalOpen);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
-  const { signalMessage, setSignalMessage } = useNotification();
+  const { signalData, setSignalData } = useNotification();
 
   useEffect(() => {
     testLiveAlarm();
@@ -55,10 +55,10 @@ function Header() {
           {isLoggedIn ? (
             <DropDown
               toggleButton={
-                signalMessage ? (
-                  <S.BellButton onClick={() => setSignalMessage('')}>
+                signalData ? (
+                  <S.BellButton onClick={() => setSignalData(null)}>
                     <img src={bellLogined} alt='알림' />
-                    {signalMessage && <S.Dot />}
+                    {signalData && <S.Dot />}
                   </S.BellButton>
                 ) : (
                   <img src={bellLogined} alt='알림' />
