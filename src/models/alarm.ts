@@ -22,3 +22,10 @@ export interface Alarm {
   createdAt: string;
   enabled: boolean;
 }
+
+export interface AlarmLive {
+  alarmFilterId: number;
+  createAt: string;
+  message: string;
+  routingId: number;
+}
