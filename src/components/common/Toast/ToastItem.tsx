@@ -3,6 +3,7 @@ import * as S from './Toast.styled';
 import { AlarmLive } from '../../../models/alarm';
 import { Link } from 'react-router-dom';
 import { routeSelector } from '../../../util/routeSelector';
+import { timeAgo } from '../../../util/timeAgo';
 
 interface ToastItemProps {
   id: string;
@@ -28,7 +29,7 @@ const ToastItem = ({ content, duration, onRemove }: ToastItemProps) => {
     <Link to={route}>
       <S.Item $exiting={exiting} onAnimationEnd={handleAnimationEnd}>
         <S.LiveMessage>{content.message}</S.LiveMessage>
-        <S.LiveDate>{content.createAt}</S.LiveDate>
+        <S.LiveDate>{timeAgo(content.createAt)}</S.LiveDate>
       </S.Item>
     </Link>
   );
