@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div``;
 
@@ -16,7 +16,7 @@ export const RefWrapper = styled.div`
   border-radius: 1.5rem;
 `;
 
-export const DefaultValueButton = styled.button`
+export const DefaultValueButton = styled.button<{ $isOpen: boolean }>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -24,6 +24,16 @@ export const DefaultValueButton = styled.button`
   align-items: center;
   padding: 0 1rem;
   border-radius: 1.5rem;
+
+  svg {
+    transition: transform 300ms ease-in-out;
+    transform: rotate(0deg);
+    ${({ $isOpen }) =>
+      $isOpen &&
+      css`
+        transform: rotate(180deg);
+      `}
+  }
 `;
 
 export const SelectWrapper = styled.div`
