@@ -1,7 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useUserJoinedProjectList } from '../../../hooks/useUserInfo';
 import * as S from '../../mypage/joinedProject/MyJoinProjects.styled';
-import Title from '../../common/title/Title';
 import Spinner from '../../mypage/Spinner';
 import { ROUTES } from '../../../constants/routes';
 import Project from '../../mypage/joinedProject/Project';
@@ -22,9 +21,9 @@ const UserJoinProject = () => {
   return (
     <S.Section>
       <S.Wrapper>
-        <S.TitleWrapper>
-          <Title size='semiLarge'>참여한 프로젝트 리스트</Title>
-        </S.TitleWrapper>
+        <S.FilterWrapper>
+          <S.FilterTitle>참여한 프로젝트 리스트</S.FilterTitle>
+        </S.FilterWrapper>
         {userJoinedProjectListData?.acceptedProjects &&
         userJoinedProjectListData?.acceptedProjects?.length > 0 ? (
           <S.Container>
@@ -44,13 +43,13 @@ const UserJoinProject = () => {
         )}
       </S.Wrapper>
       <S.Wrapper>
-        <S.TitleWrapper>
-          <Title size='semiLarge'>기획한 프로젝트 리스트</Title>
-        </S.TitleWrapper>
+        <S.FilterWrapper>
+          <S.FilterTitle>기획한 프로젝트 리스트</S.FilterTitle>
+        </S.FilterWrapper>
         {userJoinedProjectListData?.ownProjects &&
         userJoinedProjectListData?.ownProjects?.length > 0 ? (
           <S.Container>
-            {userJoinedProjectListData?.acceptedProjects?.map((project) => (
+            {userJoinedProjectListData?.ownProjects?.map((project) => (
               <Link
                 key={project.id}
                 to={`${ROUTES.projectDetail}/${project.id}`}

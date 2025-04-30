@@ -18,7 +18,7 @@ export const ModalBox = styled.div`
   position: relative;
   width: 600px;
   max-width: 90%;
-  background: #fff;
+  background: ${({ theme }) => theme.color.white};
   border-radius: 12px;
   padding: 2.5rem 2rem 2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -28,16 +28,14 @@ export const CloseButton = styled.button`
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: none;
-  border: none;
-  font-size: 1.2rem;
+  font-size: ${({ theme }) => theme.heading.semiSmall.fontSize};
   cursor: pointer;
 `;
 
 export const Header = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: ${({ theme }) => theme.heading.semiLarge.fontSize};
 `;
 
 export const Avatar = styled.div`
@@ -45,7 +43,7 @@ export const Avatar = styled.div`
 `;
 
 export const UserName = styled.p`
-  font-size: 1rem;
+  font-size: ${({ theme }) => theme.heading.small.fontSize};
   font-weight: 600;
 `;
 
@@ -95,11 +93,10 @@ export const TextArea = styled.textarea`
   width: 100%;
   min-height: 100px;
   padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: 1px solid ${({ theme }) => theme.color.border};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
   resize: vertical;
   font-size: 0.9rem;
-  color: #333;
   &::placeholder {
     color: #aaa;
   }
@@ -111,21 +108,7 @@ export const Footer = styled.div`
   gap: 0.75rem;
 `;
 
-export const Button = styled.button<{ variant?: 'default' | 'primary' }>`
-  padding: 0.6rem 1.5rem;
-  font-size: 0.9rem;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-
-  ${(p) =>
-    p.variant === 'primary'
-      ? `
-    background-color: #375076;
-    color: #fff;
-  `
-      : `
-    background-color: #e0e0e0;
-    color: #666;
-  `}
+export const ErrorMessage = styled.p`
+  font-size: 11px;
+  color: ${({ theme }) => theme.color.red};
 `;

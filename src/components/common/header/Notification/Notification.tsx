@@ -10,7 +10,7 @@ const Notification = () => {
   if (!AlarmData) {
     return (
       <S.Container>
-        <S.Message>알림이 없습니다.</S.Message>;
+        <S.NonContentsMessage>알림이 없습니다.</S.NonContentsMessage>
       </S.Container>
     );
   }
@@ -23,7 +23,7 @@ const Notification = () => {
     <S.Container>
       <S.ScrollArea>
         {AlarmData.map((item, index) => (
-          <React.Fragment key={index}>
+          <React.Fragment key={index || item.id}>
             <NotificationItem item={item} />
             {index !== AlarmData.length - 1 && <S.Line />}
           </React.Fragment>

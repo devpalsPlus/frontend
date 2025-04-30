@@ -1,8 +1,9 @@
 import * as S from './ReportModal.styled';
 import Avatar from '../common/avatar/Avatar';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { postReport } from '../../api/report.api';
 import { reasons } from '../../constants/reportConstants';
+import Button from '../common/Button/Button';
 
 interface ReportModalProps {
   reportTitle: { userImg: string; userName: string } | string;
@@ -18,11 +19,19 @@ const ReportModal = ({
   onClose,
 }: ReportModalProps) => {
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
+  const [isNotExist, setIsNotExist] = useState<boolean>(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const selectedReasons = formData.getAll('reason') as string[];
+
+    if (selectedReasons.length === 0) {
+      setIsNotExist(true);
+      return;
+    } else {
+      setIsNotExist(false);
+    }
 
     const postData = {
       reportTargetId: targetId,
@@ -30,11 +39,14 @@ const ReportModal = ({
       reason: selectedReasons,
       detail: textAreaRef.current?.value ? textAreaRef.current?.value : '',
     };
-    console.log(postData);
-    postReport(postData);
 
-    alert('신고 되었습니다.');
-    onClose();
+    try {
+      postReport(postData);
+      alert('신고 되었습니다.');
+      onClose();
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -66,6 +78,12 @@ const ReportModal = ({
                 {reason}
               </S.CheckItem>
             ))}
+
+            {isNotExist && (
+              <S.ErrorMessage>
+                신고 사유를 하나 이상 선택해주세요.
+              </S.ErrorMessage>
+            )}
           </S.CheckboxGrid>
 
           <S.SectionTitle>상세 작성(생략 가능)</S.SectionTitle>
@@ -75,12 +93,22 @@ const ReportModal = ({
           />
 
           <S.Footer>
-            <S.Button variant='default' onClick={onClose}>
+            <Button
+              radius='large'
+              schema='grey'
+              size='primary'
+              onClick={onClose}
+            >
               취소
-            </S.Button>
-            <S.Button variant='primary' type='submit'>
+            </Button>
+            <Button
+              radius='large'
+              schema='primary'
+              size='primary'
+              type='submit'
+            >
               제출
-            </S.Button>
+            </Button>
           </S.Footer>
         </S.Form>
       </S.ModalBox>

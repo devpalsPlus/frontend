@@ -11,7 +11,7 @@ const NotificationItem = ({ item }: NotificationItemProps) => {
   return (
     <Link to={`${ROUTES.notice}/${item.routingId}`}>
       <S.Container>
-        <S.Message>{item.content}</S.Message>
+        <S.ItemContent>{item.content}</S.ItemContent>
         <S.Time>{item.createdAt}</S.Time>
       </S.Container>
     </Link>

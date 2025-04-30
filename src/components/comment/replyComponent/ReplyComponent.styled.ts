@@ -64,8 +64,3 @@ export const ErrorMessage = styled.div`
   padding-left: 15px;
   margin-bottom: 10px;
 `;
-
-export const Message = styled.p`
-  color: ${({ theme }) => theme.color.red};
-  font-size: 10px;
-`;

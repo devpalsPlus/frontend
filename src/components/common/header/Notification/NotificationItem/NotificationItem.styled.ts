@@ -5,7 +5,7 @@ export const Container = styled.div`
   font-size: 14px;
 `;
 
-export const Message = styled.p`
+export const ItemContent = styled.p`
   margin-left: 6px;
 `;
 

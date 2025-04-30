@@ -22,11 +22,11 @@ export const ScrollArea = styled.div`
   }
 `;
 
-export const Message = styled.p`
+export const NonContentsMessage = styled.p`
   margin-left: 6px;
 `;
 
 export const Line = styled.hr`
   opacity: 60%;
-  border: 1;
+  border-width: 1px;
 `;

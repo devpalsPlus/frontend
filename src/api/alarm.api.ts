@@ -41,6 +41,7 @@ export const testLiveAlarm = async () => {
 
     return response;
   } catch (e) {
-    console.log(e);
+    console.error(e);
+    throw e;
   }
 };
