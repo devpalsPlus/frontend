@@ -1,4 +1,4 @@
-import * as S from './about.styled';
+import * as S from './About.styled';
 import manageImg from '../../assets/manage_project.svg';
 import { forwardRef } from 'react';
 interface ManageProps {

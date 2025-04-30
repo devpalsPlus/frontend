@@ -15,6 +15,8 @@ export const FilterTitle = styled.h1`
   font-size: 1.5em;
 `;
 
+export const TitleWrapper = styled.div``;
+
 export const Section = styled.div`
   display: flex;
   flex-direction: column;

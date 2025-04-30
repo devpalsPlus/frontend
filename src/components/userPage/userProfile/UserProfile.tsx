@@ -20,7 +20,7 @@ const UserProfile = () => {
             <S.BackgroundWrapper>
               <span>{userData?.nickname}</span>
               <S.IconWrapper>
-                {userData?.userLevel === 'Beginner' ? (
+                {userData?.beginner === true ? (
                   <img
                     src={BeginnerIcon}
                     alt='beginner'

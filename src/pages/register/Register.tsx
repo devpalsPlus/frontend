@@ -273,7 +273,7 @@ const Register = () => {
                 radius='large'
                 type='button'
                 onClick={() => {
-                  handleDuplicationNickname(text);
+                  handleDuplicationNickname(nicknameText);
                 }}
               >
                 중복 확인

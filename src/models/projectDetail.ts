@@ -1,6 +1,6 @@
 import { ApiCommonType, User } from './apiCommon';
 import { joinProject } from './joinProject';
-import type { PositionTag, SkillTag } from './tags';
+import type { PositionTag } from './tags';
 
 export interface SkillTag {
   id: number;

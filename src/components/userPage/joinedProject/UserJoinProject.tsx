@@ -50,7 +50,7 @@ const UserJoinProject = () => {
         {userJoinedProjectListData?.ownProjects &&
         userJoinedProjectListData?.ownProjects?.length > 0 ? (
           <S.Container>
-            {userJoinedProjectListData?.ownProjects?.map((project) => (
+            {userJoinedProjectListData?.acceptedProjects?.map((project) => (
               <Link
                 key={project.id}
                 to={`${ROUTES.projectDetail}/${project.id}`}

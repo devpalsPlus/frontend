@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import ProjectImg from '../../assets/project.svg';
-import * as S from './about.styled';
+import * as S from './About.styled';
 
 interface ProjectProps {
   ref?: React.Ref<HTMLDivElement>;

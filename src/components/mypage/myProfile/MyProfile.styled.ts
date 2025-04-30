@@ -14,6 +14,8 @@ export const FilterTitle = styled.h1`
   font-size: 1.5em;
 `;
 
+export const TitleWrapper = styled.div``;
+
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.color.lightgrey};
   border-radius: ${({ theme }) =>
