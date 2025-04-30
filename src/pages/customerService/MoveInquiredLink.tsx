@@ -1,4 +1,4 @@
-import { ROUTES } from '../../../constants/routes';
+import { ROUTES } from '../../constants/routes';
 import * as S from './MoveInquiredLink.styled';
 
 export default function MovedInquiredLink() {
