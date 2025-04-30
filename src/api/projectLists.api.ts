@@ -11,10 +11,10 @@ export const getProjectLists = async (params: SearchFilters) => {
       params,
       paramsSerializer: { indexes: null },
     });
-    
+
     return response.data.data;
   } catch (e) {
-    console.log('getProjectLists', e);
+    console.error('getProjectLists', e);
   }
 };
 
@@ -26,6 +26,6 @@ export const getProjectStatistic = async () => {
 
     return response.data.data;
   } catch (e) {
-    console.log('getProjectStatistic', e);
+    console.error('getProjectStatistic', e);
   }
 };

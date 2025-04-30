@@ -7,7 +7,7 @@ export const getSkillTag = async () => {
 
     return response.data.data;
   } catch (e) {
-    console.log('getSkillTag', e);
+    console.error('getSkillTag', e);
   }
 };
 
@@ -16,7 +16,7 @@ export const getPositionTag = async () => {
     const response = await httpClient.get<ApiPositionTag>('/position-tag');
     return response.data.data;
   } catch (e) {
-    console.log('getPositionTag', e);
+    console.error('getPositionTag', e);
   }
 };
 
@@ -25,6 +25,6 @@ export const getMethodTag = async () => {
     const response = await httpClient.get<ApiMethodTag>('/method-type');
     return response.data.data;
   } catch (e) {
-    console.log('getMethodTag', e);
+    console.error('getMethodTag', e);
   }
 };
