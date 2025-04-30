@@ -5,7 +5,7 @@ import {
 } from '../../../constants/customerService';
 import * as S from './Inquiry.styled';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { InquiryFormData } from '../../../models/inquiry';
 import { usePostInquiry } from '../../../hooks/usePostInquiry';
 
@@ -74,9 +74,26 @@ export default function Inquiry() {
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileValue = e.target.value;
     const image = e.target.files?.[0];
+
+    // 파일 크기 제한 (예: 5MB)
+    const MAX_FILE_SIZE = 5 * 1024 * 1024;
+    if (image && image.size > MAX_FILE_SIZE) {
+      alert('파일 크기는 5MB 이하만 가능합니다.');
+      e.target.value = '';
+      return;
+    }
+
     const fileImage = image ? URL.createObjectURL(image) : null;
     setForm((prev) => ({ ...prev, fileValue, fileImage }));
   };
+
+  useEffect(() => {
+    return () => {
+      if (form.fileImage) {
+        URL.revokeObjectURL(form.fileImage);
+      }
+    };
+  }, [form.fileImage]);
 
   return (
     <S.Container>
