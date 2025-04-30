@@ -1,7 +1,7 @@
-import useDeleteComment from '../../../hooks/CommentHooks/useDeleteComment';
-import useDeleteReply from '../../../hooks/CommentHooks/useDeleteReply';
-import { useModal } from '../../../hooks/useModal';
-import ReportModal from '../../reportComponent/ReportModal';
+import useDeleteComment from '../../hooks/CommentHooks/useDeleteComment';
+import useDeleteReply from '../../hooks/CommentHooks/useDeleteReply';
+import { useModal } from '../../hooks/useModal';
+import ReportModal from '../reportComponent/ReportModal';
 import * as S from './DropDownItem.styled';
 
 interface DropdownProps {

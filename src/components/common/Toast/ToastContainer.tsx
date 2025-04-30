@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { ToastMessage } from './ToastContext';
+import { ToastMessage } from '../../../context/ToastContext';
 import ToastItem from './ToastItem';
 import * as S from './Toast.styled';
 
@@ -15,7 +15,7 @@ const ToastContainer = ({ toasts, onRemove }: ToastContainerProps) => {
         <ToastItem
           key={toast.id}
           {...toast}
-          onDone={() => onRemove(toast.id)}
+          onRemove={() => onRemove(toast.id)}
         />
       ))}
     </S.Container>,

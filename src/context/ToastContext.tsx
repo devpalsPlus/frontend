@@ -1,13 +1,14 @@
 import { createContext } from 'react';
+import { AlarmLive } from '../models/alarm';
 
 export interface ToastMessage {
   id: string;
-  content: string;
+  content: AlarmLive;
   duration: number;
 }
 
 export interface ToastContextProps {
-  addToast: (content: string, duration?: number) => void;
+  addToast: (content: AlarmLive, duration?: number) => void;
   removeToast: (id: string) => void;
 }
 
