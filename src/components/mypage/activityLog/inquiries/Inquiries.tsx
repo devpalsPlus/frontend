@@ -5,22 +5,20 @@ import * as S from './Inquiries.styled';
 import Inquiry from './inquiry/Inquiry';
 
 export default function Inquiries() {
-  const { myCommentsData, isLoading } = useGetMyInquires();
+  const { myInquiresData, isLoading } = useGetMyInquires();
 
   if (isLoading) {
     return <Spinner size='50px' color='#3e5879;' />;
   }
 
-  if (!myCommentsData) return;
+  if (!myInquiresData) return;
 
-  if (myCommentsData.length === 0)
+  if (myInquiresData.length === 0)
     return (
       <S.WrapperNoContent>
-        <NoContent type='comment' />
+        <NoContent type='inquiries' />
       </S.WrapperNoContent>
     );
-
-  myCommentsData.map(console.log);
 
   return (
     <S.container>
@@ -32,12 +30,12 @@ export default function Inquiries() {
           <S.InquiriesTableHeaderState>상태</S.InquiriesTableHeaderState>
         </S.InquiriesTableHeadWrapper>
         <S.InquiriesWrapper>
-          {myCommentsData.length > 0 &&
-            myCommentsData.map((list, index) => (
+          {myInquiresData.length > 0 &&
+            myInquiresData.map((list, index) => (
               <Inquiry
-                key={list.title}
+                key={`${index}-${list.title}`}
                 list={list}
-                no={myCommentsData.length - index}
+                no={myInquiresData.length - index}
               />
             ))}
         </S.InquiriesWrapper>

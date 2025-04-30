@@ -11,5 +11,5 @@ export const useGetMyInquires = () => {
     queryFn: () => getMyInquiries(),
   });
 
-  return { myCommentsData: myInquiresData, isLoading };
+  return { myInquiresData, isLoading };
 };

@@ -8,6 +8,7 @@ export const getMyComments = async () => {
     return response.data.data;
   } catch (e) {
     console.error('내 댓글 에러', e);
+    throw e;
   }
 };
 
@@ -18,5 +19,6 @@ export const getMyInquiries = async () => {
     return response.data.data;
   } catch (e) {
     console.error('내 문의글 에러 ', e);
+    throw e;
   }
 };

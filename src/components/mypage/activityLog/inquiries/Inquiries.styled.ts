@@ -15,7 +15,7 @@ export const InquiriesTableHeadWrapper = styled.div`
   grid-template-columns: 8% 18% 62% 12%;
   font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 `;
 
 export const InquiriesTableHeaderNo = styled.div`
@@ -38,7 +38,7 @@ export const InquiriesTableHeaderState = styled.div`
 export const InquiriesWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1.5rem;
 `;
 
 export const WrapperNoContent = styled.div`

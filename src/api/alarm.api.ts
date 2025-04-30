@@ -16,7 +16,8 @@ export const deleteAlarm = async (id: number) => {
   try {
     await httpClient.delete<ApiAlarmList>(`/user/alarm/${id}`);
   } catch (e) {
-    console.log('알림 삭제 에러 ', e);
+    console.error('알림 삭제 에러 ', e);
+    throw e;
   }
 };
 
@@ -29,6 +30,7 @@ export const patchAlarm = async (id: number) => {
 
     return response.data.data;
   } catch (e) {
-    console.log(e);
+    console.error(e);
+    throw e;
   }
 };

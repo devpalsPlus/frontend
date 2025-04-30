@@ -1,7 +1,7 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import type { MyInquiries } from '../../../../../models/activityLog';
 import * as S from './Inquiry.styled';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+import { INQUIRY_MESSAGE } from '../../../../../constants/customerService';
 
 interface InquiryProps {
   list: MyInquiries;
@@ -37,10 +37,10 @@ export default function Inquiry({ list, no }: InquiryProps) {
                 <S.InquiryImgWrapper
                   key={`${list.category}-${list.title}-${url}`}
                   onClick={() =>
-                    setIsImageOpen((prev) => ({
-                      isImageOpen: !prev.isImageOpen,
+                    setIsImageOpen({
+                      isImageOpen: true,
                       url,
-                    }))
+                    })
                   }
                 >
                   <S.InquiryImg src={url} />
@@ -59,7 +59,7 @@ export default function Inquiry({ list, no }: InquiryProps) {
                 }
               >
                 <S.ModalImgButtonWrapper>
-                  이미지를 클릭하면 사라집니다.
+                  {INQUIRY_MESSAGE.isImageOpenMessage}
                 </S.ModalImgButtonWrapper>
                 <S.ModalImg src={isImageOpen.url} />
               </S.ModalImgWrapper>

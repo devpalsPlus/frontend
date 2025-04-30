@@ -8,6 +8,7 @@ export const getSkillTag = async () => {
     return response.data.data;
   } catch (e) {
     console.error('getSkillTag', e);
+    throw e;
   }
 };
 
@@ -17,6 +18,7 @@ export const getPositionTag = async () => {
     return response.data.data;
   } catch (e) {
     console.error('getPositionTag', e);
+    throw e;
   }
 };
 
@@ -26,5 +28,6 @@ export const getMethodTag = async () => {
     return response.data.data;
   } catch (e) {
     console.error('getMethodTag', e);
+    throw e;
   }
 };

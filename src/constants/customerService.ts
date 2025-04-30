@@ -11,4 +11,5 @@ export const EMPTY_IMAGE =
 export const INQUIRY_MESSAGE = {
   categoryDefault: '카테고리',
   fileDefault: '선택된 파일이 없습니다.',
+  isImageOpenMessage: '이미지를 클릭하면 사라집니다.',
 };
