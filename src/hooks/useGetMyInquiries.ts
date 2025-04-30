@@ -3,13 +3,13 @@ import { getMyInquiries } from '../api/activityLog.api';
 import useAuthStore from '../store/authStore';
 import { ActivityLog } from './queries/keys';
 
-export const useGetMyInquires = () => {
+export const useGetMyInquiries = () => {
   const userId = useAuthStore((state) => state.userData?.id);
 
-  const { data: myInquiresData, isLoading } = useQuery({
+  const { data: myInquiriesData, isLoading } = useQuery({
     queryKey: [ActivityLog.myInquiries, userId],
     queryFn: () => getMyInquiries(),
   });
 
-  return { myInquiresData, isLoading };
+  return { myInquiriesData, isLoading };
 };

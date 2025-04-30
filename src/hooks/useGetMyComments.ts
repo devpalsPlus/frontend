@@ -9,6 +9,7 @@ export const useGetMyComments = () => {
   const { data: myCommentsData, isLoading } = useQuery({
     queryKey: [ActivityLog.myComments, userId],
     queryFn: () => getMyComments(),
+    enabled: !!userId,
   });
 
   return { myCommentsData, isLoading };

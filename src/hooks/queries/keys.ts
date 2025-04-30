@@ -41,5 +41,5 @@ export const ChartDataList = {
 
 export const ActivityLog = {
   myComments: ['MyComments'],
-  myInquiries: ['MyInquires'],
+  myInquiries: ['MyInquiries'],
 };
