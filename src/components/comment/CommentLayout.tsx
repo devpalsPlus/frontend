@@ -15,8 +15,7 @@ const CommentLayout = ({
   createrId,
   loginUserId,
 }: CommentLayoutProps) => {
-  const { getCommentList, isLoading, isFetching, isError } =
-    useGetComment(projectId);
+  const { getCommentList, isLoading, isFetching } = useGetComment(projectId);
 
   if (!getCommentList) {
     return (
@@ -31,16 +30,6 @@ const CommentLayout = ({
   if (isLoading || isFetching) {
     return <LoadingSpinner />;
   }
-
-  if (isError) {
-    console.error(isError);
-    return (
-      <S.ErrorMessage>
-        댓글을 불러오는 중 오류가 발생했습니다. 다시 시도해 주세요.
-      </S.ErrorMessage>
-    );
-  }
-
   return (
     <S.Container>
       <S.CommentCountsContainer>

@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { postReport } from '../../api/report.api';
 import { reasons } from '../../constants/reportConstants';
 import Button from '../common/Button/Button';
+import ScrollPreventor from '../common/modal/ScrollPreventor';
 
 interface ReportModalProps {
   reportTitle: { userImg: string; userName: string } | string;
@@ -57,71 +58,73 @@ const ReportModal = ({
   };
 
   return (
-    <S.ModalContainer onClick={onClose}>
-      <S.ModalBox onClick={(e) => e.stopPropagation()}>
-        <S.CloseButton onClick={onClose}>×</S.CloseButton>
+    <ScrollPreventor>
+      <S.ModalContainer onClick={onClose}>
+        <S.ModalBox onClick={(e) => e.stopPropagation()}>
+          <S.CloseButton onClick={onClose}>×</S.CloseButton>
 
-        <S.Header>
-          {typeof reportTitle === 'string' ? (
-            <S.Content>"{reportTitle}"</S.Content>
-          ) : (
-            <>
-              <S.Avatar>
-                <Avatar size='55px' image={reportTitle.userImg} />
-              </S.Avatar>
+          <S.Header>
+            {typeof reportTitle === 'string' ? (
+              <S.Content>"{reportTitle}"</S.Content>
+            ) : (
+              <>
+                <S.Avatar>
+                  <Avatar size='55px' image={reportTitle.userImg} />
+                </S.Avatar>
 
-              <S.UserName>{reportTitle.userName}</S.UserName>
-            </>
-          )}
-        </S.Header>
-
-        <S.Form onSubmit={handleSubmit}>
-          <S.SectionTitle>신고 사유</S.SectionTitle>
-
-          <S.CheckboxGrid>
-            {reasons.map((reason) => (
-              <S.CheckItem key={reason}>
-                <S.CheckInput type='checkbox' name='reason' value={reason} />
-                <S.CheckContent htmlFor={`reason-${reason}`}>
-                  {reason}
-                </S.CheckContent>
-              </S.CheckItem>
-            ))}
-
-            {isNotExist && (
-              <S.ErrorMessage>
-                신고 사유를 하나 이상 선택해주세요.
-              </S.ErrorMessage>
+                <S.UserName>{reportTitle.userName}</S.UserName>
+              </>
             )}
-          </S.CheckboxGrid>
+          </S.Header>
 
-          <S.SectionTitle>상세 작성(생략 가능)</S.SectionTitle>
-          <S.TextArea
-            placeholder='신고 내용의 상세한 설명을 작성해 주세요!'
-            ref={textAreaRef}
-          />
+          <S.Form onSubmit={handleSubmit}>
+            <S.SectionTitle>신고 사유</S.SectionTitle>
 
-          <S.Footer>
-            <Button
-              radius='large'
-              schema='grey'
-              size='primary'
-              onClick={onClose}
-            >
-              취소
-            </Button>
-            <Button
-              radius='large'
-              schema='primary'
-              size='primary'
-              type='submit'
-            >
-              제출
-            </Button>
-          </S.Footer>
-        </S.Form>
-      </S.ModalBox>
-    </S.ModalContainer>
+            <S.CheckboxGrid>
+              {reasons.map((reason) => (
+                <S.CheckItem key={reason}>
+                  <S.CheckInput type='checkbox' name='reason' value={reason} />
+                  <S.CheckContent htmlFor={`reason-${reason}`}>
+                    {reason}
+                  </S.CheckContent>
+                </S.CheckItem>
+              ))}
+
+              {isNotExist && (
+                <S.ErrorMessage>
+                  신고 사유를 하나 이상 선택해주세요.
+                </S.ErrorMessage>
+              )}
+            </S.CheckboxGrid>
+
+            <S.SectionTitle>상세 작성(생략 가능)</S.SectionTitle>
+            <S.TextArea
+              placeholder='신고 내용의 상세한 설명을 작성해 주세요!'
+              ref={textAreaRef}
+            />
+
+            <S.Footer>
+              <Button
+                radius='large'
+                schema='grey'
+                size='primary'
+                onClick={onClose}
+              >
+                취소
+              </Button>
+              <Button
+                radius='large'
+                schema='primary'
+                size='primary'
+                type='submit'
+              >
+                제출
+              </Button>
+            </S.Footer>
+          </S.Form>
+        </S.ModalBox>
+      </S.ModalContainer>
+    </ScrollPreventor>
   );
 };
 
