@@ -1,7 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useUserJoinedProjectList } from '../../../hooks/useUserInfo';
 import * as S from '../../mypage/joinedProject/MyJoinProjects.styled';
-import Title from '../../common/title/Title';
 import Spinner from '../../mypage/Spinner';
 import { ROUTES } from '../../../constants/routes';
 import Project from '../../mypage/joinedProject/Project';

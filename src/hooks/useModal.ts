@@ -14,11 +14,21 @@ export const useModal = () => {
     setIsOpen(false);
   };
 
+  const handleOpenReportModal = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseReportModal = () => {
+    setIsOpen(false);
+  };
+
   return {
     isOpen,
     message,
     setIsOpen,
     handleModalClose,
     handleModalOpen,
+    handleOpenReportModal,
+    handleCloseReportModal,
   };
 };

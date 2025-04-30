@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  padding-bottom: 100px;
+`;
 
 export const CommentCountsContainer = styled.div`
   margin-bottom: 20px;
@@ -26,4 +28,8 @@ export const Content = styled.span`
 export const ReplyContainer = styled.div`
   padding-left: 100px;
   margin-top: 20px;
+`;
+
+export const ErrorMessage = styled.p`
+  color: #333;
 `;

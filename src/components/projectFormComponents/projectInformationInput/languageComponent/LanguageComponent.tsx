@@ -2,14 +2,14 @@ import * as S from './LanguageComponent.styled';
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
 import SkillTagBox from '../../../common/skillTagBox/SkillTagBox';
 import { CreateProjectFormValues } from '../../../../models/createProject';
-import { Skill } from '../../../../models/projectDetail';
 import useTagSelectors from '../../../../hooks/ProjectHooks/useTagSelectors';
+import { SkillTag } from '../../../../models/tags';
 
 interface LanguageComponentProps {
   errors: FieldErrors;
   name: string;
   setValue: UseFormSetValue<CreateProjectFormValues>;
-  apiDataSkillTags: Skill[] | undefined;
+  apiDataSkillTags: SkillTag[] | undefined;
 }
 
 const LanguageComponent = ({

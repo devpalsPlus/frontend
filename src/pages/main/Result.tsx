@@ -1,4 +1,4 @@
-import * as S from './about.styled';
+import * as S from './About.styled';
 import resultImg from '../../assets/result_project.svg';
 import { forwardRef } from 'react';
 interface ResultProps {

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import * as S from './DropDown.styled';
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
+import { DropDownContext } from '../../../context/DropDownContext';
 
 interface DropDownProps {
   children: React.ReactNode;
@@ -21,16 +22,18 @@ const DropDown = ({
   };
 
   return (
-    <S.DropDownContainer ref={dropdownRef}>
-      <S.DropDownButtonWrapper
-        onClick={() => setOpen(!open)}
-        tabIndex={0}
-        {...props}
-      >
-        {toggleButton}
-      </S.DropDownButtonWrapper>
-      {open && <S.Panel>{children}</S.Panel>}
-    </S.DropDownContainer>
+    <DropDownContext.Provider value={{ close: handleCloseModal }}>
+      <S.DropDownContainer ref={dropdownRef}>
+        <S.DropDownButtonWrapper
+          onClick={() => setOpen(!open)}
+          tabIndex={0}
+          {...props}
+        >
+          {toggleButton}
+        </S.DropDownButtonWrapper>
+        {open && <S.Panel>{children}</S.Panel>}
+      </S.DropDownContainer>
+    </DropDownContext.Provider>
   );
 };
 

@@ -16,12 +16,20 @@ import { formatImgPath } from '../../../util/formatImgPath';
 import bell from '../../../assets/bell.svg';
 import Notification from './Notification/Notification';
 import bellLogined from '../../../assets/bellLogined.svg';
+import useNotification from '../../../hooks/useNotification';
+import { useEffect } from 'react';
+import { testLiveAlarm } from '../../../api/alarm.api';
 
 function Header() {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userLogout } = useAuth(handleModalOpen);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
+  const { signalData, setSignalData } = useNotification();
+
+  useEffect(() => {
+    testLiveAlarm();
+  }, []);
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -45,9 +53,19 @@ function Header() {
         </S.HeaderLinkContainer>
         <S.Alarm role='button' tabIndex={0} aria-label='알림 메세지'>
           {isLoggedIn ? (
-            <DropDown toggleButton={<img src={bellLogined} alt='알림' />}>
+            <DropDown
+              toggleButton={
+                signalData ? (
+                  <S.BellButton onClick={() => setSignalData(null)}>
+                    <img src={bellLogined} alt='알림' />
+                    {signalData && <S.Dot />}
+                  </S.BellButton>
+                ) : (
+                  <img src={bellLogined} alt='알림' />
+                )
+              }
+            >
               <Notification />
-              {/* {isSignal && '가능'} */}
             </DropDown>
           ) : (
             <img src={bell} alt='알림' />

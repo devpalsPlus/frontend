@@ -24,7 +24,11 @@ export const NickName = styled.p`
 `;
 
 export const Comment = styled.span`
-  margin-left: 11px;
+  display: inline-block;
+  max-width: calc(100% - 12px);
+  word-break: break-word;
+  white-space: pre-wrap;
+  margin-left: 12px;
 `;
 
 export const ReplyContainer = styled.div`
@@ -59,9 +63,4 @@ export const ReplyInput = styled.div`
 export const ErrorMessage = styled.div`
   padding-left: 15px;
   margin-bottom: 10px;
-`;
-
-export const Message = styled.p`
-  color: ${({ theme }) => theme.color.red};
-  font-size: 10px;
 `;

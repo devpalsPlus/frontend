@@ -1,13 +1,18 @@
-import useAlarmList from '../../../../hooks/useAlarmList';
-import LoadingSpinner from '../../loadingSpinner/LoadingSpinner';
+import React from 'react';
 import * as S from './Notification.styled';
 import NotificationItem from './NotificationItem/NotificationItem';
+import useAlarmList from '../../../../hooks/useAlarmList';
+import LoadingSpinner from '../../loadingSpinner/LoadingSpinner';
 
 const Notification = () => {
   const { alarmListData: AlarmData, isLoading, isFetching } = useAlarmList();
 
   if (!AlarmData) {
-    return <S.Message>알림이 없습니다.</S.Message>;
+    return (
+      <S.Container>
+        <S.NonContentsMessage>알림이 없습니다.</S.NonContentsMessage>
+      </S.Container>
+    );
   }
 
   if (isLoading || isFetching) {
@@ -16,9 +21,14 @@ const Notification = () => {
 
   return (
     <S.Container>
-      {AlarmData.map((item, index) => (
-        <NotificationItem key={index} item={item} />
-      ))}
+      <S.ScrollArea>
+        {AlarmData.map((item, index) => (
+          <React.Fragment key={index || item.id}>
+            <NotificationItem item={item} />
+            {index !== AlarmData.length - 1 && <S.Line />}
+          </React.Fragment>
+        ))}
+      </S.ScrollArea>
     </S.Container>
   );
 };

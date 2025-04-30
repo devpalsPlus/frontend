@@ -4,7 +4,6 @@ import { GlobalStyle } from './style/global';
 import { defaultTheme } from './style/theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SearchFilteringProvider } from './context/SearchFilteringContext';
-import useNotification from './hooks/useNotification';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -16,7 +15,6 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const { isSignal, getSendAlarm } = useNotification();
   return (
     <ThemeProvider theme={defaultTheme}>
       <SearchFilteringProvider>

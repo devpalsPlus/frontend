@@ -3,7 +3,7 @@ import * as S from './ReplyComponent.styled';
 import DefaultImg from '../../../assets/defaultImg.png';
 import useComment from '../../../hooks/CommentHooks/useComment';
 import DropDown from '../../common/dropDown/DropDown';
-import DropDownItem from '../../common/dropDown/DropDownItem';
+import DropDownItem from '../DropDownItem';
 import dropdownButton from '../../../assets/dropdownButton.svg';
 import CommentInput from '../commentInput/CommentInput';
 import useGetReply from '../../../hooks/CommentHooks/useGetReply';
@@ -84,6 +84,7 @@ const ReplyComponent = ({
           onEdit={() => onEdit(item.id)}
           loginUserId={loginUserId}
           commentUserId={item.user.id}
+          reportTitle={item.content}
           activateEditMode={activateEditMode}
           reply={true}
         />

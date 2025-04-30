@@ -1,6 +1,6 @@
 import * as S from './CommentComponentLayout.styled';
 import DropDown from '../../common/dropDown/DropDown';
-import DropDownItem from '../../common/dropDown/DropDownItem';
+import DropDownItem from '../DropDownItem';
 import { CommentType } from '../../../models/comment';
 import dropdownButton from '../../../assets/dropdownButton.svg';
 import useComment from '../../../hooks/CommentHooks/useComment';
@@ -11,7 +11,7 @@ import CommentComponent from './commentComponent/CommentComponent';
 
 interface CommentLayoutProps {
   projectId: number;
-  getCommentList: CommentType[] | undefined;
+  getCommentList: CommentType[];
   createrId?: number;
   loginUserId?: number | undefined;
 }
@@ -62,6 +62,7 @@ const CommentComponentLayout = ({
                 onEdit={() => onEdit(item.id)}
                 loginUserId={loginUserId}
                 commentUserId={item.user.id}
+                reportTitle={item.content}
                 activateEditMode={activateEditMode}
               />
             </DropDown>
