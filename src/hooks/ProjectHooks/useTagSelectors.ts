@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { UseFormSetValue } from 'react-hook-form';
 import { CreateProjectFormValues } from '../../models/createProject';
-import { Skill } from '../../models/projectDetail';
-import { Position } from '../../models/projectDetail';
+import { PositionTag, SkillTag } from '../../models/tags';
 
 interface useTagSelectorsProps {
-  apiTagData?: Skill[] | Position[] | number;
+  apiTagData?: SkillTag[] | PositionTag[] | number;
   setValue: UseFormSetValue<CreateProjectFormValues>;
   fieldName: 'field' | 'position' | 'languages';
 }

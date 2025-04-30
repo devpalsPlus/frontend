@@ -1,13 +1,5 @@
 import { ApiCommonType, User } from './apiCommon';
-import { joinProject } from './joinProject';
-import type { PositionTag } from './tags';
-
-export interface SkillTag {
-  id: number;
-  name: string;
-  img: string;
-  createdAt: string;
-}
+import type { MethodTag, PositionTag, SkillTag } from './tags';
 
 export interface ProjectSkillTagList {
   SkillTag: SkillTag;
@@ -19,50 +11,6 @@ export interface ProjectPositionTag {
   projectId: number;
   positionTagId: number;
   PositionTag: PositionTag;
-}
-
-export interface Method {
-  id: number;
-  name: string;
-  createdAt: string;
-}
-
-export interface ProjectDetail {
-  id: number;
-  title: string;
-  description: string;
-  totalMember: number;
-  startDate: string;
-  estimatedPeriod: string;
-  methodId: number;
-  authorId: number;
-  views: number;
-  isBeginner: boolean;
-  isDone: boolean;
-  recruitmentEndDate: string;
-  recruitmentStartDate: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface ProjectDetailExtended extends ProjectDetail {
-  User: User;
-  skillTags: SkillTag[];
-  ProjectSkillTag: ProjectSkillTagList[];
-  Method: Method;
-  ProjectPositionTag: ProjectPositionTag[];
-  Applicant: joinProject[];
-}
-
-export interface Position {
-  id: number;
-  name: string;
-}
-
-export interface Skill {
-  id: number;
-  name: string;
-  img: string;
 }
 
 export interface ProjectDetailPlus {
@@ -82,9 +30,9 @@ export interface ProjectDetailPlus {
 
 export interface ProjectDetailPlusExtended extends ProjectDetailPlus {
   user: User;
-  methodType: Method;
-  positions: Position[];
-  skills: Skill[];
+  methodType: MethodTag;
+  positions: PositionTag[];
+  skills: SkillTag[];
 }
 
 export interface dataPlus extends ApiCommonType {

@@ -1,7 +1,6 @@
 import * as S from './PositionComponent.styled';
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
 import { PositionTag } from '../../../../models/tags';
-import { Position } from '../../../../models/projectDetail';
 import useTagSelectors from '../../../../hooks/ProjectHooks/useTagSelectors';
 import { CreateProjectFormValues } from '../../../../models/createProject';
 
@@ -10,7 +9,7 @@ interface MozipCategoryComponentProps {
   name: string;
   setValue: UseFormSetValue<CreateProjectFormValues>;
   positionTagsData: PositionTag[];
-  apiDataPosition: Position[] | undefined;
+  apiDataPosition: PositionTag[] | undefined;
 }
 
 const MozipCategoryComponent = ({
