@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
 import { Alarm } from '../../../../../models/alarm';
 import * as S from './NotificationItem.styled';
-import { ROUTES } from '../../../../../constants/routes';
+import { routeSelector } from '../../../../../util/routeSelector';
+import { useContext } from 'react';
+import { DropDownContext } from '../../../../../context/DropDownContext';
 
 interface NotificationItemProps {
   item: Alarm;
 }
 
 const NotificationItem = ({ item }: NotificationItemProps) => {
+  const { close } = useContext(DropDownContext);
+  const route = routeSelector(item.routingId, item.alarmFilterId);
   return (
-    <Link to={`${ROUTES.notice}/${item.routingId}`}>
+    <Link to={route} onClick={close}>
       <S.Container>
         <S.ItemContent>{item.content}</S.ItemContent>
         <S.Time>{item.createdAt}</S.Time>
