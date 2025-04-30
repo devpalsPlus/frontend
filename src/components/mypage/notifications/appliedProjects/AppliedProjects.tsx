@@ -12,9 +12,14 @@ export default function AppliedProjects() {
   if (isLoading) {
     return <Spinner size='50px' color='#3e5879;' />;
   }
+
+  if (!myAppliedStatusListData || myAppliedStatusListData.length === 0) {
+    return <NoContent type='projects' />;
+  }
+
   return (
     <S.container>
-      {myAppliedStatusListData && myAppliedStatusListData?.length > 0 ? (
+      {myAppliedStatusListData && myAppliedStatusListData?.length > 0 && (
         <S.Wrapper>
           {myAppliedStatusListData?.map((data) => (
             <Link key={data.id} to={`${ROUTES.projectDetail}/${data.id}`}>
@@ -22,8 +27,6 @@ export default function AppliedProjects() {
             </Link>
           ))}
         </S.Wrapper>
-      ) : (
-        <NoContent type='projects' />
       )}
     </S.container>
   );

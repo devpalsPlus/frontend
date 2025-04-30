@@ -1,4 +1,4 @@
-import { myInquiriesData } from '../../../../hooks/useGetMyInquiries';
+import { useGetMyInquiries } from '../../../../hooks/useGetMyInquiries';
 import NoContent from '../../../common/noContent/NoContent';
 import Spinner from '../../Spinner';
 import * as S from './Inquiries.styled';
@@ -11,9 +11,7 @@ export default function Inquiries() {
     return <Spinner size='50px' color='#3e5879;' />;
   }
 
-  if (!myInquiriesData) return;
-
-  if (myInquiriesData.length === 0)
+  if (!myInquiriesData || myInquiriesData?.length === 0)
     return (
       <S.WrapperNoContent>
         <NoContent type='inquiries' />

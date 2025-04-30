@@ -12,9 +12,7 @@ export default function CommentsActivity() {
     return <Spinner size='50px' color='#3e5879;' />;
   }
 
-  if (!myCommentsData) return;
-
-  if (myCommentsData.length === 0) {
+  if (!myCommentsData || myCommentsData.length === 0) {
     return (
       <S.WrapperNoContent>
         <NoContent type='comment' />

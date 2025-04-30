@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-export const CommentWrapper = styled.div`
-  cursor: pointer;
-`;
-
 export const CommentContent = styled.div``;
 
 export const CommentDate = styled.div`

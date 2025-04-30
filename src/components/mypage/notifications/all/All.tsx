@@ -29,9 +29,7 @@ export default function All() {
     return <Spinner size='50px' color='#3e5879;' />;
   }
 
-  if (!alarmListData) return;
-
-  if (alarmListData?.length === 0) {
+  if (!alarmListData || alarmListData.length === 0) {
     return (
       <S.WrapperNoContent>
         <NoContent type='notification' />
