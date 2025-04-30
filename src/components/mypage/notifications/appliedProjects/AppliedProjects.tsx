@@ -19,15 +19,13 @@ export default function AppliedProjects() {
 
   return (
     <S.container>
-      {myAppliedStatusListData && myAppliedStatusListData?.length > 0 && (
-        <S.Wrapper>
-          {myAppliedStatusListData?.map((data) => (
-            <Link key={data.id} to={`${ROUTES.projectDetail}/${data.id}`}>
-              <AppliedProjectsStatus list={data} />
-            </Link>
-          ))}
-        </S.Wrapper>
-      )}
+      <S.Wrapper>
+        {myAppliedStatusListData?.map((data) => (
+          <Link key={data.id} to={`${ROUTES.projectDetail}/${data.id}`}>
+            <AppliedProjectsStatus list={data} />
+          </Link>
+        ))}
+      </S.Wrapper>
     </S.container>
   );
 }

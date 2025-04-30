@@ -28,14 +28,13 @@ export default function Inquiries() {
           <S.InquiriesTableHeaderState>상태</S.InquiriesTableHeaderState>
         </S.InquiriesTableHeadWrapper>
         <S.InquiriesWrapper>
-          {myInquiriesData.length > 0 &&
-            myInquiriesData.map((list, index) => (
-              <Inquiry
-                key={`${index}-${list.title}`}
-                list={list}
-                no={myInquiriesData.length - index}
-              />
-            ))}
+          {myInquiriesData.map((list, index) => (
+            <Inquiry
+              key={`${index}-${list.title}`}
+              list={list}
+              no={myInquiriesData.length - index}
+            />
+          ))}
         </S.InquiriesWrapper>
       </S.InquiriesContainer>
     </S.container>
