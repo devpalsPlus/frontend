@@ -32,7 +32,7 @@ export const DateTag = styled.span`
 export const Period = styled.small`
   font-size: ${({ theme }) => theme.heading.small.fontSize};
   font-weight: 500;
-  color: ${({ theme }) => theme.color.deepgrey};
+  color: ${({ theme }) => theme.color.deepGrey};
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: ${({ theme }) => theme.heading.small.tabletFontSize};
