@@ -58,7 +58,7 @@ export const Section = styled.div`
 export const Label = styled.label`
   font-size: 1.2rem;
   font-weight: bold;
-  color: ${({ theme }) => theme.color.black};
+  color: ${({ theme }) => theme.color.primary};
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: 1.1rem;
