@@ -54,7 +54,7 @@ export const CardTitle = styled.h3`
 export const RecruitmentDate = styled.small`
   font-size: ${({ theme }) => theme.heading.small.fontSize};
   font-weight: 400;
-  color: ${({ theme }) => theme.color.deepgrey};
+  color: ${({ theme }) => theme.color.deepGrey};
   margin-bottom: 0.25rem;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
@@ -66,7 +66,7 @@ export const RecruitmentDate = styled.small`
 export const TotalMember = styled.small`
   font-size: ${({ theme }) => theme.heading.small.fontSize};
   font-weight: 400;
-  color: ${({ theme }) => theme.color.deepgrey};
+  color: ${({ theme }) => theme.color.deepGrey};
   margin-bottom: 1.125rem;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {

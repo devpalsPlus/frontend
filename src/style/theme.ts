@@ -31,7 +31,7 @@ export type BorderRadiusSize = 'primary' | 'large' | 'small';
 
 export type MediaQuery = 'mobile' | 'tablet' | 'desktop';
 
-interface Theme {
+export interface Theme {
   color: Record<ColorKey, string>;
   heading: {
     [key in HeadingSize]: {

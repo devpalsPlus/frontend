@@ -52,7 +52,7 @@ export const StepButton = styled.div`
 export const StepLabel = styled.div`
   font-size: 1rem;
   font-weight: bold;
-  color: ${({ theme }) => theme.color.black};
+  color: ${({ theme }) => theme.color.primary};
   margin-bottom: 10px;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
