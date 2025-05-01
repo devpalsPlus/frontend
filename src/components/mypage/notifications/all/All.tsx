@@ -41,7 +41,7 @@ export default function All() {
     <S.container>
       <S.WrapperNotifications>
         {alarmListData
-          ?.filter((list) => {
+          .filter((list) => {
             if (filterId === 0) {
               return true;
             } else if (list.alarmFilterId === filterId) {

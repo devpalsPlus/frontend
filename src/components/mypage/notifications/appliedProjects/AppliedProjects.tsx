@@ -20,7 +20,7 @@ export default function AppliedProjects() {
   return (
     <S.container>
       <S.Wrapper>
-        {myAppliedStatusListData?.map((data) => (
+        {myAppliedStatusListData.map((data) => (
           <Link key={data.id} to={`${ROUTES.projectDetail}/${data.id}`}>
             <AppliedProjectsStatus list={data} />
           </Link>
