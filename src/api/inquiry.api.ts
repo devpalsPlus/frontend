@@ -9,6 +9,7 @@ export const postInquiry = async (formData: FormData) => {
     });
     console.log(response);
   } catch (e) {
-    console.log('문의하기 에러', e);
+    console.error('문의하기 에러', e);
+    throw e;
   }
 };

@@ -5,9 +5,10 @@ import * as S from './All.styled';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useAlarmDelete } from '../../../../hooks/useAlarmDelete';
 import { useAlarmPatch } from '../../../../hooks/useAlarmPatch';
+import Spinner from '../../Spinner';
 
 export default function All() {
-  const { alarmListData } = useAlarmList();
+  const { alarmListData, isLoading } = useAlarmList();
   const { filterId }: { filterId: number } = useOutletContext();
   const { mutate: deleteAlarm } = useAlarmDelete();
   const { mutate: patchAlarm } = useAlarmPatch();
@@ -24,7 +25,11 @@ export default function All() {
     }
   };
 
-  if (!alarmListData || (alarmListData && alarmListData?.length === 0)) {
+  if (isLoading) {
+    return <Spinner size='50px' color='#3e5879;' />;
+  }
+
+  if (!alarmListData || alarmListData.length === 0) {
     return (
       <S.WrapperNoContent>
         <NoContent type='notification' />
@@ -36,7 +41,7 @@ export default function All() {
     <S.container>
       <S.WrapperNotifications>
         {alarmListData
-          ?.filter((list) => {
+          .filter((list) => {
             if (filterId === 0) {
               return true;
             } else if (list.alarmFilterId === filterId) {

@@ -14,7 +14,8 @@ export const getProjectLists = async (params: SearchFilters) => {
 
     return response.data.data;
   } catch (e) {
-    console.log('getProjectLists', e);
+    console.error('getProjectLists', e);
+    throw e;
   }
 };
 
@@ -26,6 +27,7 @@ export const getProjectStatistic = async () => {
 
     return response.data.data;
   } catch (e) {
-    console.log('getProjectStatistic', e);
+    console.error('getProjectStatistic', e);
+    throw e;
   }
 };
