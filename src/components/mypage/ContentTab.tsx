@@ -23,7 +23,6 @@ export default function ContentTab({ filter, $justifyContent }: ContentProps) {
   function handleChangeId(id: number) {
     setFilterId(id);
   }
-
   useEffect(() => {
     if (
       pathname.includes(ROUTES.notificationsAppliedProjects) ||

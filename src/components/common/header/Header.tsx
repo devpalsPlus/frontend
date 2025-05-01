@@ -16,7 +16,7 @@ import { formatImgPath } from '../../../util/formatImgPath';
 import bell from '../../../assets/bell.svg';
 import Notification from './Notification/Notification';
 import bellLogined from '../../../assets/bellLogined.svg';
-import useNotification from '../../../hooks/useNotification';
+// import useNotification from '../../../hooks/useNotification';
 import { useEffect } from 'react';
 import { testLiveAlarm } from '../../../api/alarm.api';
 
@@ -51,7 +51,7 @@ function Header() {
             <S.HeaderLink>공지사항</S.HeaderLink>
           </Link>
         </S.HeaderLinkContainer>
-        <S.Alarm role='button' tabIndex={0} aria-label='알림 메세지'>
+        {/* <S.Alarm role='button' tabIndex={0} aria-label='알림 메세지'>
           {isLoggedIn ? (
             <DropDown
               toggleButton={
@@ -70,7 +70,7 @@ function Header() {
           ) : (
             <img src={bell} alt='알림' />
           )}
-        </S.Alarm>
+        </S.Alarm> */}
         <DropDown
           aria-label='프로필 드롭다운'
           toggleButton={

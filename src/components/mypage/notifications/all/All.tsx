@@ -13,15 +13,18 @@ export default function All() {
   const { mutate: deleteAlarm } = useAlarmDelete();
   const { mutate: patchAlarm } = useAlarmPatch();
 
-  const linkUrl = (id: number, filter: number) => {
-    switch (filter) {
-      case 1:
-      case 3:
+  const linkUrl = (id: number, filter: number, replier = 0) => {
+    // 문의, 신고 답변시 추후 수정
+    if (filter === 1 || filter === 3) {
+      if (replier === 3) {
+        return `/activity-log/inquiries`;
+      } else {
         return `/project-detail/${id}`;
-      case 2:
-        return `/manage/${id}`;
-      default:
-        return `/mypage/notification`;
+      }
+    } else if (filter === 2) {
+      return `/manage/${id}`;
+    } else {
+      return `/mypage/notification`;
     }
   };
 
@@ -51,15 +54,28 @@ export default function All() {
           })
           .map((list) => (
             <S.WrapperNotification $enabled={list.enabled} key={list.id}>
-              <Link
-                to={linkUrl(list.routingId, list.alarmFilterId)}
-                onClick={() => patchAlarm(list.id)}
-              >
-                <S.SpanNotification $enabled={list.enabled}>
+              {/* 신고하기 알림 구별 */}
+              {list.alarmFilterId !== 5 ? (
+                <Link
+                  to={linkUrl(list.routingId, list.alarmFilterId, list.replier)}
+                  onClick={() => patchAlarm(list.id)}
+                >
+                  <S.SpanNotification
+                    $warn={list.alarmFilterId === 5}
+                    $enabled={list.enabled}
+                  >
+                    {list.content}
+                  </S.SpanNotification>
+                </Link>
+              ) : (
+                <S.SpanNotification
+                  $warn={list.alarmFilterId === 5}
+                  $enabled={list.enabled}
+                >
                   {list.content}
                 </S.SpanNotification>
-              </Link>
-              {list.alarmFilterId !== 4 && (
+              )}
+              {list.alarmFilterId !== 5 && (
                 <S.XButtonNotification
                   onClick={() => deleteAlarm(list.id)}
                   $enabled={list.enabled}
