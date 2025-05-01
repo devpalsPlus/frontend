@@ -25,7 +25,7 @@ function Header() {
   const { userLogout } = useAuth(handleModalOpen);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
-  const { signalData, setSignalData } = useNotification();
+  // const { signalData, setSignalData } = useNotification();
 
   useEffect(() => {
     testLiveAlarm();
