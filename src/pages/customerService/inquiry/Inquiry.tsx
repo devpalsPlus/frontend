@@ -65,8 +65,6 @@ export default function Inquiry() {
     const isValid = { category: false, title: false, content: false };
 
     if (isOpen.submitButton) {
-      console.log('제출하기버튼*-*-*-*-*-*', isOpen.submitButton);
-
       for (const [key, value] of formData.entries()) {
         if (
           key === 'category' &&
