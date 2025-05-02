@@ -1,6 +1,7 @@
 import { Fragment } from 'react/jsx-runtime';
 import {
   INQUIRY_CATEGORY,
+  INQUIRY_MESSAGE,
   My_INQUIRIES_MESSAGE,
 } from '../../../constants/customerService';
 import * as S from './Inquiry.styled';
@@ -22,7 +23,6 @@ interface FormStateType {
 
 export default function Inquiry() {
   const location = useLocation();
-
   const {
     isOpen: isModalOpen,
     message,
@@ -33,7 +33,10 @@ export default function Inquiry() {
     location.state.from,
     handleModalOpen
   );
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<{
+    category: boolean;
+    submitButton: boolean;
+  }>({ category: false, submitButton: false });
   const [form, setForm] = useState<FormStateType>({
     category: My_INQUIRIES_MESSAGE.categoryDefault,
     title: '',
@@ -59,17 +62,31 @@ export default function Inquiry() {
 
     formData.append('inquiryDto', data);
 
-    // 모달처리하기
-    let isValid = true;
+    const isValid = { category: false, title: false, content: false };
 
-    Array.from(formData.entries()).forEach(([key, value]) => {
-      if (key === 'category' && value === My_INQUIRIES_MESSAGE.categoryDefault)
-        return (isValid = false);
-      if (key === 'title' && value === '') return (isValid = false);
-      if (key === 'content' && value === '') return (isValid = false);
-    });
+    if (isOpen.submitButton) {
+      console.log('제출하기버튼*-*-*-*-*-*', isOpen.submitButton);
 
-    if (isValid) {
+      for (const [key, value] of formData.entries()) {
+        if (
+          key === 'category' &&
+          value === My_INQUIRIES_MESSAGE.categoryDefault
+        ) {
+          handleModalOpen(INQUIRY_MESSAGE.selectCategory);
+          return (isValid.category = false);
+        } else if (key === 'title' && value === '') {
+          handleModalOpen(INQUIRY_MESSAGE.writeTitle);
+          return (isValid.title = false);
+        } else if (key === 'content' && value === '') {
+          handleModalOpen(INQUIRY_MESSAGE.writeContent);
+          return (isValid.content = false);
+        }
+      }
+    }
+
+    setIsOpen((prev) => ({ ...prev, submitButton: false }));
+
+    if (isValid.category && isValid.title && isValid.content) {
       postInquiry(formData);
       setForm({
         category: My_INQUIRIES_MESSAGE.categoryDefault,
@@ -83,7 +100,10 @@ export default function Inquiry() {
 
   const handleClickCategoryValue = (category: string) => {
     setForm((prev) => ({ ...prev, category }));
-    setIsOpen((prev) => !prev);
+    setIsOpen((prev) => ({
+      ...prev,
+      category: !prev.category,
+    }));
   };
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileValue = e.target.value;
@@ -124,8 +144,14 @@ export default function Inquiry() {
           <S.Nav>
             <S.CategoryWrapper>
               <S.CategorySelect
-                onClick={() => setIsOpen((prev) => !prev)}
-                $isOpen={isOpen}
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                  e.stopPropagation();
+                  setIsOpen((prev) => ({
+                    ...prev,
+                    category: !prev.category,
+                  }));
+                }}
+                $isOpen={isOpen.category}
               >
                 {form.category} <ChevronDownIcon />
                 <S.CategoryValueInput
@@ -134,7 +160,7 @@ export default function Inquiry() {
                   value={form.category}
                 />
               </S.CategorySelect>
-              {isOpen && (
+              {isOpen.category && (
                 <S.CategoryButtonWrapper>
                   {INQUIRY_CATEGORY.map((category) => (
                     <Fragment key={category.title}>
@@ -181,7 +207,17 @@ export default function Inquiry() {
             </S.InquiryFileWrapper>
           </S.ContentWrapper>
           <S.SendButtonWrapper>
-            <S.SendButton type='submit'>제출</S.SendButton>
+            <S.SendButton
+              type='submit'
+              onClick={() =>
+                setIsOpen((prev) => ({
+                  ...prev,
+                  submitButton: true,
+                }))
+              }
+            >
+              제출
+            </S.SendButton>
           </S.SendButtonWrapper>
         </S.InquiryWrapper>
       </S.InquiryForm>
