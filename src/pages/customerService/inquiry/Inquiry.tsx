@@ -9,6 +9,8 @@ import React, { useEffect, useState } from 'react';
 import type { InquiryFormData } from '../../../models/inquiry';
 import { usePostInquiry } from '../../../hooks/usePostInquiry';
 import { useLocation } from 'react-router-dom';
+import { useModal } from '../../../hooks/useModal';
+import Modal from '../../../components/common/modal/Modal';
 
 interface FormStateType {
   category: string;
@@ -20,7 +22,17 @@ interface FormStateType {
 
 export default function Inquiry() {
   const location = useLocation();
-  const { mutate: postInquiry } = usePostInquiry(location.state.from);
+
+  const {
+    isOpen: isModalOpen,
+    message,
+    handleModalOpen,
+    handleModalClose,
+  } = useModal();
+  const { mutate: postInquiry } = usePostInquiry(
+    location.state.from,
+    handleModalOpen
+  );
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [form, setForm] = useState<FormStateType>({
     category: My_INQUIRIES_MESSAGE.categoryDefault,
@@ -173,6 +185,9 @@ export default function Inquiry() {
           </S.SendButtonWrapper>
         </S.InquiryWrapper>
       </S.InquiryForm>
+      <Modal isOpen={isModalOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Container>
   );
 }

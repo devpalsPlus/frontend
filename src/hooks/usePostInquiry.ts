@@ -4,8 +4,12 @@ import { postInquiry } from '../api/inquiry.api';
 import { AxiosError } from 'axios';
 import useAuthStore from '../store/authStore';
 import { useNavigate } from 'react-router-dom';
+import { INQUIRY_MESSAGE } from '../constants/customerService';
 
-export const usePostInquiry = (pathname: string) => {
+export const usePostInquiry = (
+  pathname: string,
+  handleModalOpen: (message: string) => void
+) => {
   const userId = useAuthStore((state) => state.userData?.id);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -16,7 +20,13 @@ export const usePostInquiry = (pathname: string) => {
       queryClient.invalidateQueries({
         queryKey: [ActivityLog.myInquiries, userId],
       });
-      navigate(pathname);
+      setTimeout(() => {
+        navigate(pathname);
+      }, 1000);
+      handleModalOpen(INQUIRY_MESSAGE.inquiredSuccess);
+    },
+    onError: () => {
+      handleModalOpen(INQUIRY_MESSAGE.inquiredError);
     },
   });
 
