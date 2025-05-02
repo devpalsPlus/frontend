@@ -1,13 +1,13 @@
+import type { ApiCommonBasicType } from '../models/apiCommon';
 import { httpClient } from './http.api';
 
 export const postInquiry = async (formData: FormData) => {
   try {
-    const response = await httpClient.post('/inquiry', formData, {
+    await httpClient.post<ApiCommonBasicType>('/inquiry', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
-    console.log(response);
   } catch (e) {
     console.error('문의하기 에러', e);
     throw e;

@@ -1,13 +1,14 @@
 import { Fragment } from 'react/jsx-runtime';
 import {
   INQUIRY_CATEGORY,
-  INQUIRY_MESSAGE,
+  My_INQUIRIES_MESSAGE,
 } from '../../../constants/customerService';
 import * as S from './Inquiry.styled';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import React, { useEffect, useState } from 'react';
 import type { InquiryFormData } from '../../../models/inquiry';
 import { usePostInquiry } from '../../../hooks/usePostInquiry';
+import { useLocation } from 'react-router-dom';
 
 interface FormStateType {
   category: string;
@@ -18,13 +19,14 @@ interface FormStateType {
 }
 
 export default function Inquiry() {
-  const { mutate: postInquiry } = usePostInquiry();
+  const location = useLocation();
+  const { mutate: postInquiry } = usePostInquiry(location.state.from);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [form, setForm] = useState<FormStateType>({
-    category: INQUIRY_MESSAGE.categoryDefault,
+    category: My_INQUIRIES_MESSAGE.categoryDefault,
     title: '',
     content: '',
-    fileValue: INQUIRY_MESSAGE.fileDefault,
+    fileValue: My_INQUIRIES_MESSAGE.fileDefault,
     fileImage: null,
   });
 
@@ -49,7 +51,7 @@ export default function Inquiry() {
     let isValid = true;
 
     Array.from(formData.entries()).forEach(([key, value]) => {
-      if (key === 'category' && value === INQUIRY_MESSAGE.categoryDefault)
+      if (key === 'category' && value === My_INQUIRIES_MESSAGE.categoryDefault)
         return (isValid = false);
       if (key === 'title' && value === '') return (isValid = false);
       if (key === 'content' && value === '') return (isValid = false);
@@ -58,10 +60,10 @@ export default function Inquiry() {
     if (isValid) {
       postInquiry(formData);
       setForm({
-        category: INQUIRY_MESSAGE.categoryDefault,
+        category: My_INQUIRIES_MESSAGE.categoryDefault,
         title: '',
         content: '',
-        fileValue: INQUIRY_MESSAGE.fileDefault,
+        fileValue: My_INQUIRIES_MESSAGE.fileDefault,
         fileImage: null,
       });
     }
@@ -76,6 +78,7 @@ export default function Inquiry() {
     const image = e.target.files?.[0];
 
     // 파일 크기 제한 (예: 5MB)
+    // 모달처리
     const MAX_FILE_SIZE = 5 * 1024 * 1024;
     if (image && image.size > MAX_FILE_SIZE) {
       alert('파일 크기는 5MB 이하만 가능합니다.');
