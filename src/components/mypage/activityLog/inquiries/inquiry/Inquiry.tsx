@@ -32,21 +32,26 @@ export default function Inquiry({ list, no }: InquiryProps) {
         <S.InquiryContentWrapper>
           <S.InquiryContent>{list.content}</S.InquiryContent>
           {list.imageUrls.length !== 0 && (
-            <S.InquiryModalImgWrapper>
-              {list.imageUrls.map((url) => (
-                <S.InquiryImgWrapper
-                  key={`${list.category}-${list.title}-${url}`}
-                  onClick={() =>
-                    setIsImageOpen({
-                      isImageOpen: true,
-                      url,
-                    })
-                  }
-                >
-                  <S.InquiryImg src={url} />
-                </S.InquiryImgWrapper>
-              ))}
-            </S.InquiryModalImgWrapper>
+            <S.InquiryImgContainer>
+              <S.InquiryImgWrapper>
+                {list.imageUrls.map((url) => (
+                  <S.ImgWrapper
+                    key={`${list.category}-${list.title}-${url}`}
+                    onClick={() =>
+                      setIsImageOpen({
+                        isImageOpen: true,
+                        url,
+                      })
+                    }
+                  >
+                    <S.InquiryImg src={url} />
+                  </S.ImgWrapper>
+                ))}
+              </S.InquiryImgWrapper>
+              <S.MessageWrapper>
+                {INQUIRY_MESSAGE.blowUpMessage}
+              </S.MessageWrapper>
+            </S.InquiryImgContainer>
           )}
           {isImageOpen.isImageOpen && (
             <S.ModalImgContainer>
@@ -58,9 +63,9 @@ export default function Inquiry({ list, no }: InquiryProps) {
                   })
                 }
               >
-                <S.ModalImgButtonWrapper>
+                <S.ModalImgMessageWrapper>
                   {INQUIRY_MESSAGE.isImageOpenMessage}
-                </S.ModalImgButtonWrapper>
+                </S.ModalImgMessageWrapper>
                 <S.ModalImg src={isImageOpen.url} />
               </S.ModalImgWrapper>
             </S.ModalImgContainer>

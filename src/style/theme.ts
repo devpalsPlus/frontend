@@ -9,7 +9,8 @@ export type ColorKey =
   | 'red'
   | 'green'
   | 'navy'
-  | 'lightnavy';
+  | 'lightnavy'
+  | 'warn';
 
 export type HeadingSize =
   | 'large'
@@ -76,6 +77,7 @@ export const defaultTheme: Theme = {
     green: '#a2d393',
     navy: '#213555',
     lightnavy: '#92bbf0',
+    warn: '#EC1E4F',
   },
   heading: {
     large: { fontSize: '1.75rem', tabletFontSize: '1.5rem' },

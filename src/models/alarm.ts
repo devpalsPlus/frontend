@@ -21,6 +21,8 @@ export interface Alarm {
   alarmFilterId: number;
   createdAt: string;
   enabled: boolean;
+  replier?: number;
+  reCommentUserId?: number;
 }
 
 export interface AlarmLive {

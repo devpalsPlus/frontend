@@ -31,17 +31,26 @@ export const InquiryContentWrapper = styled.div`
 
 export const InquiryContent = styled.div``;
 
+export const InquiryImgContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const InquiryImgWrapper = styled.div`
   margin-top: 1rem;
   cursor: pointer;
-`;
-
-export const InquiryModalImgWrapper = styled.div`
+  width: fit-content;
   display: flex;
 `;
 
+export const ImgWrapper = styled.div``;
+
 export const InquiryImg = styled.img`
   width: 5rem;
+`;
+
+export const MessageWrapper = styled.div`
+  font-size: 0.8rem;
 `;
 
 export const ModalImgContainer = styled.div`
@@ -57,6 +66,7 @@ export const ModalImgContainer = styled.div`
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.7);
+  overflow: auto;
 `;
 
 export const ModalImgWrapper = styled.div`
@@ -71,7 +81,7 @@ export const ModalImgWrapper = styled.div`
   width: fit-content;
 `;
 
-export const ModalImgButtonWrapper = styled.div`
+export const ModalImgMessageWrapper = styled.div`
   width: 100%;
   color: ${({ theme }) => theme.color.white};
   font-size: 0.8rem;
