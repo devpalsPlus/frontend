@@ -94,14 +94,10 @@ function Header() {
                 <Link to={ROUTES.manageProjectsRoot}>
                   <S.Item>공고관리</S.Item>
                 </Link>
-                <Link to={ROUTES.inquiry}>
+                <Link to={ROUTES.inquiry} state={{ from: location.pathname }}>
                   <S.Item>문의하기</S.Item>
                 </Link>
-                <Link
-                  to='#'
-                  state={{ from: location.pathname }}
-                  onClick={(e) => e.preventDefault()}
-                >
+                <Link to='#' onClick={(e) => e.preventDefault()}>
                   <S.Item
                     aria-label='클릭시 로그아웃 됩니다.'
                     onClick={userLogout}
