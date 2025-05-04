@@ -1,6 +1,6 @@
 import * as S from './Header.styled';
 import Mainlogo from '../../../assets/mainlogo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import DropDown from '../dropDown/DropDown';
 import Avatar from '../avatar/Avatar';
 import { useAuth } from '../../../hooks/useAuth';
@@ -16,20 +16,22 @@ import { formatImgPath } from '../../../util/formatImgPath';
 import bell from '../../../assets/bell.svg';
 import Notification from './Notification/Notification';
 import bellLogined from '../../../assets/bellLogined.svg';
-// import useNotification from '../../../hooks/useNotification';
+import useNotification from '../../../hooks/useNotification';
 import { useEffect } from 'react';
 import { testLiveAlarm } from '../../../api/alarm.api';
 
 function Header() {
+  const location = useLocation();
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userLogout } = useAuth(handleModalOpen);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
+
   // const { signalData, setSignalData } = useNotification();
 
-  useEffect(() => {
-    testLiveAlarm();
-  }, []);
+  // useEffect(() => {
+  //   testLiveAlarm();
+  // }, []);
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -92,7 +94,7 @@ function Header() {
                 <Link to={ROUTES.manageProjectsRoot}>
                   <S.Item>공고관리</S.Item>
                 </Link>
-                <Link to={ROUTES.inquiry}>
+                <Link to={ROUTES.inquiry} state={{ from: location.pathname }}>
                   <S.Item>문의하기</S.Item>
                 </Link>
                 <Link to='#' onClick={(e) => e.preventDefault()}>

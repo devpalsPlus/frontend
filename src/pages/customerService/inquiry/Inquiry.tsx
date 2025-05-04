@@ -2,12 +2,16 @@ import { Fragment } from 'react/jsx-runtime';
 import {
   INQUIRY_CATEGORY,
   INQUIRY_MESSAGE,
+  My_INQUIRIES_MESSAGE,
 } from '../../../constants/customerService';
 import * as S from './Inquiry.styled';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import React, { useEffect, useState } from 'react';
 import type { InquiryFormData } from '../../../models/inquiry';
 import { usePostInquiry } from '../../../hooks/usePostInquiry';
+import { useLocation } from 'react-router-dom';
+import { useModal } from '../../../hooks/useModal';
+import Modal from '../../../components/common/modal/Modal';
 
 interface FormStateType {
   category: string;
@@ -18,13 +22,23 @@ interface FormStateType {
 }
 
 export default function Inquiry() {
-  const { mutate: postInquiry } = usePostInquiry();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const location = useLocation();
+  const {
+    isOpen: isModalOpen,
+    message,
+    handleModalOpen,
+    handleModalClose,
+  } = useModal();
+  const { mutate: postInquiry } = usePostInquiry(
+    handleModalOpen,
+    location.state.from || ''
+  );
+  const [isCategoryOpen, setIsCategoryOpen] = useState<boolean>(false);
   const [form, setForm] = useState<FormStateType>({
-    category: INQUIRY_MESSAGE.categoryDefault,
+    category: My_INQUIRIES_MESSAGE.categoryDefault,
     title: '',
     content: '',
-    fileValue: INQUIRY_MESSAGE.fileDefault,
+    fileValue: My_INQUIRIES_MESSAGE.fileDefault,
     fileImage: null,
   });
 
@@ -45,40 +59,43 @@ export default function Inquiry() {
 
     formData.append('inquiryDto', data);
 
-    // 모달처리하기
-    let isValid = true;
+    const isValid = {
+      category: form.category !== My_INQUIRIES_MESSAGE.categoryDefault,
+      title: form.title.trim() !== '',
+      content: form.content.trim() !== '',
+    };
 
-    Array.from(formData.entries()).forEach(([key, value]) => {
-      if (key === 'category' && value === INQUIRY_MESSAGE.categoryDefault)
-        return (isValid = false);
-      if (key === 'title' && value === '') return (isValid = false);
-      if (key === 'content' && value === '') return (isValid = false);
-    });
-
-    if (isValid) {
-      postInquiry(formData);
-      setForm({
-        category: INQUIRY_MESSAGE.categoryDefault,
-        title: '',
-        content: '',
-        fileValue: INQUIRY_MESSAGE.fileDefault,
-        fileImage: null,
-      });
+    if (!isValid.category) {
+      return handleModalOpen(INQUIRY_MESSAGE.selectCategory);
     }
+    if (!isValid.title) {
+      return handleModalOpen(INQUIRY_MESSAGE.writeTitle);
+    }
+    if (!isValid.content) {
+      return handleModalOpen(INQUIRY_MESSAGE.writeContent);
+    }
+
+    postInquiry(formData);
+    setForm({
+      category: My_INQUIRIES_MESSAGE.categoryDefault,
+      title: '',
+      content: '',
+      fileValue: My_INQUIRIES_MESSAGE.fileDefault,
+      fileImage: null,
+    });
   };
 
   const handleClickCategoryValue = (category: string) => {
     setForm((prev) => ({ ...prev, category }));
-    setIsOpen((prev) => !prev);
+    setIsCategoryOpen((prev) => !prev);
   };
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileValue = e.target.value;
     const image = e.target.files?.[0];
 
-    // 파일 크기 제한 (예: 5MB)
     const MAX_FILE_SIZE = 5 * 1024 * 1024;
     if (image && image.size > MAX_FILE_SIZE) {
-      alert('파일 크기는 5MB 이하만 가능합니다.');
+      handleModalOpen(INQUIRY_MESSAGE.validationFile);
       e.target.value = '';
       return;
     }
@@ -109,8 +126,12 @@ export default function Inquiry() {
           <S.Nav>
             <S.CategoryWrapper>
               <S.CategorySelect
-                onClick={() => setIsOpen((prev) => !prev)}
-                $isOpen={isOpen}
+                type='button'
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                  e.stopPropagation();
+                  setIsCategoryOpen((prev) => !prev);
+                }}
+                $isCategoryOpen={isCategoryOpen}
               >
                 {form.category} <ChevronDownIcon />
                 <S.CategoryValueInput
@@ -119,11 +140,12 @@ export default function Inquiry() {
                   value={form.category}
                 />
               </S.CategorySelect>
-              {isOpen && (
+              {isCategoryOpen && (
                 <S.CategoryButtonWrapper>
                   {INQUIRY_CATEGORY.map((category) => (
                     <Fragment key={category.title}>
                       <S.CategoryButton
+                        type='button'
                         onClick={() => handleClickCategoryValue(category.title)}
                       >
                         {category.title}
@@ -166,10 +188,18 @@ export default function Inquiry() {
             </S.InquiryFileWrapper>
           </S.ContentWrapper>
           <S.SendButtonWrapper>
-            <S.SendButton type='submit'>제출</S.SendButton>
+            <S.SendButton
+              type='submit'
+              onClick={() => setIsCategoryOpen((prev) => !prev)}
+            >
+              제출
+            </S.SendButton>
           </S.SendButtonWrapper>
         </S.InquiryWrapper>
       </S.InquiryForm>
+      <Modal isOpen={isModalOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Container>
   );
 }

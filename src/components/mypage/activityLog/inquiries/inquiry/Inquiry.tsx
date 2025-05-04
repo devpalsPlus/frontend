@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { MyInquiries } from '../../../../../models/activityLog';
 import * as S from './Inquiry.styled';
-import { INQUIRY_MESSAGE } from '../../../../../constants/customerService';
+import { My_INQUIRIES_MESSAGE } from '../../../../../constants/customerService';
 
 interface InquiryProps {
   list: MyInquiries;
@@ -49,7 +49,7 @@ export default function Inquiry({ list, no }: InquiryProps) {
                 ))}
               </S.InquiryImgWrapper>
               <S.MessageWrapper>
-                {INQUIRY_MESSAGE.blowUpMessage}
+                {My_INQUIRIES_MESSAGE.blowUpMessage}
               </S.MessageWrapper>
             </S.InquiryImgContainer>
           )}
@@ -64,7 +64,7 @@ export default function Inquiry({ list, no }: InquiryProps) {
                 }
               >
                 <S.ModalImgMessageWrapper>
-                  {INQUIRY_MESSAGE.isImageOpenMessage}
+                  {My_INQUIRIES_MESSAGE.isImageOpenMessage}
                 </S.ModalImgMessageWrapper>
                 <S.ModalImg src={isImageOpen.url} />
               </S.ModalImgWrapper>
