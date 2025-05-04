@@ -30,13 +30,10 @@ export default function Inquiry() {
     handleModalClose,
   } = useModal();
   const { mutate: postInquiry } = usePostInquiry(
-    location.state.from,
-    handleModalOpen
+    handleModalOpen,
+    location.state.from || ''
   );
-  const [isOpen, setIsOpen] = useState<{
-    category: boolean;
-    submitButton: boolean;
-  }>({ category: false, submitButton: false });
+  const [isCategoryOpen, setIsCategoryOpen] = useState<boolean>(false);
   const [form, setForm] = useState<FormStateType>({
     category: My_INQUIRIES_MESSAGE.categoryDefault,
     title: '',
@@ -62,56 +59,43 @@ export default function Inquiry() {
 
     formData.append('inquiryDto', data);
 
-    const isValid = { category: false, title: false, content: false };
+    const isValid = {
+      category: form.category !== My_INQUIRIES_MESSAGE.categoryDefault,
+      title: form.title.trim() !== '',
+      content: form.content.trim() !== '',
+    };
 
-    if (isOpen.submitButton) {
-      for (const [key, value] of formData.entries()) {
-        if (
-          key === 'category' &&
-          value === My_INQUIRIES_MESSAGE.categoryDefault
-        ) {
-          handleModalOpen(INQUIRY_MESSAGE.selectCategory);
-          return (isValid.category = false);
-        } else if (key === 'title' && value === '') {
-          handleModalOpen(INQUIRY_MESSAGE.writeTitle);
-          return (isValid.title = false);
-        } else if (key === 'content' && value === '') {
-          handleModalOpen(INQUIRY_MESSAGE.writeContent);
-          return (isValid.content = false);
-        }
-      }
+    if (!isValid.category) {
+      return handleModalOpen(INQUIRY_MESSAGE.selectCategory);
+    }
+    if (!isValid.title) {
+      return handleModalOpen(INQUIRY_MESSAGE.writeTitle);
+    }
+    if (!isValid.content) {
+      return handleModalOpen(INQUIRY_MESSAGE.writeContent);
     }
 
-    setIsOpen((prev) => ({ ...prev, submitButton: false }));
-
-    if (isValid.category && isValid.title && isValid.content) {
-      postInquiry(formData);
-      setForm({
-        category: My_INQUIRIES_MESSAGE.categoryDefault,
-        title: '',
-        content: '',
-        fileValue: My_INQUIRIES_MESSAGE.fileDefault,
-        fileImage: null,
-      });
-    }
+    postInquiry(formData);
+    setForm({
+      category: My_INQUIRIES_MESSAGE.categoryDefault,
+      title: '',
+      content: '',
+      fileValue: My_INQUIRIES_MESSAGE.fileDefault,
+      fileImage: null,
+    });
   };
 
   const handleClickCategoryValue = (category: string) => {
     setForm((prev) => ({ ...prev, category }));
-    setIsOpen((prev) => ({
-      ...prev,
-      category: !prev.category,
-    }));
+    setIsCategoryOpen((prev) => !prev);
   };
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileValue = e.target.value;
     const image = e.target.files?.[0];
 
-    // 파일 크기 제한 (예: 5MB)
-    // 모달처리
     const MAX_FILE_SIZE = 5 * 1024 * 1024;
     if (image && image.size > MAX_FILE_SIZE) {
-      alert('파일 크기는 5MB 이하만 가능합니다.');
+      handleModalOpen(INQUIRY_MESSAGE.validationFile);
       e.target.value = '';
       return;
     }
@@ -142,14 +126,12 @@ export default function Inquiry() {
           <S.Nav>
             <S.CategoryWrapper>
               <S.CategorySelect
+                type='button'
                 onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                   e.stopPropagation();
-                  setIsOpen((prev) => ({
-                    ...prev,
-                    category: !prev.category,
-                  }));
+                  setIsCategoryOpen((prev) => !prev);
                 }}
-                $isOpen={isOpen.category}
+                $isCategoryOpen={isCategoryOpen}
               >
                 {form.category} <ChevronDownIcon />
                 <S.CategoryValueInput
@@ -158,11 +140,12 @@ export default function Inquiry() {
                   value={form.category}
                 />
               </S.CategorySelect>
-              {isOpen.category && (
+              {isCategoryOpen && (
                 <S.CategoryButtonWrapper>
                   {INQUIRY_CATEGORY.map((category) => (
                     <Fragment key={category.title}>
                       <S.CategoryButton
+                        type='button'
                         onClick={() => handleClickCategoryValue(category.title)}
                       >
                         {category.title}
@@ -207,12 +190,7 @@ export default function Inquiry() {
           <S.SendButtonWrapper>
             <S.SendButton
               type='submit'
-              onClick={() =>
-                setIsOpen((prev) => ({
-                  ...prev,
-                  submitButton: true,
-                }))
-              }
+              onClick={() => setIsCategoryOpen((prev) => !prev)}
             >
               제출
             </S.SendButton>

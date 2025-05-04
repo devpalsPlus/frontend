@@ -35,7 +35,7 @@ export const CategoryWrapper = styled.div`
   position: relative;
 `;
 
-export const CategorySelect = styled.button<{ $isOpen: boolean }>`
+export const CategorySelect = styled.button<{ $isCategoryOpen: boolean }>`
   padding: 0.3rem 0.5rem;
   width: 9rem;
   display: flex;

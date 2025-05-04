@@ -21,4 +21,5 @@ export const INQUIRY_MESSAGE = {
   writeContent: '내용을 적어주세요.',
   inquiredSuccess: '문의글이 작성되었습니다.',
   inquiredError: '문의글 작성에 실패하였습니다.',
+  validationFile: '파일 크기는 5MB 이하만 가능합니다.',
 };

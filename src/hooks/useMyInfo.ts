@@ -24,7 +24,7 @@ export const useMyProfileInfo = () => {
   const { data, isLoading } = useQuery<ApiUserInfo>({
     queryKey: myInfoKey.myProfile,
     queryFn: () => getMyInfo(),
-    staleTime: 1 * 60 * 1000,
+    staleTime: Infinity,
     enabled: isLoggedIn,
   });
 

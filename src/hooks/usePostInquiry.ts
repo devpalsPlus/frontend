@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { INQUIRY_MESSAGE } from '../constants/customerService';
 
 export const usePostInquiry = (
-  pathname: string,
-  handleModalOpen: (message: string) => void
+  handleModalOpen: (message: string) => void,
+  pathname: string = ''
 ) => {
   const userId = useAuthStore((state) => state.userData?.id);
   const navigate = useNavigate();
@@ -21,8 +21,13 @@ export const usePostInquiry = (
         queryKey: [ActivityLog.myInquiries, userId],
       });
       setTimeout(() => {
-        navigate(pathname);
+        if (pathname === '' || !pathname) {
+          navigate(-1);
+        } else {
+          navigate(pathname);
+        }
       }, 1000);
+
       handleModalOpen(INQUIRY_MESSAGE.inquiredSuccess);
     },
     onError: () => {
