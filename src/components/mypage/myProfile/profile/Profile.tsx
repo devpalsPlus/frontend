@@ -8,6 +8,124 @@ import { Radar } from 'react-chartjs-2';
 import { UserInfo } from '../../../../models/userInfo';
 import { useEffect } from 'react';
 
+export default function Profile() {
+  const {
+    myData,
+    scrollRef,
+  }: { myData: UserInfo; scrollRef: React.RefObject<HTMLDivElement> } =
+    useOutletContext();
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = 0;
+    }
+  }, [scrollRef]);
+
+  return (
+    <S.ProfileSection>
+      <S.Wrapper>
+        <label>닉네임</label>
+        <S.NicknameBackgroundBox>
+          <S.NicknameSpan>{myData.nickname}</S.NicknameSpan>
+          {Boolean(myData.beginner) && (
+            <S.IconWrapper>
+              <img src={BeginnerIcon} alt='beginner' width='20' height='20' />
+            </S.IconWrapper>
+          )}
+        </S.NicknameBackgroundBox>
+      </S.Wrapper>
+      <S.Wrapper>
+        <label>스킬셋</label>
+        <S.BackgroundBox>
+          <ul>
+            {myData.skills.length > 0 ? (
+              myData.skills.map((skill) => (
+                <li key={skill.name}>
+                  <img
+                    src={skill.img}
+                    alt={skill.name}
+                    width='40'
+                    height='40'
+                  />
+                  <span>{skill.name}</span>
+                </li>
+              ))
+            ) : (
+              <li>'스킬을 선택해주세요.'</li>
+            )}
+          </ul>
+        </S.BackgroundBox>
+      </S.Wrapper>
+      <S.Wrapper>
+        <label>포지션</label>
+        <S.BackgroundWrapper>
+          <div>
+            {myData.skills.length > 0 ? (
+              myData.positions
+                .sort()
+                .map((position) => (
+                  <span key={position.name}>{position.name}</span>
+                ))
+            ) : (
+              <span>'포지션을 선택해주세요.'</span>
+            )}
+          </div>
+        </S.BackgroundWrapper>
+      </S.Wrapper>
+      <S.Wrapper>
+        <label>깃허브</label>
+        <S.BackgroundWrapper>
+          <span>{myData.github || '깃허브 링크를 올려보세요.'}</span>
+        </S.BackgroundWrapper>
+      </S.Wrapper>
+      <S.List>
+        <label>경&nbsp;&nbsp;&nbsp;력</label>
+        <S.BackgroundBox>
+          <ul>
+            {myData.career?.length ? (
+              myData.career?.map((career) => (
+                <li key={`-${career.name}`}>
+                  <span>{career.name}</span> ({career.periodStart.slice(0, 10)}{' '}
+                  ~ {career.periodEnd.slice(0, 10)}{' '}
+                  <span> - {career.role}</span>)
+                </li>
+              ))
+            ) : (
+              <li>경력을 기록하세요.</li>
+            )}
+          </ul>
+        </S.BackgroundBox>
+      </S.List>
+      <S.List>
+        <label>소&nbsp;&nbsp;&nbsp;개</label>
+        <S.BackgroundBox>
+          <S.Bio>{myData.bio || '내 소개를 적어주세요.'}</S.Bio>
+        </S.BackgroundBox>
+      </S.List>
+
+      <S.List>
+        <S.LabelBox>
+          <label>평가도</label>
+          <S.ExplainBox>
+            <S.Explain>평가도란?</S.Explain>
+            <S.TooltipBox>
+              평가도는 프로젝트 평가 단계에서 팀원들의 평가로 점수가 부여됩니다.
+              <br />
+              공고자가 회원을 평가하는 지표로 활용될 수 있습니다.
+            </S.TooltipBox>
+          </S.ExplainBox>
+        </S.LabelBox>
+        <S.BackgroundBox>
+          <S.ChartBox>
+            <Radar data={chartData} options={chartOptions} />
+          </S.ChartBox>
+        </S.BackgroundBox>
+      </S.List>
+      <Link to={ROUTES.changePw}>비밀번호 재설정</Link>
+    </S.ProfileSection>
+  );
+}
+
 const chartData = {
   labels: ['책임감', '기획력', '협업능력', '성실도', '문제해결', '기술력'],
   datasets: [
@@ -68,108 +186,3 @@ const chartOptions: ChartOptions<'radar'> & ChartOptions = {
     duration: 0,
   },
 };
-
-export default function Profile() {
-  const {
-    myData,
-    scrollRef,
-  }: { myData: UserInfo; scrollRef: React.RefObject<HTMLDivElement> } =
-    useOutletContext();
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = 0;
-    }
-  }, [scrollRef]);
-
-  return (
-    <S.ProfileSection>
-      <S.Wrapper>
-        <label>닉네임</label>
-        <S.NicknameBackgroundBox>
-          <S.NicknameSpan>{myData.nickname}</S.NicknameSpan>
-          {Boolean(myData.beginner) && (
-            <S.IconWrapper>
-              <img src={BeginnerIcon} alt='beginner' width='20' height='20' />
-            </S.IconWrapper>
-          )}
-        </S.NicknameBackgroundBox>
-      </S.Wrapper>
-      <S.Wrapper>
-        <label>스킬셋</label>
-        <S.BackgroundBox>
-          <ul>
-            {myData.skills.map((skill) => (
-              <li key={skill.name}>
-                <img src={skill.img} alt={skill.name} width='40' height='40' />
-                <span>{skill.name}</span>
-              </li>
-            )) || '스킬을 선택해주세요.'}
-          </ul>
-        </S.BackgroundBox>
-      </S.Wrapper>
-      <S.Wrapper>
-        <label>포지션</label>
-        <S.BackgroundWrapper>
-          <div>
-            {myData.positions
-              .sort()
-              .map((position) => (
-                <span key={position.name}>{position.name}</span>
-              )) || '포지션을 선택해주세요.'}
-          </div>
-        </S.BackgroundWrapper>
-      </S.Wrapper>
-      <S.Wrapper>
-        <label>깃허브</label>
-        <S.BackgroundWrapper>
-          <span>{myData.github || '깃허브 링크를 올려보세요.'}</span>
-        </S.BackgroundWrapper>
-      </S.Wrapper>
-      <S.List>
-        <label>경&nbsp;&nbsp;&nbsp;력</label>
-        <S.BackgroundBox>
-          <ul>
-            {myData.career?.length ? (
-              myData.career?.map((career) => (
-                <li key={`-${career.name}`}>
-                  <span>{career.name}</span> ({career.periodStart.slice(0, 10)}{' '}
-                  ~ {career.periodEnd.slice(0, 10)}{' '}
-                  <span> - {career.role}</span>)
-                </li>
-              ))
-            ) : (
-              <li>경력을 기록하세요.</li>
-            )}
-          </ul>
-        </S.BackgroundBox>
-      </S.List>
-      <S.List>
-        <label>소&nbsp;&nbsp;&nbsp;개</label>
-        <S.BackgroundBox>
-          <S.Bio>{myData.bio || '내 소개를 적어주세요.'}</S.Bio>
-        </S.BackgroundBox>
-      </S.List>
-
-      <S.List>
-        <S.LabelBox>
-          <label>평가도</label>
-          <S.ExplainBox>
-            <S.Explain>평가도란?</S.Explain>
-            <S.TooltipBox>
-              평가도는 프로젝트 평가 단계에서 팀원들의 평가로 점수가 부여됩니다.
-              <br />
-              공고자가 회원을 평가하는 지표로 활용될 수 있습니다.
-            </S.TooltipBox>
-          </S.ExplainBox>
-        </S.LabelBox>
-        <S.BackgroundBox>
-          <S.ChartBox>
-            <Radar data={chartData} options={chartOptions} />
-          </S.ChartBox>
-        </S.BackgroundBox>
-      </S.List>
-      <Link to={ROUTES.changePw}>비밀번호 재설정</Link>
-    </S.ProfileSection>
-  );
-}

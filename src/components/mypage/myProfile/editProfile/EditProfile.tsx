@@ -16,50 +16,7 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
 import { UserInfo } from '../../../../models/userInfo';
 
-const profileSchema = z.object({
-  nickname: z
-    .string()
-    .nonempty(ERROR_MESSAGES.NICKNAME_REQUIRED)
-    .max(6, ERROR_MESSAGES.NICKNAME_LENGTH)
-    .regex(
-      /^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ0-9~`!@#$%^&*()\-_=+]{1,6}$/,
-      ERROR_MESSAGES.NICKNAME_FORMAT
-    ),
-  beginner: z.boolean(),
-  skillTagIds: z.array(z.number()).min(1, ERROR_MESSAGES.SKILL_REQUIRED),
-  positionTagIds: z.array(z.number()).min(1, ERROR_MESSAGES.POSITION_REQUIRED),
-  github: z
-    .string()
-    .optional()
-    .refine(
-      (val) => !val || /^https?:\/\/[^\s$.?#].[^\s]*$/.test(val),
-      ERROR_MESSAGES.GITHUB_SPECIAL
-    )
-    .transform((val) => (val === '' ? '' : val || '')),
-  career: z
-    .array(
-      z
-        .object({
-          name: z.string().nonempty(ERROR_MESSAGES.CAREERNAME_REQUIRED),
-          periodStart: z.string().nonempty(ERROR_MESSAGES.STARTPERIOD_REQUIRED),
-          periodEnd: z.string().nonempty(ERROR_MESSAGES.ENDPERIOD_REQUIRED),
-          role: z.string().nonempty(ERROR_MESSAGES.ROLE_REQUIRED),
-        })
-        .refine(
-          (data) => new Date(data.periodStart) <= new Date(data.periodEnd),
-          {
-            message: ERROR_MESSAGES.ENDPERIOD_SPECIAL,
-            path: ['periodEnd'],
-          }
-        )
-    )
-    .optional(),
-  bio: z.string().optional(),
-});
-
 type ProfileFormData = z.infer<typeof profileSchema>;
-
-//
 
 export default function EditProfile() {
   const [nickname, setNickname] = useState('');
@@ -229,7 +186,9 @@ export default function EditProfile() {
                     isSelected={field.value.includes(skill.id)}
                     onChange={(id, isChecked) => {
                       if (isChecked) {
-                        field.onChange([...field.value, id].sort());
+                        field.onChange(
+                          [...field.value, id].sort((a, b) => a - b)
+                        );
                       } else {
                         field.onChange(
                           field.value.filter((value) => value !== id)
@@ -266,7 +225,9 @@ export default function EditProfile() {
                     isSelected={field.value.includes(position.id)}
                     onChange={(id, isChecked) => {
                       if (isChecked) {
-                        field.onChange([...field.value, id].sort());
+                        field.onChange(
+                          [...field.value, id].sort((a, b) => a - b)
+                        );
                       } else {
                         field.onChange(
                           field.value.filter((value) => value !== id)
@@ -469,3 +430,44 @@ export default function EditProfile() {
     </S.Form>
   );
 }
+
+const profileSchema = z.object({
+  nickname: z
+    .string()
+    .nonempty(ERROR_MESSAGES.NICKNAME_REQUIRED)
+    .max(6, ERROR_MESSAGES.NICKNAME_LENGTH)
+    .regex(
+      /^[a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ0-9~`!@#$%^&*()\-_=+]{1,6}$/,
+      ERROR_MESSAGES.NICKNAME_FORMAT
+    ),
+  beginner: z.boolean(),
+  skillTagIds: z.array(z.number()).min(1, ERROR_MESSAGES.SKILL_REQUIRED),
+  positionTagIds: z.array(z.number()).min(1, ERROR_MESSAGES.POSITION_REQUIRED),
+  github: z
+    .string()
+    .optional()
+    .refine(
+      (val) => !val || /^https?:\/\/[^\s$.?#].[^\s]*$/.test(val),
+      ERROR_MESSAGES.GITHUB_SPECIAL
+    )
+    .transform((val) => (val === '' ? '' : val || '')),
+  career: z
+    .array(
+      z
+        .object({
+          name: z.string().nonempty(ERROR_MESSAGES.CAREERNAME_REQUIRED),
+          periodStart: z.string().nonempty(ERROR_MESSAGES.STARTPERIOD_REQUIRED),
+          periodEnd: z.string().nonempty(ERROR_MESSAGES.ENDPERIOD_REQUIRED),
+          role: z.string().nonempty(ERROR_MESSAGES.ROLE_REQUIRED),
+        })
+        .refine(
+          (data) => new Date(data.periodStart) <= new Date(data.periodEnd),
+          {
+            message: ERROR_MESSAGES.ENDPERIOD_SPECIAL,
+            path: ['periodEnd'],
+          }
+        )
+    )
+    .optional(),
+  bio: z.string().optional(),
+});

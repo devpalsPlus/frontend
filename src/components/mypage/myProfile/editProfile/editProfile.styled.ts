@@ -148,9 +148,6 @@ export const XMarkButton = styled.button`
   svg {
     color: ${({ theme }) => theme.color.white};
   }
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
 `;
 
 export const CareerAddButton = styled.button`

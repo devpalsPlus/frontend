@@ -29,7 +29,7 @@ export default function All() {
   };
 
   if (isLoading) {
-    return <Spinner size='50px' color='#3e5879;' />;
+    return <Spinner size='50px' color='#3e5879' />;
   }
 
   if (!alarmListData || alarmListData.length === 0) {
