@@ -68,7 +68,7 @@ export default function ContentTab({ filter, $justifyContent }: ContentProps) {
           </ScrollWrapper>
         </>
       ) : (
-        <ScrollWrapper $height='0%'>
+        <ScrollWrapper>
           <S.FilterContainer>
             <Outlet context={{ filterId }} />
           </S.FilterContainer>

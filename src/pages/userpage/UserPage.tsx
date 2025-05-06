@@ -5,6 +5,7 @@ import { DocumentTextIcon, UserIcon } from '@heroicons/react/24/outline';
 import { ROUTES } from '../../constants/routes';
 import { useUserProfileInfo } from '../../hooks/useUserInfo';
 import loadingImg from '../../assets/loadingImg.svg';
+import ScrollWrapper from '../../components/mypage/ScrollWrapper';
 
 const UserPage = () => {
   const { userId } = useParams();
@@ -31,9 +32,9 @@ const UserPage = () => {
         profileImage={isLoading ? loadingImg : userData?.profileImg}
       />
       <S.Wrapper>
-        <S.ScrollWrapper>
+        <ScrollWrapper>
           <Outlet />
-        </S.ScrollWrapper>
+        </ScrollWrapper>
       </S.Wrapper>
     </S.Container>
   );

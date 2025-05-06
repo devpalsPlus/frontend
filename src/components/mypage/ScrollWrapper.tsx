@@ -2,13 +2,13 @@ import * as S from './ScrollWrapper.styled';
 
 interface ScrollWrapperProps {
   children: React.ReactNode;
-  $height: string;
-  scrollRef: React.RefObject<HTMLDivElement> | null;
+  $height?: string;
+  scrollRef?: React.RefObject<HTMLDivElement> | null;
 }
 
 export default function ScrollWrapper({
   children,
-  $height,
+  $height = '0%',
   scrollRef = null,
 }: ScrollWrapperProps) {
   return (
