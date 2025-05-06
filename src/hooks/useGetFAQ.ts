@@ -4,7 +4,7 @@ import { CustomerService } from './queries/keys';
 
 export const useGetFAQ = () => {
   const { data: faqData, isLoading } = useQuery({
-    queryKey: [CustomerService.faq],
+    queryKey: CustomerService.faq,
     queryFn: () => getFAQ(),
   });
 
