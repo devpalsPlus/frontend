@@ -79,6 +79,7 @@ const UserJoinProject = lazy(
 const ModifyProject = lazy(
   () => import('../pages/modifyProject/ModifyProject')
 );
+const Evaluation = lazy(() => import('../pages/evaluation/Evaluation'));
 
 const AppRoutes = () => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -300,6 +301,20 @@ const AppRoutes = () => {
               </Layout>
             </Suspense>
           </ProtectRoute>
+        </QueryErrorBoundary>
+      ),
+    },
+    {
+      path: `${ROUTES.evaluation}/:projectId`,
+      element: (
+        <QueryErrorBoundary>
+          {/* <ProtectRoute redirectUrl={ROUTES.login}> */}
+          <Suspense fallback={<LoadingSpinner />}>
+            <Layout>
+              <Evaluation />
+            </Layout>
+          </Suspense>
+          {/* </ProtectRoute> */}
         </QueryErrorBoundary>
       ),
     },
