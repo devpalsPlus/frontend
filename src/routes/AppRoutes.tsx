@@ -39,6 +39,12 @@ const MyProjectList = lazy(
 const MyProfile = lazy(
   () => import('../components/mypage/myProfile/MyProfile')
 );
+const Profile = lazy(
+  () => import('../components/mypage/myProfile/profile/Profile')
+);
+const ProfileEdit = lazy(
+  () => import('../components/mypage/myProfile/editProfile/EditProfile')
+);
 const MyProjectVolunteer = lazy(
   () => import('../pages/manage/myProjectVolunteer/MyProjectVolunteer')
 );
@@ -224,6 +230,13 @@ const AppRoutes = () => {
         {
           path: '',
           element: <MyProfile />,
+          children: [
+            { index: true, element: <Profile /> },
+            {
+              path: ROUTES.mypageEdit,
+              element: <ProfileEdit />,
+            },
+          ],
         },
         {
           path: ROUTES.mypageJoinedProjects,
