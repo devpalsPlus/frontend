@@ -15,6 +15,7 @@ import { SquaresPlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
 import { UserInfo } from '../../../../models/userInfo';
+import MyProfileWrapper from '../MyProfileWrapper';
 
 type ProfileFormData = z.infer<typeof profileSchema>;
 
@@ -413,7 +414,7 @@ export default function EditProfile() {
           {errors.bio && <S.ErrorMessage>{errors.bio.message}</S.ErrorMessage>}
         </S.EditList>
       </S.EditContainer>
-      <S.Wrapper>
+      <MyProfileWrapper>
         <Button size='primary' schema='primary' radius='large' type='submit'>
           확인
         </Button>
@@ -426,7 +427,7 @@ export default function EditProfile() {
         >
           취소
         </Button>
-      </S.Wrapper>
+      </MyProfileWrapper>
     </S.Form>
   );
 }

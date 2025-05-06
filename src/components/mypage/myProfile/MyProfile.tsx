@@ -8,6 +8,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
 import { PencilIcon } from '@heroicons/react/24/outline';
 import { useRef } from 'react';
+import ScrollWrapper from '../ScrollWrapper';
 
 const MyProfile = () => {
   const { myData, isLoading } = useMyProfileInfo();
@@ -33,11 +34,11 @@ const MyProfile = () => {
           </S.EditLink>
         )}
       </S.FilterWrapper>
-      <S.ScrollWrapper ref={scrollRef}>
+      <ScrollWrapper $height='0%' scrollRef={scrollRef}>
         <S.SectionContainer>
           <Outlet context={{ myData, scrollRef, handleModalOpen }} />
         </S.SectionContainer>
-      </S.ScrollWrapper>
+      </ScrollWrapper>
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         {message}
       </Modal>

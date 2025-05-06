@@ -7,6 +7,7 @@ import { ROUTES } from '../../../../constants/routes';
 import { Radar } from 'react-chartjs-2';
 import { UserInfo } from '../../../../models/userInfo';
 import { useEffect } from 'react';
+import MyProfileWrapper from '../MyProfileWrapper';
 
 export default function Profile() {
   const {
@@ -23,7 +24,7 @@ export default function Profile() {
 
   return (
     <S.ProfileSection>
-      <S.Wrapper>
+      <MyProfileWrapper>
         <label>닉네임</label>
         <S.NicknameBackgroundBox>
           <S.NicknameSpan>{myData.nickname}</S.NicknameSpan>
@@ -33,8 +34,8 @@ export default function Profile() {
             </S.IconWrapper>
           )}
         </S.NicknameBackgroundBox>
-      </S.Wrapper>
-      <S.Wrapper>
+      </MyProfileWrapper>
+      <MyProfileWrapper>
         <label>스킬셋</label>
         <S.BackgroundBox>
           <ul>
@@ -51,12 +52,12 @@ export default function Profile() {
                 </li>
               ))
             ) : (
-              <li>'스킬을 선택해주세요.'</li>
+              <li>스킬을 선택해주세요.</li>
             )}
           </ul>
         </S.BackgroundBox>
-      </S.Wrapper>
-      <S.Wrapper>
+      </MyProfileWrapper>
+      <MyProfileWrapper>
         <label>포지션</label>
         <S.BackgroundWrapper>
           <div>
@@ -67,17 +68,17 @@ export default function Profile() {
                   <span key={position.name}>{position.name}</span>
                 ))
             ) : (
-              <span>'포지션을 선택해주세요.'</span>
+              <span>포지션을 선택해주세요.</span>
             )}
           </div>
         </S.BackgroundWrapper>
-      </S.Wrapper>
-      <S.Wrapper>
+      </MyProfileWrapper>
+      <MyProfileWrapper>
         <label>깃허브</label>
         <S.BackgroundWrapper>
           <span>{myData.github || '깃허브 링크를 올려보세요.'}</span>
         </S.BackgroundWrapper>
-      </S.Wrapper>
+      </MyProfileWrapper>
       <S.List>
         <label>경&nbsp;&nbsp;&nbsp;력</label>
         <S.BackgroundBox>

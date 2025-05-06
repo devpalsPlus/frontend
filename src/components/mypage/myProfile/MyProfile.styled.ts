@@ -27,7 +27,7 @@ export const EditLink = styled(Link)`
 
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 85%;
 `;
 
 export const SectionContainer = styled.section`
@@ -35,29 +35,4 @@ export const SectionContainer = styled.section`
   border-radius: ${({ theme }) => theme.borderRadius.large} 0 0
     ${({ theme }) => theme.borderRadius.large};
   padding: 2rem;
-`;
-
-export const ScrollWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  max-height: 60vh;
-  overflow: auto;
-
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #3e5879;
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgb(65, 100, 146);
-  }
 `;
