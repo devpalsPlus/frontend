@@ -1,4 +1,4 @@
-import CustomerServiceHeader from '../CustomerServiceHeader';
+import CustomerServiceHeader from '../../../pages/customerService/CustomerServiceHeader';
 import * as S from './Notice.styled';
 
 export default function Notice() {
