@@ -5,12 +5,13 @@ import Project from './Project';
 import { ROUTES } from '../../../constants/routes';
 import NoContent from '../../common/noContent/NoContent';
 import Spinner from '../Spinner';
+import ScrollWrapper from '../ScrollWrapper';
 
 const MyJoinProjects = () => {
   const { myJoinedProjectListData, isLoading } = useMyJoinedProjectList();
 
   if (isLoading) {
-    return <Spinner size='50px' color='#3e5879;' />;
+    return <Spinner size='50px' color='#3e5879' />;
   }
   if (!myJoinedProjectListData) return;
 
@@ -20,7 +21,7 @@ const MyJoinProjects = () => {
         <S.FilterTitle>참여한 프로젝트 리스트</S.FilterTitle>
       </S.FilterWrapper>
       {myJoinedProjectListData && myJoinedProjectListData?.length > 0 ? (
-        <S.ScrollWrapper>
+        <ScrollWrapper>
           <S.WrapperProject>
             {myJoinedProjectListData?.map((project) => (
               <Link
@@ -31,7 +32,7 @@ const MyJoinProjects = () => {
               </Link>
             ))}
           </S.WrapperProject>
-        </S.ScrollWrapper>
+        </ScrollWrapper>
       ) : (
         <S.NoWrapper>
           <NoContent type='projects' />
