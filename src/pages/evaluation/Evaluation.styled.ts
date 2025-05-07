@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import Button from '../../components/common/Button/Button';
 
 export const Container = styled.div`
   display: flex;
   width: 100%;
+  height: 100vh;
 `;
 
 export const SidebarLeft = styled.div`
@@ -10,6 +12,10 @@ export const SidebarLeft = styled.div`
   background-color: #fff;
   border-right: 1px solid #e0e0e0;
   padding: 20px;
+
+  @media (max-width: 1100px) {
+    width: 190px;
+  }
 `;
 
 export const ProjectName = styled.h2`
@@ -17,12 +23,12 @@ export const ProjectName = styled.h2`
   margin-bottom: 20px;
 `;
 
-export const ParticipantButton = styled.button<{ active?: boolean }>`
+export const ParticipantButton = styled.button<{ $active?: boolean }>`
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  background-color: ${({ active }) => (active ? '#2a3f5f' : '#3e5c7c')};
-  color: #fff;
+  background-color: ${({ $active }) => ($active ? '#2a3f5f' : '#3e5c7c')};
+  color: ${({ theme }) => theme.color.white};
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -30,14 +36,21 @@ export const ParticipantButton = styled.button<{ active?: boolean }>`
 
 export const MainContent = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 40px;
-  position: relative;
 `;
 
 export const Header = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 40px;
+  @media (min-width: 1100px) {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3px;
+  }
+
+  @media (max-width: 1100px) {
+    margin-bottom: 3px;
+  }
 `;
 
 export const Title = styled.h1`
@@ -46,18 +59,36 @@ export const Title = styled.h1`
   margin: 0;
 `;
 
-export const Subtitle = styled.p`
-  margin: 0 20px 0 0;
-  color: #666;
+export const MessageContainer = styled.div`
+  @media (min-width: 1100px) {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 1100px) {
+    margin-bottom: 30px;
+  }
 `;
 
-export const SubmitButton = styled.button`
+export const ErrorMessage = styled.p`
+  font-size: 11px;
+  margin: 0 10px 0 0;
+  color: ${({ theme }) => theme.color.red};
+`;
+
+export const SubmitButton = styled(Button)`
   padding: 8px 16px;
-  background-color: #3e5c7c;
+  font-size: 13px;
   color: #fff;
-  border: none;
-  border-radius: 4px;
   cursor: pointer;
+`;
+
+export const ScrollArea = styled.div`
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 3px;
+  padding-bottom: 70px;
 `;
 
 export const QuestionBlock = styled.div`
@@ -115,6 +146,10 @@ export const SidebarRight = styled.div`
   border-left: 1px solid #e0e0e0;
   padding: 20px;
   background-color: #fff;
+
+  @media (max-width: 1100px) {
+    width: 190px;
+  }
 `;
 
 export const CompletedTitle = styled.h3`
@@ -122,18 +157,18 @@ export const CompletedTitle = styled.h3`
   margin-bottom: 20px;
 `;
 
-export const CompletedButton = styled.button<{ active?: boolean }>`
+export const CompletedButton = styled.button<{ $active?: boolean }>`
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
-  background-color: ${({ active }) => (active ? '#3e5c7c' : '#f0f0f0')};
-  color: ${({ active }) => (active ? '#fff' : '#999')};
+  background-color: ${({ $active }) => ($active ? '#3e5c7c' : '#f0f0f0')};
+  color: ${({ $active }) => ($active ? '#fff' : '#999')};
   border: none;
   border-radius: 4px;
-  cursor: ${({ active }) => (active ? 'pointer' : 'default')};
+  cursor: ${({ $active }) => ($active ? 'pointer' : 'default')};
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: ${({ active }) => (active ? '#2f4a6b' : '#e0e0e0')};
+    background-color: ${({ $active }) => ($active ? '#2f4a6b' : '#e0e0e0')};
   }
 `;

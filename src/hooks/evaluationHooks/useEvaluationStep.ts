@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState } from 'react';
-import { evaluatedUser } from '../models/evaluation';
-import { questions } from '../constants/evaluation';
+import { useMemo, useState } from 'react';
+import { evaluatedUser } from '../../models/evaluation';
+import { questions } from '../../constants/evaluation';
+import { usePostEvaluation } from './usePostEvaluation';
 
-const useEvaluationStep = (participants: string[]) => {
+const useEvaluationStep = (projectData: number, participants: string[]) => {
   const questionLength = questions.length;
 
   const [step, setStep] = useState<number>(0);
@@ -13,13 +14,18 @@ const useEvaluationStep = (participants: string[]) => {
     }))
   );
   const [done, setDone] = useState<evaluatedUser[]>([]);
+  const [isNotFill, setIsNotFill] = useState<boolean>(false);
+
+  const { createEvaluation } = usePostEvaluation(projectData);
+
+  const user = notDone[step];
 
   const handleClickLeftUser = (idx: number) => {
+    setIsNotFill(false);
     setStep(idx);
   };
 
   const handleClickOption = (questionNumber: number, optionValue: number) => {
-    const user = notDone[step];
     const realValue = optionValue + 1;
 
     setProgress((prev) =>
@@ -35,34 +41,25 @@ const useEvaluationStep = (participants: string[]) => {
     );
   };
   const handleNextStep = () => {
-    const user = notDone[step];
     const record = progress.find((r) => user in r);
     const scores = record ? record[user] : [];
 
     if (scores.some((v) => v === 0)) {
-      alert('모든 항목을 평가해주세요.');
+      setIsNotFill(true);
       return;
+    } else {
+      setIsNotFill(false);
+      // createEvaluation(user);
+
+      setDone((prev) => [...prev, { evaluatee: user, score: scores }]);
+      setNotDone((prev) => prev.filter((e) => e !== user));
     }
-
-    setDone((prev) => [...prev, { evaluatee: user, score: scores }]);
-
-    const newNotDone = notDone.filter((name) => name !== user);
-    setNotDone(newNotDone);
-
-    let nextStep = step;
-    if (newNotDone.length === 0) {
-      nextStep = 0;
-    } else if (step >= newNotDone.length) {
-      nextStep = newNotDone.length - 1;
-    }
-    setStep(nextStep);
   };
 
   const currentScores = useMemo(() => {
-    const user = notDone[step];
     const record = progress.find((r) => user in r);
     return record ? record[user] : Array(questionLength).fill(0);
-  }, [progress, notDone, step, questionLength]);
+  }, [progress, questionLength, user]);
 
   return {
     done,
@@ -72,6 +69,7 @@ const useEvaluationStep = (participants: string[]) => {
     handleNextStep,
     notDone,
     currentScores,
+    isNotFill,
   };
 };
 
