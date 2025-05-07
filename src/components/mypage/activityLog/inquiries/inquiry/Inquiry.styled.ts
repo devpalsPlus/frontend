@@ -2,12 +2,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  font-size: 1.1rem;
 `;
 
-export const InquiryTitleWrapper = styled.div`
+export const InquiryTitleWrapper = styled.button`
+  width: 100%;
+  text-align: start;
+  font-size: 1.1rem;
   display: grid;
-  grid-template-columns: 8% 18% 62% 12%;
+  grid-template-columns: 8% 15% 65% 17%;
   cursor: pointer;
 `;
 

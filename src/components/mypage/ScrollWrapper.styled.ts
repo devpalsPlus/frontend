@@ -4,6 +4,7 @@ export const ScrollWrapper = styled.div<{ $height: string }>`
   width: 100%;
   height: calc(100% - ${({ $height }) => $height});
   overflow-y: auto;
+  overflow-x: hidden;
   background: ${({ theme }) => theme.color.lightgrey};
   border-radius: ${({ theme }) => theme.borderRadius.large};
 

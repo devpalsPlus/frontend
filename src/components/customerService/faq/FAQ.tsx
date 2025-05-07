@@ -8,14 +8,15 @@ import FAQContent from './FAQContent';
 export default function FAQ() {
   const { faqData, isLoading } = useGetFAQ();
 
-  if (!faqData || faqData.length === 0) return;
-
-  if (isLoading)
+  if (isLoading) {
     return (
       <S.SpinnerWrapper>
         <Spinner />
       </S.SpinnerWrapper>
     );
+  }
+
+  if (!faqData || faqData.length === 0) return;
 
   return (
     <>
@@ -23,10 +24,10 @@ export default function FAQ() {
       <S.Container>
         <S.Wrapper>
           {faqData.map((list) => (
-            <Fragment key={list.id}>
+            <S.ToggleWrapper key={list.id}>
               <FAQContent list={list} />
               <S.ContentBorder></S.ContentBorder>
-            </Fragment>
+            </S.ToggleWrapper>
           ))}
         </S.Wrapper>
       </S.Container>
