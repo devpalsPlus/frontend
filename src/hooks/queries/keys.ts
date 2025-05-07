@@ -38,3 +38,8 @@ export const ProjectReplyList = {
 export const ChartDataList = {
   chartData: ['ChartDataList'],
 };
+
+export const ActivityLog = {
+  myComments: ['MyComments'],
+  myInquiries: ['MyInquiries'],
+};

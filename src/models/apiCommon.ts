@@ -3,6 +3,10 @@ export interface ApiCommonType {
   message: string;
 }
 
+export interface ApiCommonBasicType extends ApiCommonType {
+  data: boolean;
+}
+
 export interface User {
   id: number;
   nickname: string;

@@ -73,7 +73,10 @@ export default function Filtering({ selects, defaultValue }: FilteringProps) {
     <S.Container>
       <S.Wrapper ref={filteringRef}>
         <S.RefWrapper>
-          <S.DefaultValueButton onClick={handleDropDownToggle}>
+          <S.DefaultValueButton
+            onClick={handleDropDownToggle}
+            $isOpen={dropDownToggle}
+          >
             {changeValue}
             <ChevronDownIcon />
           </S.DefaultValueButton>

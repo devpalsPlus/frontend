@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const WrapperNoContent = styled.div`
   height: 100%;
@@ -24,21 +24,33 @@ export const WrapperNotification = styled.div<{ $enabled: boolean }>`
   color: ${({ $enabled, theme }) => $enabled && theme.color.placeholder};
 `;
 
-export const SpanNotification = styled.span<{ $enabled: boolean }>`
+export const SpanNotification = styled.span<{
+  $enabled: boolean;
+  $warn: boolean;
+}>`
   position: relative;
   width: fit-content;
+  ${({ $warn, theme }) =>
+    $warn &&
+    css`
+      color: ${theme.color.warn};
+    `}
   &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 100%;
-    height: 1px;
-    background: ${({ $enabled, theme }) =>
-      $enabled ? theme.color.placeholder : '#000'};
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.2s ease-in-out 0.1s;
+    ${({ $warn }) =>
+      !$warn &&
+      css`
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 1px;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.2s ease-in-out 0.1s;
+      `}
+    background: ${({ $warn, $enabled, theme }) =>
+      !$warn && $enabled ? theme.color.placeholder : '#000'};
   }
   &:hover::after {
     transform: scaleX(1);

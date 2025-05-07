@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import * as S from './ContentTab.styled';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes';
-import MovedInquiredLink from '../common/customerService/MoveInquiredLink';
+import MovedInquiredLink from '../../pages/customerService/MoveInquiredLink';
+import ScrollWrapper from './ScrollWrapper';
 
 interface Filter {
   title: string;
@@ -23,7 +24,6 @@ export default function ContentTab({ filter, $justifyContent }: ContentProps) {
   function handleChangeId(id: number) {
     setFilterId(id);
   }
-
   useEffect(() => {
     if (
       pathname.includes(ROUTES.notificationsAppliedProjects) ||
@@ -61,18 +61,18 @@ export default function ContentTab({ filter, $justifyContent }: ContentProps) {
           <S.WrapperButton $height='10%'>
             <MovedInquiredLink />
           </S.WrapperButton>
-          <S.ScrollWrapper $height='10%'>
+          <ScrollWrapper $height='10%'>
             <S.FilterContainer>
               <Outlet />
             </S.FilterContainer>
-          </S.ScrollWrapper>
+          </ScrollWrapper>
         </>
       ) : (
-        <S.ScrollWrapper $height='0%'>
+        <ScrollWrapper>
           <S.FilterContainer>
             <Outlet context={{ filterId }} />
           </S.FilterContainer>
-        </S.ScrollWrapper>
+        </ScrollWrapper>
       )}
     </S.Container>
   );

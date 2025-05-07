@@ -1,6 +1,6 @@
 import * as S from './Header.styled';
 import Mainlogo from '../../../assets/mainlogo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import DropDown from '../dropDown/DropDown';
 import Avatar from '../avatar/Avatar';
 import { useAuth } from '../../../hooks/useAuth';
@@ -21,15 +21,17 @@ import { useEffect } from 'react';
 import { testLiveAlarm } from '../../../api/alarm.api';
 
 function Header() {
+  const location = useLocation();
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userLogout } = useAuth(handleModalOpen);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
-  const { signalData, setSignalData } = useNotification();
 
-  useEffect(() => {
-    testLiveAlarm();
-  }, []);
+  // const { signalData, setSignalData } = useNotification();
+
+  // useEffect(() => {
+  //   testLiveAlarm();
+  // }, []);
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -51,7 +53,7 @@ function Header() {
             <S.HeaderLink>공지사항</S.HeaderLink>
           </Link>
         </S.HeaderLinkContainer>
-        <S.Alarm role='button' tabIndex={0} aria-label='알림 메세지'>
+        {/* <S.Alarm role='button' tabIndex={0} aria-label='알림 메세지'>
           {isLoggedIn ? (
             <DropDown
               toggleButton={
@@ -70,7 +72,7 @@ function Header() {
           ) : (
             <img src={bell} alt='알림' />
           )}
-        </S.Alarm>
+        </S.Alarm> */}
         <DropDown
           aria-label='프로필 드롭다운'
           toggleButton={
@@ -92,7 +94,7 @@ function Header() {
                 <Link to={ROUTES.manageProjectsRoot}>
                   <S.Item>공고관리</S.Item>
                 </Link>
-                <Link to={ROUTES.inquiry}>
+                <Link to={ROUTES.inquiry} state={{ from: location.pathname }}>
                   <S.Item>문의하기</S.Item>
                 </Link>
                 <Link to='#' onClick={(e) => e.preventDefault()}>

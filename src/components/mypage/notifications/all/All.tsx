@@ -5,26 +5,34 @@ import * as S from './All.styled';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useAlarmDelete } from '../../../../hooks/useAlarmDelete';
 import { useAlarmPatch } from '../../../../hooks/useAlarmPatch';
+import Spinner from '../../Spinner';
 
 export default function All() {
-  const { alarmListData } = useAlarmList();
+  const { alarmListData, isLoading } = useAlarmList();
   const { filterId }: { filterId: number } = useOutletContext();
   const { mutate: deleteAlarm } = useAlarmDelete();
   const { mutate: patchAlarm } = useAlarmPatch();
 
-  const linkUrl = (id: number, filter: number) => {
-    switch (filter) {
-      case 1:
-      case 3:
+  const linkUrl = (id: number, filter: number, replier = 0) => {
+    // 문의, 신고 답변시 추후 수정
+    if (filter === 1 || filter === 3) {
+      if (replier === 3) {
+        return `/activity-log/inquiries`;
+      } else {
         return `/project-detail/${id}`;
-      case 2:
-        return `/manage/${id}`;
-      default:
-        return `/mypage/notification`;
+      }
+    } else if (filter === 2) {
+      return `/manage/${id}`;
+    } else {
+      return `/mypage/notification`;
     }
   };
 
-  if (!alarmListData || (alarmListData && alarmListData?.length === 0)) {
+  if (isLoading) {
+    return <Spinner size='50px' color='#3e5879' />;
+  }
+
+  if (!alarmListData || alarmListData.length === 0) {
     return (
       <S.WrapperNoContent>
         <NoContent type='notification' />
@@ -36,7 +44,7 @@ export default function All() {
     <S.container>
       <S.WrapperNotifications>
         {alarmListData
-          ?.filter((list) => {
+          .filter((list) => {
             if (filterId === 0) {
               return true;
             } else if (list.alarmFilterId === filterId) {
@@ -46,15 +54,28 @@ export default function All() {
           })
           .map((list) => (
             <S.WrapperNotification $enabled={list.enabled} key={list.id}>
-              <Link
-                to={linkUrl(list.routingId, list.alarmFilterId)}
-                onClick={() => patchAlarm(list.id)}
-              >
-                <S.SpanNotification $enabled={list.enabled}>
+              {/* 신고하기 알림 구별 */}
+              {list.alarmFilterId !== 5 ? (
+                <Link
+                  to={linkUrl(list.routingId, list.alarmFilterId, list.replier)}
+                  onClick={() => patchAlarm(list.id)}
+                >
+                  <S.SpanNotification
+                    $warn={list.alarmFilterId === 5}
+                    $enabled={list.enabled}
+                  >
+                    {list.content}
+                  </S.SpanNotification>
+                </Link>
+              ) : (
+                <S.SpanNotification
+                  $warn={list.alarmFilterId === 5}
+                  $enabled={list.enabled}
+                >
                   {list.content}
                 </S.SpanNotification>
-              </Link>
-              {list.alarmFilterId !== 4 && (
+              )}
+              {list.alarmFilterId !== 5 && (
                 <S.XButtonNotification
                   onClick={() => deleteAlarm(list.id)}
                   $enabled={list.enabled}

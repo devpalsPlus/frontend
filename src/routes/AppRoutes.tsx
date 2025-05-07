@@ -21,10 +21,9 @@ const ChangePassword = lazy(
 const Main = lazy(() => import('../pages/main/Index'));
 const Layout = lazy(() => import('../components/common/layout/Layout'));
 const Home = lazy(() => import('../pages/home/Home'));
-const FAQ = lazy(() => import('../components/common/customerService/faq/FAQ'));
-const Notice = lazy(
-  () => import('../components/common/customerService/notice/Notice')
-);
+const FAQ = lazy(() => import('../pages/customerService/faq/FAQ'));
+const Notice = lazy(() => import('../pages/customerService/notice/Notice'));
+const Inquiry = lazy(() => import('../pages/customerService/inquiry/Inquiry'));
 const MyPage = lazy(() => import('../pages/mypage/MyPage'));
 const UserPage = lazy(() => import('../pages/userpage/UserPage'));
 const Apply = lazy(() => import('../pages/apply/ApplyStep'));
@@ -39,6 +38,12 @@ const MyProjectList = lazy(
 );
 const MyProfile = lazy(
   () => import('../components/mypage/myProfile/MyProfile')
+);
+const Profile = lazy(
+  () => import('../components/mypage/myProfile/profile/Profile')
+);
+const ProfileEdit = lazy(
+  () => import('../components/mypage/myProfile/editProfile/EditProfile')
 );
 const MyProjectVolunteer = lazy(
   () => import('../pages/manage/myProjectVolunteer/MyProjectVolunteer')
@@ -136,6 +141,18 @@ const AppRoutes = () => {
       ),
     },
     {
+      path: ROUTES.inquiry,
+      element: (
+        <QueryErrorBoundary>
+          <ProtectRoute redirectUrl={ROUTES.login}>
+            <Layout>
+              <Inquiry />
+            </Layout>
+          </ProtectRoute>
+        </QueryErrorBoundary>
+      ),
+    },
+    {
       path: ROUTES.createProject,
       element: (
         <QueryErrorBoundary>
@@ -214,6 +231,13 @@ const AppRoutes = () => {
         {
           path: '',
           element: <MyProfile />,
+          children: [
+            { index: true, element: <Profile /> },
+            {
+              path: ROUTES.mypageEdit,
+              element: <ProfileEdit />,
+            },
+          ],
         },
         {
           path: ROUTES.mypageJoinedProjects,

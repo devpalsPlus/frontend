@@ -40,7 +40,10 @@ export default function FilteringContents() {
   return (
     <S.Container>
       <S.SkillTagButtonWrapper ref={filteringRef}>
-        <S.SkillTagButton onClick={handleSkillTagBoxToggle}>
+        <S.SkillTagButton
+          onClick={handleSkillTagBoxToggle}
+          $isOpen={skillTagButtonToggle}
+        >
           언어선택
           <ChevronDownIcon />
         </S.SkillTagButton>

@@ -24,7 +24,7 @@ export const useMyProfileInfo = () => {
   const { data, isLoading } = useQuery<ApiUserInfo>({
     queryKey: myInfoKey.myProfile,
     queryFn: () => getMyInfo(),
-    staleTime: 1 * 60 * 1000,
+    staleTime: Infinity,
     enabled: isLoggedIn,
   });
 
@@ -44,7 +44,9 @@ export const useEditMyProfileInfo = (
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: myInfoKey.myProfile });
       handleModalOpen(MODAL_MESSAGE.myProfileSuccess);
-      navigate(ROUTES.mypage);
+      setTimeout(() => {
+        navigate(ROUTES.mypage);
+      }, 1500);
     },
     onError: () => {
       handleModalOpen(MODAL_MESSAGE.myProfileFail);

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -35,7 +35,7 @@ export const SkillTagButtonWrapper = styled.div`
   z-index: 1000;
 `;
 
-export const SkillTagButton = styled.button`
+export const SkillTagButton = styled.button<{ $isOpen: boolean }>`
   border-radius: 1.5rem;
   width: 100%;
   height: 100%;
@@ -43,6 +43,16 @@ export const SkillTagButton = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  svg {
+    transition: transform 300ms ease-in-out;
+    transform: rotate(0deg);
+    ${({ $isOpen }) =>
+      $isOpen &&
+      css`
+        transform: rotate(180deg);
+      `}
+  }
 `;
 
 export const SkillTagBoxWrapper = styled.div`

@@ -1,4 +1,5 @@
 export const MODAL_MESSAGE = {
+  isNotLoggedIn: '로그인이 필요한 서비스입니다.',
   pass: '지원자를 합격 리스트에 추가했습니다.',
   nonPass: '지원자를 불합격 리스트에 추가했습니다.',
   waiting: '지원자를 대기리스트에 추가했습니다',
