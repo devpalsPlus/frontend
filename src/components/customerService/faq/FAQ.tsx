@@ -1,4 +1,3 @@
-import { Fragment } from 'react/jsx-runtime';
 import { useGetFAQ } from '../../../hooks/useGetFAQ';
 import CustomerServiceHeader from '../../../pages/customerService/CustomerServiceHeader';
 import Spinner from '../../mypage/Spinner';

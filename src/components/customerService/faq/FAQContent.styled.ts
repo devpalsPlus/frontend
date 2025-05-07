@@ -2,14 +2,14 @@ import styled, { css } from 'styled-components';
 
 export const ListContainer = styled.div`
   width: 100%;
-  padding: 1.5rem 0;
 `;
 
-export const ListWrapper = styled.div`
+export const ListWrapper = styled.button`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1.5rem 0;
 `;
 
 export const ListTitle = styled.div`
@@ -18,7 +18,7 @@ export const ListTitle = styled.div`
   font-weight: bold;
 `;
 
-export const ListPlusButton = styled.div<{ $isOpen: boolean }>`
+export const ListPlusIcon = styled.div<{ $isOpen: boolean }>`
   transition: transform 500ms ease-in-out;
   ${({ $isOpen }) =>
     $isOpen &&
@@ -32,7 +32,9 @@ export const ListPlusButton = styled.div<{ $isOpen: boolean }>`
 `;
 
 export const ListContentWrapper = styled.div`
-  margin: 0.5rem;
+  cursor: auto;
+  background: ${({ theme }) => theme.color.lightgrey};
+  padding: 1rem 0.5rem 1.5rem 1rem;
   display: flex;
   gap: 0.5rem;
 `;

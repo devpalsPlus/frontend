@@ -11,12 +11,15 @@ export default function FAQContent({ list }: FAQContentProps) {
   const [isFAQContentOpen, setIsFAQContentOpen] = useState<boolean>(false);
 
   return (
-    <S.ListContainer onClick={() => setIsFAQContentOpen((prev) => !prev)}>
-      <S.ListWrapper>
+    <S.ListContainer>
+      <S.ListWrapper
+        type='button'
+        onClick={() => setIsFAQContentOpen((prev) => !prev)}
+      >
         <S.ListTitle>{list.title}</S.ListTitle>
-        <S.ListPlusButton $isOpen={isFAQContentOpen}>
+        <S.ListPlusIcon $isOpen={isFAQContentOpen}>
           <PlusIcon />
-        </S.ListPlusButton>
+        </S.ListPlusIcon>
       </S.ListWrapper>
       {isFAQContentOpen && (
         <S.ListContentWrapper>
