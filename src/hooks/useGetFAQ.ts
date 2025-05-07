@@ -4,7 +4,8 @@ import { CustomerService } from './queries/keys';
 
 export const useGetFAQ = () => {
   const { data: faqData, isLoading } = useQuery({
-    queryKey: CustomerService.faq,
+    // keyword 조회시 keyword 키 추가
+    queryKey: [CustomerService.faq],
     queryFn: () => getFAQ(),
   });
 

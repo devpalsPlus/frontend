@@ -45,6 +45,6 @@ export const ActivityLog = {
 };
 
 export const CustomerService = {
-  faq: ['faq'],
-  notice: ['notice'],
+  faq: 'faq',
+  notice: 'notice',
 };
