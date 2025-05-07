@@ -38,7 +38,7 @@ export const MainContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 40px;
+  padding: 20px 40px 40px 40px;
 `;
 
 export const Header = styled.div`
@@ -87,8 +87,19 @@ export const SubmitButton = styled(Button)`
 export const ScrollArea = styled.div`
   flex: 1;
   overflow-y: auto;
-  padding-right: 3px;
+  padding-right: 16px;
   padding-bottom: 70px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
 `;
 
 export const QuestionBlock = styled.div`
@@ -113,6 +124,7 @@ export const Option = styled.label`
   display: flex;
   align-items: center;
   margin-right: 24px;
+  margin-bottom: 6px;
 `;
 
 export const Radio = styled.input`
