@@ -1,11 +1,11 @@
 import { FaceFrownIcon } from '@heroicons/react/24/outline';
-import * as S from './NoResultPage.styled';
+import * as S from './NoResult.styled';
 
 export interface NoResultPageProps {
   height: string;
 }
 
-export default function NoResultPage({ height }: NoResultPageProps) {
+export default function NoResult({ height }: NoResultPageProps) {
   return (
     <S.Container height={height}>
       <S.Wrapper>

@@ -31,8 +31,5 @@ export const Container = styled.div`
 `;
 
 export const SectionContainer = styled.section`
-  background-color: ${({ theme }) => theme.color.lightgrey};
-  border-radius: ${({ theme }) => theme.borderRadius.large} 0 0
-    ${({ theme }) => theme.borderRadius.large};
   padding: 2rem;
 `;

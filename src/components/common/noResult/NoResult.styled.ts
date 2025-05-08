@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NoResultPageProps } from './NoResultPage';
+import { NoResultPageProps } from './NoResult';
 
 export const Container = styled.div<Pick<NoResultPageProps, 'height'>>`
   width: 100%;

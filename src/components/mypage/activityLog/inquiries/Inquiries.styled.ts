@@ -2,20 +2,34 @@ import styled from 'styled-components';
 
 export const container = styled.div`
   height: 100%;
+  padding: 0 0.5rem 0 0.8rem;
 `;
 
 export const InquiriesContainer = styled.div`
-  padding: 1rem;
   width: 100%;
+`;
+
+export const InquiriesTableHeadContainer = styled.div`
+  width: 100%;
+  position: sticky;
+  padding-top: 1rem;
+  top: 0;
+  background: ${({ theme }) => theme.color.lightgrey};
 `;
 
 export const InquiriesTableHeadWrapper = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 8% 18% 62% 12%;
+  grid-template-columns: 8% 15% 65% 17%;
   font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+`;
+
+export const ContentBorder = styled.div`
+  width: 100%;
+  height: 0.5px;
+  background: ${({ theme }) => theme.color.placeholder};
 `;
 
 export const InquiriesTableHeaderNo = styled.div`
@@ -36,6 +50,7 @@ export const InquiriesTableHeaderState = styled.div`
 `;
 
 export const InquiriesWrapper = styled.div`
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;

@@ -25,6 +25,7 @@ export const useMyProfileInfo = () => {
     queryKey: myInfoKey.myProfile,
     queryFn: () => getMyInfo(),
     staleTime: Infinity,
+    gcTime: Infinity,
     enabled: isLoggedIn,
   });
 

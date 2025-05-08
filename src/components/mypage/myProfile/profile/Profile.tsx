@@ -8,6 +8,7 @@ import { Radar } from 'react-chartjs-2';
 import { UserInfo } from '../../../../models/userInfo';
 import { useEffect } from 'react';
 import MyProfileWrapper from '../MyProfileWrapper';
+import { PROFILE_DEFAULT_MESSAGE } from '../../../../constants/myPageProfile';
 
 export default function Profile() {
   const {
@@ -52,7 +53,7 @@ export default function Profile() {
                 </li>
               ))
             ) : (
-              <li>스킬을 선택해주세요.</li>
+              <li>{PROFILE_DEFAULT_MESSAGE.skills}</li>
             )}
           </ul>
         </S.BackgroundBox>
@@ -68,7 +69,7 @@ export default function Profile() {
                   <span key={position.name}>{position.name}</span>
                 ))
             ) : (
-              <span>포지션을 선택해주세요.</span>
+              <span>{PROFILE_DEFAULT_MESSAGE.positions}</span>
             )}
           </div>
         </S.BackgroundWrapper>
@@ -76,7 +77,7 @@ export default function Profile() {
       <MyProfileWrapper>
         <label>깃허브</label>
         <S.BackgroundWrapper>
-          <span>{myData.github || '깃허브 링크를 올려보세요.'}</span>
+          <span>{myData.github || PROFILE_DEFAULT_MESSAGE.github}</span>
         </S.BackgroundWrapper>
       </MyProfileWrapper>
       <S.List>
@@ -92,7 +93,7 @@ export default function Profile() {
                 </li>
               ))
             ) : (
-              <li>경력을 기록하세요.</li>
+              <li>{PROFILE_DEFAULT_MESSAGE.career}</li>
             )}
           </ul>
         </S.BackgroundBox>
@@ -100,7 +101,7 @@ export default function Profile() {
       <S.List>
         <label>소&nbsp;&nbsp;&nbsp;개</label>
         <S.BackgroundBox>
-          <S.Bio>{myData.bio || '내 소개를 적어주세요.'}</S.Bio>
+          <S.Bio>{myData.bio || PROFILE_DEFAULT_MESSAGE.bio}</S.Bio>
         </S.BackgroundBox>
       </S.List>
 
