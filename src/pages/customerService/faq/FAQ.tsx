@@ -5,6 +5,7 @@ import { SearchKeyword } from '../../../models/customerService';
 import Spinner from '../../../components/mypage/Spinner';
 import CustomerServiceHeader from '../../../components/customerService/CustomerServiceHeader';
 import FAQContent from '../../../components/customerService/faq/FAQContent';
+import NoResult from '../../../components/common/noResult/NoResult';
 
 export default function FAQ() {
   const [keyword, setKeyword] = useState<SearchKeyword>({ keyword: '' });
@@ -24,7 +25,7 @@ export default function FAQ() {
     );
   }
 
-  if (!faqData || faqData.length === 0) return;
+  if (!faqData) return;
 
   return (
     <>
@@ -35,12 +36,16 @@ export default function FAQ() {
       />
       <S.Container>
         <S.Wrapper>
-          {faqData.map((list) => (
-            <S.ToggleWrapper key={list.id}>
-              <FAQContent list={list} />
-              <S.ContentBorder></S.ContentBorder>
-            </S.ToggleWrapper>
-          ))}
+          {faqData.length > 0 ? (
+            faqData.map((list) => (
+              <S.ToggleWrapper key={list.id}>
+                <FAQContent list={list} />
+                <S.ContentBorder></S.ContentBorder>
+              </S.ToggleWrapper>
+            ))
+          ) : (
+            <NoResult height='20rem' />
+          )}
         </S.Wrapper>
       </S.Container>
     </>
