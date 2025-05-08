@@ -19,6 +19,7 @@ export const ListTitle = styled.div`
 `;
 
 export const ListPlusIcon = styled.div<{ $isOpen: boolean }>`
+  margin-right: 1.5rem;
   transition: transform 500ms ease-in-out;
   ${({ $isOpen }) =>
     $isOpen &&
@@ -34,7 +35,7 @@ export const ListPlusIcon = styled.div<{ $isOpen: boolean }>`
 export const ListContentWrapper = styled.div`
   cursor: auto;
   background: ${({ theme }) => theme.color.lightgrey};
-  padding: 1rem 0.5rem 1.5rem 1rem;
+  padding: 1.5rem 1rem;
   display: flex;
   gap: 0.5rem;
 `;

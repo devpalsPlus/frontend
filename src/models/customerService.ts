@@ -9,3 +9,7 @@ export interface FAQ {
 export interface ApiFAQ extends ApiCommonType {
   data: FAQ[];
 }
+
+export interface SearchKeyword {
+  keyword: string;
+}

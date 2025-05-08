@@ -46,10 +46,10 @@ function Header() {
       </Link>
       <S.Wrapper>
         <S.HeaderLinkContainer>
-          <Link to={ROUTES.FAQ}>
+          <Link to={`${ROUTES.customerService}/${ROUTES.FAQ}`}>
             <S.HeaderLink>FAQ</S.HeaderLink>
           </Link>
-          <Link to={ROUTES.notice}>
+          <Link to={`${ROUTES.customerService}/${ROUTES.notice}`}>
             <S.HeaderLink>공지사항</S.HeaderLink>
           </Link>
         </S.HeaderLinkContainer>

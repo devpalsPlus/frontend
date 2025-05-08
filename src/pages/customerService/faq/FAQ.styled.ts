@@ -18,9 +18,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export const ToggleWrapper = styled.button`
-  text-align: start;
-`;
+export const ToggleWrapper = styled.div``;
 
 export const ContentBorder = styled.div`
   width: 100%;

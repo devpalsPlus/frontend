@@ -1,9 +1,9 @@
-import { ApiFAQ } from '../models/customerService';
+import type { ApiFAQ, SearchKeyword } from '../models/customerService';
 import { httpClient } from './http.api';
 
-export const getFAQ = async () => {
+export const getFAQ = async (params: SearchKeyword) => {
   try {
-    const response = await httpClient.get<ApiFAQ>(`/faq`);
+    const response = await httpClient.get<ApiFAQ>(`/faq`, { params });
 
     return response.data.data;
   } catch (e) {
