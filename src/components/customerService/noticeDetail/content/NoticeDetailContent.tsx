@@ -23,7 +23,7 @@ export default function NoticeDetailContent({
           <S.Admin>DevPals</S.Admin>
         </S.AdminWrapper>
         <S.InfoWrapper>
-          <S.Date>{formatDate(createdAt)}</S.Date>
+          <S.NoticeContentDate>{formatDate(createdAt)}</S.NoticeContentDate>
           <S.ViewWrapper>
             <S.ViewIcon>
               <EyeIcon />

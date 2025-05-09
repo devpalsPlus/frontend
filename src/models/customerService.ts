@@ -26,7 +26,7 @@ export interface ApiNotice {
 export interface OtherNotice {
   id: number;
   title: string;
-  cratedAt: string;
+  createdAt: string;
 }
 
 export interface NoticeDetail extends Notice {

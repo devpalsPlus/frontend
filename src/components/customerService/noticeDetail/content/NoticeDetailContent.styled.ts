@@ -13,6 +13,9 @@ export const Title = styled.h2``;
 
 export const AdminWrapper = styled.div`
   padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
 `;
 
 export const AdminImg = styled.img`
@@ -21,7 +24,6 @@ export const AdminImg = styled.img`
 `;
 
 export const Admin = styled.span`
-  vertical-align: middle;
   font-size: 1.1rem;
 `;
 
@@ -31,7 +33,7 @@ export const InfoWrapper = styled.div`
   gap: 1rem;
 `;
 
-export const Date = styled.span`
+export const NoticeContentDate = styled.span`
   font-size: 0.8rem;
 `;
 

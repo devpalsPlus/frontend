@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useGetNoticeDetail } from '../../../hooks/useGetNoticeDetail';
 import * as S from './NoticeDetailBundle.styled';
 import NoticeDetailBottom from './bottom/NoticeDetailBottom';
@@ -8,9 +8,11 @@ import Spinner from '../../mypage/Spinner';
 
 export default function NoticeDetailBundle() {
   const location = useLocation();
-  const { id } = location.state;
+  const { noticeId } = useParams();
 
-  const { noticeDetailData, isLoading } = useGetNoticeDetail(String(id));
+  const id = noticeId || String(location.state && location.state.id);
+
+  const { noticeDetailData, isLoading } = useGetNoticeDetail(id);
 
   if (!noticeDetailData) return;
 
