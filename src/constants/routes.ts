@@ -26,5 +26,6 @@ export const ROUTES = {
   customerService: '/customer-service',
   FAQ: 'faq',
   notice: 'notice',
+  noticeDetail: 'notice-detail',
   inquiry: '/inquiry',
 } as const;
