@@ -1,3 +1,8 @@
+import kakao from '../assets/kakao.svg';
+import naver from '../assets/naver.svg';
+import google from '../assets/google.svg';
+import github from '../assets/github.svg';
+
 export const ERROR_MESSAGES = {
   EMAIL_REQUIRED: '이메일을 입력해주세요.',
   INVALID_EMAIL: '유효한 이메일을 입력해주세요.',
@@ -25,3 +30,26 @@ export const MY_STATUS = {
   ACCEPTED: 'ACCEPTED',
   REJECTED: 'REJECTED',
 } as const;
+
+export const OAUTH_PROVIDERS = [
+  {
+    name: 'kakao',
+    url: import.meta.env.VITE_APP_BASE_URL_KAKAO,
+    icon: kakao,
+  },
+  {
+    name: 'naver',
+    url: import.meta.env.VITE_APP_BASE_URL_NAVER,
+    icon: naver,
+  },
+  {
+    name: 'google',
+    url: import.meta.env.VITE_APP_BASE_URL_GOOGLE,
+    icon: google,
+  },
+  {
+    name: 'github',
+    url: import.meta.env.VITE_APP_BASE_URL_GITHUB,
+    icon: github,
+  },
+];

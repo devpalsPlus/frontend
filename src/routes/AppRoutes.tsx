@@ -14,6 +14,7 @@ import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
 import { ToastProvider } from '../components/common/Toast/ToastProvider';
 const Login = lazy(() => import('../pages/login/Login'));
+const LoginSuccess = lazy(() => import('../pages/login/LoginSuccess'));
 const Register = lazy(() => import('../pages/register/Register'));
 const ChangePassword = lazy(
   () => import('../pages/changePassword/ChangePassword')
@@ -96,6 +97,10 @@ const AppRoutes = () => {
     {
       path: ROUTES.login,
       element: isLoggedIn ? <Navigate to={ROUTES.main} replace /> : <Login />,
+    },
+    {
+      path: ROUTES.loginSuccess,
+      element: <LoginSuccess />,
     },
     {
       path: ROUTES.signup,
@@ -343,7 +348,8 @@ const AppRoutes = () => {
           <Outlet />
         </ToastProvider>
       ),
-      children: [...newRouteList, { path: '*', element: <NotFoundPage /> }],
+      children: [...newRouteList],
+      //children: [...newRouteList, { path: '*', element: <NotFoundPage /> }],
     },
   ]);
 

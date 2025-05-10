@@ -26,4 +26,5 @@ export const ROUTES = {
   FAQ: '/faq',
   notice: '/notice',
   inquiry: '/inquiry',
+  loginSuccess: '/login/oauth2/code',
 } as const;
