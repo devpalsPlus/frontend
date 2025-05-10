@@ -348,8 +348,8 @@ const AppRoutes = () => {
           <Outlet />
         </ToastProvider>
       ),
-      children: [...newRouteList],
-      //children: [...newRouteList, { path: '*', element: <NotFoundPage /> }],
+
+      children: [...newRouteList, { path: '*', element: <NotFoundPage /> }],
     },
   ]);
 
