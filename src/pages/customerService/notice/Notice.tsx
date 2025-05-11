@@ -3,19 +3,26 @@ import CustomerServiceHeader from '../../../components/customerService/CustomerS
 import Spinner from '../../../components/mypage/Spinner';
 import { useGetNotice } from '../../../hooks/useGetNotice';
 import * as S from './Notice.styled';
-import type { SearchKeyword } from '../../../models/customerService';
+import type { NoticeSearch } from '../../../models/customerService';
 import NoResult from '../../../components/common/noResult/NoResult';
 import NoticeList from '../../../components/customerService/notice/NoticeList';
 import { ROUTES } from '../../../constants/routes';
+import NoticePagination from '../../../components/customerService/notice/noticePagination/NoticePagination';
 
 export default function Notice() {
-  const [keyword, setKeyword] = useState<SearchKeyword>({ keyword: '' });
+  const [keyword, setKeyword] = useState<NoticeSearch>({
+    keyword: '',
+    page: 1,
+  });
   const [value, setValue] = useState<string>('');
   const { noticeData, isLoading } = useGetNotice(keyword);
 
   const handleGetKeyword = (keyword: string) => {
-    setKeyword({ keyword });
+    setKeyword((prev) => ({ ...prev, keyword }));
     setValue(keyword);
+  };
+  const handleChangePagination = (page: number) => {
+    setKeyword((prev) => ({ ...prev, page }));
   };
 
   if (isLoading) {
@@ -28,6 +35,8 @@ export default function Notice() {
 
   if (!noticeData) return;
 
+  const lastPage = Number(noticeData.totalPages);
+
   return (
     <>
       <CustomerServiceHeader
@@ -37,9 +46,9 @@ export default function Notice() {
       />
       <S.Container>
         <S.Wrapper>
-          <S.ContentBorder></S.ContentBorder>
-          {noticeData.length > 0 ? (
-            noticeData.map((list) => (
+          {noticeData.notices.length > 0 && <S.ContentBorder></S.ContentBorder>}
+          {noticeData.notices.length > 0 ? (
+            noticeData.notices.map((list) => (
               <S.NoticeDetailLink
                 to={`${ROUTES.customerService}/${ROUTES.noticeDetail}/${list.id}`}
                 state={{ id: list.id }}
@@ -53,6 +62,11 @@ export default function Notice() {
             <NoResult height='20rem' />
           )}
         </S.Wrapper>
+        <NoticePagination
+          page={keyword.page}
+          getLastPage={lastPage}
+          onChangePagination={handleChangePagination}
+        />
       </S.Container>
     </>
   );

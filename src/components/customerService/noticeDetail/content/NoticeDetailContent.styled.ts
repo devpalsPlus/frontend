@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.section`
+export const Container = styled.div`
   width: 100%;
-  margin: 2rem 0;
+  margin-top: 2rem;
 `;
 
 export const TitleWrapper = styled.div`
@@ -37,7 +37,11 @@ export const NoticeContentDate = styled.span`
   font-size: 0.8rem;
 `;
 
-export const ViewWrapper = styled.div``;
+export const ViewWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+`;
 
 export const ViewIcon = styled.div`
   display: flex;
@@ -52,7 +56,8 @@ export const ViewCount = styled.span`
 `;
 
 export const ContentWrapper = styled.div`
-  padding: 1.5rem 1rem;
+  min-height: 30vh;
+  padding: 1.5rem 1rem 4rem 1rem;
 `;
 
 export const Content = styled.p``;

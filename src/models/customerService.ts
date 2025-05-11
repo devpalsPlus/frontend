@@ -10,17 +10,17 @@ export interface ApiFAQ extends ApiCommonType {
   data: FAQ[];
 }
 
-export interface SearchKeyword {
-  keyword: string;
+export interface NoticeList extends OtherNotice {
+  content: string;
 }
 
-export interface Notice extends FAQ {
-  createdAt: string;
-  viewCount: number;
+export interface Notice {
+  notices: NoticeList[];
+  totalPages: string;
 }
 
 export interface ApiNotice {
-  data: Notice[];
+  data: Notice;
 }
 
 export interface OtherNotice {
@@ -30,10 +30,19 @@ export interface OtherNotice {
 }
 
 export interface NoticeDetail extends Notice {
+  viewCount: number;
   prev: OtherNotice | null;
   next: OtherNotice | null;
 }
 
 export interface ApiNoticeDetail {
   data: NoticeDetail;
+}
+
+export interface SearchKeyword {
+  keyword: string;
+}
+
+export interface NoticeSearch extends SearchKeyword {
+  page: number;
 }

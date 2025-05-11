@@ -1,9 +1,9 @@
-import type { Notice } from '../../../models/customerService';
+import type { NoticeList } from '../../../models/customerService';
 import { formatDate } from '../../../util/format';
 import * as S from './NoticeList.styled';
 
 interface NoticeProps {
-  list: Notice;
+  list: NoticeList;
 }
 
 export default function NoticeList({ list }: NoticeProps) {

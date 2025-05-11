@@ -2,6 +2,7 @@ import type {
   ApiFAQ,
   ApiNotice,
   ApiNoticeDetail,
+  NoticeSearch,
   SearchKeyword,
 } from '../models/customerService';
 import { httpClient } from './http.api';
@@ -17,9 +18,11 @@ export const getFAQ = async (params: SearchKeyword) => {
   }
 };
 
-export const getNotice = async (params: SearchKeyword) => {
+export const getNotice = async (params: NoticeSearch) => {
   try {
     const response = await httpClient.get<ApiNotice>(`/notice`, { params });
+
+    console.log(response.data);
 
     return response.data.data;
   } catch (e) {

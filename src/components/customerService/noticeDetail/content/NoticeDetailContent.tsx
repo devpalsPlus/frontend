@@ -7,12 +7,14 @@ interface NoticeDetailContentProps {
   title: string;
   content: string;
   createdAt: string;
+  viewCount: number;
 }
 
 export default function NoticeDetailContent({
   title,
   content,
   createdAt,
+  viewCount,
 }: NoticeDetailContentProps) {
   return (
     <S.Container>
@@ -28,7 +30,7 @@ export default function NoticeDetailContent({
             <S.ViewIcon>
               <EyeIcon />
             </S.ViewIcon>
-            <S.ViewCount></S.ViewCount>
+            <S.ViewCount>{viewCount}</S.ViewCount>
           </S.ViewWrapper>
         </S.InfoWrapper>
       </S.TitleWrapper>

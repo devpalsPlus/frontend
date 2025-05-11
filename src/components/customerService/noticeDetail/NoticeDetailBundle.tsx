@@ -9,7 +9,6 @@ import Spinner from '../../mypage/Spinner';
 export default function NoticeDetailBundle() {
   const location = useLocation();
   const { noticeId } = useParams();
-
   const id = noticeId || String(location.state && location.state.id);
 
   const { noticeDetailData, isLoading } = useGetNoticeDetail(id);
@@ -24,7 +23,7 @@ export default function NoticeDetailBundle() {
     );
   }
 
-  const { title, content, createdAt, prev, next } = noticeDetailData;
+  const { title, content, createdAt, viewCount, prev, next } = noticeDetailData;
 
   return (
     <S.Container>
@@ -33,6 +32,7 @@ export default function NoticeDetailBundle() {
         title={title}
         content={content}
         createdAt={createdAt}
+        viewCount={viewCount}
       />
       <NoticeDetailBottom prev={prev} next={next} />
     </S.Container>

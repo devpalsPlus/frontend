@@ -7,10 +7,11 @@ export const SpinnerWrapper = styled.div`
 
 export const Container = styled.section`
   margin-top: 2rem;
-  margin-bottom: 5rem;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 `;
 
 export const Wrapper = styled.div`
