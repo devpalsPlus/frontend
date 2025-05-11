@@ -21,6 +21,6 @@ export const Title = styled.span`
   font-weight: 700;
 `;
 
-export const Date = styled.span`
+export const NoticeDate = styled.span`
   font-size: 1.1rem;
 `;

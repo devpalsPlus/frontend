@@ -29,7 +29,7 @@ export interface OtherNotice {
   createdAt: string;
 }
 
-export interface NoticeDetail extends Notice {
+export interface NoticeDetail extends NoticeList {
   viewCount: number;
   prev: OtherNotice | null;
   next: OtherNotice | null;

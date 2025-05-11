@@ -10,5 +10,5 @@ export const useGetNoticeDetail = (id: string) => {
     gcTime: Infinity,
   });
 
-  return { noticeDetailData, isLoading };
+  return { noticeDetail: noticeDetailData, isLoading };
 };

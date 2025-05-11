@@ -4,6 +4,8 @@ import { GlobalStyle } from './style/global';
 import { defaultTheme } from './style/theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SearchFilteringProvider } from './context/SearchFilteringContext';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -21,6 +23,7 @@ function App() {
         <GlobalStyle />
         <QueryClientProvider client={queryClient}>
           <AppRoutes />
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </SearchFilteringProvider>
     </ThemeProvider>

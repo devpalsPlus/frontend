@@ -10,7 +10,6 @@ import {
 import { ROUTES } from '../../constants/routes';
 import { useMyProfileInfo } from '../../hooks/useMyInfo';
 import loadingImg from '../../assets/loadingImg.svg';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const MyPage = () => {
   const menuItems = [
@@ -47,7 +46,6 @@ const MyPage = () => {
       <S.Wrapper>
         <Outlet />
       </S.Wrapper>
-      <ReactQueryDevtools initialIsOpen={true} />
     </S.Container>
   );
 };

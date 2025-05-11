@@ -3,7 +3,6 @@ import Banner from '../../components/home/banner/Banner';
 import ProjectStats from '../../components/home/projectStats/ProjectStats';
 import SearchFiltering from '../../components/home/searchFiltering/SearchFiltering';
 import ProjectCardLists from '../../components/home/projectCardLists/ProjectCardLists';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const Home = () => {
   return (
@@ -14,7 +13,6 @@ const Home = () => {
         <SearchFiltering />
         <ProjectCardLists />
       </S.Wrapper>
-      <ReactQueryDevtools initialIsOpen={false} />
     </S.Container>
   );
 };

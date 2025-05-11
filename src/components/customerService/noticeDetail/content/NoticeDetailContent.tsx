@@ -4,6 +4,7 @@ import * as S from './NoticeDetailContent.styled';
 import logo from '../../../../assets/mainlogo.svg';
 
 interface NoticeDetailContentProps {
+  id: number;
   title: string;
   content: string;
   createdAt: string;
@@ -11,6 +12,7 @@ interface NoticeDetailContentProps {
 }
 
 export default function NoticeDetailContent({
+  id,
   title,
   content,
   createdAt,
@@ -24,15 +26,17 @@ export default function NoticeDetailContent({
           <S.AdminImg src={logo} />
           <S.Admin>DevPals</S.Admin>
         </S.AdminWrapper>
-        <S.InfoWrapper>
-          <S.NoticeContentDate>{formatDate(createdAt)}</S.NoticeContentDate>
-          <S.ViewWrapper>
-            <S.ViewIcon>
-              <EyeIcon />
-            </S.ViewIcon>
-            <S.ViewCount>{viewCount}</S.ViewCount>
-          </S.ViewWrapper>
-        </S.InfoWrapper>
+        {id && (
+          <S.InfoWrapper>
+            <S.NoticeContentDate>{formatDate(createdAt)}</S.NoticeContentDate>
+            <S.ViewWrapper>
+              <S.ViewIcon>
+                <EyeIcon />
+              </S.ViewIcon>
+              <S.ViewCount>{viewCount}</S.ViewCount>
+            </S.ViewWrapper>
+          </S.InfoWrapper>
+        )}
       </S.TitleWrapper>
       <S.ContentBorder></S.ContentBorder>
       <S.ContentWrapper>

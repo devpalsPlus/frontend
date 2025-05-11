@@ -11,9 +11,7 @@ export default function NoticeDetailBundle() {
   const { noticeId } = useParams();
   const id = noticeId || String(location.state && location.state.id);
 
-  const { noticeDetailData, isLoading } = useGetNoticeDetail(id);
-
-  if (!noticeDetailData) return;
+  const { noticeDetail: noticeDetailData, isLoading } = useGetNoticeDetail(id);
 
   if (isLoading) {
     return (
@@ -23,12 +21,33 @@ export default function NoticeDetailBundle() {
     );
   }
 
-  const { title, content, createdAt, viewCount, prev, next } = noticeDetailData;
+  if (!noticeDetailData) {
+    return (
+      <NoticeDetailContent
+        id={0}
+        title='공지사항ID가 없습니다.'
+        content='목록으로 돌아가세요.'
+        createdAt=''
+        viewCount={0}
+      />
+    );
+  }
+
+  const {
+    id: detailId,
+    title,
+    content,
+    createdAt,
+    viewCount,
+    prev,
+    next,
+  } = noticeDetailData;
 
   return (
     <S.Container>
       <NoticeDetailHeader />
       <NoticeDetailContent
+        id={detailId}
         title={title}
         content={content}
         createdAt={createdAt}
