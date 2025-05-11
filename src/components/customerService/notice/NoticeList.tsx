@@ -3,15 +3,15 @@ import { formatDate } from '../../../util/format';
 import * as S from './NoticeList.styled';
 
 interface NoticeProps {
-  list: TNoticeList;
+  notice: TNoticeList;
 }
 
-export default function NoticeList({ list }: NoticeProps) {
+export default function NoticeList({ notice }: NoticeProps) {
   return (
     <S.Container>
       <S.Wrapper type='button' aria-label='공지사항 상세보기'>
-        <S.Title>{list.title}</S.Title>
-        <S.NoticeDate>{formatDate(list.createdAt)}</S.NoticeDate>
+        <S.Title>{notice.title}</S.Title>
+        <S.NoticeDate>{formatDate(notice.createdAt)}</S.NoticeDate>
       </S.Wrapper>
     </S.Container>
   );

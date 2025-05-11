@@ -7,7 +7,7 @@ import type { NoticeSearch } from '../../../models/customerService';
 import NoResult from '../../../components/common/noResult/NoResult';
 import NoticeList from '../../../components/customerService/notice/NoticeList';
 import { ROUTES } from '../../../constants/routes';
-import NoticePagination from '../../../components/customerService/notice/noticePagination/NoticePagination';
+import Pagination from '../../../components/common/pagination/Pagination';
 
 export default function Notice() {
   const [keyword, setKeyword] = useState<NoticeSearch>({
@@ -54,7 +54,7 @@ export default function Notice() {
                 state={{ id: list.id }}
                 key={list.id}
               >
-                <NoticeList list={list} />
+                <NoticeList notice={list} />
                 <S.ContentBorder></S.ContentBorder>
               </S.NoticeDetailLink>
             ))
@@ -62,7 +62,7 @@ export default function Notice() {
             <NoResult height='20rem' />
           )}
         </S.Wrapper>
-        <NoticePagination
+        <Pagination
           page={keyword.page}
           getLastPage={lastPage}
           onChangePagination={handleChangePagination}
