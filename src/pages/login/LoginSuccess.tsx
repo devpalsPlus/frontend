@@ -23,7 +23,9 @@ function LoginSuccess() {
       navigate(ROUTES.main);
     } else {
       handleModalOpen(AUTH_MESSAGE.isNotToken);
-      navigate(ROUTES.login);
+      setTimeout(() => {
+        navigate(ROUTES.login);
+      }, 1000);
     }
   }, [searchParams, storeLogin, handleModalOpen, navigate]);
 
