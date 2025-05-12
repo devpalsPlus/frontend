@@ -1,4 +1,5 @@
 import { useGetMyInquiries } from '../../../../hooks/useGetMyInquiries';
+import ContentBorder from '../../../common/contentBorder/ContentBorder';
 import NoContent from '../../../common/noContent/NoContent';
 import Spinner from '../../Spinner';
 import * as S from './Inquiries.styled';
@@ -30,7 +31,7 @@ export default function Inquiries() {
             <S.InquiriesTableHeaderTitle>제목</S.InquiriesTableHeaderTitle>
             <S.InquiriesTableHeaderState>상태</S.InquiriesTableHeaderState>
           </S.InquiriesTableHeadWrapper>
-          <S.ContentBorder></S.ContentBorder>
+          <ContentBorder />
         </S.InquiriesTableHeadContainer>
         <S.InquiriesWrapper>
           {myInquiriesData.map((list, index) => (

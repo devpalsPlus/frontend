@@ -8,6 +8,7 @@ import NoResult from '../../../components/common/noResult/NoResult';
 import NoticeList from '../../../components/customerService/notice/NoticeList';
 import { ROUTES } from '../../../constants/routes';
 import Pagination from '../../../components/common/pagination/Pagination';
+import ContentBorder from '../../../components/common/contentBorder/ContentBorder';
 
 export default function Notice() {
   const [keyword, setKeyword] = useState<NoticeSearch>({
@@ -46,7 +47,7 @@ export default function Notice() {
       />
       <S.Container>
         <S.Wrapper>
-          {noticeData.notices.length > 0 && <S.ContentBorder></S.ContentBorder>}
+          {noticeData.notices.length > 0 && <ContentBorder />}
           {noticeData.notices.length > 0 ? (
             noticeData.notices.map((list) => (
               <S.NoticeDetailLink
@@ -55,7 +56,7 @@ export default function Notice() {
                 key={list.id}
               >
                 <NoticeList notice={list} />
-                <S.ContentBorder></S.ContentBorder>
+                <ContentBorder />
               </S.NoticeDetailLink>
             ))
           ) : (

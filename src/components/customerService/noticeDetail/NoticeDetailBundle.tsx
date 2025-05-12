@@ -5,6 +5,7 @@ import NoticeDetailBottom from './bottom/NoticeDetailBottom';
 import NoticeDetailContent from './content/NoticeDetailContent';
 import NoticeDetailHeader from './header/NoticeDetailHeader';
 import Spinner from '../../mypage/Spinner';
+import ListButton from './bottom/button/ListButton';
 
 export default function NoticeDetailBundle() {
   const location = useLocation();
@@ -23,13 +24,16 @@ export default function NoticeDetailBundle() {
 
   if (!noticeDetailData) {
     return (
-      <NoticeDetailContent
-        id={0}
-        title='공지사항ID가 없습니다.'
-        content='목록으로 돌아가세요.'
-        createdAt=''
-        viewCount={0}
-      />
+      <S.Container>
+        <NoticeDetailContent
+          id={0}
+          title='공지사항이 없습니다.'
+          content='목록으로 돌아가세요.'
+          createdAt=''
+          viewCount={0}
+        />
+        <ListButton />
+      </S.Container>
     );
   }
 

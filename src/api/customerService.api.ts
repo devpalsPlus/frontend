@@ -22,8 +22,6 @@ export const getNotice = async (params: NoticeSearch) => {
   try {
     const response = await httpClient.get<ApiNotice>(`/notice`, { params });
 
-    console.log(response.data);
-
     return response.data.data;
   } catch (e) {
     console.error(e);

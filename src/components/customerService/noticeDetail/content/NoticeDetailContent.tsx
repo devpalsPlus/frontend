@@ -2,6 +2,7 @@ import { EyeIcon } from '@heroicons/react/24/outline';
 import { formatDate } from '../../../../util/format';
 import * as S from './NoticeDetailContent.styled';
 import logo from '../../../../assets/mainlogo.svg';
+import ContentBorder from '../../../common/contentBorder/ContentBorder';
 
 interface NoticeDetailContentProps {
   id: number;
@@ -26,7 +27,7 @@ export default function NoticeDetailContent({
           <S.AdminImg src={logo} />
           <S.Admin>DevPals</S.Admin>
         </S.AdminWrapper>
-        {id && (
+        {Boolean(id) && (
           <S.InfoWrapper>
             <S.NoticeContentDate>{formatDate(createdAt)}</S.NoticeContentDate>
             <S.ViewWrapper>
@@ -38,7 +39,7 @@ export default function NoticeDetailContent({
           </S.InfoWrapper>
         )}
       </S.TitleWrapper>
-      <S.ContentBorder></S.ContentBorder>
+      <ContentBorder />
       <S.ContentWrapper>
         <S.Content>{content}</S.Content>
       </S.ContentWrapper>

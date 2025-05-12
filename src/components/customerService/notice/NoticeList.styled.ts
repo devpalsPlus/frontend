@@ -23,4 +23,5 @@ export const Title = styled.span`
 
 export const NoticeDate = styled.span`
   font-size: 1.1rem;
+  color: ${({ theme }) => theme.color.placeholder};
 `;
