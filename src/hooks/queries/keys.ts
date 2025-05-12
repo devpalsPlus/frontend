@@ -25,19 +25,23 @@ export const ProjectListKey = {
 
 export const ProjectCommentList = {
   projectComment: ['projectCommentList'],
-};
+} as const;
 
 export const AlarmList = {
   myAlarmList: ['AlarmList'],
-};
+} as const;
 
 export const ProjectReplyList = {
   commentReply: ['CommentReplyList'],
-};
+} as const;
 
 export const ChartDataList = {
   chartData: ['ChartDataList'],
-};
+} as const;
+
+export const CompletedEvaluationList = {
+  completedEvaluation: ['completedEvaluation'],
+} as const;
 
 export const ActivityLog = {
   myComments: ['MyComments'],
