@@ -32,7 +32,16 @@ export default function All() {
     return <Spinner size='50px' color='#3e5879' />;
   }
 
-  if (!alarmListData || alarmListData.length === 0) {
+  const filterLength = alarmListData?.filter((list) => {
+    if (filterId === 0) {
+      return true;
+    } else if (list.alarmFilterId === filterId) {
+      return true;
+    }
+    return false;
+  }).length;
+
+  if (!alarmListData || alarmListData.length === 0 || filterLength === 0) {
     return (
       <S.WrapperNoContent>
         <NoContent type='notification' />

@@ -22,7 +22,10 @@ export default function Inquiry({ list, no }: InquiryProps) {
 
   return (
     <S.Container>
-      <S.InquiryTitleWrapper onClick={() => setIsOpen((prev) => !prev)}>
+      <S.InquiryTitleWrapper
+        type='button'
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
         <S.InquiryNumber>{no}</S.InquiryNumber>
         <S.InquiryCategory>{`[${list.category}]`}</S.InquiryCategory>
         <S.InquiryTitle>{list.title}</S.InquiryTitle>

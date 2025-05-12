@@ -21,12 +21,17 @@ export default function Inquiries() {
   return (
     <S.container>
       <S.InquiriesContainer>
-        <S.InquiriesTableHeadWrapper>
-          <S.InquiriesTableHeaderNo>No</S.InquiriesTableHeaderNo>
-          <S.InquiriesTableHeaderCategory>구별</S.InquiriesTableHeaderCategory>
-          <S.InquiriesTableHeaderTitle>제목</S.InquiriesTableHeaderTitle>
-          <S.InquiriesTableHeaderState>상태</S.InquiriesTableHeaderState>
-        </S.InquiriesTableHeadWrapper>
+        <S.InquiriesTableHeadContainer>
+          <S.InquiriesTableHeadWrapper>
+            <S.InquiriesTableHeaderNo>No</S.InquiriesTableHeaderNo>
+            <S.InquiriesTableHeaderCategory>
+              구별
+            </S.InquiriesTableHeaderCategory>
+            <S.InquiriesTableHeaderTitle>제목</S.InquiriesTableHeaderTitle>
+            <S.InquiriesTableHeaderState>상태</S.InquiriesTableHeaderState>
+          </S.InquiriesTableHeadWrapper>
+          <S.ContentBorder></S.ContentBorder>
+        </S.InquiriesTableHeadContainer>
         <S.InquiriesWrapper>
           {myInquiriesData.map((list, index) => (
             <Inquiry

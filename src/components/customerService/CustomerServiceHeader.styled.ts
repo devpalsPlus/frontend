@@ -35,6 +35,21 @@ export const SearchBarInput = styled.input`
   font-size: 1rem;
 `;
 
+export const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
+
+export const UturnButton = styled.button`
+  &:hover {
+    color: ${({ theme }) => theme.color.lightnavy};
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
 export const SearchButton = styled.button`
   svg {
     width: 20px;

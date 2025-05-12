@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { EmptyLoadingPageProps } from './EmptyLoadingPage';
+import { EmptyLoadingPageProps } from './EmptyLoading';
 
 export const Container = styled.div<EmptyLoadingPageProps>`
   width: 100%;

@@ -1,4 +1,4 @@
-import * as S from './EmptyLoadingPage.styled';
+import * as S from './EmptyLoading.styled';
 
 export interface EmptyLoadingPageProps {
   height: string;
@@ -6,7 +6,7 @@ export interface EmptyLoadingPageProps {
   $mHeight: string;
 }
 
-export default function EmptyLoadingPage({
+export default function EmptyLoading({
   height,
   $tHeight,
   $mHeight,

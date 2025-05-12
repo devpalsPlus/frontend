@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useProjectCardListData } from '../../../hooks/useProjectCardListData';
-import EmptyLoadingPage from '../../common/emptyLoadingPage/EmptyLoadingPage';
-import NoResultPage from '../../common/noResultPage/NoResultPage';
 import CardList from './cardList/CardList';
 import Pagination from './pagination/Pagination';
 import * as S from './ProjectCardLists.styled';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
+import EmptyLoading from '../../common/emptyLoading/EmptyLoading';
+import NoResult from '../../common/noResult/NoResult';
 
 export default function ProjectCardLists() {
   const { projectListsData, isLoading } = useProjectCardListData();
@@ -22,7 +22,7 @@ export default function ProjectCardLists() {
 
   if (isLoading)
     return (
-      <EmptyLoadingPage height='115.2rem' $tHeight='142rem' $mHeight='275rem' />
+      <EmptyLoading height='115.2rem' $tHeight='142rem' $mHeight='275rem' />
     );
 
   return (
@@ -41,7 +41,7 @@ export default function ProjectCardLists() {
             </Link>
           ))
         ) : (
-          <NoResultPage height='40rem' />
+          <NoResult height='40rem' />
         )}
       </S.Wrapper>
       <Pagination />

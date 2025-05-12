@@ -47,3 +47,8 @@ export const ActivityLog = {
   myComments: ['MyComments'],
   myInquiries: ['MyInquiries'],
 };
+
+export const CustomerService = {
+  faq: 'faq',
+  notice: 'notice',
+};

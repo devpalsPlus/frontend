@@ -23,7 +23,9 @@ const Layout = lazy(() => import('../components/common/layout/Layout'));
 const Home = lazy(() => import('../pages/home/Home'));
 const FAQ = lazy(() => import('../pages/customerService/faq/FAQ'));
 const Notice = lazy(() => import('../pages/customerService/notice/Notice'));
-const Inquiry = lazy(() => import('../pages/customerService/inquiry/Inquiry'));
+const Inquiry = lazy(
+  () => import('../components/customerService/inquiry/Inquiry')
+);
 const MyPage = lazy(() => import('../pages/mypage/MyPage'));
 const UserPage = lazy(() => import('../pages/userpage/UserPage'));
 const Apply = lazy(() => import('../pages/apply/ApplyStep'));
@@ -121,24 +123,28 @@ const AppRoutes = () => {
       ),
     },
     {
-      path: ROUTES.FAQ,
+      path: ROUTES.customerService,
       element: (
         <QueryErrorBoundary>
           <Layout>
-            <FAQ />
+            <Outlet />
           </Layout>
         </QueryErrorBoundary>
       ),
-    },
-    {
-      path: ROUTES.notice,
-      element: (
-        <QueryErrorBoundary>
-          <Layout>
-            <Notice />
-          </Layout>
-        </QueryErrorBoundary>
-      ),
+      children: [
+        {
+          index: true,
+          element: <Navigate to={ROUTES.FAQ} replace />,
+        },
+        {
+          path: ROUTES.FAQ,
+          element: <FAQ />,
+        },
+        {
+          path: ROUTES.notice,
+          element: <Notice />,
+        },
+      ],
     },
     {
       path: ROUTES.inquiry,
