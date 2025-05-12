@@ -28,4 +28,5 @@ export const ROUTES = {
   notice: 'notice',
   noticeDetail: 'notice-detail',
   inquiry: '/inquiry',
+  loginSuccess: '/login/oauth2/code',
 } as const;
