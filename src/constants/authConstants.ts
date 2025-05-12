@@ -3,6 +3,10 @@ import naver from '../assets/naver.svg';
 import google from '../assets/google.svg';
 import github from '../assets/github.svg';
 
+export const AUTH_MESSAGE = {
+  isNotToken: '로그인 토큰이 존재하지 않습니다.',
+};
+
 export const ERROR_MESSAGES = {
   EMAIL_REQUIRED: '이메일을 입력해주세요.',
   INVALID_EMAIL: '유효한 이메일을 입력해주세요.',
