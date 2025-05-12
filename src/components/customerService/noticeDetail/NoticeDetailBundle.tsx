@@ -27,8 +27,8 @@ export default function NoticeDetailBundle() {
       <S.Container>
         <NoticeDetailContent
           id={0}
-          title='공지사항이 없습니다.'
-          content='목록으로 돌아가세요.'
+          title='해당 공지사항을 찾을 수 없습니다.'
+          content={`해당 공지사항을 찾을 수 없습니다.\n\n목록으로 돌아가세요.`}
           createdAt=''
           viewCount={0}
         />

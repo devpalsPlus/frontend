@@ -60,4 +60,9 @@ export const ContentWrapper = styled.div`
   padding: 1.5rem 1rem 4rem 1rem;
 `;
 
-export const Content = styled.p``;
+export const Content = styled.div`
+  width: 100%;
+  height: 100%;
+  white-space: pre-wrap;
+  cursor: text;
+`;
