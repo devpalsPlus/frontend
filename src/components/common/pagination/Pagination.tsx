@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useProjectCardListData } from '../../../../hooks/useProjectCardListData';
-import { useSaveSearchFiltering } from '../../../../hooks/useSaveSearchFiltering';
 import * as S from './Pagination.styled';
 import {
   ChevronLeftIcon,
@@ -8,11 +6,19 @@ import {
   EllipsisHorizontalIcon,
 } from '@heroicons/react/24/outline';
 
-export default function Pagination() {
-  const { projectListsData } = useProjectCardListData();
-  const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
-  const lastPage = projectListsData?.lastPage;
-  const currentPage = searchFilters.page;
+interface PaginationProps {
+  page: number;
+  getLastPage: number;
+  onChangePagination: (page: number) => void;
+}
+
+export default function Pagination({
+  page,
+  getLastPage,
+  onChangePagination,
+}: PaginationProps) {
+  const lastPage = getLastPage;
+  const currentPage = page;
 
   const calculatePageRange = () => {
     if (!lastPage) return;
@@ -39,22 +45,19 @@ export default function Pagination() {
     const target = e.target as HTMLElement;
     const dataId = target.dataset.id;
     if (!dataId) return;
-    handleUpdateFilters('page', Number(dataId));
+    onChangePagination(Number(dataId));
   };
-
   return (
     <S.Container>
       <S.Wrapper onClick={handleMovePaginationClick}>
         {currentPage !== 1 && (
           <>
             <S.PaginationButton
-              onClick={() => handleUpdateFilters('page', currentPage - 1)}
+              onClick={() => onChangePagination(currentPage - 1)}
             >
               <ChevronLeftIcon />
             </S.PaginationButton>
-            <S.PaginationDoubleButton
-              onClick={() => handleUpdateFilters('page', 1)}
-            >
+            <S.PaginationDoubleButton onClick={() => onChangePagination(1)}>
               1
             </S.PaginationDoubleButton>
             <EllipsisHorizontalIcon />
@@ -74,12 +77,12 @@ export default function Pagination() {
           <>
             <EllipsisHorizontalIcon />
             <S.PaginationDoubleButton
-              onClick={() => handleUpdateFilters('page', lastPage)}
+              onClick={() => onChangePagination(lastPage)}
             >
               {lastPage}
             </S.PaginationDoubleButton>
             <S.PaginationButton
-              onClick={() => handleUpdateFilters('page', currentPage + 1)}
+              onClick={() => onChangePagination(currentPage + 1)}
             >
               <ChevronRightIcon />
             </S.PaginationButton>

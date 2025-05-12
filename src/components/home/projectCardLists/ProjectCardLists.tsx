@@ -1,16 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useProjectCardListData } from '../../../hooks/useProjectCardListData';
 import CardList from './cardList/CardList';
-import Pagination from './pagination/Pagination';
 import * as S from './ProjectCardLists.styled';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
 import EmptyLoading from '../../common/emptyLoading/EmptyLoading';
 import NoResult from '../../common/noResult/NoResult';
+import { useSaveSearchFiltering } from '../../../hooks/useSaveSearchFiltering';
+import Pagination from '../../common/pagination/Pagination';
 
 export default function ProjectCardLists() {
   const { projectListsData, isLoading } = useProjectCardListData();
+  const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
   const [isFlex, setIsFlex] = useState(false);
+
+  const handleChangePagination = (page: number) => {
+    handleUpdateFilters('page', page);
+  };
 
   useEffect(() => {
     if (projectListsData && Boolean(projectListsData.projects.length)) {
@@ -44,7 +50,11 @@ export default function ProjectCardLists() {
           <NoResult height='40rem' />
         )}
       </S.Wrapper>
-      <Pagination />
+      <Pagination
+        page={searchFilters.page}
+        getLastPage={Number(projectListsData?.lastPage)}
+        onChangePagination={handleChangePagination}
+      />
     </S.Container>
   );
 }

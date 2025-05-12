@@ -23,6 +23,9 @@ const Layout = lazy(() => import('../components/common/layout/Layout'));
 const Home = lazy(() => import('../pages/home/Home'));
 const FAQ = lazy(() => import('../pages/customerService/faq/FAQ'));
 const Notice = lazy(() => import('../pages/customerService/notice/Notice'));
+const NoticeDetail = lazy(
+  () => import('../pages/customerService/noticeDetail/NoticeDetail')
+);
 const Inquiry = lazy(
   () => import('../components/customerService/inquiry/Inquiry')
 );
@@ -142,6 +145,10 @@ const AppRoutes = () => {
         {
           path: ROUTES.notice,
           element: <Notice />,
+        },
+        {
+          path: `${ROUTES.noticeDetail}/:noticeId`,
+          element: <NoticeDetail />,
         },
       ],
     },

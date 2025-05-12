@@ -9,11 +9,11 @@ export const ListWrapper = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 0;
+  padding: 1.2rem 0;
 `;
 
 export const ListTitle = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   padding-left: 1.5rem;
   font-weight: bold;
 `;
