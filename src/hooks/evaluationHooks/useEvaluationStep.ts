@@ -1,24 +1,45 @@
-import { useMemo, useState } from 'react';
-import { evaluatedUser } from '../../models/evaluation';
+import { useEffect, useMemo, useState } from 'react';
+import { apiMemberList } from '../../models/evaluation';
 import { questions } from '../../constants/evaluation';
 import { usePostEvaluation } from './usePostEvaluation';
 
-const useEvaluationStep = (projectData: number, participants: string[]) => {
-  const questionLength = questions.length;
+interface useEvaluationStepProps {
+  projectId: number;
+  memberList: apiMemberList[];
+}
 
+const useEvaluationStep = ({
+  projectId,
+  memberList = [],
+}: useEvaluationStepProps) => {
+  const questionLength = questions.length;
   const [step, setStep] = useState<number>(0);
-  const [notDone, setNotDone] = useState<string[]>(participants);
-  const [progress, setProgress] = useState<Record<string, number[]>[]>(() =>
-    participants.map((name) => ({
-      [name]: Array(questionLength).fill(0),
+  const [notDone, setNotDone] = useState<apiMemberList[]>([]);
+  const [progress, setProgress] = useState<Record<number, number[]>[]>(() =>
+    memberList.map((memberData) => ({
+      [memberData.userId]: Array(questionLength).fill(0),
     }))
   );
-  const [done, setDone] = useState<evaluatedUser[]>([]);
   const [isNotFill, setIsNotFill] = useState<boolean>(false);
 
-  const { createEvaluation } = usePostEvaluation(projectData);
+  const { createEvaluation } = usePostEvaluation(projectId);
 
-  const user = notDone[step];
+  useEffect(() => {
+    if (memberList.length === 0) return;
+
+    setNotDone(memberList.filter((m) => !m.evaluated));
+
+    setProgress(
+      memberList.map((m) => ({
+        [m.userId]: Array(questionLength).fill(0),
+      }))
+    );
+
+    setStep(0);
+    setIsNotFill(false);
+  }, [memberList, questionLength]);
+
+  const user = notDone[step]?.userId;
 
   const handleClickLeftUser = (idx: number) => {
     setIsNotFill(false);
@@ -41,6 +62,8 @@ const useEvaluationStep = (projectData: number, participants: string[]) => {
     );
   };
   const handleNextStep = () => {
+    if (user == null) return;
+
     const record = progress.find((r) => user in r);
     const scores = record ? record[user] : [];
 
@@ -49,10 +72,13 @@ const useEvaluationStep = (projectData: number, participants: string[]) => {
       return;
     } else {
       setIsNotFill(false);
-      // createEvaluation(user);
+      createEvaluation({
+        projectId: projectId,
+        evaluateeId: user,
+        score: scores,
+      });
 
-      setDone((prev) => [...prev, { evaluatee: user, score: scores }]);
-      setNotDone((prev) => prev.filter((e) => e !== user));
+      setNotDone((prev) => prev.filter((e) => e.userId !== user));
     }
   };
 
@@ -62,7 +88,6 @@ const useEvaluationStep = (projectData: number, participants: string[]) => {
   }, [progress, questionLength, user]);
 
   return {
-    done,
     step,
     handleClickLeftUser,
     handleClickOption,

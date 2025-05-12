@@ -338,13 +338,13 @@ const AppRoutes = () => {
       path: `${ROUTES.evaluation}/:projectId`,
       element: (
         <QueryErrorBoundary>
-          {/* <ProtectRoute redirectUrl={ROUTES.login}> */}
-          <Suspense fallback={<LoadingSpinner />}>
-            <Layout>
-              <Evaluation />
-            </Layout>
-          </Suspense>
-          {/* </ProtectRoute> */}
+          <ProtectRoute redirectUrl={ROUTES.login}>
+            <Suspense fallback={<LoadingSpinner />}>
+              <Layout>
+                <Evaluation />
+              </Layout>
+            </Suspense>
+          </ProtectRoute>
         </QueryErrorBoundary>
       ),
     },

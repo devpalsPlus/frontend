@@ -39,8 +39,8 @@ export const ChartDataList = {
   chartData: ['ChartDataList'],
 } as const;
 
-export const CompletedEvaluationList = {
-  completedEvaluation: ['completedEvaluation'],
+export const ProjectMemberListEval = {
+  MemberListEval: ['MemberListEval'],
 } as const;
 
 export const ActivityLog = {
