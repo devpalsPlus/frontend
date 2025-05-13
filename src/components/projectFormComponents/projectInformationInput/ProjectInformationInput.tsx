@@ -39,7 +39,9 @@ const ProjectInformationInput = ({
               placeholder={input.placeholder}
             />
             {input.type === 'checkbox' && (
-              <S.welcomeSprout>"새싹 멤버도 환영해요 !!"</S.welcomeSprout>
+              <S.welcomeSprout>
+                새싹 멤버를 환영한다면 체크를 눌러주세요!!
+              </S.welcomeSprout>
             )}
           </S.InfoRow>
         </>

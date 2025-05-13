@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  max-width: 100%;
+  width: 100%;
+  max-width: 80%;
   margin: 0 auto;
   padding: 60px;
 `;
@@ -51,17 +52,20 @@ export const SectionInput = styled.div`
 `;
 
 export const SubmitButton = styled.button`
-  width: 70px;
-  padding: 15px;
-  background-color: ${({ theme }) => theme.buttonScheme.primary.bg};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  background: ${({ theme }) => theme.color.navy};
+  border-radius: ${({ theme }) => theme.borderRadius.large};
   color: ${({ theme }) => theme.color.white};
-  font-size: ${({ theme }) => theme.heading.small};
-  font-weight: bold;
-  border-radius: ${({ theme }) => theme.borderRadius.primary};
-  cursor: pointer;
-  margin-top: 3.5rem;
+  border: 1px solid ${({ theme }) => theme.color.navy};
+  padding: 0.5rem 1.5rem;
 
   &:hover {
-    background-color: #0056b3;
+    background: ${({ theme }) => theme.color.lightgrey};
+    color: ${({ theme }) => theme.color.navy};
+    border: 1px solid ${({ theme }) => theme.color.navy};
+    transition: all 0.3s ease-in-out;
   }
 `;

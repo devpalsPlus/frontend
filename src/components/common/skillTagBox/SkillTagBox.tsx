@@ -29,19 +29,36 @@ export default function SkillTagBox({
       {Boolean(skillTagsData.length) && (
         <S.Wrapper>
           <S.SkillTagWrapper>
-            {skillTagsData?.map((skillTagData) => (
-              <SkillTag
-                skillTagData={skillTagData}
-                key={`skillTagBox-${skillTagData.id}`}
-                $select={
-                  (isMain &&
-                    searchFiltersSkillTag?.includes(skillTagData.id)) ||
-                  (isCreate && selectedTag?.includes(skillTagData.id))
-                    ? true
-                    : false
-                }
-              />
-            ))}
+            {isMain &&
+              skillTagsData.map((skillTagData) => (
+                <SkillTag
+                  skillTagData={skillTagData}
+                  key={`skillTagBox-${skillTagData.id}`}
+                  $select={
+                    (isMain &&
+                      searchFiltersSkillTag?.includes(skillTagData.id)) ||
+                    (isCreate && selectedTag?.includes(skillTagData.id))
+                      ? true
+                      : false
+                  }
+                />
+              ))}
+            {isCreate &&
+              skillTagsData
+                .filter((skill) => skill.id !== 0)
+                .map((skillTagData) => (
+                  <SkillTag
+                    skillTagData={skillTagData}
+                    key={`skillTagBox-${skillTagData.id}`}
+                    $select={
+                      (isMain &&
+                        searchFiltersSkillTag?.includes(skillTagData.id)) ||
+                      (isCreate && selectedTag?.includes(skillTagData.id))
+                        ? true
+                        : false
+                    }
+                  />
+                ))}
           </S.SkillTagWrapper>
           {isMain && Boolean(searchFiltersSkillTag?.length) && (
             <S.ButtonWrapper>

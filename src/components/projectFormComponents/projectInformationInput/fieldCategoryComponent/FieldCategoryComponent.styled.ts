@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div``;
 
@@ -13,15 +13,22 @@ export const CategoryContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-export const CategoryItem = styled.div<{ isSelected: boolean }>`
-  background-color: ${({ theme, isSelected }) =>
-    isSelected ? theme.buttonScheme.primary.bg : theme.color.lightgrey};
+export const CategoryItem = styled.div<{ $isSelected: boolean }>`
+  background-color: ${({ theme }) => theme.color.lightgrey};
   width: fit-content;
-  border: 1px solid ${({ theme }) => theme.color.grey};
+  border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   padding: 0.2rem 0.4rem;
   cursor: pointer;
   transition: all 0.2s;
+
+  ${({ $isSelected }) =>
+    $isSelected &&
+    css`
+      background-color: ${({ theme }) => theme.color.navy};
+      color: ${({ theme }) => theme.color.white};
+      border: 1px solid ${({ theme }) => theme.color.navy};
+    `}
 
   &:hover {
     transform: scale(1.1);
@@ -29,8 +36,9 @@ export const CategoryItem = styled.div<{ isSelected: boolean }>`
   }
 `;
 
-export const NameSpan = styled.span<{ isSelected: boolean }>`
-  color: ${({ theme, isSelected }) => isSelected && theme.color.white};
+export const NameSpan = styled.button<{ $isSelected: boolean }>`
+  font-size: 1rem;
+  color: ${({ theme, $isSelected }) => $isSelected && theme.color.white};
 `;
 
 export const FormError = styled.p`

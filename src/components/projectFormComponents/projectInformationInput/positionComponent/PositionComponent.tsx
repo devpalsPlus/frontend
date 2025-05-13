@@ -39,6 +39,7 @@ const MozipCategoryComponent = ({
               onClick={(e) => handleClick(e, idx + 1)}
               key={idx + 1}
               isHover={true}
+              fontSize={true}
             />
           );
         })}
