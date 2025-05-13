@@ -19,9 +19,3 @@ export const Wrapper = styled.div`
 `;
 
 export const ToggleWrapper = styled.div``;
-
-export const ContentBorder = styled.div`
-  width: 100%;
-  height: 0.5px;
-  background: ${({ theme }) => theme.color.placeholder};
-`;

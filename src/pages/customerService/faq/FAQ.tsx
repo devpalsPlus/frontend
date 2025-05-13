@@ -6,6 +6,7 @@ import Spinner from '../../../components/mypage/Spinner';
 import CustomerServiceHeader from '../../../components/customerService/CustomerServiceHeader';
 import FAQContent from '../../../components/customerService/faq/FAQContent';
 import NoResult from '../../../components/common/noResult/NoResult';
+import ContentBorder from '../../../components/common/contentBorder/ContentBorder';
 
 export default function FAQ() {
   const [keyword, setKeyword] = useState<SearchKeyword>({ keyword: '' });
@@ -40,7 +41,7 @@ export default function FAQ() {
             faqData.map((list) => (
               <S.ToggleWrapper key={list.id}>
                 <FAQContent list={list} />
-                <S.ContentBorder></S.ContentBorder>
+                <ContentBorder />
               </S.ToggleWrapper>
             ))
           ) : (

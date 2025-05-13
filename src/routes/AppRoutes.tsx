@@ -14,6 +14,7 @@ import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
 import { ToastProvider } from '../components/common/Toast/ToastProvider';
 const Login = lazy(() => import('../pages/login/Login'));
+const LoginSuccess = lazy(() => import('../pages/login/LoginSuccess'));
 const Register = lazy(() => import('../pages/register/Register'));
 const ChangePassword = lazy(
   () => import('../pages/changePassword/ChangePassword')
@@ -23,6 +24,9 @@ const Layout = lazy(() => import('../components/common/layout/Layout'));
 const Home = lazy(() => import('../pages/home/Home'));
 const FAQ = lazy(() => import('../pages/customerService/faq/FAQ'));
 const Notice = lazy(() => import('../pages/customerService/notice/Notice'));
+const NoticeDetail = lazy(
+  () => import('../pages/customerService/noticeDetail/NoticeDetail')
+);
 const Inquiry = lazy(
   () => import('../components/customerService/inquiry/Inquiry')
 );
@@ -101,6 +105,10 @@ const AppRoutes = () => {
       element: isLoggedIn ? <Navigate to={ROUTES.main} replace /> : <Login />,
     },
     {
+      path: ROUTES.loginSuccess,
+      element: <LoginSuccess />,
+    },
+    {
       path: ROUTES.signup,
       element: isLoggedIn ? (
         <Navigate to={ROUTES.main} replace />
@@ -143,6 +151,10 @@ const AppRoutes = () => {
         {
           path: ROUTES.notice,
           element: <Notice />,
+        },
+        {
+          path: `${ROUTES.noticeDetail}/:noticeId`,
+          element: <NoticeDetail />,
         },
       ],
     },
@@ -364,6 +376,7 @@ const AppRoutes = () => {
           <Outlet />
         </ToastProvider>
       ),
+
       children: [...newRouteList, { path: '*', element: <NotFoundPage /> }],
     },
   ]);

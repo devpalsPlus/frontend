@@ -26,12 +26,6 @@ export const InquiriesTableHeadWrapper = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-export const ContentBorder = styled.div`
-  width: 100%;
-  height: 0.5px;
-  background: ${({ theme }) => theme.color.placeholder};
-`;
-
 export const InquiriesTableHeaderNo = styled.div`
   text-align: center;
 `;

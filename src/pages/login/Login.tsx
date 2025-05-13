@@ -8,7 +8,7 @@ import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '../../components/common/Button/Button';
-import { ERROR_MESSAGES } from '../../constants/authConstants';
+import { ERROR_MESSAGES, OAUTH_PROVIDERS } from '../../constants/authConstants';
 import { useAuth } from '../../hooks/useAuth';
 import { ROUTES } from '../../constants/routes';
 import { useModal } from '../../hooks/useModal';
@@ -27,6 +27,7 @@ export type loginFormValues = z.infer<typeof loginSchema>;
 const Login = () => {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userLogin } = useAuth(handleModalOpen);
+  const BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
 
   const {
     control,
@@ -48,11 +49,9 @@ const Login = () => {
 
   return (
     <S.Container>
-      <S.LogoH1>
-        <Link to={ROUTES.main}>
-          <img src={Mainlogo} alt='logo' />
-        </Link>
-      </S.LogoH1>
+      <S.MoveHomeLink to={ROUTES.main}>
+        <img src={Mainlogo} alt='logo' />
+      </S.MoveHomeLink>
       <Title size='semiLarge'>로그인</Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
@@ -101,6 +100,20 @@ const Login = () => {
           <span>비밀번호 재설정</span>
         </Link>
       </S.WrapperPassword>
+
+      <S.OauthButtonWrapper>
+        {OAUTH_PROVIDERS.map((provider) => (
+          <S.Button
+            key={provider.name}
+            onClick={() =>
+              (window.location.href = `${BASE_URL}/${provider.url}`)
+            }
+          >
+            <img src={provider.icon} alt={`${provider.name} 로그인`} />
+          </S.Button>
+        ))}
+      </S.OauthButtonWrapper>
+
       <S.WrapperRegister>
         <p>
           아직 DevPals 친구가 아니신가요?

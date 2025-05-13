@@ -50,8 +50,8 @@ export const CategorySelect = styled.button<{ $isCategoryOpen: boolean }>`
     height: 1.3rem;
     transition: transform 300ms ease-in-out;
     transform: rotate(0deg);
-    ${({ $isOpen }) =>
-      $isOpen &&
+    ${({ $isCategoryOpen }) =>
+      $isCategoryOpen &&
       css`
         transform: rotate(180deg);
       `}

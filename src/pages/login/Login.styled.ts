@@ -1,18 +1,20 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
   width: 100%;
+  height: 100vh;
   max-width: ${({ theme }) => theme.layout.width.desktop};
   min-width: 310px;
   margin: 0 auto;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   img {
     width: 6.5rem;
     height: 6.5rem;
-    margin: 2.5rem 0;
   }
 
   form {
@@ -31,7 +33,9 @@ export const Container = styled.div`
   }
 `;
 
-export const LogoH1 = styled.h1``;
+export const MoveHomeLink = styled(Link)`
+  padding-bottom: 2rem;
+`;
 
 export const InputContainer = styled.div`
   display: flex;
@@ -96,4 +100,31 @@ export const ButtonWrapper = styled.div`
   margin: 2rem 0;
   display: flex;
   justify-content: center;
+`;
+
+export const OauthButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Button = styled.button`
+  display: block;
+  width: 5rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const LoginSuccessContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
