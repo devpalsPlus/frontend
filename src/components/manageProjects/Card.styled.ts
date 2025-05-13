@@ -5,7 +5,7 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  width: 21rem;
+  width: 100%;
   height: 15rem;
   padding: 1.5rem 1.25rem;
   border: 1px solid ${({ theme }) => theme.color.border};
@@ -23,7 +23,6 @@ export const CardWrapper = styled.div`
     background-color: ${({ theme }) => theme.color.grey};
   }
   @media ${({ theme }) => theme.mediaQuery.tablet} {
-    width: 19rem;
     height: 14rem;
   }
 `;

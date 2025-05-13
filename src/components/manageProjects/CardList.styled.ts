@@ -1,15 +1,20 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const CardListWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(32%, 1fr));
   gap: 20px;
 `;
 
+export const MoveProjectLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
 export const CreateButton = styled.button`
-  width: 21rem;
+  width: 100%;
   height: 15rem;
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius.large};
@@ -31,7 +36,6 @@ export const CreateButton = styled.button`
   }
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
-    width: 19rem;
     height: 14rem;
     font-size: ${({ theme }) => theme.heading.small.fontSize};
     img {
