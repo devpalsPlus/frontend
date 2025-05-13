@@ -22,7 +22,7 @@ export const InquiryForm = styled.form`
 `;
 
 export const InquiryWrapper = styled.div`
-  width: 49rem;
+  width: 65%;
 `;
 
 export const Nav = styled.nav`
