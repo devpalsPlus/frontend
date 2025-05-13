@@ -6,6 +6,7 @@ export const Container = styled.main`
 `;
 
 export const Wrapper = styled.div`
+  padding: 0 120px;
   @media ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 0 20px;
   }
