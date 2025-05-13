@@ -50,4 +50,5 @@ export const ListButtonWrapper = styled.div`
 export const ListContent = styled.div`
   font-size: 1.1rem;
   padding-right: 1.5rem;
+  white-space: pre-wrap;
 `;
