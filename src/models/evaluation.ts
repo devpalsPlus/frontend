@@ -1,7 +1,7 @@
 export interface apiEvaluatedUser {
   projectId: number;
   evaluateeId: number;
-  score: number[];
+  scores: number[];
 }
 
 export interface apiMemberList {

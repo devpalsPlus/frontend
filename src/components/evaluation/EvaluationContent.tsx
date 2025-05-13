@@ -90,9 +90,11 @@ const EvaluationContent = ({
 
         <S.SidebarRight>
           <S.CompletedTitle>평가완료</S.CompletedTitle>
-          {notDone
+          {memberList
             .filter((memberData) => memberData.evaluated)
-            .map((memberData) => memberData.nickname)}
+            .map((memberData) => (
+              <S.CompletedButton>{memberData.nickname}</S.CompletedButton>
+            ))}
         </S.SidebarRight>
       </S.Container>
     </ScrollPreventor>
