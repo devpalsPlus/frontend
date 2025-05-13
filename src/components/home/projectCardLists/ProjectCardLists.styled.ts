@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import type { Display } from './ProjectCardLists';
 
 export const Container = styled.section`
   width: 100%;
@@ -19,7 +20,7 @@ export const CardListTitle = styled.h1`
   }
 `;
 
-export const Wrapper = styled.div<{ $flex: 'flex' | 'grid' }>`
+export const Wrapper = styled.div<{ $flex: Display }>`
   width: 100%;
 
   ${({ $flex }) => {

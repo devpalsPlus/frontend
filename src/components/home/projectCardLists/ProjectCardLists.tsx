@@ -9,10 +9,12 @@ import NoResult from '../../common/noResult/NoResult';
 import { useSaveSearchFiltering } from '../../../hooks/useSaveSearchFiltering';
 import Pagination from '../../common/pagination/Pagination';
 
+export type Display = 'flex' | 'grid';
+
 export default function ProjectCardLists() {
   const { projectListsData, isLoading } = useProjectCardListData();
   const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
-  const [display, setDisplay] = useState<'flex' | 'grid'>('grid');
+  const [display, setDisplay] = useState<Display>('grid');
 
   const handleChangePagination = (page: number) => {
     handleUpdateFilters('page', page);
