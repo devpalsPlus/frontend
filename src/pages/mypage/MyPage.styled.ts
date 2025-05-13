@@ -4,6 +4,11 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 1.5rem;
+  padding: 0 60px;
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    padding: 0 10px;
+  }
 `;
 
 export const Wrapper = styled.div`

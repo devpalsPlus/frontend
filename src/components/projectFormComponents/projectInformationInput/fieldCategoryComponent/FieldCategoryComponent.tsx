@@ -34,10 +34,10 @@ const FieldCategoryComponent = ({
           return (
             <S.CategoryItem
               key={idx}
-              isSelected={selectedTag[0] === idx}
+              $isSelected={selectedTag[0] === idx}
               onClick={(e) => handleClick(e, idx)}
             >
-              <S.NameSpan isSelected={selectedTag[0] === idx}>
+              <S.NameSpan type='button' $isSelected={selectedTag[0] === idx}>
                 {data.name}
               </S.NameSpan>
             </S.CategoryItem>

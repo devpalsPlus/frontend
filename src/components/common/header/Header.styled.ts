@@ -7,11 +7,8 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 120px;
+  padding: 10px 60px;
 
-  @media ${({ theme }) => theme.mediaQuery.tablet} {
-    padding: 10px 60px;
-  }
   @media ${({ theme }) => theme.mediaQuery.mobile} {
     padding: 10px 16px;
   }

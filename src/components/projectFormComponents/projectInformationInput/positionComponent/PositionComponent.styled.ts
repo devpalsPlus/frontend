@@ -6,7 +6,7 @@ export const Container = styled.div``;
 export const CategoryContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 10px;
   margin-top: -20px;
   padding: 3px 0;
   background-color: ${({ theme }) => theme.color.white};
