@@ -12,7 +12,7 @@ import Pagination from '../../common/pagination/Pagination';
 export default function ProjectCardLists() {
   const { projectListsData, isLoading } = useProjectCardListData();
   const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
-  const [isFlex, setIsFlex] = useState(false);
+  const [display, setDisplay] = useState<'flex' | 'grid'>('grid');
 
   const handleChangePagination = (page: number) => {
     handleUpdateFilters('page', page);
@@ -20,10 +20,10 @@ export default function ProjectCardLists() {
 
   useEffect(() => {
     if (projectListsData && Boolean(projectListsData.projects.length)) {
-      setIsFlex(false);
+      setDisplay('grid');
       return;
     }
-    setIsFlex(true);
+    setDisplay('flex');
   }, [projectListsData]);
 
   if (isLoading)
@@ -36,7 +36,7 @@ export default function ProjectCardLists() {
       <S.CardListTitleWrapper>
         <S.CardListTitle>프로젝트 리스트</S.CardListTitle>
       </S.CardListTitleWrapper>
-      <S.Wrapper $flex={isFlex}>
+      <S.Wrapper $flex={display}>
         {projectListsData && Boolean(projectListsData.projects.length) ? (
           projectListsData.projects.map((list) => (
             <Link

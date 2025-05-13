@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.section`
   width: 100%;
@@ -19,13 +19,25 @@ export const CardListTitle = styled.h1`
   }
 `;
 
-export const Wrapper = styled.div<{ $flex: boolean }>`
+export const Wrapper = styled.div<{ $flex: 'flex' | 'grid' }>`
   width: 100%;
-  display: ${({ $flex }) => ($flex ? 'flex' : 'grid')};
-  grid-template-columns: ${({ $flex }) =>
-    $flex ? '' : 'repeat(auto-fit, minmax(30%, 1fr))'};
-  place-items: ${({ $flex }) => ($flex ? '' : 'center')};
-  /* justify-content: space-evenly; */
+
+  ${({ $flex }) => {
+    switch ($flex) {
+      case 'flex':
+        return css`
+          display: flex;
+        `;
+      case 'grid':
+        return css`
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+          place-items: center;
+        `;
+      default:
+        break;
+    }
+  }}
   gap: 3rem;
 
   a {
