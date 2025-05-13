@@ -49,11 +49,9 @@ const Login = () => {
 
   return (
     <S.Container>
-      <S.LogoH1>
-        <Link to={ROUTES.main}>
-          <img src={Mainlogo} alt='logo' />
-        </Link>
-      </S.LogoH1>
+      <S.MoveHomeLink to={ROUTES.main}>
+        <img src={Mainlogo} alt='logo' />
+      </S.MoveHomeLink>
       <Title size='semiLarge'>로그인</Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
