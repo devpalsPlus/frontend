@@ -42,7 +42,11 @@ const Input = ({
   return (
     <S.InputContainer>
       {renderInput()}
-      {hasError && <S.FormError>{String(errors?.[name]?.message)}</S.FormError>}
+      {hasError && (
+        <S.FormError $markDown={name === 'markdownEditor'}>
+          {String(errors?.[name]?.message)}
+        </S.FormError>
+      )}
     </S.InputContainer>
   );
 };
