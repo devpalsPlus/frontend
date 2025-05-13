@@ -19,6 +19,7 @@ export const InputWrapper = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
+  gap: 0.5rem;
   margin-top: 3px;
 `;
 export const Line = styled.hr<{ $isFocused: boolean }>`

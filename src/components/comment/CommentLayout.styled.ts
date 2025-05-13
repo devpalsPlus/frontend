@@ -5,7 +5,7 @@ export const Container = styled.div`
 `;
 
 export const CommentCountsContainer = styled.div`
-  margin-bottom: 20px;
+  margin: 20px 0 30px 0;
 `;
 
 export const Count = styled.span`
@@ -17,7 +17,7 @@ export const Count = styled.span`
 export const CommentContainer = styled.div``;
 
 export const CommentInput = styled.div`
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 `;
 
 export const Icon = styled.div``;
