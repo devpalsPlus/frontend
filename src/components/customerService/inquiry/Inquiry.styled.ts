@@ -174,12 +174,11 @@ export const SendButton = styled.button`
   justify-content: center;
   align-items: center;
   font-size: 1rem;
-  width: 6rem;
   background: ${({ theme }) => theme.color.navy};
   border-radius: ${({ theme }) => theme.borderRadius.large};
   color: ${({ theme }) => theme.color.white};
   border: 1px solid ${({ theme }) => theme.color.navy};
-  padding: 0.5em;
+  padding: 0.5rem 1.5rem;
 
   &:hover {
     background: ${({ theme }) => theme.color.lightgrey};
