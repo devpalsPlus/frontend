@@ -47,14 +47,14 @@ export const Wrapper = styled.div<{ $flex: Display }>`
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     grid-template-columns: ${({ $flex }) =>
-      $flex ? '' : 'repeat(auto-fit, minmax(40%, 1fr))'};
+      $flex === 'grid' && 'repeat(auto-fit, minmax(40%, 1fr))'};
     gap: 2rem;
   }
 
   @media ${({ theme }) => theme.mediaQuery.mobile} {
     width: 100%;
     grid-template-columns: ${({ $flex }) =>
-      $flex ? '' : 'repeat(auto-fit, minmax(50%, 1fr))'};
+      $flex === 'grid' && 'repeat(auto-fit, minmax(50%, 1fr))'};
     gap: 1rem;
   }
 `;
