@@ -1,7 +1,7 @@
 import * as S from './PhoneComponent.styled';
 import { Control, FieldErrors } from 'react-hook-form';
 import PhoneInput from './phoneComponentInput/PhoneComponentInput';
-import { ApplySchemeType } from '../../../models/joinProject';
+import type { ApplySchemeType } from '../../../../models/joinProject';
 
 interface PhoneComponentProps {
   control: Control<ApplySchemeType>;

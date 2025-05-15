@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUploadProfileImg } from '../../../../hooks/useMyInfo';
+import { useUploadProfileImg } from '../../../../hooks/user/useMyInfo';
 import * as S from './EditMyProfileImg.styled';
 import { PhotoIcon } from '@heroicons/react/24/outline';
 import { useModal } from '../../../../hooks/useModal';

@@ -1,5 +1,5 @@
-import type { OtherNotice } from '../../../../models/customerService';
-import ContentBorder from '../../../common/contentBorder/ContentBorder';
+import type { OtherNotice } from '../../../../../models/customerService';
+import ContentBorder from '../../../../common/contentBorder/ContentBorder';
 import ListButton from './button/ListButton';
 import OtherNoticeButton from './button/OtherNoticeButton';
 import * as S from './NoticeDetailBottom.styled';

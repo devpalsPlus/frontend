@@ -2,7 +2,7 @@ import { PropsWithChildren, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import ScrollPreventor from './ScrollPreventor';
-import { useOutsideClick } from '../../../hooks/useOutsideClick';
+import { useOutsideClick } from '../../../hooks/user/useOutsideClick';
 import { ModalWrapper } from './ModalWrapper';
 
 interface ModalProps {

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { ProjectMemberListEval } from '../../queries/user/keys';
 import { getEvaluation } from '../../../api/evaluation.api';
+import { ProjectMemberListEval } from '../../queries/user/keys';
 
 const useGetCompletedEvaluation = (id: number) => {
   const { data, isLoading, isFetching, isError } = useQuery({

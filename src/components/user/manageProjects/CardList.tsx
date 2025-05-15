@@ -1,9 +1,9 @@
 import * as S from './CardList.styled';
 
-import type { ManagedProject } from '../../models/manageMyProject';
+import type { ManagedProject } from '../../../models/manageMyProject';
 import Card from './Card';
 import CreateButton from '../../assets/createProjectButton.svg';
-import { ROUTES } from '../../constants/routes';
+import { ROUTES } from '../../../constants/user/routes';
 
 interface CardListProps {
   projects: ManagedProject[];

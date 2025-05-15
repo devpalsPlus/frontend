@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { AlarmList } from '../queries/user/keys';
-import { getAlarmList } from '../api/alarm.api';
-import useAuthStore from '../store/authStore';
+import { getAlarmList } from '../../api/alarm.api';
+import useAuthStore from '../../store/authStore';
 
 const useAlarmList = () => {
   const userId = useAuthStore((state) => state.userData?.id);

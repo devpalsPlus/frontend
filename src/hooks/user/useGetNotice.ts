@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import type { NoticeSearch } from '../models/customerService';
-import { getNotice } from '../api/customerService.api';
+import type { NoticeSearch } from '../../models/customerService';
+import { getNotice } from '../../api/customerService.api';
 import { CustomerService } from '../queries/user/keys';
 
 export const useGetNotice = (searchProperty: NoticeSearch) => {

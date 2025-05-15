@@ -1,4 +1,4 @@
-import { useProjectStatistic } from '../../../hooks/useProjectStatistic';
+import { useProjectStatistic } from '../../../../hooks/user/useProjectStatistic';
 import ProjectStat from './projectStat/ProjectStat';
 import * as S from './ProjectStats.styled';
 

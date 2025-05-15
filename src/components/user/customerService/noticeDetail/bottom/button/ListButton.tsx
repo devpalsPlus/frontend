@@ -1,5 +1,5 @@
-import { ROUTES } from '../../../../../constants/routes';
-import ContentBorder from '../../../../common/contentBorder/ContentBorder';
+import { ROUTES } from '../../../../../../constants/user/routes';
+import ContentBorder from '../../../../../common/contentBorder/ContentBorder';
 import * as S from './ListButton.styled';
 
 export default function ListButton() {

@@ -1,6 +1,6 @@
-import { ROUTES } from '../../../../../constants/routes';
-import { OtherNotice } from '../../../../../models/customerService';
-import { formatDate } from '../../../../../util/format';
+import { ROUTES } from '../../../../../../constants/user/routes';
+import { OtherNotice } from '../../../../../../models/customerService';
+import { formatDate } from '../../../../../../util/format';
 import * as S from './OtherNoticeButton.styled';
 
 interface OtherNoticeButtonProps extends OtherNotice {

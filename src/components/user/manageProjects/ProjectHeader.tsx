@@ -1,6 +1,6 @@
 import * as S from './ProjectHeader.styled';
-import Title from '../common/title/Title';
-import { ProjectDetailPlusExtended } from '../../models/projectDetail';
+import Title from '../../common/title/Title';
+import { ProjectDetailPlusExtended } from '../../../models/projectDetail';
 import RecruitmentDate from './RecruitmentDate';
 import React from 'react';
 interface ProjectHeaderProps {

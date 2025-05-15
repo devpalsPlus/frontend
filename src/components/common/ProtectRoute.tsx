@@ -3,7 +3,7 @@ import useAuthStore from '../../store/authStore';
 import { Navigate } from 'react-router-dom';
 import { useModal } from '../../hooks/useModal';
 import Modal from './modal/Modal';
-import { MODAL_MESSAGE } from '../../constants/modalMessage';
+import { MODAL_MESSAGE } from '../../constants/user/modalMessage';
 interface ProtectRouteProps extends PropsWithChildren {
   redirectUrl: string;
 }

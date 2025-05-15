@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getComment } from '../../api/comment.api';
+import { getComment } from '../../../api/comment.api';
 import { ProjectCommentList } from '../../queries/user/keys';
 
 const useGetComment = (id: number) => {
