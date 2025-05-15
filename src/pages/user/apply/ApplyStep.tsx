@@ -112,7 +112,6 @@ const Apply = () => {
     isLastStep,
     prev,
     next,
-    setCurrentStepIndex,
   } = useMultiStepForm(stepList);
 
   const handleNextStep = async () => {
@@ -155,11 +154,7 @@ const Apply = () => {
         projectData?.recruitmentEndDate
       )}`}</S.Dates>
 
-      <StepComponent
-        steps={stepList}
-        currentStepIndex={currentStepIndex}
-        setCurrentStepIndex={setCurrentStepIndex}
-      />
+      <StepComponent steps={stepList} currentStepIndex={currentStepIndex} />
 
       <form onSubmit={onSubmitHandler(handleSubmit)}>
         <S.StepWrapper>
