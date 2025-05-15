@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as S from './DropDown.styled';
-import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { DropDownContext } from '../../../context/DropDownContext';
+import { useOutsideClick } from '../../../hooks/user/useOutsideClick';
 
 interface DropDownProps {
   children: React.ReactNode;
