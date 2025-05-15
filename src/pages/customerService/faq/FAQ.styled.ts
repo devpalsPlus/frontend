@@ -19,3 +19,24 @@ export const Wrapper = styled.div`
 `;
 
 export const ToggleWrapper = styled.div``;
+
+export const ShowMoreFAQWrapper = styled.div``;
+
+export const ShowMoreFAQ = styled.button`
+  width: 100%;
+  padding: 1.2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+
+  svg {
+    width: 1rem;
+  }
+
+  &:hover {
+    background: ${({ theme }) => theme.color.lightgrey};
+  }
+`;

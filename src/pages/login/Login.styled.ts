@@ -6,7 +6,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
   max-width: ${({ theme }) => theme.layout.width.desktop};
-  min-width: 310px;
+  min-width: 22rem;
   margin: 0 auto;
   flex-direction: column;
   align-items: center;
@@ -26,12 +26,14 @@ export const Container = styled.div`
   }
 
   button {
-    max-width: 310px;
+    max-width: 22rem;
     width: 100%;
     padding: 0.8rem 0.625rem;
     font-weight: 600;
   }
 `;
+
+export const LogoH1 = styled.h1``;
 
 export const MoveHomeLink = styled(Link)`
   padding-bottom: 2rem;
@@ -39,7 +41,7 @@ export const MoveHomeLink = styled(Link)`
 
 export const InputContainer = styled.div`
   display: flex;
-  min-width: 310px;
+  min-width: 22rem;
   gap: 0.6rem;
 
   button {
@@ -51,7 +53,7 @@ export const InputContainer = styled.div`
 `;
 
 export const InputWrapper = styled.div`
-  max-width: 310px;
+  max-width: 22rem;
   width: inherit;
   margin-bottom: 1.875rem;
   position: relative;
@@ -69,7 +71,7 @@ export const ErrorMessage = styled.span<{ message?: string }>`
 
 export const WrapperPassword = styled.div`
   width: 100%;
-  max-width: 310px;
+  max-width: 22rem;
   display: flex;
   justify-content: space-between;
   font-size: 0.8rem;
