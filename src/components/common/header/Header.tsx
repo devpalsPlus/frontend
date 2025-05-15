@@ -11,11 +11,19 @@ import loadingImg from '../../../assets/loadingImg.svg';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../modal/Modal';
 import { formatImgPath } from '../../../util/formatImgPath';
+<<<<<<< HEAD
 // import bell from '../../../assets/bell.svg';
 // import Notification from './Notification/Notification';
 // import bellLogined from '../../../assets/bellLogined.svg';
 // import { useEffect } from 'react';
 // import { testLiveAlarm } from '../../../api/alarm.api';
+=======
+import bell from '../../../assets/bell.svg';
+import Notification from './Notification/Notification';
+import bellLogined from '../../../assets/bellLogined.svg';
+import { useEffect } from 'react';
+import { testLiveAlarm } from '../../../api/alarm.api';
+>>>>>>> 0928e05 (refactor : 해결되지 않은 경로 에러 해결)
 import { useMyProfileInfo } from '../../../hooks/user/useMyInfo';
 import { ROUTES } from '../../../constants/user/routes';
 

@@ -1,13 +1,20 @@
 import * as S from './CommentComponentLayout.styled';
 import DropDown from '../../../common/dropDown/DropDown';
 import DropDownItem from '../DropDownItem';
+<<<<<<< HEAD
+=======
+import dropdownButton from '../../../assets/dropdownButton.svg';
+>>>>>>> 0928e05 (refactor : 해결되지 않은 경로 에러 해결)
 import useComment from '../../../../hooks/user/CommentHooks/useComment';
 import ReplyComponent from '../replyComponent/ReplyComponent';
 import ArrowUp from '../../../../assets/ArrowUp.svg';
 import CommentComponent from './commentComponent/CommentComponent';
 import { CommentType } from '../../../../models/comment';
+<<<<<<< HEAD
 import dropdownButton from '../../../../assets/dropdownButton.svg';
 import ArrowDown from '../../../../assets/ArrowDown.svg';
+=======
+>>>>>>> 0928e05 (refactor : 해결되지 않은 경로 에러 해결)
 
 interface CommentLayoutProps {
   projectId: number;
