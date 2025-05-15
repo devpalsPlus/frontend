@@ -1,11 +1,7 @@
 import * as S from './PhoneComponent.styled';
-<<<<<<< HEAD
-=======
-import { ApplySchemeType } from '../../../../pages/user/apply/Apply';
->>>>>>> 4069f4a (chore: 디렉토리 변경에 따른  경로수정)
 import { Control, FieldErrors } from 'react-hook-form';
 import PhoneInput from './phoneComponentInput/PhoneComponentInput';
-import { ApplySchemeType } from '../../../models/joinProject';
+import type { ApplySchemeType } from '../../../../models/joinProject';
 
 interface PhoneComponentProps {
   control: Control<ApplySchemeType>;

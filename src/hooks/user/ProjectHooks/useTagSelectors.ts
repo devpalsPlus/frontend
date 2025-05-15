@@ -2,10 +2,6 @@ import { useEffect, useState } from 'react';
 import { UseFormSetValue } from 'react-hook-form';
 import { CreateProjectFormValues } from '../../../models/createProject';
 import { PositionTag, SkillTag } from '../../../models/tags';
-<<<<<<< HEAD
-=======
-
->>>>>>> 4069f4a (chore: 디렉토리 변경에 따른  경로수정)
 interface useTagSelectorsProps {
   apiTagData?: SkillTag[] | PositionTag[] | number;
   setValue: UseFormSetValue<CreateProjectFormValues>;

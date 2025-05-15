@@ -1,13 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-<<<<<<< HEAD
 import { ProjectListKey, userInfoKey } from '../../queries/user/keys';
-=======
-import { joinProject } from '../../../models/joinProject';
-import { ProjectListKey, userInfoKey } from '../../queries/user/keys';
-import { postApplicantProject } from '../../../api/joinProject.api';
-import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
-import { ROUTES } from '../../../constants/user/routes';
->>>>>>> 4069f4a (chore: 디렉토리 변경에 따른  경로수정)
 import { useNavigate } from 'react-router-dom';
 import { postApplicantProject } from '../../../api/joinProject.api';
 import { joinProject } from '../../../models/joinProject';

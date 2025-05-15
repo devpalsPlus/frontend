@@ -1,15 +1,8 @@
 import { Control, useFieldArray } from 'react-hook-form';
-<<<<<<< HEAD
-import * as S from './CareersComponent.styled';
-import CareerInput from './careersInputComponent/CareersComponentInput';
-import { CAREER_INPUT } from '../../../constants/projectConstants';
-import { ApplySchemeType } from '../../../models/joinProject';
-=======
-import { ApplySchemeType } from '../../../../pages/user/apply/Apply';
 import * as S from './CareersComponent.styled';
 import CareerInput from './careersInputComponent/CareersComponentInput';
 import { CAREER_INPUT } from '../../../../constants/user/projectConstants';
->>>>>>> 4069f4a (chore: 디렉토리 변경에 따른  경로수정)
+import type { ApplySchemeType } from '../../../../models/joinProject';
 
 interface CareersComponentProps {
   control: Control<ApplySchemeType>;

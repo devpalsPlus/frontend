@@ -1,19 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
-import { managedProjectKey } from '../../queries/user/keys';
-import { ROUTES } from '../../../constants/user/routes';
-import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
-import { postProject } from '../../../api/joinProject.api';
-import { FormData } from '../../../models/createProject';
-=======
 import { postProject } from '../../../api/joinProject.api';
 import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
 import { managedProjectKey } from '../../queries/user/keys';
 import { ROUTES } from '../../../constants/user/routes';
 import { FormData } from '../../../models/createProject';
 
->>>>>>> 4069f4a (chore: 디렉토리 변경에 따른  경로수정)
 interface UseCreateProjectProps {
   handleModalOpen: (newMessage: string) => void;
 }
