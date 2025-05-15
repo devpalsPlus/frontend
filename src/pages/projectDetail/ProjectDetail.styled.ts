@@ -2,12 +2,18 @@ import styled from 'styled-components';
 import Button from '../../components/common/Button/Button';
 
 export const Container = styled.div`
-  max-width: 100%;
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 25px;
   }
+`;
+
+export const Wrapper = styled.div`
+  margin-top: 3rem;
+  width: 75%;
 `;
 
 export const Header = styled.div`

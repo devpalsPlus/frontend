@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import type { Display } from './ProjectCardLists';
 
 export const Container = styled.section`
   width: 100%;
@@ -19,13 +20,25 @@ export const CardListTitle = styled.h1`
   }
 `;
 
-export const Wrapper = styled.div<{ $flex: boolean }>`
+export const Wrapper = styled.div<{ $flex: Display }>`
   width: 100%;
-  display: ${({ $flex }) => ($flex ? 'flex' : 'grid')};
-  grid-template-columns: ${({ $flex }) =>
-    $flex ? '' : 'repeat(auto-fit, minmax(30%, 1fr))'};
-  place-items: ${({ $flex }) => ($flex ? '' : 'center')};
-  /* justify-content: space-evenly; */
+
+  ${({ $flex }) => {
+    switch ($flex) {
+      case 'flex':
+        return css`
+          display: flex;
+        `;
+      case 'grid':
+        return css`
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+          place-items: center;
+        `;
+      default:
+        break;
+    }
+  }}
   gap: 3rem;
 
   a {
@@ -34,14 +47,14 @@ export const Wrapper = styled.div<{ $flex: boolean }>`
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     grid-template-columns: ${({ $flex }) =>
-      $flex ? '' : 'repeat(auto-fit, minmax(40%, 1fr))'};
+      $flex === 'grid' && 'repeat(auto-fit, minmax(40%, 1fr))'};
     gap: 2rem;
   }
 
   @media ${({ theme }) => theme.mediaQuery.mobile} {
     width: 100%;
     grid-template-columns: ${({ $flex }) =>
-      $flex ? '' : 'repeat(auto-fit, minmax(50%, 1fr))'};
+      $flex === 'grid' && 'repeat(auto-fit, minmax(50%, 1fr))'};
     gap: 1rem;
   }
 `;

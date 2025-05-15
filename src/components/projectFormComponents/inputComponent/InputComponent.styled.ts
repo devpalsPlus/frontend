@@ -71,7 +71,7 @@ export const InputInfoStyle = styled.input<{ type?: string }>`
   }}
 `;
 
-export const FormError = styled.p`
+export const FormError = styled.p<{ $markDown: boolean }>`
   margin-top: 0.3px;
   font-size: 0.9rem;
   color: ${({ theme }) => theme.color.red};
@@ -79,6 +79,11 @@ export const FormError = styled.p`
   top: 115%;
   left: 5px;
   white-space: nowrap;
+  ${({ $markDown }) =>
+    $markDown &&
+    css`
+      margin-top: -1.5rem;
+    `}
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: ${({ theme }) => theme.heading.small.tabletFontSize};

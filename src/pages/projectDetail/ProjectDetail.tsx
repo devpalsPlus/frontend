@@ -52,53 +52,52 @@ const ProjectDetail = () => {
 
   return (
     <S.Container>
-      <ScrollRestoration />
-      <S.Header>
-        <S.Title>{data.title}</S.Title>
-        <S.ProfileContainer>
-          <S.ProfileImageContainer onClick={handleMovetoUserPage}>
-            <Avatar size='2.5rem' image={data.user.img} />
-          </S.ProfileImageContainer>
-          <S.UserInfo>
-            <S.UserName onClick={handleMovetoUserPage}>
-              {data.user.nickname}
-            </S.UserName>
-            <S.PostDate>{formatDate(data.recruitmentEndDate)}</S.PostDate>
-            <S.ViewCount>
-              <EyeIcon />
-              {data.views}
-            </S.ViewCount>
-          </S.UserInfo>
-        </S.ProfileContainer>
-      </S.Header>
-
-      <S.Content>
-        <ProjectInformation data={data} />
-        <br></br>
-        <S.ProjectDescription>
-          <MarkdownEditorView description={data.description} />
-        </S.ProjectDescription>
-      </S.Content>
-      <S.ApplyButtonContainer>
-        {userData?.id !== data.user.id ? (
-          <Button
-            size='primary'
-            schema='primary'
-            radius='primary'
-            onClick={handleApplyClick}
-          >
-            프로젝트 함께하기
-          </Button>
-        ) : null}
-      </S.ApplyButtonContainer>
-
-      <hr></hr>
-
-      <CommentLayout
-        projectId={data.id}
-        createrId={data.user.id}
-        loginUserId={userData?.id}
-      />
+      <S.Wrapper>
+        <ScrollRestoration />
+        <S.Header>
+          <S.Title>{data.title}</S.Title>
+          <S.ProfileContainer>
+            <S.ProfileImageContainer onClick={handleMovetoUserPage}>
+              <Avatar size='2.5rem' image={data.user.img} />
+            </S.ProfileImageContainer>
+            <S.UserInfo>
+              <S.UserName onClick={handleMovetoUserPage}>
+                {data.user.nickname}
+              </S.UserName>
+              <S.PostDate>{formatDate(data.recruitmentEndDate)}</S.PostDate>
+              <S.ViewCount>
+                <EyeIcon />
+                {data.views}
+              </S.ViewCount>
+            </S.UserInfo>
+          </S.ProfileContainer>
+        </S.Header>
+        <S.Content>
+          <ProjectInformation data={data} />
+          <br></br>
+          <S.ProjectDescription>
+            <MarkdownEditorView description={data.description} />
+          </S.ProjectDescription>
+        </S.Content>
+        <S.ApplyButtonContainer>
+          {userData?.id !== data.user.id ? (
+            <Button
+              size='primary'
+              schema='primary'
+              radius='primary'
+              onClick={handleApplyClick}
+            >
+              프로젝트 함께하기
+            </Button>
+          ) : null}
+        </S.ApplyButtonContainer>
+        <hr></hr>
+        <CommentLayout
+          projectId={data.id}
+          createrId={data.user.id}
+          loginUserId={userData?.id}
+        />
+      </S.Wrapper>
     </S.Container>
   );
 };
