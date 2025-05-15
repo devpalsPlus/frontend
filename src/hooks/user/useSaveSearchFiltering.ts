@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import SearchFilteringContext from '../context/SearchFilteringContext';
+import SearchFilteringContext from '../../context/SearchFilteringContext';
 
 export const useSaveSearchFiltering = () => {
   const context = useContext(SearchFilteringContext);

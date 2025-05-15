@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useMutationParams } from '../../../hooks/usePassNonPassMutation';
-import { ApplicantInfo } from '../../../models/applicant';
-import { ProjectDetailPlusExtended } from '../../../models/projectDetail';
+import { useMutationParams } from '../../../../hooks/user/usePassNonPassMutation';
+import { ApplicantInfo } from '../../../../models/applicant';
+import { ProjectDetailPlusExtended } from '../../../../models/projectDetail';
 import PassNonPassItem from './PassNonPassItem';
 import * as S from './PassNonPassList.styled';
 

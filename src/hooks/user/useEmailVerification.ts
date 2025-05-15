@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { postVerificationEmail, postVerifyEmailCode } from '../api/auth.api';
+import { postVerificationEmail, postVerifyEmailCode } from '../../api/auth.api';
 import { AxiosError } from 'axios';
 import { useMutation } from '@tanstack/react-query';
 

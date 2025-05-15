@@ -1,7 +1,7 @@
 import { MagnifyingGlassIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import * as S from './Search.styled';
-import { useSaveSearchFiltering } from '../../../../hooks/useSaveSearchFiltering';
 import React, { useState } from 'react';
+import { useSaveSearchFiltering } from '../../../../../hooks/user/useSaveSearchFiltering';
 
 export default function Search() {
   const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();

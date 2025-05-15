@@ -1,5 +1,5 @@
-import type { NoticeList as TNoticeList } from '../../../models/customerService';
-import { formatDate } from '../../../util/format';
+import type { NoticeList as TNoticeList } from '../../../../models/customerService';
+import { formatDate } from '../../../../util/format';
 import * as S from './NoticeList.styled';
 
 interface NoticeProps {

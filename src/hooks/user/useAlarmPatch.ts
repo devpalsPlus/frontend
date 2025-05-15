@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { patchAlarm } from '../api/alarm.api';
+import { patchAlarm } from '../../api/alarm.api';
 import { AlarmList } from '../queries/user/keys';
-import useAuthStore from '../store/authStore';
+import useAuthStore from '../../store/authStore';
 
 export const useAlarmPatch = () => {
   const userId = useAuthStore((state) => state.userData?.id);

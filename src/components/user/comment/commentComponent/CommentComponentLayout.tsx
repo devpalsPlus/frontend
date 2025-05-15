@@ -1,9 +1,9 @@
 import * as S from './CommentComponentLayout.styled';
-import DropDown from '../../common/dropDown/DropDown';
+import DropDown from '../../../common/dropDown/DropDown';
 import DropDownItem from '../DropDownItem';
-import { CommentType } from '../../../models/comment';
+import { CommentType } from '../../../../models/comment';
 import dropdownButton from '../../../assets/dropdownButton.svg';
-import useComment from '../../../hooks/CommentHooks/useComment';
+import useComment from '../../../../hooks/user/CommentHooks/useComment';
 import ReplyComponent from '../replyComponent/ReplyComponent';
 import ArrowDown from '../../../assets/ArrowDown.svg';
 import ArrowUp from '../../../assets/ArrowUp.svg';

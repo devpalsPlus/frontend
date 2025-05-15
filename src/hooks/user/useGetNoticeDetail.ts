@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getNoticeDetail } from '../api/customerService.api';
+import { getNoticeDetail } from '../../api/customerService.api';
 import { CustomerService } from '../queries/user/keys';
 
 export const useGetNoticeDetail = (id: string) => {

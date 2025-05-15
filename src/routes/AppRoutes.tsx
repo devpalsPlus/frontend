@@ -7,90 +7,98 @@ import {
 import { lazy, Suspense } from 'react';
 
 import LoadingSpinner from '../components/common/loadingSpinner/LoadingSpinner';
-import { ROUTES } from '../constants/routes';
 import useAuthStore from '../store/authStore';
 import ProtectRoute from '../components/common/ProtectRoute';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
 import { ToastProvider } from '../components/common/Toast/ToastProvider';
+import { ROUTES } from '../constants/user/routes';
 const Login = lazy(() => import('../pages/login/Login'));
 const LoginSuccess = lazy(() => import('../pages/login/LoginSuccess'));
-const Register = lazy(() => import('../pages/register/Register'));
+const Register = lazy(() => import('../pages/user/register/Register'));
 const ChangePassword = lazy(
-  () => import('../pages/changePassword/ChangePassword')
+  () => import('../pages/user/changePassword/ChangePassword')
 );
-const Main = lazy(() => import('../pages/main/Index'));
+const Main = lazy(() => import('../pages/user/main/Index'));
 const Layout = lazy(() => import('../components/common/layout/Layout'));
-const Home = lazy(() => import('../pages/home/Home'));
-const FAQ = lazy(() => import('../pages/customerService/faq/FAQ'));
-const Notice = lazy(() => import('../pages/customerService/notice/Notice'));
+const Home = lazy(() => import('../pages/user/home/Home'));
+const FAQ = lazy(() => import('../pages/user/customerService/faq/FAQ'));
+const Notice = lazy(
+  () => import('../pages/user/customerService/notice/Notice')
+);
 const NoticeDetail = lazy(
-  () => import('../pages/customerService/noticeDetail/NoticeDetail')
+  () => import('../pages/user/customerService/noticeDetail/NoticeDetail')
 );
 const Inquiry = lazy(
-  () => import('../components/customerService/inquiry/Inquiry')
+  () => import('../components/user/customerService/inquiry/Inquiry')
 );
-const MyPage = lazy(() => import('../pages/mypage/MyPage'));
-const UserPage = lazy(() => import('../pages/userpage/UserPage'));
-const Apply = lazy(() => import('../pages/apply/ApplyStep'));
+const MyPage = lazy(() => import('../pages/user/mypage/MyPage'));
+const UserPage = lazy(() => import('../pages/user/userpage/UserPage'));
+const Apply = lazy(() => import('../pages/user/apply/ApplyStep'));
 const CreateProject = lazy(
-  () => import('../pages/createProject/CreateProject')
+  () => import('../pages/user/createProject/CreateProject')
 );
 const ProjectDetail = lazy(
-  () => import('../pages/projectDetail/ProjectDetail')
+  () => import('../pages/user/projectDetail/ProjectDetail')
 );
 const MyProjectList = lazy(
-  () => import('../pages/manage/myProjectList/MyProjectList')
+  () => import('../pages/user/manage/myProjectList/MyProjectList')
 );
 const MyProfile = lazy(
-  () => import('../components/mypage/myProfile/MyProfile')
+  () => import('../components/user/mypage/myProfile/MyProfile')
 );
 const Profile = lazy(
-  () => import('../components/mypage/myProfile/profile/Profile')
+  () => import('../components/user/mypage/myProfile/profile/Profile')
 );
 const ProfileEdit = lazy(
-  () => import('../components/mypage/myProfile/editProfile/EditProfile')
+  () => import('../components/user/mypage/myProfile/editProfile/EditProfile')
 );
 const MyProjectVolunteer = lazy(
-  () => import('../pages/manage/myProjectVolunteer/MyProjectVolunteer')
+  () => import('../pages/user/manage/myProjectVolunteer/MyProjectVolunteer')
 );
 const MyProjectVolunteersPass = lazy(
   () =>
-    import('../pages/manage/myProjectParticipantsPass/MyProjectVolunteersPass')
+    import(
+      '../pages/user/manage/myProjectParticipantsPass/MyProjectVolunteersPass'
+    )
 );
 const MyJoinProjects = lazy(
-  () => import('../components/mypage/joinedProject/MyJoinProjects')
+  () => import('../components/user/mypage/joinedProject/MyJoinProjects')
 );
 const MyNotifications = lazy(
-  () => import('../components/mypage/notifications/Notifications')
+  () => import('../components/user/mypage/notifications/Notifications')
 );
 const NotificationsAll = lazy(
-  () => import('../components/mypage/notifications/all/All')
+  () => import('../components/user/mypage/notifications/all/All')
 );
 const NotificationsAppliedProjects = lazy(
   () =>
-    import('../components/mypage/notifications/appliedProjects/AppliedProjects')
+    import(
+      '../components/user/mypage/notifications/appliedProjects/AppliedProjects'
+    )
 );
 const MyActivityLog = lazy(
-  () => import('../components/mypage/activityLog/ActivityLog')
+  () => import('../components/user/mypage/activityLog/ActivityLog')
 );
 const ActivityLogComments = lazy(
   () =>
-    import('../components/mypage/activityLog/commentsActivity/CommentsActivity')
+    import(
+      '../components/user/mypage/activityLog/commentsActivity/CommentsActivity'
+    )
 );
 const ActivityLogInquiries = lazy(
-  () => import('../components/mypage/activityLog/inquiries/Inquiries')
+  () => import('../components/user/mypage/activityLog/inquiries/Inquiries')
 );
 const UserProfile = lazy(
-  () => import('../components/userPage/userProfile/UserProfile')
+  () => import('../components/user/userPage/userProfile/UserProfile')
 );
 const UserJoinProject = lazy(
-  () => import('../components/userPage/joinedProject/UserJoinProject')
+  () => import('../components/user/userPage/joinedProject/UserJoinProject')
 );
 const ModifyProject = lazy(
-  () => import('../pages/modifyProject/ModifyProject')
+  () => import('../pages/user/modifyProject/ModifyProject')
 );
-const Evaluation = lazy(() => import('../pages/evaluation/Evaluation'));
+const Evaluation = lazy(() => import('../pages/user/evaluation/Evaluation'));
 
 const AppRoutes = () => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);

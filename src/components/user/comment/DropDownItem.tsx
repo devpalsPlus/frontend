@@ -1,6 +1,6 @@
-import useDeleteComment from '../../hooks/CommentHooks/useDeleteComment';
-import useDeleteReply from '../../hooks/CommentHooks/useDeleteReply';
-import { useModal } from '../../hooks/useModal';
+import useDeleteComment from '../../../hooks/user/CommentHooks/useDeleteComment';
+import useDeleteReply from '../../../hooks/user/CommentHooks/useDeleteReply';
+import { useModal } from '../../../hooks/useModal';
 import ReportModal from '../reportComponent/ReportModal';
 import * as S from './DropDownItem.styled';
 

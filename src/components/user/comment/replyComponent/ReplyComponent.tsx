@@ -1,15 +1,15 @@
-import Avatar from '../../common/avatar/Avatar';
+import Avatar from '../../../common/avatar/Avatar';
 import * as S from './ReplyComponent.styled';
 import DefaultImg from '../../../assets/defaultImg.png';
-import useComment from '../../../hooks/CommentHooks/useComment';
-import DropDown from '../../common/dropDown/DropDown';
+import useComment from '../../../../hooks/user/CommentHooks/useComment';
+import DropDown from '../../../common/dropDown/DropDown';
 import DropDownItem from '../DropDownItem';
 import dropdownButton from '../../../assets/dropdownButton.svg';
 import CommentInput from '../commentInput/CommentInput';
-import useGetReply from '../../../hooks/CommentHooks/useGetReply';
-import LoadingSpinner from '../../common/loadingSpinner/LoadingSpinner';
+import useGetReply from '../../../../hooks/user/CommentHooks/useGetReply';
+import LoadingSpinner from '../../../common/loadingSpinner/LoadingSpinner';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../../../constants/routes';
+import { ROUTES } from '../../../../constants/user/routes';
 
 interface ReplyComponentProps {
   projectId: number;
