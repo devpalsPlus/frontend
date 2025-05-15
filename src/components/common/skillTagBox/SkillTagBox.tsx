@@ -1,9 +1,9 @@
 import React from 'react';
-import { useSearchFilteringSkillTag } from '../../../hooks/useSearchFilteringSkillTag';
+import { useSearchFilteringSkillTag } from '../../../hooks/user/useSearchFilteringSkillTag';
 import SkillTag from './skillTag/SkillTag';
 import * as S from './SkillTagBox.styled';
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
-import { useSaveSearchFiltering } from '../../../hooks/useSaveSearchFiltering';
+import { useSaveSearchFiltering } from '../../../hooks/user/useSaveSearchFiltering';
 
 export interface SkillTagBoxProps {
   width: string;
