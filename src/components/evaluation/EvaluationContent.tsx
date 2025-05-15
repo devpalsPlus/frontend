@@ -1,16 +1,17 @@
 import * as S from './EvaluationContent.styled';
 import ScrollPreventor from '../common/modal/ScrollPreventor';
 import useEvaluationStep from '../../hooks/evaluationHooks/useEvaluationStep';
-import { apiMemberList } from '../../models/evaluation';
+import { MemberList } from '../../models/evaluation';
 import { optionLabels, questions } from '../../constants/evaluation';
-
 interface EvaluationContentProps {
   projectId: number;
-  memberList: apiMemberList[];
+  projectName: string;
+  memberList: MemberList[];
 }
 
 const EvaluationContent = ({
   projectId,
+  projectName,
   memberList,
 }: EvaluationContentProps) => {
   const {
@@ -27,7 +28,7 @@ const EvaluationContent = ({
     <ScrollPreventor>
       <S.Container>
         <S.SidebarLeft>
-          <S.ProjectName>프로젝트 이름</S.ProjectName>
+          <S.ProjectName>{projectName}</S.ProjectName>
           {notDone.map((name, idx) => (
             <S.ParticipantButton
               key={name.userId}
@@ -93,7 +94,9 @@ const EvaluationContent = ({
           {memberList
             .filter((memberData) => memberData.evaluated)
             .map((memberData) => (
-              <S.CompletedButton>{memberData.nickname}</S.CompletedButton>
+              <S.CompletedButton key={memberData.userId}>
+                {memberData.nickname}
+              </S.CompletedButton>
             ))}
         </S.SidebarRight>
       </S.Container>

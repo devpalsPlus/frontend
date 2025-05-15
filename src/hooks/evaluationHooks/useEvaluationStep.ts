@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import { apiMemberList } from '../../models/evaluation';
+import { MemberList } from '../../models/evaluation';
 import { questions } from '../../constants/evaluation';
 import { usePostEvaluation } from './usePostEvaluation';
 
 interface useEvaluationStepProps {
   projectId: number;
-  memberList: apiMemberList[];
+  memberList: MemberList[];
 }
 
 const useEvaluationStep = ({
@@ -14,12 +14,8 @@ const useEvaluationStep = ({
 }: useEvaluationStepProps) => {
   const questionLength = questions.length;
   const [step, setStep] = useState<number>(0);
-  const [notDone, setNotDone] = useState<apiMemberList[]>([]);
-  const [progress, setProgress] = useState<Record<number, number[]>[]>(() =>
-    memberList.map((memberData) => ({
-      [memberData.userId]: Array(questionLength).fill(0),
-    }))
-  );
+  const [notDone, setNotDone] = useState<MemberList[]>([]);
+  const [progress, setProgress] = useState<Record<number, number[]>[]>([]);
   const [isNotFill, setIsNotFill] = useState<boolean>(false);
 
   const { createEvaluation } = usePostEvaluation(projectId);
@@ -75,7 +71,7 @@ const useEvaluationStep = ({
       createEvaluation({
         projectId: projectId,
         evaluateeId: user,
-        score: scores,
+        scores: scores,
       });
 
       setNotDone((prev) => prev.filter((e) => e.userId !== user));

@@ -5,6 +5,11 @@ export interface apiEvaluatedUser {
 }
 
 export interface apiMemberList {
+  projectName: string;
+  userData: MemberList[];
+}
+
+export interface MemberList {
   userId: number;
   nickname: string;
   evaluated: boolean;
