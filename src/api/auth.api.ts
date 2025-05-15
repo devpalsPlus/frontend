@@ -1,8 +1,8 @@
 import { ApiVerifyNickname, VerifyEmail } from '../models/auth';
 import { httpClient } from './http.api';
-import { registerFormValues } from '../pages/register/Register';
-import { changePasswordFormValues } from '../pages/changePassword/ChangePassword';
 import { loginFormValues } from '../pages/login/Login';
+import { registerFormValues } from '../pages/user/register/Register';
+import { changePasswordFormValues } from '../pages/user/changePassword/ChangePassword';
 
 export const postVerificationEmail = async (email: string) => {
   try {

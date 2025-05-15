@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../../common/Button/Button';
+import Button from '../../../common/Button/Button';
 
 export const Container = styled.div`
   width: 100%;
@@ -17,11 +17,15 @@ export const CareerContainer = styled.div`
   }
 `;
 
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const AddButton = styled(Button)`
   width: 50px;
   height: 30px;
   font-size: 13px;
   padding: 10px;
-  cursor: pointer;
   border: 1px solid ${({ theme }) => theme.color.border};
 `;

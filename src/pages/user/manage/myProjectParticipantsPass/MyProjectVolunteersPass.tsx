@@ -1,6 +1,6 @@
 import * as S from './MyProjectVolunteersPass.styled';
 import { useParams } from 'react-router-dom';
-import MainLogo from '../../../assets/mainlogo.svg';
+import MainLogo from '../../../../assets/mainlogo.svg';
 import { Suspense, useMemo } from 'react';
 import useGetProjectData from '../../../../hooks/user/useGetProjectData';
 import { usePassNonPassList } from '../../../../hooks/user/usePassNonPassList';

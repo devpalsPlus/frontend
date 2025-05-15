@@ -1,7 +1,7 @@
 import * as S from './Project.styled';
-import BeginnerIcon from '../../../assets/beginner.svg';
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 import { JoinedProject } from '../../../../models/userProject';
+import beginner from '../../../../assets/beginner.svg';
 
 interface ProjectProps {
   project: JoinedProject;
@@ -22,11 +22,7 @@ const Project = ({ project }: ProjectProps) => {
       <S.Member>
         <S.Wrapper>
           <S.Beginner>
-            {project.isBeginner ? (
-              <img src={BeginnerIcon} alt='beginner' />
-            ) : (
-              ''
-            )}
+            {project.isBeginner ? <img src={beginner} alt='beginner' /> : ''}
           </S.Beginner>
           <span>{project.totalMember}명</span>
         </S.Wrapper>

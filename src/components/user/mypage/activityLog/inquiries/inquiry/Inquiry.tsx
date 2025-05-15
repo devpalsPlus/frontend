@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import type { MyInquiries } from '../../../../../models/activityLog';
 import * as S from './Inquiry.styled';
-import { My_INQUIRIES_MESSAGE } from '../../../../../constants/customerService';
+import { MyInquiries } from '../../../../../../models/activityLog';
+import { My_INQUIRIES_MESSAGE } from '../../../../../../constants/user/customerService';
 
 interface InquiryProps {
   list: MyInquiries;

@@ -1,7 +1,7 @@
 import { Outlet, useParams } from 'react-router-dom';
 import * as S from '../mypage/MyPage.styled';
 import { DocumentTextIcon, UserIcon } from '@heroicons/react/24/outline';
-import loadingImg from '../../assets/loadingImg.svg';
+import loadingImg from '../../../assets/loadingImg.svg';
 import { ROUTES } from '../../../constants/user/routes';
 import { useUserProfileInfo } from '../../../hooks/user/useUserInfo';
 import Sidebar from '../../../components/common/sidebar/Sidebar';

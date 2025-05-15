@@ -33,6 +33,8 @@ export interface ProjectDetailPlusExtended extends ProjectDetailPlus {
   methodType: MethodTag;
   positions: PositionTag[];
   skills: SkillTag[];
+  applicantIds: number[];
+  acceptedIds: number[];
 }
 
 export interface dataPlus extends ApiCommonType {

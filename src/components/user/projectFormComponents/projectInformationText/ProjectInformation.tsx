@@ -5,7 +5,7 @@ import {
 } from '../../../../models/projectDetail';
 import { formatDate } from '../../../../util/formatDate';
 import * as S from './ProjectInformation.styled';
-import beginner from '/src/assets/beginner.svg';
+import beginner from '../../../../assets/beginner.svg';
 
 interface ProjectInformationProps {
   data: ProjectDetailPlusExtended;

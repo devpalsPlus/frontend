@@ -2,7 +2,7 @@ import * as S from './CommentInput.styled';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useMyProfileInfo } from '../../../../hooks/user/useMyInfo';
 import { formatImgPath } from '../../../../util/formatImgPath';
-import DefaultImg from '../../../assets/defaultImg.png';
+import DefaultImg from '../../../../assets/defaultImg.png';
 import Avatar from '../../../common/avatar/Avatar';
 import { useForm } from 'react-hook-form';
 import useInputFocus from '../../../../hooks/user/useInputFocus';

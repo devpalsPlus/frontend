@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import * as S from './MyProjectVolunteer.styled';
-import MainLogo from '../../../assets/mainlogo.svg';
+import MainLogo from '../../../../assets/mainlogo.svg';
 import { useMemo } from 'react';
 import useGetProjectData from '../../../../hooks/user/useGetProjectData';
 import { useModal } from '../../../../hooks/useModal';

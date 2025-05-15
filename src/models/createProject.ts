@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { createProjectScheme } from '../constants/projectConstants';
+import { createProjectScheme } from '../constants/user/projectConstants';
 
 export type CreateProjectFormValues = z.infer<typeof createProjectScheme>;
 
