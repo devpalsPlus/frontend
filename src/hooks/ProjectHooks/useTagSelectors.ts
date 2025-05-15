@@ -54,8 +54,17 @@ const useTagSelectors = ({
       });
     } else if (fieldName === 'position') {
       setSelectedTag((prev) => {
-        const isAlreadySelected = prev.some((item) => item === idx);
+        if (prev.includes(1) && idx !== 1) {
+          return prev;
+        }
 
+        if (idx === 1) {
+          const updated = prev.includes(1) ? [] : [1];
+          setValue(fieldName, updated);
+          return updated;
+        }
+
+        const isAlreadySelected = prev.includes(idx);
         const updated = isAlreadySelected
           ? prev.filter((item) => item !== idx)
           : [...prev, idx];
@@ -68,6 +77,8 @@ const useTagSelectors = ({
 
       setValue(fieldName, idx);
     }
+
+    console.log(selectedTag);
   };
 
   return { selectedTag, handleClick };

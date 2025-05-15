@@ -31,7 +31,7 @@ const MozipCategoryComponent = ({
     <S.Container>
       <S.CategoryContainer>
         {positionTagsData.map((position, idx) => {
-          const isSelected = selectedTag.some((item) => item === idx + 1);
+          const isSelected = selectedTag.includes(idx + 1);
           return (
             <S.PositionButtonFeat
               position={position.name}
