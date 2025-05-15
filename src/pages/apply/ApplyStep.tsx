@@ -124,8 +124,7 @@ const Apply = () => {
     );
   }
 
-  if (isLoading) return <LoadingSpinner />;
-  if (isFetching) return <LoadingSpinner />;
+  if (isLoading || isFetching) return <LoadingSpinner />;
 
   return (
     <S.Container>
@@ -144,31 +143,32 @@ const Apply = () => {
       <form onSubmit={onSubmitHandler(handleSubmit)}>
         <S.StepWrapper>
           <S.StepLabel>{currentTitle}</S.StepLabel>
-          <S.StepButton>
+        </S.StepWrapper>
+
+        <S.StepContainer>{currentStep}</S.StepContainer>
+
+        <S.StepButton>
+          <Button
+            size={'small'}
+            schema={'primary'}
+            radius={'primary'}
+            type='button'
+            onClick={prev}
+          >
+            이전
+          </Button>
+          {currentStepIndex !== stepList.length - 1 && (
             <Button
               size={'small'}
               schema={'primary'}
               radius={'primary'}
               type='button'
-              onClick={prev}
+              onClick={handleNextStep}
             >
-              이전
+              다음
             </Button>
-            {currentStepIndex !== stepList.length - 1 && (
-              <Button
-                size={'small'}
-                schema={'primary'}
-                radius={'primary'}
-                type='button'
-                onClick={handleNextStep}
-              >
-                다음
-              </Button>
-            )}
-          </S.StepButton>
-        </S.StepWrapper>
-
-        <S.StepContainer>{currentStep}</S.StepContainer>
+          )}
+        </S.StepButton>
 
         {isLastStep && (
           <S.SubmitButton
