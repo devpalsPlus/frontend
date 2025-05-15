@@ -8,7 +8,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { LoginResponse } from '../models/auth';
 import { ROUTES } from '../constants/routes';
 import { AxiosError } from 'axios';
-import { myInfoKey } from './queries/keys';
+import { myInfoKey } from './queries/user/keys';
 import { MODAL_MESSAGE } from '../constants/modalMessage';
 
 export const useAuth = (handleModalOpen: (message: string) => void) => {
