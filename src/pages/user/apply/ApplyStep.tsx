@@ -2,7 +2,7 @@ import * as S from './ApplyStep.styled';
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useModal } from '../../../hooks/useModal';
 import useGetProjectData from '../../../hooks/user/useGetProjectData';
 import useApplyProject from '../../../hooks/user/ProjectHooks/useApplyProject';
@@ -19,14 +19,17 @@ import LoadingSpinner from '../../../components/common/loadingSpinner/LoadingSpi
 import { formatDate } from '../../../util/formatDate';
 import StepComponent from '../../../components/user/projectFormComponents/stepComponent/StepComponent';
 import Button from '../../../components/common/Button/Button';
+import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
 
 const Apply = () => {
   const { projectId } = useParams();
   const id = Number(projectId);
-  const { isOpen, handleModalOpen, handleModalClose, message } = useModal();
+  const navigate = useNavigate();
+  const { isOpen, handleModalOpen, handleModalClose, handleConfirm, message } =
+    useModal();
   const { data: projectData, isLoading, isFetching } = useGetProjectData(id);
   const { applyProject } = useApplyProject({ id, handleModalOpen });
-  const userEmail = useAuthStore((state) => state.userData?.email);
+  const userData = useAuthStore((state) => state.userData);
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },
@@ -42,6 +45,17 @@ const Apply = () => {
       careers: [],
     },
   });
+
+  useEffect(() => {
+    if (
+      userData &&
+      (userData?.id !== projectData?.user.id ||
+        !projectData?.acceptedIds.includes(userData?.id) ||
+        !projectData?.applicantIds.includes(userData?.id))
+    ) {
+      handleModalOpen(MODAL_MESSAGE.alreadyApply, () => navigate(-1));
+    }
+  }, [userData, projectData, navigate, handleModalOpen]);
 
   const stepFields: (keyof ApplySchemeType)[][] = [
     ['email'],
@@ -86,8 +100,8 @@ const Apply = () => {
   ];
 
   useEffect(() => {
-    if (userEmail) setValue('email', userEmail);
-  }, [userEmail, setValue]);
+    if (userData?.email) setValue('email', userData.email);
+  }, [userData, setValue]);
 
   const {
     currentStepIndex,
@@ -119,7 +133,11 @@ const Apply = () => {
 
   if (!projectData) {
     return (
-      <Modal isOpen={isOpen} onClose={handleModalClose}>
+      <Modal
+        isOpen={isOpen}
+        onClose={handleModalClose}
+        onConfirm={handleConfirm}
+      >
         {message}
       </Modal>
     );
@@ -183,7 +201,11 @@ const Apply = () => {
         )}
       </form>
 
-      <Modal isOpen={isOpen} onClose={handleModalClose}>
+      <Modal
+        isOpen={isOpen}
+        onClose={handleModalClose}
+        onConfirm={handleConfirm}
+      >
         {message}
       </Modal>
     </S.Container>
