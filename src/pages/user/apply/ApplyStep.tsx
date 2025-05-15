@@ -47,11 +47,13 @@ const Apply = () => {
   });
 
   useEffect(() => {
+    if (!userData) {
+      return handleModalOpen(MODAL_MESSAGE.isNotLoggedIn, () => navigate(-1));
+    }
     if (
-      userData &&
-      (userData?.id !== projectData?.user.id ||
-        !projectData?.acceptedIds.includes(userData?.id) ||
-        !projectData?.applicantIds.includes(userData?.id))
+      userData?.id === projectData?.user.id ||
+      projectData?.acceptedIds.includes(userData?.id) ||
+      projectData?.applicantIds.includes(userData?.id)
     ) {
       handleModalOpen(MODAL_MESSAGE.alreadyApply, () => navigate(-1));
     }
