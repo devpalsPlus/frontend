@@ -14,7 +14,6 @@ import { formatImgPath } from '../../../util/formatImgPath';
 import bell from '../../../assets/bell.svg';
 import Notification from './Notification/Notification';
 import bellLogined from '../../../assets/bellLogined.svg';
-import useNotification from '../../../hooks/useNotification';
 import { useEffect } from 'react';
 import { testLiveAlarm } from '../../../api/alarm.api';
 import { useMyProfileInfo } from '../../../hooks/user/useMyInfo';

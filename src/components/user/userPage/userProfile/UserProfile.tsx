@@ -1,4 +1,4 @@
-import * as S from '../../../mypage/myProfile/MyProfile.styled';
+import * as S from '../../';
 import BeginnerIcon from '../../../assets/beginner.svg';
 import { useParams } from 'react-router-dom';
 import { useUserProfileInfo } from '../../../../hooks/user/useUserInfo';
