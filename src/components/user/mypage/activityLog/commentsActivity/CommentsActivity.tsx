@@ -1,9 +1,9 @@
 import { Fragment } from 'react/jsx-runtime';
-import { useGetMyComments } from '../../../../hooks/useGetMyComments';
-import NoContent from '../../../common/noContent/NoContent';
 import Spinner from '../../Spinner';
 import CommentActivity from './commentActivity/CommentActivity';
 import * as S from './CommentsActivity.styled';
+import NoContent from '../../../../common/noContent/NoContent';
+import { useGetMyComments } from '../../../../../hooks/user/useGetMyComments';
 
 export default function CommentsActivity() {
   const { myCommentsData, isLoading } = useGetMyComments();

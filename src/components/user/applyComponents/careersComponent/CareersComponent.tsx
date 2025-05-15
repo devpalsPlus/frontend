@@ -1,8 +1,8 @@
 import { Control, useFieldArray } from 'react-hook-form';
-import { ApplySchemeType } from '../../../pages/apply/Apply';
 import * as S from './CareersComponent.styled';
 import CareerInput from './careersInputComponent/CareersComponentInput';
 import { CAREER_INPUT } from '../../../constants/projectConstants';
+import { ApplySchemeType } from '../../../models/joinProject';
 
 interface CareersComponentProps {
   control: Control<ApplySchemeType>;

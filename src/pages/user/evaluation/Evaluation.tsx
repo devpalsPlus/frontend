@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import * as S from './Evaluation.styled';
-import useGetCompletedEvaluation from '../../hooks/evaluationHooks/useGetEvaluation';
-import EvaluationContent from '../../components/evaluation/EvaluationContent';
-import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
+import useGetCompletedEvaluation from '../../../hooks/user/evaluationHooks/useGetEvaluation';
+import LoadingSpinner from '../../../components/common/loadingSpinner/LoadingSpinner';
+import EvaluationContent from '../../../components/user/evaluation/EvaluationContent';
 
 const Evaluation = () => {
   const { projectId: projectIdParam } = useParams();

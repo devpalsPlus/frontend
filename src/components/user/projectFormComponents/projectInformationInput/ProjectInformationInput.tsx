@@ -2,12 +2,12 @@ import MozipCategoryComponent from './positionComponent/PositionComponent';
 import LanguageComponent from './languageComponent/LanguageComponent';
 import FieldCategoryComponent from './fieldCategoryComponent/FieldCategoryComponent';
 import { Control, FieldErrors, UseFormSetValue } from 'react-hook-form';
-import { PROJECT_DATA } from '../../../constants/projectConstants';
-import { CreateProjectFormValues } from '../../../models/createProject';
 import * as S from './ProjectInformationInput.styled';
-import { useSearchFilteringSkillTag } from '../../../hooks/useSearchFilteringSkillTag';
-import { ProjectDetailPlusExtended } from '../../../models/projectDetail';
 import Input from '../inputComponent/InputComponent';
+import { ProjectDetailPlusExtended } from '../../../../models/projectDetail';
+import { CreateProjectFormValues } from '../../../../models/createProject';
+import { useSearchFilteringSkillTag } from '../../../../hooks/user/useSearchFilteringSkillTag';
+import { PROJECT_DATA } from '../../../../constants/user/projectConstants';
 
 interface ProjectInformationProps {
   errors: FieldErrors;

@@ -4,7 +4,7 @@ import Manage from './Manage';
 import Create from './Create';
 import HeroSection from './HeroSection';
 import { useRef } from 'react';
-import { useInView } from '../../hooks/useInView';
+import { useInView } from '../../../hooks/user/useInView';
 
 const Main = () => {
   const refs = [

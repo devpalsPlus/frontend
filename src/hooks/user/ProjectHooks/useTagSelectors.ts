@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { UseFormSetValue } from 'react-hook-form';
-import { CreateProjectFormValues } from '../../models/createProject';
-import { PositionTag, SkillTag } from '../../models/tags';
-
+import { CreateProjectFormValues } from '../../../models/createProject';
+import { PositionTag, SkillTag } from '../../../models/tags';
 interface useTagSelectorsProps {
   apiTagData?: SkillTag[] | PositionTag[] | number;
   setValue: UseFormSetValue<CreateProjectFormValues>;
@@ -54,8 +53,17 @@ const useTagSelectors = ({
       });
     } else if (fieldName === 'position') {
       setSelectedTag((prev) => {
-        const isAlreadySelected = prev.some((item) => item === idx);
+        if (prev.includes(1) && idx !== 1) {
+          return prev;
+        }
 
+        if (idx === 1) {
+          const updated = prev.includes(1) ? [] : [1];
+          setValue(fieldName, updated);
+          return updated;
+        }
+
+        const isAlreadySelected = prev.includes(idx);
         const updated = isAlreadySelected
           ? prev.filter((item) => item !== idx)
           : [...prev, idx];
@@ -68,6 +76,8 @@ const useTagSelectors = ({
 
       setValue(fieldName, idx);
     }
+
+    console.log(selectedTag);
   };
 
   return { selectedTag, handleClick };

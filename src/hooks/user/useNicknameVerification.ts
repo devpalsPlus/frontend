@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getCheckNickname } from '../api/auth.api';
+import { getCheckNickname } from '../../api/auth.api';
 
 const useNickNameVerification = () => {
   const [nicknameMessage, setNicknameMessage] = useState<string | undefined>(

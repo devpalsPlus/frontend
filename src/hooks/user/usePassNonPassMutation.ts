@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { patchPassNonPassStatus } from '../api/applicant.api';
 import { AxiosError } from 'axios';
 import { applicantKey } from '../queries/user/keys';
-import { MODAL_MESSAGE } from '../constants/modalMessage';
+import { MODAL_MESSAGE } from '../../constants/user/modalMessage';
+import { patchPassNonPassStatus } from '../../api/applicant.api';
 
 export interface useMutationParams {
   status: 'ACCEPTED' | 'REJECTED' | 'WAITING';

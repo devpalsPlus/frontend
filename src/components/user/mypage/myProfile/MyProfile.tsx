@@ -1,14 +1,14 @@
 import * as S from './MyProfile.styled';
 import Spinner from '../Spinner';
-import { useMyProfileInfo } from '../../../hooks/useMyInfo';
 import NoMyInfo from './NoMyInfo';
-import Modal from '../../common/modal/Modal';
-import { useModal } from '../../../hooks/useModal';
 import { Outlet, useLocation } from 'react-router-dom';
-import { ROUTES } from '../../../constants/routes';
 import { PencilIcon } from '@heroicons/react/24/outline';
 import { useRef } from 'react';
 import ScrollWrapper from '../ScrollWrapper';
+import { useModal } from '../../../../hooks/useModal';
+import { useMyProfileInfo } from '../../../../hooks/user/useMyInfo';
+import { ROUTES } from '../../../../constants/user/routes';
+import Modal from '../../../common/modal/Modal';
 
 const MyProfile = () => {
   const { myData, isLoading } = useMyProfileInfo();

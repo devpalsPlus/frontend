@@ -46,11 +46,12 @@ export const StepContainer = styled.div`
 
 export const StepButton = styled.div`
   display: flex;
+  justify-content: right;
   gap: 20px;
 `;
 
 export const StepLabel = styled.div`
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: bold;
   color: ${({ theme }) => theme.color.primary};
   margin-bottom: 10px;
@@ -62,12 +63,10 @@ export const StepLabel = styled.div`
 
 export const StepWrapper = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 `;
 
 export const SubmitButton = styled(Button)`
-  width: 100px;
   padding: 15px;
   margin: 0 auto;
   cursor: pointer;

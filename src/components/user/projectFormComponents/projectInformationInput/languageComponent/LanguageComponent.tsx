@@ -1,9 +1,9 @@
+import useTagSelectors from '../../../../../hooks/user/ProjectHooks/useTagSelectors';
+import { CreateProjectFormValues } from '../../../../../models/createProject';
+import { SkillTag } from '../../../../../models/tags';
+import SkillTagBox from '../../../../common/skillTagBox/SkillTagBox';
 import * as S from './LanguageComponent.styled';
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
-import SkillTagBox from '../../../common/skillTagBox/SkillTagBox';
-import { CreateProjectFormValues } from '../../../../models/createProject';
-import useTagSelectors from '../../../../hooks/ProjectHooks/useTagSelectors';
-import { SkillTag } from '../../../../models/tags';
 
 interface LanguageComponentProps {
   errors: FieldErrors;

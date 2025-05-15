@@ -1,65 +1,24 @@
 import * as S from './ApplyStep.styled';
-import Input from '../../components/projectFormComponents/inputComponent/InputComponent';
+
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { useParams } from 'react-router-dom';
-import { formatDate } from '../../util/format';
-import { joinProject } from '../../models/joinProject';
-import CareersComponent from '../../components/applyComponents/careersComponent/CareersComponent';
-import PhoneComponent from '../../components/applyComponents/phoneComponent/PhoneComponent';
-import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
-import Modal from '../../components/common/modal/Modal';
-import { useModal } from '../../hooks/useModal';
-import useAuthStore from '../../store/authStore';
+import { useModal } from '../../../hooks/useModal';
+import useGetProjectData from '../../../hooks/user/useGetProjectData';
+import useApplyProject from '../../../hooks/user/ProjectHooks/useApplyProject';
+import useAuthStore from '../../../store/authStore';
+import { ApplySchemeType, joinProject } from '../../../models/joinProject';
+import { ApplyScheme } from '../../../constants/user/projectConstants';
+import Input from '../../../components/user/projectFormComponents/inputComponent/InputComponent';
+import PhoneComponent from '../../../components/user/applyComponents/phoneComponent/PhoneComponent';
+import CareersComponent from '../../../components/user/applyComponents/careersComponent/CareersComponent';
 import { useEffect } from 'react';
-import useMultiStepForm from '../../hooks/ProjectHooks/useMultiStepForm';
-import StepComponent from '../../components/projectFormComponents/stepComponent/StepComponent';
-import Button from '../../components/common/Button/Button';
-import useGetProjectData from '../../hooks/useGetProjectData';
-import useApplyProject from '../../hooks/ProjectHooks/useApplyProject';
-
-const ApplyScheme = z.object({
-  email: z
-    .string()
-    .nonempty({ message: '이메일을 입력해주세요.' })
-    .email({ message: '이메일 형식으로 입력해주세요.' }),
-  phone: z
-    .string({ message: '전화번호를 입력해주세요.' })
-    .array()
-    .nonempty({ message: '전화번호를 입력해주세요.' }),
-  wantToSay: z.string().optional(),
-  careers: z
-    .array(
-      z
-        .object({
-          name: z.string().nonempty({ message: '경력명을 입력해주세요.' }),
-          periodStart: z
-            .string()
-            .nonempty({ message: '시작 날짜를 입력해주세요.' })
-            .refine((date) => !isNaN(Date.parse(date)), {
-              message: '유효한 날짜를 입력해주세요.',
-            }),
-          periodEnd: z
-            .string()
-            .nonempty({ message: '종료 날짜를 입력해주세요.' })
-            .refine((date) => !isNaN(Date.parse(date)), {
-              message: '유효한 날짜를 입력해주세요.',
-            }),
-          role: z.string().nonempty({ message: '역할을 입력해주세요.' }),
-        })
-        .refine(
-          (data) => new Date(data.periodStart) < new Date(data.periodEnd),
-          {
-            message: '시작 날짜는 종료 날짜보다 이전이어야 합니다.',
-            path: ['periodStart'],
-          }
-        )
-    )
-    .optional(),
-});
-
-export type ApplySchemeType = z.infer<typeof ApplyScheme>;
+import useMultiStepForm from '../../../hooks/user/ProjectHooks/useMultiStepForm';
+import Modal from '../../../components/common/modal/Modal';
+import LoadingSpinner from '../../../components/common/loadingSpinner/LoadingSpinner';
+import { formatDate } from '../../../util/formatDate';
+import StepComponent from '../../../components/user/projectFormComponents/stepComponent/StepComponent';
+import Button from '../../../components/common/Button/Button';
 
 const Apply = () => {
   const { projectId } = useParams();
@@ -166,8 +125,7 @@ const Apply = () => {
     );
   }
 
-  if (isLoading) return <LoadingSpinner />;
-  if (isFetching) return <LoadingSpinner />;
+  if (isLoading || isFetching) return <LoadingSpinner />;
 
   return (
     <S.Container>
@@ -186,31 +144,32 @@ const Apply = () => {
       <form onSubmit={onSubmitHandler(handleSubmit)}>
         <S.StepWrapper>
           <S.StepLabel>{currentTitle}</S.StepLabel>
-          <S.StepButton>
+        </S.StepWrapper>
+
+        <S.StepContainer>{currentStep}</S.StepContainer>
+
+        <S.StepButton>
+          <Button
+            size={'small'}
+            schema={'primary'}
+            radius={'primary'}
+            type='button'
+            onClick={prev}
+          >
+            이전
+          </Button>
+          {currentStepIndex !== stepList.length - 1 && (
             <Button
               size={'small'}
               schema={'primary'}
               radius={'primary'}
               type='button'
-              onClick={prev}
+              onClick={handleNextStep}
             >
-              이전
+              다음
             </Button>
-            {currentStepIndex !== stepList.length - 1 && (
-              <Button
-                size={'small'}
-                schema={'primary'}
-                radius={'primary'}
-                type='button'
-                onClick={handleNextStep}
-              >
-                다음
-              </Button>
-            )}
-          </S.StepButton>
-        </S.StepWrapper>
-
-        <S.StepContainer>{currentStep}</S.StepContainer>
+          )}
+        </S.StepButton>
 
         {isLastStep && (
           <S.SubmitButton

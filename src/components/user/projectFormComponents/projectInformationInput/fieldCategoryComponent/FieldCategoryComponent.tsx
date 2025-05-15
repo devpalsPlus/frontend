@@ -1,8 +1,8 @@
+import useTagSelectors from '../../../../../hooks/user/ProjectHooks/useTagSelectors';
+import { CreateProjectFormValues } from '../../../../../models/createProject';
+import { MethodTag } from '../../../../../models/tags';
 import * as S from './FieldCategoryComponent.styled';
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
-import { CreateProjectFormValues } from '../../../../models/createProject';
-import { MethodTag } from '../../../../models/tags';
-import useTagSelectors from '../../../../hooks/ProjectHooks/useTagSelectors';
 
 interface FieldCategoryComponentProps {
   errors: FieldErrors;

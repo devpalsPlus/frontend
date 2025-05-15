@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import type { MyComments } from '../../../../../models/activityLog';
 import * as S from './CommentActivity.styled';
-import { formatDate } from '../../../../../util/formatDate';
+import { formatDate } from '../../../../../../util/formatDate';
+import { MyComments } from '../../../../../../models/activityLog';
 
 interface CommentActivityProps {
   list: MyComments;

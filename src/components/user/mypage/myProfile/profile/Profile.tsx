@@ -3,12 +3,12 @@ import BeginnerIcon from '../../../../assets/beginner.svg';
 import 'chart.js/auto';
 import { ChartOptions } from 'chart.js';
 import { Link, useOutletContext } from 'react-router-dom';
-import { ROUTES } from '../../../../constants/routes';
 import { Radar } from 'react-chartjs-2';
-import { UserInfo } from '../../../../models/userInfo';
 import { useEffect } from 'react';
 import MyProfileWrapper from '../MyProfileWrapper';
-import { PROFILE_DEFAULT_MESSAGE } from '../../../../constants/myPageProfile';
+import { UserInfo } from '../../../../../models/userInfo';
+import { PROFILE_DEFAULT_MESSAGE } from '../../../../../constants/user/myPageProfile';
+import { ROUTES } from '../../../../../constants/user/routes';
 
 export default function Profile() {
   const {

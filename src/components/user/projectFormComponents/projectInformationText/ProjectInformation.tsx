@@ -1,11 +1,11 @@
-import * as S from './ProjectInformation.styled';
-import { PROJECT_DATA_GET } from '../../../constants/projectConstants';
-import beginner from '/src/assets/beginner.svg';
+import { PROJECT_DATA_GET } from '../../../../constants/user/projectConstants';
 import {
   ProjectDetailPlus,
   ProjectDetailPlusExtended,
-} from '../../../models/projectDetail';
-import { formatDate } from '../../../util/format';
+} from '../../../../models/projectDetail';
+import { formatDate } from '../../../../util/formatDate';
+import * as S from './ProjectInformation.styled';
+import beginner from '/src/assets/beginner.svg';
 
 interface ProjectInformationProps {
   data: ProjectDetailPlusExtended;

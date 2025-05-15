@@ -1,4 +1,4 @@
-import { NOTIFICATION_FILTER } from '../../../constants/myPageFilter';
+import { NOTIFICATION_FILTER } from '../../../../constants/user/myPageFilter';
 import ContentTab from '../ContentTab';
 
 export default function Notifications() {

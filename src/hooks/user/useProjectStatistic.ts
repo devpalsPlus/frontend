@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getProjectStatistic } from '../api/projectLists.api';
 import { useEffect, useState } from 'react';
+import { getProjectStatistic } from '../../api/projectLists.api';
 
 interface ProjectStatDataReset {
   label: string;
