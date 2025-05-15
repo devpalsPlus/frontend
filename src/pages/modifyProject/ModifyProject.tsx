@@ -6,13 +6,13 @@ import Input from '../../components/projectFormComponents/inputComponent/InputCo
 import { CreateProjectFormValues, FormData } from '../../models/createProject';
 import { useParams } from 'react-router-dom';
 import ProjectInformationInput from '../../components/projectFormComponents/projectInformationInput/ProjectInformationInput';
-import { createProjectScheme } from '../createProject/CreateProject';
 import { useEffect } from 'react';
 import { formatDate } from '../../util/format';
 import { useModal } from '../../hooks/useModal';
 import Modal from '../../components/common/modal/Modal';
 import useGetProjectData from '../../hooks/useGetProjectData';
 import useUpdateProject from '../../hooks/ProjectHooks/useUpdateProject';
+import { createProjectScheme } from '../../constants/projectConstants';
 
 const ModifyProject = () => {
   const { projectId } = useParams();
