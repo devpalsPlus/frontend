@@ -1,5 +1,5 @@
 import { useLocation, useParams } from 'react-router-dom';
-import { useGetNoticeDetail } from '../../../hooks/useGetNoticeDetail';
+import { useGetNoticeDetail } from '../../../../hooks/user/useGetNoticeDetail';
 import * as S from './NoticeDetailBundle.styled';
 import NoticeDetailBottom from './bottom/NoticeDetailBottom';
 import NoticeDetailContent from './content/NoticeDetailContent';

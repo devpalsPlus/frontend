@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { putReply } from '../../api/reply.api';
+import { putReply } from '../../../api/reply.api';
 import { ProjectReplyList } from '../../queries/user/keys';
 
 const usePatchReply = (

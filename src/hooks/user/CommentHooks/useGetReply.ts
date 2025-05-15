@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { ProjectReplyList } from '../../queries/user/keys';
-import { getReply } from '../../api/reply.api';
+import { getReply } from '../../../api/reply.api';
 
 const useGetReply = (projectId: number, commentId: number) => {
   const { data, isLoading, isFetching, isError } = useQuery({

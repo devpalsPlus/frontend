@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getChartData } from '../api/chart.api';
+import { getChartData } from '../../api/chart.api';
 import { ChartDataList } from '../queries/user/keys';
 
 const useChartData = () => {

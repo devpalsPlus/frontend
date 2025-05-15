@@ -1,15 +1,15 @@
 import * as S from './CommentInput.styled';
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import { useMyProfileInfo } from '../../../hooks/useMyInfo';
-import { formatImgPath } from '../../../util/formatImgPath';
+import { useMyProfileInfo } from '../../../../hooks/user/useMyInfo';
+import { formatImgPath } from '../../../../util/formatImgPath';
 import DefaultImg from '../../../assets/defaultImg.png';
-import Avatar from '../../common/avatar/Avatar';
+import Avatar from '../../../common/avatar/Avatar';
 import { useForm } from 'react-hook-form';
-import useInputFocus from '../../../hooks/useInputFocus';
-import usePostReply from '../../../hooks/CommentHooks/usePostReply';
-import usePatchReply from '../../../hooks/CommentHooks/usePatchReply';
-import usePostComment from '../../../hooks/CommentHooks/usePostComment';
-import usePutComment from '../../../hooks/CommentHooks/usePutComment';
+import useInputFocus from '../../../../hooks/user/useInputFocus';
+import usePostReply from '../../../../hooks/user/CommentHooks/usePostReply';
+import usePatchReply from '../../../../hooks/user/CommentHooks/usePatchReply';
+import usePostComment from '../../../../hooks/user/CommentHooks/usePostComment';
+import usePutComment from '../../../../hooks/user/CommentHooks/usePutComment';
 
 type FormValue = {
   commentInput: string;

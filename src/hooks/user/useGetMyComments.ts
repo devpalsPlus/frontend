@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getMyComments } from '../api/activityLog.api';
-import useAuthStore from '../store/authStore';
+import { getMyComments } from '../../api/activityLog.api';
+import useAuthStore from '../../store/authStore';
 import { ActivityLog } from '../queries/user/keys';
 
 export const useGetMyComments = () => {

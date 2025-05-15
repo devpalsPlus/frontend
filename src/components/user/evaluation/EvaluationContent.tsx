@@ -1,8 +1,8 @@
 import * as S from './EvaluationContent.styled';
-import ScrollPreventor from '../common/modal/ScrollPreventor';
-import useEvaluationStep from '../../hooks/evaluationHooks/useEvaluationStep';
-import { MemberList } from '../../models/evaluation';
-import { optionLabels, questions } from '../../constants/evaluation';
+import ScrollPreventor from '../../common/modal/ScrollPreventor';
+import useEvaluationStep from '../../../hooks/user/evaluationHooks/useEvaluationStep';
+import { MemberList } from '../../../models/evaluation';
+import { optionLabels, questions } from '../../../constants/user/evaluation';
 interface EvaluationContentProps {
   projectId: number;
   projectName: string;

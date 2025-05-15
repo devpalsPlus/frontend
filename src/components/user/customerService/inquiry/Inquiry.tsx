@@ -3,15 +3,15 @@ import {
   INQUIRY_CATEGORY,
   INQUIRY_MESSAGE,
   My_INQUIRIES_MESSAGE,
-} from '../../../constants/customerService';
+} from '../../../../constants/user/customerService';
 import * as S from './Inquiry.styled';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import React, { useEffect, useState } from 'react';
-import type { InquiryFormData } from '../../../models/inquiry';
-import { usePostInquiry } from '../../../hooks/usePostInquiry';
+import type { InquiryFormData } from '../../../../models/inquiry';
+import { usePostInquiry } from '../../../../hooks/user/usePostInquiry';
 import { useLocation } from 'react-router-dom';
-import { useModal } from '../../../hooks/useModal';
-import Modal from '../../../components/common/modal/Modal';
+import { useModal } from '../../../../hooks/useModal';
+import Modal from '../../../../components/common/modal/Modal';
 
 interface FormStateType {
   category: string;

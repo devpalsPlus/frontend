@@ -1,4 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
+<<<<<<< HEAD
+=======
+import { MemberList } from '../../../models/evaluation';
+import { questions } from '../../../constants/user/evaluation';
+>>>>>>> 4069f4a (chore: 디렉토리 변경에 따른  경로수정)
 import { usePostEvaluation } from './usePostEvaluation';
 import { MemberList } from '../../../models/evaluation';
 import { questions } from '../../../constants/user/evaluation';

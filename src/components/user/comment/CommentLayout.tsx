@@ -1,7 +1,7 @@
 import * as S from './CommentLayout.styled';
 import CommentInput from './commentInput/CommentInput';
-import LoadingSpinner from '../common/loadingSpinner/LoadingSpinner';
-import useGetComment from '../../hooks/CommentHooks/useGetComment';
+import LoadingSpinner from '../../common/loadingSpinner/LoadingSpinner';
+import useGetComment from '../../../hooks/user/CommentHooks/useGetComment';
 import CommentComponentLayout from './commentComponent/CommentComponentLayout';
 
 interface CommentLayoutProps {
