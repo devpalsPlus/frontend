@@ -1,6 +1,6 @@
 import * as S from '../../login/Login.styled';
 import { Link } from 'react-router-dom';
-import Mainlogo from '../../assets/mainlogo.svg';
+import Mainlogo from '../../../assets/mainlogo.svg';
 import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';

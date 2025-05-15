@@ -1,5 +1,5 @@
 import * as S from './Profile.styled';
-import BeginnerIcon from '../../../../assets/beginner.svg';
+import BeginnerIcon from '../../../../../assets/beginner.svg';
 import 'chart.js/auto';
 import { ChartOptions } from 'chart.js';
 import { Link, useOutletContext } from 'react-router-dom';

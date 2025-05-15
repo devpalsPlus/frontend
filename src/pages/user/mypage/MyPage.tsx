@@ -6,7 +6,7 @@ import {
   PencilSquareIcon,
   BellIcon,
 } from '@heroicons/react/24/outline';
-import loadingImg from '../../assets/loadingImg.svg';
+import loadingImg from '../../../assets/loadingImg.svg';
 import { ROUTES } from '../../../constants/user/routes';
 import { useMyProfileInfo } from '../../../hooks/user/useMyInfo';
 import Sidebar from '../../../components/common/sidebar/Sidebar';

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import * as S from './CommentComponent.styled';
-import chat from '../../../../assets/chat.svg';
+import chat from '../../../../../assets/chat.svg';
 import { Link } from 'react-router-dom';
 import CommentInput from '../../commentInput/CommentInput';
 import { CommentType } from '../../../../../models/comment';
