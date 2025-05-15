@@ -1,20 +1,20 @@
 import * as S from './Apply.styled';
-import Input from '../../components/projectFormComponents/inputComponent/InputComponent';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useParams } from 'react-router-dom';
-import { formatDate } from '../../util/format';
-import { ApplySchemeType, joinProject } from '../../models/joinProject';
-import CareersComponent from '../../components/applyComponents/careersComponent/CareersComponent';
-import PhoneComponent from '../../components/applyComponents/phoneComponent/PhoneComponent';
-import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
-import Modal from '../../components/common/modal/Modal';
-import { useModal } from '../../hooks/useModal';
-import useAuthStore from '../../store/authStore';
+import { formatDate } from '../../../util/format';
+import { ApplySchemeType, joinProject } from '../../../models/joinProject';
+import { useModal } from '../../../hooks/useModal';
+import useGetProjectData from '../../../hooks/user/useGetProjectData';
+import useApplyProject from '../../../hooks/user/ProjectHooks/useApplyProject';
+import useAuthStore from '../../../store/authStore';
+import { ApplyScheme } from '../../../constants/user/projectConstants';
 import { useEffect } from 'react';
-import useGetProjectData from '../../hooks/useGetProjectData';
-import useApplyProject from '../../hooks/ProjectHooks/useApplyProject';
-import { ApplyScheme } from '../../constants/projectConstants';
+import Modal from '../../../components/common/modal/Modal';
+import LoadingSpinner from '../../../components/common/loadingSpinner/LoadingSpinner';
+import PhoneComponent from '../../../components/user/applyComponents/phoneComponent/PhoneComponent';
+import CareersComponent from '../../../components/user/applyComponents/careersComponent/CareersComponent';
+import Input from '../../../components/user/projectFormComponents/inputComponent/InputComponent';
 
 const Apply = () => {
   const { projectId } = useParams();

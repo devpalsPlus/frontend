@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { UseFormSetValue } from 'react-hook-form';
-import { CreateProjectFormValues } from '../../models/createProject';
-import { PositionTag, SkillTag } from '../../models/tags';
-
+import { CreateProjectFormValues } from '../../../models/createProject';
+import { PositionTag, SkillTag } from '../../../models/tags';
 interface useTagSelectorsProps {
   apiTagData?: SkillTag[] | PositionTag[] | number;
   setValue: UseFormSetValue<CreateProjectFormValues>;

@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { useGetFAQ } from '../../../hooks/useGetFAQ';
 import * as S from './FAQ.styled';
-import { SearchKeyword } from '../../../models/customerService';
-import Spinner from '../../../components/mypage/Spinner';
-import CustomerServiceHeader from '../../../components/customerService/CustomerServiceHeader';
-import FAQContent from '../../../components/customerService/faq/FAQContent';
-import NoResult from '../../../components/common/noResult/NoResult';
-import ContentBorder from '../../../components/common/contentBorder/ContentBorder';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { SearchKeyword } from '../../../../models/customerService';
+import { useGetFAQ } from '../../../../hooks/user/useGetFAQ';
+import { Spinner } from '../../../../components/common/loadingSpinner/LoadingSpinner.styled';
+import CustomerServiceHeader from '../../../../components/user/customerService/CustomerServiceHeader';
+import FAQContent from '../../../../components/user/customerService/faq/FAQContent';
+import ContentBorder from '../../../../components/common/contentBorder/ContentBorder';
+import NoResult from '../../../../components/common/noResult/NoResult';
 
 export default function FAQ() {
   const [keyword, setKeyword] = useState<SearchKeyword>({ keyword: '' });

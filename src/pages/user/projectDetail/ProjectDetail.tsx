@@ -1,20 +1,20 @@
 import { ScrollRestoration, useNavigate, useParams } from 'react-router-dom';
-import ProjectInformation from '../../components/projectFormComponents/projectInformationText/ProjectInformation';
 import * as S from './ProjectDetail.styled';
-import { formatDate } from '../../util/format';
-import MarkdownEditorView from '../../components/projectFormComponents/editor/MarkdownEditorView';
 import { EyeIcon } from '@heroicons/react/24/outline';
-import useAuthStore from '../../store/authStore';
-import { ROUTES } from '../../constants/routes';
-import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
-import Modal from '../../components/common/modal/Modal';
-import { useModal } from '../../hooks/useModal';
-import { MODAL_MESSAGE } from '../../constants/modalMessage';
 import { useEffect } from 'react';
-import CommentLayout from '../../components/comment/CommentLayout';
-import Avatar from '../../components/common/avatar/Avatar';
-import Button from '../../components/common/Button/Button';
-import useGetProjectData from '../../hooks/useGetProjectData';
+import { useModal } from '../../../hooks/useModal';
+import useGetProjectData from '../../../hooks/user/useGetProjectData';
+import useAuthStore from '../../../store/authStore';
+import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
+import LoadingSpinner from '../../../components/common/loadingSpinner/LoadingSpinner';
+import Modal from '../../../components/common/modal/Modal';
+import { ROUTES } from '../../../constants/user/routes';
+import Avatar from '../../../components/common/avatar/Avatar';
+import { formatDate } from '../../../util/formatDate';
+import ProjectInformation from '../../../components/user/projectFormComponents/projectInformationText/ProjectInformation';
+import MarkdownEditorView from '../../../components/user/projectFormComponents/editor/MarkdownEditorView';
+import Button from '../../../components/common/Button/Button';
+import CommentLayout from '../../../components/user/comment/CommentLayout';
 
 const ProjectDetail = () => {
   const { projectId } = useParams();

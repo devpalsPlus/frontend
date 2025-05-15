@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../../../../constants/routes';
-import { useMyAppliedStatusList } from '../../../../hooks/useMyInfo';
-import NoContent from '../../../common/noContent/NoContent';
 import * as S from './AppliedProjects.styled';
 import Spinner from '../../Spinner';
 import AppliedProjectsStatus from './appliedProjectsStatus/AppliedProjectsStatus';
+import NoContent from '../../../../common/noContent/NoContent';
+import { useMyAppliedStatusList } from '../../../../../hooks/user/useMyInfo';
+import { ROUTES } from '../../../../../constants/user/routes';
 
 export default function AppliedProjects() {
   const { myAppliedStatusListData, isLoading } = useMyAppliedStatusList();

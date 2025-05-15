@@ -1,7 +1,7 @@
+import Title from '../../../../components/common/title/Title';
+import CardList from '../../../../components/user/manageProjects/CardList';
+import { useManagedProjects } from '../../../../hooks/user/useManagedProjects';
 import * as S from './MyProjectList.styled';
-import Title from '../../../components/common/title/Title';
-import CardList from '../../../components/manageProjects/CardList';
-import { useManagedProjects } from '../../../hooks/useManagedProjects';
 
 const MyProjectList = () => {
   const { managedProjects } = useManagedProjects();

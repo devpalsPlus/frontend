@@ -1,25 +1,21 @@
 import { useParams } from 'react-router-dom';
-
 import * as S from './MyProjectVolunteer.styled';
-import Sidebar from '../../../components/common/sidebar/Sidebar';
-import InfoCard from '../../../components/common/infoCard/InfoCard';
-import ApplicantList from '../../../components/manageProjects/applicantList/ApplicantList';
-import ApplicantInfo from '../../../components/manageProjects/applicantInfo/ApplicantInfo';
-
-import useGetProjectData from '../../../hooks/useGetProjectData';
-import { useApllicantList } from '../../../hooks/useApllicantList';
-
-import { applicantsMenuItems } from '../../../constants/sidebarItems';
-import { useApplicantInfo } from '../../../hooks/useApplicantInfo';
-import PassNonPassButton from '../../../components/manageProjects/applicantList/PassNonPassButton';
-import { usePassNonPassMutation } from '../../../hooks/usePassNonPassMutation';
-import NoContent from '../../../components/common/noContent/NoContent';
-
 import MainLogo from '../../../assets/mainlogo.svg';
-import Modal from '../../../components/common/modal/Modal';
-import { useModal } from '../../../hooks/useModal';
-import ProjectHeader from '../../../components/manageProjects/ProjectHeader';
 import { useMemo } from 'react';
+import useGetProjectData from '../../../../hooks/user/useGetProjectData';
+import { useModal } from '../../../../hooks/useModal';
+import { usePassNonPassMutation } from '../../../../hooks/user/usePassNonPassMutation';
+import { applicantsMenuItems } from '../../../../constants/sidebarItems';
+import { useApllicantList } from '../../../../hooks/user/useApllicantList';
+import { useApplicantInfo } from '../../../../hooks/user/useApplicantInfo';
+import Sidebar from '../../../../components/common/sidebar/Sidebar';
+import InfoCard from '../../../../components/common/infoCard/InfoCard';
+import ProjectHeader from '../../../../components/user/manageProjects/ProjectHeader';
+import ApplicantList from '../../../../components/user/manageProjects/applicantList/ApplicantList';
+import PassNonPassButton from '../../../../components/user/manageProjects/applicantList/PassNonPassButton';
+import ApplicantInfo from '../../../../components/user/manageProjects/applicantInfo/ApplicantInfo';
+import NoContent from '../../../../components/common/noContent/NoContent';
+import Modal from '../../../../components/common/modal/Modal';
 
 const MyProjectVolunteer = () => {
   const { projectId } = useParams();

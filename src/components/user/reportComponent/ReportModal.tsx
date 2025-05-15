@@ -1,10 +1,10 @@
+import { postReport } from '../../../api/report.api';
+import { reasons } from '../../../constants/user/reportConstants';
+import Avatar from '../../common/avatar/Avatar';
+import Button from '../../common/Button/Button';
+import ScrollPreventor from '../../common/modal/ScrollPreventor';
 import * as S from './ReportModal.styled';
-import Avatar from '../common/avatar/Avatar';
 import { useRef, useState } from 'react';
-import { postReport } from '../../api/report.api';
-import { reasons } from '../../constants/reportConstants';
-import Button from '../common/Button/Button';
-import ScrollPreventor from '../common/modal/ScrollPreventor';
 
 interface ReportModalProps {
   reportTitle: { userImg: string; userName: string } | string;

@@ -1,22 +1,21 @@
 import * as S from './MyProjectVolunteersPass.styled';
-import Sidebar from '../../../components/common/sidebar/Sidebar';
 import { useParams } from 'react-router-dom';
-import { applicantsMenuItems } from '../../../constants/sidebarItems';
-import InfoCard from '../../../components/common/infoCard/InfoCard';
 import MainLogo from '../../../assets/mainlogo.svg';
-import { usePassNonPassList } from '../../../hooks/usePassNonPassList';
-import useGetProjectData from '../../../hooks/useGetProjectData';
-import ProjectHeader from '../../../components/manageProjects/ProjectHeader';
-import PassNonPassList from '../../../components/manageProjects/passNonPassList/PassNonPassList';
-import NoContent from '../../../components/common/noContent/NoContent';
-import SendResultButton from '../../../components/manageProjects/passNonPassList/SendResultButton';
-import { useSendResultMutation } from '../../../hooks/useSendResultMutation';
-import { useModal } from '../../../hooks/useModal';
-import Modal from '../../../components/common/modal/Modal';
-import { usePassNonPassMutation } from '../../../hooks/usePassNonPassMutation';
 import { Suspense, useMemo } from 'react';
-import LoadingSpinner from '../../../components/common/loadingSpinner/LoadingSpinner';
-
+import useGetProjectData from '../../../../hooks/user/useGetProjectData';
+import { usePassNonPassList } from '../../../../hooks/user/usePassNonPassList';
+import { useModal } from '../../../../hooks/useModal';
+import { useSendResultMutation } from '../../../../hooks/user/useSendResultMutation';
+import { usePassNonPassMutation } from '../../../../hooks/user/usePassNonPassMutation';
+import { applicantsMenuItems } from '../../../../constants/sidebarItems';
+import Sidebar from '../../../../components/common/sidebar/Sidebar';
+import LoadingSpinner from '../../../../components/common/loadingSpinner/LoadingSpinner';
+import InfoCard from '../../../../components/common/infoCard/InfoCard';
+import ProjectHeader from '../../../../components/user/manageProjects/ProjectHeader';
+import SendResultButton from '../../../../components/user/manageProjects/passNonPassList/SendResultButton';
+import PassNonPassList from '../../../../components/user/manageProjects/passNonPassList/PassNonPassList';
+import NoContent from '../../../../components/common/noContent/NoContent';
+import Modal from '../../../../components/common/modal/Modal';
 const MyProjectVolunteersPass = () => {
   const { projectId } = useParams();
   const { data: projectData } = useGetProjectData(Number(projectId));

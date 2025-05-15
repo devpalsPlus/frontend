@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useMyJoinedProjectList } from '../../../hooks/useMyInfo';
 import * as S from './MyJoinProjects.styled';
 import Project from './Project';
-import { ROUTES } from '../../../constants/routes';
-import NoContent from '../../common/noContent/NoContent';
 import Spinner from '../Spinner';
 import ScrollWrapper from '../ScrollWrapper';
+import { useMyJoinedProjectList } from '../../../../hooks/user/useMyInfo';
+import { ROUTES } from '../../../../constants/user/routes';
+import NoContent from '../../../common/noContent/NoContent';
 
 const MyJoinProjects = () => {
   const { myJoinedProjectListData, isLoading } = useMyJoinedProjectList();

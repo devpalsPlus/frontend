@@ -1,11 +1,11 @@
 import { Link, useOutletContext } from 'react-router-dom';
-import useAlarmList from '../../../../hooks/useAlarmList';
-import NoContent from '../../../common/noContent/NoContent';
 import * as S from './All.styled';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { useAlarmDelete } from '../../../../hooks/useAlarmDelete';
-import { useAlarmPatch } from '../../../../hooks/useAlarmPatch';
 import Spinner from '../../Spinner';
+import { useAlarmDelete } from '../../../../../hooks/user/useAlarmDelete';
+import { useAlarmPatch } from '../../../../../hooks/user/useAlarmPatch';
+import useAlarmList from '../../../../../hooks/user/useAlarmList';
+import NoContent from '../../../../common/noContent/NoContent';
 
 export default function All() {
   const { alarmListData, isLoading } = useAlarmList();

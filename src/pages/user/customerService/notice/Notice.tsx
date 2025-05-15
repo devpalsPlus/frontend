@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import CustomerServiceHeader from '../../../components/customerService/CustomerServiceHeader';
-import Spinner from '../../../components/mypage/Spinner';
-import { useGetNotice } from '../../../hooks/useGetNotice';
 import * as S from './Notice.styled';
-import type { NoticeSearch } from '../../../models/customerService';
-import NoResult from '../../../components/common/noResult/NoResult';
-import NoticeList from '../../../components/customerService/notice/NoticeList';
-import { ROUTES } from '../../../constants/routes';
-import Pagination from '../../../components/common/pagination/Pagination';
-import ContentBorder from '../../../components/common/contentBorder/ContentBorder';
+import { NoticeSearch } from '../../../../models/customerService';
+import { useGetNotice } from '../../../../hooks/user/useGetNotice';
+import { Spinner } from '../../../../components/common/loadingSpinner/LoadingSpinner.styled';
+import CustomerServiceHeader from '../../../../components/user/customerService/CustomerServiceHeader';
+import ContentBorder from '../../../../components/common/contentBorder/ContentBorder';
+import { ROUTES } from '../../../../constants/user/routes';
+import NoticeList from '../../../../components/user/customerService/notice/NoticeList';
+import NoResult from '../../../../components/common/noResult/NoResult';
+import Pagination from '../../../../components/common/pagination/Pagination';
 
 export default function Notice() {
   const [keyword, setKeyword] = useState<NoticeSearch>({

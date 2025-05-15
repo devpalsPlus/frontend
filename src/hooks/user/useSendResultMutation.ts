@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { patchSendResult } from '../api/myProjectList.api';
-import { MODAL_MESSAGE } from '../constants/modalMessage';
 import { managedProjectKey } from '../queries/user/keys';
+import { patchSendResult } from '../../api/myProjectList.api';
+import { MODAL_MESSAGE } from '../../constants/user/modalMessage';
 
 export const useSendResultMutation = (
   projectId: number,

@@ -1,6 +1,6 @@
-import { useGetMyInquiries } from '../../../../hooks/useGetMyInquiries';
-import ContentBorder from '../../../common/contentBorder/ContentBorder';
-import NoContent from '../../../common/noContent/NoContent';
+import { useGetMyInquiries } from '../../../../../hooks/user/useGetMyInquiries';
+import ContentBorder from '../../../../common/contentBorder/ContentBorder';
+import NoContent from '../../../../common/noContent/NoContent';
 import Spinner from '../../Spinner';
 import * as S from './Inquiries.styled';
 import Inquiry from './inquiry/Inquiry';

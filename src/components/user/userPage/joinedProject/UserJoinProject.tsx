@@ -1,10 +1,10 @@
 import { Link, useParams } from 'react-router-dom';
-import { useUserJoinedProjectList } from '../../../hooks/useUserInfo';
 import * as S from '../../mypage/joinedProject/MyJoinProjects.styled';
 import Spinner from '../../mypage/Spinner';
-import { ROUTES } from '../../../constants/routes';
 import Project from '../../mypage/joinedProject/Project';
-import NoContent from '../../common/noContent/NoContent';
+import { useUserJoinedProjectList } from '../../../../hooks/user/useUserInfo';
+import { ROUTES } from '../../../../constants/user/routes';
+import NoContent from '../../../common/noContent/NoContent';
 
 const UserJoinProject = () => {
   const { userId } = useParams();

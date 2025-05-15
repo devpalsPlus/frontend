@@ -1,9 +1,8 @@
+import Banner from '../../../components/user/home/banner/Banner';
+import ProjectCardLists from '../../../components/user/home/projectCardLists/ProjectCardLists';
+import ProjectStats from '../../../components/user/home/projectStats/ProjectStats';
+import SearchFiltering from '../../../components/user/home/searchFiltering/SearchFiltering';
 import * as S from './Home.styled';
-import Banner from '../../components/home/banner/Banner';
-import ProjectStats from '../../components/home/projectStats/ProjectStats';
-import SearchFiltering from '../../components/home/searchFiltering/SearchFiltering';
-import ProjectCardLists from '../../components/home/projectCardLists/ProjectCardLists';
-
 const Home = () => {
   return (
     <S.Container>

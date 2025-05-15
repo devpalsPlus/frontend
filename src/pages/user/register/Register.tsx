@@ -1,25 +1,25 @@
-import * as S from '../login/Login.styled';
+import * as S from '../../login/Login.styled';
 import { Link } from 'react-router-dom';
 import Mainlogo from '../../assets/mainlogo.svg';
-import Title from '../../components/common/title/Title';
 import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React, { useState } from 'react';
-import InputText from '../../components/auth/InputText';
 import {
   EnvelopeIcon,
   KeyIcon,
   FaceSmileIcon,
 } from '@heroicons/react/24/outline';
-import useEmailVerification from '../../hooks/useEmailVerification';
-import Button from '../../components/common/Button/Button';
-import { ERROR_MESSAGES } from '../../constants/authConstants';
-import { useAuth } from '../../hooks/useAuth';
-import useNickNameVerification from '../../hooks/useNicknameVerification';
-import { ROUTES } from '../../constants/routes';
-import { useModal } from '../../hooks/useModal';
-import Modal from '../../components/common/modal/Modal';
+import { ERROR_MESSAGES } from '../../../constants/user/authConstants';
+import { useAuth } from '../../../hooks/useAuth';
+import { useModal } from '../../../hooks/useModal';
+import useEmailVerification from '../../../hooks/user/useEmailVerification';
+import useNickNameVerification from '../../../hooks/user/useNicknameVerification';
+import { ROUTES } from '../../../constants/user/routes';
+import Title from '../../../components/common/title/Title';
+import InputText from '../../../components/user/auth/InputText';
+import Button from '../../../components/common/Button/Button';
+import Modal from '../../../components/common/modal/Modal';
 
 const registerSchema = z
   .object({

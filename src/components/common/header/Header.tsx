@@ -5,8 +5,6 @@ import DropDown from '../dropDown/DropDown';
 import Avatar from '../avatar/Avatar';
 import { useAuth } from '../../../hooks/useAuth';
 import useAuthStore from '../../../store/authStore';
-import { ROUTES } from '../../../constants/routes';
-import { useMyProfileInfo } from '../../../hooks/useMyInfo';
 import DefaultImg from '../../../assets/defaultImg.png';
 import { UserCircleIcon } from '@heroicons/react/24/outline';
 import loadingImg from '../../../assets/loadingImg.svg';
@@ -19,6 +17,8 @@ import bellLogined from '../../../assets/bellLogined.svg';
 import useNotification from '../../../hooks/useNotification';
 import { useEffect } from 'react';
 import { testLiveAlarm } from '../../../api/alarm.api';
+import { useMyProfileInfo } from '../../../hooks/user/useMyInfo';
+import { ROUTES } from '../../../constants/user/routes';
 
 function Header() {
   const location = useLocation();

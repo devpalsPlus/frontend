@@ -2,17 +2,20 @@ import * as S from './ModifyProject.styled';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Input from '../../components/projectFormComponents/inputComponent/InputComponent';
-import { CreateProjectFormValues, FormData } from '../../models/createProject';
 import { useParams } from 'react-router-dom';
-import ProjectInformationInput from '../../components/projectFormComponents/projectInformationInput/ProjectInformationInput';
 import { useEffect } from 'react';
-import { formatDate } from '../../util/format';
-import { useModal } from '../../hooks/useModal';
-import Modal from '../../components/common/modal/Modal';
-import useGetProjectData from '../../hooks/useGetProjectData';
-import useUpdateProject from '../../hooks/ProjectHooks/useUpdateProject';
-import { createProjectScheme } from '../../constants/projectConstants';
+import { useModal } from '../../../hooks/useModal';
+import useGetProjectData from '../../../hooks/user/useGetProjectData';
+import useUpdateProject from '../../../hooks/user/ProjectHooks/useUpdateProject';
+import {
+  CreateProjectFormValues,
+  FormData,
+} from '../../../models/createProject';
+import { createProjectScheme } from '../../../constants/user/projectConstants';
+import { formatDate } from '../../../util/formatDate';
+import Modal from '../../../components/common/modal/Modal';
+import Input from '../../../components/user/projectFormComponents/inputComponent/InputComponent';
+import ProjectInformationInput from '../../../components/user/projectFormComponents/projectInformationInput/ProjectInformationInput';
 
 const ModifyProject = () => {
   const { projectId } = useParams();

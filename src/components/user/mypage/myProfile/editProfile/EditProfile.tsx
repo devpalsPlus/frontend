@@ -1,21 +1,21 @@
 import * as S from './editProfile.styled';
-import Button from '../../../common/Button/Button';
 import OptionBox from './../OptionBox';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
-import { useEditMyProfileInfo } from '../../../../hooks/useMyInfo';
-import { useSearchFilteringSkillTag } from '../../../../hooks/useSearchFilteringSkillTag';
 import { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import TextareaAutosize from 'react-textarea-autosize';
-import useNickNameVerification from '../../../../hooks/useNicknameVerification';
 import InputText from '../../../auth/InputText';
-import { ERROR_MESSAGES } from '../../../../constants/authConstants';
 import { z } from 'zod';
 import { SquaresPlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import { ROUTES } from '../../../../constants/routes';
-import { UserInfo } from '../../../../models/userInfo';
 import MyProfileWrapper from '../MyProfileWrapper';
+import { UserInfo } from '../../../../../models/userInfo';
+import { useSearchFilteringSkillTag } from '../../../../../hooks/user/useSearchFilteringSkillTag';
+import { useEditMyProfileInfo } from '../../../../../hooks/user/useMyInfo';
+import useNickNameVerification from '../../../../../hooks/user/useNicknameVerification';
+import { ROUTES } from '../../../../../constants/user/routes';
+import Button from '../../../../common/Button/Button';
+import { ERROR_MESSAGES } from '../../../../../constants/user/authConstants';
 
 type ProfileFormData = z.infer<typeof profileSchema>;
 

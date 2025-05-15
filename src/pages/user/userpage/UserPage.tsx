@@ -1,11 +1,11 @@
 import { Outlet, useParams } from 'react-router-dom';
-import Sidebar from '../../components/common/sidebar/Sidebar';
 import * as S from '../mypage/MyPage.styled';
 import { DocumentTextIcon, UserIcon } from '@heroicons/react/24/outline';
-import { ROUTES } from '../../constants/routes';
-import { useUserProfileInfo } from '../../hooks/useUserInfo';
 import loadingImg from '../../assets/loadingImg.svg';
-import ScrollWrapper from '../../components/mypage/ScrollWrapper';
+import { ROUTES } from '../../../constants/user/routes';
+import { useUserProfileInfo } from '../../../hooks/user/useUserInfo';
+import Sidebar from '../../../components/common/sidebar/Sidebar';
+import ScrollWrapper from '../../../components/user/mypage/ScrollWrapper';
 
 const UserPage = () => {
   const { userId } = useParams();

@@ -2,14 +2,17 @@ import * as S from './CreateProject.styled';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Input from '../../components/projectFormComponents/inputComponent/InputComponent';
-import { CreateProjectFormValues, FormData } from '../../models/createProject';
-import ProjectInformationInput from '../../components/projectFormComponents/projectInformationInput/ProjectInformationInput';
-import Modal from '../../components/common/modal/Modal';
-import { useModal } from '../../hooks/useModal';
-import LoadingSpinner from '../../components/common/loadingSpinner/LoadingSpinner';
-import useCreateProject from '../../hooks/ProjectHooks/useCreateProject';
-import { createProjectScheme } from '../../constants/projectConstants';
+import {
+  CreateProjectFormValues,
+  FormData,
+} from '../../../models/createProject';
+import { createProjectScheme } from '../../../constants/user/projectConstants';
+import { useModal } from '../../../hooks/useModal';
+import useCreateProject from '../../../hooks/user/ProjectHooks/useCreateProject';
+import LoadingSpinner from '../../../components/common/loadingSpinner/LoadingSpinner';
+import Input from '../../../components/user/projectFormComponents/inputComponent/InputComponent';
+import ProjectInformationInput from '../../../components/user/projectFormComponents/projectInformationInput/ProjectInformationInput';
+import Modal from '../../../components/common/modal/Modal';
 
 const CreateProject = () => {
   const {

@@ -1,8 +1,8 @@
 import React from 'react';
 import * as S from './Notification.styled';
 import NotificationItem from './NotificationItem/NotificationItem';
-import useAlarmList from '../../../../hooks/useAlarmList';
 import LoadingSpinner from '../../loadingSpinner/LoadingSpinner';
+import useAlarmList from '../../../../hooks/user/useAlarmList';
 
 const Notification = () => {
   const { alarmListData: AlarmData, isLoading, isFetching } = useAlarmList();

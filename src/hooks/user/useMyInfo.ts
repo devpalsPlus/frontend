@@ -1,22 +1,19 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { myInfoKey, ProjectListKey } from '../queries/user/keys';
+import useAuthStore from '../../store/authStore';
+import { ApiUserInfo, EditMyInfo } from '../../models/userInfo';
 import {
   getMyAppliedStatusList,
   getMyInfo,
   getMyJoinedProjectList,
   patchMyProfileImg,
   putMyInfo,
-} from '../api/mypage.api';
-import type { ApiUserInfo, EditMyInfo } from '../models/userInfo';
-import { AxiosError } from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../constants/routes';
-import { myInfoKey, ProjectListKey } from '../queries/user/keys';
-import useAuthStore from '../store/authStore';
-import type {
-  ApiAppliedProject,
-  ApiJoinedProject,
-} from '../models/userProject';
-import { MODAL_MESSAGE } from '../constants/modalMessage';
+} from '../../api/mypage.api';
+import { MODAL_MESSAGE } from '../../constants/user/modalMessage';
+import { ROUTES } from '../../constants/user/routes';
+import { ApiAppliedProject, ApiJoinedProject } from '../../models/userProject';
 
 export const useMyProfileInfo = () => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);

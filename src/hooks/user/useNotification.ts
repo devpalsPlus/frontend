@@ -1,10 +1,10 @@
 import { EventSourcePolyfill, NativeEventSource } from 'event-source-polyfill';
 import { useEffect, useRef, useState } from 'react';
-import useAuthStore, { getTokens } from '../store/authStore';
 import { useQueryClient } from '@tanstack/react-query';
 import { AlarmList } from '../queries/user/keys';
-import { useToast } from './useToast';
-import { AlarmLive } from '../models/alarm';
+import { AlarmLive } from '../../models/alarm';
+import useAuthStore, { getTokens } from '../../store/authStore';
+import { useToast } from '../useToast';
 
 const useNotification = () => {
   const [signalData, setSignalData] = useState<AlarmLive | null>(null);

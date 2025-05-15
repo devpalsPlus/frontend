@@ -1,8 +1,8 @@
+import useTagSelectors from '../../../../../hooks/user/ProjectHooks/useTagSelectors';
+import { CreateProjectFormValues } from '../../../../../models/createProject';
+import { PositionTag } from '../../../../../models/tags';
 import * as S from './PositionComponent.styled';
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
-import { PositionTag } from '../../../../models/tags';
-import useTagSelectors from '../../../../hooks/ProjectHooks/useTagSelectors';
-import { CreateProjectFormValues } from '../../../../models/createProject';
 
 interface MozipCategoryComponentProps {
   errors: FieldErrors;

@@ -1,11 +1,11 @@
+import { useQueries } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import { MethodTag, PositionTag, SkillTag } from '../../models/tags';
 import {
   getMethodTag,
   getPositionTag,
-} from './../api/projectSearchFiltering.api';
-import { useQueries } from '@tanstack/react-query';
-import { getSkillTag } from '../api/projectSearchFiltering.api';
-import { useEffect, useState } from 'react';
-import type { MethodTag, PositionTag, SkillTag } from '../models/tags';
+  getSkillTag,
+} from '../../api/projectSearchFiltering.api';
 
 export const useSearchFilteringSkillTag = () => {
   const [skillTagsData, setSkillTagsData] = useState<SkillTag[]>([]);

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import { MemberList } from '../../models/evaluation';
-import { questions } from '../../constants/evaluation';
 import { usePostEvaluation } from './usePostEvaluation';
+import { MemberList } from '../../../models/evaluation';
+import { questions } from '../../../constants/user/evaluation';
 
 interface useEvaluationStepProps {
   projectId: number;

@@ -1,15 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import { postLogin, postResetPassword, postSignUp } from '../api/auth.api';
-import { registerFormValues } from '../pages/register/Register';
-import { changePasswordFormValues } from '../pages/changePassword/ChangePassword';
 import { loginFormValues } from '../pages/login/Login';
 import useAuthStore from '../store/authStore';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { LoginResponse } from '../models/auth';
-import { ROUTES } from '../constants/routes';
 import { AxiosError } from 'axios';
 import { myInfoKey } from './queries/user/keys';
-import { MODAL_MESSAGE } from '../constants/modalMessage';
+import { MODAL_MESSAGE } from '../constants/user/modalMessage';
+import { ROUTES } from '../constants/user/routes';
+import { registerFormValues } from '../pages/user/register/Register';
+import { changePasswordFormValues } from '../pages/user/changePassword/ChangePassword';
 
 export const useAuth = (handleModalOpen: (message: string) => void) => {
   const navigate = useNavigate();

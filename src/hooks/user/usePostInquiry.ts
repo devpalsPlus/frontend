@@ -1,10 +1,10 @@
 import { ActivityLog } from '../queries/user/keys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postInquiry } from '../api/inquiry.api';
 import { AxiosError } from 'axios';
-import useAuthStore from '../store/authStore';
 import { useNavigate } from 'react-router-dom';
-import { INQUIRY_MESSAGE } from '../constants/customerService';
+import useAuthStore from '../../store/authStore';
+import { postInquiry } from '../../api/inquiry.api';
+import { INQUIRY_MESSAGE } from '../../constants/user/customerService';
 
 export const usePostInquiry = (
   handleModalOpen: (message: string) => void,
