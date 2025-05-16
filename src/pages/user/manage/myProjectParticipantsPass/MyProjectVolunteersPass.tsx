@@ -59,7 +59,7 @@ const MyProjectVolunteersPass = () => {
                 )}
               </S.ListWrapper>
               <S.ListWrapper>
-                <S.Title>불 합격자 리스트</S.Title>
+                <S.Title>불합격자 리스트</S.Title>
                 {projectData && (
                   <PassNonPassList
                     handleStatus={handlePassNonPassStatus}

@@ -27,7 +27,7 @@ function PassNonPassList({
         <PassNonPassItem
           key={data.userId}
           handleUserInfo={handleUserInfo}
-          hanldeStatus={handleStatus}
+          handleStatus={handleStatus}
           userInfo={data}
           projectData={projectData}
         />

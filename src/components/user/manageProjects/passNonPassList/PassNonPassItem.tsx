@@ -7,25 +7,26 @@ import * as S from './PassNonPassItem.styled';
 interface PassNonPassItemProps {
   userInfo: ApplicantInfo;
   projectData: ProjectDetailPlusExtended;
-  hanldeStatus: ({ status, userId }: useMutationParams) => void;
+  handleStatus: ({ status, userId }: useMutationParams) => void;
   handleUserInfo: (userId: number) => void;
 }
 
 function PassNonPassItem({
   userInfo,
-  hanldeStatus,
+  handleStatus,
   projectData,
   handleUserInfo,
 }: PassNonPassItemProps) {
   return (
-    <S.ItemWrapper>
-      <S.NickName onClick={() => handleUserInfo(userInfo.userId)}>
-        {userInfo.user.nickname}
-      </S.NickName>
+    <S.ItemWrapper
+      onClick={() => handleUserInfo(userInfo.userId)}
+      aria-label='지원자 이력보기'
+    >
+      <S.NickName>{userInfo.user.nickname}</S.NickName>
       <DeleteButton
         disabled={projectData.isDone}
         onClick={() =>
-          hanldeStatus({ status: 'WAITING', userId: userInfo.userId })
+          handleStatus({ status: 'WAITING', userId: userInfo.userId })
         }
       />
     </S.ItemWrapper>

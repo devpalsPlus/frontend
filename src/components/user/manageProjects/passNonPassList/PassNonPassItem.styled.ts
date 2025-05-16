@@ -6,6 +6,7 @@ export const ItemWrapper = styled.li`
   align-items: center;
   width: 100%;
   padding: 1rem;
+  cursor: pointer;
   border: 1px solid ${({ theme }) => theme.color.grey};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   transition: all 0.2s ease;
@@ -23,7 +24,6 @@ export const ItemWrapper = styled.li`
 export const NickName = styled.p`
   font-size: ${({ theme }) => theme.heading.small.fontSize};
   font-weight: 400;
-  cursor: pointer;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     font-size: ${({ theme }) => theme.heading.small.tabletFontSize};

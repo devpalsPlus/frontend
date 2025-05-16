@@ -12,9 +12,9 @@ import Pagination from '../../../common/pagination/Pagination';
 export type Display = 'flex' | 'grid';
 
 export default function ProjectCardLists() {
+  const [display, setDisplay] = useState<Display>('grid');
   const { projectListsData, isLoading } = useProjectCardListData();
   const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
-  const [display, setDisplay] = useState<Display>('grid');
 
   const handleChangePagination = (page: number) => {
     handleUpdateFilters('page', page);
@@ -23,11 +23,11 @@ export default function ProjectCardLists() {
   useEffect(() => {
     if (projectListsData && Boolean(projectListsData.projects.length)) {
       setDisplay('grid');
+      console.log(projectListsData);
       return;
     }
     setDisplay('flex');
     console.log(searchFilters);
-    console.log(projectListsData);
   }, [projectListsData, searchFilters]);
 
   if (isLoading)
