@@ -23,12 +23,10 @@ export default function ProjectCardLists() {
   useEffect(() => {
     if (projectListsData && Boolean(projectListsData.projects.length)) {
       setDisplay('grid');
-      console.log(projectListsData);
       return;
     }
     setDisplay('flex');
-    console.log(searchFilters);
-  }, [projectListsData, searchFilters]);
+  }, [projectListsData]);
 
   if (isLoading)
     return (
