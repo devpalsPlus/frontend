@@ -1,4 +1,4 @@
-import { ROUTES } from './routes';
+import { ROUTES } from './user/routes';
 import {
   UserGroupIcon,
   PencilSquareIcon,

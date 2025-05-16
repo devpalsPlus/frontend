@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import PositionButton from '../../../common/positionButton/PositionButton';
+import PositionButton from '../../../../common/positionButton/PositionButton';
 
 export const Container = styled.div``;
 

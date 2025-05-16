@@ -26,7 +26,9 @@ export default function ProjectCardLists() {
       return;
     }
     setDisplay('flex');
-  }, [projectListsData]);
+    console.log(searchFilters);
+    console.log(projectListsData);
+  }, [projectListsData, searchFilters]);
 
   if (isLoading)
     return (

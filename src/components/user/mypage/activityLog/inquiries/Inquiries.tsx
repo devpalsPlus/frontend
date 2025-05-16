@@ -9,7 +9,7 @@ export default function Inquiries() {
   const { myInquiriesData, isLoading } = useGetMyInquiries();
 
   if (isLoading) {
-    return <Spinner size='50px' color='#3e5879' />;
+    return <Spinner />;
   }
 
   if (!myInquiriesData || myInquiriesData?.length === 0)

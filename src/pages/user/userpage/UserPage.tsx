@@ -1,11 +1,10 @@
 import { Outlet, useParams } from 'react-router-dom';
 import * as S from '../mypage/MyPage.styled';
 import { DocumentTextIcon, UserIcon } from '@heroicons/react/24/outline';
-import loadingImg from '../../assets/loadingImg.svg';
+import loadingImg from '../../../assets/loadingImg.svg';
 import { ROUTES } from '../../../constants/user/routes';
 import { useUserProfileInfo } from '../../../hooks/user/useUserInfo';
 import Sidebar from '../../../components/common/sidebar/Sidebar';
-import ScrollWrapper from '../../../components/user/mypage/ScrollWrapper';
 
 const UserPage = () => {
   const { userId } = useParams();
@@ -17,7 +16,7 @@ const UserPage = () => {
       icon: <UserIcon width='20px' height='20px' />,
     },
     {
-      label: '참여한 프로젝트 현황',
+      label: '참여 프로젝트',
       path: `${ROUTES.userpage}/${userId}/${ROUTES.userJoinedProject}`,
       icon: <DocumentTextIcon width='20px' height='20px' />,
     },
@@ -32,9 +31,7 @@ const UserPage = () => {
         profileImage={isLoading ? loadingImg : userData?.profileImg}
       />
       <S.Wrapper>
-        <ScrollWrapper>
-          <Outlet />
-        </ScrollWrapper>
+        <Outlet />
       </S.Wrapper>
     </S.Container>
   );

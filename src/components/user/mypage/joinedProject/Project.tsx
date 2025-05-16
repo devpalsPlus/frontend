@@ -1,5 +1,5 @@
 import * as S from './Project.styled';
-import BeginnerIcon from '../../../assets/beginner.svg';
+import BeginnerIcon from '../../../../assets/beginner.svg';
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
 import { JoinedProject } from '../../../../models/userProject';
 

@@ -2,17 +2,20 @@ import { Link } from 'react-router-dom';
 import * as S from './Login.styled';
 import Mainlogo from '../../assets/mainlogo.svg';
 import { EnvelopeIcon, KeyIcon } from '@heroicons/react/24/outline';
-import InputText from '../../components/auth/InputText';
 import Title from '../../components/common/title/Title';
 import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '../../components/common/Button/Button';
-import { ERROR_MESSAGES, OAUTH_PROVIDERS } from '../../constants/authConstants';
+import {
+  ERROR_MESSAGES,
+  OAUTH_PROVIDERS,
+} from '../../constants/user/authConstants';
 import { useAuth } from '../../hooks/useAuth';
-import { ROUTES } from '../../constants/routes';
+import { ROUTES } from '../../constants/user/routes';
 import { useModal } from '../../hooks/useModal';
 import Modal from '../../components/common/modal/Modal';
+import InputText from '../../components/user/auth/InputText';
 
 const loginSchema = z.object({
   email: z

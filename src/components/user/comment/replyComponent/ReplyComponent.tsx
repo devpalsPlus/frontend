@@ -1,10 +1,10 @@
 import Avatar from '../../../common/avatar/Avatar';
 import * as S from './ReplyComponent.styled';
-import DefaultImg from '../../../assets/defaultImg.png';
+import DefaultImg from '../../../../assets/defaultImg.png';
 import useComment from '../../../../hooks/user/CommentHooks/useComment';
 import DropDown from '../../../common/dropDown/DropDown';
 import DropDownItem from '../DropDownItem';
-import dropdownButton from '../../../assets/dropdownButton.svg';
+import dropdownButton from '../../../../assets/dropdownButton.svg';
 import CommentInput from '../commentInput/CommentInput';
 import useGetReply from '../../../../hooks/user/CommentHooks/useGetReply';
 import LoadingSpinner from '../../../common/loadingSpinner/LoadingSpinner';

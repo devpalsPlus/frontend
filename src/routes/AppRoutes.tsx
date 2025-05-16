@@ -319,6 +319,7 @@ const AppRoutes = () => {
         {
           path: '',
           element: <UserProfile />,
+          children: [{ index: true, element: <Profile /> }],
         },
         {
           path: ROUTES.userJoinedProject,

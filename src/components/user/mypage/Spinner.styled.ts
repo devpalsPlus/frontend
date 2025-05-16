@@ -10,7 +10,7 @@ const spin = keyframes`
   }
 `;
 
-export const SpinnerWrapper = styled.div`
+export const SpinnerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,4 +24,12 @@ export const Circle = styled.div<{ $size: string; $color: string }>`
   border-top: 5px solid transparent;
   border-radius: 50%;
   animation: ${spin} 1s linear infinite;
+`;
+
+export const SpinnerWrapperStyled = styled.div`
+  width: 100vw;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

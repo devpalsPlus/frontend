@@ -1,6 +1,6 @@
 import PositionButton from '../../../../common/positionButton/PositionButton';
 import * as S from './CardList.styled';
-import beginner from '../../../../assets/beginner.svg';
+import beginner from '../../../../../assets/beginner.svg';
 import Avatar from '../../../../common/avatar/Avatar';
 import { EyeIcon } from '@heroicons/react/24/outline';
 import type { ProjectList } from '../../../../../models/mainProjectLists';

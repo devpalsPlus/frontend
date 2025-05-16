@@ -7,9 +7,9 @@ interface SpinnerProps {
 
 const Spinner = ({ size = '50px', color = '#3e5879' }: SpinnerProps) => {
   return (
-    <S.SpinnerWrapper>
+    <S.SpinnerContainer>
       <S.Circle $size={size} $color={color} />
-    </S.SpinnerWrapper>
+    </S.SpinnerContainer>
   );
 };
 

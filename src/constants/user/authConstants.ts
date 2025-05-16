@@ -1,7 +1,7 @@
-import kakao from '../assets/kakao.svg';
-import naver from '../assets/naver.svg';
-import google from '../assets/google.svg';
-import github from '../assets/github.svg';
+import kakao from '../../assets/kakao.svg';
+import naver from '../../assets/naver.svg';
+import google from '../../assets/google.svg';
+import github from '../../assets/github.svg';
 
 export const AUTH_MESSAGE = {
   isNotToken: '로그인 토큰이 존재하지 않습니다.',

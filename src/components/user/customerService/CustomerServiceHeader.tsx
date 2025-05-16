@@ -1,7 +1,4 @@
-import {
-  ArrowUturnLeftIcon,
-  MagnifyingGlassIcon,
-} from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import * as S from './CustomerServiceHeader.styled';
 import MovedInquiredLink from './MoveInquiredLink';
 import { Outlet } from 'react-router-dom';
@@ -55,7 +52,7 @@ export default function CustomerServiceHeader({
                 aria-label='show all result'
                 onClick={handleReset}
               >
-                <ArrowUturnLeftIcon />
+                <XCircleIcon />
               </S.UturnButton>
             )}
             <S.SearchButton type='submit' aria-label='search'>

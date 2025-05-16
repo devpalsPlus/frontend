@@ -1,10 +1,10 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import * as S from './Filtering.styled';
 import { useEffect, useState } from 'react';
-import type { MethodTag, PositionTag } from '../../../../../models/tags';
-import { useOutsideClick } from '../../../../../hooks/useOutsideClick';
-import { useSaveSearchFiltering } from '../../../../../hooks/useSaveSearchFiltering';
-import { SEARCH_FILTERING_DEFAULT_VALUE } from '../../../../../constants/homeConstants';
+import type { MethodTag, PositionTag } from '../../../../../../models/tags';
+import { useOutsideClick } from '../../../../../../hooks/user/useOutsideClick';
+import { useSaveSearchFiltering } from '../../../../../../hooks/user/useSaveSearchFiltering';
+import { SEARCH_FILTERING_DEFAULT_VALUE } from '../../../../../../constants/user/homeConstants';
 
 interface FilteringProps {
   selects: PositionTag[] | MethodTag[];

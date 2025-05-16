@@ -1,13 +1,13 @@
 import Filtering from './filtering/Filtering';
 import * as S from './FilteringContents.styled';
-import beginner from '../../../../assets/beginner.svg';
+import beginner from '../../../../../assets/beginner.svg';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import SkillTagBox from '../../../../common/skillTagBox/SkillTagBox';
 import React, { useState } from 'react';
 import { useSearchFilteringSkillTag } from '../../../../../hooks/user/useSearchFilteringSkillTag';
 import { useOutsideClick } from '../../../../../hooks/user/useOutsideClick';
 import { useSaveSearchFiltering } from '../../../../../hooks/user/useSaveSearchFiltering';
 import { SEARCH_FILTERING_DEFAULT_VALUE } from '../../../../../constants/user/homeConstants';
+import SkillTagBox from '../../../../common/skillTagBox/SkillTagBox';
 
 export default function FilteringContents() {
   const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
