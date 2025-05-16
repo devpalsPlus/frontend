@@ -46,7 +46,8 @@ export const StepContainer = styled.div`
 
 export const StepButton = styled.div`
   display: flex;
-  justify-content: right;
+  justify-content: left;
+  padding-top: 20px;
   gap: 20px;
 `;
 

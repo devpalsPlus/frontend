@@ -1,10 +1,10 @@
 import PositionButton from '../../../../common/positionButton/PositionButton';
 import * as S from './CardList.styled';
-import beginner from '../../../../../assets/beginner.svg';
-import Avatar from '../../../../common/avatar/Avatar';
 import { EyeIcon } from '@heroicons/react/24/outline';
 import type { ProjectList } from '../../../../../models/mainProjectLists';
 import { formatDate } from '../../../../../util/formatDate';
+import Avatar from '../../../../common/avatar/Avatar';
+import beginner from '../../../../../assets/beginner.svg';
 
 interface CardListProps {
   list: ProjectList;
@@ -28,6 +28,7 @@ export default function CardList({ list }: CardListProps) {
               <PositionButton
                 position={tag.name}
                 key={`cardListPosition-${tag.id}`}
+                fontSize
               />
             ))}
           {list.positions.length > listPositionTag.length && (

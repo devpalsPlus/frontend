@@ -36,7 +36,9 @@ const MozipCategoryComponent = ({
             <S.PositionButtonFeat
               position={position.name}
               isSelected={isSelected}
-              onClick={(e) => handleClick(e, idx + 1)}
+              onClick={(e: React.MouseEvent<HTMLElement>) =>
+                handleClick(e, idx + 1)
+              }
               key={idx + 1}
               isHover={true}
               fontSize={true}

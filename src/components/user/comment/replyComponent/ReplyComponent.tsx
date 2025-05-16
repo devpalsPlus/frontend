@@ -4,12 +4,12 @@ import DefaultImg from '../../../../assets/defaultImg.png';
 import useComment from '../../../../hooks/user/CommentHooks/useComment';
 import DropDown from '../../../common/dropDown/DropDown';
 import DropDownItem from '../DropDownItem';
-import dropdownButton from '../../../../assets/dropdownButton.svg';
 import CommentInput from '../commentInput/CommentInput';
 import useGetReply from '../../../../hooks/user/CommentHooks/useGetReply';
 import LoadingSpinner from '../../../common/loadingSpinner/LoadingSpinner';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/user/routes';
+import dropdownButton from '../../../../assets/dropdownButton.svg';
 
 interface ReplyComponentProps {
   projectId: number;

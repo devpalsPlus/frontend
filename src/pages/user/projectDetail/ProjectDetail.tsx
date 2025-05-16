@@ -41,6 +41,14 @@ const ProjectDetail = () => {
     );
   }
 
+  if (!userData) {
+    return (
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
+    );
+  }
+
   const handleApplyClick = () => {
     navigate(`${ROUTES.apply}/${id}`);
   };
@@ -49,6 +57,9 @@ const ProjectDetail = () => {
     const userId = data.user.id;
     navigate(`/user/${userId}`);
   };
+
+  console.log(data);
+  console.log(userData.id);
 
   return (
     <S.Container>
@@ -80,7 +91,9 @@ const ProjectDetail = () => {
           </S.ProjectDescription>
         </S.Content>
         <S.ApplyButtonContainer>
-          {userData?.id !== data.user.id ? (
+          {userData.id !== data.user.id &&
+          !data.acceptedIds.includes(userData.id) &&
+          !data.applicantIds.includes(userData.id) ? (
             <Button
               size='primary'
               schema='primary'
@@ -95,7 +108,7 @@ const ProjectDetail = () => {
         <CommentLayout
           projectId={data.id}
           createrId={data.user.id}
-          loginUserId={userData?.id}
+          loginUserId={userData.id}
         />
       </S.Wrapper>
     </S.Container>

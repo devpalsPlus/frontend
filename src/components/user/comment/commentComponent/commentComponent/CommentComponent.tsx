@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
 import * as S from './CommentComponent.styled';
-import Avatar from '../../../../common/avatar/Avatar';
-import { CommentType } from '../../../../../models/comment';
 import chat from '../../../../../assets/chat.svg';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../../../../../constants/user/routes';
 import CommentInput from '../../commentInput/CommentInput';
+import type { CommentType } from '../../../../../models/comment';
+import { ROUTES } from '../../../../../constants/user/routes';
+import Avatar from '../../../../common/avatar/Avatar';
 
 interface CommentComponentProps {
   item: CommentType;

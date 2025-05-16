@@ -15,11 +15,13 @@ export const ModalWrapper = ({
       event.stopPropagation();
     }
   },
+  onConfirm = () => {},
   children,
 }: PropsWithChildren<Partial<ModalContextProps>>) => {
   const modalProps: ModalContextProps = {
     isOpen,
     onClose,
+    onConfirm,
   };
 
   return <ModalProvider value={modalProps}>{children}</ModalProvider>;

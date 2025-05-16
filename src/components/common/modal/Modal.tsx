@@ -8,12 +8,14 @@ import { ModalWrapper } from './ModalWrapper';
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onConfirm?: () => void;
 }
 
 const Modal = ({
   children,
   isOpen,
   onClose,
+  onConfirm,
 }: PropsWithChildren<ModalProps>) => {
   const modalRefs = useOutsideClick(() => handleClose());
   const [isFadingOut, setIsFadingOut] = useState(false);
@@ -24,7 +26,11 @@ const Modal = ({
 
   const handleAnimationEnd = () => {
     if (isFadingOut) {
-      onClose();
+      if (onConfirm) {
+        onConfirm();
+      } else {
+        onClose();
+      }
       setIsFadingOut(false);
     }
   };
@@ -33,7 +39,7 @@ const Modal = ({
 
   return createPortal(
     <ScrollPreventor>
-      <ModalWrapper isOpen={isOpen} onClose={onClose}>
+      <ModalWrapper isOpen={isOpen} onClose={onClose} onConfirm={onConfirm}>
         <ModalWrapper.Container
           $fadeOut={isFadingOut}
           onAnimationEnd={handleAnimationEnd}

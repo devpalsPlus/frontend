@@ -29,22 +29,24 @@ const CareersComponent = ({ control }: CareersComponentProps) => {
           ))}
         </S.CareerContainer>
       ))}
-      <S.AddButton
-        size='primary'
-        schema='primary'
-        radius='primary'
-        type='button'
-        onClick={() =>
-          appendCareers({
-            name: '',
-            periodStart: '',
-            periodEnd: '',
-            role: '',
-          })
-        }
-      >
-        추가
-      </S.AddButton>
+      <S.ButtonWrapper>
+        <S.AddButton
+          size='primary'
+          schema='primary'
+          radius='primary'
+          type='button'
+          onClick={() =>
+            appendCareers({
+              name: '',
+              periodStart: '',
+              periodEnd: '',
+              role: '',
+            })
+          }
+        >
+          추가
+        </S.AddButton>
+      </S.ButtonWrapper>
     </S.Container>
   );
 };

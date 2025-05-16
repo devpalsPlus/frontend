@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { ApplyScheme } from '../constants/projectConstants';
+import { ApplyScheme } from '../constants/user/projectConstants';
 
 export type ApplySchemeType = z.infer<typeof ApplyScheme>;
 
