@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
+import { ROUTES } from '../../constants/user/routes';
 import * as S from './Login.styled';
 import { Spinner } from '../../components/common/loadingSpinner/LoadingSpinner.styled';
 import Modal from '../../components/common/modal/Modal';
 import { useModal } from '../../hooks/useModal';
-import { ROUTES } from '../../constants/user/routes';
 import { AUTH_MESSAGE } from '../../constants/user/authConstants';
 
 function LoginSuccess() {

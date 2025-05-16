@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import ProjectImg from '../../assets/project.svg';
+import ProjectImg from '../../../assets/project.svg';
 import * as S from './About.styled';
 
 interface ProjectProps {

@@ -11,8 +11,9 @@ const MyJoinProjects = () => {
   const { myJoinedProjectListData, isLoading } = useMyJoinedProjectList();
 
   if (isLoading) {
-    return <Spinner size='50px' color='#3e5879' />;
+    return <Spinner />;
   }
+
   if (!myJoinedProjectListData) return;
 
   return (

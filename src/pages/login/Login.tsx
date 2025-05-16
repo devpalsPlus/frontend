@@ -7,15 +7,15 @@ import { z } from 'zod';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '../../components/common/Button/Button';
-import { useAuth } from '../../hooks/useAuth';
-import { useModal } from '../../hooks/useModal';
-import Modal from '../../components/common/modal/Modal';
 import {
   ERROR_MESSAGES,
   OAUTH_PROVIDERS,
 } from '../../constants/user/authConstants';
-import InputText from '../../components/user/auth/InputText';
+import { useAuth } from '../../hooks/useAuth';
 import { ROUTES } from '../../constants/user/routes';
+import { useModal } from '../../hooks/useModal';
+import Modal from '../../components/common/modal/Modal';
+import InputText from '../../components/user/auth/InputText';
 
 const loginSchema = z.object({
   email: z

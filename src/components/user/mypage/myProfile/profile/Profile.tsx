@@ -2,7 +2,7 @@ import * as S from './Profile.styled';
 import BeginnerIcon from '../../../../../assets/beginner.svg';
 import 'chart.js/auto';
 import { ChartOptions } from 'chart.js';
-import { Link, useOutletContext } from 'react-router-dom';
+import { Link, useLocation, useOutletContext } from 'react-router-dom';
 import { Radar } from 'react-chartjs-2';
 import { useEffect } from 'react';
 import MyProfileWrapper from '../MyProfileWrapper';
@@ -12,10 +12,12 @@ import { ROUTES } from '../../../../../constants/user/routes';
 
 export default function Profile() {
   const {
-    myData,
+    userInfoData,
     scrollRef,
-  }: { myData: UserInfo; scrollRef: React.RefObject<HTMLDivElement> } =
+  }: { userInfoData: UserInfo; scrollRef: React.RefObject<HTMLDivElement> } =
     useOutletContext();
+  const location = useLocation();
+  const myPage = location.pathname.includes('mypage') ? true : false;
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -28,8 +30,8 @@ export default function Profile() {
       <MyProfileWrapper>
         <label>닉네임</label>
         <S.NicknameBackgroundBox>
-          <S.NicknameSpan>{myData.nickname}</S.NicknameSpan>
-          {Boolean(myData.beginner) && (
+          <S.NicknameSpan>{userInfoData.nickname}</S.NicknameSpan>
+          {Boolean(userInfoData.beginner) && (
             <S.IconWrapper>
               <img src={BeginnerIcon} alt='beginner' width='20' height='20' />
             </S.IconWrapper>
@@ -40,8 +42,8 @@ export default function Profile() {
         <label>스킬셋</label>
         <S.BackgroundBox>
           <ul>
-            {myData.skills.length > 0 ? (
-              myData.skills.map((skill) => (
+            {userInfoData.skills.length > 0 ? (
+              userInfoData.skills.map((skill) => (
                 <li key={skill.name}>
                   <img
                     src={skill.img}
@@ -53,7 +55,11 @@ export default function Profile() {
                 </li>
               ))
             ) : (
-              <li>{PROFILE_DEFAULT_MESSAGE.skills}</li>
+              <li>
+                {myPage
+                  ? PROFILE_DEFAULT_MESSAGE.mySkills
+                  : PROFILE_DEFAULT_MESSAGE.skills}
+              </li>
             )}
           </ul>
         </S.BackgroundBox>
@@ -61,31 +67,40 @@ export default function Profile() {
       <MyProfileWrapper>
         <label>포지션</label>
         <S.BackgroundWrapper>
-          <div>
-            {myData.skills.length > 0 ? (
-              myData.positions
+          <S.PositionWrapper>
+            {userInfoData.skills.length > 0 ? (
+              userInfoData.positions
                 .sort()
                 .map((position) => (
                   <span key={position.name}>{position.name}</span>
                 ))
             ) : (
-              <span>{PROFILE_DEFAULT_MESSAGE.positions}</span>
+              <span>
+                {myPage
+                  ? PROFILE_DEFAULT_MESSAGE.myPositions
+                  : PROFILE_DEFAULT_MESSAGE.positions}
+              </span>
             )}
-          </div>
+          </S.PositionWrapper>
         </S.BackgroundWrapper>
       </MyProfileWrapper>
       <MyProfileWrapper>
         <label>깃허브</label>
         <S.BackgroundWrapper>
-          <span>{myData.github || PROFILE_DEFAULT_MESSAGE.github}</span>
+          <span>
+            {userInfoData.github ||
+              (myPage
+                ? PROFILE_DEFAULT_MESSAGE.myGithub
+                : PROFILE_DEFAULT_MESSAGE.github)}
+          </span>
         </S.BackgroundWrapper>
       </MyProfileWrapper>
       <S.List>
         <label>경&nbsp;&nbsp;&nbsp;력</label>
         <S.BackgroundBox>
           <ul>
-            {myData.career?.length ? (
-              myData.career?.map((career) => (
+            {userInfoData.career?.length ? (
+              userInfoData.career?.map((career) => (
                 <li key={`-${career.name}`}>
                   <span>{career.name}</span> ({career.periodStart.slice(0, 10)}{' '}
                   ~ {career.periodEnd.slice(0, 10)}{' '}
@@ -93,7 +108,11 @@ export default function Profile() {
                 </li>
               ))
             ) : (
-              <li>{PROFILE_DEFAULT_MESSAGE.career}</li>
+              <li>
+                {myPage
+                  ? PROFILE_DEFAULT_MESSAGE.myCareer
+                  : PROFILE_DEFAULT_MESSAGE.career}
+              </li>
             )}
           </ul>
         </S.BackgroundBox>
@@ -101,7 +120,12 @@ export default function Profile() {
       <S.List>
         <label>소&nbsp;&nbsp;&nbsp;개</label>
         <S.BackgroundBox>
-          <S.Bio>{myData.bio || PROFILE_DEFAULT_MESSAGE.bio}</S.Bio>
+          <S.Bio>
+            {userInfoData.bio ||
+              (myPage
+                ? PROFILE_DEFAULT_MESSAGE.myBio
+                : PROFILE_DEFAULT_MESSAGE.bio)}
+          </S.Bio>
         </S.BackgroundBox>
       </S.List>
 
@@ -123,7 +147,7 @@ export default function Profile() {
           </S.ChartBox>
         </S.BackgroundBox>
       </S.List>
-      <Link to={ROUTES.changePw}>비밀번호 재설정</Link>
+      {myPage && <Link to={ROUTES.changePw}>비밀번호 재설정</Link>}
     </S.ProfileSection>
   );
 }

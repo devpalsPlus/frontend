@@ -1,7 +1,7 @@
 import { EyeIcon } from '@heroicons/react/24/outline';
 import { formatDate } from '../../../../../util/format';
 import * as S from './NoticeDetailContent.styled';
-import logo from '../../../../assets/mainlogo.svg';
+import logo from '../../../../../assets/mainlogo.svg';
 import ContentBorder from '../../../../common/contentBorder/ContentBorder';
 
 interface NoticeDetailContentProps {

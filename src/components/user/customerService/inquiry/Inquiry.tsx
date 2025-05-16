@@ -65,6 +65,8 @@ export default function Inquiry() {
       content: form.content.trim() !== '',
     };
 
+    console.log(isCategoryOpen);
+
     if (!isValid.category) {
       return handleModalOpen(INQUIRY_MESSAGE.selectCategory);
     }
@@ -188,12 +190,7 @@ export default function Inquiry() {
             </S.InquiryFileWrapper>
           </S.ContentWrapper>
           <S.SendButtonWrapper>
-            <S.SendButton
-              type='submit'
-              onClick={() => setIsCategoryOpen((prev) => !prev)}
-            >
-              제출
-            </S.SendButton>
+            <S.SendButton type='submit'>제출</S.SendButton>
           </S.SendButtonWrapper>
         </S.InquiryWrapper>
       </S.InquiryForm>

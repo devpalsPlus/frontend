@@ -3,7 +3,7 @@ import * as S from './CommentComponent.styled';
 import chat from '../../../../../assets/chat.svg';
 import { Link } from 'react-router-dom';
 import CommentInput from '../../commentInput/CommentInput';
-import { CommentType } from '../../../../../models/comment';
+import type { CommentType } from '../../../../../models/comment';
 import { ROUTES } from '../../../../../constants/user/routes';
 import Avatar from '../../../../common/avatar/Avatar';
 

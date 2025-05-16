@@ -36,7 +36,9 @@ const MyProfile = () => {
       </S.FilterWrapper>
       <ScrollWrapper $height='0%' scrollRef={scrollRef}>
         <S.SectionContainer>
-          <Outlet context={{ myData, scrollRef, handleModalOpen }} />
+          <Outlet
+            context={{ userInfoData: myData, scrollRef, handleModalOpen }}
+          />
         </S.SectionContainer>
       </ScrollWrapper>
       <Modal isOpen={isOpen} onClose={handleModalClose}>

@@ -1,5 +1,5 @@
 import * as S from './About.styled';
-import resultImg from '../../assets/result_project.svg';
+import resultImg from '../../../assets/result_project.svg';
 import { forwardRef } from 'react';
 interface ResultProps {
   ref?: React.Ref<HTMLDivElement>;

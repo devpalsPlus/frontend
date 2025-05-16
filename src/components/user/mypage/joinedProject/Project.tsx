@@ -1,6 +1,6 @@
 import * as S from './Project.styled';
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
-import { JoinedProject } from '../../../../models/userProject';
+import type { JoinedProject } from '../../../../models/userProject';
 import beginner from '../../../../assets/beginner.svg';
 
 interface ProjectProps {

@@ -1,8 +1,7 @@
 import styled from 'styled-components';
+import { SpinnerWrapperStyled } from '../../../../components/user/mypage/Spinner.styled';
 
-export const SpinnerWrapper = styled.div`
-  height: 60vh;
-`;
+export const SpinnerWrapper = styled(SpinnerWrapperStyled)``;
 
 export const Container = styled.section`
   margin-top: 2rem;

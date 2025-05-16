@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from 'react';
 import * as S from './DeleteButton.styled';
-import { XCircleIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 interface DeleteButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void;
   disabled: boolean;
@@ -8,8 +8,14 @@ interface DeleteButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 function DeleteButton({ onClick, disabled }: DeleteButtonProps) {
   return (
-    <S.DeleteButton onClick={onClick} disabled={disabled}>
-      <XCircleIcon />
+    <S.DeleteButton
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
+        onClick();
+      }}
+      disabled={disabled}
+    >
+      <XMarkIcon />
     </S.DeleteButton>
   );
 }

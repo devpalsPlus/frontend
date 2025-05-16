@@ -1,5 +1,5 @@
 import * as S from './About.styled';
-import createImg from '../../assets/create.svg';
+import createImg from '../../../assets/create.svg';
 import { forwardRef } from 'react';
 interface CreateProps {
   ref?: React.Ref<HTMLDivElement>;

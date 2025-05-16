@@ -5,7 +5,7 @@ import useComment from '../../../../hooks/user/CommentHooks/useComment';
 import ReplyComponent from '../replyComponent/ReplyComponent';
 import ArrowUp from '../../../../assets/ArrowUp.svg';
 import CommentComponent from './commentComponent/CommentComponent';
-import { CommentType } from '../../../../models/comment';
+import type { CommentType } from '../../../../models/comment';
 import dropdownButton from '../../../../assets/dropdownButton.svg';
 import ArrowDown from '../../../../assets/ArrowDown.svg';
 
