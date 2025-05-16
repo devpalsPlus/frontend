@@ -88,6 +88,10 @@ export const IconWrapper = styled.div`
   border: 1px solid #f0f0f0;
 `;
 
+export const PositionWrapper = styled.div`
+  flex-wrap: wrap;
+`;
+
 export const Bio = styled.p`
   white-space: pre-line;
   word-break: break-word;

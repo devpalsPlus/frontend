@@ -8,5 +8,5 @@ export const PROFILE_DEFAULT_MESSAGE = {
   positions: '선택한 포지션이 없습니다.',
   skills: '선택한 스킬이 없습니다.',
   career: '기록한 경력이 없습니다.',
-  bio: '소개가 없습니다',
+  bio: '소개가 없습니다.',
 };

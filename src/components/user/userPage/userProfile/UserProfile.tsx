@@ -1,5 +1,5 @@
 import * as S from '../../../user/mypage/myProfile/MyProfile.styled';
-import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useUserProfileInfo } from '../../../../hooks/user/useUserInfo';
 import { useModal } from '../../../../hooks/useModal';
 import { useRef } from 'react';

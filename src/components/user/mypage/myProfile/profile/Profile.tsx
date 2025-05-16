@@ -23,8 +23,7 @@ export default function Profile() {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = 0;
     }
-    console.log(userInfoData);
-  }, [scrollRef, userInfoData]);
+  }, [scrollRef]);
 
   return (
     <S.ProfileSection>
@@ -68,7 +67,7 @@ export default function Profile() {
       <MyProfileWrapper>
         <label>포지션</label>
         <S.BackgroundWrapper>
-          <div>
+          <S.PositionWrapper>
             {userInfoData.skills.length > 0 ? (
               userInfoData.positions
                 .sort()
@@ -82,7 +81,7 @@ export default function Profile() {
                   : PROFILE_DEFAULT_MESSAGE.positions}
               </span>
             )}
-          </div>
+          </S.PositionWrapper>
         </S.BackgroundWrapper>
       </MyProfileWrapper>
       <MyProfileWrapper>
