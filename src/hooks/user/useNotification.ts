@@ -2,7 +2,7 @@ import { EventSourcePolyfill, NativeEventSource } from 'event-source-polyfill';
 import { useEffect, useRef, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { AlarmList } from '../queries/user/keys';
-import { AlarmLive } from '../../models/alarm';
+import type { AlarmLive } from '../../models/alarm';
 import useAuthStore, { getTokens } from '../../store/authStore';
 import { useToast } from '../useToast';
 

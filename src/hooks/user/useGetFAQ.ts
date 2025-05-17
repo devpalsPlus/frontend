@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getFAQ } from '../../api/customerService.api';
 import { CustomerService } from '../queries/user/keys';
-import { SearchKeyword } from '../../models/customerService';
+import type { SearchKeyword } from '../../models/customerService';
 
 export const useGetFAQ = (keyword: SearchKeyword) => {
   const { data: faqData, isLoading } = useQuery({

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { AlarmLive } from '../models/alarm';
+import type { AlarmLive } from '../models/alarm';
 
 export interface ToastMessage {
   id: string;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as S from './FAQ.styled';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import { SearchKeyword } from '../../../../models/customerService';
+import type { SearchKeyword } from '../../../../models/customerService';
 import { useGetFAQ } from '../../../../hooks/user/useGetFAQ';
 import { Spinner } from '../../../../components/common/loadingSpinner/LoadingSpinner.styled';
 import CustomerServiceHeader from '../../../../components/user/customerService/CustomerServiceHeader';

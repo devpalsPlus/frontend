@@ -2,7 +2,7 @@ import * as S from './CreateProject.styled';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
+import type {
   CreateProjectFormValues,
   FormData,
 } from '../../../models/createProject';

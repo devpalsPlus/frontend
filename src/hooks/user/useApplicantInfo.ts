@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { applicantKey } from '../queries/user/keys';
 import { useLocation } from 'react-router-dom';
-import { ApiApplicantInfo } from '../../models/applicant';
+import type { ApiApplicantInfo } from '../../models/applicant';
 
 export const useApplicantInfo = (projectId: number) => {
   const [selectedApplicant, setSelectedUser] = useState<number | null>(null);

@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { userInfoKey } from '../queries/user/keys';
 import useAuthStore from '../../store/authStore';
-import { ApiUserInfo } from '../../models/userInfo';
+import type { ApiUserInfo } from '../../models/userInfo';
 import { getUserInfo, getUserJoinedProjectList } from '../../api/userpage.api';
-import { ApiSelectUserProject } from '../../models/userProject';
+import type { ApiSelectUserProject } from '../../models/userProject';
 
 export const useUserProfileInfo = (id: number) => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);

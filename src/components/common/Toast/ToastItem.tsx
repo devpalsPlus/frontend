@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as S from './Toast.styled';
-import { AlarmLive } from '../../../models/alarm';
+import type { AlarmLive } from '../../../models/alarm';
 import { Link } from 'react-router-dom';
 import { routeSelector } from '../../../util/routeSelector';
 import { timeAgo } from '../../../util/timeAgo';

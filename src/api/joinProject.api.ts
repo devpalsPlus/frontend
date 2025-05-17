@@ -1,6 +1,6 @@
-import { FormData } from '../models/createProject';
-import { joinProject } from '../models/joinProject';
-import { ProjectDetailPlusExtended } from '../models/projectDetail';
+import type { FormData } from '../models/createProject';
+import type { joinProject } from '../models/joinProject';
+import type { ProjectDetailPlusExtended } from '../models/projectDetail';
 import { httpClient } from './http.api';
 
 export const getProjectData = async (

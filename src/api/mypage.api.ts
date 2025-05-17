@@ -1,5 +1,12 @@
-import { ApiUserInfo, ApiUserInfoImg, EditMyInfo } from '../models/userInfo';
-import { ApiAppliedProject, ApiJoinedProject } from '../models/userProject';
+import type {
+  ApiUserInfo,
+  ApiUserInfoImg,
+  EditMyInfo,
+} from '../models/userInfo';
+import type {
+  ApiAppliedProject,
+  ApiJoinedProject,
+} from '../models/userProject';
 import { httpClient } from './http.api';
 
 export const getMyInfo = async () => {

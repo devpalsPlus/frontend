@@ -1,7 +1,7 @@
 import * as S from './AvatarList.styled';
 import Avatar from './Avatar';
 import { formatImgPath } from '../../../util/formatImgPath';
-import { SkillTag } from '../../../models/tags';
+import type { SkillTag } from '../../../models/tags';
 export interface AvatarListProps {
   avatars: SkillTag[] | null;
   size?: string;

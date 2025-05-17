@@ -1,4 +1,4 @@
-import { ProjectDetailPlusExtended } from '../../../../models/projectDetail';
+import type { ProjectDetailPlusExtended } from '../../../../models/projectDetail';
 import * as S from './ProjectInformation.styled';
 import beginner from '../../../../assets/beginner.svg';
 import { formatDate } from '../../../../util/formatDate';

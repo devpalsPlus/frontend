@@ -1,5 +1,5 @@
 import * as S from './ApplicantInfo.styled';
-import { ApplicantInfo as MApplicantInfo } from '../../../../models/applicant';
+import type { ApplicantInfo as MApplicantInfo } from '../../../../models/applicant';
 import AvatarList from '../../../common/avatar/AvatarList';
 import { LabelWithContent } from './LabelWithContent';
 import { formatDate } from '../../../../util/format';

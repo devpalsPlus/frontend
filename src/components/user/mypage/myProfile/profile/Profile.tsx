@@ -6,7 +6,7 @@ import { Link, useLocation, useOutletContext } from 'react-router-dom';
 import { Radar } from 'react-chartjs-2';
 import { useEffect } from 'react';
 import MyProfileWrapper from '../MyProfileWrapper';
-import { UserInfo } from '../../../../../models/userInfo';
+import type { UserInfo } from '../../../../../models/userInfo';
 import { PROFILE_DEFAULT_MESSAGE } from '../../../../../constants/user/myPageProfile';
 import { ROUTES } from '../../../../../constants/user/routes';
 

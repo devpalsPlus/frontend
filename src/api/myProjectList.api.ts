@@ -1,4 +1,7 @@
-import { ManagedProject, ApiManagedProjects } from '../models/manageMyProject';
+import type {
+  ManagedProject,
+  ApiManagedProjects,
+} from '../models/manageMyProject';
 import { httpClient } from './http.api';
 
 export const getMyProjectLists = async () => {

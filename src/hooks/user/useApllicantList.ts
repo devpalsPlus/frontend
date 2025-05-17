@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { applicantKey } from '../queries/user/keys';
 import { getApplicantList } from '../../api/applicant.api';
-import { ApiApplicants } from '../../models/applicant';
+import type { ApiApplicants } from '../../models/applicant';
 
 export const useApllicantList = (projectId: number) => {
   const { data, isLoading } = useQuery<ApiApplicants>({

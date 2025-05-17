@@ -1,4 +1,4 @@
-import { apiEvaluatedUser } from '../models/evaluation';
+import type { apiEvaluatedUser } from '../models/evaluation';
 import { httpClient } from './http.api';
 
 export const postEvaluation = async (userEvaluation: apiEvaluatedUser) => {
