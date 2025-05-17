@@ -92,8 +92,8 @@ const ActivityLogInquiries = lazy(
 const UserProfile = lazy(
   () => import('../components/user/userPage/userProfile/UserProfile')
 );
-const UserJoinProject = lazy(
-  () => import('../components/user/userPage/joinedProject/UserJoinProject')
+const UserProjects = lazy(
+  () => import('../components/user/userPage/userProjectList/UserProjectList')
 );
 const ModifyProject = lazy(
   () => import('../pages/user/modifyProject/ModifyProject')
@@ -266,7 +266,7 @@ const AppRoutes = () => {
           ],
         },
         {
-          path: ROUTES.mypageJoinedProjects,
+          path: ROUTES.joinedProjects,
           element: <MyJoinProjects />,
         },
         {
@@ -322,8 +322,12 @@ const AppRoutes = () => {
           children: [{ index: true, element: <Profile /> }],
         },
         {
-          path: ROUTES.userJoinedProject,
-          element: <UserJoinProject />,
+          path: ROUTES.joinedProjects,
+          element: <UserProjects />,
+        },
+        {
+          path: ROUTES.managedProjects,
+          element: <UserProjects />,
         },
       ],
     },

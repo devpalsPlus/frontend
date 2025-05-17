@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
-import * as S from './MyJoinProjects.styled';
-import Project from './Project';
-import Spinner from '../Spinner';
-import ScrollWrapper from '../ScrollWrapper';
-import { useMyJoinedProjectList } from '../../../../hooks/user/useMyInfo';
+import * as S from '../../mypage/joinedProject/MyJoinProjects.styled';
 import { ROUTES } from '../../../../constants/user/routes';
 import NoContent from '../../../common/noContent/NoContent';
+import ScrollWrapper from '../../mypage/ScrollWrapper';
+import Spinner from '../../mypage/Spinner';
+import Project from '../../mypage/joinedProject/Project';
+import { useGetUserProjectList } from '../../../../hooks/user/useGetUserProjectList';
 
-const MyJoinProjects = () => {
-  const { myJoinedProjectListData, isLoading } = useMyJoinedProjectList();
+export default function UserProjects() {
+  const { userProjectData, isLoading, title } = useGetUserProjectList();
 
   if (isLoading) {
     return <Spinner />;
@@ -17,12 +17,12 @@ const MyJoinProjects = () => {
   return (
     <S.Container>
       <S.FilterWrapper>
-        <S.FilterTitle>참여한 프로젝트 리스트</S.FilterTitle>
+        <S.FilterTitle>{title}</S.FilterTitle>
       </S.FilterWrapper>
-      {myJoinedProjectListData && myJoinedProjectListData?.length > 0 ? (
+      {userProjectData && userProjectData.length > 0 ? (
         <ScrollWrapper>
           <S.WrapperProject>
-            {myJoinedProjectListData?.map((project) => (
+            {userProjectData?.map((project) => (
               <Link
                 key={project.id}
                 to={`${ROUTES.projectDetail}/${project.id}`}
@@ -39,6 +39,4 @@ const MyJoinProjects = () => {
       )}
     </S.Container>
   );
-};
-
-export default MyJoinProjects;
+}
