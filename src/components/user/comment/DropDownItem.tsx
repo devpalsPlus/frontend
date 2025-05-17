@@ -42,10 +42,10 @@ const DropDownItem = ({
 
   return (
     <>
+      <S.Item onClick={handleOpenReportModal}>신고하기</S.Item>
       <S.Container>
         {loginUserId === commentUserId && (
           <>
-            <S.Item onClick={handleOpenReportModal}>신고하기</S.Item>
             <S.Item onClick={onEdit}>
               {activateEditMode === commentId ? '수정 취소하기' : '수정하기'}
             </S.Item>
