@@ -16,7 +16,6 @@ export default function UserProjects() {
 
   if (!userProjectData) return;
 
-  console.log(userProjectData);
   return (
     <S.Container>
       <S.FilterWrapper>
