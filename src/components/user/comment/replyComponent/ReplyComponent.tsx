@@ -72,24 +72,26 @@ const ReplyComponent = ({
           )}
         </S.CommentWrapper>
       </S.Wrapper>
-      <DropDown
-        toggleButton={
-          <img src={dropdownButton} onClick={handleDropDownClick} />
-        }
-        comment={true}
-      >
-        <DropDownItem
-          projectId={projectId}
-          commentId={commentId}
-          recommentId={item.id}
-          onEdit={() => onEdit(item.id)}
-          loginUserId={loginUserId}
-          commentUserId={item.user.id}
-          reportTitle={item.content}
-          activateEditMode={activateEditMode}
-          reply={true}
-        />
-      </DropDown>
+      {loginUserId && (
+        <DropDown
+          toggleButton={
+            <img src={dropdownButton} onClick={handleDropDownClick} />
+          }
+          comment={true}
+        >
+          <DropDownItem
+            projectId={projectId}
+            commentId={commentId}
+            recommentId={item.id}
+            onEdit={() => onEdit(item.id)}
+            loginUserId={loginUserId}
+            commentUserId={item.user.id}
+            reportTitle={item.content}
+            activateEditMode={activateEditMode}
+            reply={true}
+          />
+        </DropDown>
+      )}
     </S.Container>
   ));
 };

@@ -51,22 +51,24 @@ const CommentComponentLayout = ({
               projectId={projectId}
               setActivateEditMode={setActivateEditMode}
             />
-            <DropDown
-              toggleButton={
-                <img src={dropdownButton} onClick={handleDropDownClick} />
-              }
-              comment={true}
-            >
-              <DropDownItem
-                projectId={projectId}
-                commentId={item.id}
-                onEdit={() => onEdit(item.id)}
-                loginUserId={loginUserId}
-                commentUserId={item.user.id}
-                reportTitle={item.content}
-                activateEditMode={activateEditMode}
-              />
-            </DropDown>
+            {loginUserId && (
+              <DropDown
+                toggleButton={
+                  <img src={dropdownButton} onClick={handleDropDownClick} />
+                }
+                comment={true}
+              >
+                <DropDownItem
+                  projectId={projectId}
+                  commentId={item.id}
+                  onEdit={() => onEdit(item.id)}
+                  loginUserId={loginUserId}
+                  commentUserId={item.user.id}
+                  reportTitle={item.content}
+                  activateEditMode={activateEditMode}
+                />
+              </DropDown>
+            )}
           </S.CommentContainer>
 
           <S.ReplyContainer>
