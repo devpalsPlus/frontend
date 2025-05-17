@@ -25,22 +25,12 @@ export const useModal = () => {
     handleModalClose();
   }, [onConfirm, handleModalClose]);
 
-  const handleOpenReportModal = () => {
-    setIsOpen(true);
-  };
-
-  const handleCloseReportModal = () => {
-    setIsOpen(false);
-  };
-
   return {
     isOpen,
     message,
     setIsOpen,
     handleModalClose,
     handleModalOpen,
-    handleOpenReportModal,
-    handleCloseReportModal,
     handleConfirm,
   };
 };
