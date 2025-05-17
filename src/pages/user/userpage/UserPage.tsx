@@ -17,7 +17,12 @@ const UserPage = () => {
     },
     {
       label: '참여 프로젝트',
-      path: `${ROUTES.userpage}/${userId}/${ROUTES.userJoinedProject}`,
+      path: `${ROUTES.userpage}/${userId}/${ROUTES.joinedProjects}`,
+      icon: <DocumentTextIcon width='20px' height='20px' />,
+    },
+    {
+      label: '기획 프로젝트',
+      path: `${ROUTES.userpage}/${userId}/${ROUTES.managedProjects}`,
       icon: <DocumentTextIcon width='20px' height='20px' />,
     },
   ];

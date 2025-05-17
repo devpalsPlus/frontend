@@ -25,11 +25,6 @@ export interface ApiAppliedProject extends ApiCommonType {
   data: AppliedProject[] | null;
 }
 
-export interface SelectUserProject {
-  acceptedProjects: JoinedProject[];
-  ownProjects: JoinedProject[];
-}
-
-export interface ApiSelectUserProject extends ApiCommonType {
-  data: SelectUserProject;
+export interface ApiUserProject extends ApiCommonType {
+  data: JoinedProject[];
 }

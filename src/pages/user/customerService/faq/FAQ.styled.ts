@@ -23,11 +23,9 @@ export const ShowMoreFAQWrapper = styled.div``;
 
 export const ShowMoreFAQ = styled.button`
   width: 100%;
-  padding: 1.2rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
   font-weight: bold;
   font-size: 1rem;
 
@@ -37,5 +35,28 @@ export const ShowMoreFAQ = styled.button`
 
   &:hover {
     background: ${({ theme }) => theme.color.lightgrey};
+  }
+`;
+
+export const ShowMoreSpan = styled.span`
+  width: 100%;
+  padding: 1.2rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  &:hover {
+    animation: bounce 0.4s infinite;
   }
 `;

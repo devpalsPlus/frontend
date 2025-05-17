@@ -20,7 +20,7 @@ const MyPage = () => {
     },
     {
       label: '참여 프로젝트',
-      path: `${ROUTES.mypage}/${ROUTES.mypageJoinedProjects}`,
+      path: `${ROUTES.mypage}/${ROUTES.joinedProjects}`,
       icon: <DocumentTextIcon />,
     },
     {

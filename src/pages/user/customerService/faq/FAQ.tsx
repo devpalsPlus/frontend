@@ -57,8 +57,10 @@ export default function FAQ() {
                 type='button'
                 onClick={() => setShowFAQ((prev) => prev + 10)}
               >
-                더보기
-                <ChevronDownIcon />
+                <S.ShowMoreSpan>
+                  더보기
+                  <ChevronDownIcon />
+                </S.ShowMoreSpan>
               </S.ShowMoreFAQ>
               <ContentBorder />
             </>
