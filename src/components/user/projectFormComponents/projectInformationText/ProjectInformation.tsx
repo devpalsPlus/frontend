@@ -1,19 +1,13 @@
-import { PROJECT_DATA_GET } from '../../../../constants/user/projectConstants';
-import {
-  ProjectDetailPlus,
-  ProjectDetailPlusExtended,
-} from '../../../../models/projectDetail';
-import { formatDate } from '../../../../util/formatDate';
+import { ProjectDetailPlusExtended } from '../../../../models/projectDetail';
 import * as S from './ProjectInformation.styled';
 import beginner from '../../../../assets/beginner.svg';
+import { formatDate } from '../../../../util/formatDate';
 
 interface ProjectInformationProps {
   data: ProjectDetailPlusExtended;
 }
 
 const ProjectInformation = ({ data }: ProjectInformationProps) => {
-  data.startDate = formatDate(data.startDate);
-
   return (
     <S.SectionInput>
       <S.InfoRow>
@@ -23,12 +17,20 @@ const ProjectInformation = ({ data }: ProjectInformationProps) => {
         )}
       </S.InfoRow>
 
-      {PROJECT_DATA_GET.map((input, index) => (
-        <S.InfoRow key={index}>
-          <S.InfoLabel>{input.label}</S.InfoLabel>
-          <S.InfoText>{data[input.name as keyof ProjectDetailPlus]}</S.InfoText>
-        </S.InfoRow>
-      ))}
+      <S.InfoRow>
+        <S.InfoLabel>모집 인원</S.InfoLabel>
+        <S.InfoText>{data.totalMember}</S.InfoText>
+      </S.InfoRow>
+
+      <S.InfoRow>
+        <S.InfoLabel>시작 예정</S.InfoLabel>
+        <S.InfoText>{formatDate(data.startDate)}</S.InfoText>
+      </S.InfoRow>
+
+      <S.InfoRow>
+        <S.InfoLabel>예상 기간</S.InfoLabel>
+        <S.InfoText>{data.estimatedPeriod}</S.InfoText>
+      </S.InfoRow>
 
       <S.InfoRow>
         <S.InfoLabel>모집 분야</S.InfoLabel>

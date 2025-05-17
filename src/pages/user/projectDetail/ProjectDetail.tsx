@@ -30,8 +30,7 @@ const ProjectDetail = () => {
     }
   }, [data, handleModalOpen]);
 
-  if (isLoading) return <LoadingSpinner />;
-  if (isFetching) return <LoadingSpinner />;
+  if (isLoading || isFetching) return <LoadingSpinner />;
 
   if (!data) {
     return (
@@ -57,9 +56,6 @@ const ProjectDetail = () => {
     const userId = data.user.id;
     navigate(`/user/${userId}`);
   };
-
-  console.log(data);
-  console.log(userData.id);
 
   return (
     <S.Container>
