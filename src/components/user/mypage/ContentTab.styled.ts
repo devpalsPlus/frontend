@@ -74,7 +74,6 @@ export const WrapperButton = styled.div<{ $height: string }>`
 
 export const FilterContainer = styled.div`
   width: 100%;
-  height: 100%;
   background-color: ${({ theme }) => theme.color.lightgrey};
   border-radius: ${({ theme }) => theme.borderRadius.large};
 `;

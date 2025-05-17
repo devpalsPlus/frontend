@@ -39,7 +39,6 @@ export const WrapperProject = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 2rem;
-  height: 100%;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 1rem;
