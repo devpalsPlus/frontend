@@ -76,6 +76,7 @@ const ReplyComponent = ({
         toggleButton={
           <img src={dropdownButton} onClick={handleDropDownClick} />
         }
+        comment={true}
       >
         <DropDownItem
           projectId={projectId}
