@@ -14,8 +14,6 @@ export default function UserProjects() {
     return <Spinner />;
   }
 
-  if (!userProjectData) return;
-
   return (
     <S.Container>
       <S.FilterWrapper>

@@ -14,8 +14,6 @@ const MyJoinProjects = () => {
     return <Spinner />;
   }
 
-  if (!myJoinedProjectListData) return;
-
   return (
     <S.Container>
       <S.FilterWrapper>
