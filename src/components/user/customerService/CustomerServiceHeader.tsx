@@ -3,6 +3,9 @@ import * as S from './CustomerServiceHeader.styled';
 import MovedInquiredLink from './MoveInquiredLink';
 import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
+import Modal from '../../common/modal/Modal';
+import { useModal } from '../../../hooks/useModal';
+import { MODAL_MESSAGE_CUSTOMER_SERVICE } from '../../../constants/user/customerService';
 
 interface CustomerServiceHeaderProps {
   title: string;
@@ -16,10 +19,15 @@ export default function CustomerServiceHeader({
   onGetKeyword,
 }: CustomerServiceHeaderProps) {
   const [inputValue, setInputValue] = useState<string>('');
+  const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
 
   const handleSubmitKeyword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onGetKeyword(inputValue);
+    if (inputValue.trim() === '') {
+      return handleModalOpen(MODAL_MESSAGE_CUSTOMER_SERVICE.noKeyword);
+    } else {
+      return onGetKeyword(inputValue);
+    }
   };
 
   const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,13 +55,13 @@ export default function CustomerServiceHeader({
           />
           <S.ButtonWrapper>
             {keyword !== '' && (
-              <S.UturnButton
+              <S.XButton
                 type='button'
                 aria-label='show all result'
                 onClick={handleReset}
               >
                 <XCircleIcon />
-              </S.UturnButton>
+              </S.XButton>
             )}
             <S.SearchButton type='submit' aria-label='search'>
               <MagnifyingGlassIcon />
@@ -63,6 +71,9 @@ export default function CustomerServiceHeader({
         <MovedInquiredLink />
       </S.WrapperNav>
       <Outlet />
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.Container>
   );
 }

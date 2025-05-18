@@ -8,6 +8,10 @@ export const INQUIRY_CATEGORY = [
 export const EMPTY_IMAGE =
   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' as const;
 
+export const MODAL_MESSAGE_CUSTOMER_SERVICE = {
+  noKeyword: '검색어를 입력하세요.',
+};
+
 export const My_INQUIRIES_MESSAGE = {
   categoryDefault: '카테고리',
   fileDefault: '선택된 파일이 없습니다.',
