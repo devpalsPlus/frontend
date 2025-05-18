@@ -71,34 +71,24 @@ const CommentComponentLayout = ({
             )}
           </S.CommentContainer>
 
-          <S.ReplyContainer>
-            {item.recommentCount !== 0 && (
-              <S.ShowReply onClick={() => handleShowReplyClick(item.id)}>
-                <S.ShowReplyButton>
-                  <S.Icon>
-                    {isShowReply ? (
-                      <img src={ArrowUp} />
-                    ) : (
-                      <img src={ArrowDown} />
-                    )}
-                  </S.Icon>
-                  <S.ReplyContent>
-                    {item.recommentCount}개 답글 확인
-                  </S.ReplyContent>
-                </S.ShowReplyButton>
-              </S.ShowReply>
-            )}
+          {item.recommentCount !== 0 && (
+            <S.ShowReply onClick={() => handleShowReplyClick(item.id)}>
+              <S.Icon>
+                {isShowReply ? <img src={ArrowUp} /> : <img src={ArrowDown} />}
+              </S.Icon>
+              <S.ReplyContent>{item.recommentCount}개 답글 확인</S.ReplyContent>
+            </S.ShowReply>
+          )}
 
-            {isShowReply === item.id && (
-              <S.ReplyContainer>
-                <ReplyComponent
-                  projectId={projectId}
-                  loginUserId={loginUserId}
-                  commentId={item.id}
-                />
-              </S.ReplyContainer>
-            )}
-          </S.ReplyContainer>
+          {isShowReply === item.id && (
+            <S.ReplyContainer>
+              <ReplyComponent
+                projectId={projectId}
+                loginUserId={loginUserId}
+                commentId={item.id}
+              />
+            </S.ReplyContainer>
+          )}
         </S.Container>
       ))}
     </>
