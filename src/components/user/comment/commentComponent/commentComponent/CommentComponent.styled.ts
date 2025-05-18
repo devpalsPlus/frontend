@@ -11,7 +11,6 @@ export const Wrapper = styled.div`
 
 export const CommentWrapper = styled.div`
   margin-top: 4px;
-  flex: 1;
 `;
 
 export const NickName = styled.p`
