@@ -1,7 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div<{ $reply: boolean }>`
   flex: 1;
+
+  ${({ $reply }) =>
+    $reply &&
+    css`
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 20px;
+      padding-left: 85px;
+    `}
 `;
 
 export const Wrapper = styled.div`
@@ -17,10 +27,12 @@ export const NickName = styled.p`
   font-size: ${({ theme }) => theme.heading.xsSmall.fontSize};
   margin-left: 11px;
   margin-bottom: 3px;
+  opacity: 60%;
 `;
 
 export const Comment = styled.span`
   display: inline-block;
+  font-weight: 500;
   max-width: calc(100% - 12px);
   word-break: break-word;
   white-space: pre-wrap;
