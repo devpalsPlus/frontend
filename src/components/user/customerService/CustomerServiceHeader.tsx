@@ -1,8 +1,8 @@
 import { MagnifyingGlassIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import * as S from './CustomerServiceHeader.styled';
 import MovedInquiredLink from './MoveInquiredLink';
-import { Outlet } from 'react-router-dom';
-import { useState } from 'react';
+import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Modal from '../../common/modal/Modal';
 import { useModal } from '../../../hooks/useModal';
 import { MODAL_MESSAGE_CUSTOMER_SERVICE } from '../../../constants/user/customerService';
@@ -20,13 +20,26 @@ export default function CustomerServiceHeader({
 }: CustomerServiceHeaderProps) {
   const [inputValue, setInputValue] = useState<string>('');
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleKeyword = (inputValue: string) => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (inputValue === '') {
+      newSearchParams.delete('keyword');
+    } else {
+      newSearchParams.set('keyword', inputValue);
+    }
+    setSearchParams(newSearchParams);
+  };
 
   const handleSubmitKeyword = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (inputValue.trim() === '') {
       return handleModalOpen(MODAL_MESSAGE_CUSTOMER_SERVICE.noKeyword);
     } else {
-      return onGetKeyword(inputValue);
+      onGetKeyword(inputValue);
+      handleKeyword(inputValue);
+      return;
     }
   };
 
@@ -38,6 +51,7 @@ export default function CustomerServiceHeader({
   const handleReset = () => {
     onGetKeyword('');
     setInputValue('');
+    handleKeyword('');
   };
 
   return (
@@ -50,7 +64,7 @@ export default function CustomerServiceHeader({
           <S.SearchBarInput
             type='text'
             placeholder='궁금한 내용을 검색해보세요.'
-            value={inputValue || keyword}
+            value={keyword ? keyword : inputValue}
             onChange={handleChangeValue}
           />
           <S.ButtonWrapper>

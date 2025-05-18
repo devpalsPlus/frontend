@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './Notice.styled';
 import { NoticeSearch } from '../../../../models/customerService';
 import { useGetNotice } from '../../../../hooks/user/useGetNotice';
@@ -9,21 +9,33 @@ import { ROUTES } from '../../../../constants/user/routes';
 import NoticeList from '../../../../components/user/customerService/notice/NoticeList';
 import NoResult from '../../../../components/common/noResult/NoResult';
 import Pagination from '../../../../components/common/pagination/Pagination';
+import { useLocation } from 'react-router-dom';
 
 export default function Notice() {
-  const [keyword, setKeyword] = useState<NoticeSearch>({
+  const [noticeSearch, setNoticeSearch] = useState<NoticeSearch>({
     keyword: '',
     page: 1,
   });
   const [value, setValue] = useState<string>('');
-  const { noticeData, isLoading } = useGetNotice(keyword);
+  const { noticeData, isLoading } = useGetNotice(noticeSearch);
+  const location = useLocation();
+  const hasKeyword = location.search
+    ? decodeURI(location.search.split('=')[1])
+    : '';
+
+  useEffect(() => {
+    if (hasKeyword) {
+      setNoticeSearch((prev) => ({ ...prev, keyword: hasKeyword }));
+      setValue(hasKeyword);
+    }
+  }, [hasKeyword]);
 
   const handleGetKeyword = (keyword: string) => {
-    setKeyword((prev) => ({ ...prev, keyword }));
+    setNoticeSearch((prev) => ({ ...prev, keyword }));
     setValue(keyword);
   };
   const handleChangePagination = (page: number) => {
-    setKeyword((prev) => ({ ...prev, page }));
+    setNoticeSearch((prev) => ({ ...prev, page }));
   };
 
   if (isLoading) {
@@ -52,7 +64,7 @@ export default function Notice() {
             noticeData.notices.map((list) => (
               <S.NoticeDetailLink
                 to={`${ROUTES.customerService}/${ROUTES.noticeDetail}/${list.id}`}
-                state={{ id: list.id }}
+                state={{ id: list.id, keyword: value }}
                 key={list.id}
               >
                 <NoticeList notice={list} />
@@ -64,7 +76,7 @@ export default function Notice() {
           )}
         </S.Wrapper>
         <Pagination
-          page={keyword.page}
+          page={noticeSearch.page}
           getLastPage={lastPage}
           onChangePagination={handleChangePagination}
         />

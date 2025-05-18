@@ -11,6 +11,7 @@ export default function NoticeDetailBundle() {
   const location = useLocation();
   const { noticeId } = useParams();
   const id = noticeId || String(location.state.id);
+  const keyword = location.state.keyword;
 
   const { noticeDetail: noticeDetailData, isLoading } = useGetNoticeDetail(id);
 
@@ -57,7 +58,7 @@ export default function NoticeDetailBundle() {
         createdAt={createdAt}
         viewCount={viewCount}
       />
-      <NoticeDetailBottom prev={prev} next={next} />
+      <NoticeDetailBottom prev={prev} next={next} keyword={keyword} />
     </S.Container>
   );
 }
