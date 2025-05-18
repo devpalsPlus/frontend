@@ -43,7 +43,7 @@ export default function All() {
 
   if (!alarmListData || alarmListData.length === 0 || filterLength === 0) {
     return (
-      <S.WrapperNoContent>
+      <S.WrapperNoContent data-type='noContent'>
         <NoContent type='notification' />
       </S.WrapperNoContent>
     );

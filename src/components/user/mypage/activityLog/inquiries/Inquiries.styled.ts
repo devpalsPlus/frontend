@@ -51,7 +51,8 @@ export const InquiriesWrapper = styled.div`
 `;
 
 export const WrapperNoContent = styled.div`
-  height: 95%;
+  height: 100%;
+  min-height: 100%;
   display: flex;
   align-items: center;
 `;

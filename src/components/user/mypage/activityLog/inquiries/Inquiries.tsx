@@ -14,7 +14,7 @@ export default function Inquiries() {
 
   if (!myInquiriesData || myInquiriesData?.length === 0)
     return (
-      <S.WrapperNoContent>
+      <S.WrapperNoContent data-type='noContent'>
         <NoContent type='inquiries' />
       </S.WrapperNoContent>
     );

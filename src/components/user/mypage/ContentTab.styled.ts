@@ -76,4 +76,11 @@ export const FilterContainer = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.color.lightgrey};
   border-radius: ${({ theme }) => theme.borderRadius.large};
+
+  &:has(> div[data-type='noContent']) {
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;

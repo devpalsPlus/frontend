@@ -14,7 +14,7 @@ export default function CommentsActivity() {
 
   if (!myCommentsData || myCommentsData.length === 0) {
     return (
-      <S.WrapperNoContent>
+      <S.WrapperNoContent data-type='noContent'>
         <NoContent type='comment' />
       </S.WrapperNoContent>
     );
