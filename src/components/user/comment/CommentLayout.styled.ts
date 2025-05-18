@@ -17,6 +17,7 @@ export const Count = styled.span`
 export const CommentContainer = styled.div``;
 
 export const CommentInput = styled.div`
+  display: flex;
   margin-bottom: 40px;
 `;
 

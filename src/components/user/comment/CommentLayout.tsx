@@ -3,6 +3,10 @@ import CommentInput from './commentInput/CommentInput';
 import LoadingSpinner from '../../common/loadingSpinner/LoadingSpinner';
 import useGetComment from '../../../hooks/user/CommentHooks/useGetComment';
 import CommentComponentLayout from './commentComponent/CommentComponentLayout';
+import Avatar from '../../common/avatar/Avatar';
+import { useMyProfileInfo } from '../../../hooks/user/useMyInfo';
+import { formatImgPath } from '../../../util/formatImgPath';
+import DefaultImg from '../../../assets/defaultImg.png';
 
 interface CommentLayoutProps {
   projectId: number;
@@ -15,7 +19,14 @@ const CommentLayout = ({
   createrId,
   loginUserId,
 }: CommentLayoutProps) => {
+  const { myData } = useMyProfileInfo();
   const { getCommentList, isLoading, isFetching } = useGetComment(projectId);
+
+  const profileImg = myData?.profileImg
+    ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
+        myData.profileImg
+      )}?w=86&h=86&fit=crop&crop=entropy&auto=format,enhance&q=60`
+    : DefaultImg;
 
   if (!getCommentList) {
     return (
@@ -37,6 +48,7 @@ const CommentLayout = ({
       </S.CommentCountsContainer>
 
       <S.CommentInput>
+        <Avatar size='55px' image={profileImg} />
         <CommentInput projectId={projectId} commentId={0} />
       </S.CommentInput>
 
