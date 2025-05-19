@@ -58,9 +58,6 @@ const ProjectDetail = () => {
     navigate(`/user/${userId}`);
   };
 
-  console.log(data);
-  console.log(userData.id);
-
   return (
     <S.Container>
       <S.Wrapper>

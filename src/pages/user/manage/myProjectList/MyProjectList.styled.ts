@@ -4,6 +4,7 @@ export const ManageProjectsContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 2rem;
 `;
 
 export const ManageProjectsWrapper = styled.div`
