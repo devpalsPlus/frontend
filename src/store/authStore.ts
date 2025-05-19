@@ -1,21 +1,12 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { decryptData, encryptData } from '../util/cryptoUtils';
-
-export interface UserData {
-  id: number;
-  email: string;
-  nickname: string;
-}
+import type { UserData } from '../models/auth';
 
 interface AuthState {
   isLoggedIn: boolean;
   userData: UserData | null;
-  storeLogin: (
-    accessToken: string,
-    refreshToken?: string,
-    userData?: UserData
-  ) => void;
+  storeLogin: (accessToken: string, userData?: UserData) => void;
   storeLogout: () => void;
 }
 
@@ -23,6 +14,7 @@ const initialUserData: UserData = {
   id: 0,
   email: '',
   nickname: '',
+  admin: false,
 };
 
 export const getStoredUserData = () => {
@@ -32,21 +24,16 @@ export const getStoredUserData = () => {
 
 export const getTokens = () => {
   const accessToken = localStorage.getItem('accessToken');
-  const refreshToken = localStorage.getItem('refreshToken');
 
-  return { accessToken, refreshToken };
+  return { accessToken };
 };
 
-const setTokens = (accessToken: string, refreshToken?: string) => {
+const setTokens = (accessToken: string) => {
   localStorage.setItem('accessToken', accessToken);
-  if (refreshToken) {
-    localStorage.setItem('refreshToken', refreshToken);
-  }
 };
 
 const removeTokens = () => {
   localStorage.removeItem('accessToken');
-  localStorage.removeItem('refreshToken');
 };
 
 const useAuthStore = create(
@@ -55,12 +42,8 @@ const useAuthStore = create(
       isLoggedIn: getTokens()?.accessToken ? true : false,
       userData: getTokens()?.accessToken ? initialUserData : null,
 
-      storeLogin: (
-        accessToken: string,
-        refreshToken?: string,
-        userData?: UserData
-      ) => {
-        setTokens(accessToken, refreshToken);
+      storeLogin: (accessToken: string, userData?: UserData) => {
+        setTokens(accessToken);
         localStorage.setItem('userData', encryptData(userData));
         set({ isLoggedIn: true, userData });
       },

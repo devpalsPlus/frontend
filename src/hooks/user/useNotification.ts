@@ -29,10 +29,9 @@ const useNotification = () => {
       `${import.meta.env.VITE_APP_API_BASE_URL}user/sse`,
       {
         headers: {
-          Authorization:
-            getTokens().accessToken || getTokens().refreshToken
-              ? `Bearer ${getTokens().accessToken}`
-              : '',
+          Authorization: getTokens().accessToken
+            ? `Bearer ${getTokens().accessToken}`
+            : '',
           'Content-Type': 'application/json',
         },
         heartbeatTimeout: 12 * 60 * 1000,

@@ -12,10 +12,9 @@ export const createClient = (config?: AxiosRequestConfig) => {
     timeout: DEFAULT_TIMEOUT,
     headers: {
       'content-type': 'application/json',
-      authorization:
-        getTokens().accessToken || getTokens().refreshToken
-          ? `Bearer ${getTokens().accessToken}`
-          : '',
+      authorization: getTokens().accessToken
+        ? `Bearer ${getTokens().accessToken}`
+        : '',
     },
     withCredentials: true,
     ...config,
@@ -50,16 +49,13 @@ export const createClient = (config?: AxiosRequestConfig) => {
         originalRequest._retry = true;
 
         try {
-          const refreshToken = getTokens().refreshToken;
-
           const refreshResponse = await axios.post(`${BASE_URL}auth/refresh`, {
-            refreshToken,
+            withCredentials: true,
           });
 
-          const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
-            refreshResponse.data;
+          const { accessToken: newAccessToken } = refreshResponse.data;
 
-          storeLogin(newAccessToken, newRefreshToken);
+          storeLogin(newAccessToken);
           originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
 
           return await axios(originalRequest);
