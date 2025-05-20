@@ -17,7 +17,19 @@ const NotificationItem = ({ item }: NotificationItemProps) => {
     <Link to={route} onClick={close}>
       <S.Container>
         <S.ItemContent>{item.content}</S.ItemContent>
-        <S.Time>{timeAgo(item.createdAt)}</S.Time>
+        <S.TypeArea>
+          <S.Time>{timeAgo(item.createdAt)}</S.Time>
+          <S.TypeFilter>
+            {item.alarmFilterId === 1
+              ? '문의 답변'
+              : item.alarmFilterId === 2
+              ? '지원자 확인'
+              : item.alarmFilterId === 3
+              ? '댓글 답변'
+              : '기타'}
+          </S.TypeFilter>
+          <S.Dot $isRead={item.enabled} />
+        </S.TypeArea>
       </S.Container>
     </Link>
   );
