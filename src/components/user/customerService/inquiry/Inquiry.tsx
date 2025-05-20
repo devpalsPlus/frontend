@@ -65,8 +65,6 @@ export default function Inquiry() {
       content: form.content.trim() !== '',
     };
 
-    console.log(isCategoryOpen);
-
     if (!isValid.category) {
       return handleModalOpen(INQUIRY_MESSAGE.selectCategory);
     }

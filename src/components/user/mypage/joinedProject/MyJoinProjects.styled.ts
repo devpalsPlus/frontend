@@ -22,8 +22,6 @@ export const Section = styled.div`
 
 export const NoWrapper = styled.div`
   width: 100%;
-  height: 80%;
-  padding: 2rem 0 5rem;
 `;
 
 export const Wrapper = styled.div`

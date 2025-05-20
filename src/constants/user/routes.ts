@@ -10,7 +10,7 @@ export const ROUTES = {
   manageProjectsRoot: '/manage',
   manageProjectsPassNonPass: '/manage/pass-nonpass',
   mypage: '/mypage',
-  mypageEdit: '/mypage/edit',
+  mypageEdit: 'edit',
   joinedProjects: 'joined-projects',
   managedProjects: 'managed-projects',
   myPageNotifications: 'notifications',

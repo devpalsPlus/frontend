@@ -22,11 +22,11 @@ type ProfileFormData = z.infer<typeof profileSchema>;
 export default function EditProfile() {
   const [nickname, setNickname] = useState('');
   const {
-    myData,
+    userInfoData,
     scrollRef,
     handleModalOpen,
   }: {
-    myData: UserInfo;
+    userInfoData: UserInfo;
     scrollRef: React.RefObject<HTMLDivElement>;
     handleModalOpen: (message: string) => void;
   } = useOutletContext();
@@ -62,14 +62,14 @@ export default function EditProfile() {
   }, [scrollRef]);
 
   useEffect(() => {
-    if (myData) {
-      const skillTagIds = myData.skills
+    if (userInfoData) {
+      const skillTagIds = userInfoData.skills
         .map(
           (skill) => skillTagsData.find((tag) => tag.name === skill.name)?.id
         )
         .filter((id): id is number => id !== undefined);
 
-      const positionTagIds = myData.positions
+      const positionTagIds = userInfoData.positions
         .map(
           (position) =>
             positionTagsData.find((tag) => tag.id === position.id)?.id
@@ -77,14 +77,14 @@ export default function EditProfile() {
         .filter((id): id is number => id !== undefined);
 
       reset({
-        nickname: myData.nickname,
-        bio: myData.bio || '',
-        beginner: myData.beginner,
+        nickname: userInfoData.nickname,
+        bio: userInfoData.bio || '',
+        beginner: userInfoData.beginner,
         positionTagIds,
-        github: myData.github || '',
+        github: userInfoData.github || '',
         skillTagIds,
-        career: myData.career?.length
-          ? myData.career.map((item) => ({
+        career: userInfoData.career?.length
+          ? userInfoData.career.map((item) => ({
               name: item.name,
               periodStart: item.periodStart.split('T')[0],
               periodEnd: item.periodEnd.split('T')[0],
@@ -93,7 +93,7 @@ export default function EditProfile() {
           : [{ name: '', periodStart: '', periodEnd: '', role: '' }],
       });
     }
-  }, [myData, skillTagsData, positionTagsData, reset]);
+  }, [userInfoData, skillTagsData, positionTagsData, reset]);
 
   const { fields, append, remove } = useFieldArray({ control, name: 'career' });
 

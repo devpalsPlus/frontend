@@ -142,9 +142,10 @@ export const InquiryShowFile = styled.span`
   display: flex;
   justify-content: start;
   align-items: center;
+  overflow: hidden;
   padding: 0.5rem;
   border: 1px solid ${({ theme }) => theme.color.border};
-  width: 40%;
+  width: 50%;
   color: ${({ theme }) => theme.color.navy};
   border-radius: 0 ${({ theme }) => theme.borderRadius.primary}
     ${({ theme }) => theme.borderRadius.primary} 0;
