@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { WrapperNoContent } from '../all/All.styled';
+
+export const WrapperNoContentAppliedProjects = styled(WrapperNoContent)``;
 
 export const container = styled.div`
   width: 100%;

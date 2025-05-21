@@ -3,6 +3,7 @@ import { httpClient } from './http.api';
 import { loginFormValues } from '../pages/login/Login';
 import { registerFormValues } from '../pages/user/register/Register';
 import { changePasswordFormValues } from '../pages/user/changePassword/ChangePassword';
+import useAuthStore from '../store/authStore';
 
 export const postVerificationEmail = async (email: string) => {
   try {
@@ -65,6 +66,7 @@ export const postResetPassword = async (
 };
 
 export const postLogin = async (data: loginFormValues) => {
+  console.log('로그인 api 안', useAuthStore.getState());
   try {
     const response = await httpClient.post('/auth/login', data);
 

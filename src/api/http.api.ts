@@ -47,18 +47,21 @@ export const createClient = (config?: AxiosRequestConfig) => {
         !originalRequest._retry
       ) {
         originalRequest._retry = true;
+        console.log('트라이문 밖', useAuthStore.getState());
 
         try {
-          const refreshResponse = await axios.post(`${BASE_URL}auth/refresh`, {
-            withCredentials: true,
-          });
+          console.log('트라이문 안', useAuthStore.getState());
+
+          const refreshResponse = await axiosInstance.post(
+            `${BASE_URL}/auth/refresh`
+          );
 
           const { accessToken: newAccessToken } = refreshResponse.data;
 
           storeLogin(newAccessToken);
           originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
 
-          return await axios(originalRequest);
+          return await axiosInstance(originalRequest);
         } catch (refreshError) {
           storeLogout();
           return Promise.reject(refreshError);

@@ -1,14 +1,11 @@
 import styled from 'styled-components';
+import { WrapperNoContent } from '../../notifications/all/All.styled';
 
 export const Container = styled.div`
   height: 100%;
 `;
 
-export const WrapperNoContent = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-`;
+export const WrapperNoContentAppliedProjects = styled(WrapperNoContent)``;
 
 export const CommentsWrapper = styled.div`
   padding: 1.5rem;

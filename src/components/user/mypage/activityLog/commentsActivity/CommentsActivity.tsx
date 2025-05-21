@@ -9,14 +9,18 @@ export default function CommentsActivity() {
   const { myCommentsData, isLoading } = useGetMyComments();
 
   if (isLoading) {
-    return <Spinner size='50px' color='#3e5879' />;
+    return (
+      <S.WrapperNoContentAppliedProjects data-type='noContent'>
+        <Spinner size='50px' color='#3e5879' />
+      </S.WrapperNoContentAppliedProjects>
+    );
   }
 
   if (!myCommentsData || myCommentsData.length === 0) {
     return (
-      <S.WrapperNoContent data-type='noContent'>
+      <S.WrapperNoContentAppliedProjects data-type='noContent'>
         <NoContent type='comment' />
-      </S.WrapperNoContent>
+      </S.WrapperNoContentAppliedProjects>
     );
   }
 

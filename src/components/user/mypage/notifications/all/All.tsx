@@ -29,7 +29,11 @@ export default function All() {
   };
 
   if (isLoading) {
-    return <Spinner size='50px' color='#3e5879' />;
+    return (
+      <S.WrapperNoContent data-type='noContent'>
+        <Spinner size='50px' color='#3e5879' />
+      </S.WrapperNoContent>
+    );
   }
 
   const filterLength = alarmListData?.filter((list) => {
