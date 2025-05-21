@@ -47,25 +47,31 @@ export const createClient = (config?: AxiosRequestConfig) => {
         !originalRequest._retry
       ) {
         originalRequest._retry = true;
-        console.log('트라이문 밖', useAuthStore.getState());
 
-        try {
-          console.log('트라이문 안', useAuthStore.getState());
+        /**
+         *  http 로컬 환경이라 httpOnly인 refresh 토큰 전송 불가
+         *  배포 후 사용 (주석처리)
+         */
+        // try {
+        //   console.log('트라이문 안', useAuthStore.getState());
 
-          const refreshResponse = await axiosInstance.post(
-            `${BASE_URL}/auth/refresh`
-          );
+        //   const refreshResponse = await axiosInstance.post(
+        //     `${BASE_URL}/auth/refresh`
+        //   );
 
-          const { accessToken: newAccessToken } = refreshResponse.data;
+        //   const { accessToken: newAccessToken } = refreshResponse.data;
 
-          storeLogin(newAccessToken);
-          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+        //   storeLogin(newAccessToken);
+        //   originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
 
-          return await axiosInstance(originalRequest);
-        } catch (refreshError) {
-          storeLogout();
-          return Promise.reject(refreshError);
-        }
+        //   return await axiosInstance(originalRequest);
+        // } catch (refreshError) {
+        //   storeLogout();
+        //   return Promise.reject(refreshError);
+        // }
+
+        storeLogout();
+        return Promise.reject(error);
       }
       return Promise.reject(error);
     }
