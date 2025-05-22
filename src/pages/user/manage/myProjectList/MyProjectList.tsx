@@ -7,7 +7,7 @@ import * as S from './MyProjectList.styled';
 const MyProjectList = () => {
   const { managedProjects, isLoading } = useManagedProjects();
 
-  if (!isLoading) {
+  if (isLoading) {
     return (
       <S.WrapperNoContentMyProjectList>
         <Spinner />
