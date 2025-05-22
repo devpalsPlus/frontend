@@ -22,7 +22,7 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const { isOpen, message, handleModalClose, handleModalOpen } = useModal();
   const { data, isLoading, isFetching } = useGetProjectData(id);
-  const { userData } = useAuthStore((state) => state);
+  const userData = useAuthStore.getState().userData;
 
   useEffect(() => {
     if (!data) {

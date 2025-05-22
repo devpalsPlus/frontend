@@ -16,7 +16,7 @@ import { ROUTES } from '../../constants/user/routes';
 import { ApiAppliedProject, ApiJoinedProject } from '../../models/userProject';
 
 export const useMyProfileInfo = () => {
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const isLoggedIn = useAuthStore.getState().isLoggedIn;
 
   const { data, isLoading } = useQuery<ApiUserInfo>({
     queryKey: myInfoKey.myProfile,
@@ -84,7 +84,7 @@ export const useUploadProfileImg = (
 };
 
 export const useMyJoinedProjectList = () => {
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const isLoggedIn = useAuthStore.getState().isLoggedIn;
 
   const { data, isLoading } = useQuery<ApiJoinedProject>({
     queryKey: ProjectListKey.myJoinedList,
@@ -96,7 +96,7 @@ export const useMyJoinedProjectList = () => {
 };
 
 export const useMyAppliedStatusList = () => {
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const isLoggedIn = useAuthStore.getState().isLoggedIn;
 
   const { data, isLoading } = useQuery<ApiAppliedProject>({
     queryKey: ProjectListKey.myAppliedStatusList,

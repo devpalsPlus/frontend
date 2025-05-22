@@ -29,7 +29,7 @@ const Apply = () => {
     useModal();
   const { data: projectData, isLoading, isFetching } = useGetProjectData(id);
   const { applyProject } = useApplyProject({ id, handleModalOpen });
-  const userData = useAuthStore((state) => state.userData);
+  const userData = useAuthStore.getState().userData;
   const {
     handleSubmit: onSubmitHandler,
     formState: { errors },

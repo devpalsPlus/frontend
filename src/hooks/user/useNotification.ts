@@ -10,7 +10,7 @@ const useNotification = () => {
   const [signalData, setSignalData] = useState<AlarmLive | null>(null);
   const queryClient = useQueryClient();
   const accessToken = useAuthStore.getState().accessToken;
-  const userId = useAuthStore((state) => state.userData?.id);
+  const userId = useAuthStore.getState().userData?.id;
   const { showToast } = useToast();
 
   const eventSourceRef = useRef<EventSource | null>(null);

@@ -4,7 +4,7 @@ import { AlarmList } from '../queries/user/keys';
 import useAuthStore from '../../store/authStore';
 
 export const useAlarmDelete = () => {
-  const userId = useAuthStore((state) => state.userData?.id);
+  const userId = useAuthStore.getState().userData?.id;
   const queryClient = useQueryClient();
 
   const mutation = useMutation<void, Error, number, unknown>({

@@ -5,7 +5,7 @@ import { ApiUserInfo } from '../../models/userInfo';
 import { getUserInfo } from '../../api/userpage.api';
 
 export const useUserProfileInfo = (id: number) => {
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const isLoggedIn = useAuthStore.getState().isLoggedIn;
 
   const { data, isLoading } = useQuery<ApiUserInfo>({
     queryKey: [userInfoKey.userProfile, id],

@@ -9,7 +9,7 @@ interface ProtectRouteProps extends PropsWithChildren {
 }
 
 const ProtectRoute = ({ children, redirectUrl }: ProtectRouteProps) => {
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const isLoggedIn = useAuthStore.getState().isLoggedIn;
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const [shouldRedirect, setShouldRedirect] = useState<boolean>(false);
 
