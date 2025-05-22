@@ -42,7 +42,7 @@ const DropDownItem = ({
 
   return (
     <>
-      <S.Item onClick={handleOpenReportModal}>신고하기</S.Item>
+      <S.ReportItem onClick={handleOpenReportModal}>신고하기</S.ReportItem>
       <S.Container>
         {loginUserId === commentUserId && (
           <>
@@ -61,6 +61,7 @@ const DropDownItem = ({
           targetId={recommentId ? recommentId : commentId}
           type={recommentId ? 'recomment' : 'comment'}
           onClose={handleCloseReportModal}
+          route={projectId}
         />
       )}
     </>

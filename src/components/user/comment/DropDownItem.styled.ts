@@ -20,12 +20,13 @@ export const Item = styled.div`
     background-color: ${({ theme }) => theme.color.navy};
   }
 
-  &:first-child {
-    border-top-left-radius: ${({ theme }) => theme.borderRadius.primary};
-    border-top-right-radius: ${({ theme }) => theme.borderRadius.primary};
-  }
   &:last-child {
     border-bottom-left-radius: ${({ theme }) => theme.borderRadius.primary};
     border-bottom-right-radius: ${({ theme }) => theme.borderRadius.primary};
   }
+`;
+
+export const ReportItem = styled(Item)`
+  border-top-left-radius: ${({ theme }) => theme.borderRadius.primary};
+  border-top-right-radius: ${({ theme }) => theme.borderRadius.primary};
 `;
