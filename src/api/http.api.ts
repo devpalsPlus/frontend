@@ -7,7 +7,6 @@ const DEFAULT_TIMEOUT = 15000;
 
 export const createClient = (config?: AxiosRequestConfig) => {
   const { login, logout } = useAuthStore.getState();
-  console.log('전체', useAuthStore.getState());
 
   const axiosInstance = axios.create({
     baseURL: BASE_URL,
@@ -54,8 +53,6 @@ export const createClient = (config?: AxiosRequestConfig) => {
          *  5회 시도후 안되면 로그아웃 처리하기
          */
         // try {
-        //   console.log('트라이문 안', useAuthStore.getState());
-
         //   const refreshResponse = await postRefresh()
 
         //   const { accessToken: newAccessToken } = refreshResponse.data;
