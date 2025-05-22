@@ -30,7 +30,7 @@ const useUpdateProject = ({ id, handleModalOpen }: UseUpdateProjectProps) => {
     },
     onError: (error) => {
       handleModalOpen(MODAL_MESSAGE.ModifyProjectFail);
-      console.log(error);
+      console.error(error);
     },
   });
 

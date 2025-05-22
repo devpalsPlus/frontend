@@ -30,8 +30,6 @@ export default function Profile() {
     ],
   };
 
-  console.log(userInfoData.averageScores);
-
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = 0;
