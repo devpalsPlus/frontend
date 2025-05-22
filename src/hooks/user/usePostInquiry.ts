@@ -10,7 +10,7 @@ export const usePostInquiry = (
   handleModalOpen: (message: string) => void,
   pathname: string = ''
 ) => {
-  const userId = useAuthStore((state) => state.userData?.id);
+  const userId = useAuthStore.getState().userData?.id;
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
