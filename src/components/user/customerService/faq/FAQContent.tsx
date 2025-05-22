@@ -21,14 +21,12 @@ export default function FAQContent({ list }: FAQContentProps) {
           <PlusIcon />
         </S.ListPlusIcon>
       </S.ListWrapper>
-      {isFAQContentOpen && (
-        <S.ListContentWrapper>
-          <S.ListButtonWrapper>
-            <ChevronRightIcon />
-          </S.ListButtonWrapper>
-          <S.ListContent>{list.content}</S.ListContent>
-        </S.ListContentWrapper>
-      )}
+      <S.ListContentWrapper $isShowContent={isFAQContentOpen}>
+        <S.ListButtonWrapper>
+          <ChevronRightIcon />
+        </S.ListButtonWrapper>
+        <S.ListContent>{list.content}</S.ListContent>
+      </S.ListContentWrapper>
     </S.ListContainer>
   );
 }

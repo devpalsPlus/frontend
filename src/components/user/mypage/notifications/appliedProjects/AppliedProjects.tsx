@@ -8,18 +8,16 @@ import { ROUTES } from '../../../../../constants/user/routes';
 
 export default function AppliedProjects() {
   const { myAppliedStatusListData, isLoading } = useMyAppliedStatusList();
-  console.log(myAppliedStatusListData);
 
   if (isLoading) {
     return (
       <S.WrapperNoContentAppliedProjects data-type='noContent'>
-        <Spinner size='50px' color='#3e5879' />
+        <Spinner />
       </S.WrapperNoContentAppliedProjects>
     );
   }
 
   if (!myAppliedStatusListData || myAppliedStatusListData.length === 0) {
-    console.log(myAppliedStatusListData);
     return (
       <S.WrapperNoContentAppliedProjects data-type='noContent'>
         <NoContent type='projects' />

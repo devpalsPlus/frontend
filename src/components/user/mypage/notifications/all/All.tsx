@@ -31,7 +31,7 @@ export default function All() {
   if (isLoading) {
     return (
       <S.WrapperNoContent data-type='noContent'>
-        <Spinner size='50px' color='#3e5879' />
+        <Spinner />
       </S.WrapperNoContent>
     );
   }

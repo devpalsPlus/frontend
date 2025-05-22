@@ -11,7 +11,7 @@ export default function Inquiries() {
   if (isLoading) {
     return (
       <S.WrapperNoContentAppliedProjects data-type='noContent'>
-        <Spinner size='50px' color='#3e5879' />
+        <Spinner />
       </S.WrapperNoContentAppliedProjects>
     );
   }
