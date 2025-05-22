@@ -66,11 +66,8 @@ export const postResetPassword = async (
 };
 
 export const postLogin = async (data: loginFormValues) => {
-  console.log('로그인 api 안', useAuthStore.getState());
   try {
     const response = await httpClient.post('/auth/login', data);
-
-    console.log(response.data);
 
     return response.data;
   } catch (error) {

@@ -3,12 +3,13 @@ import { useEffect, useRef, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { AlarmList } from '../queries/user/keys';
 import { AlarmLive } from '../../models/alarm';
-import useAuthStore, { getTokens } from '../../store/authStore';
+import useAuthStore from '../../store/authStore';
 import { useToast } from '../useToast';
 
 const useNotification = () => {
   const [signalData, setSignalData] = useState<AlarmLive | null>(null);
   const queryClient = useQueryClient();
+  const accessToken = useAuthStore.getState().accessToken;
   const userId = useAuthStore((state) => state.userData?.id);
   const { showToast } = useToast();
 
@@ -29,9 +30,7 @@ const useNotification = () => {
       `${import.meta.env.VITE_APP_API_BASE_URL}user/sse`,
       {
         headers: {
-          Authorization: getTokens().accessToken
-            ? `Bearer ${getTokens().accessToken}`
-            : '',
+          Authorization: accessToken ? `Bearer ${accessToken}` : '',
           'Content-Type': 'application/json',
         },
         heartbeatTimeout: 12 * 60 * 1000,
@@ -67,7 +66,7 @@ const useNotification = () => {
         eventSourceRef.current = null;
       }
     };
-  }, [queryClient, userId]);
+  }, [queryClient, userId, accessToken, EventSourceImpl]);
 
   useEffect(() => {
     if (signalData) {

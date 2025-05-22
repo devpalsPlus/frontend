@@ -13,7 +13,7 @@ import { changePasswordFormValues } from '../pages/user/changePassword/ChangePas
 
 export const useAuth = (handleModalOpen: (message: string) => void) => {
   const navigate = useNavigate();
-  const { storeLogin, storeLogout } = useAuthStore.getState();
+  const { login, logout } = useAuthStore.getState();
   const queryClient = useQueryClient();
 
   const signupMutation = useMutation<
@@ -69,7 +69,7 @@ export const useAuth = (handleModalOpen: (message: string) => void) => {
       const { accessToken, userData } = data;
       handleModalOpen(MODAL_MESSAGE.loginSuccess);
       setTimeout(() => {
-        storeLogin(accessToken, userData);
+        login(accessToken, userData);
         navigate(ROUTES.main);
       }, 1000);
     },
@@ -95,8 +95,9 @@ export const useAuth = (handleModalOpen: (message: string) => void) => {
   };
 
   const userLogout = () => {
-    storeLogout();
+    logout();
     queryClient.removeQueries({ queryKey: myInfoKey.myProfile });
+    useAuthStore.persist.clearStorage();
     handleModalOpen(MODAL_MESSAGE.logout);
     setTimeout(() => {
       navigate(ROUTES.main);

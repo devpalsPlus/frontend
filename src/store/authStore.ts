@@ -1,59 +1,43 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { createJSONStorage, persist } from 'zustand/middleware';
 import { decryptData, encryptData } from '../util/cryptoUtils';
 import type { UserData } from '../models/auth';
 
 interface AuthState {
   isLoggedIn: boolean;
   userData: UserData | null;
-  storeLogin: (accessToken: string, userData?: UserData) => void;
-  storeLogout: () => void;
+  accessToken: string | null;
+  login: (accessToken: string, userData: UserData | null) => void;
+  logout: () => void;
 }
 
-const initialUserData: UserData = {
-  id: 0,
-  email: '',
-  nickname: '',
-  admin: false,
-};
-
-export const getStoredUserData = () => {
-  const encryptedData = localStorage.getItem('userData');
-  return encryptedData ? decryptData(encryptedData) : null;
-};
-
-export const getTokens = () => {
-  const accessToken = localStorage.getItem('accessToken');
-
-  return { accessToken };
-};
-
-const setTokens = (accessToken: string) => {
-  localStorage.setItem('accessToken', accessToken);
-};
-
-const removeTokens = () => {
-  localStorage.removeItem('accessToken');
-};
+// 암호화 함수
+// export const getStoredUserData = () => {
+//   const encryptedData = localStorage.getItem('userData');
+//   return encryptedData ? decryptData(encryptedData) : null;
+// };
 
 const useAuthStore = create(
   persist<AuthState>(
     (set) => ({
-      isLoggedIn: getTokens()?.accessToken ? true : false,
-      userData: getTokens()?.accessToken ? initialUserData : null,
+      isLoggedIn: false,
+      accessToken: null,
+      userData: null,
 
-      storeLogin: (accessToken: string, userData?: UserData) => {
-        setTokens(accessToken);
-        localStorage.setItem('userData', encryptData(userData));
-        set({ isLoggedIn: true, userData });
+      login: (accessToken: string, userData: UserData | null) => {
+        set({
+          isLoggedIn: true,
+          accessToken,
+          userData: userData ? userData : null,
+        });
       },
-      storeLogout: () => {
-        removeTokens();
-        set({ isLoggedIn: false, userData: null });
+      logout: () => {
+        set({ isLoggedIn: false, accessToken: null, userData: null });
       },
     }),
     {
       name: 'auth-storage', // 로컬스토리지에 저장될 이름
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

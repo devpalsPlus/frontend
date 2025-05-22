@@ -15,29 +15,33 @@ const MyJoinProjects = () => {
   }
 
   return (
-    <S.Container>
-      <S.FilterWrapper>
-        <S.FilterTitle>참여한 프로젝트 리스트</S.FilterTitle>
-      </S.FilterWrapper>
-      {myJoinedProjectListData && myJoinedProjectListData?.length > 0 ? (
-        <ScrollWrapper>
-          <S.WrapperProject>
-            {myJoinedProjectListData?.map((project) => (
-              <Link
-                key={project.id}
-                to={`${ROUTES.projectDetail}/${project.id}`}
-              >
-                <Project project={project} />
-              </Link>
-            ))}
-          </S.WrapperProject>
-        </ScrollWrapper>
-      ) : (
-        <S.NoWrapper>
-          <NoContent type='projects' />
-        </S.NoWrapper>
-      )}
-    </S.Container>
+    <>
+      <S.Container
+        $isNoContent={myJoinedProjectListData?.length === 0 ? true : false}
+      >
+        <S.FilterWrapper>
+          <S.FilterTitle>참여한 프로젝트 리스트</S.FilterTitle>
+        </S.FilterWrapper>
+        {myJoinedProjectListData && myJoinedProjectListData?.length > 0 ? (
+          <ScrollWrapper>
+            <S.WrapperProject>
+              {myJoinedProjectListData?.map((project) => (
+                <Link
+                  key={project.id}
+                  to={`${ROUTES.projectDetail}/${project.id}`}
+                >
+                  <Project project={project} />
+                </Link>
+              ))}
+            </S.WrapperProject>
+          </ScrollWrapper>
+        ) : (
+          <S.WrapperNoContentMyJoinedProjects data-type='noContent'>
+            <NoContent type='projects' />
+          </S.WrapperNoContentMyJoinedProjects>
+        )}
+      </S.Container>
+    </>
   );
 };
 

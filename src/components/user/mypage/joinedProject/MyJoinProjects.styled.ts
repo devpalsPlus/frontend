@@ -1,8 +1,14 @@
 import styled from 'styled-components';
+import { WrapperNoContent } from '../notifications/all/All.styled';
 
-export const Container = styled.section`
+export const Container = styled.section<{ $isNoContent: boolean }>`
   width: 100%;
   height: 85%;
+
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const FilterWrapper = styled.div`
@@ -20,9 +26,7 @@ export const Section = styled.div`
   flex-direction: column;
 `;
 
-export const NoWrapper = styled.div`
-  width: 100%;
-`;
+export const WrapperNoContentMyJoinedProjects = styled(WrapperNoContent)``;
 
 export const Wrapper = styled.div`
   display: flex;

@@ -10,7 +10,7 @@ import { AUTH_MESSAGE } from '../../constants/user/authConstants';
 
 function LoginSuccess() {
   const [searchParams] = useSearchParams();
-  const { storeLogin } = useAuthStore.getState();
+  const { login } = useAuthStore.getState();
   const navigate = useNavigate();
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
 
@@ -18,8 +18,7 @@ function LoginSuccess() {
     const accessToken = searchParams.get('accessToken');
 
     if (accessToken) {
-      storeLogin(accessToken);
-      localStorage.setItem('accessToken', accessToken);
+      login(accessToken, null);
       navigate(ROUTES.main);
     } else {
       handleModalOpen(AUTH_MESSAGE.isNotToken);
@@ -27,7 +26,7 @@ function LoginSuccess() {
         navigate(ROUTES.login);
       }, 1000);
     }
-  }, [searchParams, storeLogin, handleModalOpen, navigate]);
+  }, [searchParams, login, handleModalOpen, navigate]);
 
   return (
     <S.LoginSuccessContainer>
