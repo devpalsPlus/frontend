@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -115,6 +116,7 @@ export const State = styled.span`
 export const Skill = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
   gap: 0.6rem;
 
@@ -129,12 +131,30 @@ export const Skill = styled.div`
     border-radius: 50%;
 
     @media ${({ theme }) => theme.mediaQuery.tablet} {
-      width: 20px;
-      height: 20px;
+      width: 27px;
+      height: 27px;
     }
   }
 
   svg {
     color: rgb(196 196 196);
+  }
+`;
+
+export const SkillArea = styled.div``;
+
+export const EvaluateButton = styled(Link)`
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 0.2rem 0.65rem;
+  background-color: #3e5879;
+  font-size: 0.9rem;
+  color: ${({ theme }) => theme.color.white};
+  border-radius: 10px;
+  text-align: center;
+  margin-left: auto;
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: 0.78rem;
   }
 `;
