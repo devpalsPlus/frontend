@@ -1,6 +1,6 @@
 import { useMutationParams } from '../../../../hooks/user/usePassNonPassMutation';
-import { ApplicantInfo } from '../../../../models/applicant';
-import { ProjectDetailPlusExtended } from '../../../../models/projectDetail';
+import type { ApplicantInfo } from '../../../../models/applicant';
+import type { ProjectDetailPlusExtended } from '../../../../models/projectDetail';
 import DeleteButton from './DeleteButton';
 import * as S from './PassNonPassItem.styled';
 

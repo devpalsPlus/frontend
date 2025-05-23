@@ -1,6 +1,6 @@
 import { useQueries } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { MethodTag, PositionTag, SkillTag } from '../../models/tags';
+import type { MethodTag, PositionTag, SkillTag } from '../../models/tags';
 import {
   getMethodTag,
   getPositionTag,

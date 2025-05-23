@@ -4,8 +4,8 @@ import FieldCategoryComponent from './fieldCategoryComponent/FieldCategoryCompon
 import { Control, FieldErrors, UseFormSetValue } from 'react-hook-form';
 import * as S from './ProjectInformationInput.styled';
 import Input from '../inputComponent/InputComponent';
-import { ProjectDetailPlusExtended } from '../../../../models/projectDetail';
-import { CreateProjectFormValues } from '../../../../models/createProject';
+import type { ProjectDetailPlusExtended } from '../../../../models/projectDetail';
+import type { CreateProjectFormValues } from '../../../../models/createProject';
 import { useSearchFilteringSkillTag } from '../../../../hooks/user/useSearchFilteringSkillTag';
 import { PROJECT_DATA } from '../../../../constants/user/projectConstants';
 

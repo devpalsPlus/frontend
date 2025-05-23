@@ -76,8 +76,6 @@ const useTagSelectors = ({
 
       setValue(fieldName, idx);
     }
-
-    console.log(selectedTag);
   };
 
   return { selectedTag, handleClick };

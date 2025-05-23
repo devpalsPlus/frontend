@@ -22,7 +22,26 @@ export const ScrollArea = styled.div`
   }
 `;
 
+export const NotificationHeader = styled.div`
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: fix-content;
+  margin-right: 15px;
+`;
+
+export const MoreArea = styled.button``;
+
+export const More = styled.span``;
+
+export const Arrow = styled.img`
+  margin-bottom: 3px;
+`;
+
 export const NonContentsMessage = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: 6px;
 `;
 

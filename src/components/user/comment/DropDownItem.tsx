@@ -1,8 +1,8 @@
 import useDeleteComment from '../../../hooks/user/CommentHooks/useDeleteComment';
 import useDeleteReply from '../../../hooks/user/CommentHooks/useDeleteReply';
-import { useModal } from '../../../hooks/useModal';
 import ReportModal from '../reportComponent/ReportModal';
 import * as S from './DropDownItem.styled';
+import useReportModal from '../../../hooks/user/useReportModal';
 
 interface DropdownProps {
   projectId: number;
@@ -29,7 +29,8 @@ const DropDownItem = ({
 }: DropdownProps) => {
   const { removeComment } = useDeleteComment(projectId);
   const { removeReply } = useDeleteReply(commentId, projectId);
-  const { isOpen, handleOpenReportModal, handleCloseReportModal } = useModal();
+  const { isOpen, handleOpenReportModal, handleCloseReportModal } =
+    useReportModal();
 
   const onDelete = (commentId: number, recommentId?: number) => {
     if (reply && recommentId) {
@@ -41,9 +42,8 @@ const DropDownItem = ({
 
   return (
     <>
+      <S.ReportItem onClick={handleOpenReportModal}>신고하기</S.ReportItem>
       <S.Container>
-        <S.Item onClick={handleOpenReportModal}>신고하기</S.Item>
-
         {loginUserId === commentUserId && (
           <>
             <S.Item onClick={onEdit}>
@@ -61,6 +61,7 @@ const DropDownItem = ({
           targetId={recommentId ? recommentId : commentId}
           type={recommentId ? 'recomment' : 'comment'}
           onClose={handleCloseReportModal}
+          route={projectId}
         />
       )}
     </>

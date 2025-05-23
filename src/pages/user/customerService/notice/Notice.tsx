@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as S from './Notice.styled';
-import { NoticeSearch } from '../../../../models/customerService';
+import type { NoticeSearch } from '../../../../models/customerService';
 import { useGetNotice } from '../../../../hooks/user/useGetNotice';
 import { Spinner } from '../../../../components/common/loadingSpinner/LoadingSpinner.styled';
 import CustomerServiceHeader from '../../../../components/user/customerService/CustomerServiceHeader';

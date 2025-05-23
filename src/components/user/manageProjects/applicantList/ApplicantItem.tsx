@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { ApplicantInfo } from '../../../../models/applicant';
+import type { ApplicantInfo } from '../../../../models/applicant';
 import * as S from './ApplicantItem.styled';
 
 interface ApplicantItemProps {

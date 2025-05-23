@@ -51,51 +51,44 @@ const CommentComponentLayout = ({
               projectId={projectId}
               setActivateEditMode={setActivateEditMode}
             />
-            <DropDown
-              toggleButton={
-                <img src={dropdownButton} onClick={handleDropDownClick} />
-              }
-            >
-              <DropDownItem
-                projectId={projectId}
-                commentId={item.id}
-                onEdit={() => onEdit(item.id)}
-                loginUserId={loginUserId}
-                commentUserId={item.user.id}
-                reportTitle={item.content}
-                activateEditMode={activateEditMode}
-              />
-            </DropDown>
+            {loginUserId && (
+              <DropDown
+                toggleButton={
+                  <img src={dropdownButton} onClick={handleDropDownClick} />
+                }
+                comment={true}
+              >
+                <DropDownItem
+                  projectId={projectId}
+                  commentId={item.id}
+                  onEdit={() => onEdit(item.id)}
+                  loginUserId={loginUserId}
+                  commentUserId={item.user.id}
+                  reportTitle={item.content}
+                  activateEditMode={activateEditMode}
+                />
+              </DropDown>
+            )}
           </S.CommentContainer>
 
-          <S.ReplyContainer>
-            {item.recommentCount !== 0 && (
-              <S.ShowReply onClick={() => handleShowReplyClick(item.id)}>
-                <S.ShowReplyButton>
-                  <S.Icon>
-                    {isShowReply ? (
-                      <img src={ArrowUp} />
-                    ) : (
-                      <img src={ArrowDown} />
-                    )}
-                  </S.Icon>
-                  <S.ReplyContent>
-                    {item.recommentCount}개 답글 확인
-                  </S.ReplyContent>
-                </S.ShowReplyButton>
-              </S.ShowReply>
-            )}
+          {item.recommentCount !== 0 && (
+            <S.ShowReply onClick={() => handleShowReplyClick(item.id)}>
+              <S.Icon>
+                {isShowReply ? <img src={ArrowUp} /> : <img src={ArrowDown} />}
+              </S.Icon>
+              <S.ReplyContent>{item.recommentCount}개 답글 확인</S.ReplyContent>
+            </S.ShowReply>
+          )}
 
-            {isShowReply === item.id && (
-              <S.ReplyContainer>
-                <ReplyComponent
-                  projectId={projectId}
-                  loginUserId={loginUserId}
-                  commentId={item.id}
-                />
-              </S.ReplyContainer>
-            )}
-          </S.ReplyContainer>
+          {isShowReply === item.id && (
+            <S.ReplyContainer>
+              <ReplyComponent
+                projectId={projectId}
+                loginUserId={loginUserId}
+                commentId={item.id}
+              />
+            </S.ReplyContainer>
+          )}
         </S.Container>
       ))}
     </>

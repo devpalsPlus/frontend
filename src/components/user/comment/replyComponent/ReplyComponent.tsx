@@ -1,5 +1,5 @@
 import Avatar from '../../../common/avatar/Avatar';
-import * as S from './ReplyComponent.styled';
+import * as S from '../commentComponent/commentComponent/CommentComponent.styled';
 import DefaultImg from '../../../../assets/defaultImg.png';
 import useComment from '../../../../hooks/user/CommentHooks/useComment';
 import DropDown from '../../../common/dropDown/DropDown';
@@ -35,7 +35,7 @@ const ReplyComponent = ({
   }
 
   return getReplyList?.map((item, index) => (
-    <S.Container key={index}>
+    <S.Container $reply={true} key={index}>
       <S.Wrapper>
         <Link
           to={
@@ -72,23 +72,26 @@ const ReplyComponent = ({
           )}
         </S.CommentWrapper>
       </S.Wrapper>
-      <DropDown
-        toggleButton={
-          <img src={dropdownButton} onClick={handleDropDownClick} />
-        }
-      >
-        <DropDownItem
-          projectId={projectId}
-          commentId={commentId}
-          recommentId={item.id}
-          onEdit={() => onEdit(item.id)}
-          loginUserId={loginUserId}
-          commentUserId={item.user.id}
-          reportTitle={item.content}
-          activateEditMode={activateEditMode}
-          reply={true}
-        />
-      </DropDown>
+      {loginUserId && (
+        <DropDown
+          toggleButton={
+            <img src={dropdownButton} onClick={handleDropDownClick} />
+          }
+          comment={true}
+        >
+          <DropDownItem
+            projectId={projectId}
+            commentId={commentId}
+            recommentId={item.id}
+            onEdit={() => onEdit(item.id)}
+            loginUserId={loginUserId}
+            commentUserId={item.user.id}
+            reportTitle={item.content}
+            activateEditMode={activateEditMode}
+            reply={true}
+          />
+        </DropDown>
+      )}
     </S.Container>
   ));
 };

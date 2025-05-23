@@ -20,6 +20,7 @@ export interface UserInfo {
   positions: Omit<PositionTag, 'createdAt'>[];
   skills: Omit<SkillTag, 'createdAt'>[];
   createdAt?: string;
+  averageScores: number[];
 }
 
 export interface ApiUserInfo extends ApiCommonType {

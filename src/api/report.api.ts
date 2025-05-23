@@ -1,4 +1,4 @@
-import { ApiPostContent } from '../models/report';
+import type { ApiPostContent } from '../models/report';
 import { httpClient } from './http.api';
 
 export const postReport = async (formData: ApiPostContent) => {

@@ -7,12 +7,14 @@ interface DropDownProps {
   children: React.ReactNode;
   toggleButton: React.ReactNode;
   isOpen?: boolean;
+  comment: boolean;
 }
 
 const DropDown = ({
   children,
   toggleButton,
   isOpen = false,
+  comment,
   ...props
 }: DropDownProps) => {
   const [open, setOpen] = useState(isOpen);
@@ -31,7 +33,7 @@ const DropDown = ({
         >
           {toggleButton}
         </S.DropDownButtonWrapper>
-        {open && <S.Panel>{children}</S.Panel>}
+        {open && <S.Panel $comment={comment}>{children}</S.Panel>}
       </S.DropDownContainer>
     </DropDownContext.Provider>
   );

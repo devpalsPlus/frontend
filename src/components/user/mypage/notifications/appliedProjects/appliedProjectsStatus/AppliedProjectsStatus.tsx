@@ -1,5 +1,5 @@
 import { MY_STATUS } from '../../../../../../constants/user/authConstants';
-import { AppliedProject } from '../../../../../../models/userProject';
+import type { AppliedProject } from '../../../../../../models/userProject';
 import * as S from './AppliedProjectsStatus.styled';
 
 interface StatusProps {

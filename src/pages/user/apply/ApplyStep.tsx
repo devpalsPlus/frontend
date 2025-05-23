@@ -7,7 +7,7 @@ import { useModal } from '../../../hooks/useModal';
 import useGetProjectData from '../../../hooks/user/useGetProjectData';
 import useApplyProject from '../../../hooks/user/ProjectHooks/useApplyProject';
 import useAuthStore from '../../../store/authStore';
-import { ApplySchemeType, joinProject } from '../../../models/joinProject';
+import type { ApplySchemeType, joinProject } from '../../../models/joinProject';
 import { ApplyScheme } from '../../../constants/user/projectConstants';
 import Input from '../../../components/user/projectFormComponents/inputComponent/InputComponent';
 import PhoneComponent from '../../../components/user/applyComponents/phoneComponent/PhoneComponent';

@@ -1,4 +1,4 @@
-import { CommentType } from '../models/comment';
+import type { CommentType } from '../models/comment';
 import { httpClient } from './http.api';
 
 export const postComment = async (id: number, content: string) => {

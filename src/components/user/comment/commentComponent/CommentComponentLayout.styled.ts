@@ -17,18 +17,18 @@ export const ReplyContainer = styled.div`
   cursor: pointer;
 `;
 
-export const ReplyContent = styled.p`
-  margin-bottom: 30px;
-`;
+export const ReplyContent = styled.p``;
 
 export const CommentInput = styled.div`
   text-indent: 20px;
 `;
 
 export const ShowReply = styled.div`
-  padding-left: 85px;
-`;
-
-export const ShowReplyButton = styled.span`
-  display: flex;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 85px;
+  margin-bottom: 30px;
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
 `;

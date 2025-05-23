@@ -38,7 +38,7 @@ const CommentComponent = ({
   projectId,
 }: CommentComponentProps) => {
   return (
-    <S.Container key={index}>
+    <S.Container $reply={false} key={index}>
       <S.Wrapper>
         <Link
           to={

@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { useModal } from '../../../hooks/useModal';
 import useGetProjectData from '../../../hooks/user/useGetProjectData';
 import useUpdateProject from '../../../hooks/user/ProjectHooks/useUpdateProject';
-import {
+import type {
   CreateProjectFormValues,
   FormData,
 } from '../../../models/createProject';

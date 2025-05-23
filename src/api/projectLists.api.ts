@@ -2,7 +2,7 @@ import type {
   ApiProjectLists,
   ApiProjectStatistic,
 } from '../models/mainProjectLists';
-import { SearchFilters } from '../models/SearchFilters';
+import type { SearchFilters } from '../models/SearchFilters';
 import { httpClient } from './http.api';
 
 export const getProjectLists = async (params: SearchFilters) => {

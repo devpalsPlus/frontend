@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { userInfoKey } from '../queries/user/keys';
 import useAuthStore from '../../store/authStore';
-import { ApiUserInfo } from '../../models/userInfo';
+import type { ApiUserInfo } from '../../models/userInfo';
 import { getUserInfo } from '../../api/userpage.api';
 
 export const useUserProfileInfo = (id: number) => {
