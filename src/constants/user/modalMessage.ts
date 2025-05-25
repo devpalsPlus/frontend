@@ -25,4 +25,5 @@ export const MODAL_MESSAGE = {
   applyProjectFail: '해당 공고에 지원을 실패 되었습니다.',
   projectDetailFail: '해당 공고가 존재하지 않습니다.',
   alreadyApply: '이미 참여한/지원하신 공고 입니다.',
+  noMemberToEvaluate: '평가 할 멤버가 없습니다.',
 } as const;

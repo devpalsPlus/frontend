@@ -14,7 +14,7 @@ const usePostComment = (id: number) => {
       });
     },
     onError: (error) => {
-      console.log(error);
+      console.error(error);
     },
   });
 

@@ -48,7 +48,6 @@ const useNotification = () => {
     eventSource.addEventListener('alarm', (e) => {
       const event = e as MessageEvent;
       try {
-        console.log(JSON.parse(event.data));
         const eventData: AlarmLive = JSON.parse(event.data);
 
         if (eventData) {
@@ -63,7 +62,7 @@ const useNotification = () => {
       }
     });
     eventSource.onerror = (e) => {
-      console.log(e);
+      console.error(e);
     };
   }, [queryClient, userId]);
 

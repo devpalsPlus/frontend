@@ -26,7 +26,7 @@ export const NotificationHeader = styled.div`
   display: flex;
   justify-content: right;
   align-items: center;
-  height: fix-content;
+  height: fit-content;
   margin-right: 15px;
 `;
 
