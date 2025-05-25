@@ -2,6 +2,7 @@ import * as S from './Card.styled';
 import type { ManagedProject } from '../../../models/manageMyProject';
 import AvatarList from '../../common/avatar/AvatarList';
 import { formatDate } from '../../../util/formatDate';
+import { ROUTES } from '../../../constants/user/routes';
 interface CardProps {
   project: ManagedProject;
 }
@@ -17,6 +18,14 @@ function Card({ project }: CardProps) {
       <AvatarList maxCount={5} avatars={project.skills} />
 
       <S.ButtonWrapper>
+        {project.canEvaluate && (
+          <S.EvaluateButton
+            key={project.id}
+            to={`${ROUTES.evaluation}/${project.id}`}
+          >
+            평가하기
+          </S.EvaluateButton>
+        )}
         {project.isDone && <S.RecruitmentEnd>모집 종료</S.RecruitmentEnd>}
       </S.ButtonWrapper>
     </S.CardWrapper>
