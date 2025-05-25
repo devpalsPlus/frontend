@@ -89,18 +89,17 @@ const CommentComponent = ({
               <S.ReplyContent>댓글 달기</S.ReplyContent>
             </S.ReplyInputButton>
           )}
-
-          {activateId === item.id && !onReplyMessage && (
-            <S.ReplyInput>
-              <CommentInput
-                reply={true}
-                projectId={projectId}
-                commentId={item.id}
-              />
-            </S.ReplyInput>
-          )}
         </S.CommentWrapper>
       </S.Wrapper>
+      {activateId === item.id && !onReplyMessage && (
+        <S.ReplyInput>
+          <CommentInput
+            reply={true}
+            projectId={projectId}
+            commentId={item.id}
+          />
+        </S.ReplyInput>
+      )}
     </S.Container>
   );
 };

@@ -55,8 +55,11 @@ export const ReplyContent = styled.p`
 `;
 
 export const ReplyInput = styled.div`
-  width: 100%;
-  margin-left: 15px;
+  display: flex;
+  flex: 1;
+  width: 94%;
+  margin-left: 50px;
+  margin-top: 10px;
   margin-bottom: 10px;
 `;
 

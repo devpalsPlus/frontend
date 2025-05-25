@@ -6,6 +6,10 @@ import usePostReply from '../../../../hooks/user/CommentHooks/usePostReply';
 import usePatchReply from '../../../../hooks/user/CommentHooks/usePatchReply';
 import usePostComment from '../../../../hooks/user/CommentHooks/usePostComment';
 import usePutComment from '../../../../hooks/user/CommentHooks/usePutComment';
+import { useMyProfileInfo } from '../../../../hooks/user/useMyInfo';
+import { formatImgPath } from '../../../../util/formatImgPath';
+import Avatar from '../../../common/avatar/Avatar';
+import DefaultImg from '../../../../assets/defaultImg.png';
 
 type FormValue = {
   commentInput: string;
@@ -38,7 +42,7 @@ const CommentInput = ({
     register,
     setValue,
   } = useForm<FormValue>();
-
+  const { myData } = useMyProfileInfo();
   const { isFocused, handleFocus, handleClick } = useInputFocus();
   const { createComment } = usePostComment(projectId);
   const { changeComment } = usePutComment(projectId, commentId);
@@ -46,6 +50,12 @@ const CommentInput = ({
   const { changeReply } = usePatchReply(recommentId, commentId, projectId);
 
   const hasInput = Boolean(watch('commentInput', ''));
+
+  const profileImg = myData?.profileImg
+    ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
+        myData.profileImg
+      )}?w=86&h=86&fit=crop&crop=entropy&auto=format,enhance&q=60`
+    : DefaultImg;
 
   const handleSubmit = (data: { commentInput: string }) => {
     if (reply) {
@@ -75,6 +85,7 @@ const CommentInput = ({
 
   return (
     <S.InputContainer>
+      <Avatar size={'55px'} image={profileImg} />
       <S.InputWrapper>
         <form
           onSubmit={
