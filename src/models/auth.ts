@@ -21,3 +21,8 @@ export interface UserData {
   nickname: string;
   admin: boolean;
 }
+
+export interface ApiOauth extends ApiCommonType {
+  data: Pick<LoginResponse, 'accessToken'>;
+  user: UserData;
+}

@@ -1,9 +1,8 @@
-import { ApiVerifyNickname, VerifyEmail } from '../models/auth';
+import { ApiOauth, ApiVerifyNickname, VerifyEmail } from '../models/auth';
 import { httpClient } from './http.api';
 import { loginFormValues } from '../pages/login/Login';
 import { registerFormValues } from '../pages/user/register/Register';
 import { changePasswordFormValues } from '../pages/user/changePassword/ChangePassword';
-import useAuthStore from '../store/authStore';
 
 export const postVerificationEmail = async (email: string) => {
   try {
@@ -79,6 +78,17 @@ export const postLogin = async (data: loginFormValues) => {
 export const postRefresh = async () => {
   try {
     const response = await httpClient.post('/auth/refresh');
+
+    return response.data;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
+export const getOauthLogin = async () => {
+  try {
+    const response = await httpClient.get<ApiOauth>(`/auth/oauth-login`);
 
     return response.data;
   } catch (e) {

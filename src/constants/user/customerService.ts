@@ -14,7 +14,7 @@ export const MODAL_MESSAGE_CUSTOMER_SERVICE = {
 
 export const My_INQUIRIES_MESSAGE = {
   categoryDefault: '카테고리',
-  fileDefault: '선택된 파일이 없습니다.',
+  fileDefault: '파일을 선택해 주세요. (최대 3개)',
   blowUpMessage: '클릭하면 이미지를 크게 볼 수 있습니다.',
   isImageOpenMessage: '이미지를 클릭하면 사라집니다.',
 };
@@ -26,4 +26,5 @@ export const INQUIRY_MESSAGE = {
   inquiredSuccess: '문의글이 작성되었습니다.',
   inquiredError: '문의글 작성에 실패하였습니다.',
   validationFile: '파일 크기는 5MB 이하만 가능합니다.',
+  maxFileCount: '최대 3개까지만 업로드 할 수 있습니다.',
 };
