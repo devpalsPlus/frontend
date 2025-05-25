@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
 import { useNavigate } from 'react-router-dom';
 
-interface useGetCompletedEvaulationProps {
+interface useGetCompletedEvaluationProps {
   projectId: number;
   handleModalOpen: (newMessage: string, callback?: () => void) => void;
 }
@@ -13,7 +13,7 @@ interface useGetCompletedEvaulationProps {
 const useGetCompletedEvaluation = ({
   projectId,
   handleModalOpen,
-}: useGetCompletedEvaulationProps) => {
+}: useGetCompletedEvaluationProps) => {
   const navigate = useNavigate();
   const { data, isLoading, isFetching, isError } = useQuery({
     queryKey: [ProjectMemberListEval.MemberListEval, projectId],
@@ -22,7 +22,7 @@ const useGetCompletedEvaluation = ({
   });
 
   useEffect(() => {
-    if (!data) {
+    if (data && (!data.userData || data.userData.length === 0)) {
       handleModalOpen(MODAL_MESSAGE.noMemberToEvaluate, () => navigate(-1));
     }
   }, [data, handleModalOpen, navigate]);

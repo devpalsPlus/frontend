@@ -21,8 +21,15 @@ const Evaluation = () => {
     return <LoadingSpinner />;
   }
 
-  if (!memberList.userData.length) {
-    return (
+  return (
+    <>
+      <S.Container>
+        <EvaluationContent
+          projectId={projectId}
+          projectName={memberList.projectName}
+          memberList={memberList.userData!}
+        />
+      </S.Container>
       <Modal
         isOpen={isOpen}
         onClose={handleModalClose}
@@ -30,17 +37,7 @@ const Evaluation = () => {
       >
         {message}
       </Modal>
-    );
-  }
-
-  return (
-    <S.Container>
-      <EvaluationContent
-        projectId={projectId}
-        projectName={memberList.projectName}
-        memberList={memberList.userData!}
-      />
-    </S.Container>
+    </>
   );
 };
 

@@ -26,10 +26,10 @@ const ProjectDetail = () => {
   const { userData } = useAuthStore((state) => state);
 
   useEffect(() => {
-    if (!data) {
+    if (!isLoading && !isFetching && !data) {
       handleModalOpen(MODAL_MESSAGE.projectDetailFail);
     }
-  }, [data, handleModalOpen]);
+  }, [data, handleModalOpen, isLoading, isFetching]);
 
   if (isLoading || isFetching) return <LoadingSpinner />;
 
