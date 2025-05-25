@@ -3,20 +3,34 @@ import * as S from './Evaluation.styled';
 import useGetCompletedEvaluation from '../../../hooks/user/evaluationHooks/useGetEvaluation';
 import LoadingSpinner from '../../../components/common/loadingSpinner/LoadingSpinner';
 import EvaluationContent from '../../../components/user/evaluation/EvaluationContent';
+import Modal from '../../../components/common/modal/Modal';
+import { useModal } from '../../../hooks/useModal';
 
 const Evaluation = () => {
   const { projectId: projectIdParam } = useParams();
   const projectId = Number(projectIdParam);
+  const { isOpen, message, handleModalOpen, handleModalClose, handleConfirm } =
+    useModal();
 
-  const { memberList, isLoading, isFetching } =
-    useGetCompletedEvaluation(projectId);
+  const { memberList, isLoading, isFetching } = useGetCompletedEvaluation({
+    projectId,
+    handleModalOpen,
+  });
 
   if (isLoading || isFetching) {
     return <LoadingSpinner />;
   }
 
   if (!memberList.userData.length) {
-    return <S.Container>평가할 멤버가 없습니다.</S.Container>;
+    return (
+      <Modal
+        isOpen={isOpen}
+        onClose={handleModalClose}
+        onConfirm={handleConfirm}
+      >
+        {message}
+      </Modal>
+    );
   }
 
   return (
