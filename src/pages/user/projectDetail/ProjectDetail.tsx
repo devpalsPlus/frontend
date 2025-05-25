@@ -42,7 +42,7 @@ const ProjectDetail = () => {
   }
 
   const handleApplyClick = () => {
-    if (!userData?.hasRequiredTags) {
+    if (userData?.hasRequiredTags) {
       navigate(`${ROUTES.apply}/${id}`);
     } else {
       handleModalOpen(MODAL_MESSAGE.noTagsData, () => navigate(ROUTES.mypage));
