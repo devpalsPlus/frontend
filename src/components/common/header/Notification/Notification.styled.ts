@@ -6,6 +6,8 @@ export const Container = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 3px;
 `;
 
@@ -24,7 +26,7 @@ export const ScrollArea = styled.div`
 
 export const NotificationHeader = styled.div`
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
   align-items: center;
   height: fit-content;
   margin-right: 15px;

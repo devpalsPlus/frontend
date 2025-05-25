@@ -26,4 +26,5 @@ export const MODAL_MESSAGE = {
   projectDetailFail: '해당 공고가 존재하지 않습니다.',
   alreadyApply: '이미 참여한/지원하신 공고 입니다.',
   noMemberToEvaluate: '평가 할 멤버가 없습니다.',
+  noTagsData: '대표 스킬/포지션을 입력 하셔야 사용할 수 있습니다.',
 } as const;

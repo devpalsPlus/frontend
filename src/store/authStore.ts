@@ -6,6 +6,7 @@ export interface UserData {
   id: number;
   email: string;
   nickname: string;
+  hasRequiredTags: boolean;
 }
 
 interface AuthState {
@@ -23,6 +24,7 @@ const initialUserData: UserData = {
   id: 0,
   email: '',
   nickname: '',
+  hasRequiredTags: true,
 };
 
 export const getStoredUserData = () => {
