@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const CardWrapper = styled.div`
@@ -31,7 +32,7 @@ export const ButtonWrapper = styled.div`
   margin-top: 1rem;
   width: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
 `;
 
 export const CardTitle = styled.h3`
@@ -88,4 +89,19 @@ export const RecruitmentEnd = styled.span`
 
   font-size: 0.8rem;
   font-weight: 800;
+`;
+
+export const EvaluateButton = styled(Link)`
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 0.2rem 0.65rem;
+  background-color: #3e5879;
+  font-size: 0.9rem;
+  color: ${({ theme }) => theme.color.white};
+  border-radius: 10px;
+  text-align: center;
+
+  @media ${({ theme }) => theme.mediaQuery.tablet} {
+    font-size: 0.78rem;
+  }
 `;

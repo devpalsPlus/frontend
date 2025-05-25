@@ -11,11 +11,17 @@ interface AuthState {
   logout: () => void;
 }
 
-// 암호화 함수
-// export const getStoredUserData = () => {
-//   const encryptedData = localStorage.getItem('userData');
-//   return encryptedData ? decryptData(encryptedData) : null;
-// };
+export const getStoredUserData = () => {
+  const encryptedData = localStorage.getItem('userData');
+  return encryptedData ? decryptData(encryptedData) : null;
+};
+
+export const getTokens = () => {
+  const accessToken = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
+
+  return { accessToken, refreshToken };
+};
 
 const useAuthStore = create(
   persist<AuthState>(

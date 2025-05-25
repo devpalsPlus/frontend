@@ -1,5 +1,5 @@
 import { ChevronRightIcon, PlusIcon } from '@heroicons/react/24/outline';
-import { FAQ } from '../../../../models/customerService';
+import type { FAQ } from '../../../../models/customerService';
 import * as S from './FAQContent.styled';
 import { useState } from 'react';
 

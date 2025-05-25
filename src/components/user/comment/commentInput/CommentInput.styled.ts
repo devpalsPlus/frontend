@@ -3,10 +3,12 @@ import Button from '../../../common/Button/Button';
 
 export const InputContainer = styled.div`
   display: flex;
+  flex: 1;
 `;
 
 export const Input = styled.input`
   width: 100%;
+  font-size: 15px;
   margin-left: 10px;
 `;
 
@@ -25,6 +27,7 @@ export const ButtonWrapper = styled.div`
 export const Line = styled.hr<{ $isFocused: boolean }>`
   opacity: ${({ $isFocused }) => ($isFocused ? 1.0 : 0.2)};
   border: ${({ $isFocused }) => ($isFocused ? 2 : 1)};
+  margin-top: 4px;
   margin-left: 10px;
 `;
 

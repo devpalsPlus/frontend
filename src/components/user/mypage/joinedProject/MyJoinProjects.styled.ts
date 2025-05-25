@@ -51,7 +51,7 @@ export const WrapperProject = styled.div`
     padding: 1rem;
   }
 
-  a {
+  & > a {
     display: inline-block;
     width: 46%;
   }

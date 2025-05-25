@@ -1,4 +1,4 @@
-import { ApiApplicantInfo, ApiApplicants } from '../models/applicant';
+import type { ApiApplicantInfo, ApiApplicants } from '../models/applicant';
 import { httpClient } from './http.api';
 
 export const getApplicantList = async (projectId: number) => {

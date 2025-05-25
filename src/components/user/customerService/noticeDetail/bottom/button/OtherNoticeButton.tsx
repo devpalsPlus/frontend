@@ -1,5 +1,5 @@
 import { ROUTES } from '../../../../../../constants/user/routes';
-import { OtherNotice } from '../../../../../../models/customerService';
+import type { OtherNotice } from '../../../../../../models/customerService';
 import { formatDate } from '../../../../../../util/format';
 import * as S from './OtherNoticeButton.styled';
 

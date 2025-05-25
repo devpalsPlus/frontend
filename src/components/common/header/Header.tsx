@@ -83,6 +83,7 @@ function Header() {
               <UserCircleIcon color='#6D6D6D' width='48' height='48' />
             )
           }
+          comment={false}
         >
           <>
             {isLoggedIn && (

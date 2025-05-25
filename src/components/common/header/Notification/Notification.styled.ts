@@ -6,6 +6,8 @@ export const Container = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 3px;
 `;
 
@@ -22,7 +24,26 @@ export const ScrollArea = styled.div`
   }
 `;
 
+export const NotificationHeader = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: fit-content;
+  margin-right: 15px;
+`;
+
+export const MoreArea = styled.button``;
+
+export const More = styled.span``;
+
+export const Arrow = styled.img`
+  margin-bottom: 3px;
+`;
+
 export const NonContentsMessage = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: 6px;
 `;
 

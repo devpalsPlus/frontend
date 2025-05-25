@@ -9,6 +9,7 @@ export interface JoinedProject {
   recruitmentEndDate: string;
   totalMember: number;
   skills: Omit<SkillTag, 'createdAt'>[];
+  canEvaluate: boolean;
 }
 
 export interface ApiJoinedProject extends ApiCommonType {

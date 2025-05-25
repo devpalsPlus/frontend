@@ -9,7 +9,7 @@ import { z } from 'zod';
 import { SquaresPlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import MyProfileWrapper from '../MyProfileWrapper';
-import { UserInfo } from '../../../../../models/userInfo';
+import type { UserInfo } from '../../../../../models/userInfo';
 import { useSearchFilteringSkillTag } from '../../../../../hooks/user/useSearchFilteringSkillTag';
 import { useEditMyProfileInfo } from '../../../../../hooks/user/useMyInfo';
 import useNickNameVerification from '../../../../../hooks/user/useNicknameVerification';

@@ -1,4 +1,4 @@
-import { ApiOauth, ApiVerifyNickname, VerifyEmail } from '../models/auth';
+import type { ApiOauth, ApiVerifyNickname, VerifyEmail } from '../models/auth';
 import { httpClient } from './http.api';
 import { loginFormValues } from '../pages/login/Login';
 import { registerFormValues } from '../pages/user/register/Register';

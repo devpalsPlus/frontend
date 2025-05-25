@@ -30,7 +30,10 @@ const MyJoinProjects = () => {
                   key={project.id}
                   to={`${ROUTES.projectDetail}/${project.id}`}
                 >
-                  <Project project={project} />
+                  <Project
+                    project={project}
+                    canEvaluate={project.canEvaluate}
+                  />
                 </Link>
               ))}
             </S.WrapperProject>

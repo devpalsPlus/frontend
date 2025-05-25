@@ -1,6 +1,6 @@
 import useTagSelectors from '../../../../../hooks/user/ProjectHooks/useTagSelectors';
-import { CreateProjectFormValues } from '../../../../../models/createProject';
-import { PositionTag } from '../../../../../models/tags';
+import type { CreateProjectFormValues } from '../../../../../models/createProject';
+import type { PositionTag } from '../../../../../models/tags';
 import * as S from './PositionComponent.styled';
 import { FieldErrors, UseFormSetValue } from 'react-hook-form';
 

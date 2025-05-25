@@ -1,29 +1,32 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  position: absolute;
-  top: -20px;
-  right: 0;
-  width: 120px;
-  background-color: #f7f7f7;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  overflow: hidden;
-  z-index: 999;
+export const Container = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 5.5rem;
 `;
 
 export const Item = styled.div`
   padding: 12px 16px;
-  font-size: 14px;
-  color: #333;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1;
+  color: inherit;
   cursor: pointer;
-  background-color: #f7f7f7;
 
   &:hover {
-    background-color: #eaeaea;
+    color: ${({ theme }) => theme.color.white};
+    background-color: ${({ theme }) => theme.color.navy};
   }
 
-  & + & {
-    border-top: 1px solid #ccc;
+  &:last-child {
+    border-bottom-left-radius: ${({ theme }) => theme.borderRadius.primary};
+    border-bottom-right-radius: ${({ theme }) => theme.borderRadius.primary};
   }
+`;
+
+export const ReportItem = styled(Item)`
+  border-top-left-radius: ${({ theme }) => theme.borderRadius.primary};
+  border-top-right-radius: ${({ theme }) => theme.borderRadius.primary};
 `;

@@ -13,7 +13,7 @@ const usePutComment = (id: number, commentId: number) => {
       });
     },
     onError: (error) => {
-      console.log(error);
+      console.error(error);
     },
   });
 

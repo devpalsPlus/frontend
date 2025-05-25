@@ -20,18 +20,18 @@ const ProjectDetail = () => {
   const { projectId } = useParams();
   const id = Number(projectId);
   const navigate = useNavigate();
-  const { isOpen, message, handleModalClose, handleModalOpen } = useModal();
+  const { isOpen, message, handleModalClose, handleModalOpen, handleConfirm } =
+    useModal();
   const { data, isLoading, isFetching } = useGetProjectData(id);
   const userData = useAuthStore.getState().userData;
 
   useEffect(() => {
-    if (!data) {
+    if (!isLoading && !isFetching && !data) {
       handleModalOpen(MODAL_MESSAGE.projectDetailFail);
     }
-  }, [data, handleModalOpen]);
+  }, [data, handleModalOpen, isLoading, isFetching]);
 
-  if (isLoading) return <LoadingSpinner />;
-  if (isFetching) return <LoadingSpinner />;
+  if (isLoading || isFetching) return <LoadingSpinner />;
 
   if (!data) {
     return (
@@ -41,16 +41,12 @@ const ProjectDetail = () => {
     );
   }
 
-  if (!userData) {
-    return (
-      <Modal isOpen={isOpen} onClose={handleModalClose}>
-        {message}
-      </Modal>
-    );
-  }
-
   const handleApplyClick = () => {
-    navigate(`${ROUTES.apply}/${id}`);
+    if (userData?.hasRequiredTags) {
+      navigate(`${ROUTES.apply}/${id}`);
+    } else {
+      handleModalOpen(MODAL_MESSAGE.noTagsData, () => navigate(ROUTES.mypage));
+    }
   };
 
   const handleMovetoUserPage = () => {
@@ -59,56 +55,66 @@ const ProjectDetail = () => {
   };
 
   return (
-    <S.Container>
-      <S.Wrapper>
-        <ScrollRestoration />
-        <S.Header>
-          <S.Title>{data.title}</S.Title>
-          <S.ProfileContainer>
-            <S.ProfileImageContainer onClick={handleMovetoUserPage}>
-              <Avatar size='2.5rem' image={data.user.img} />
-            </S.ProfileImageContainer>
-            <S.UserInfo>
-              <S.UserName onClick={handleMovetoUserPage}>
-                {data.user.nickname}
-              </S.UserName>
-              <S.PostDate>{formatDate(data.recruitmentEndDate)}</S.PostDate>
-              <S.ViewCount>
-                <EyeIcon />
-                {data.views}
-              </S.ViewCount>
-            </S.UserInfo>
-          </S.ProfileContainer>
-        </S.Header>
-        <S.Content>
-          <ProjectInformation data={data} />
-          <br></br>
-          <S.ProjectDescription>
-            <MarkdownEditorView description={data.description} />
-          </S.ProjectDescription>
-        </S.Content>
-        <S.ApplyButtonContainer>
-          {userData.id !== data.user.id &&
-          !data.acceptedIds.includes(userData.id) &&
-          !data.applicantIds.includes(userData.id) ? (
-            <Button
-              size='primary'
-              schema='primary'
-              radius='primary'
-              onClick={handleApplyClick}
-            >
-              프로젝트 함께하기
-            </Button>
-          ) : null}
-        </S.ApplyButtonContainer>
-        <hr></hr>
-        <CommentLayout
-          projectId={data.id}
-          createrId={data.user.id}
-          loginUserId={userData.id}
-        />
-      </S.Wrapper>
-    </S.Container>
+    <>
+      <S.Container>
+        <S.Wrapper>
+          <ScrollRestoration />
+          <S.Header>
+            <S.Title>{data.title}</S.Title>
+            <S.ProfileContainer>
+              <S.ProfileImageContainer onClick={handleMovetoUserPage}>
+                <Avatar size='2.5rem' image={data.user.img} />
+              </S.ProfileImageContainer>
+              <S.UserInfo>
+                <S.UserName onClick={handleMovetoUserPage}>
+                  {data.user.nickname}
+                </S.UserName>
+                <S.PostDate>{formatDate(data.recruitmentEndDate)}</S.PostDate>
+                <S.ViewCount>
+                  <EyeIcon />
+                  {data.views}
+                </S.ViewCount>
+              </S.UserInfo>
+            </S.ProfileContainer>
+          </S.Header>
+          <S.Content>
+            <ProjectInformation data={data} />
+            <br></br>
+            <S.ProjectDescription>
+              <MarkdownEditorView description={data.description} />
+            </S.ProjectDescription>
+          </S.Content>
+          <S.ApplyButtonContainer>
+            {userData &&
+            userData.id !== data.user.id &&
+            !data.acceptedIds.includes(userData.id) &&
+            !data.applicantIds.includes(userData.id) ? (
+              <Button
+                size='primary'
+                schema='primary'
+                radius='primary'
+                onClick={handleApplyClick}
+              >
+                프로젝트 함께하기
+              </Button>
+            ) : null}
+          </S.ApplyButtonContainer>
+          <hr></hr>
+          <CommentLayout
+            projectId={data.id}
+            createrId={data.user.id}
+            loginUserId={userData?.id}
+          />
+        </S.Wrapper>
+      </S.Container>
+      <Modal
+        isOpen={isOpen}
+        onClose={handleModalClose}
+        onConfirm={handleConfirm}
+      >
+        {message}
+      </Modal>
+    </>
   );
 };
 

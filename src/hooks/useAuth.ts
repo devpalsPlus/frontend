@@ -3,7 +3,7 @@ import { postLogin, postResetPassword, postSignUp } from '../api/auth.api';
 import { loginFormValues } from '../pages/login/Login';
 import useAuthStore from '../store/authStore';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { LoginResponse } from '../models/auth';
+import type { LoginResponse } from '../models/auth';
 import { AxiosError } from 'axios';
 import { myInfoKey } from './queries/user/keys';
 import { MODAL_MESSAGE } from '../constants/user/modalMessage';

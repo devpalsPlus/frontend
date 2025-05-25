@@ -24,7 +24,7 @@ export const createClient = (config?: AxiosRequestConfig) => {
       return config;
     },
     (error) => {
-      console.log('interceptors request error:', error);
+      console.error('interceptors request error:', error);
       return Promise.reject(error);
     }
   );

@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { putProject } from '../../../api/joinProject.api';
 import { managedProjectKey } from '../../queries/user/keys';
-import { FormData } from '../../../models/createProject';
+import type { FormData } from '../../../models/createProject';
 import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
 import { ROUTES } from '../../../constants/user/routes';
 
@@ -30,7 +30,7 @@ const useUpdateProject = ({ id, handleModalOpen }: UseUpdateProjectProps) => {
     },
     onError: (error) => {
       handleModalOpen(MODAL_MESSAGE.ModifyProjectFail);
-      console.log(error);
+      console.error(error);
     },
   });
 

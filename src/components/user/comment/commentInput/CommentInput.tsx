@@ -1,9 +1,5 @@
 import * as S from './CommentInput.styled';
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import { useMyProfileInfo } from '../../../../hooks/user/useMyInfo';
-import { formatImgPath } from '../../../../util/formatImgPath';
-import DefaultImg from '../../../../assets/defaultImg.png';
-import Avatar from '../../../common/avatar/Avatar';
 import { useForm } from 'react-hook-form';
 import useInputFocus from '../../../../hooks/user/useInputFocus';
 import usePostReply from '../../../../hooks/user/CommentHooks/usePostReply';
@@ -36,7 +32,6 @@ const CommentInput = ({
   recommentId,
   setActivateEditMode,
 }: CommentInputProps) => {
-  const { myData } = useMyProfileInfo();
   const {
     handleSubmit: onSubmitHandler,
     watch,
@@ -49,12 +44,6 @@ const CommentInput = ({
   const { changeComment } = usePutComment(projectId, commentId);
   const { createReply } = usePostReply(projectId, commentId);
   const { changeReply } = usePatchReply(recommentId, commentId, projectId);
-
-  const profileImg = myData?.profileImg
-    ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
-        myData.profileImg
-      )}?w=86&h=86&fit=crop&crop=entropy&auto=format,enhance&q=60`
-    : DefaultImg;
 
   const hasInput = Boolean(watch('commentInput', ''));
 
@@ -86,7 +75,6 @@ const CommentInput = ({
 
   return (
     <S.InputContainer>
-      {!activateEditMode && <Avatar size='55px' image={profileImg} />}
       <S.InputWrapper>
         <form
           onSubmit={

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useParams } from 'react-router-dom';
 import { formatDate } from '../../../util/format';
-import { ApplySchemeType, joinProject } from '../../../models/joinProject';
+import type { ApplySchemeType, joinProject } from '../../../models/joinProject';
 import { useModal } from '../../../hooks/useModal';
 import useGetProjectData from '../../../hooks/user/useGetProjectData';
 import useApplyProject from '../../../hooks/user/ProjectHooks/useApplyProject';

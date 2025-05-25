@@ -1,4 +1,4 @@
-import { ProjectDetailPlus } from '../../../models/projectDetail';
+import type { ProjectDetailPlus } from '../../../models/projectDetail';
 import { formatDate } from '../../../util/formatDate';
 import * as S from './RecruitmentDate.styled';
 interface RecruitmentDateProps {

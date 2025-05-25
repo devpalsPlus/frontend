@@ -35,7 +35,7 @@ const useApplyProject = ({ id, handleModalOpen }: UseApplyProjectProps) => {
       }, 3000);
     },
     onError: (error) => {
-      console.log(error);
+      console.error(error);
       handleModalOpen(MODAL_MESSAGE.applyProjectFail);
     },
   });

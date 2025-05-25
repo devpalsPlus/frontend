@@ -35,24 +35,6 @@ export const PROJECT_DATA = [
   },
 ] as const;
 
-export const PROJECT_DATA_GET = [
-  {
-    id: '1',
-    name: 'totalMember',
-    label: '모집 인원',
-  },
-  {
-    id: '2',
-    name: 'startDate',
-    label: '시작 예정',
-  },
-  {
-    id: '3',
-    name: 'estimatedPeriod',
-    label: '예상 기간',
-  },
-] as const;
-
 export const CAREER_INPUT = [
   {
     name: 'name',

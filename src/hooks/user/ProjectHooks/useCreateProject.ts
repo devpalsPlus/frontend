@@ -4,7 +4,7 @@ import { postProject } from '../../../api/joinProject.api';
 import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
 import { managedProjectKey } from '../../queries/user/keys';
 import { ROUTES } from '../../../constants/user/routes';
-import { FormData } from '../../../models/createProject';
+import type { FormData } from '../../../models/createProject';
 
 interface UseCreateProjectProps {
   handleModalOpen: (newMessage: string) => void;
@@ -28,7 +28,7 @@ const useCreateProject = ({ handleModalOpen }: UseCreateProjectProps) => {
       }, 3000);
     },
     onError: (error) => {
-      console.log(error);
+      console.error(error);
       handleModalOpen(MODAL_MESSAGE.createProjectFail);
     },
   });
