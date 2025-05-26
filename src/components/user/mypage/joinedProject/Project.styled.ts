@@ -115,11 +115,14 @@ export const State = styled.span`
 
 export const Skill = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
-  gap: 0.6rem;
+  justify-content: space-between;
+`;
 
+export const SkillArea = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     gap: 0.2rem;
   }
@@ -140,8 +143,6 @@ export const Skill = styled.div`
     color: rgb(196 196 196);
   }
 `;
-
-export const SkillArea = styled.div``;
 
 export const EvaluateButton = styled(Link)`
   display: inline-flex;
