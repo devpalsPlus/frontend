@@ -15,7 +15,11 @@ import { useEditMyProfileInfo } from '../../../../../hooks/user/useMyInfo';
 import useNickNameVerification from '../../../../../hooks/user/useNicknameVerification';
 import { ROUTES } from '../../../../../constants/user/routes';
 import Button from '../../../../common/Button/Button';
-import { ERROR_MESSAGES } from '../../../../../constants/user/authConstants';
+import {
+  ERROR_MESSAGES,
+  OAUTH_PROVIDERS,
+} from '../../../../../constants/user/authConstants';
+import githubIcon from '../../../../../assets/githubIcon.svg';
 
 type ProfileFormData = z.infer<typeof profileSchema>;
 
@@ -35,6 +39,14 @@ export default function EditProfile() {
   const { nicknameMessage, handleDuplicationNickname } =
     useNickNameVerification();
   const navigate = useNavigate();
+  const BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
+  const github = {
+    ...OAUTH_PROVIDERS.filter((oauth) => oauth.name.includes('github'))[0],
+  };
+
+  const handleClickGithubValidation = () => {
+    window.location.href = `${BASE_URL}/${github.url}`;
+  };
 
   const {
     control,
@@ -269,10 +281,9 @@ export default function EditProfile() {
                 schema='primary'
                 radius='large'
                 type='button'
-                onClick={() => {
-                  handleDuplicationNickname(nickname);
-                }}
+                onClick={handleClickGithubValidation}
               >
+                <S.GithubImg src={githubIcon} alt='깃허브 아이콘' />
                 인증
               </Button>
             </S.InputWrapper>
