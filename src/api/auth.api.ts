@@ -86,9 +86,13 @@ export const postRefresh = async () => {
   }
 };
 
-export const getOauthLogin = async () => {
+export const getOauthLogin = async (oauthAccessToken: string) => {
   try {
-    const response = await httpClient.get<ApiOauth>(`/auth/oauth-login`);
+    const response = await httpClient.get<ApiOauth>(`/auth/oauth-login`, {
+      headers: {
+        Authorization: `Bearer ${oauthAccessToken}`,
+      },
+    });
 
     return response.data;
   } catch (e) {
