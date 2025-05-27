@@ -22,8 +22,8 @@ const MyJoinProjects = () => {
         <S.FilterWrapper>
           <S.FilterTitle>참여한 프로젝트 리스트</S.FilterTitle>
         </S.FilterWrapper>
-        {myJoinedProjectListData && myJoinedProjectListData?.length > 0 ? (
-          <ScrollWrapper>
+        <ScrollWrapper>
+          {myJoinedProjectListData && myJoinedProjectListData?.length > 0 ? (
             <S.WrapperProject>
               {myJoinedProjectListData?.map((project) => (
                 <Link
@@ -37,12 +37,14 @@ const MyJoinProjects = () => {
                 </Link>
               ))}
             </S.WrapperProject>
-          </ScrollWrapper>
-        ) : (
-          <S.WrapperNoContentMyJoinedProjects data-type='noContent'>
-            <NoContent type='projects' />
-          </S.WrapperNoContentMyJoinedProjects>
-        )}
+          ) : (
+            <S.ContainerNoContentMyJoinedProjects>
+              <S.WrapperNoContentMyJoinedProjects>
+                <NoContent type='projects' />
+              </S.WrapperNoContentMyJoinedProjects>
+            </S.ContainerNoContentMyJoinedProjects>
+          )}
+        </ScrollWrapper>
       </S.Container>
     </>
   );
