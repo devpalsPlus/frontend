@@ -23,7 +23,7 @@ const ProjectDetail = () => {
   const { isOpen, message, handleModalClose, handleModalOpen, handleConfirm } =
     useModal();
   const { data, isLoading, isFetching } = useGetProjectData(id);
-  const { userData } = useAuthStore((state) => state);
+  const userData = useAuthStore((state) => state.userData);
 
   useEffect(() => {
     if (!isLoading && !isFetching && !data) {

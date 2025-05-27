@@ -44,11 +44,13 @@ export const InputBeginner = styled.input`
 `;
 
 export const InputTextGithub = styled.div`
-  width: 100%;
+  width: 70%;
+`;
 
-  @media ${({ theme }) => theme.mediaQuery.tablet} {
-    width: 100%;
-  }
+export const GithubImg = styled.img`
+  width: 1.5rem;
+  margin-right: 0.3rem;
+  filter: invert(1);
 `;
 
 export const InputTextCareer = styled.div`

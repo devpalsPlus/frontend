@@ -1,5 +1,5 @@
 import CryptoJS from 'crypto-js';
-import { UserData } from '../store/authStore';
+import type { UserData } from '../models/auth';
 
 export const encryptData = (data: UserData | undefined) => {
   return CryptoJS.AES.encrypt(

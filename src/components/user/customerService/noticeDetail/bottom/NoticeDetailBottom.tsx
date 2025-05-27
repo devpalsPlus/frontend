@@ -7,11 +7,13 @@ import * as S from './NoticeDetailBottom.styled';
 interface NoticeDetailBottomProps {
   prev: OtherNotice | null;
   next: OtherNotice | null;
+  keyword: string;
 }
 
 export default function NoticeDetailBottom({
   prev,
   next,
+  keyword,
 }: NoticeDetailBottomProps) {
   return (
     <S.Container>
@@ -37,7 +39,7 @@ export default function NoticeDetailBottom({
       ) : (
         <S.NotOtherNotice>다음 공지사항이 없습니다.</S.NotOtherNotice>
       )}
-      <ListButton />
+      <ListButton keyword={keyword} />
     </S.Container>
   );
 }

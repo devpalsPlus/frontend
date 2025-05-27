@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { WrapperNoContent } from '../../notifications/all/All.styled';
 
 export const container = styled.div`
   height: 100%;
@@ -50,8 +51,4 @@ export const InquiriesWrapper = styled.div`
   gap: 1.5rem;
 `;
 
-export const WrapperNoContent = styled.div`
-  height: 95%;
-  display: flex;
-  align-items: center;
-`;
+export const WrapperNoContentAppliedProjects = styled(WrapperNoContent)``;

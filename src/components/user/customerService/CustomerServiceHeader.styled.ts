@@ -37,10 +37,13 @@ export const SearchBarInput = styled.input`
 
 export const ButtonWrapper = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
 `;
 
-export const UturnButton = styled.button`
+export const XButton = styled.button`
+  height: fit-content;
   &:hover {
     color: ${({ theme }) => theme.color.lightnavy};
   }

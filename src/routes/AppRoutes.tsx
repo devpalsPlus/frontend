@@ -15,6 +15,7 @@ import { ToastProvider } from '../components/common/Toast/ToastProvider';
 import { ROUTES } from '../constants/user/routes';
 const Login = lazy(() => import('../pages/login/Login'));
 const LoginSuccess = lazy(() => import('../pages/login/LoginSuccess'));
+const LoginApi = lazy(() => import('../pages/login/LoginApi'));
 const Register = lazy(() => import('../pages/user/register/Register'));
 const ChangePassword = lazy(
   () => import('../pages/user/changePassword/ChangePassword')
@@ -114,7 +115,7 @@ const AppRoutes = () => {
     },
     {
       path: ROUTES.loginSuccess,
-      element: <LoginSuccess />,
+      element: <LoginApi />,
     },
     {
       path: ROUTES.signup,

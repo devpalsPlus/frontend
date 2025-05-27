@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { WrapperNoContent } from '../notifications/all/All.styled';
 
 export const Container = styled.section`
   width: 100%;
@@ -20,11 +21,9 @@ export const Section = styled.div`
   flex-direction: column;
 `;
 
-export const NoWrapper = styled.div`
-  width: 100%;
-  height: 80%;
-  padding: 2rem 0 5rem;
-`;
+export const ContainerNoContentMyJoinedProjects = styled(WrapperNoContent)``;
+
+export const WrapperNoContentMyJoinedProjects = styled.div``;
 
 export const Wrapper = styled.div`
   display: flex;
@@ -39,7 +38,7 @@ export const WrapperProject = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 2rem;
-  height: 100%;
+  min-height: 100%;
 
   @media ${({ theme }) => theme.mediaQuery.tablet} {
     padding: 1rem;

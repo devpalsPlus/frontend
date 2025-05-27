@@ -1,4 +1,4 @@
-import type { ApiVerifyNickname, VerifyEmail } from '../models/auth';
+import type { ApiOauth, ApiVerifyNickname, VerifyEmail } from '../models/auth';
 import { httpClient } from './http.api';
 import { loginFormValues } from '../pages/login/Login';
 import { registerFormValues } from '../pages/user/register/Register';
@@ -17,6 +17,7 @@ export const postVerificationEmail = async (email: string) => {
 export const postVerifyEmailCode = async (data: VerifyEmail) => {
   try {
     const response = await httpClient.post('/authenticode/verify', data);
+
     return response;
   } catch (error) {
     console.error('verifiyEmailCode:', error);
@@ -42,6 +43,7 @@ export const postSignUp = async (
 ) => {
   try {
     const response = await httpClient.post('/auth/sign-up', data);
+
     return response;
   } catch (error) {
     console.error('signup:', error);
@@ -54,6 +56,7 @@ export const postResetPassword = async (
 ) => {
   try {
     const response = await httpClient.post('/auth/password/reset', data);
+
     return response;
   } catch (error) {
     console.error('resetpassword:', error);
@@ -64,9 +67,36 @@ export const postResetPassword = async (
 export const postLogin = async (data: loginFormValues) => {
   try {
     const response = await httpClient.post('/auth/login', data);
+
     return response.data;
   } catch (error) {
     console.error('login:', error);
     throw error;
+  }
+};
+
+export const postRefresh = async () => {
+  try {
+    const response = await httpClient.post('/auth/refresh');
+
+    return response.data;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
+export const getOauthLogin = async (oauthAccessToken: string) => {
+  try {
+    const response = await httpClient.get<ApiOauth>(`/auth/oauth-login`, {
+      headers: {
+        Authorization: `Bearer ${oauthAccessToken}`,
+      },
+    });
+
+    return response.data;
+  } catch (e) {
+    console.error(e);
+    throw e;
   }
 };

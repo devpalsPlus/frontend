@@ -4,7 +4,7 @@ import useAuthStore from '../../store/authStore';
 import { ActivityLog } from '../queries/user/keys';
 
 export const useGetMyInquiries = () => {
-  const userId = useAuthStore((state) => state.userData?.id);
+  const userId = useAuthStore.getState().userData?.id;
 
   const { data: myInquiriesData, isLoading } = useQuery({
     queryKey: [ActivityLog.myInquiries, userId],

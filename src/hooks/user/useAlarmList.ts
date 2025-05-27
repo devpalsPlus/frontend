@@ -4,7 +4,7 @@ import { getAlarmList } from '../../api/alarm.api';
 import useAuthStore from '../../store/authStore';
 
 const useAlarmList = () => {
-  const userId = useAuthStore((state) => state.userData?.id);
+  const userId = useAuthStore.getState().userData?.id;
 
   const {
     data: alarmListData,

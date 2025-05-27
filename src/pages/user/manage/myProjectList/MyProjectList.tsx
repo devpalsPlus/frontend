@@ -1,10 +1,19 @@
+import { Spinner } from '../../../../components/common/loadingSpinner/LoadingSpinner.styled';
 import Title from '../../../../components/common/title/Title';
 import CardList from '../../../../components/user/manageProjects/CardList';
 import { useManagedProjects } from '../../../../hooks/user/useManagedProjects';
 import * as S from './MyProjectList.styled';
 
 const MyProjectList = () => {
-  const { managedProjects } = useManagedProjects();
+  const { managedProjects, isLoading } = useManagedProjects();
+
+  if (isLoading) {
+    return (
+      <S.WrapperNoContentMyProjectList>
+        <Spinner />
+      </S.WrapperNoContentMyProjectList>
+    );
+  }
 
   return (
     <S.ManageProjectsContainer>
