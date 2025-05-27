@@ -19,8 +19,8 @@ export default function UserProjects() {
       <S.FilterWrapper>
         <S.FilterTitle>{title}</S.FilterTitle>
       </S.FilterWrapper>
-      {userProjectData && userProjectData.length > 0 ? (
-        <ScrollWrapper>
+      <ScrollWrapper>
+        {userProjectData && userProjectData.length > 0 ? (
           <S.WrapperProject>
             {userProjectData?.map((project) => (
               <Link
@@ -31,12 +31,14 @@ export default function UserProjects() {
               </Link>
             ))}
           </S.WrapperProject>
-        </ScrollWrapper>
-      ) : (
-        <S.NoWrapper>
-          <NoContent type='projects' />
-        </S.NoWrapper>
-      )}
+        ) : (
+          <S.ContainerNoContentMyJoinedProjects>
+            <S.WrapperNoContentMyJoinedProjects>
+              <NoContent type='projects' />
+            </S.WrapperNoContentMyJoinedProjects>
+          </S.ContainerNoContentMyJoinedProjects>
+        )}
+      </ScrollWrapper>
     </S.Container>
   );
 }
