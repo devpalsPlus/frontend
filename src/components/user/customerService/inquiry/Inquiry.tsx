@@ -17,7 +17,6 @@ interface FormStateType {
   category: string;
   title: string;
   content: string;
-  images: File | null;
 }
 
 export default function Inquiry() {
@@ -42,7 +41,6 @@ export default function Inquiry() {
     category: My_INQUIRIES_MESSAGE.categoryDefault,
     title: '',
     content: '',
-    images: null,
   });
   const MAX_FILE_COUNT = 3;
 
@@ -80,10 +78,6 @@ export default function Inquiry() {
       }
     });
 
-    for (const entries of formData) {
-      console.log(entries);
-    }
-
     if (!isValid.category) {
       return handleModalOpen(INQUIRY_MESSAGE.selectCategory);
     }
@@ -99,7 +93,6 @@ export default function Inquiry() {
       category: My_INQUIRIES_MESSAGE.categoryDefault,
       title: '',
       content: '',
-      images: null,
     });
   };
 
@@ -119,18 +112,21 @@ export default function Inquiry() {
       return;
     }
 
-    if (imageFiles.length >= MAX_FILE_COUNT) {
+    const actualFileCount = imageFiles.filter(
+      (file) => file.fileValue !== My_INQUIRIES_MESSAGE.fileDefault
+    ).length;
+    if (actualFileCount >= MAX_FILE_COUNT) {
       handleModalOpen(INQUIRY_MESSAGE.maxFileCount);
       e.target.value = '';
       return;
     }
 
-    const preview = image ? URL.createObjectURL(image) : null;
+    const preview = image ? URL.createObjectURL(image) : '';
     setImageFiles((prev) => {
       if (
         fileValue.trim() === '' ||
         prev.some((file) => file.fileValue === fileValue) ||
-        preview === null
+        preview === ''
       )
         return prev;
       if (
@@ -166,11 +162,13 @@ export default function Inquiry() {
 
   useEffect(() => {
     return () => {
-      if (imageFiles.filter((file) => file.preview !== null).length > 0) {
-        imageFiles.forEach((file) => URL.revokeObjectURL(file.preview));
-      }
+      imageFiles.forEach((file) => {
+        if (file.preview && file.preview !== '') {
+          URL.revokeObjectURL(file.preview);
+        }
+      });
     };
-  }, [form.images, imageFiles]);
+  }, [imageFiles]);
 
   return (
     <S.Container>
@@ -244,7 +242,6 @@ export default function Inquiry() {
                   type='file'
                   accept='.jpg, .jpeg, .png'
                   id='upload'
-                  multiple
                   onChange={(e) => handleChangeFile(e)}
                 />
               </S.InquirySelectFile>

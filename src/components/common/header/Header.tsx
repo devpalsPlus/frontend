@@ -23,7 +23,7 @@ function Header() {
   const location = useLocation();
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const { userLogout } = useAuth(handleModalOpen);
-  const isLoggedIn = useAuthStore.getState().isLoggedIn;
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
 
   // const { signalData, setSignalData } = useNotification();

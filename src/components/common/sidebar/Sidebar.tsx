@@ -20,7 +20,7 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
-  const isLoggedIn = useAuthStore.getState().isLoggedIn;
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const location = useLocation();
   const isUserPage = location.pathname.includes('/user');
   const isManagePage = location.pathname.includes('/manage');

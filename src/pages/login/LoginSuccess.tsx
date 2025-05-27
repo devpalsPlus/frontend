@@ -10,7 +10,7 @@ import { AUTH_MESSAGE } from '../../constants/user/authConstants';
 
 function LoginSuccess() {
   const [searchParams] = useSearchParams();
-  const login = useAuthStore.getState().login;
+  const login = useAuthStore((state) => state.login);
   const navigate = useNavigate();
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
 

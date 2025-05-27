@@ -102,7 +102,7 @@ const ModifyProject = lazy(
 const Evaluation = lazy(() => import('../pages/user/evaluation/Evaluation'));
 
 const AppRoutes = () => {
-  const isLoggedIn = useAuthStore.getState().isLoggedIn;
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const routeList = [
     {

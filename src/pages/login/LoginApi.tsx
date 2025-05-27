@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
 import { ROUTES } from '../../constants/user/routes';
@@ -10,7 +10,7 @@ import { AUTH_MESSAGE } from '../../constants/user/authConstants';
 import { getOauthLogin } from '../../api/auth.api';
 
 export default function LoginApi() {
-  const login = useAuthStore.getState().login;
+  const login = useAuthStore((state) => state.login);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
