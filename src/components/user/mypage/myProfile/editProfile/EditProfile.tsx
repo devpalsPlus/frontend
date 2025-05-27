@@ -1,4 +1,4 @@
-import * as S from './editProfile.styled';
+import * as S from './EditProfile.styled';
 import OptionBox from './../OptionBox';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
@@ -264,6 +264,17 @@ export default function EditProfile() {
               {errors.github && (
                 <S.ErrorMessage>{errors.github.message}</S.ErrorMessage>
               )}
+              <Button
+                size='primary'
+                schema='primary'
+                radius='large'
+                type='button'
+                onClick={() => {
+                  handleDuplicationNickname(nickname);
+                }}
+              >
+                인증
+              </Button>
             </S.InputWrapper>
           )}
         />
