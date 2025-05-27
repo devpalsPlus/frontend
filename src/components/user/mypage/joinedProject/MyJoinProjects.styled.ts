@@ -1,15 +1,9 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { WrapperNoContent } from '../notifications/all/All.styled';
 
-export const Container = styled.section<{ $isNoContent?: boolean }>`
+export const Container = styled.section`
   width: 100%;
   height: 85%;
-  ${({ $isNoContent }) =>
-    $isNoContent &&
-    css`
-      justify-content: center;
-      align-items: center;
-    `}
 `;
 
 export const FilterWrapper = styled.div`

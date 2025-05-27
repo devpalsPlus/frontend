@@ -16,9 +16,7 @@ const MyJoinProjects = () => {
 
   return (
     <>
-      <S.Container
-        $isNoContent={myJoinedProjectListData?.length === 0 ? true : false}
-      >
+      <S.Container>
         <S.FilterWrapper>
           <S.FilterTitle>참여한 프로젝트 리스트</S.FilterTitle>
         </S.FilterWrapper>
