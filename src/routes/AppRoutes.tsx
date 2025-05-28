@@ -11,8 +11,10 @@ import useAuthStore from '../store/authStore';
 import ProtectRoute from '../components/common/ProtectRoute';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
-import { ToastProvider } from '../components/common/Toast/ToastProvider';
 import { ROUTES } from '../constants/user/routes';
+import { ToastProvider } from '../components/common/Toast/ToastProvider';
+import NotificationInitializer from '../components/user/notificationLive/NotificationInitializer';
+import { NotificationProvider } from '../components/user/notificationLive/NotificationProvider';
 const Login = lazy(() => import('../pages/login/Login'));
 const LoginSuccess = lazy(() => import('../pages/login/LoginSuccess'));
 const Register = lazy(() => import('../pages/user/register/Register'));
@@ -385,9 +387,12 @@ const AppRoutes = () => {
   const router = createBrowserRouter([
     {
       element: (
-        <ToastProvider>
-          <Outlet />
-        </ToastProvider>
+        <NotificationProvider>
+          <ToastProvider>
+            <NotificationInitializer />
+            <Outlet />
+          </ToastProvider>
+        </NotificationProvider>
       ),
 
       children: [...newRouteList, { path: '*', element: <NotFoundPage /> }],
