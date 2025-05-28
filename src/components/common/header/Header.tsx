@@ -26,6 +26,12 @@ function Header() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
 
+  const handleClickLogout = () => {
+    userLogout();
+    useAuthStore.persist.clearStorage();
+    localStorage.clear();
+  };
+
   // const { signalData, setSignalData } = useNotification();
 
   // useEffect(() => {
@@ -100,7 +106,7 @@ function Header() {
                 <Link to='#' onClick={(e) => e.preventDefault()}>
                   <S.Item
                     aria-label='클릭시 로그아웃 됩니다.'
-                    onClick={userLogout}
+                    onClick={handleClickLogout}
                   >
                     로그아웃
                   </S.Item>

@@ -30,3 +30,15 @@ export const ROUTES = {
   evaluation: '/evaluation',
   loginSuccess: '/oauth-redirect',
 } as const;
+
+export const ADMIN_ROUTE = {
+  admin: '/admin',
+  devPals: '/main',
+  notice: '/notice',
+  banner: '/banner',
+  tags: '/tags',
+  allUser: '/all-user',
+  reports: '/reports',
+  inquiries: '/inquires',
+  manage: '/manage',
+};

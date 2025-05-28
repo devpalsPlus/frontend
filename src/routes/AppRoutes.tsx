@@ -11,8 +11,8 @@ import useAuthStore from '../store/authStore';
 import ProtectRoute from '../components/common/ProtectRoute';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
-import { ToastProvider } from '../components/common/Toast/ToastProvider';
 import { ROUTES } from '../constants/user/routes';
+
 const Login = lazy(() => import('../pages/login/Login'));
 const LoginSuccess = lazy(() => import('../pages/login/LoginSuccess'));
 const LoginApi = lazy(() => import('../pages/login/LoginApi'));
@@ -101,7 +101,7 @@ const ModifyProject = lazy(
 );
 const Evaluation = lazy(() => import('../pages/user/evaluation/Evaluation'));
 
-const AppRoutes = () => {
+export const AppRoutes = () => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const routeList = [
@@ -383,19 +383,19 @@ const AppRoutes = () => {
     };
   });
 
-  const router = createBrowserRouter([
-    {
-      element: (
-        <ToastProvider>
-          <Outlet />
-        </ToastProvider>
-      ),
+  // const router = createBrowserRouter([
+  //   {
+  //     element: (
+  //       <ToastProvider>
+  //         <Outlet />
+  //       </ToastProvider>
+  //     ),
 
-      children: [...newRouteList, { path: '*', element: <NotFoundPage /> }],
-    },
-  ]);
+  //     children: [...newRouteList, { path: '*', element: <NotFoundPage /> }],
+  //   },
+  // ]);
 
-  return <RouterProvider router={router} />;
+  return newRouteList;
 };
 
 export default AppRoutes;

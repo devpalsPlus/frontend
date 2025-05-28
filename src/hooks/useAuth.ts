@@ -95,10 +95,10 @@ export const useAuth = (handleModalOpen: (message: string) => void) => {
   };
 
   const userLogout = () => {
-    logout();
     queryClient.removeQueries({ queryKey: myInfoKey.myProfile });
-    useAuthStore.persist.clearStorage();
+    // useAuthStore.persist.clearStorage();
     handleModalOpen(MODAL_MESSAGE.logout);
+    logout();
     setTimeout(() => {
       navigate(ROUTES.main);
     }, 1000);

@@ -1,10 +1,10 @@
-import AppRoutes from './routes/AppRoutes';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './style/global';
 import { defaultTheme } from './style/theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SearchFilteringProvider } from './context/SearchFilteringContext';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import MergeRoutes from './routes/MergeRoutes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +22,7 @@ function App() {
       <SearchFilteringProvider>
         <GlobalStyle />
         <QueryClientProvider client={queryClient}>
-          <AppRoutes />
+          <MergeRoutes />
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </SearchFilteringProvider>
