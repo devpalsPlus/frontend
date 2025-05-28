@@ -11,7 +11,7 @@ import useAuthStore from '../store/authStore';
 import ProtectRoute from '../components/common/ProtectRoute';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
-import { ROUTES } from '../constants/user/routes';
+import { ROUTES } from '../constants/routes';
 
 const Login = lazy(() => import('../pages/login/Login'));
 const LoginSuccess = lazy(() => import('../pages/login/LoginSuccess'));

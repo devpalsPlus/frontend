@@ -1,7 +1,7 @@
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import { lazy } from 'react';
-import { ADMIN_ROUTE } from '../constants/user/routes';
+import { ADMIN_ROUTE } from '../constants/routes';
 import ProtectAdminRoute from './ProtectAdminRoute';
 
 const Sidebar = lazy(

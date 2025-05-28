@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import * as S from '../../mypage/joinedProject/MyJoinProjects.styled';
-import { ROUTES } from '../../../../constants/user/routes';
+import { ROUTES } from '../../../../constants/routes';
 import NoContent from '../../../common/noContent/NoContent';
 import ScrollWrapper from '../../mypage/ScrollWrapper';
 import Spinner from '../../mypage/Spinner';

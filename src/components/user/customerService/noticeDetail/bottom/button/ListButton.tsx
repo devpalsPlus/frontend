@@ -1,4 +1,4 @@
-import { ROUTES } from '../../../../../../constants/user/routes';
+import { ROUTES } from '../../../../../../constants/routes';
 import ContentBorder from '../../../../../common/contentBorder/ContentBorder';
 import * as S from './ListButton.styled';
 

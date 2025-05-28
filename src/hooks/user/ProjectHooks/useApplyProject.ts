@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { postApplicantProject } from '../../../api/joinProject.api';
 import { joinProject } from '../../../models/joinProject';
 import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
-import { ROUTES } from '../../../constants/user/routes';
+import { ROUTES } from '../../../constants/routes';
 
 interface UseApplyProjectProps {
   id: number;

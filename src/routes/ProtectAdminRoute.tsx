@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
-import { ADMIN_ROUTE, ROUTES } from '../constants/user/routes';
+import { ADMIN_ROUTE, ROUTES } from '../constants/routes';
 import { ReactNode, useEffect } from 'react';
 import { useModal } from '../hooks/useModal';
 import Modal from '../components/common/modal/Modal';

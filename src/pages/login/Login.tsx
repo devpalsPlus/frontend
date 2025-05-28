@@ -12,7 +12,7 @@ import {
   OAUTH_PROVIDERS,
 } from '../../constants/user/authConstants';
 import { useAuth } from '../../hooks/useAuth';
-import { ROUTES } from '../../constants/user/routes';
+import { ROUTES } from '../../constants/routes';
 import { useModal } from '../../hooks/useModal';
 import Modal from '../../components/common/modal/Modal';
 import InputText from '../../components/user/auth/InputText';

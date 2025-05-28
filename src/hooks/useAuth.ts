@@ -7,7 +7,7 @@ import type { LoginResponse } from '../models/auth';
 import { AxiosError } from 'axios';
 import { myInfoKey } from './queries/user/keys';
 import { MODAL_MESSAGE } from '../constants/user/modalMessage';
-import { ROUTES } from '../constants/user/routes';
+import { ROUTES } from '../constants/routes';
 import { registerFormValues } from '../pages/user/register/Register';
 import { changePasswordFormValues } from '../pages/user/changePassword/ChangePassword';
 

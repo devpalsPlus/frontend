@@ -1,4 +1,4 @@
-import { ADMIN_ROUTE } from '../user/routes';
+import { ADMIN_ROUTE } from '../routes';
 
 export const SIDEBAR_LIST = {
   main: [

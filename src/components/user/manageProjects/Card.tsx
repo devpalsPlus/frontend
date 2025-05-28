@@ -2,7 +2,7 @@ import * as S from './Card.styled';
 import type { ManagedProject } from '../../../models/manageMyProject';
 import AvatarList from '../../common/avatar/AvatarList';
 import { formatDate } from '../../../util/formatDate';
-import { ROUTES } from '../../../constants/user/routes';
+import { ROUTES } from '../../../constants/routes';
 interface CardProps {
   project: ManagedProject;
 }

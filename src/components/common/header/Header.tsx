@@ -17,7 +17,7 @@ import { formatImgPath } from '../../../util/formatImgPath';
 // import { useEffect } from 'react';
 // import { testLiveAlarm } from '../../../api/alarm.api';
 import { useMyProfileInfo } from '../../../hooks/user/useMyInfo';
-import { ROUTES } from '../../../constants/user/routes';
+import { ROUTES } from '../../../constants/routes';
 
 function Header() {
   const location = useLocation();

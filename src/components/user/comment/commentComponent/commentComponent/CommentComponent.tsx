@@ -4,7 +4,7 @@ import chat from '../../../../../assets/chat.svg';
 import { Link } from 'react-router-dom';
 import CommentInput from '../../commentInput/CommentInput';
 import type { CommentType } from '../../../../../models/comment';
-import { ROUTES } from '../../../../../constants/user/routes';
+import { ROUTES } from '../../../../../constants/routes';
 import Avatar from '../../../../common/avatar/Avatar';
 
 interface CommentComponentProps {

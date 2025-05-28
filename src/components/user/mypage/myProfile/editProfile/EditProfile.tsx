@@ -13,7 +13,7 @@ import type { UserInfo } from '../../../../../models/userInfo';
 import { useSearchFilteringSkillTag } from '../../../../../hooks/user/useSearchFilteringSkillTag';
 import { useEditMyProfileInfo } from '../../../../../hooks/user/useMyInfo';
 import useNickNameVerification from '../../../../../hooks/user/useNicknameVerification';
-import { ROUTES } from '../../../../../constants/user/routes';
+import { ROUTES } from '../../../../../constants/routes';
 import Button from '../../../../common/Button/Button';
 import {
   ERROR_MESSAGES,

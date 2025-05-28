@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import ScrollWrapper from '../ScrollWrapper';
 import { useModal } from '../../../../hooks/useModal';
 import { useMyProfileInfo } from '../../../../hooks/user/useMyInfo';
-import { ROUTES } from '../../../../constants/user/routes';
+import { ROUTES } from '../../../../constants/routes';
 import Modal from '../../../common/modal/Modal';
 
 const MyProfile = () => {

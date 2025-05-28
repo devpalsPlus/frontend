@@ -1,4 +1,4 @@
-import { ROUTES } from './routes';
+import { ROUTES } from '../routes';
 
 export const NOTIFICATION_FILTER = [
   { title: '전체', url: ``, id: 0 },
