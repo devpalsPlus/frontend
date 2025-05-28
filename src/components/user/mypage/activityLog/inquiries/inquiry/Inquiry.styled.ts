@@ -91,4 +91,7 @@ export const ModalImgMessageWrapper = styled.div`
   padding: 0.2rem;
 `;
 
-export const ModalImg = styled.img``;
+export const ModalImg = styled.img`
+  max-width: 90vw;
+  max-height: 90vh;
+`;

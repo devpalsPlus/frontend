@@ -15,29 +15,36 @@ const MyJoinProjects = () => {
   }
 
   return (
-    <S.Container>
-      <S.FilterWrapper>
-        <S.FilterTitle>참여한 프로젝트 리스트</S.FilterTitle>
-      </S.FilterWrapper>
-      {myJoinedProjectListData && myJoinedProjectListData?.length > 0 ? (
+    <>
+      <S.Container>
+        <S.FilterWrapper>
+          <S.FilterTitle>참여한 프로젝트 리스트</S.FilterTitle>
+        </S.FilterWrapper>
         <ScrollWrapper>
-          <S.WrapperProject>
-            {myJoinedProjectListData?.map((project) => (
-              <Link
-                key={project.id}
-                to={`${ROUTES.projectDetail}/${project.id}`}
-              >
-                <Project project={project} canEvaluate={project.canEvaluate} />
-              </Link>
-            ))}
-          </S.WrapperProject>
+          {myJoinedProjectListData && myJoinedProjectListData?.length > 0 ? (
+            <S.WrapperProject>
+              {myJoinedProjectListData?.map((project) => (
+                <Link
+                  key={project.id}
+                  to={`${ROUTES.projectDetail}/${project.id}`}
+                >
+                  <Project
+                    project={project}
+                    canEvaluate={project.canEvaluate}
+                  />
+                </Link>
+              ))}
+            </S.WrapperProject>
+          ) : (
+            <S.ContainerNoContentMyJoinedProjects>
+              <S.WrapperNoContentMyJoinedProjects>
+                <NoContent type='projects' />
+              </S.WrapperNoContentMyJoinedProjects>
+            </S.ContainerNoContentMyJoinedProjects>
+          )}
         </ScrollWrapper>
-      ) : (
-        <S.NoWrapper>
-          <NoContent type='projects' />
-        </S.NoWrapper>
-      )}
-    </S.Container>
+      </S.Container>
+    </>
   );
 };
 

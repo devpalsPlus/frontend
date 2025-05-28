@@ -1,9 +1,16 @@
 import styled from 'styled-components';
+import { WrapperNoContent } from '../../../../components/user/mypage/notifications/all/All.styled';
+
+export const WrapperNoContentMyProjectList = styled(WrapperNoContent)`
+  height: 80vh;
+  justify-content: center;
+`;
 
 export const ManageProjectsContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 2rem;
 `;
 
 export const ManageProjectsWrapper = styled.div`

@@ -32,12 +32,34 @@ export const ListPlusIcon = styled.div<{ $isOpen: boolean }>`
   }
 `;
 
-export const ListContentWrapper = styled.div`
-  cursor: auto;
-  background: ${({ theme }) => theme.color.lightgrey};
-  padding: 1.5rem 1rem;
-  display: flex;
-  gap: 0.5rem;
+export const ListContentWrapper = styled.div<{ $isShowContent: boolean }>`
+  max-height: 0;
+  overflow: hidden;
+
+  @keyframes slice-show {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  ${({ $isShowContent }) =>
+    $isShowContent &&
+    css`
+      max-height: 100vh;
+      opacity: 1;
+      cursor: auto;
+      background: ${({ theme }) => theme.color.lightgrey};
+      padding: 1.5rem 1rem;
+      display: flex;
+      gap: 0.5rem;
+      animation: slice-show 300ms;
+    `}
 `;
 
 export const ListButtonWrapper = styled.div`

@@ -10,11 +10,19 @@ export default function AppliedProjects() {
   const { myAppliedStatusListData, isLoading } = useMyAppliedStatusList();
 
   if (isLoading) {
-    return <Spinner size='50px' color='#3e5879' />;
+    return (
+      <S.WrapperNoContentAppliedProjects data-type='noContent'>
+        <Spinner />
+      </S.WrapperNoContentAppliedProjects>
+    );
   }
 
   if (!myAppliedStatusListData || myAppliedStatusListData.length === 0) {
-    return <NoContent type='projects' />;
+    return (
+      <S.WrapperNoContentAppliedProjects data-type='noContent'>
+        <NoContent type='projects' />
+      </S.WrapperNoContentAppliedProjects>
+    );
   }
 
   return (

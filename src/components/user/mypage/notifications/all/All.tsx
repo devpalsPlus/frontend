@@ -29,7 +29,11 @@ export default function All() {
   };
 
   if (isLoading) {
-    return <Spinner size='50px' color='#3e5879' />;
+    return (
+      <S.WrapperNoContent data-type='noContent'>
+        <Spinner />
+      </S.WrapperNoContent>
+    );
   }
 
   const filterLength = alarmListData?.filter((list) => {
@@ -43,7 +47,7 @@ export default function All() {
 
   if (!alarmListData || alarmListData.length === 0 || filterLength === 0) {
     return (
-      <S.WrapperNoContent>
+      <S.WrapperNoContent data-type='noContent'>
         <NoContent type='notification' />
       </S.WrapperNoContent>
     );

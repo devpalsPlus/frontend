@@ -9,14 +9,18 @@ export default function Inquiries() {
   const { myInquiriesData, isLoading } = useGetMyInquiries();
 
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <S.WrapperNoContentAppliedProjects data-type='noContent'>
+        <Spinner />
+      </S.WrapperNoContentAppliedProjects>
+    );
   }
 
   if (!myInquiriesData || myInquiriesData?.length === 0)
     return (
-      <S.WrapperNoContent>
+      <S.WrapperNoContentAppliedProjects data-type='noContent'>
         <NoContent type='inquiries' />
-      </S.WrapperNoContent>
+      </S.WrapperNoContentAppliedProjects>
     );
 
   return (

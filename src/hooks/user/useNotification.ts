@@ -2,13 +2,14 @@ import { useEffect, useRef } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { AlarmList } from '../queries/user/keys';
 import type { AlarmLive } from '../../models/alarm';
-import useAuthStore, { getTokens } from '../../store/authStore';
+import useAuthStore from '../../store/authStore';
 import { useToast } from '../useToast';
 import { useNotificationContext } from '../../context/SseContext';
 
 const useNotification = () => {
   const queryClient = useQueryClient();
-  const userId = useAuthStore((state) => state.userData?.id);
+  const accessToken = useAuthStore.getState().accessToken;
+  const userId = useAuthStore.getState().userData?.id;
   const { showToast } = useToast();
   const { setSignal } = useNotificationContext();
 
@@ -29,9 +30,7 @@ const useNotification = () => {
       // 헤더가 아닌 파라미터 형태로 바꾸면서 Polyfill 제외 하기 -> CORS Preflight를 유발하여 요청 지연의 원인이 될 수 있음.
       const eventSource = new EventSource(
         `${import.meta.env.VITE_APP_API_BASE_URL}user/sse?accessToken=${
-          getTokens().accessToken || getTokens().refreshToken
-            ? getTokens().accessToken
-            : ''
+          accessToken ? accessToken : ''
         }`
       );
 

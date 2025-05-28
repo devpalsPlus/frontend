@@ -1,6 +1,4 @@
 //model
-
-import { UserData } from '../store/authStore';
 import { ApiCommonType } from './apiCommon';
 
 export interface VerifyEmail {
@@ -14,6 +12,17 @@ export interface ApiVerifyNickname extends ApiCommonType {
 
 export interface LoginResponse {
   accessToken: string;
-  refreshToken: string;
   userData: UserData;
+}
+
+export interface UserData {
+  id: number;
+  email: string;
+  nickname: string;
+  admin: boolean;
+}
+
+export interface ApiOauth extends ApiCommonType {
+  data: Pick<LoginResponse, 'accessToken'>;
+  user: UserData;
 }

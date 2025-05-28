@@ -5,7 +5,7 @@ import {
   My_INQUIRIES_MESSAGE,
 } from '../../../../constants/user/customerService';
 import * as S from './Inquiry.styled';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import React, { useEffect, useState } from 'react';
 import type { InquiryFormData } from '../../../../models/inquiry';
 import { usePostInquiry } from '../../../../hooks/user/usePostInquiry';
@@ -17,8 +17,6 @@ interface FormStateType {
   category: string;
   title: string;
   content: string;
-  fileValue: string;
-  fileImage: string | null;
 }
 
 export default function Inquiry() {
@@ -34,13 +32,17 @@ export default function Inquiry() {
     location.state.from || ''
   );
   const [isCategoryOpen, setIsCategoryOpen] = useState<boolean>(false);
+  const [imageFiles, setImageFiles] = useState<
+    { fileValue: string; preview: string; image: File | null }[]
+  >([
+    { fileValue: My_INQUIRIES_MESSAGE.fileDefault, preview: '', image: null },
+  ]);
   const [form, setForm] = useState<FormStateType>({
     category: My_INQUIRIES_MESSAGE.categoryDefault,
     title: '',
     content: '',
-    fileValue: My_INQUIRIES_MESSAGE.fileDefault,
-    fileImage: null,
   });
+  const MAX_FILE_COUNT = 3;
 
   const handleSubmitInquiry = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,6 +67,17 @@ export default function Inquiry() {
       content: form.content.trim() !== '',
     };
 
+    imageFiles.forEach((file) => {
+      if (
+        file.fileValue === My_INQUIRIES_MESSAGE.fileDefault ||
+        file.image === null
+      ) {
+        return;
+      } else {
+        formData.append('images', file.image);
+      }
+    });
+
     if (!isValid.category) {
       return handleModalOpen(INQUIRY_MESSAGE.selectCategory);
     }
@@ -80,8 +93,6 @@ export default function Inquiry() {
       category: My_INQUIRIES_MESSAGE.categoryDefault,
       title: '',
       content: '',
-      fileValue: My_INQUIRIES_MESSAGE.fileDefault,
-      fileImage: null,
     });
   };
 
@@ -89,9 +100,10 @@ export default function Inquiry() {
     setForm((prev) => ({ ...prev, category }));
     setIsCategoryOpen((prev) => !prev);
   };
+
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileValue = e.target.value;
-    const image = e.target.files?.[0];
+    const image = e.target.files?.[0] ?? null;
 
     const MAX_FILE_SIZE = 5 * 1024 * 1024;
     if (image && image.size > MAX_FILE_SIZE) {
@@ -100,17 +112,63 @@ export default function Inquiry() {
       return;
     }
 
-    const fileImage = image ? URL.createObjectURL(image) : null;
-    setForm((prev) => ({ ...prev, fileValue, fileImage }));
+    const actualFileCount = imageFiles.filter(
+      (file) => file.fileValue !== My_INQUIRIES_MESSAGE.fileDefault
+    ).length;
+    if (actualFileCount >= MAX_FILE_COUNT) {
+      handleModalOpen(INQUIRY_MESSAGE.maxFileCount);
+      e.target.value = '';
+      return;
+    }
+
+    const preview = image ? URL.createObjectURL(image) : '';
+    setImageFiles((prev) => {
+      if (
+        fileValue.trim() === '' ||
+        prev.some((file) => file.fileValue === fileValue) ||
+        preview === ''
+      )
+        return prev;
+      if (
+        prev.some((file) => file.fileValue === My_INQUIRIES_MESSAGE.fileDefault)
+      ) {
+        const removeDefault = prev.filter(
+          (file) => file.fileValue !== My_INQUIRIES_MESSAGE.fileDefault
+        );
+
+        return [...removeDefault, { fileValue, preview, image }];
+      }
+      return [...prev, { fileValue, preview, image }];
+    });
+
+    e.target.value = '';
+  };
+
+  const handleDeleteFile = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const deleteFileValue = e.currentTarget.id;
+    setImageFiles((prev) => {
+      if (prev.length === 1) {
+        return [
+          {
+            fileValue: My_INQUIRIES_MESSAGE.fileDefault,
+            preview: '',
+            image: null,
+          },
+        ];
+      }
+      return prev.filter((file) => file.fileValue !== deleteFileValue);
+    });
   };
 
   useEffect(() => {
     return () => {
-      if (form.fileImage) {
-        URL.revokeObjectURL(form.fileImage);
-      }
+      imageFiles.forEach((file) => {
+        if (file.preview && file.preview !== '') {
+          URL.revokeObjectURL(file.preview);
+        }
+      });
     };
-  }, [form.fileImage]);
+  }, [imageFiles]);
 
   return (
     <S.Container>
@@ -174,18 +232,35 @@ export default function Inquiry() {
                 setForm((prev) => ({ ...prev, content: e.target.value }))
               }
             ></S.Content>
-            <S.InquiryFileWrapper>
-              <S.InquiryFileLabel htmlFor='upload'>파일찾기</S.InquiryFileLabel>
-              <S.InquiryShowFile>{form.fileValue}</S.InquiryShowFile>
-              <S.InquiryFile
-                name='images'
-                type='file'
-                accept='.jpg, .jpeg, .png'
-                id='upload'
-                onChange={(e) => handleChangeFile(e)}
-              />
-              {form.fileImage && <S.FileImg src={form.fileImage || ''} />}
-            </S.InquiryFileWrapper>
+            <S.InquiryFileContainer>
+              <S.InquirySelectFile>
+                <S.InquiryFileLabel htmlFor='upload'>
+                  파일찾기
+                </S.InquiryFileLabel>
+                <S.InquiryFile
+                  name='images'
+                  type='file'
+                  accept='.jpg, .jpeg, .png'
+                  id='upload'
+                  onChange={(e) => handleChangeFile(e)}
+                />
+              </S.InquirySelectFile>
+              {imageFiles.map((list) => (
+                <S.InquiryFileWrapper key={list.fileValue} id={list.fileValue}>
+                  <S.InquiryShowFile>{list.fileValue}</S.InquiryShowFile>
+                  {list.preview && <S.FileImg src={list.preview || ''} />}
+                  {list.preview && (
+                    <S.FileDeleteXButton
+                      type='button'
+                      id={list.fileValue}
+                      onClick={handleDeleteFile}
+                    >
+                      <XMarkIcon />
+                    </S.FileDeleteXButton>
+                  )}
+                </S.InquiryFileWrapper>
+              ))}
+            </S.InquiryFileContainer>
           </S.ContentWrapper>
           <S.SendButtonWrapper>
             <S.SendButton type='submit'>제출</S.SendButton>

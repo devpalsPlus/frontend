@@ -112,9 +112,39 @@ export const Content = styled.textarea`
   font-size: 1rem;
 `;
 
+export const InquiryFileContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 50px;
+  position: relative;
+`;
+
 export const InquiryFileWrapper = styled.div`
   display: flex;
   height: 40px;
+`;
+
+export const InquirySelectFile = styled(InquiryFileWrapper)`
+  position: absolute;
+  right: 0;
+`;
+
+export const InquiryShowFile = styled.span`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  overflow: hidden;
+  padding: 0.5rem;
+  border: 1px solid ${({ theme }) => theme.color.border};
+  width: 50%;
+  color: ${({ theme }) => theme.color.navy};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
+`;
+
+export const InquiryDefault = styled(InquiryShowFile)`
+  padding: 0;
 `;
 
 export const InquiryFileLabel = styled.label`
@@ -127,8 +157,7 @@ export const InquiryFileLabel = styled.label`
   background: ${({ theme }) => theme.color.navy};
   color: ${({ theme }) => theme.color.white};
   border: 1px solid ${({ theme }) => theme.color.navy};
-  border-radius: ${({ theme }) => theme.borderRadius.primary} 0 0
-    ${({ theme }) => theme.borderRadius.primary};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
 
   &:hover {
     background: ${({ theme }) => theme.color.lightgrey};
@@ -136,18 +165,6 @@ export const InquiryFileLabel = styled.label`
     border: 1px solid ${({ theme }) => theme.color.navy};
     transition: all 0.3s ease-in-out;
   }
-`;
-
-export const InquiryShowFile = styled.span`
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  padding: 0.5rem;
-  border: 1px solid ${({ theme }) => theme.color.border};
-  width: 40%;
-  color: ${({ theme }) => theme.color.navy};
-  border-radius: 0 ${({ theme }) => theme.borderRadius.primary}
-    ${({ theme }) => theme.borderRadius.primary} 0;
 `;
 
 export const InquiryFile = styled.input`
@@ -161,6 +178,22 @@ export const FileImg = styled.img`
   margin-left: 0.5rem;
   width: 60px;
   height: 40px;
+`;
+
+export const FileDeleteXButton = styled.button`
+  position: relative;
+  color: ${({ theme }) => theme.color.navy};
+  z-index: 1;
+
+  svg {
+    border-radius: 50%;
+    background: ${({ theme }) => theme.color.white};
+    border: 1px solid ${({ theme }) => theme.color.navy};
+    top: -0.2rem;
+    left: -0.5rem;
+    position: absolute;
+    width: 1rem;
+  }
 `;
 
 export const SendButtonWrapper = styled.div`

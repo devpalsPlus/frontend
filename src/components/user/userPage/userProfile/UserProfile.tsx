@@ -15,7 +15,7 @@ const UserProfile = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   if (isLoading) {
-    return <Spinner size='50px' color='#3e5879' />;
+    return <Spinner />;
   }
 
   if (!userData) {
