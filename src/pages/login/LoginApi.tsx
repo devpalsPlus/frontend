@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
-import { ROUTES } from '../../constants/user/routes';
+import { ROUTES } from '../../constants/routes';
 import * as S from './Login.styled';
 import { Spinner } from '../../components/common/loadingSpinner/LoadingSpinner.styled';
 import Modal from '../../components/common/modal/Modal';

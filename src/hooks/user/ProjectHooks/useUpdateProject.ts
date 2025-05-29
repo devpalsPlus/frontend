@@ -4,7 +4,7 @@ import { putProject } from '../../../api/joinProject.api';
 import { managedProjectKey } from '../../queries/user/keys';
 import type { FormData } from '../../../models/createProject';
 import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
-import { ROUTES } from '../../../constants/user/routes';
+import { ROUTES } from '../../../constants/routes';
 
 interface UseUpdateProjectProps {
   id: number;

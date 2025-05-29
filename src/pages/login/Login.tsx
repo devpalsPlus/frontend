@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import * as S from './Login.styled';
-import Mainlogo from '../../assets/mainlogo.svg';
+import MainLogo from '../../assets/mainlogo.svg';
 import { EnvelopeIcon, KeyIcon } from '@heroicons/react/24/outline';
 import Title from '../../components/common/title/Title';
 import { z } from 'zod';
@@ -12,7 +12,7 @@ import {
   OAUTH_PROVIDERS,
 } from '../../constants/user/authConstants';
 import { useAuth } from '../../hooks/useAuth';
-import { ROUTES } from '../../constants/user/routes';
+import { ROUTES } from '../../constants/routes';
 import { useModal } from '../../hooks/useModal';
 import Modal from '../../components/common/modal/Modal';
 import InputText from '../../components/user/auth/InputText';
@@ -53,7 +53,7 @@ const Login = () => {
   return (
     <S.Container>
       <S.MoveHomeLink to={ROUTES.main}>
-        <img src={Mainlogo} alt='logo' />
+        <img src={MainLogo} alt='logo' />
       </S.MoveHomeLink>
       <Title size='semiLarge'>로그인</Title>
       <form onSubmit={handleSubmit(onSubmit)}>

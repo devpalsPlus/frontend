@@ -17,7 +17,7 @@ import { formatImgPath } from '../../../util/formatImgPath';
 // import { useEffect } from 'react';
 // import { testLiveAlarm } from '../../../api/alarm.api';
 import { useMyProfileInfo } from '../../../hooks/user/useMyInfo';
-import { ROUTES } from '../../../constants/user/routes';
+import { ROUTES } from '../../../constants/routes';
 
 function Header() {
   const location = useLocation();
@@ -25,6 +25,12 @@ function Header() {
   const { userLogout } = useAuth(handleModalOpen);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
+
+  const handleClickLogout = () => {
+    userLogout();
+    useAuthStore.persist.clearStorage();
+    localStorage.clear();
+  };
 
   // const { signalData, setSignalData } = useNotification();
 
@@ -100,7 +106,7 @@ function Header() {
                 <Link to='#' onClick={(e) => e.preventDefault()}>
                   <S.Item
                     aria-label='클릭시 로그아웃 됩니다.'
-                    onClick={userLogout}
+                    onClick={handleClickLogout}
                   >
                     로그아웃
                   </S.Item>

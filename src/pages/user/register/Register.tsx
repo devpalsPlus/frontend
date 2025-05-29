@@ -15,7 +15,7 @@ import { useAuth } from '../../../hooks/useAuth';
 import { useModal } from '../../../hooks/useModal';
 import useEmailVerification from '../../../hooks/user/useEmailVerification';
 import useNickNameVerification from '../../../hooks/user/useNicknameVerification';
-import { ROUTES } from '../../../constants/user/routes';
+import { ROUTES } from '../../../constants/routes';
 import Title from '../../../components/common/title/Title';
 import InputText from '../../../components/user/auth/InputText';
 import Button from '../../../components/common/Button/Button';

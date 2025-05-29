@@ -2,7 +2,7 @@ import * as S from './HeroSection.styled';
 import landimg from '../../../assets/landing.svg';
 import DownArrow from '../../../assets/arrow.svg';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../../../constants/user/routes';
+import { ROUTES } from '../../../constants/routes';
 import Button from '../../../components/common/Button/Button';
 interface HeroSectionProps {
   handleScrollToSection: (sectionId: number) => void;

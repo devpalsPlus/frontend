@@ -4,7 +4,7 @@ import Project from './Project';
 import Spinner from '../Spinner';
 import ScrollWrapper from '../ScrollWrapper';
 import { useMyJoinedProjectList } from '../../../../hooks/user/useMyInfo';
-import { ROUTES } from '../../../../constants/user/routes';
+import { ROUTES } from '../../../../constants/routes';
 import NoContent from '../../../common/noContent/NoContent';
 
 const MyJoinProjects = () => {

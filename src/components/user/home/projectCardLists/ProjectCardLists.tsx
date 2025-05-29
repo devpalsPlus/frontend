@@ -3,7 +3,7 @@ import { useProjectCardListData } from '../../../../hooks/user/useProjectCardLis
 import CardList from './cardList/CardList';
 import * as S from './ProjectCardLists.styled';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../../../../constants/user/routes';
+import { ROUTES } from '../../../../constants/routes';
 import EmptyLoading from '../../../common/emptyLoading/EmptyLoading';
 import NoResult from '../../../common/noResult/NoResult';
 import { useSaveSearchFiltering } from '../../../../hooks/user/useSaveSearchFiltering';

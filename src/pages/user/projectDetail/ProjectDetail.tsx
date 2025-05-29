@@ -8,7 +8,7 @@ import useAuthStore from '../../../store/authStore';
 import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
 import LoadingSpinner from '../../../components/common/loadingSpinner/LoadingSpinner';
 import Modal from '../../../components/common/modal/Modal';
-import { ROUTES } from '../../../constants/user/routes';
+import { ROUTES } from '../../../constants/routes';
 import Avatar from '../../../components/common/avatar/Avatar';
 import { formatDate } from '../../../util/formatDate';
 import ProjectInformation from '../../../components/user/projectFormComponents/projectInformationText/ProjectInformation';

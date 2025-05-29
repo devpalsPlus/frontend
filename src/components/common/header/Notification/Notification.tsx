@@ -5,7 +5,7 @@ import LoadingSpinner from '../../loadingSpinner/LoadingSpinner';
 import useAlarmList from '../../../../hooks/user/useAlarmList';
 import arrow_right from '../../../../assets/ArrowRight.svg';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../../../constants/user/routes';
+import { ROUTES } from '../../../../constants/routes';
 
 const Notification = () => {
   const navigate = useNavigate();

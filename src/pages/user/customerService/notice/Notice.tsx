@@ -5,7 +5,7 @@ import { useGetNotice } from '../../../../hooks/user/useGetNotice';
 import { Spinner } from '../../../../components/common/loadingSpinner/LoadingSpinner.styled';
 import CustomerServiceHeader from '../../../../components/user/customerService/CustomerServiceHeader';
 import ContentBorder from '../../../../components/common/contentBorder/ContentBorder';
-import { ROUTES } from '../../../../constants/user/routes';
+import { ROUTES } from '../../../../constants/routes';
 import NoticeList from '../../../../components/user/customerService/notice/NoticeList';
 import NoResult from '../../../../components/common/noResult/NoResult';
 import Pagination from '../../../../components/common/pagination/Pagination';
