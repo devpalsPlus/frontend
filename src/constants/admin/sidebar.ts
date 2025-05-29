@@ -34,7 +34,7 @@ export const SIDEBAR_LIST = {
     {
       name: 'allUser',
       title: '전체 회원 조회',
-      router: ADMIN_ROUTE.main,
+      router: ADMIN_ROUTE.allUser,
     },
     {
       name: 'reports',

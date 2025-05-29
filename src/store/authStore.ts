@@ -46,12 +46,12 @@ const useAuthStore = create(
         });
       },
       logout: () => {
-        // set({
-        //   redirectAdmin: false,
-        //   isLoggedIn: false,
-        //   accessToken: null,
-        //   userData: null,
-        // });
+        set({
+          redirectAdmin: false,
+          isLoggedIn: false,
+          accessToken: null,
+          userData: null,
+        });
         useAuthStore.persist.clearStorage();
       },
     }),

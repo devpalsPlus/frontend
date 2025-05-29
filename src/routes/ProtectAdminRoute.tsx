@@ -1,10 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
-import { ADMIN_ROUTE, ROUTES } from '../constants/routes';
+import { ADMIN_ROUTE } from '../constants/routes';
 import { ReactNode, useEffect } from 'react';
 import { useModal } from '../hooks/useModal';
 import Modal from '../components/common/modal/Modal';
-import { MODAL_MESSAGE } from '../constants/user/modalMessage';
 
 interface ProtectAdminRouteProps {
   children: ReactNode;
@@ -23,24 +22,11 @@ export default function ProtectAdminRoute({
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
 
   useEffect(() => {
-    (async () => {
-      if (isLoggedIn && isAdmin && !redirectAdminBool) {
-        navigate(ADMIN_ROUTE.admin);
-        replace();
-        return;
-      } else if (!isLoggedIn || (!isLoggedIn && !isAdmin)) {
-        logout();
-        handleModalOpen(MODAL_MESSAGE.isNotLoggedIn);
-        setTimeout(() => {
-          navigate(ROUTES.main);
-        }, 1000);
-        return (
-          <Modal isOpen={isOpen} onClose={handleModalClose}>
-            {message}
-          </Modal>
-        );
-      }
-    })();
+    if (isLoggedIn && isAdmin && !redirectAdminBool) {
+      navigate(ADMIN_ROUTE.admin);
+      replace();
+      return;
+    }
   }, [
     redirectAdminBool,
     isLoggedIn,
@@ -48,11 +34,15 @@ export default function ProtectAdminRoute({
     replace,
     navigate,
     logout,
-    isOpen,
-    message,
     handleModalOpen,
-    handleModalClose,
   ]);
 
-  return children;
+  return (
+    <>
+      {children}
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
+    </>
+  );
 }

@@ -1,4 +1,3 @@
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import { lazy } from 'react';
 import { ADMIN_ROUTE } from '../constants/routes';

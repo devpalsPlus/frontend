@@ -34,11 +34,11 @@ export const ROUTES = {
 export const ADMIN_ROUTE = {
   admin: '/admin',
   devPals: '/main',
-  notice: '/notice',
-  banner: '/banner',
-  tags: '/tags',
-  allUser: '/all-user',
-  reports: '/reports',
-  inquiries: '/inquires',
-  manage: '/manage',
+  notice: 'notice',
+  banner: 'banner',
+  tags: 'tags',
+  allUser: 'all-user',
+  reports: 'reports',
+  inquiries: 'inquiries',
+  manage: 'manage',
 };

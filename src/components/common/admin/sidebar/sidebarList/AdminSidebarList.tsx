@@ -1,15 +1,11 @@
-import { literal } from 'zod';
-import { SIDEBAR_LIST } from '../../../../../constants/admin/sidebar';
 import * as S from './AdminSidebarList.styled';
 import {
   ArrowRightStartOnRectangleIcon,
   ChatBubbleBottomCenterTextIcon,
   EnvelopeIcon,
-  ExclamationCircleIcon,
   ExclamationTriangleIcon,
   HomeIcon,
   MegaphoneIcon,
-  NewspaperIcon,
   PhotoIcon,
   TagIcon,
   UserGroupIcon,
@@ -22,7 +18,7 @@ const iconMap = {
   banner: <PhotoIcon />,
   tags: <TagIcon />,
   allUser: <UserGroupIcon />,
-  reports: <ExclamationCircleIcon />,
+  reports: <ExclamationTriangleIcon />,
   inquiries: <EnvelopeIcon />,
   manage: <ChatBubbleBottomCenterTextIcon />,
 };
@@ -43,14 +39,14 @@ export default function AdminSidebarList({
       <S.MovedListTitleWrapper>
         {title && <S.MovedListTitle>{title}</S.MovedListTitle>}
       </S.MovedListTitleWrapper>
-      {list.map((list) => (
+      {list.map((item) => (
         <S.MovedListLink
-          to={list.router}
-          target={list.name.includes('movedSite') ? '_blank' : '_parent'}
-          key={list.name}
+          to={item.router}
+          target={item.name.includes('movedSite') ? '_blank' : '_self'}
+          key={item.name}
         >
-          <S.MovedListIcon>{iconMap[list.name]}</S.MovedListIcon>
-          <S.MovedList>{list.title}</S.MovedList>
+          <S.MovedListIcon>{iconMap[item.name]}</S.MovedListIcon>
+          <S.MovedList>{item.title}</S.MovedList>
         </S.MovedListLink>
       ))}
     </S.MovedListContainer>
