@@ -1,8 +1,8 @@
 import { MagnifyingGlassIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import * as S from './CustomerServiceHeader.styled';
 import MovedInquiredLink from './MoveInquiredLink';
-import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Outlet, useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
 import Modal from '../../common/modal/Modal';
 import { useModal } from '../../../hooks/useModal';
 import { MODAL_MESSAGE_CUSTOMER_SERVICE } from '../../../constants/user/customerService';

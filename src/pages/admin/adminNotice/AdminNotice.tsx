@@ -1,3 +1,5 @@
+import * as S from './AdminNotice.styled';
+
 export default function AdminNotice() {
-  return <div></div>;
+  return <S.Container></S.Container>;
 }
