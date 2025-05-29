@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
-export const SidebarContainer = styled.section`
+export const LayoutContainer = styled.div`
   height: 100vh;
+  display: flex;
+`;
+
+export const SidebarContainer = styled.section`
   padding: 1rem;
   width: 15rem;
   border-right: 1px solid ${({ theme }) => theme.color.grey};

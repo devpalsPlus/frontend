@@ -2,19 +2,20 @@ import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import { lazy } from 'react';
 import { ADMIN_ROUTE } from '../constants/routes';
 import ProtectAdminRoute from './ProtectAdminRoute';
-import { Outlet } from 'react-router-dom';
 
 const Sidebar = lazy(
   () => import('../components/common/admin/sidebar/AdminSidebar')
 );
 const Main = lazy(() => import('../pages/admin/adminMain/AdminMain'));
-const Notice = lazy(() => import('../pages/admin/adminMain/AdminMain'));
-const Banner = lazy(() => import('../pages/admin/adminMain/AdminMain'));
-const Tags = lazy(() => import('../pages/admin/adminMain/AdminMain'));
-const AllUser = lazy(() => import('../pages/admin/adminMain/AdminMain'));
-const Reports = lazy(() => import('../pages/admin/adminMain/AdminMain'));
-const Inquiries = lazy(() => import('../pages/admin/adminMain/AdminMain'));
-const Manage = lazy(() => import('../pages/admin/adminMain/AdminMain'));
+const Notice = lazy(() => import('../pages/admin/adminNotice/AdminNotice'));
+const Banner = lazy(() => import('../pages/admin/adminBanner/AdminBanner'));
+const Tags = lazy(() => import('../pages/admin/adminTags/AdminTags'));
+const AllUser = lazy(() => import('../pages/admin/adminAllUser/AdminAllUser'));
+const Reports = lazy(() => import('../pages/admin/adminReports/AdminReports'));
+const Inquiries = lazy(
+  () => import('../pages/admin/adminInquiries/AdminInquires')
+);
+const Manage = lazy(() => import('../pages/admin/adminManage/AdminManage'));
 
 export const AdminRoutes = () => {
   const routeList = [
@@ -23,7 +24,6 @@ export const AdminRoutes = () => {
       element: (
         <ProtectAdminRoute>
           <Sidebar />
-          <Outlet />
         </ProtectAdminRoute>
       ),
       children: [
