@@ -23,7 +23,12 @@ export default function AdminSidebar() {
     <S.SidebarContainer>
       <S.SidebarLogoWrapper>
         <S.SidebarLogoImg src={logo} alt='logo' />
-        <S.LogoutButton type='button' onClick={handleClickLogout}>
+        <S.LogoutButton
+          type='button'
+          onClick={handleClickLogout}
+          aria-label='관리자 로그아웃'
+          title='로그아웃'
+        >
           <S.LogoutImg src={logoutIcon} alt='logout icon' />
           <S.LogoutSpan>Logout</S.LogoutSpan>
         </S.LogoutButton>
