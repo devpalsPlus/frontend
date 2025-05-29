@@ -5,6 +5,11 @@ export const LayoutContainer = styled.div`
   display: flex;
 `;
 
+export const ContainerArea = styled.section`
+  flex: 1;
+  padding: 2rem;
+`;
+
 export const SidebarContainer = styled.section`
   padding: 1rem;
   width: 15rem;

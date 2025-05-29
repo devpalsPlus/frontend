@@ -46,7 +46,9 @@ export default function AdminSidebar() {
           <AdminSidebarList title='사용자 관리' list={SIDEBAR_LIST.user} />
         </S.MovedListContainerAll>
       </S.SidebarContainer>
-      <Outlet />
+      <S.ContainerArea>
+        <Outlet />
+      </S.ContainerArea>
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         {message}
       </Modal>
