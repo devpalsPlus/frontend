@@ -11,13 +11,14 @@ import loadingImg from '../../../assets/loadingImg.svg';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../modal/Modal';
 import { formatImgPath } from '../../../util/formatImgPath';
-// import bell from '../../../assets/bell.svg';
-// import Notification from './Notification/Notification';
-// import bellLogined from '../../../assets/bellLogined.svg';
-// import { useEffect } from 'react';
-// import { testLiveAlarm } from '../../../api/alarm.api';
+import bell from '../../../assets/bell.svg';
+import Notification from './Notification/Notification';
+import bellLogined from '../../../assets/bellLogined.svg';
 import { useMyProfileInfo } from '../../../hooks/user/useMyInfo';
 import { ROUTES } from '../../../constants/user/routes';
+import { useNotificationContext } from '../../../context/SseContext';
+import { useEffect } from 'react';
+import { testLiveAlarm } from '../../../api/alarm.api';
 
 function Header() {
   const location = useLocation();
@@ -26,17 +27,17 @@ function Header() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const { myData, isLoading } = useMyProfileInfo();
 
-  // const { signalData, setSignalData } = useNotification();
-
-  // useEffect(() => {
-  //   testLiveAlarm();
-  // }, []);
+  const { signalData, clearSignal } = useNotificationContext();
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
         myData.profileImg
       )}?w=86&h=86&fit=crop&crop=entropy&auto=format,enhance&q=60`
     : DefaultImg;
+
+  useEffect(() => {
+    testLiveAlarm();
+  }, []);
 
   return (
     <S.HeaderContainer>
@@ -52,26 +53,23 @@ function Header() {
             <S.HeaderLink>공지사항</S.HeaderLink>
           </Link>
         </S.HeaderLinkContainer>
-        {/* <S.Alarm role='button' tabIndex={0} aria-label='알림 메세지'>
+        <S.Alarm role='button' tabIndex={0} aria-label='알림 메세지'>
           {isLoggedIn ? (
             <DropDown
               toggleButton={
-                signalData ? (
-                  <S.BellButton onClick={() => setSignalData(null)}>
-                    <img src={bellLogined} alt='알림' />
-                    {signalData && <S.Dot />}
-                  </S.BellButton>
-                ) : (
+                <S.BellButton onClick={clearSignal}>
                   <img src={bellLogined} alt='알림' />
-                )
+                  {signalData && <S.Dot />}
+                </S.BellButton>
               }
+              comment={false}
             >
               <Notification />
             </DropDown>
           ) : (
             <img src={bell} alt='알림' />
           )}
-        </S.Alarm> */}
+        </S.Alarm>
         <DropDown
           aria-label='프로필 드롭다운'
           toggleButton={
