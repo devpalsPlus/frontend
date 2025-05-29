@@ -13,7 +13,7 @@ const Tags = lazy(() => import('../pages/admin/adminTags/AdminTags'));
 const AllUser = lazy(() => import('../pages/admin/adminAllUser/AdminAllUser'));
 const Reports = lazy(() => import('../pages/admin/adminReports/AdminReports'));
 const Inquiries = lazy(
-  () => import('../pages/admin/adminInquiries/AdminInquires')
+  () => import('../pages/admin/adminInquiries/AdminInquiries')
 );
 const Manage = lazy(() => import('../pages/admin/adminManage/AdminManage'));
 
