@@ -42,7 +42,9 @@ function Header() {
     : DefaultImg;
 
   useEffect(() => {
-    testLiveAlarm();
+    if (process.env.NODE_ENV === 'deployment') {
+      testLiveAlarm();
+    }
   }, []);
 
   return (

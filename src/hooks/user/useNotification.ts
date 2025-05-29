@@ -63,7 +63,14 @@ const useNotification = () => {
         console.error(e);
       };
     }
-  }, [queryClient, userId]);
+
+    return () => {
+      if (eventSourceRef.current) {
+        eventSourceRef.current.close();
+        eventSourceRef.current = null;
+      }
+    };
+  }, [queryClient, userId, accessToken]);
 };
 
 export default useNotification;
