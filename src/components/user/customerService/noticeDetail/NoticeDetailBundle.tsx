@@ -33,7 +33,7 @@ export default function NoticeDetailBundle() {
           createdAt=''
           viewCount={0}
         />
-        <ListButton />
+        <ListButton keyword='' />
       </S.Container>
     );
   }
