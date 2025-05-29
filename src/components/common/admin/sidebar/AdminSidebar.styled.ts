@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const SidebarContainer = styled.section`
+  height: 100vh;
   padding: 1rem;
   width: 15rem;
+  border-right: 1px solid ${({ theme }) => theme.color.grey};
 `;
 
 export const SidebarLogoWrapper = styled.div`

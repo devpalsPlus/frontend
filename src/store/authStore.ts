@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
+import { persist } from 'zustand/middleware';
 import { decryptData, encryptData } from '../util/cryptoUtils';
 import type { UserData } from '../models/auth';
 
@@ -12,11 +12,6 @@ interface AuthState {
   logout: () => void;
   replace: () => void;
 }
-
-export const getStoredUserData = () => {
-  const encryptedData = localStorage.getItem('userData');
-  return encryptedData ? decryptData(encryptedData) : null;
-};
 
 export const getTokens = () => {
   const accessToken = localStorage.getItem('accessToken');

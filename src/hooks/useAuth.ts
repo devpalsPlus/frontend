@@ -1,3 +1,4 @@
+import { ADMIN_ROUTE } from './../constants/routes';
 import { useNavigate } from 'react-router-dom';
 import { postLogin, postResetPassword, postSignUp } from '../api/auth.api';
 import { loginFormValues } from '../pages/login/Login';
@@ -67,10 +68,16 @@ export const useAuth = (handleModalOpen: (message: string) => void) => {
     },
     onSuccess: async (data) => {
       const { accessToken, userData } = data;
+      const isAdmin = userData.admin;
+
       handleModalOpen(MODAL_MESSAGE.loginSuccess);
       setTimeout(() => {
         login(accessToken, userData);
-        navigate(ROUTES.main);
+        if (isAdmin) {
+          return navigate(ADMIN_ROUTE.admin);
+        } else {
+          return navigate(ROUTES.main);
+        }
       }, 1000);
     },
     onError: () => {
@@ -96,7 +103,6 @@ export const useAuth = (handleModalOpen: (message: string) => void) => {
 
   const userLogout = () => {
     queryClient.removeQueries({ queryKey: myInfoKey.myProfile });
-    // useAuthStore.persist.clearStorage();
     handleModalOpen(MODAL_MESSAGE.logout);
     logout();
     setTimeout(() => {

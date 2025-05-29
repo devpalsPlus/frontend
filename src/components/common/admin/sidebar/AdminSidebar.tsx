@@ -5,15 +5,25 @@ import logoutIcon from '../../../../assets/logout.svg';
 import AdminSidebarList from './sidebarList/AdminSidebarList';
 import ContentBorder from '../../contentBorder/ContentBorder';
 import useAuthStore from '../../../../store/authStore';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../../../constants/routes';
 
 export default function AdminSidebar() {
+  const navigate = useNavigate();
   const logout = useAuthStore((state) => state.logout);
+
+  const handleClickLogout = () => {
+    logout();
+    setTimeout(() => {
+      navigate(ROUTES.main);
+    }, 1000);
+  };
 
   return (
     <S.SidebarContainer>
       <S.SidebarLogoWrapper>
         <S.SidebarLogoImg src={logo} alt='logo' />
-        <S.LogoutButton type='button' onClick={logout}>
+        <S.LogoutButton type='button' onClick={handleClickLogout}>
           <S.LogoutImg src={logoutIcon} alt='logout icon' />
           <S.LogoutSpan>Logout</S.LogoutSpan>
         </S.LogoutButton>
