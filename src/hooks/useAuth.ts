@@ -1,3 +1,4 @@
+import { ADMIN_ROUTE } from './../constants/routes';
 import { useNavigate } from 'react-router-dom';
 import { postLogin, postResetPassword, postSignUp } from '../api/auth.api';
 import { loginFormValues } from '../pages/login/Login';
@@ -7,7 +8,7 @@ import type { LoginResponse } from '../models/auth';
 import { AxiosError } from 'axios';
 import { myInfoKey } from './queries/user/keys';
 import { MODAL_MESSAGE } from '../constants/user/modalMessage';
-import { ROUTES } from '../constants/user/routes';
+import { ROUTES } from '../constants/routes';
 import { registerFormValues } from '../pages/user/register/Register';
 import { changePasswordFormValues } from '../pages/user/changePassword/ChangePassword';
 
@@ -67,10 +68,16 @@ export const useAuth = (handleModalOpen: (message: string) => void) => {
     },
     onSuccess: async (data) => {
       const { accessToken, userData } = data;
+      const isAdmin = userData.admin;
+
       handleModalOpen(MODAL_MESSAGE.loginSuccess);
       setTimeout(() => {
         login(accessToken, userData);
-        navigate(ROUTES.main);
+        if (isAdmin) {
+          return navigate(ADMIN_ROUTE.admin);
+        } else {
+          return navigate(ROUTES.main);
+        }
       }, 1000);
     },
     onError: () => {
@@ -95,10 +102,9 @@ export const useAuth = (handleModalOpen: (message: string) => void) => {
   };
 
   const userLogout = () => {
-    logout();
     queryClient.removeQueries({ queryKey: myInfoKey.myProfile });
-    useAuthStore.persist.clearStorage();
     handleModalOpen(MODAL_MESSAGE.logout);
+    logout();
     setTimeout(() => {
       navigate(ROUTES.main);
     }, 1000);

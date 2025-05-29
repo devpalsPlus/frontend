@@ -67,7 +67,6 @@ export const createClient = (config?: AxiosRequestConfig) => {
         // }
 
         logout();
-        useAuthStore.persist.clearStorage();
         window.location.href = '/login';
         return Promise.reject(error);
       }

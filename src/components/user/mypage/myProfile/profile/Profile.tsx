@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import MyProfileWrapper from '../MyProfileWrapper';
 import type { UserInfo } from '../../../../../models/userInfo';
 import { PROFILE_DEFAULT_MESSAGE } from '../../../../../constants/user/myPageProfile';
-import { ROUTES } from '../../../../../constants/user/routes';
+import { ROUTES } from '../../../../../constants/routes';
 import 'chart.js/auto';
 import { chartOptions } from '../../../../../constants/evaluationChartData';
 

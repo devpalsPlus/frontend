@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as S from './ContentTab.styled';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { ROUTES } from '../../../constants/user/routes';
+import { ROUTES } from '../../../constants/routes';
 import ScrollWrapper from './ScrollWrapper';
 import MovedInquiredLink from '../customerService/MoveInquiredLink';
 

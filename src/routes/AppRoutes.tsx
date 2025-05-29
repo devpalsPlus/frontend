@@ -5,16 +5,15 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-
 import LoadingSpinner from '../components/common/loadingSpinner/LoadingSpinner';
 import useAuthStore from '../store/authStore';
 import ProtectRoute from '../components/common/ProtectRoute';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
-import { ROUTES } from '../constants/user/routes';
 import { ToastProvider } from '../components/common/Toast/ToastProvider';
 import NotificationInitializer from '../components/user/notificationLive/NotificationInitializer';
 import { NotificationProvider } from '../components/user/notificationLive/NotificationProvider';
+import { ADMIN_ROUTE, ROUTES } from '../constants/routes';
 const Login = lazy(() => import('../pages/login/Login'));
 const LoginSuccess = lazy(() => import('../pages/login/LoginSuccess'));
 const LoginApi = lazy(() => import('../pages/login/LoginApi'));
@@ -103,7 +102,7 @@ const ModifyProject = lazy(
 );
 const Evaluation = lazy(() => import('../pages/user/evaluation/Evaluation'));
 
-const AppRoutes = () => {
+export const AppRoutes = () => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const routeList = [

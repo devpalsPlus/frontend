@@ -1,20 +1,17 @@
 import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
+import { persist } from 'zustand/middleware';
 import { decryptData, encryptData } from '../util/cryptoUtils';
 import type { UserData } from '../models/auth';
 
 interface AuthState {
+  redirectAdmin: boolean;
   isLoggedIn: boolean;
   userData: UserData | null;
   accessToken: string | null;
   login: (accessToken: string, userData: UserData | null) => void;
   logout: () => void;
+  replace: () => void;
 }
-
-export const getStoredUserData = () => {
-  const encryptedData = localStorage.getItem('userData');
-  return encryptedData ? decryptData(encryptedData) : null;
-};
 
 export const getTokens = () => {
   const accessToken = localStorage.getItem('accessToken');
@@ -26,10 +23,16 @@ export const getTokens = () => {
 const useAuthStore = create(
   persist<AuthState>(
     (set) => ({
+      redirectAdmin: false,
       isLoggedIn: false,
       accessToken: null,
       userData: null,
 
+      replace: () => {
+        set({
+          redirectAdmin: true,
+        });
+      },
       login: (accessToken: string, userData: UserData | null) => {
         set({
           isLoggedIn: true,
@@ -38,12 +41,17 @@ const useAuthStore = create(
         });
       },
       logout: () => {
-        set({ isLoggedIn: false, accessToken: null, userData: null });
+        set({
+          redirectAdmin: false,
+          isLoggedIn: false,
+          accessToken: null,
+          userData: null,
+        });
+        useAuthStore.persist.clearStorage();
       },
     }),
     {
       name: 'auth-storage', // 로컬스토리지에 저장될 이름
-      storage: createJSONStorage(() => localStorage),
     }
   )
 );

@@ -12,7 +12,7 @@ import {
   putMyInfo,
 } from '../../api/mypage.api';
 import { MODAL_MESSAGE } from '../../constants/user/modalMessage';
-import { ROUTES } from '../../constants/user/routes';
+import { ROUTES } from '../../constants/routes';
 import type {
   ApiAppliedProject,
   ApiJoinedProject,

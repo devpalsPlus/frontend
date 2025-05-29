@@ -8,7 +8,7 @@ import CommentInput from '../commentInput/CommentInput';
 import useGetReply from '../../../../hooks/user/CommentHooks/useGetReply';
 import LoadingSpinner from '../../../common/loadingSpinner/LoadingSpinner';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../../../../constants/user/routes';
+import { ROUTES } from '../../../../constants/routes';
 import dropdownButton from '../../../../assets/dropdownButton.svg';
 
 interface ReplyComponentProps {

@@ -15,10 +15,10 @@ import bell from '../../../assets/bell.svg';
 import Notification from './Notification/Notification';
 import bellLogined from '../../../assets/bellLogined.svg';
 import { useMyProfileInfo } from '../../../hooks/user/useMyInfo';
-import { ROUTES } from '../../../constants/user/routes';
 import { useNotificationContext } from '../../../context/SseContext';
 import { useEffect } from 'react';
 import { testLiveAlarm } from '../../../api/alarm.api';
+import { ROUTES } from '../../../constants/routes';
 
 function Header() {
   const location = useLocation();
@@ -28,6 +28,12 @@ function Header() {
   const { myData, isLoading } = useMyProfileInfo();
 
   const { signalData, clearSignal } = useNotificationContext();
+
+  const handleClickLogout = () => {
+    userLogout();
+    useAuthStore.persist.clearStorage();
+    localStorage.clear();
+  };
 
   const profileImg = myData?.profileImg
     ? `${import.meta.env.VITE_APP_IMAGE_CDN_URL}/${formatImgPath(
@@ -98,7 +104,7 @@ function Header() {
                 <Link to='#' onClick={(e) => e.preventDefault()}>
                   <S.Item
                     aria-label='클릭시 로그아웃 됩니다.'
-                    onClick={userLogout}
+                    onClick={handleClickLogout}
                   >
                     로그아웃
                   </S.Item>

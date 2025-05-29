@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { postProject } from '../../../api/joinProject.api';
 import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
 import { managedProjectKey } from '../../queries/user/keys';
-import { ROUTES } from '../../../constants/user/routes';
+import { ROUTES } from '../../../constants/routes';
 import type { FormData } from '../../../models/createProject';
 
 interface UseCreateProjectProps {

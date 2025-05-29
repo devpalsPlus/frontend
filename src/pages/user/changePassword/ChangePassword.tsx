@@ -9,7 +9,7 @@ import { ERROR_MESSAGES } from '../../../constants/user/authConstants';
 import { useAuth } from '../../../hooks/useAuth';
 import { useModal } from '../../../hooks/useModal';
 import useEmailVerification from '../../../hooks/user/useEmailVerification';
-import { ROUTES } from '../../../constants/user/routes';
+import { ROUTES } from '../../../constants/routes';
 import InputText from '../../../components/user/auth/InputText';
 import Button from '../../../components/common/Button/Button';
 import Modal from '../../../components/common/modal/Modal';
