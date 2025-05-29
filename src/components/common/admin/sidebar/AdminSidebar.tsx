@@ -7,14 +7,19 @@ import ContentBorder from '../../contentBorder/ContentBorder';
 import useAuthStore from '../../../../store/authStore';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
+import { useModal } from '../../../../hooks/useModal';
+import Modal from '../../modal/Modal';
+import { MODAL_MESSAGE } from '../../../../constants/user/modalMessage';
 
 export default function AdminSidebar() {
   const navigate = useNavigate();
   const logout = useAuthStore((state) => state.logout);
+  const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
 
   const handleClickLogout = () => {
-    logout();
+    handleModalOpen(MODAL_MESSAGE.needAuth);
     setTimeout(() => {
+      logout();
       navigate(ROUTES.main);
     }, 1000);
   };
@@ -39,6 +44,9 @@ export default function AdminSidebar() {
         <AdminSidebarList title='서비스 관리' list={SIDEBAR_LIST.service} />
         <AdminSidebarList title='사용자 관리' list={SIDEBAR_LIST.user} />
       </S.MovedListContainerAll>
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.SidebarContainer>
   );
 }
