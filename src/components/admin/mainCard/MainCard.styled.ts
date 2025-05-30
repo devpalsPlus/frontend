@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -18,7 +19,7 @@ export const Title = styled.h3`
   margin-left: 20px;
 `;
 
-export const ShowAllArea = styled.div`
+export const ShowAllArea = styled(Link)`
   display: flex;
   margin-left: 10px;
   margin-right: 10px;
