@@ -65,7 +65,7 @@ const EvaluationContent = ({
             )}
           </S.Header>
           <S.MessageContainer>
-            {isNotFill && completedMember && (
+            {isNotFill && !completedMember && (
               <S.ErrorMessage>모든 질문에 답변해주세요.</S.ErrorMessage>
             )}
           </S.MessageContainer>

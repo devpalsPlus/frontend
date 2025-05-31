@@ -6,7 +6,6 @@ import { httpClient } from './http.api';
 
 export const getMyProjectLists = async () => {
   const response = await httpClient.get<ApiManagedProjects>(`/user/project`);
-  console.log(response);
   return response.data;
 };
 

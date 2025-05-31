@@ -9,7 +9,7 @@ const NoticePreview = () => {
   return (
     <S.Container>
       {noticeData?.notices.map((notice) => (
-        <S.Wrapper>
+        <S.Wrapper key={notice.id}>
           <S.Dot src={line} />
           <S.NoticeTitle>{notice.title}</S.NoticeTitle>
         </S.Wrapper>

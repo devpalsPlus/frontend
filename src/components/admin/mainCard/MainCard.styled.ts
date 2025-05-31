@@ -30,9 +30,7 @@ export const ShowAllButton = styled.button`
   margin-right: 6px;
 `;
 
-export const ArrowRight = styled.img`
-  font-size: 13px;
-`;
+export const ArrowRight = styled.img``;
 
 export const Line = styled.hr``;
 

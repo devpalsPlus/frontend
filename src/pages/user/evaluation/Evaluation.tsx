@@ -10,7 +10,8 @@ const Evaluation = () => {
   const { projectId: projectIdParam } = useParams();
   const projectId = Number(projectIdParam);
   const location = useLocation();
-  const isAllEvaluated = location.state as boolean;
+  const isAllEvaluated =
+    typeof location.state === 'boolean' ? location.state : false;
 
   const { isOpen, message, handleModalOpen, handleModalClose, handleConfirm } =
     useModal();

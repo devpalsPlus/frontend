@@ -181,6 +181,6 @@ export const CompletedButton = styled.button<{ $active?: boolean }>`
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: '#e0e0e0'};
+    background-color: '#e0e0e0';
   }
 `;

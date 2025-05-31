@@ -6,8 +6,6 @@ export const Container = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 3px;
 `;
 
@@ -38,6 +36,12 @@ export const More = styled.span``;
 
 export const Arrow = styled.img`
   margin-bottom: 3px;
+`;
+
+export const NoAlarmContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const NonContentsMessage = styled.p`
