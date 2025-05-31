@@ -177,10 +177,10 @@ export const CompletedButton = styled.button<{ $active?: boolean }>`
   color: ${({ $active }) => ($active ? '#fff' : '#999')};
   border: none;
   border-radius: 4px;
-  cursor: ${({ $active }) => ($active ? 'pointer' : 'default')};
+  cursor: pointer;
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: ${({ $active }) => ($active ? '#2f4a6b' : '#e0e0e0')};
+    background-color: '#e0e0e0'};
   }
 `;
