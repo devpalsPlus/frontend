@@ -7,12 +7,14 @@ interface EvaluationContentProps {
   projectId: number;
   projectName: string;
   memberList: MemberList[];
+  isAllEvaluated: boolean;
 }
 
 const EvaluationContent = ({
   projectId,
   projectName,
   memberList,
+  isAllEvaluated,
 }: EvaluationContentProps) => {
   const {
     step,
@@ -45,7 +47,9 @@ const EvaluationContent = ({
         <S.MainContent>
           <S.Header>
             <S.Title>
-              {completedMember
+              {isAllEvaluated
+                ? '평가가 완료 되었습니다. '
+                : completedMember
                 ? `${completedMember.nickname}님 평가 결과`
                 : `${notDone[step]?.nickname}님 평가하기`}
             </S.Title>
