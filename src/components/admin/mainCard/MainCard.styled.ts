@@ -25,7 +25,7 @@ export const ShowAllArea = styled(Link)`
   margin-right: 10px;
 `;
 
-export const ShowAllButton = styled.button`
+export const ShowAllButton = styled.span`
   font-size: 13px;
   margin-right: 6px;
 `;
