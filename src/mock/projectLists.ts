@@ -3,7 +3,7 @@ import count from './mockCount.json';
 import project from './mockProject.json';
 
 export const fetchProjectLists = http.get(
-  `${import.meta.env.VITE_API_BASE_URL}/project`,
+  `${import.meta.env.VITE_APP_API_BASE_URL}project`,
   () => {
     return HttpResponse.json(project, {
       status: 200,
@@ -12,7 +12,7 @@ export const fetchProjectLists = http.get(
 );
 
 export const fetchProjectStatistic = http.get(
-  `${import.meta.env.VITE_API_BASE_URL}/project/count`,
+  `${import.meta.env.VITE_APP_API_BASE_URL}project/count`,
   () => {
     return HttpResponse.json(count, {
       status: 200,

@@ -1,0 +1,151 @@
+{
+  "success": true,
+  "message": "성공적으로 처리되었습니다.",
+  "data": [
+    {
+      "id": 1,
+      "email": "alice@example.com",
+      "name": "Alice Kim",
+      "user": [
+        {
+          "id": 201,
+          "nickname": "alice",
+          "img": "https://example.com/images/alice.png"
+        }
+      ],
+      "createdAt": "2025-05-15T09:30:00+09:00"
+    },
+    {
+      "id": 2,
+      "email": "bob@example.com",
+      "name": "Bob Lee",
+      "user": [
+        {
+          "id": 202,
+          "nickname": "bob",
+          "img": "https://example.com/images/bob.jpg"
+        }
+      ],
+      "createdAt": "2025-05-16T11:45:00+09:00"
+    },
+    {
+      "id": 3,
+      "email": "charlie@example.com",
+      "name": "Charlie Park",
+      "user": [
+        {
+          "id": 203,
+          "nickname": "charlie",
+          "img": "https://example.com/images/charlie.jpeg"
+        },
+        {
+          "id": 204,
+          "nickname": "daisy",
+          "img": "https://example.com/images/daisy.png"
+        }
+      ],
+      "createdAt": "2025-05-17T14:20:00+09:00"
+    },
+    {
+      "id": 4,
+      "email": "daisy@example.com",
+      "name": "Daisy Choi",
+      "user": [
+        {
+          "id": 205,
+          "nickname": "daisy",
+          "img": "https://example.com/images/daisy.png"
+        }
+      ],
+      "createdAt": "2025-05-18T08:10:00+09:00"
+    },
+    {
+      "id": 5,
+      "email": "eve@example.com",
+      "name": "Eve Jung",
+      "user": [
+        {
+          "id": 206,
+          "nickname": "eve",
+          "img": "https://example.com/images/eve.jpg"
+        }
+      ],
+      "createdAt": "2025-05-19T17:50:00+09:00"
+    },
+    {
+      "id": 6,
+      "email": "frank@example.com",
+      "name": "Frank Han",
+      "user": [
+        {
+          "id": 207,
+          "nickname": "frank",
+          "img": "https://example.com/images/frank.png"
+        },
+        {
+          "id": 208,
+          "nickname": "grace",
+          "img": "https://example.com/images/grace.jpeg"
+        }
+      ],
+      "createdAt": "2025-05-20T12:05:00+09:00"
+    },
+    {
+      "id": 7,
+      "email": "grace@example.com",
+      "name": "Grace Yoon",
+      "user": [
+        {
+          "id": 209,
+          "nickname": "grace",
+          "img": "https://example.com/images/grace.jpeg"
+        }
+      ],
+      "createdAt": "2025-05-21T10:15:00+09:00"
+    },
+    {
+      "id": 8,
+      "email": "henry@example.com",
+      "name": "Henry Shin",
+      "user": [
+        {
+          "id": 210,
+          "nickname": "henry",
+          "img": "https://example.com/images/henry.jpg"
+        }
+      ],
+      "createdAt": "2025-05-22T13:40:00+09:00"
+    },
+    {
+      "id": 9,
+      "email": "iris@example.com",
+      "name": "Iris Lim",
+      "user": [
+        {
+          "id": 211,
+          "nickname": "iris",
+          "img": "https://example.com/images/iris.png"
+        }
+      ],
+      "createdAt": "2025-05-23T16:25:00+09:00"
+    },
+    {
+      "id": 10,
+      "email": "jack@example.com",
+      "name": "Jack Han",
+      "user": [
+        {
+          "id": 212,
+          "nickname": "jack",
+          "img": "https://example.com/images/jack.jpg"
+        },
+        {
+          "id": 213,
+          "nickname": "kate",
+          "img": "https://example.com/images/kate.jpeg"
+        }
+      ],
+      "createdAt": "2025-05-24T19:55:00+09:00"
+    }
+  ]
+}
