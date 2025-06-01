@@ -14,7 +14,7 @@
         }
       ],
       "IsImposed": false,
-      "createdAt": "2025-05-01T10:15:00+09:00"
+      "createdAt": "2025-05-01"
     },
     {
       "id": 2,
@@ -33,7 +33,7 @@
         }
       ],
       "IsImposed": true,
-      "createdAt": "2025-05-03T14:30:00+09:00"
+      "createdAt": "2025-05-03"
     },
     {
       "id": 3,
@@ -47,7 +47,7 @@
         }
       ],
       "IsImposed": false,
-      "createdAt": "2025-05-05T09:45:00+09:00"
+      "createdAt": "2025-05-05"
     },
     {
       "id": 4,
@@ -61,7 +61,7 @@
         }
       ],
       "IsImposed": true,
-      "createdAt": "2025-05-07T16:20:00+09:00"
+      "createdAt": "2025-05-07"
     },
     {
       "id": 5,
@@ -80,7 +80,7 @@
         }
       ],
       "IsImposed": false,
-      "createdAt": "2025-05-09T11:10:00+09:00"
+      "createdAt": "2025-05-09"
     },
     {
       "id": 6,
@@ -94,7 +94,7 @@
         }
       ],
       "IsImposed": true,
-      "createdAt": "2025-05-11T13:55:00+09:00"
+      "createdAt": "2025-05-11"
     },
     {
       "id": 7,
@@ -113,7 +113,7 @@
         }
       ],
       "IsImposed": false,
-      "createdAt": "2025-05-13T18:05:00+09:00"
+      "createdAt": "2025-05-13"
     },
     {
       "id": 8,
@@ -127,7 +127,7 @@
         }
       ],
       "IsImposed": true,
-      "createdAt": "2025-05-15T08:25:00+09:00"
+      "createdAt": "2025-05-15"
     },
     {
       "id": 9,
@@ -141,7 +141,7 @@
         }
       ],
       "IsImposed": true,
-      "createdAt": "2025-05-17T12:40:00+09:00"
+      "createdAt": "2025-05-17"
     },
     {
       "id": 10,
@@ -160,7 +160,7 @@
         }
       ],
       "IsImposed": false,
-      "createdAt": "2025-05-19T20:15:00+09:00"
+      "createdAt": "2025-05-19"
     }
   ]
 }

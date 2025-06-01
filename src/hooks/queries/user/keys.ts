@@ -55,3 +55,7 @@ export const CustomerService = {
   notice: 'notice',
   noticeDetail: 'noticeDetail',
 };
+
+export const ReportData = {
+  allReports: ['AllReports'],
+};
