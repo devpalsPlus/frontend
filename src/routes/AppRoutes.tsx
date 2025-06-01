@@ -12,6 +12,7 @@ import ProtectRoute from '../components/common/ProtectRoute';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
 import { ADMIN_ROUTE, ROUTES } from '../constants/routes';
+import ProtectLoggedIn from './ProtectLoggedIn';
 
 const Login = lazy(() => import('../pages/login/Login'));
 const LoginSuccess = lazy(() => import('../pages/login/LoginSuccess'));

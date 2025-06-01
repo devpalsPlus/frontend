@@ -3,7 +3,6 @@ import AdminRoutes from './AdminRoutes';
 import AppRoutes from './AppRoutes';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import { ToastProvider } from '../components/common/Toast/ToastProvider';
-import ProtectAdminRoute from './ProtectAdminRoute';
 
 export default function MergeRoutes() {
   const router = createBrowserRouter([
@@ -16,11 +15,7 @@ export default function MergeRoutes() {
       children: [...AppRoutes()],
     },
     {
-      element: (
-        <ProtectAdminRoute>
-          <Outlet />
-        </ProtectAdminRoute>
-      ),
+      element: <Outlet />,
       children: [...AdminRoutes()],
     },
     { path: '*', element: <NotFoundPage /> },

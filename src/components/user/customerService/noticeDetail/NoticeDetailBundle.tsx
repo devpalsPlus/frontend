@@ -7,11 +7,18 @@ import NoticeDetailHeader from './header/NoticeDetailHeader';
 import Spinner from '../../mypage/Spinner';
 import ListButton from './bottom/button/ListButton';
 
-export default function NoticeDetailBundle() {
+interface NoticeDetailBundleProps {
+  $width: string;
+}
+
+export default function NoticeDetailBundle({
+  $width,
+}: NoticeDetailBundleProps) {
   const location = useLocation();
   const { noticeId } = useParams();
   const id = noticeId || String(location.state.id);
   const keyword = location.state?.keyword ?? '';
+  const includesAdmin = location.pathname.includes('admin') ?? false;
 
   const { noticeDetail: noticeDetailData, isLoading } = useGetNoticeDetail(id);
 
@@ -25,7 +32,7 @@ export default function NoticeDetailBundle() {
 
   if (!noticeDetailData) {
     return (
-      <S.Container>
+      <S.Container $width={$width}>
         <NoticeDetailContent
           id={0}
           title='해당 공지사항을 찾을 수 없습니다.'
@@ -49,8 +56,8 @@ export default function NoticeDetailBundle() {
   } = noticeDetailData;
 
   return (
-    <S.Container>
-      <NoticeDetailHeader />
+    <S.Container $width={$width}>
+      {!includesAdmin && <NoticeDetailHeader />}
       <NoticeDetailContent
         id={detailId}
         title={title}

@@ -41,4 +41,5 @@ export const ADMIN_ROUTE = {
   reports: 'reports',
   inquiries: 'inquiries',
   manage: 'manage',
+  detail: 'detail',
 };

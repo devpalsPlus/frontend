@@ -8,6 +8,12 @@ const Sidebar = lazy(
 );
 const Main = lazy(() => import('../pages/admin/adminMain/AdminMain'));
 const Notice = lazy(() => import('../pages/admin/adminNotice/AdminNotice'));
+const NoticeList = lazy(
+  () => import('../pages/admin/adminNotice/adminNoticeList/AdminNoticeList')
+);
+const NoticeDetail = lazy(
+  () => import('../pages/admin/adminNoticeDetail/AdminNoticeDetail')
+);
 const Banner = lazy(() => import('../pages/admin/adminBanner/AdminBanner'));
 const Tags = lazy(() => import('../pages/admin/adminTags/AdminTags'));
 const AllUser = lazy(() => import('../pages/admin/adminAllUser/AdminAllUser'));
@@ -27,10 +33,20 @@ export const AdminRoutes = () => {
         </ProtectAdminRoute>
       ),
       children: [
-        { index: true, element: <Main /> },
+        {
+          index: true,
+          element: <Main />,
+        },
         {
           path: ADMIN_ROUTE.notice,
           element: <Notice />,
+          children: [
+            { index: true, element: <NoticeList /> },
+            {
+              path: `${ADMIN_ROUTE.detail}/:noticeId`,
+              element: <NoticeDetail />,
+            },
+          ],
         },
         {
           path: ADMIN_ROUTE.banner,

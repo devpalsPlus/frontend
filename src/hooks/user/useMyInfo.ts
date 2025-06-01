@@ -26,6 +26,7 @@ export const useMyProfileInfo = () => {
     queryFn: () => getMyInfo(),
     staleTime: Infinity,
     gcTime: Infinity,
+    refetchInterval: 1000 * 60 * 60,
     enabled: isLoggedIn,
   });
 
