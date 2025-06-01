@@ -55,8 +55,8 @@ export const handlers = [
   login,
   createApplicant,
   createProject,
-  userAll,
   reportsAll,
+  userAll,
 ];
 
 export const worker = setupWorker(...handlers);

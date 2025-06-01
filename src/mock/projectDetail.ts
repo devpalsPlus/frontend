@@ -3,7 +3,7 @@ import mockPrjectDetail from './mockProjectDetail.json';
 import mockReports from './mockReports.json';
 
 export const projectDetail = http.get(
-  `${import.meta.env.VITE_APP_API_BASE_URL}/project/:projectId`,
+  `${import.meta.env.VITE_APP_API_BASE_URL}project/:projectId`,
   () => {
     return HttpResponse.json(mockPrjectDetail, {
       status: 200,
