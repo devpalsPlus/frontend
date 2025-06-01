@@ -47,6 +47,7 @@ export const ProjectMemberListEval = {
 export const ActivityLog = {
   myComments: ['MyComments'],
   myInquiries: ['MyInquiries'],
+  allInquiries: ['AllInquiries'],
 };
 
 export const CustomerService = {
