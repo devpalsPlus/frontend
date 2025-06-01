@@ -144,11 +144,12 @@ export const SkillArea = styled.div`
   }
 `;
 
-export const EvaluateButton = styled(Link)`
+export const EvaluateButton = styled(Link)<{ $isCompleted: boolean }>`
   display: inline-flex;
   flex-shrink: 0;
   padding: 0.2rem 0.65rem;
-  background-color: #3e5879;
+  background-color: ${({ $isCompleted }) =>
+    $isCompleted ? `#2ADE1D` : `#3e5879`};
   font-size: 0.9rem;
   color: ${({ theme }) => theme.color.white};
   border-radius: 10px;

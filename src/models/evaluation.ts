@@ -12,5 +12,6 @@ export interface apiMemberList {
 export interface MemberList {
   userId: number;
   nickname: string;
+  scores: number[];
   evaluated: boolean;
 }

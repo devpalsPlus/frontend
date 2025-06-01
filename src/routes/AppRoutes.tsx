@@ -1,9 +1,4 @@
-import {
-  createBrowserRouter,
-  Navigate,
-  Outlet,
-  RouterProvider,
-} from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import LoadingSpinner from '../components/common/loadingSpinner/LoadingSpinner';
 import useAuthStore from '../store/authStore';

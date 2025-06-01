@@ -13,9 +13,9 @@ const Notification = () => {
 
   if (!AlarmData) {
     return (
-      <S.Container>
+      <S.NoAlarmContainer>
         <S.NonContentsMessage>알림이 없습니다.</S.NonContentsMessage>
-      </S.Container>
+      </S.NoAlarmContainer>
     );
   }
 

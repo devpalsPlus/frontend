@@ -17,6 +17,11 @@ const useEvaluationStep = ({
   const [notDone, setNotDone] = useState<MemberList[]>([]);
   const [progress, setProgress] = useState<Record<number, number[]>[]>([]);
   const [isNotFill, setIsNotFill] = useState<boolean>(false);
+  const [completedMember, setCompletedMember] = useState<{
+    userId: number;
+    nickname: string;
+    scores: number[];
+  } | null>(null);
 
   const { createEvaluation } = usePostEvaluation(projectId);
 
@@ -33,6 +38,7 @@ const useEvaluationStep = ({
 
     setStep(0);
     setIsNotFill(false);
+    setCompletedMember(null);
   }, [memberList, questionLength]);
 
   const user = notDone[step]?.userId;
@@ -43,6 +49,10 @@ const useEvaluationStep = ({
   };
 
   const handleClickOption = (questionNumber: number, optionValue: number) => {
+    if (completedMember) {
+      return;
+    }
+
     const realValue = optionValue + 1;
 
     setProgress((prev) =>
@@ -57,7 +67,12 @@ const useEvaluationStep = ({
       )
     );
   };
+
   const handleNextStep = () => {
+    if (completedMember) {
+      return;
+    }
+
     if (user == null) return;
 
     const record = progress.find((r) => user in r);
@@ -78,16 +93,30 @@ const useEvaluationStep = ({
     }
   };
 
+  const handleCompletedMember = (
+    userId: number,
+    nickname: string,
+    scores: number[]
+  ) => {
+    setCompletedMember({ userId, nickname, scores });
+  };
+
   const currentScores = useMemo(() => {
+    if (completedMember) {
+      return completedMember.scores;
+    }
+
     const record = progress.find((r) => user in r);
     return record ? record[user] : Array(questionLength).fill(0);
-  }, [progress, questionLength, user]);
+  }, [progress, questionLength, user, completedMember]);
 
   return {
     step,
+    completedMember,
     handleClickLeftUser,
     handleClickOption,
     handleNextStep,
+    handleCompletedMember,
     notDone,
     currentScores,
     isNotFill,

@@ -7,19 +7,23 @@ interface EvaluationContentProps {
   projectId: number;
   projectName: string;
   memberList: MemberList[];
+  isAllEvaluated: boolean;
 }
 
 const EvaluationContent = ({
   projectId,
   projectName,
   memberList,
+  isAllEvaluated,
 }: EvaluationContentProps) => {
   const {
     step,
     notDone,
+    completedMember,
     handleClickLeftUser,
     handleClickOption,
     handleNextStep,
+    handleCompletedMember,
     currentScores,
     isNotFill,
   } = useEvaluationStep({ projectId, memberList });
@@ -42,18 +46,26 @@ const EvaluationContent = ({
 
         <S.MainContent>
           <S.Header>
-            <S.Title>{notDone[step]?.nickname}님 평가하기</S.Title>
-            <S.SubmitButton
-              size='primary'
-              schema='primary'
-              radius='primary'
-              onClick={handleNextStep}
-            >
-              제출하기
-            </S.SubmitButton>
+            <S.Title>
+              {isAllEvaluated
+                ? '평가가 완료 되었습니다. '
+                : completedMember
+                ? `${completedMember.nickname}님 평가 결과`
+                : `${notDone[step]?.nickname}님 평가하기`}
+            </S.Title>
+            {!completedMember && (
+              <S.SubmitButton
+                size='primary'
+                schema='primary'
+                radius='primary'
+                onClick={handleNextStep}
+              >
+                제출하기
+              </S.SubmitButton>
+            )}
           </S.Header>
           <S.MessageContainer>
-            {isNotFill && (
+            {isNotFill && !completedMember && (
               <S.ErrorMessage>모든 질문에 답변해주세요.</S.ErrorMessage>
             )}
           </S.MessageContainer>
@@ -78,6 +90,7 @@ const EvaluationContent = ({
                           handleClickOption(questionNumber, optionValue)
                         }
                         value={optionValue + 1}
+                        disabled={!!completedMember}
                       />
                       <S.RadioLabel>{optionValue + 1}</S.RadioLabel>
                       <S.OptionLabel>{label}</S.OptionLabel>
@@ -94,7 +107,16 @@ const EvaluationContent = ({
           {memberList
             .filter((memberData) => memberData.evaluated)
             .map((memberData) => (
-              <S.CompletedButton key={memberData.userId}>
+              <S.CompletedButton
+                key={memberData.userId}
+                onClick={() =>
+                  handleCompletedMember(
+                    memberData.userId,
+                    memberData.nickname,
+                    memberData.scores
+                  )
+                }
+              >
                 {memberData.nickname}
               </S.CompletedButton>
             ))}

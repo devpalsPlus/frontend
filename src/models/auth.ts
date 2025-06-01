@@ -20,6 +20,7 @@ export interface UserData {
   email: string;
   nickname: string;
   admin: boolean;
+  hasRequiredTags: boolean;
 }
 
 export interface ApiOauth extends ApiCommonType {

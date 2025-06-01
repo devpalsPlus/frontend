@@ -16,7 +16,7 @@ const NotificationItem = ({ item }: NotificationItemProps) => {
   return (
     <Link to={route} onClick={close}>
       <S.Container>
-        <S.ItemContent>{item.content}</S.ItemContent>
+        <S.ItemContent>{item.content} | </S.ItemContent>
         <S.TypeArea>
           <S.Time>{timeAgo(item.createdAt)}</S.Time>
           <S.TypeFilter>

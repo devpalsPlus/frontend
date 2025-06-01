@@ -20,6 +20,7 @@ export interface ManagedProject {
   positions: PositionTag[];
   skills: SkillTag[];
   canEvaluate: boolean;
+  isAllEvaluated: boolean;
 }
 
 export interface MethodType {
