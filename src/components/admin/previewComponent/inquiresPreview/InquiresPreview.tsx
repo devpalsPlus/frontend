@@ -1,9 +1,7 @@
-import React from 'react';
 import * as S from './InquiresPreview.styled';
 import { useGetAllInquiries } from '../../../../hooks/admin/useGetAllInquiries';
 import Avatar from '../../../common/avatar/Avatar';
 import { ADMIN_ROUTE } from '../../../../constants/routes';
-import { Link } from 'react-router-dom';
 import arrow_right from '../../../../assets/ArrowRight.svg';
 
 const InquiresPreview = () => {
@@ -11,7 +9,7 @@ const InquiresPreview = () => {
 
   const previewList = allInquiriesData
     ? allInquiriesData.length > 6
-      ? allInquiriesData.slice(-4)
+      ? allInquiriesData.slice(0, 4)
       : allInquiriesData
     : [];
 
@@ -21,7 +19,7 @@ const InquiresPreview = () => {
         <S.Wrapper key={inquiry.id}>
           <S.Content>
             {/* <Link to={`${ADMIN_ROUTE.}`} */}
-            <Avatar image={inquiry.user.img} size='38px' />
+            <Avatar image={inquiry.user.img} size='40px' />
             <S.Inquiry to={`${ADMIN_ROUTE.inquiries}/${inquiry.id}`}>
               <S.Category>{inquiry.category}</S.Category>
               <S.Title>{inquiry.title}</S.Title>
