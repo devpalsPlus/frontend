@@ -5,14 +5,15 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-
 import LoadingSpinner from '../components/common/loadingSpinner/LoadingSpinner';
 import useAuthStore from '../store/authStore';
 import ProtectRoute from '../components/common/ProtectRoute';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
+import { ToastProvider } from '../components/common/Toast/ToastProvider';
+import NotificationInitializer from '../components/user/notificationLive/NotificationInitializer';
+import { NotificationProvider } from '../components/user/notificationLive/NotificationProvider';
 import { ADMIN_ROUTE, ROUTES } from '../constants/routes';
-
 const Login = lazy(() => import('../pages/login/Login'));
 const LoginSuccess = lazy(() => import('../pages/login/LoginSuccess'));
 const LoginApi = lazy(() => import('../pages/login/LoginApi'));
@@ -383,7 +384,22 @@ export const AppRoutes = () => {
     };
   });
 
-  return newRouteList;
+  const router = createBrowserRouter([
+    {
+      element: (
+        <NotificationProvider>
+          <ToastProvider>
+            <NotificationInitializer />
+            <Outlet />
+          </ToastProvider>
+        </NotificationProvider>
+      ),
+
+      children: [...newRouteList, { path: '*', element: <NotFoundPage /> }],
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 };
 
 export default AppRoutes;

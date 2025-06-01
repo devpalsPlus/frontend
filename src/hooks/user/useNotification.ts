@@ -1,20 +1,19 @@
-import { EventSourcePolyfill, NativeEventSource } from 'event-source-polyfill';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { AlarmList } from '../queries/user/keys';
 import type { AlarmLive } from '../../models/alarm';
 import useAuthStore from '../../store/authStore';
 import { useToast } from '../useToast';
+import { useNotificationContext } from '../../context/SseContext';
 
 const useNotification = () => {
-  const [signalData, setSignalData] = useState<AlarmLive | null>(null);
   const queryClient = useQueryClient();
   const accessToken = useAuthStore.getState().accessToken;
   const userId = useAuthStore.getState().userData?.id;
   const { showToast } = useToast();
+  const { setSignal } = useNotificationContext();
 
   const eventSourceRef = useRef<EventSource | null>(null);
-  const EventSourceImpl = EventSourcePolyfill || NativeEventSource;
 
   useEffect(() => {
     if (!userId) {
@@ -27,49 +26,51 @@ const useNotification = () => {
 
     if (eventSourceRef.current) {
       return;
-    }
+    } else {
+      // 헤더가 아닌 파라미터 형태로 바꾸면서 Polyfill 제외 하기 -> CORS Preflight를 유발하여 요청 지연의 원인이 될 수 있음.
+      const eventSource = new EventSource(
+        `${import.meta.env.VITE_APP_API_BASE_URL}user/sse?accessToken=${
+          accessToken ? accessToken : ''
+        }`
+      );
 
-    // 헤더가 아닌 파라미터 형태로 바꾸면서 Polyfill 제외 하기 -> CORS Preflight를 유발하여 요청 지연의 원인이 될 수 있음.
-    const eventSource = new EventSourceImpl(
-      `${import.meta.env.VITE_APP_API_BASE_URL}user/sse`,
-      {
-        headers: {
-          Authorization: accessToken ? `Bearer ${accessToken}` : '',
-          'Content-Type': 'application/json',
-        },
-        heartbeatTimeout: 12 * 60 * 1000,
-      }
-    );
+      eventSourceRef.current = eventSource;
 
-    eventSourceRef.current = eventSource;
+      eventSource.onopen = () => {
+        console.log('확인');
+        console.log(eventSource.readyState);
+      };
 
-    eventSource.addEventListener('alarm', (e) => {
-      const event = e as MessageEvent;
-      try {
-        const eventData: AlarmLive = JSON.parse(event.data);
+      eventSource.addEventListener('alarm', (e) => {
+        const event = e as MessageEvent;
+        try {
+          const eventData: AlarmLive = JSON.parse(event.data);
+          console.log(eventData);
 
-        if (eventData) {
-          queryClient.invalidateQueries({
-            queryKey: [AlarmList.myAlarmList, userId],
-          });
+          if (eventData) {
+            queryClient.invalidateQueries({
+              queryKey: [AlarmList.myAlarmList, userId],
+            });
+          }
+
+          setSignal(eventData);
+          showToast(eventData, 3000);
+        } catch (error) {
+          console.error(error);
         }
-
-        setSignalData(eventData);
-      } catch (error) {
-        console.error(error);
-      }
-    });
-    eventSource.onerror = (e) => {
-      console.error(e);
-    };
-  }, [queryClient, userId, accessToken, EventSourceImpl]);
-
-  useEffect(() => {
-    if (signalData) {
-      showToast(signalData, 3000);
+      });
+      eventSource.onerror = (e) => {
+        console.error(e);
+      };
     }
-  }, [signalData, showToast]);
-  return { signalData, setSignalData };
+
+    return () => {
+      if (eventSourceRef.current) {
+        eventSourceRef.current.close();
+        eventSourceRef.current = null;
+      }
+    };
+  }, [queryClient, userId, accessToken]);
 };
 
 export default useNotification;
