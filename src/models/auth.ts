@@ -32,11 +32,6 @@ export interface ApiOauth extends ApiCommonType {
 export interface ApiGetAllUsersPreview extends ApiCommonType {
   data: AllUserPreview[];
 }
-
-export interface ApiGetAllUsers extends ApiCommonType {
-  data: AllUser[];
-}
-
 export interface AllUserPreview {
   id: number;
   email: string;
@@ -45,8 +40,17 @@ export interface AllUserPreview {
   createdAt: string;
 }
 
+export interface ApiGetAllUsers extends ApiCommonType {
+  data: AllUserList;
+}
+
 export interface AllUser extends AllUserPreview {
   skill: SkillTag[];
   position: PositionTag[];
   reportedCount: number;
+}
+
+export interface AllUserList {
+  allUsers: AllUser[];
+  totalPages: number;
 }
