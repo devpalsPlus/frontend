@@ -1,5 +1,6 @@
 //model
 import { ApiCommonType, User } from './apiCommon';
+import { PositionTag, SkillTag } from './tags';
 
 export interface VerifyEmail {
   email: string;
@@ -28,13 +29,24 @@ export interface ApiOauth extends ApiCommonType {
   user: UserData;
 }
 
-export interface ApiGetAllUsers extends ApiCommonType {
+export interface ApiGetAllUsersPreview extends ApiCommonType {
   data: AllUserPreview[];
+}
+
+export interface ApiGetAllUsers extends ApiCommonType {
+  data: AllUser[];
 }
 
 export interface AllUserPreview {
   id: number;
   email: string;
   user: User;
+  userState: '접속 중' | '오프라인' | '정지';
   createdAt: string;
+}
+
+export interface AllUser extends AllUserPreview {
+  skill: SkillTag[];
+  position: PositionTag[];
+  reportedCount: number;
 }
