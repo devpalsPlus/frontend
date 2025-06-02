@@ -49,6 +49,7 @@ export const TextContent = styled.p<{
 export const SkillTagArea = styled.div`
   display: flex;
   gap: 4px;
+  margin-left: 15px;
 `;
 
 export const SkillTag = styled.img`
