@@ -106,6 +106,16 @@ export const getOauthLogin = async (oauthAccessToken: string) => {
   }
 };
 
+export const getAllUsersPreview = async () => {
+  try {
+    const response = await httpClient.get<ApiGetAllUsers>(`/users/preview`);
+    return response.data.data;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
 export const getAllUsers = async () => {
   try {
     const response = await httpClient.get<ApiGetAllUsers>(`/users`);

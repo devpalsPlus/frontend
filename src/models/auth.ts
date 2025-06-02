@@ -29,10 +29,10 @@ export interface ApiOauth extends ApiCommonType {
 }
 
 export interface ApiGetAllUsers extends ApiCommonType {
-  data: AllUser[];
+  data: AllUserPreview[];
 }
 
-export interface AllUser {
+export interface AllUserPreview {
   id: number;
   email: string;
   user: User;

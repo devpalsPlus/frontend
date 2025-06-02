@@ -18,6 +18,7 @@ import {
 } from './mypage';
 import {
   userAll,
+  userAllPreview,
   userPageAppliedProjectList,
   userPageProfile,
 } from './userpage';
@@ -57,6 +58,7 @@ export const handlers = [
   createProject,
   reportsAll,
   userAll,
+  userAllPreview,
 ];
 
 export const worker = setupWorker(...handlers);

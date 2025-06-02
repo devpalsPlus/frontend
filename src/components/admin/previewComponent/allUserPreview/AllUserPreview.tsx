@@ -1,13 +1,13 @@
 import React from 'react';
 import * as S from './AllUserPreview.styled';
-import { useGetAllUsers } from '../../../../hooks/admin/useGetAllUsers';
 import Avatar from '../../../common/avatar/Avatar';
 import { ADMIN_ROUTE } from '../../../../constants/routes';
 import arrow_right from '../../../../assets/ArrowRight.svg';
 import LoadingSpinner from '../../../common/loadingSpinner/LoadingSpinner';
+import { useGetAllUsersPreview } from '../../../../hooks/admin/useGetAllUsersPreview';
 
 const AllUserPreview = () => {
-  const { allUserData, isLoading, isFetching } = useGetAllUsers();
+  const { allUserData, isLoading, isFetching } = useGetAllUsersPreview();
 
   if (isLoading || isFetching) {
     return <LoadingSpinner />;
@@ -17,15 +17,9 @@ const AllUserPreview = () => {
     return <S.Container>가입된 회원이 없습니다.</S.Container>;
   }
 
-  const previewList = allUserData
-    ? allUserData.length > 6
-      ? allUserData.slice(0, 4)
-      : allUserData
-    : [];
-
   return (
     <S.Container>
-      {previewList?.map((user) => (
+      {allUserData?.map((user) => (
         <S.Wrapper key={user.id}>
           <S.UserArea>
             <Avatar image={user.user.img} size='40px' />
