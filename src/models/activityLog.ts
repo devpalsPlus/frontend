@@ -1,4 +1,4 @@
-import type { ApiCommonType, User } from './apiCommon';
+import type { ApiCommonType } from './apiCommon';
 
 export interface MyInquiries {
   id: number;
@@ -11,14 +11,6 @@ export interface MyInquiries {
 
 export interface ApiMyInquiries extends ApiCommonType {
   data: MyInquiries[];
-}
-export interface AllInquiries extends MyInquiries {
-  user: User;
-  createdAt: string;
-}
-
-export interface ApiAllInquiries extends ApiCommonType {
-  data: AllInquiries[];
 }
 
 export interface MyComments {

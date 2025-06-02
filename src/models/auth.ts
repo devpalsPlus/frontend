@@ -1,6 +1,5 @@
-//model
-import { ApiCommonType, User } from './apiCommon';
 import { PositionTag, SkillTag } from './tags';
+import { type ApiCommonType, type User } from './apiCommon';
 
 export interface VerifyEmail {
   email: string;

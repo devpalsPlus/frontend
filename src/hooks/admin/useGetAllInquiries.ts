@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getAllInquiries } from '../../api/activityLog.api';
-import { ActivityLog } from '../queries/user/keys';
+import { Inquiries } from '../queries/user/keys';
 
 export const useGetAllInquiries = () => {
   const {
@@ -8,7 +8,7 @@ export const useGetAllInquiries = () => {
     isLoading,
     isFetching,
   } = useQuery({
-    queryKey: [ActivityLog.allInquiries],
+    queryKey: [Inquiries.allInquiries],
     queryFn: () => getAllInquiries(),
   });
 

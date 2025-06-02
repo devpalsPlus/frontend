@@ -13,7 +13,7 @@ const InquiresPreview = () => {
   }
 
   if (!allInquiriesData || allInquiriesData.length === 0) {
-    return <S.Container>등록된 공지사항이 없습니다.</S.Container>;
+    return <S.Container>등록된 문의가 없습니다.</S.Container>;
   }
 
   const previewList = allInquiriesData
