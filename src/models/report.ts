@@ -16,6 +16,6 @@ export interface AllReports {
   imposedCount: number;
   category: string;
   user: User;
-  IsImposed: boolean;
+  isImposed: boolean;
   createdAt: string;
 }

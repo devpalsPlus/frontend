@@ -20,7 +20,7 @@ export const cardList: CardItem[] = [
     Component: AllUserPreview,
   },
   {
-    key: 'inquires',
+    key: 'inquiries',
     title: '문의 확인',
     link: `${ADMIN_ROUTE.inquiries}`,
     Component: InquiresPreview,

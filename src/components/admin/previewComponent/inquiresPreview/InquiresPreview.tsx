@@ -3,9 +3,18 @@ import { useGetAllInquiries } from '../../../../hooks/admin/useGetAllInquiries';
 import Avatar from '../../../common/avatar/Avatar';
 import { ADMIN_ROUTE } from '../../../../constants/routes';
 import arrow_right from '../../../../assets/ArrowRight.svg';
+import LoadingSpinner from '../../../common/loadingSpinner/LoadingSpinner';
 
 const InquiresPreview = () => {
-  const { allInquiriesData } = useGetAllInquiries();
+  const { allInquiriesData, isLoading, isFetching } = useGetAllInquiries();
+
+  if (isLoading || isFetching) {
+    return <LoadingSpinner />;
+  }
+
+  if (!allInquiriesData || allInquiriesData.length === 0) {
+    return <S.Container>등록된 공지사항이 없습니다.</S.Container>;
+  }
 
   const previewList = allInquiriesData
     ? allInquiriesData.length > 6
@@ -24,7 +33,7 @@ const InquiresPreview = () => {
               <S.Category>{inquiry.category}</S.Category>
               <S.Title>{inquiry.title}</S.Title>
               <S.StateArea>
-                <S.Date>{inquiry.createdAt}</S.Date>
+                <S.InquiriesDate>{inquiry.createdAt}</S.InquiriesDate>
                 <S.Divider>|</S.Divider>
                 <S.InquiryState $isCompleted={inquiry.state}>
                   {inquiry.state ? '답변 완료' : '답변 대기 중'}

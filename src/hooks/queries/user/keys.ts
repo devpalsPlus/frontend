@@ -59,3 +59,7 @@ export const CustomerService = {
 export const ReportData = {
   allReports: ['AllReports'],
 };
+
+export const UserData = {
+  allUser: ['AllUser'],
+};

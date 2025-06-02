@@ -16,17 +16,17 @@ const ReportsPreview = () => {
   return (
     <S.Container>
       {previewList?.map((report) => (
-        <S.Wrapper>
+        <S.Wrapper key={report.id}>
           <S.ReportArea to={`${ADMIN_ROUTE.reports}/${report.id}`}>
             <Avatar image={report.user.img} size='40px' />
             <S.ContentArea>
               <S.ImposedCount>{report.imposedCount} 번</S.ImposedCount>
               <S.Category>{report.category}</S.Category>
               <S.StateArea>
-                <S.Date>{report.createdAt}</S.Date>
+                <S.ReportDate>{report.createdAt}</S.ReportDate>
                 <S.Divider>|</S.Divider>
-                <S.IsImposed $isImposed={report.IsImposed}>
-                  {report.IsImposed ? '검토 완료' : '검토 미완료'}
+                <S.IsImposed $isImposed={report.isImposed}>
+                  {report.isImposed ? '검토 완료' : '검토 미완료'}
                 </S.IsImposed>
               </S.StateArea>
             </S.ContentArea>

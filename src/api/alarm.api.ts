@@ -50,6 +50,6 @@ export const testLiveAlarm = async () => {
       throw e;
     }
   } else {
-    return;
+    throw new Error('인증 토큰이 없습니다.');
   }
 };

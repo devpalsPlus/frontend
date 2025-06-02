@@ -3,10 +3,14 @@ import { getAllInquiries } from '../../api/activityLog.api';
 import { ActivityLog } from '../queries/user/keys';
 
 export const useGetAllInquiries = () => {
-  const { data: allInquiriesData, isLoading } = useQuery({
+  const {
+    data: allInquiriesData,
+    isLoading,
+    isFetching,
+  } = useQuery({
     queryKey: [ActivityLog.allInquiries],
     queryFn: () => getAllInquiries(),
   });
 
-  return { allInquiriesData, isLoading };
+  return { allInquiriesData, isLoading, isFetching };
 };

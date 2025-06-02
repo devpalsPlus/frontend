@@ -11,7 +11,7 @@
         "nickname": "alice",
         "img": "https://example.com/images/alice.png"
       },
-      "IsImposed": false,
+      "isImposed": false,
       "createdAt": "2025-05-01"
     },
     {
@@ -23,7 +23,7 @@
         "nickname": "charlie",
         "img": "https://example.com/images/charlie.jpeg"
       },
-      "IsImposed": true,
+      "isImposed": true,
       "createdAt": "2025-05-03"
     },
     {
@@ -35,7 +35,7 @@
         "nickname": "daisy",
         "img": "https://example.com/images/daisy.png"
       },
-      "IsImposed": false,
+      "isImposed": false,
       "createdAt": "2025-05-05"
     },
     {
@@ -47,7 +47,7 @@
         "nickname": "eve",
         "img": "https://example.com/images/eve.jpg"
       },
-      "IsImposed": true,
+      "isImposed": true,
       "createdAt": "2025-05-07"
     },
     {
@@ -60,7 +60,7 @@
         "img": "https://example.com/images/frank.png"
       },
 
-      "IsImposed": false,
+      "isImposed": false,
       "createdAt": "2025-05-09"
     },
     {
@@ -72,7 +72,7 @@
         "nickname": "henry",
         "img": "https://example.com/images/henry.jpg"
       },
-      "IsImposed": true,
+      "isImposed": true,
       "createdAt": "2025-05-11"
     },
     {
@@ -85,7 +85,7 @@
         "img": "https://example.com/images/iris.png"
       },
 
-      "IsImposed": false,
+      "isImposed": false,
       "createdAt": "2025-05-13"
     },
     {
@@ -97,7 +97,7 @@
         "nickname": "kate",
         "img": "https://example.com/images/kate.jpeg"
       },
-      "IsImposed": true,
+      "isImposed": true,
       "createdAt": "2025-05-15"
     },
     {
@@ -109,7 +109,7 @@
         "nickname": "leo",
         "img": "https://example.com/images/leo.png"
       },
-      "IsImposed": true,
+      "isImposed": true,
       "createdAt": "2025-05-17"
     },
     {
@@ -121,7 +121,7 @@
         "nickname": "nate",
         "img": "https://example.com/images/nate.png"
       },
-      "IsImposed": false,
+      "isImposed": false,
       "createdAt": "2025-05-19"
     }
   ]

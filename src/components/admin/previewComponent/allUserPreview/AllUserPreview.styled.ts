@@ -39,6 +39,6 @@ export const Text = styled.p`
 `;
 
 export const Arrow = styled.img`
-  width: 10px;
-  height: 10px;
+  width: 11px;
+  height: 11px;
 `;

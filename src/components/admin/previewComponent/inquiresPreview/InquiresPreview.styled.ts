@@ -23,7 +23,7 @@ export const Inquiry = styled(Link)`
 
 export const Category = styled.p`
   font-size: 9px;
-  opacity: 50%;
+  opacity: 0.5;
 `;
 
 export const Title = styled.p`
@@ -37,14 +37,14 @@ export const StateArea = styled.div`
   display: flex;
 `;
 
-export const Date = styled.p`
+export const InquiriesDate = styled.p`
   font-size: 9px;
-  opacity: 50%;
+  opacity: 0.5;
 `;
 
 export const Divider = styled.p`
   font-size: 9px;
-  opacity: 20%;
+  opacity: 0.2;
   margin-left: 3px;
   margin-right: 3px;
 `;

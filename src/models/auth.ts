@@ -35,7 +35,6 @@ export interface ApiGetAllUsers extends ApiCommonType {
 export interface AllUser {
   id: number;
   email: string;
-  name: string;
   user: User;
   createdAt: string;
 }

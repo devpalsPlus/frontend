@@ -1,12 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import { ReportData } from '../queries/user/keys';
+import { UserData } from '../queries/user/keys';
 import { getAllUsers } from '../../api/auth.api';
 
 export const useGetAllUsers = () => {
-  const { data: allUserData, isLoading } = useQuery({
-    queryKey: [ReportData.allReports],
+  const {
+    data: allUserData,
+    isLoading,
+    isFetching,
+  } = useQuery({
+    queryKey: [UserData.allUser],
     queryFn: () => getAllUsers(),
   });
 
-  return { allUserData, isLoading };
+  return { allUserData, isLoading, isFetching };
 };
