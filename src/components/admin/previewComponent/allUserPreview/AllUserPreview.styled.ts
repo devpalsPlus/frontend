@@ -26,7 +26,7 @@ export const NickName = styled.p`
 
 export const Email = styled.p`
   font-size: 9px;
-  opacity: 50%;
+  opacity: 0.5;
 `;
 
 export const MoveToUsersArea = styled(Link)`
