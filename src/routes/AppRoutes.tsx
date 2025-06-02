@@ -384,22 +384,7 @@ export const AppRoutes = () => {
     };
   });
 
-  const router = createBrowserRouter([
-    {
-      element: (
-        <NotificationProvider>
-          <ToastProvider>
-            <NotificationInitializer />
-            <Outlet />
-          </ToastProvider>
-        </NotificationProvider>
-      ),
-
-      children: [...newRouteList, { path: '*', element: <NotFoundPage /> }],
-    },
-  ]);
-
-  return <RouterProvider router={router} />;
+  return newRouteList;
 };
 
 export default AppRoutes;

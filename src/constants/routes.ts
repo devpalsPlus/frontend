@@ -42,4 +42,5 @@ export const ADMIN_ROUTE = {
   inquiries: 'inquiries',
   manage: 'manage',
   detail: 'detail',
+  write: 'write',
 };

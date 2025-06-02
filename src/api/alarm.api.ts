@@ -1,4 +1,5 @@
 import type { ApiAlarmList } from '../models/alarm';
+import useAuthStore from '../store/authStore';
 import { httpClient } from './http.api';
 
 export const getAlarmList = async () => {
@@ -36,14 +37,19 @@ export const patchAlarm = async (id: number) => {
 };
 
 export const testLiveAlarm = async () => {
-  try {
-    const response = await httpClient.get<ApiAlarmList>(
-      `/user/send-alarm?alarmFilter=0`
-    );
+  const { accessToken } = useAuthStore.getState();
+  if (accessToken) {
+    try {
+      const response = await httpClient.get<ApiAlarmList>(
+        '/user/send-alarm?alarmFilter=0'
+      );
 
-    return response;
-  } catch (e) {
-    console.error(e);
-    throw e;
+      return response;
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  } else {
+    return;
   }
 };

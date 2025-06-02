@@ -11,6 +11,9 @@ const Notice = lazy(() => import('../pages/admin/adminNotice/AdminNotice'));
 const NoticeList = lazy(
   () => import('../pages/admin/adminNotice/adminNoticeList/AdminNoticeList')
 );
+const NoticeWrite = lazy(
+  () => import('../pages/admin/adminNotice/adminNoticeWrite/AdminNoticeWrite')
+);
 const NoticeDetail = lazy(
   () => import('../pages/admin/adminNoticeDetail/AdminNoticeDetail')
 );
@@ -42,6 +45,10 @@ export const AdminRoutes = () => {
           element: <Notice />,
           children: [
             { index: true, element: <NoticeList /> },
+            {
+              path: ADMIN_ROUTE.write,
+              element: <NoticeWrite />,
+            },
             {
               path: `${ADMIN_ROUTE.detail}/:noticeId`,
               element: <NoticeDetail />,
