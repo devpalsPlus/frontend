@@ -34,12 +34,6 @@ export default function AdminNoticeWrite() {
       content: formData.get('content') as string,
     };
 
-    const data = new Blob([JSON.stringify(formDataObj)], {
-      type: 'application/json',
-    });
-
-    formData.append('inquiryDto', data);
-
     const isValid = {
       title: form.title.trim() !== '',
       content: form.content.trim() !== '',
@@ -52,7 +46,7 @@ export default function AdminNoticeWrite() {
       return handleModalOpen(INQUIRY_MESSAGE.writeContent);
     }
 
-    postNoticeMutate.mutate(formData);
+    postNoticeMutate.mutate(formDataObj);
     setForm({
       title: '',
       content: '',

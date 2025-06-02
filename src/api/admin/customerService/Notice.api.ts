@@ -1,26 +1,19 @@
 import type { ApiCommonBasicType } from '../../../models/apiCommon';
+import type { WriteBody } from '../../../models/customerService';
 import { httpClient } from '../../http.api';
 
-export const postNotice = async (formData: FormData) => {
+export const postNotice = async (formData: WriteBody) => {
   try {
-    await httpClient.post<ApiCommonBasicType>(`/notice`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    await httpClient.post<ApiCommonBasicType>(`/notice`, formData);
   } catch (e) {
     console.error(e);
     throw e;
   }
 };
 
-export const putNotice = async (id: number, formData: FormData) => {
+export const putNotice = async (id: number, formData: WriteBody) => {
   try {
-    await httpClient.put<ApiCommonBasicType>(`/notice/${id}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    await httpClient.put<ApiCommonBasicType>(`/notice/${id}`, formData);
   } catch (e) {
     console.error(e);
     throw e;

@@ -8,6 +8,7 @@ import { AxiosError } from 'axios';
 import { CustomerService } from '../queries/user/keys';
 import { useNavigate } from 'react-router-dom';
 import { ADMIN_MODAL_MESSAGE } from '../../constants/admin/adminModal';
+import { WriteBody } from '../../models/customerService';
 
 type State = 'success' | 'fail';
 
@@ -47,7 +48,7 @@ export const useAdminNotice = (
     }
   };
 
-  const postNoticeMutate = useMutation<void, AxiosError, FormData>({
+  const postNoticeMutate = useMutation<void, AxiosError, WriteBody>({
     mutationFn: (formData) => postNotice(formData),
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -63,9 +64,9 @@ export const useAdminNotice = (
   const putNoticeMutate = useMutation<
     void,
     AxiosError,
-    { id: number; formData: FormData }
+    { id: number; formData: WriteBody }
   >({
-    mutationFn: ({ id, formData }: { id: number; formData: FormData }) =>
+    mutationFn: ({ id, formData }: { id: number; formData: WriteBody }) =>
       putNotice(id, formData),
     onSuccess: () => {
       queryClient.invalidateQueries({
