@@ -21,7 +21,7 @@ export const ContentArea = styled.div`
   margin-left: 16px;
 `;
 
-export const ImposedCount = styled.div`
+export const ReportedCount = styled.div`
   font-size: 9px;
   opacity: 0.5;
 `;
@@ -49,9 +49,9 @@ export const Divider = styled.p`
   margin-right: 3px;
 `;
 
-export const IsImposed = styled.p<{ $isImposed: boolean }>`
+export const IsDone = styled.p<{ $isDone: boolean }>`
   font-size: 9px;
-  color: ${({ $isImposed }) => ($isImposed ? `#07DE00` : `#DE1A00`)};
+  color: ${({ $isDone }) => ($isDone ? `#07DE00` : `#DE1A00`)};
 `;
 
 export const MoveToReportsArea = styled(Link)`
