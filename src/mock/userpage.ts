@@ -21,6 +21,13 @@ export const userPageAppliedProjectList = http.get(
   }
 );
 
+export const userAllPreview = http.get(
+  `${import.meta.env.VITE_APP_API_BASE_URL}users/preview`,
+  () => {
+    return HttpResponse.json(mockUsers, { status: 200 });
+  }
+);
+
 export const userAll = http.get(
   `${import.meta.env.VITE_APP_API_BASE_URL}users`,
   () => {
