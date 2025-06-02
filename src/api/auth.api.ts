@@ -1,5 +1,6 @@
 import {
   ApiGetAllUsers,
+  ApiGetAllUsersPreview,
   type ApiOauth,
   type ApiVerifyNickname,
   type VerifyEmail,
@@ -108,7 +109,9 @@ export const getOauthLogin = async (oauthAccessToken: string) => {
 
 export const getAllUsersPreview = async () => {
   try {
-    const response = await httpClient.get<ApiGetAllUsers>(`/users/preview`);
+    const response = await httpClient.get<ApiGetAllUsersPreview>(
+      `/users/preview`
+    );
     return response.data.data;
   } catch (e) {
     console.error(e);

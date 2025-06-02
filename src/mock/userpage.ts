@@ -2,6 +2,7 @@ import { http, HttpResponse } from 'msw';
 import mockUserpageProfileData from './mockUserpageProfileData.json';
 import mockUserpageAppliedProjectListData from './mockUserpageAppliedProjectListData.json';
 import mockUsers from './mockUsers.json';
+import mockAllUsers from './mockAllUser.json';
 
 export const userPageProfile = http.get(
   `${import.meta.env.VITE_APP_API_BASE_URL}user/:id`,
@@ -31,6 +32,6 @@ export const userAllPreview = http.get(
 export const userAll = http.get(
   `${import.meta.env.VITE_APP_API_BASE_URL}users`,
   () => {
-    return HttpResponse.json(mockUsers, { status: 200 });
+    return HttpResponse.json(mockAllUsers, { status: 200 });
   }
 );
