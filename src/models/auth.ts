@@ -1,5 +1,4 @@
-//model
-import { ApiCommonType } from './apiCommon';
+import { type ApiCommonType, type User } from './apiCommon';
 
 export interface VerifyEmail {
   email: string;
@@ -26,4 +25,15 @@ export interface UserData {
 export interface ApiOauth extends ApiCommonType {
   data: Pick<LoginResponse, 'accessToken'>;
   user: UserData;
+}
+
+export interface ApiGetAllUsers extends ApiCommonType {
+  data: AllUser[];
+}
+
+export interface AllUser {
+  id: number;
+  email: string;
+  user: User;
+  createdAt: string;
 }

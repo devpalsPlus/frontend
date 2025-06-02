@@ -1,0 +1,128 @@
+{
+  "success": true,
+  "message": "성공적으로 처리되었습니다.",
+  "data": [
+    {
+      "id": 1,
+      "imposedCount": 3,
+      "category": "스팸 신고",
+      "user": {
+        "id": 301,
+        "nickname": "alice",
+        "img": "https://example.com/images/alice.png"
+      },
+      "isImposed": false,
+      "createdAt": "2025-05-01"
+    },
+    {
+      "id": 2,
+      "imposedCount": 5,
+      "category": "욕설/비방",
+      "user": {
+        "id": 303,
+        "nickname": "charlie",
+        "img": "https://example.com/images/charlie.jpeg"
+      },
+      "isImposed": true,
+      "createdAt": "2025-05-03"
+    },
+    {
+      "id": 3,
+      "imposedCount": 2,
+      "category": "저작권 침해",
+      "user": {
+        "id": 304,
+        "nickname": "daisy",
+        "img": "https://example.com/images/daisy.png"
+      },
+      "isImposed": false,
+      "createdAt": "2025-05-05"
+    },
+    {
+      "id": 4,
+      "imposedCount": 7,
+      "category": "개인정보 노출",
+      "user": {
+        "id": 305,
+        "nickname": "eve",
+        "img": "https://example.com/images/eve.jpg"
+      },
+      "isImposed": true,
+      "createdAt": "2025-05-07"
+    },
+    {
+      "id": 5,
+      "imposedCount": 1,
+      "category": "음란물 게시물",
+      "user": {
+        "id": 306,
+        "nickname": "frank",
+        "img": "https://example.com/images/frank.png"
+      },
+
+      "isImposed": false,
+      "createdAt": "2025-05-09"
+    },
+    {
+      "id": 6,
+      "imposedCount": 4,
+      "category": "사칭 계정",
+      "user": {
+        "id": 308,
+        "nickname": "henry",
+        "img": "https://example.com/images/henry.jpg"
+      },
+      "isImposed": true,
+      "createdAt": "2025-05-11"
+    },
+    {
+      "id": 7,
+      "imposedCount": 6,
+      "category": "허위 정보 유포",
+      "user": {
+        "id": 309,
+        "nickname": "iris",
+        "img": "https://example.com/images/iris.png"
+      },
+
+      "isImposed": false,
+      "createdAt": "2025-05-13"
+    },
+    {
+      "id": 8,
+      "imposedCount": 2,
+      "category": "불법 광고",
+      "user": {
+        "id": 311,
+        "nickname": "kate",
+        "img": "https://example.com/images/kate.jpeg"
+      },
+      "isImposed": true,
+      "createdAt": "2025-05-15"
+    },
+    {
+      "id": 9,
+      "imposedCount": 8,
+      "category": "명예 훼손",
+      "user": {
+        "id": 312,
+        "nickname": "leo",
+        "img": "https://example.com/images/leo.png"
+      },
+      "isImposed": true,
+      "createdAt": "2025-05-17"
+    },
+    {
+      "id": 10,
+      "imposedCount": 3,
+      "category": "폭력/위협",
+      "user": {
+        "id": 314,
+        "nickname": "nate",
+        "img": "https://example.com/images/nate.png"
+      },
+      "isImposed": false,
+      "createdAt": "2025-05-19"
+    }
+  ]
+}

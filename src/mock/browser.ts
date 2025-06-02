@@ -7,7 +7,7 @@ import {
   passNonPass,
   passNonPassList,
 } from './applicant';
-import { projectDetail } from './projectDetail';
+import { projectDetail, reportsAll } from './projectDetail';
 import {
   myPageAppliedProjectList,
   mypageEditProfile,
@@ -16,7 +16,11 @@ import {
   myPageProfile,
   myPageSkillTag,
 } from './mypage';
-import { userPageAppliedProjectList, userPageProfile } from './userpage';
+import {
+  userAll,
+  userPageAppliedProjectList,
+  userPageProfile,
+} from './userpage';
 import { login } from './auth';
 import { fetchProjectLists, fetchProjectStatistic } from './projectLists';
 import {
@@ -51,6 +55,8 @@ export const handlers = [
   login,
   createApplicant,
   createProject,
+  reportsAll,
+  userAll,
 ];
 
 export const worker = setupWorker(...handlers);

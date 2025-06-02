@@ -14,13 +14,13 @@ export interface CardItem {
 
 export const cardList: CardItem[] = [
   {
-    key: 'notice',
-    title: '공지사항',
-    link: `${ADMIN_ROUTE.notice}`,
-    Component: NoticePreview,
+    key: 'allUsers',
+    title: '전체 회원 조회',
+    link: `${ADMIN_ROUTE.allUser}`,
+    Component: AllUserPreview,
   },
   {
-    key: 'inquires',
+    key: 'inquiries',
     title: '문의 확인',
     link: `${ADMIN_ROUTE.inquiries}`,
     Component: InquiresPreview,
@@ -32,14 +32,14 @@ export const cardList: CardItem[] = [
     Component: ReportsPreview,
   },
   {
-    key: 'allUsers',
-    title: '전체 회원 조회',
-    link: `${ADMIN_ROUTE.allUser}`,
-    Component: AllUserPreview,
-  },
-  {
     key: 'Graph',
     title: '방문자 현황',
     Component: GraphCard,
+  },
+  {
+    key: 'notice',
+    title: '공지사항',
+    link: `${ADMIN_ROUTE.notice}`,
+    Component: NoticePreview,
   },
 ];
