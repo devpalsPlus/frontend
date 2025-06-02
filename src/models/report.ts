@@ -1,4 +1,4 @@
-import { ApiCommonType, User } from './apiCommon';
+import { type ApiCommonType, type User } from './apiCommon';
 
 export interface ApiPostContent {
   reportTargetId: number;

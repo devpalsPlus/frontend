@@ -1,8 +1,5 @@
-import type {
-  ApiAllInquiries,
-  ApiMyComments,
-  ApiMyInquiries,
-} from './../models/activityLog';
+import { ApiAllInquiries } from '../models/admin/mainPreview';
+import type { ApiMyComments, ApiMyInquiries } from './../models/activityLog';
 import { httpClient } from './http.api';
 
 export const getMyComments = async () => {

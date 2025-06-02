@@ -1,5 +1,4 @@
-//model
-import { ApiCommonType, User } from './apiCommon';
+import { type ApiCommonType, type User } from './apiCommon';
 
 export interface VerifyEmail {
   email: string;
