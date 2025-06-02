@@ -1,0 +1,686 @@
+{
+  "success": true,
+  "message": "지원서 조회 성공",
+  "data": [
+    {
+      "id": 1,
+      "email": "user1@example.com",
+      "user": {
+        "id": 101,
+        "nickname": "alpha",
+        "img": "https://example.com/avatars/alpha.png"
+      },
+      "userState": "접속 중",
+      "createdAt": "2023-12-01",
+      "skill": [
+        {
+          "id": 11,
+          "name": "JavaScript",
+          "img": "https://example.com/skills/javascript.png",
+          "createdAt": "2023-01-10"
+        },
+        {
+          "id": 12,
+          "name": "React",
+          "img": "https://example.com/skills/react.png",
+          "createdAt": "2023-02-15"
+        }
+      ],
+      "position": [
+        {
+          "id": 21,
+          "name": "Frontend",
+          "createdAt": "2023-03-05"
+        },
+        {
+          "id": 21,
+          "name": "Frontend",
+          "createdAt": "2023-03-05"
+        },
+        {
+          "id": 21,
+          "name": "Frontend",
+          "createdAt": "2023-03-05"
+        },
+        {
+          "id": 21,
+          "name": "Frontend",
+          "createdAt": "2023-03-05"
+        },
+        {
+          "id": 21,
+          "name": "Frontend",
+          "createdAt": "2023-03-05"
+        }
+      ],
+      "reportedCount": 0
+    },
+    {
+      "id": 2,
+      "email": "user2@example.com",
+      "user": {
+        "id": 102,
+        "nickname": "bravo",
+        "img": "https://example.com/avatars/bravo.png"
+      },
+      "userState": "오프라인",
+      "createdAt": "2024-01-15",
+      "skill": [
+        {
+          "id": 13,
+          "name": "TypeScript",
+          "img": "https://example.com/skills/typescript.png",
+          "createdAt": "2023-04-12"
+        },
+        {
+          "id": 14,
+          "name": "HTML",
+          "img": "https://example.com/skills/html.png",
+          "createdAt": "2023-05-01"
+        }
+      ],
+      "position": [
+        {
+          "id": 22,
+          "name": "Fullstack",
+          "createdAt": "2023-06-20"
+        }
+      ],
+      "reportedCount": 1
+    },
+    {
+      "id": 3,
+      "email": "user3@example.com",
+      "user": {
+        "id": 103,
+        "nickname": "charlie",
+        "img": "https://example.com/avatars/charlie.png"
+      },
+      "userState": "정지",
+      "createdAt": "2022-11-20",
+      "skill": [
+        {
+          "id": 15,
+          "name": "CSS",
+          "img": "https://example.com/skills/css.png",
+          "createdAt": "2023-03-22"
+        },
+        {
+          "id": 16,
+          "name": "Node.js",
+          "img": "https://example.com/skills/nodejs.png",
+          "createdAt": "2023-04-18"
+        }
+      ],
+      "position": [
+        {
+          "id": 23,
+          "name": "Backend",
+          "createdAt": "2023-05-30"
+        }
+      ],
+      "reportedCount": 3
+    },
+    {
+      "id": 4,
+      "email": "user4@example.com",
+      "user": {
+        "id": 104,
+        "nickname": "delta",
+        "img": "https://example.com/avatars/delta.png"
+      },
+      "userState": "접속 중",
+      "createdAt": "2024-03-03",
+      "skill": [
+        {
+          "id": 17,
+          "name": "Python",
+          "img": "https://example.com/skills/python.png",
+          "createdAt": "2023-06-10"
+        },
+        {
+          "id": 18,
+          "name": "Docker",
+          "img": "https://example.com/skills/docker.png",
+          "createdAt": "2023-07-25"
+        }
+      ],
+      "position": [
+        {
+          "id": 24,
+          "name": "DevOps",
+          "createdAt": "2023-08-05"
+        }
+      ],
+      "reportedCount": 0
+    },
+    {
+      "id": 5,
+      "email": "user5@example.com",
+      "user": {
+        "id": 105,
+        "nickname": "echo",
+        "img": "https://example.com/avatars/echo.png"
+      },
+      "userState": "오프라인",
+      "createdAt": "2024-02-10",
+      "skill": [
+        {
+          "id": 19,
+          "name": "AWS",
+          "img": "https://example.com/skills/aws.png",
+          "createdAt": "2023-09-02"
+        },
+        {
+          "id": 20,
+          "name": "HTML",
+          "img": "https://example.com/skills/html.png",
+          "createdAt": "2023-05-01"
+        }
+      ],
+      "position": [
+        {
+          "id": 25,
+          "name": "Fullstack",
+          "createdAt": "2023-10-12"
+        }
+      ],
+      "reportedCount": 2
+    },
+    {
+      "id": 6,
+      "email": "user6@example.com",
+      "user": {
+        "id": 106,
+        "nickname": "foxtrot",
+        "img": "https://example.com/avatars/foxtrot.png"
+      },
+      "userState": "접속 중",
+      "createdAt": "2023-08-15",
+      "skill": [
+        {
+          "id": 21,
+          "name": "JavaScript",
+          "img": "https://example.com/skills/javascript.png",
+          "createdAt": "2023-01-10"
+        },
+        {
+          "id": 22,
+          "name": "React",
+          "img": "https://example.com/skills/react.png",
+          "createdAt": "2023-02-15"
+        }
+      ],
+      "position": [
+        {
+          "id": 26,
+          "name": "Frontend",
+          "createdAt": "2023-03-05"
+        }
+      ],
+      "reportedCount": 0
+    },
+    {
+      "id": 7,
+      "email": "user7@example.com",
+      "user": {
+        "id": 107,
+        "nickname": "golf",
+        "img": "https://example.com/avatars/golf.png"
+      },
+      "userState": "오프라인",
+      "createdAt": "2024-05-01",
+      "skill": [
+        {
+          "id": 23,
+          "name": "TypeScript",
+          "img": "https://example.com/skills/typescript.png",
+          "createdAt": "2023-04-12"
+        },
+        {
+          "id": 24,
+          "name": "CSS",
+          "img": "https://example.com/skills/css.png",
+          "createdAt": "2023-03-22"
+        }
+      ],
+      "position": [
+        {
+          "id": 27,
+          "name": "Frontend",
+          "createdAt": "2023-03-05"
+        }
+      ],
+      "reportedCount": 4
+    },
+    {
+      "id": 8,
+      "email": "user8@example.com",
+      "user": {
+        "id": 108,
+        "nickname": "hotel",
+        "img": "https://example.com/avatars/hotel.png"
+      },
+      "userState": "정지",
+      "createdAt": "2023-09-10",
+      "skill": [
+        {
+          "id": 25,
+          "name": "Node.js",
+          "img": "https://example.com/skills/nodejs.png",
+          "createdAt": "2023-04-18"
+        },
+        {
+          "id": 26,
+          "name": "Docker",
+          "img": "https://example.com/skills/docker.png",
+          "createdAt": "2023-07-25"
+        }
+      ],
+      "position": [
+        {
+          "id": 28,
+          "name": "Backend",
+          "createdAt": "2023-05-30"
+        }
+      ],
+      "reportedCount": 5
+    },
+    {
+      "id": 9,
+      "email": "user9@example.com",
+      "user": {
+        "id": 109,
+        "nickname": "india",
+        "img": "https://example.com/avatars/india.png"
+      },
+      "userState": "접속 중",
+      "createdAt": "2024-04-20",
+      "skill": [
+        {
+          "id": 27,
+          "name": "Python",
+          "img": "https://example.com/skills/python.png",
+          "createdAt": "2023-06-10"
+        },
+        {
+          "id": 28,
+          "name": "AWS",
+          "img": "https://example.com/skills/aws.png",
+          "createdAt": "2023-09-02"
+        }
+      ],
+      "position": [
+        {
+          "id": 29,
+          "name": "DevOps",
+          "createdAt": "2023-08-05"
+        }
+      ],
+      "reportedCount": 0
+    },
+    {
+      "id": 10,
+      "email": "user10@example.com",
+      "user": {
+        "id": 110,
+        "nickname": "juliet",
+        "img": "https://example.com/avatars/juliet.png"
+      },
+      "userState": "오프라인",
+      "createdAt": "2022-12-25",
+      "skill": [
+        {
+          "id": 29,
+          "name": "HTML",
+          "img": "https://example.com/skills/html.png",
+          "createdAt": "2023-05-01"
+        },
+        {
+          "id": 30,
+          "name": "CSS",
+          "img": "https://example.com/skills/css.png",
+          "createdAt": "2023-03-22"
+        }
+      ],
+      "position": [
+        {
+          "id": 30,
+          "name": "Frontend",
+          "createdAt": "2023-03-05"
+        }
+      ],
+      "reportedCount": 2
+    },
+    {
+      "id": 11,
+      "email": "user11@example.com",
+      "user": {
+        "id": 111,
+        "nickname": "kilo",
+        "img": "https://example.com/avatars/kilo.png"
+      },
+      "userState": "접속 중",
+      "createdAt": "2024-06-02",
+      "skill": [
+        {
+          "id": 31,
+          "name": "JavaScript",
+          "img": "https://example.com/skills/javascript.png",
+          "createdAt": "2023-01-10"
+        },
+        {
+          "id": 32,
+          "name": "React",
+          "img": "https://example.com/skills/react.png",
+          "createdAt": "2023-02-15"
+        }
+      ],
+      "position": [
+        {
+          "id": 31,
+          "name": "Fullstack",
+          "createdAt": "2023-06-20"
+        }
+      ],
+      "reportedCount": 1
+    },
+    {
+      "id": 12,
+      "email": "user12@example.com",
+      "user": {
+        "id": 112,
+        "nickname": "lima",
+        "img": "https://example.com/avatars/lima.png"
+      },
+      "userState": "오프라인",
+      "createdAt": "2023-07-18",
+      "skill": [
+        {
+          "id": 33,
+          "name": "TypeScript",
+          "img": "https://example.com/skills/typescript.png",
+          "createdAt": "2023-04-12"
+        },
+        {
+          "id": 34,
+          "name": "Node.js",
+          "img": "https://example.com/skills/nodejs.png",
+          "createdAt": "2023-04-18"
+        }
+      ],
+      "position": [
+        {
+          "id": 32,
+          "name": "Backend",
+          "createdAt": "2023-05-30"
+        }
+      ],
+      "reportedCount": 0
+    },
+    {
+      "id": 13,
+      "email": "user13@example.com",
+      "user": {
+        "id": 113,
+        "nickname": "mike",
+        "img": "https://example.com/avatars/mike.png"
+      },
+      "userState": "정지",
+      "createdAt": "2024-02-28",
+      "skill": [
+        {
+          "id": 35,
+          "name": "Docker",
+          "img": "https://example.com/skills/docker.png",
+          "createdAt": "2023-07-25"
+        },
+        {
+          "id": 36,
+          "name": "AWS",
+          "img": "https://example.com/skills/aws.png",
+          "createdAt": "2023-09-02"
+        }
+      ],
+      "position": [
+        {
+          "id": 33,
+          "name": "DevOps",
+          "createdAt": "2023-08-05"
+        }
+      ],
+      "reportedCount": 4
+    },
+    {
+      "id": 14,
+      "email": "user14@example.com",
+      "user": {
+        "id": 114,
+        "nickname": "november",
+        "img": "https://example.com/avatars/november.png"
+      },
+      "userState": "접속 중",
+      "createdAt": "2023-10-05",
+      "skill": [
+        {
+          "id": 37,
+          "name": "HTML",
+          "img": "https://example.com/skills/html.png",
+          "createdAt": "2023-05-01"
+        },
+        {
+          "id": 38,
+          "name": "CSS",
+          "img": "https://example.com/skills/css.png",
+          "createdAt": "2023-03-22"
+        }
+      ],
+      "position": [
+        {
+          "id": 34,
+          "name": "Frontend",
+          "createdAt": "2023-03-05"
+        }
+      ],
+      "reportedCount": 1
+    },
+    {
+      "id": 15,
+      "email": "user15@example.com",
+      "user": {
+        "id": 115,
+        "nickname": "oscar",
+        "img": "https://example.com/avatars/oscar.png"
+      },
+      "userState": "오프라인",
+      "createdAt": "2024-03-22",
+      "skill": [
+        {
+          "id": 39,
+          "name": "JavaScript",
+          "img": "https://example.com/skills/javascript.png",
+          "createdAt": "2023-01-10"
+        },
+        {
+          "id": 40,
+          "name": "React",
+          "img": "https://example.com/skills/react.png",
+          "createdAt": "2023-02-15"
+        }
+      ],
+      "position": [
+        {
+          "id": 35,
+          "name": "Fullstack",
+          "createdAt": "2023-06-20"
+        }
+      ],
+      "reportedCount": 2
+    },
+    {
+      "id": 16,
+      "email": "user16@example.com",
+      "user": {
+        "id": 116,
+        "nickname": "papa",
+        "img": "https://example.com/avatars/papa.png"
+      },
+      "userState": "접속 중",
+      "createdAt": "2023-11-11",
+      "skill": [
+        {
+          "id": 41,
+          "name": "TypeScript",
+          "img": "https://example.com/skills/typescript.png",
+          "createdAt": "2023-04-12"
+        },
+        {
+          "id": 42,
+          "name": "Node.js",
+          "img": "https://example.com/skills/nodejs.png",
+          "createdAt": "2023-04-18"
+        }
+      ],
+      "position": [
+        {
+          "id": 36,
+          "name": "Backend",
+          "createdAt": "2023-05-30"
+        }
+      ],
+      "reportedCount": 0
+    },
+    {
+      "id": 17,
+      "email": "user17@example.com",
+      "user": {
+        "id": 117,
+        "nickname": "quebec",
+        "img": "https://example.com/avatars/quebec.png"
+      },
+      "userState": "오프라인",
+      "createdAt": "2023-08-30",
+      "skill": [
+        {
+          "id": 43,
+          "name": "Docker",
+          "img": "https://example.com/skills/docker.png",
+          "createdAt": "2023-07-25"
+        },
+        {
+          "id": 44,
+          "name": "AWS",
+          "img": "https://example.com/skills/aws.png",
+          "createdAt": "2023-09-02"
+        }
+      ],
+      "position": [
+        {
+          "id": 37,
+          "name": "DevOps",
+          "createdAt": "2023-08-05"
+        }
+      ],
+      "reportedCount": 3
+    },
+    {
+      "id": 18,
+      "email": "user18@example.com",
+      "user": {
+        "id": 118,
+        "nickname": "romeo",
+        "img": "https://example.com/avatars/romeo.png"
+      },
+      "userState": "정지",
+      "createdAt": "2022-10-10",
+      "skill": [
+        {
+          "id": 45,
+          "name": "JavaScript",
+          "img": "https://example.com/skills/javascript.png",
+          "createdAt": "2023-01-10"
+        },
+        {
+          "id": 46,
+          "name": "React",
+          "img": "https://example.com/skills/react.png",
+          "createdAt": "2023-02-15"
+        }
+      ],
+      "position": [
+        {
+          "id": 38,
+          "name": "Frontend",
+          "createdAt": "2023-03-05"
+        }
+      ],
+      "reportedCount": 5
+    },
+    {
+      "id": 19,
+      "email": "user19@example.com",
+      "user": {
+        "id": 119,
+        "nickname": "sierra",
+        "img": "https://example.com/avatars/sierra.png"
+      },
+      "userState": "접속 중",
+      "createdAt": "2023-06-14",
+      "skill": [
+        {
+          "id": 47,
+          "name": "Python",
+          "img": "https://example.com/skills/python.png",
+          "createdAt": "2023-06-10"
+        },
+        {
+          "id": 48,
+          "name": "AWS",
+          "img": "https://example.com/skills/aws.png",
+          "createdAt": "2023-09-02"
+        }
+      ],
+      "position": [
+        {
+          "id": 39,
+          "name": "DevOps",
+          "createdAt": "2023-08-05"
+        }
+      ],
+      "reportedCount": 0
+    },
+    {
+      "id": 20,
+      "email": "user20@example.com",
+      "user": {
+        "id": 120,
+        "nickname": "tango",
+        "img": "https://example.com/avatars/tango.png"
+      },
+      "userState": "오프라인",
+      "createdAt": "2024-05-30",
+      "skill": [
+        {
+          "id": 49,
+          "name": "HTML",
+          "img": "https://example.com/skills/html.png",
+          "createdAt": "2023-05-01"
+        },
+        {
+          "id": 50,
+          "name": "CSS",
+          "img": "https://example.com/skills/css.png",
+          "createdAt": "2023-03-22"
+        }
+      ],
+      "position": [
+        {
+          "id": 40,
+          "name": "Frontend",
+          "createdAt": "2023-03-05"
+        }
+      ],
+      "reportedCount": 1
+    }
+  ]
+}
