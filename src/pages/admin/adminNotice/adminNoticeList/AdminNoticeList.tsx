@@ -5,8 +5,8 @@ import * as S from './AdminNoticeList.styled';
 import type { NoticeSearch } from '../../../../models/customerService';
 import { useGetNotice } from '../../../../hooks/user/useGetNotice';
 import { useSearchParams } from 'react-router-dom';
-import { Spinner } from '../../../../components/common/loadingSpinner/LoadingSpinner.styled';
 import Pagination from '../../../../components/common/pagination/Pagination';
+import Spinner from '../../../../components/user/mypage/Spinner';
 
 export default function AdminNoticeList() {
   const [noticeSearch, setNoticeSearch] = useState<NoticeSearch>({

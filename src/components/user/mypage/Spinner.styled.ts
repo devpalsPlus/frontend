@@ -26,8 +26,8 @@ export const Circle = styled.div<{ $size: string; $color: string }>`
   animation: ${spin} 1s linear infinite;
 `;
 
-export const SpinnerWrapperStyled = styled.div`
-  width: 100vw;
+export const SpinnerWrapperStyled = styled.div<{ $isAdmin?: boolean }>`
+  width: ${({ $isAdmin }) => ($isAdmin ? '100%' : '100vw')};
   height: 60vh;
   display: flex;
   justify-content: center;
