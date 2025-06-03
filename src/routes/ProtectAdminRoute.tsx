@@ -5,6 +5,7 @@ import { ReactNode, useEffect } from 'react';
 import { useModal } from '../hooks/useModal';
 import Modal from '../components/common/modal/Modal';
 import { MODAL_MESSAGE } from '../constants/user/modalMessage';
+import { useMyProfileInfo } from '../hooks/user/useMyInfo';
 
 interface ProtectAdminRouteProps {
   children: ReactNode;
@@ -21,13 +22,15 @@ export default function ProtectAdminRoute({
     useAuthStore((state) => state.redirectAdmin) || false;
   const navigate = useNavigate();
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
+  const { myData } = useMyProfileInfo();
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
+    console.log(myData);
 
     const handleStorageChange = () => {
       const authStorage = localStorage.getItem('auth-storage');
-      if (!authStorage) {
+      if (!authStorage || !myData) {
         handleModalOpen(MODAL_MESSAGE.needAuth);
         timer = setTimeout(() => {
           logout();
@@ -63,6 +66,7 @@ export default function ProtectAdminRoute({
       if (timer) clearTimeout(timer);
     };
   }, [
+    myData,
     redirectAdminBool,
     isLoggedIn,
     isAdmin,

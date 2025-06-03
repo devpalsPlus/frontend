@@ -12,10 +12,15 @@ import { WriteBody } from '../../models/customerService';
 
 type State = 'success' | 'fail';
 
-export const useAdminNotice = (
-  handleModalOpen: (message: string) => void,
-  pathname: string
-) => {
+export const useAdminNotice = ({
+  handleModalOpen,
+  formDefault,
+  pathname,
+}: {
+  handleModalOpen: (message: string) => void;
+  formDefault?: () => void;
+  pathname: string;
+}) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -24,6 +29,7 @@ export const useAdminNotice = (
       case 'success':
         if (!isDeleteApi) {
           handleModalOpen(ADMIN_MODAL_MESSAGE.writeSuccess);
+          formDefault?.();
         } else {
           handleModalOpen(ADMIN_MODAL_MESSAGE.writeDeleteSuccess);
         }

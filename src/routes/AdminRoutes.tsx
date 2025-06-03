@@ -38,7 +38,7 @@ export const AdminRoutes = () => {
       children: [
         {
           index: true,
-          element: <Main />,
+          element: <Notice />,
         },
         {
           path: ADMIN_ROUTE.notice,

@@ -7,6 +7,7 @@ import Modal from '../../../../components/common/modal/Modal';
 import type { WriteBody } from '../../../../models/customerService';
 import { useAdminNotice } from '../../../../hooks/admin/useAdminNotice';
 import { useGetNoticeDetail } from '../../../../hooks/user/useGetNoticeDetail';
+import Spinner from '../../../../components/user/mypage/Spinner';
 
 export default function AdminNoticeWrite() {
   const location = useLocation();
@@ -17,20 +18,28 @@ export default function AdminNoticeWrite() {
     handleModalClose,
   } = useModal();
   const { noticeId } = useParams();
-  const id = String(noticeId) || '';
+  const id = noticeId ? noticeId : '';
   const { noticeDetail, isLoading } = useGetNoticeDetail(id);
-  const { postNoticeMutate, putNoticeMutate } = useAdminNotice(
+  const pathname = location.state.from || '';
+
+  const formDefault = () => {
+    setForm({
+      title: '',
+      content: '',
+    });
+  };
+
+  const { postNoticeMutate, putNoticeMutate } = useAdminNotice({
     handleModalOpen,
-    location.state.from || ''
-  );
+    formDefault,
+    pathname,
+  });
   const [form, setForm] = useState<WriteBody>({
     title: '',
     content: '',
   });
 
   useEffect(() => {
-    console.log('noticeDetail', noticeDetail);
-
     if (!noticeDetail) return;
     setForm({ title: noticeDetail.title, content: noticeDetail.content });
   }, [noticeDetail]);
@@ -57,16 +66,16 @@ export default function AdminNoticeWrite() {
       return handleModalOpen(INQUIRY_MESSAGE.writeContent);
     }
 
-    if (id) {
-      return putNoticeMutate.mutate({ id, formDataObj });
-    } else {
+    if (!id) {
       return postNoticeMutate.mutate(formDataObj);
+    } else {
+      return putNoticeMutate.mutate({ id, formDataObj });
     }
-    setForm({
-      title: '',
-      content: '',
-    });
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <S.AdminNoticeContainer>

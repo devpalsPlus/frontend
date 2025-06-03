@@ -1,4 +1,3 @@
-import React from 'react';
 import * as S from './AdminMain.styled';
 import MainCard from '../../../components/admin/mainCard/MainCard';
 import { cardList } from '../../../constants/admin/mainItems';

@@ -30,10 +30,8 @@ export default function NoticeDetailContent({
   const { noticeId } = useParams() || '';
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const location = useLocation();
-  const { deleteNoticeMutate } = useAdminNotice(
-    handleModalOpen,
-    `${ADMIN_ROUTE.admin}/${ADMIN_ROUTE.notice}`
-  );
+  const pathname = `${ADMIN_ROUTE.admin}/${ADMIN_ROUTE.notice}`;
+  const { deleteNoticeMutate } = useAdminNotice({ handleModalOpen, pathname });
 
   const handleClickDeleteNotice = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
