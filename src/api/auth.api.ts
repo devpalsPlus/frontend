@@ -1,4 +1,9 @@
-import type { ApiOauth, ApiVerifyNickname, VerifyEmail } from '../models/auth';
+import {
+  ApiGetAllUsers,
+  type ApiOauth,
+  type ApiVerifyNickname,
+  type VerifyEmail,
+} from '../models/auth';
 import { httpClient } from './http.api';
 import { loginFormValues } from '../pages/login/Login';
 import { registerFormValues } from '../pages/user/register/Register';
@@ -95,6 +100,16 @@ export const getOauthLogin = async (oauthAccessToken: string) => {
     });
 
     return response.data;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
+export const getAllUsers = async () => {
+  try {
+    const response = await httpClient.get<ApiGetAllUsers>(`/users`);
+    return response.data.data;
   } catch (e) {
     console.error(e);
     throw e;

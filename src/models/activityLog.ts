@@ -1,6 +1,7 @@
 import type { ApiCommonType } from './apiCommon';
 
 export interface MyInquiries {
+  id: number;
   title: string;
   content: string;
   category: string;

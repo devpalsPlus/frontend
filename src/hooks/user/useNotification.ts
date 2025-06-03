@@ -45,7 +45,6 @@ const useNotification = () => {
         const event = e as MessageEvent;
         try {
           const eventData: AlarmLive = JSON.parse(event.data);
-          console.log(eventData);
 
           if (eventData) {
             queryClient.invalidateQueries({
@@ -56,11 +55,13 @@ const useNotification = () => {
           setSignal(eventData);
           showToast(eventData, 3000);
         } catch (error) {
-          console.error(error);
+
+          console.error('SSE 메시지 파싱 실패:', error);
         }
       });
       eventSource.onerror = (e) => {
-        console.error(e);
+        console.error('SSE 연결 오류:', e);
+
       };
     }
 

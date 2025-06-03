@@ -41,7 +41,7 @@ export const testLiveAlarm = async () => {
   if (accessToken) {
     try {
       const response = await httpClient.get<ApiAlarmList>(
-        '/user/send-alarm?alarmFilter=0'
+        `/user/send-alarm?alarmFilter=0`
       );
 
       return response;
@@ -50,6 +50,6 @@ export const testLiveAlarm = async () => {
       throw e;
     }
   } else {
-    return;
+    throw new Error('인증 토큰이 없습니다.');
   }
 };

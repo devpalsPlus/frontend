@@ -55,7 +55,9 @@ export const patchMyProfileImg = async (file: File) => {
 
 export const getMyJoinedProjectList = async () => {
   try {
-    const response = await httpClient.get<ApiJoinedProject>('/user/project');
+    const response = await httpClient.get<ApiJoinedProject>(
+      '/user/joinProject'
+    );
 
     return response.data;
   } catch (error) {

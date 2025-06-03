@@ -49,8 +49,20 @@ export const ActivityLog = {
   myInquiries: ['MyInquiries'],
 };
 
+export const Inquiries = {
+  allInquiries: ['AllInquiries'],
+};
+
 export const CustomerService = {
   faq: 'faq',
   notice: 'notice',
   noticeDetail: 'noticeDetail',
+};
+
+export const ReportData = {
+  allReports: ['AllReports'],
+};
+
+export const UserData = {
+  allUser: ['AllUser'],
 };
