@@ -6,6 +6,7 @@ export const useGetNoticeDetail = (id: string) => {
   const { data: noticeDetailData, isLoading } = useQuery({
     queryKey: [CustomerService.noticeDetail, id],
     queryFn: () => getNoticeDetail(id),
+    enabled: Boolean(id),
   });
 
   return { noticeDetail: noticeDetailData, isLoading };

@@ -64,10 +64,10 @@ export const useAdminNotice = (
   const putNoticeMutate = useMutation<
     void,
     AxiosError,
-    { id: number; formData: WriteBody }
+    { id: string; formDataObj: WriteBody }
   >({
-    mutationFn: ({ id, formData }: { id: number; formData: WriteBody }) =>
-      putNotice(id, formData),
+    mutationFn: ({ id, formDataObj }: { id: string; formDataObj: WriteBody }) =>
+      putNotice(id, formDataObj),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [CustomerService.notice],
@@ -79,8 +79,8 @@ export const useAdminNotice = (
     },
   });
 
-  const deleteNoticeMutate = useMutation<void, AxiosError, number>({
-    mutationFn: (id) => deleteNotice(id),
+  const deleteNoticeMutate = useMutation<void, AxiosError, string>({
+    mutationFn: (id: string) => deleteNotice(id),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [CustomerService.notice],

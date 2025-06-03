@@ -11,7 +11,7 @@ export const postNotice = async (formData: WriteBody) => {
   }
 };
 
-export const putNotice = async (id: number, formData: WriteBody) => {
+export const putNotice = async (id: string, formData: WriteBody) => {
   try {
     await httpClient.put<ApiCommonBasicType>(`/notice/${id}`, formData);
   } catch (e) {
@@ -20,7 +20,7 @@ export const putNotice = async (id: number, formData: WriteBody) => {
   }
 };
 
-export const deleteNotice = async (id: number) => {
+export const deleteNotice = async (id: string) => {
   try {
     await httpClient.delete<ApiCommonBasicType>(`/notice/${id}`);
   } catch (e) {

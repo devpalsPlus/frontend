@@ -1,11 +1,12 @@
 import { INQUIRY_MESSAGE } from '../../../../constants/user/customerService';
 import * as S from './AdminNoticeWrite.styled';
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import { useModal } from '../../../../hooks/useModal';
 import Modal from '../../../../components/common/modal/Modal';
 import type { WriteBody } from '../../../../models/customerService';
 import { useAdminNotice } from '../../../../hooks/admin/useAdminNotice';
+import { useGetNoticeDetail } from '../../../../hooks/user/useGetNoticeDetail';
 
 export default function AdminNoticeWrite() {
   const location = useLocation();
@@ -15,7 +16,10 @@ export default function AdminNoticeWrite() {
     handleModalOpen,
     handleModalClose,
   } = useModal();
-  const { postNoticeMutate } = useAdminNotice(
+  const { noticeId } = useParams();
+  const id = String(noticeId) || '';
+  const { noticeDetail, isLoading } = useGetNoticeDetail(id);
+  const { postNoticeMutate, putNoticeMutate } = useAdminNotice(
     handleModalOpen,
     location.state.from || ''
   );
@@ -23,6 +27,13 @@ export default function AdminNoticeWrite() {
     title: '',
     content: '',
   });
+
+  useEffect(() => {
+    console.log('noticeDetail', noticeDetail);
+
+    if (!noticeDetail) return;
+    setForm({ title: noticeDetail.title, content: noticeDetail.content });
+  }, [noticeDetail]);
 
   const handleSubmitInquiry = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,7 +57,11 @@ export default function AdminNoticeWrite() {
       return handleModalOpen(INQUIRY_MESSAGE.writeContent);
     }
 
-    postNoticeMutate.mutate(formDataObj);
+    if (id) {
+      return putNoticeMutate.mutate({ id, formDataObj });
+    } else {
+      return postNoticeMutate.mutate(formDataObj);
+    }
     setForm({
       title: '',
       content: '',

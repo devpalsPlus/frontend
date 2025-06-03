@@ -7,14 +7,14 @@ interface DropDownProps {
   children: React.ReactNode;
   toggleButton: React.ReactNode;
   isOpen?: boolean;
-  comment: boolean;
+  comment?: boolean;
 }
 
 const DropDown = ({
   children,
   toggleButton,
   isOpen = false,
-  comment,
+  comment = false,
   ...props
 }: DropDownProps) => {
   const [open, setOpen] = useState(isOpen);

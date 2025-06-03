@@ -53,6 +53,10 @@ export const AdminRoutes = () => {
               path: `${ADMIN_ROUTE.detail}/:noticeId`,
               element: <NoticeDetail />,
             },
+            {
+              path: `${ADMIN_ROUTE.detail}/:noticeId/${ADMIN_ROUTE.modification}`,
+              element: <NoticeWrite />,
+            },
           ],
         },
         {

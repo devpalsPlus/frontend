@@ -36,6 +36,6 @@ export const getNoticeDetail = async (id: string) => {
     return response.data.data;
   } catch (e) {
     console.error(e);
-    throw e;
+    // throw e;
   }
 };

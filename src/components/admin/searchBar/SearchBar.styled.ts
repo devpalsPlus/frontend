@@ -36,6 +36,7 @@ export const AdminSearchBarBackIcon = styled.button`
 
 export const AdminSearchBarButton = styled.button`
   width: 15%;
+  min-width: 5rem;
   border: 1px solid ${({ theme }) => theme.color.navy};
   background: ${({ theme }) => theme.color.navy};
   border-radius: 0 ${({ theme }) => theme.borderRadius.large}
