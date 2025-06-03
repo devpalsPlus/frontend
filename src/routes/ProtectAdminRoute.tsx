@@ -5,6 +5,7 @@ import { ReactNode, useEffect } from 'react';
 import { useModal } from '../hooks/useModal';
 import Modal from '../components/common/modal/Modal';
 import { MODAL_MESSAGE } from '../constants/user/modalMessage';
+import { useMyProfileInfo } from '../hooks/user/useMyInfo';
 
 interface ProtectAdminRouteProps {
   children: ReactNode;
@@ -21,13 +22,34 @@ export default function ProtectAdminRoute({
     useAuthStore((state) => state.redirectAdmin) || false;
   const navigate = useNavigate();
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
+  const { myData, isLoading } = useMyProfileInfo();
 
   useEffect(() => {
+    let timer: NodeJS.Timeout;
+
+    const handleStorageChange = () => {
+      const authStorage = localStorage.getItem('auth-storage');
+      if (!authStorage || (!myData && !isLoading)) {
+        handleModalOpen(MODAL_MESSAGE.needAuth);
+        timer = setTimeout(() => {
+          logout();
+          navigate(ROUTES.main);
+        }, 1000);
+      }
+    };
+
+    if (!isLoggedIn) {
+      handleModalOpen(MODAL_MESSAGE.needAuth);
+      timer = setTimeout(() => {
+        navigate(ROUTES.main);
+      }, 1000);
+      return;
+    }
     if (isLoggedIn && !isAdmin) {
       handleModalOpen(MODAL_MESSAGE.needAuth);
-      setTimeout(() => {
+      timer = setTimeout(() => {
         navigate(ROUTES.main);
-      }, 200);
+      }, 1000);
       return;
     }
     if (isLoggedIn && isAdmin && !redirectAdminBool) {
@@ -35,7 +57,15 @@ export default function ProtectAdminRoute({
       replace();
       return;
     }
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      if (timer) clearTimeout(timer);
+    };
   }, [
+    myData,
     redirectAdminBool,
     isLoggedIn,
     isAdmin,

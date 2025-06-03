@@ -46,3 +46,9 @@ export interface SearchKeyword {
 export interface NoticeSearch extends SearchKeyword {
   page: number;
 }
+
+// admin
+export interface WriteBody {
+  title: string;
+  content: string;
+}
