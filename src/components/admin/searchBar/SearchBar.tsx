@@ -8,15 +8,16 @@ import Modal from '../../common/modal/Modal';
 import { ADMIN_ROUTE } from '../../../constants/routes';
 
 interface SearchBarProps {
-  onGetKeyword: (value: string) => void;
+  onGetKeyword: (keyword: string) => void;
   value: string;
 }
 
 export default function SearchBar({ onGetKeyword, value }: SearchBarProps) {
-  const [keyword, setKeyword] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>('');
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
+  const keyword = inputValue ? inputValue : value;
 
   const handleKeyword = (inputValue: string) => {
     const newSearchParams = new URLSearchParams(searchParams);
@@ -31,22 +32,22 @@ export default function SearchBar({ onGetKeyword, value }: SearchBarProps) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (keyword.trim() === '') {
+    if (inputValue.trim() === '') {
       return handleModalOpen(MODAL_MESSAGE_CUSTOMER_SERVICE.noKeyword);
     } else {
-      onGetKeyword(keyword);
-      handleKeyword(keyword);
+      onGetKeyword(inputValue);
+      handleKeyword(inputValue);
       return;
     }
   };
 
   const handleChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setKeyword(value);
+    setInputValue(value);
   };
 
   const handleClickSearchDefault = () => {
-    setKeyword('');
+    setInputValue('');
     onGetKeyword('');
     handleKeyword('');
   };
@@ -57,12 +58,13 @@ export default function SearchBar({ onGetKeyword, value }: SearchBarProps) {
         <S.AdminSearchBarInputWrapper>
           <S.AdminSearchBarInput
             placeholder={MODAL_MESSAGE_CUSTOMER_SERVICE.noKeyword}
-            value={keyword ? keyword : value}
+            value={keyword}
             onChange={handleChangeKeyword}
           />
-          {value && (
+          {keyword && (
             <S.AdminSearchBarBackIcon
               type='button'
+              aria-label='show all result'
               onClick={handleClickSearchDefault}
             >
               <XMarkIcon />

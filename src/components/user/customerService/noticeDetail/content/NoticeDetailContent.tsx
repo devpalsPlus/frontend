@@ -27,7 +27,7 @@ export default function NoticeDetailContent({
   viewCount,
 }: NoticeDetailContentProps) {
   const isAdmin = useAuthStore((state) => state.userData?.admin) ?? false;
-  const { noticeId } = useParams() || '';
+  const { noticeId } = useParams() ?? '';
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const location = useLocation();
   const pathname = `${ADMIN_ROUTE.admin}/${ADMIN_ROUTE.notice}`;
@@ -35,7 +35,9 @@ export default function NoticeDetailContent({
 
   const handleClickDeleteNotice = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    deleteNoticeMutate.mutate(noticeId as string);
+    if (noticeId) {
+      deleteNoticeMutate.mutate(noticeId);
+    }
   };
 
   return (
@@ -74,7 +76,7 @@ export default function NoticeDetailContent({
                   >
                     수정하기
                   </S.AdminLink>
-                  <S.AdminLink to={'/admin'} onClick={handleClickDeleteNotice}>
+                  <S.AdminLink to='#' onClick={handleClickDeleteNotice}>
                     삭제하기
                   </S.AdminLink>
                 </S.AdminLinkWrapper>

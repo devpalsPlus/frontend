@@ -22,15 +22,14 @@ export default function ProtectAdminRoute({
     useAuthStore((state) => state.redirectAdmin) || false;
   const navigate = useNavigate();
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
-  const { myData } = useMyProfileInfo();
+  const { myData, isLoading } = useMyProfileInfo();
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    console.log(myData);
 
     const handleStorageChange = () => {
       const authStorage = localStorage.getItem('auth-storage');
-      if (!authStorage || !myData) {
+      if (!authStorage || (!myData && !isLoading)) {
         handleModalOpen(MODAL_MESSAGE.needAuth);
         timer = setTimeout(() => {
           logout();

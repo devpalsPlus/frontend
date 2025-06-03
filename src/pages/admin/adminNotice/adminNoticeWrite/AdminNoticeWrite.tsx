@@ -47,13 +47,6 @@ export default function AdminNoticeWrite() {
   const handleSubmitInquiry = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget as HTMLFormElement);
-
-    const formDataObj: WriteBody = {
-      title: formData.get('title') as string,
-      content: formData.get('content') as string,
-    };
-
     const isValid = {
       title: form.title.trim() !== '',
       content: form.content.trim() !== '',
@@ -66,6 +59,13 @@ export default function AdminNoticeWrite() {
       return handleModalOpen(INQUIRY_MESSAGE.writeContent);
     }
 
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+
+    const formDataObj: WriteBody = {
+      title: formData.get('title') as string,
+      content: formData.get('content') as string,
+    };
+
     if (!id) {
       return postNoticeMutate.mutate(formDataObj);
     } else {
@@ -74,7 +74,11 @@ export default function AdminNoticeWrite() {
   };
 
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <S.SpinnerWrapper>
+        <Spinner />
+      </S.SpinnerWrapper>
+    );
   }
 
   return (

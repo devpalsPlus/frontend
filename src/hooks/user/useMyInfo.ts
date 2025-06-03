@@ -24,12 +24,10 @@ export const useMyProfileInfo = () => {
   const { data, isLoading } = useQuery<ApiUserInfo>({
     queryKey: myInfoKey.myProfile,
     queryFn: () => getMyInfo(),
-    staleTime: Infinity,
-    gcTime: Infinity,
-    // staleTime: 1000 * 60 * 30,
-    // gcTime: 1000 * 60 * 60,
-    // refetchInterval: 1000 * 60 * 60,
-    // refetchIntervalInBackground: false,
+    staleTime: 1000 * 60 * 30,
+    gcTime: 1000 * 60 * 60,
+    refetchInterval: 1000 * 60 * 60,
+    refetchIntervalInBackground: false,
     enabled: isLoggedIn,
   });
 
