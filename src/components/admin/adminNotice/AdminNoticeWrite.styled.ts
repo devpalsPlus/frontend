@@ -9,8 +9,8 @@ import {
   Content,
   SendButtonWrapper,
   SendButton,
-} from '../../../../components/user/customerService/inquiry/Inquiry.styled';
-import { SpinnerWrapperStyled } from '../../../../components/user/mypage/Spinner.styled';
+} from '../../../components/user/customerService/inquiry/Inquiry.styled';
+import { SpinnerWrapperStyled } from '../../../components/user/mypage/Spinner.styled';
 
 export const SpinnerWrapper = styled(SpinnerWrapperStyled)``;
 
