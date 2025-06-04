@@ -9,10 +9,12 @@ import ListButton from './bottom/button/ListButton';
 
 interface NoticeDetailBundleProps {
   $width: string;
+  $isAdmin?: boolean;
 }
 
 export default function NoticeDetailBundle({
   $width,
+  $isAdmin = false,
 }: NoticeDetailBundleProps) {
   const location = useLocation();
   const { noticeId } = useParams();
@@ -24,7 +26,7 @@ export default function NoticeDetailBundle({
 
   if (isLoading) {
     return (
-      <S.SpinnerWrapper>
+      <S.SpinnerWrapper $isAdmin={$isAdmin}>
         <Spinner />
       </S.SpinnerWrapper>
     );

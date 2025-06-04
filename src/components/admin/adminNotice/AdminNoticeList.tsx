@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import SearchBar from '../../../../components/admin/searchBar/SearchBar';
-import NoticeItem from '../../../user/customerService/notice/noticeItem/NoticeItem';
+import SearchBar from '../../../components/common/admin/searchBar/SearchBar';
 import * as S from './AdminNoticeList.styled';
-import type { NoticeSearch } from '../../../../models/customerService';
-import { useGetNotice } from '../../../../hooks/user/useGetNotice';
+import type { NoticeSearch } from '../../../models/customerService';
+import { useGetNotice } from '../../../hooks/user/useGetNotice';
 import { useSearchParams } from 'react-router-dom';
-import { Spinner } from '../../../../components/common/loadingSpinner/LoadingSpinner.styled';
-import Pagination from '../../../../components/common/pagination/Pagination';
+import Pagination from '../../../components/common/pagination/Pagination';
+import Spinner from '../../../components/user/mypage/Spinner';
+import NoticeItem from '../../../pages/user/customerService/notice/noticeItem/NoticeItem';
 
 export default function AdminNoticeList() {
   const [noticeSearch, setNoticeSearch] = useState<NoticeSearch>({

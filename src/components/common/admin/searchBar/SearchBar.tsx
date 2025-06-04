@@ -1,11 +1,11 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { MODAL_MESSAGE_CUSTOMER_SERVICE } from '../../../constants/user/customerService';
+import { MODAL_MESSAGE_CUSTOMER_SERVICE } from '../../../../constants/user/customerService';
 import * as S from './SearchBar.styled';
 import { useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { useModal } from '../../../hooks/useModal';
-import Modal from '../../common/modal/Modal';
-import { ADMIN_ROUTE } from '../../../constants/routes';
+import { useModal } from '../../../../hooks/useModal';
+import Modal from '../../modal/Modal';
+import { ADMIN_ROUTE } from '../../../../constants/routes';
 
 interface SearchBarProps {
   onGetKeyword: (keyword: string) => void;

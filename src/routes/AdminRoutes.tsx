@@ -9,10 +9,11 @@ const Sidebar = lazy(
 const Main = lazy(() => import('../pages/admin/adminMain/AdminMain'));
 const Notice = lazy(() => import('../pages/admin/adminNotice/AdminNotice'));
 const NoticeList = lazy(
-  () => import('../pages/admin/adminNotice/adminNoticeList/AdminNoticeList')
+  () => import('../pages/admin/adminNotice/adminNoticeList/AdminNoticeListPage')
 );
 const NoticeWrite = lazy(
-  () => import('../pages/admin/adminNotice/adminNoticeWrite/AdminNoticeWrite')
+  () =>
+    import('../pages/admin/adminNotice/adminNoticeWrite/AdminNoticeWritePage')
 );
 const NoticeDetail = lazy(
   () => import('../pages/admin/adminNoticeDetail/AdminNoticeDetail')
