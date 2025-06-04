@@ -1,13 +1,13 @@
-import { INQUIRY_MESSAGE } from '../../../../constants/user/customerService';
+import { INQUIRY_MESSAGE } from '../../../constants/user/customerService';
 import * as S from './AdminNoticeWrite.styled';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { useModal } from '../../../../hooks/useModal';
-import Modal from '../../../../components/common/modal/Modal';
-import type { WriteBody } from '../../../../models/customerService';
-import { useAdminNotice } from '../../../../hooks/admin/useAdminNotice';
-import { useGetNoticeDetail } from '../../../../hooks/user/useGetNoticeDetail';
-import Spinner from '../../../../components/user/mypage/Spinner';
+import { useModal } from '../../../hooks/useModal';
+import Modal from '../../../components/common/modal/Modal';
+import type { WriteBody } from '../../../models/customerService';
+import { useAdminNotice } from '../../../hooks/admin/useAdminNotice';
+import { useGetNoticeDetail } from '../../../hooks/user/useGetNoticeDetail';
+import Spinner from '../../../components/user/mypage/Spinner';
 
 export default function AdminNoticeWrite() {
   const location = useLocation();
