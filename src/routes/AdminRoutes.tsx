@@ -18,6 +18,7 @@ const NoticeWrite = lazy(
 const NoticeDetail = lazy(
   () => import('../pages/admin/adminNoticeDetail/AdminNoticeDetail')
 );
+const FAQ = lazy(() => import('../pages/admin/adminFAQ/AdminFAQ'));
 const Banner = lazy(() => import('../pages/admin/adminBanner/AdminBanner'));
 const Tags = lazy(() => import('../pages/admin/adminTags/AdminTags'));
 const AllUser = lazy(() => import('../pages/admin/adminAllUser/AdminAllUser'));
@@ -59,6 +60,10 @@ export const AdminRoutes = () => {
               element: <NoticeWrite />,
             },
           ],
+        },
+        {
+          path: ADMIN_ROUTE.faq,
+          element: <FAQ />,
         },
         {
           path: ADMIN_ROUTE.banner,
