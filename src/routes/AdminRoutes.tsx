@@ -19,6 +19,12 @@ const NoticeDetail = lazy(
   () => import('../pages/admin/adminNoticeDetail/AdminNoticeDetail')
 );
 const FAQ = lazy(() => import('../pages/admin/adminFAQ/AdminFAQ'));
+const FAQList = lazy(
+  () => import('../pages/admin/adminFAQ/adminFAQList/AdminFAQList')
+);
+const FAQWrite = lazy(
+  () => import('../pages/admin/adminFAQ/adminFAQWrite/AdminFAQWrite')
+);
 const Banner = lazy(() => import('../pages/admin/adminBanner/AdminBanner'));
 const Tags = lazy(() => import('../pages/admin/adminTags/AdminTags'));
 const AllUser = lazy(() => import('../pages/admin/adminAllUser/AdminAllUser'));
@@ -64,6 +70,14 @@ export const AdminRoutes = () => {
         {
           path: ADMIN_ROUTE.faq,
           element: <FAQ />,
+          children: [
+            { index: true, element: <FAQList /> },
+            { path: ADMIN_ROUTE.write, element: <FAQWrite /> },
+            {
+              path: `${ADMIN_ROUTE.modification}/:faqId`,
+              element: <FAQWrite />,
+            },
+          ],
         },
         {
           path: ADMIN_ROUTE.banner,
