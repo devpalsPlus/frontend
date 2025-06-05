@@ -9,9 +9,10 @@ import { ADMIN_ROUTE } from '../../../../constants/routes';
 
 interface SearchBarProps {
   onGetKeyword: (value: string) => void;
+  isNotice?: boolean;
 }
 
-export default function SearchBar({ onGetKeyword }: SearchBarProps) {
+export default function SearchBar({ onGetKeyword, isNotice }: SearchBarProps) {
   const [keyword, setKeyword] = useState<string>('');
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -70,9 +71,11 @@ export default function SearchBar({ onGetKeyword }: SearchBarProps) {
         </S.AdminSearchBarInputWrapper>
         <S.AdminSearchBarButton>검색</S.AdminSearchBarButton>
       </S.AdminSearchBarWrapper>
-      <S.WriteLink to={ADMIN_ROUTE.write} state={{ form: location.pathname }}>
-        작성하기
-      </S.WriteLink>
+      {isNotice && (
+        <S.WriteLink to={ADMIN_ROUTE.write} state={{ form: location.pathname }}>
+          작성하기
+        </S.WriteLink>
+      )}
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         {message}
       </Modal>
