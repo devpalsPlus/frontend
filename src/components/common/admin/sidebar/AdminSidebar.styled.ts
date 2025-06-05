@@ -8,6 +8,7 @@ export const LayoutContainer = styled.div`
 
 export const ContainerArea = styled.section`
   flex: 1;
+  width: 100%;
   padding: 2rem;
   margin-left: 15rem;
 `;

@@ -5,7 +5,8 @@ export const SpinnerWrapper = styled(SpinnerWrapperStyled)``;
 
 export const AdminNoticeContainer = styled.div``;
 
-export const NoticeItemWrapper = styled.section`
-  display: flex;
-  justify-content: center;
+export const FixedTitle = styled.div``;
+
+export const OutletWrapper = styled.div`
+  margin-top: 7rem;
 `;

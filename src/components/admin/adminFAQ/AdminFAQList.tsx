@@ -25,8 +25,12 @@ export default function AdminFAQList() {
 
   return (
     <>
-      <SearchBar onGetKeyword={handleGetKeyword} value={keyword} />
-      <FAQItem faqData={faqData} $isAdmin={true} />
+      <S.SearchBarFixedWrapper>
+        <SearchBar onGetKeyword={handleGetKeyword} value={keyword} />
+      </S.SearchBarFixedWrapper>
+      <S.FAQItemWrapper>
+        <FAQItem faqData={faqData} $isAdmin={true} />
+      </S.FAQItemWrapper>
     </>
   );
 }

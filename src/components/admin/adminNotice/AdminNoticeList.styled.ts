@@ -8,4 +8,5 @@ export const SpinnerWrapper = styled(SpinnerWrapperStyled)`
 export const NoticeItemWrapper = styled.section`
   display: flex;
   justify-content: center;
+  margin-top: 2rem;
 `;

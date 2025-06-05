@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 
 export const TitleContainer = styled.header`
-  margin-bottom: 1rem;
+  width: calc(100vw - 20rem);
+  position: fixed;
+  top: 0;
+  padding: 2.5rem 0 0 0;
+  background: ${({ theme }) => theme.color.white};
+  z-index: 100;
 `;
 
 export const TitleWrapper = styled.div`

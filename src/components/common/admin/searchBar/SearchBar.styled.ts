@@ -5,7 +5,7 @@ export const AdminSearchBarContainer = styled.form`
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 
 export const AdminSearchBarWrapper = styled.div`
@@ -59,4 +59,13 @@ export const WriteLink = styled(Link)`
     background: ${({ theme }) => theme.color.white};
     color: ${({ theme }) => theme.color.navy};
   }
+`;
+
+export const SearchBarFixedWrapperStyled = styled.div`
+  width: calc(100vw - 20rem);
+  position: fixed;
+  top: 0;
+  padding-top: 9rem;
+  background: ${({ theme }) => theme.color.white};
+  z-index: 10;
 `;
