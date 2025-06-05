@@ -5,7 +5,6 @@ export const SpinnerWrapper = styled(SpinnerWrapperStyled)``;
 
 export const Container = styled.section`
   margin-top: 2rem;
-  margin-bottom: 5rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -15,6 +14,7 @@ export const Wrapper = styled.div<{ $isAdmin: boolean }>`
   width: ${({ $isAdmin }) => ($isAdmin ? '90%' : '75%')};
   display: flex;
   flex-direction: column;
+  margin-bottom: 5rem;
 `;
 
 export const ToggleWrapper = styled.div``;
