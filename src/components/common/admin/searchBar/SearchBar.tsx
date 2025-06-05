@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useModal } from '../../../../hooks/useModal';
 import { MODAL_MESSAGE_CUSTOMER_SERVICE } from '../../../../constants/user/customerService';
 import Modal from '../../modal/Modal';
+import { ADMIN_ROUTE } from '../../../../constants/routes';
 
 interface SearchBarProps {
   onGetKeyword: (value: string) => void;
@@ -52,21 +53,27 @@ export default function SearchBar({ onGetKeyword, value }: SearchBarProps) {
   return (
     <S.AdminSearchBarContainer onSubmit={handleSubmit}>
       <S.AdminSearchBarWrapper>
-        <S.AdminSearchBarInput
-          placeholder={MODAL_MESSAGE_CUSTOMER_SERVICE.noKeyword}
-          value={keyword ? keyword : value}
-          onChange={handleChangeKeyword}
-        />
-        {value && (
-          <S.AdminSearchBarBackIcon
-            type='button'
-            onClick={handleClickSearchDefault}
-          >
-            <XMarkIcon />
-          </S.AdminSearchBarBackIcon>
-        )}
+        <S.AdminSearchBarInputWrapper>
+          <S.AdminSearchBarInput
+            placeholder={MODAL_MESSAGE_CUSTOMER_SERVICE.noKeyword}
+            value={keyword}
+            onChange={handleChangeKeyword}
+          />
+          {keyword && (
+            <S.AdminSearchBarBackIcon
+              type='button'
+              aria-label='show all result'
+              onClick={handleClickSearchDefault}
+            >
+              <XMarkIcon />
+            </S.AdminSearchBarBackIcon>
+          )}
+        </S.AdminSearchBarInputWrapper>
+        <S.AdminSearchBarButton>검색</S.AdminSearchBarButton>
       </S.AdminSearchBarWrapper>
-      <S.AdminSearchBarButton>검색</S.AdminSearchBarButton>
+      <S.WriteLink to={ADMIN_ROUTE.write} state={{ form: location.pathname }}>
+        작성하기
+      </S.WriteLink>
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         {message}
       </Modal>

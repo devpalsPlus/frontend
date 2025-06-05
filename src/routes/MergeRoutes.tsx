@@ -3,7 +3,6 @@ import AdminRoutes from './AdminRoutes';
 import AppRoutes from './AppRoutes';
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import { ToastProvider } from '../components/common/Toast/ToastProvider';
-import ProtectAdminRoute from './ProtectAdminRoute';
 import { NotificationProvider } from '../components/user/notificationLive/NotificationProvider';
 import NotificationInitializer from '../components/user/notificationLive/NotificationInitializer';
 
@@ -21,11 +20,7 @@ export default function MergeRoutes() {
       children: [...AppRoutes()],
     },
     {
-      element: (
-        <ProtectAdminRoute>
-          <Outlet />
-        </ProtectAdminRoute>
-      ),
+      element: <Outlet />,
       children: [...AdminRoutes()],
     },
     { path: '*', element: <NotFoundPage /> },

@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import * as S from './Notice.styled';
-import type { NoticeSearch } from '../../../../models/customerService';
-import { useGetNotice } from '../../../../hooks/user/useGetNotice';
-import { Spinner } from '../../../../components/common/loadingSpinner/LoadingSpinner.styled';
-import CustomerServiceHeader from '../../../../components/user/customerService/CustomerServiceHeader';
-import Pagination from '../../../../components/common/pagination/Pagination';
+import SearchBar from '../../../components/common/admin/searchBar/SearchBar';
+import * as S from './AdminNoticeList.styled';
+import type { NoticeSearch } from '../../../models/customerService';
+import { useGetNotice } from '../../../hooks/user/useGetNotice';
 import { useSearchParams } from 'react-router-dom';
-import NoticeItem from './noticeItem/NoticeItem';
+import Pagination from '../../../components/common/pagination/Pagination';
+import Spinner from '../../../components/user/mypage/Spinner';
+import NoticeItem from '../../../pages/user/customerService/notice/noticeItem/NoticeItem';
 
-export default function Notice() {
+export default function AdminNoticeList() {
   const [noticeSearch, setNoticeSearch] = useState<NoticeSearch>({
     keyword: '',
     page: 1,
@@ -48,23 +48,19 @@ export default function Notice() {
 
   return (
     <>
-      <CustomerServiceHeader
-        title='공지사항'
-        keyword={value}
-        onGetKeyword={handleGetKeyword}
-      />
-      <S.Container>
+      <SearchBar onGetKeyword={handleGetKeyword} value={value} />
+      <S.NoticeItemWrapper>
         <NoticeItem
           noticeData={noticeData.notices}
           value={value}
-          $width='75%'
+          $width='90%'
         />
-        <Pagination
-          page={noticeSearch.page}
-          getLastPage={lastPage}
-          onChangePagination={handleChangePagination}
-        />
-      </S.Container>
+      </S.NoticeItemWrapper>
+      <Pagination
+        page={noticeSearch.page}
+        getLastPage={lastPage}
+        onChangePagination={handleChangePagination}
+      />
     </>
   );
 }
