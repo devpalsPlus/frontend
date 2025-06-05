@@ -6,7 +6,7 @@ import { Spinner } from '../../../../components/common/loadingSpinner/LoadingSpi
 import CustomerServiceHeader from '../../../../components/user/customerService/CustomerServiceHeader';
 import Pagination from '../../../../components/common/pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
-import NoticeItem from './noticeItem/NoticeItem';
+import NoticeItem from '../../../../components/user/customerService/notice/noticeItem/NoticeItem';
 
 export default function Notice() {
   const [noticeSearch, setNoticeSearch] = useState<NoticeSearch>({

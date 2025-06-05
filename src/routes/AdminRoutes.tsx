@@ -20,10 +20,10 @@ const NoticeDetail = lazy(
 );
 const FAQ = lazy(() => import('../pages/admin/adminFAQ/AdminFAQ'));
 const FAQList = lazy(
-  () => import('../pages/admin/adminFAQ/adminFAQList/AdminFAQList')
+  () => import('../pages/admin/adminFAQ/adminFAQList/AdminFAQListPage')
 );
 const FAQWrite = lazy(
-  () => import('../pages/admin/adminFAQ/adminFAQWrite/AdminFAQWrite')
+  () => import('../pages/admin/adminFAQ/adminFAQWrite/AdminFAQWritePage')
 );
 const Banner = lazy(() => import('../pages/admin/adminBanner/AdminBanner'));
 const Tags = lazy(() => import('../pages/admin/adminTags/AdminTags'));
