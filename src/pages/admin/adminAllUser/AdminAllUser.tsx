@@ -10,7 +10,7 @@ import useSearchBar from '../../../hooks/admin/useSearchBar';
 import { ADMIN_MODAL_MESSAGE } from '../../../constants/admin/adminModal';
 
 const AdminAllUser = () => {
-  const { searchUnit, handleGetKeyword, handleChangePagination } =
+  const { searchUnit, value, handleGetKeyword, handleChangePagination } =
     useSearchBar();
   const { allUserData, isLoading, isFetching } = useGetAllUsers(searchUnit);
 
@@ -28,7 +28,11 @@ const AdminAllUser = () => {
         <AdminTitle title='회원 전체 조회' />
 
         <S.SearchBar>
-          <SearchBar onGetKeyword={handleGetKeyword} isNotice={false} />
+          <SearchBar
+            onGetKeyword={handleGetKeyword}
+            isNotice={false}
+            value={value}
+          />
         </S.SearchBar>
 
         <S.ScrollArea>

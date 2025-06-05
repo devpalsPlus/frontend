@@ -25,7 +25,11 @@ export default function AdminNoticeList() {
 
   return (
     <>
-      <SearchBar onGetKeyword={handleGetKeyword} isNotice={true} />
+      <SearchBar
+        onGetKeyword={handleGetKeyword}
+        value={value}
+        isNotice={true}
+      />
       <S.NoticeItemWrapper>
         <NoticeItem
           noticeData={noticeData.notices}
