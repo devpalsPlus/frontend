@@ -5,7 +5,7 @@ export const Container = styled.div`
   width: 240px;
   display: flex;
   flex-direction: column;
-  border: 1px solid ${({ theme }) => theme.color.white};
+  border: 1px solid ${({ theme }) => theme.color.grey};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   padding: 10px;
 `;
