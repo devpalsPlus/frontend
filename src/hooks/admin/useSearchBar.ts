@@ -16,6 +16,9 @@ const useSearchBar = () => {
     if (searchKeyword) {
       setSearchUnit((prev) => ({ ...prev, keyword: searchKeyword }));
       setValue((prev) => (searchKeyword ? searchKeyword : prev));
+    } else {
+      setSearchUnit((prev) => ({ ...prev, keyword: '' }));
+      setValue('');
     }
   }, [searchParams]);
 

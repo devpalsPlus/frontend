@@ -9,11 +9,16 @@ import { ADMIN_ROUTE } from '../../../../constants/routes';
 
 interface SearchBarProps {
   onGetKeyword: (value: string) => void;
+  value: string;
   isNotice?: boolean;
 }
 
-export default function SearchBar({ onGetKeyword, isNotice }: SearchBarProps) {
-  const [keyword, setKeyword] = useState<string>('');
+export default function SearchBar({
+  onGetKeyword,
+  value,
+  isNotice,
+}: SearchBarProps) {
+  const [keyword, setKeyword] = useState<string>(value);
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -40,8 +45,7 @@ export default function SearchBar({ onGetKeyword, isNotice }: SearchBarProps) {
   };
 
   const handleChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setKeyword(value);
+    setKeyword(e.target.value);
   };
 
   const handleClickSearchDefault = () => {
