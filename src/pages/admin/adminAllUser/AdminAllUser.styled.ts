@@ -27,5 +27,3 @@ export const UserContainer = styled.div`
   gap: 10px;
   padding: 20px;
 `;
-
-export const PageNumber = styled.div``;

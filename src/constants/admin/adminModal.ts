@@ -4,4 +4,5 @@ export const ADMIN_MODAL_MESSAGE = {
   writeDeleteSuccess: '삭제되었습니다.',
   writeDeleteFail: '삭제가 실패하였습니다.',
   writeError: '알수없는 에러가 발생했습니다.',
+  NO_RESULT: '결과가 존재하지 않습니다.',
 };

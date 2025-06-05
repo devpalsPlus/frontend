@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { UserData } from '../queries/user/keys';
 import { getAllUsers } from '../../api/auth.api';
-import { SearchType } from '../../models/search';
+import type { SearchType } from '../../models/search';
 
 export const useGetAllUsers = (searchUnit: SearchType) => {
   const {

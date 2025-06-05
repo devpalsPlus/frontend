@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './UserCard.styled';
 import Avatar from '../../common/avatar/Avatar';
-import { AllUser } from '../../../models/auth';
+import { type AllUser } from '../../../models/auth';
 
 interface UserCardProps {
   userData: AllUser;
@@ -34,7 +34,7 @@ const UserCard = ({ userData }: UserCardProps) => {
         <S.TextLabel>대표 스킬</S.TextLabel>
         <S.SkillTagArea>
           {userData.skill.map((skillTag) => (
-            <S.SkillTag src={skillTag.img} />
+            <S.SkillTag key={skillTag.id} src={skillTag.img} />
           ))}
         </S.SkillTagArea>
         <S.TextLabel>계정 생성 날짜</S.TextLabel>

@@ -177,7 +177,7 @@
           "img": "https://example.com/avatars/foxtrot.png"
         },
         "userState": "정지",
-        "createdAt": "2023-08-15T21:30:00Z",
+        "createdAt": "2023-08-15",
         "skill": [
           {
             "id": 21,
@@ -408,7 +408,7 @@
           "img": "https://example.com/avatars/mike.png"
         },
         "userState": "접속 중",
-        "createdAt": "2024-02-28T20:15:00Z",
+        "createdAt": "2024-02-28",
         "skill": [
           {
             "id": 35,

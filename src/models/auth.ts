@@ -1,6 +1,18 @@
 import { PositionTag, SkillTag } from './tags';
 import { type ApiCommonType, type User } from './apiCommon';
 
+export enum UserState {
+  ONLINE = 'ONLINE',
+  OFFLINE = 'OFFLINE',
+  SUSPENDED = 'SUSPENDED',
+}
+
+export const USER_STATE_LABELS = {
+  [UserState.ONLINE]: '접속 중',
+  [UserState.OFFLINE]: '오프라인',
+  [UserState.SUSPENDED]: '정지',
+} as const;
+
 export interface VerifyEmail {
   email: string;
   code: string;
@@ -35,7 +47,7 @@ export interface AllUserPreview {
   id: number;
   email: string;
   user: User;
-  userState: '접속 중' | '오프라인' | '정지';
+  userState: UserState;
   createdAt: string;
 }
 

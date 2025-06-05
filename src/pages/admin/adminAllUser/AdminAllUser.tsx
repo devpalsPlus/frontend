@@ -7,9 +7,10 @@ import ScrollPreventor from '../../../components/common/modal/ScrollPreventor';
 import SearchBar from '../../../components/common/admin/searchBar/SearchBar';
 import Pagination from '../../../components/common/pagination/Pagination';
 import useSearchBar from '../../../hooks/admin/useSearchBar';
+import { ADMIN_MODAL_MESSAGE } from '../../../constants/admin/adminModal';
 
 const AdminAllUser = () => {
-  const { searchUnit, value, handleGetKeyword, handleChangePagination } =
+  const { searchUnit, handleGetKeyword, handleChangePagination } =
     useSearchBar();
   const { allUserData, isLoading, isFetching } = useGetAllUsers(searchUnit);
 
@@ -18,7 +19,7 @@ const AdminAllUser = () => {
   }
 
   if (!allUserData || allUserData.allUsers.length === 0) {
-    return <S.Container>결과가 존재하지 않습니다.</S.Container>;
+    return <S.Container>{ADMIN_MODAL_MESSAGE.NO_RESULT}</S.Container>;
   }
 
   return (
@@ -27,7 +28,7 @@ const AdminAllUser = () => {
         <AdminTitle title='회원 전체 조회' />
 
         <S.SearchBar>
-          <SearchBar onGetKeyword={handleGetKeyword} value={value} />
+          <SearchBar onGetKeyword={handleGetKeyword} />
         </S.SearchBar>
 
         <S.ScrollArea>

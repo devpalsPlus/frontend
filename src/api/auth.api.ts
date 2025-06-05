@@ -9,7 +9,7 @@ import { httpClient } from './http.api';
 import { loginFormValues } from '../pages/login/Login';
 import { registerFormValues } from '../pages/user/register/Register';
 import { changePasswordFormValues } from '../pages/user/changePassword/ChangePassword';
-import { SearchType } from '../models/search';
+import { type SearchType } from '../models/search';
 
 export const postVerificationEmail = async (email: string) => {
   try {

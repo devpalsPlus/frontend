@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { SearchType } from '../../models/search';
+import type { SearchType } from '../../models/search';
 
 const useSearchBar = () => {
   const [searchUnit, setSearchUnit] = useState<SearchType>({
@@ -20,7 +20,7 @@ const useSearchBar = () => {
   }, [searchParams]);
 
   const handleGetKeyword = (keyword: string) => {
-    setSearchUnit((prev) => ({ ...prev, keyword }));
+    setSearchUnit((prev) => ({ ...prev, keyword, page: 1 }));
     setValue(keyword);
   };
 
