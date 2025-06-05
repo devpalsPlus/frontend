@@ -1,5 +1,6 @@
 import {
   ApiGetAllUsers,
+  ApiGetAllUsersPreview,
   type ApiOauth,
   type ApiVerifyNickname,
   type VerifyEmail,
@@ -8,6 +9,7 @@ import { httpClient } from './http.api';
 import { loginFormValues } from '../pages/login/Login';
 import { registerFormValues } from '../pages/user/register/Register';
 import { changePasswordFormValues } from '../pages/user/changePassword/ChangePassword';
+import { type SearchType } from '../models/search';
 
 export const postVerificationEmail = async (email: string) => {
   try {
@@ -106,9 +108,21 @@ export const getOauthLogin = async (oauthAccessToken: string) => {
   }
 };
 
-export const getAllUsers = async () => {
+export const getAllUsersPreview = async () => {
   try {
-    const response = await httpClient.get<ApiGetAllUsers>(`/users`);
+    const response = await httpClient.get<ApiGetAllUsersPreview>(
+      `/users/preview`
+    );
+    return response.data.data;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
+export const getAllUsers = async (params: SearchType) => {
+  try {
+    const response = await httpClient.get<ApiGetAllUsers>(`/users`, { params });
     return response.data.data;
   } catch (e) {
     console.error(e);

@@ -13,9 +13,9 @@ export interface ApiAllReports extends ApiCommonType {
 
 export interface AllReports {
   id: number;
-  imposedCount: number;
+  reportedCount: number;
   category: string;
   user: User;
-  isImposed: boolean;
+  isDone: boolean;
   createdAt: string;
 }

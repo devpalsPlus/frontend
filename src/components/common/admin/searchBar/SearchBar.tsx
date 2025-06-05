@@ -1,23 +1,26 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { MODAL_MESSAGE_CUSTOMER_SERVICE } from '../../../../constants/user/customerService';
 import * as S from './SearchBar.styled';
 import { useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useModal } from '../../../../hooks/useModal';
+import { MODAL_MESSAGE_CUSTOMER_SERVICE } from '../../../../constants/user/customerService';
 import Modal from '../../modal/Modal';
 import { ADMIN_ROUTE } from '../../../../constants/routes';
 
 interface SearchBarProps {
-  onGetKeyword: (keyword: string) => void;
+  onGetKeyword: (value: string) => void;
   value: string;
+  isNotice?: boolean;
 }
 
-export default function SearchBar({ onGetKeyword, value }: SearchBarProps) {
-  const [inputValue, setInputValue] = useState<string>('');
+export default function SearchBar({
+  onGetKeyword,
+  value,
+  isNotice,
+}: SearchBarProps) {
+  const [keyword, setKeyword] = useState<string>(value);
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
-  const keyword = inputValue ? inputValue : value;
 
   const handleKeyword = (inputValue: string) => {
     const newSearchParams = new URLSearchParams(searchParams);
@@ -32,22 +35,21 @@ export default function SearchBar({ onGetKeyword, value }: SearchBarProps) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (inputValue.trim() === '') {
+    if (keyword.trim() === '') {
       return handleModalOpen(MODAL_MESSAGE_CUSTOMER_SERVICE.noKeyword);
     } else {
-      onGetKeyword(inputValue);
-      handleKeyword(inputValue);
+      onGetKeyword(keyword);
+      handleKeyword(keyword);
       return;
     }
   };
 
   const handleChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setInputValue(value);
+    setKeyword(e.target.value);
   };
 
   const handleClickSearchDefault = () => {
-    setInputValue('');
+    setKeyword('');
     onGetKeyword('');
     handleKeyword('');
   };
@@ -73,9 +75,11 @@ export default function SearchBar({ onGetKeyword, value }: SearchBarProps) {
         </S.AdminSearchBarInputWrapper>
         <S.AdminSearchBarButton>검색</S.AdminSearchBarButton>
       </S.AdminSearchBarWrapper>
-      <S.WriteLink to={ADMIN_ROUTE.write} state={{ form: location.pathname }}>
-        작성하기
-      </S.WriteLink>
+      {isNotice && (
+        <S.WriteLink to={ADMIN_ROUTE.write} state={{ form: location.pathname }}>
+          작성하기
+        </S.WriteLink>
+      )}
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         {message}
       </Modal>
