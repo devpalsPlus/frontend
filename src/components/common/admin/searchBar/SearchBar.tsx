@@ -9,10 +9,9 @@ import { ADMIN_ROUTE } from '../../../../constants/routes';
 
 interface SearchBarProps {
   onGetKeyword: (value: string) => void;
-  value: string;
 }
 
-export default function SearchBar({ onGetKeyword, value }: SearchBarProps) {
+export default function SearchBar({ onGetKeyword }: SearchBarProps) {
   const [keyword, setKeyword] = useState<string>('');
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const [searchParams, setSearchParams] = useSearchParams();
