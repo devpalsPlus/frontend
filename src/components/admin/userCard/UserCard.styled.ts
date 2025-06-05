@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { UserState } from '../../../models/auth';
 
 export const Container = styled.div`
   width: 240px;
   display: flex;
   flex-direction: column;
-  border: 1px solid #000000;
+  border: 1px solid ${({ theme }) => theme.color.white};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   padding: 10px;
 `;
@@ -32,17 +33,17 @@ export const TextLabel = styled.label`
 `;
 
 export const TextContent = styled.p<{
-  $userState?: '접속 중' | '오프라인' | '정지';
+  $userState?: UserState;
 }>`
   font-size: 14px;
-  color: ${({ $userState }) =>
-    $userState === '접속 중'
-      ? `#39E81E`
-      : $userState === '오프라인'
-      ? `#2560E8`
-      : $userState === '정지'
-      ? `#E8000C`
-      : `#000000`};
+  color: ${({ theme, $userState }) =>
+    $userState === UserState.ONLINE
+      ? theme.color.green
+      : $userState === UserState.OFFLINE
+      ? theme.color.blue
+      : $userState === UserState.SUSPENDED
+      ? theme.color.red
+      : theme.color.white};
   margin-left: 15px;
 `;
 
@@ -55,6 +56,6 @@ export const SkillTagArea = styled.div`
 export const SkillTag = styled.img`
   width: 29px;
   height: 29px;
-  border: 1px solid #ccc;
+  border: 1px solid ${({ theme }) => theme.color.grey};
   border-radius: 50%;
 `;

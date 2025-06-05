@@ -51,7 +51,8 @@ export const Divider = styled.p`
 
 export const IsDone = styled.p<{ $isDone: boolean }>`
   font-size: 9px;
-  color: ${({ $isDone }) => ($isDone ? `#07DE00` : `#DE1A00`)};
+  color: ${({ theme, $isDone }) =>
+    $isDone ? theme.color.green : theme.color.red};
 `;
 
 export const MoveToReportsArea = styled(Link)`

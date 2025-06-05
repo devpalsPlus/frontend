@@ -51,7 +51,8 @@ export const Divider = styled.p`
 
 export const InquiryState = styled.p<{ $isCompleted: boolean }>`
   font-size: 9px;
-  color: ${({ $isCompleted }) => ($isCompleted ? `#07DE00` : `#DE1A00`)};
+  color: ${({ theme, $isCompleted }) =>
+    $isCompleted ? theme.color.green : theme.color.red};
 `;
 
 export const MoveToInquiryArea = styled(Link)`
