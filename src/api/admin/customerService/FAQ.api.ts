@@ -1,6 +1,17 @@
 import { ApiCommonBasicType } from '../../../models/apiCommon';
-import type { WriteBody } from '../../../models/customerService';
+import type { ApiFAQDetail, WriteBody } from '../../../models/customerService';
 import { httpClient } from '../../http.api';
+
+export const getFAQDetail = async (id: string) => {
+  try {
+    const response = await httpClient.get<ApiFAQDetail>(`/faq/${id}`);
+
+    return response.data.data;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
 
 export const postFAQ = async (formData: WriteBody) => {
   try {
@@ -15,7 +26,7 @@ export const putFAQ = async ({
   id,
   formData,
 }: {
-  id: number;
+  id: string;
   formData: WriteBody;
 }) => {
   try {
@@ -26,7 +37,7 @@ export const putFAQ = async ({
   }
 };
 
-export const deleteFAQ = async (id: number) => {
+export const deleteFAQ = async (id: string) => {
   try {
     await httpClient.delete<ApiCommonBasicType>(`faq/${id}`);
   } catch (e) {

@@ -22,7 +22,7 @@ export default function FAQItem({ faqData, $isAdmin = false }: FAQItemProps) {
             .filter((_, index) => index < showFAQ)
             .map((list) => (
               <S.ToggleWrapper key={list.id}>
-                <FAQContent list={list} />
+                <FAQContent list={list} isAdmin={$isAdmin} />
                 <ContentBorder />
               </S.ToggleWrapper>
             ))

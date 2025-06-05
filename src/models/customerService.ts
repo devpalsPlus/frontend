@@ -10,6 +10,14 @@ export interface ApiFAQ extends ApiCommonType {
   data: FAQ[];
 }
 
+export interface FAQDetail extends WriteBody {
+  id: number;
+}
+
+export interface ApiFAQDetail extends ApiCommonType {
+  data: FAQDetail;
+}
+
 export interface NoticeList extends OtherNotice {
   content: string;
 }

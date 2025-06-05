@@ -1,39 +1,110 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   deleteFAQ,
+  getFAQDetail,
   postFAQ,
   putFAQ,
 } from '../../api/admin/customerService/FAQ.api';
 import type { WriteBody } from '../../models/customerService';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { ADMIN_MODAL_MESSAGE } from '../../constants/admin/adminModal';
+import { CustomerService } from '../queries/user/keys';
 
-export const useAdminFAQ = () => {
+type State = 'success' | 'fail';
+
+export const useAdminFAQ = ({
+  handleModalOpen,
+  formDefault,
+  pathname,
+  id = '',
+}: {
+  handleModalOpen: (message: string) => void;
+  formDefault?: () => void;
+  pathname: string;
+  id?: string;
+}) => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  const handleButtonState = (state: State, isDeleteApi: boolean = false) => {
+    switch (state) {
+      case 'success':
+        if (!isDeleteApi) {
+          handleModalOpen(ADMIN_MODAL_MESSAGE.writeSuccess);
+          formDefault?.();
+        } else {
+          handleModalOpen(ADMIN_MODAL_MESSAGE.writeDeleteSuccess);
+        }
+        setTimeout(() => {
+          if (pathname) {
+            return navigate(pathname);
+          } else {
+            return navigate(-1);
+          }
+        }, 1000);
+        break;
+      case 'fail':
+        if (!isDeleteApi) {
+          handleModalOpen(ADMIN_MODAL_MESSAGE.writeFail);
+        } else {
+          handleModalOpen(ADMIN_MODAL_MESSAGE.writeDeleteFail);
+        }
+        break;
+      default:
+        handleModalOpen(ADMIN_MODAL_MESSAGE.writeError);
+        break;
+    }
+  };
+
+  const getFAQDetailData = useQuery({
+    queryKey: [CustomerService.faq, id],
+    queryFn: () => getFAQDetail(id),
+    enabled: !!id,
+  });
 
   const postFAQMutate = useMutation<void, AxiosError, WriteBody>({
     mutationFn: (formData: WriteBody) => postFAQ(formData),
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries({
+        queryKey: [CustomerService.faq],
+      });
+      handleButtonState('success');
+    },
+    onError: () => {
+      handleButtonState('fail');
     },
   });
 
   const putFAQMutate = useMutation<
     void,
     AxiosError,
-    { id: number; formData: WriteBody }
+    { id: string; formDataObj: WriteBody }
   >({
-    mutationFn: ({ id, formData }) => putFAQ({ id, formData }),
+    mutationFn: ({ id, formDataObj: formData }) => putFAQ({ id, formData }),
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries({
+        queryKey: [CustomerService.faq],
+      });
+      handleButtonState('success');
+    },
+    onError: () => {
+      handleButtonState('fail');
     },
   });
 
-  const deleteFAQMutate = useMutation<void, AxiosError, number>({
-    mutationFn: (id: number) => deleteFAQ(id),
+  const deleteFAQMutate = useMutation<void, AxiosError, string>({
+    mutationFn: (id: string) => deleteFAQ(id),
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries({
+        queryKey: [CustomerService.faq],
+      });
+      handleButtonState('success');
+    },
+    onError: () => {
+      handleButtonState('fail');
     },
   });
 
-  return { postFAQMutate, putFAQMutate, deleteFAQMutate };
+  return { getFAQDetailData, postFAQMutate, putFAQMutate, deleteFAQMutate };
 };
