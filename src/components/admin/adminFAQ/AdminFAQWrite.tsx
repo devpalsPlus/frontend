@@ -16,8 +16,8 @@ export default function AdminFAQWrite() {
     handleModalOpen,
     handleModalClose,
   } = useModal();
-  const pathname = location.state.from || '';
-  const id = location.state.id || '';
+  const pathname = location.state?.from || '';
+  const id = location.state?.id || '';
 
   const formDefault = () => {
     setForm({

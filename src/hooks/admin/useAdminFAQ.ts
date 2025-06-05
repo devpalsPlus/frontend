@@ -99,7 +99,7 @@ export const useAdminFAQ = ({
       queryClient.invalidateQueries({
         queryKey: [CustomerService.faq],
       });
-      handleButtonState('success');
+      handleButtonState('success', true);
     },
     onError: () => {
       handleButtonState('fail');
