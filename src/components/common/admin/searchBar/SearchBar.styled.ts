@@ -63,6 +63,7 @@ export const WriteLink = styled(Link)`
 `;
 
 export const SearchBarFixedWrapperStyled = styled.div`
+  max-width: calc(1440px - 19rem);
   width: calc(100vw - 19rem);
   position: fixed;
   top: 0;
