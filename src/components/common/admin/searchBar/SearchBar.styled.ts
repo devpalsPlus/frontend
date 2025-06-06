@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { GAP_HEIGHT } from '../../../../constants/admin/adminGap';
 
 export const AdminSearchBarContainer = styled.form`
   width: 100%;
@@ -62,10 +63,10 @@ export const WriteLink = styled(Link)`
 `;
 
 export const SearchBarFixedWrapperStyled = styled.div`
-  width: calc(100vw - 20rem);
+  width: calc(100vw - 19rem);
   position: fixed;
   top: 0;
-  padding-top: 9rem;
+  padding-top: ${GAP_HEIGHT.headerTitleTop};
   background: ${({ theme }) => theme.color.white};
   z-index: 10;
 `;

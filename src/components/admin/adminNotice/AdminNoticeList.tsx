@@ -25,19 +25,23 @@ export default function AdminNoticeList() {
 
   return (
     <>
-      <SearchBar onGetKeyword={handleGetKeyword} value={value} />
-      <S.NoticeItemWrapper>
-        <NoticeItem
-          noticeData={noticeData.notices}
-          value={value}
-          $width='90%'
+      <S.SearchBarFixedWrapper>
+        <SearchBar onGetKeyword={handleGetKeyword} value={value} />
+      </S.SearchBarFixedWrapper>
+      <S.NoticeItemContainer>
+        <S.NoticeItemWrapper>
+          <NoticeItem
+            noticeData={noticeData.notices}
+            value={value}
+            $width='90%'
+          />
+        </S.NoticeItemWrapper>
+        <Pagination
+          page={searchUnit.page}
+          getLastPage={lastPage}
+          onChangePagination={handleChangePagination}
         />
-      </S.NoticeItemWrapper>
-      <Pagination
-        page={searchUnit.page}
-        getLastPage={lastPage}
-        onChangePagination={handleChangePagination}
-      />
+      </S.NoticeItemContainer>
     </>
   );
 }
