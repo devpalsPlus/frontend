@@ -20,14 +20,14 @@ const ReportsPreview = () => {
           <S.ReportArea to={`${ADMIN_ROUTE.reports}/${report.id}`}>
             <Avatar image={report.user.img} size='40px' />
             <S.ContentArea>
-              <S.ImposedCount>{report.imposedCount} 번</S.ImposedCount>
+              <S.ReportedCount>{report.reportedCount} 번</S.ReportedCount>
               <S.Category>{report.category}</S.Category>
               <S.StateArea>
                 <S.ReportDate>{report.createdAt}</S.ReportDate>
                 <S.Divider>|</S.Divider>
-                <S.IsImposed $isImposed={report.isImposed}>
-                  {report.isImposed ? '검토 완료' : '검토 미완료'}
-                </S.IsImposed>
+                <S.IsDone $isDone={report.isDone}>
+                  {report.isDone ? '검토 완료' : '검토 미완료'}
+                </S.IsDone>
               </S.StateArea>
             </S.ContentArea>
           </S.ReportArea>

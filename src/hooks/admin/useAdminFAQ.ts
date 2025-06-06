@@ -18,11 +18,13 @@ export const useAdminFAQ = ({
   formDefault,
   pathname,
   id = '',
+  handleConfirm,
 }: {
   handleModalOpen: (message: string) => void;
   formDefault?: () => void;
   pathname: string;
   id?: string;
+  handleConfirm?: () => void;
 }) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -34,6 +36,7 @@ export const useAdminFAQ = ({
           handleModalOpen(ADMIN_MODAL_MESSAGE.writeSuccess);
           formDefault?.();
         } else {
+          handleConfirm?.();
           handleModalOpen(ADMIN_MODAL_MESSAGE.writeDeleteSuccess);
         }
         setTimeout(() => {

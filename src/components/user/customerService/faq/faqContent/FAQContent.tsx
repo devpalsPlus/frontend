@@ -23,8 +23,13 @@ export default function FAQContent({ list, isAdmin }: FAQContentProps) {
   const location = useLocation();
   const id = String(list.id) || '';
   const pathname = location.pathname;
-  const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
-  const { deleteFAQMutate } = useAdminFAQ({ handleModalOpen, pathname });
+  const { isOpen, message, handleConfirm, handleModalOpen, handleModalClose } =
+    useModal();
+  const { deleteFAQMutate } = useAdminFAQ({
+    handleModalOpen,
+    pathname,
+    handleConfirm,
+  });
 
   const handleClickDeleteFAQ = () => {
     deleteFAQMutate.mutate(id);
@@ -70,7 +75,11 @@ export default function FAQContent({ list, isAdmin }: FAQContentProps) {
           </S.AdminFAQDropdownWrapper>
         )}
       </S.ListContentWrapper>
-      <Modal isOpen={isOpen} onClose={handleModalClose}>
+      <Modal
+        isOpen={isOpen}
+        onClose={handleModalClose}
+        onConfirm={handleConfirm}
+      >
         {message}
       </Modal>
     </S.ListContainer>
