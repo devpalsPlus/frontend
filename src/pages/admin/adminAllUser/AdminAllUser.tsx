@@ -30,7 +30,7 @@ const AdminAllUser = () => {
         <S.SearchBar>
           <SearchBar
             onGetKeyword={handleGetKeyword}
-            isNotice={false}
+            canWrite={false}
             value={value}
           />
         </S.SearchBar>

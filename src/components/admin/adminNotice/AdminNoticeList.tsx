@@ -3,8 +3,8 @@ import * as S from './AdminNoticeList.styled';
 import { useGetNotice } from '../../../hooks/user/useGetNotice';
 import Pagination from '../../../components/common/pagination/Pagination';
 import Spinner from '../../../components/user/mypage/Spinner';
-import NoticeItem from '../../../pages/user/customerService/notice/noticeItem/NoticeItem';
 import useSearchBar from '../../../hooks/admin/useSearchBar';
+import NoticeItem from '../../user/customerService/notice/noticeItem/NoticeItem';
 
 export default function AdminNoticeList() {
   const { searchUnit, value, handleGetKeyword, handleChangePagination } =
@@ -25,23 +25,23 @@ export default function AdminNoticeList() {
 
   return (
     <>
-      <SearchBar
-        onGetKeyword={handleGetKeyword}
-        value={value}
-        isNotice={true}
-      />
-      <S.NoticeItemWrapper>
-        <NoticeItem
-          noticeData={noticeData.notices}
-          value={value}
-          $width='90%'
+      <S.SearchBarFixedWrapper>
+        <SearchBar onGetKeyword={handleGetKeyword} value={value} />
+      </S.SearchBarFixedWrapper>
+      <S.NoticeItemContainer>
+        <S.NoticeItemWrapper>
+          <NoticeItem
+            noticeData={noticeData.notices}
+            value={value}
+            $width='90%'
+          />
+        </S.NoticeItemWrapper>
+        <Pagination
+          page={searchUnit.page}
+          getLastPage={lastPage}
+          onChangePagination={handleChangePagination}
         />
-      </S.NoticeItemWrapper>
-      <Pagination
-        page={searchUnit.page}
-        getLastPage={lastPage}
-        onChangePagination={handleChangePagination}
-      />
+      </S.NoticeItemContainer>
     </>
   );
 }

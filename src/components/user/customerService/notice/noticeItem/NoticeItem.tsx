@@ -1,8 +1,8 @@
 import * as S from './NoticeItem.styled';
-import ContentBorder from '../../../../../components/common/contentBorder/ContentBorder';
+import ContentBorder from '../../../../common/contentBorder/ContentBorder';
 import { ADMIN_ROUTE, ROUTES } from '../../../../../constants/routes';
-import NoticeList from '../../../../../components/user/customerService/notice/NoticeList';
-import NoResult from '../../../../../components/common/noResult/NoResult';
+import NoticeList from '../NoticeList';
+import NoResult from '../../../../common/noResult/NoResult';
 import type { NoticeList as TNoticeList } from '../../../../../models/customerService';
 import { useLocation } from 'react-router-dom';
 

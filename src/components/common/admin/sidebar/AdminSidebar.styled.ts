@@ -8,10 +8,13 @@ export const LayoutContainer = styled.div`
 
 export const ContainerArea = styled.section`
   flex: 1;
+  width: 100%;
   padding: 2rem;
+  margin-left: 15rem;
 `;
 
 export const SidebarContainer = styled.section`
+  position: fixed;
   padding: 1rem;
   width: 15rem;
   border-right: 1px solid ${({ theme }) => theme.color.grey};

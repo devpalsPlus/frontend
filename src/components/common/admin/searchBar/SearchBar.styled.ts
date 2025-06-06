@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { GAP_HEIGHT } from '../../../../constants/admin/adminGap';
 
 export const AdminSearchBarContainer = styled.form`
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 
 export const AdminSearchBarWrapper = styled.div`
@@ -59,4 +60,14 @@ export const WriteLink = styled(Link)`
     background: ${({ theme }) => theme.color.white};
     color: ${({ theme }) => theme.color.navy};
   }
+`;
+
+export const SearchBarFixedWrapperStyled = styled.div`
+  max-width: calc(1440px - 19rem);
+  width: calc(100vw - 19rem);
+  position: fixed;
+  top: 0;
+  padding-top: ${GAP_HEIGHT.headerTitleTop};
+  background: ${({ theme }) => theme.color.white};
+  z-index: 10;
 `;

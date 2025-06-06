@@ -1,4 +1,9 @@
 import styled, { css } from 'styled-components';
+import {
+  AdminDropdownWrapper,
+  AdminLink,
+  AdminLinkWrapper,
+} from '../../noticeDetail/content/NoticeDetailContent.styled';
 
 export const ListContainer = styled.div`
   width: 100%;
@@ -33,6 +38,7 @@ export const ListPlusIcon = styled.div<{ $isOpen: boolean }>`
 `;
 
 export const ListContentWrapper = styled.div<{ $isShowContent: boolean }>`
+  position: relative;
   max-height: 0;
   overflow: hidden;
 
@@ -74,3 +80,27 @@ export const ListContent = styled.div`
   padding-right: 1.5rem;
   white-space: pre-wrap;
 `;
+
+export const AdminFAQDropdownWrapper = styled(AdminDropdownWrapper)`
+  position: absolute;
+  right: 1.5rem;
+  width: fit-content;
+  height: fit-content;
+`;
+
+export const AdminFAQAuthButton = styled.button`
+  width: fit-content;
+  height: fit-content;
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+`;
+
+export const AdminFAQLinkWrapper = styled(AdminLinkWrapper)`
+  top: -2.5rem;
+  left: -6.7rem;
+  flex-direction: row;
+`;
+
+export const AdminFAQLink = styled(AdminLink)``;
