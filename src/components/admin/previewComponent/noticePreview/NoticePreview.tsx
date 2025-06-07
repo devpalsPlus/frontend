@@ -1,8 +1,7 @@
-import React from 'react';
 import * as S from './NoticePreview.styled';
 import { useGetNotice } from '../../../../hooks/user/useGetNotice';
 import line from '../../../../assets/line.svg';
-import LoadingSpinner from '../../../common/loadingSpinner/LoadingSpinner';
+import { Spinner } from '../../../common/loadingSpinner/LoadingSpinner.styled';
 
 const NoticePreview = () => {
   const { noticeData, isLoading, isFetching } = useGetNotice({
@@ -11,7 +10,11 @@ const NoticePreview = () => {
   });
 
   if (isLoading || isFetching) {
-    return <LoadingSpinner />;
+    return (
+      <S.SpinnerWrapper>
+        <Spinner />
+      </S.SpinnerWrapper>
+    );
   }
 
   if (!noticeData?.notices || noticeData.notices.length === 0) {

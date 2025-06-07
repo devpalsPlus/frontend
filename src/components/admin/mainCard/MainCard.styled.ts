@@ -32,8 +32,18 @@ export const ShowAllButton = styled.span`
 
 export const ArrowRight = styled.img``;
 
-export const Line = styled.hr``;
+export const Line = styled.hr`
+  color: ${({ theme }) => theme.color.grey};
+`;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  flex: 1;
+  display: flex;
+`;
 
-export const MainContent = styled.div``;
+export const MainContent = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;

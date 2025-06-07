@@ -3,28 +3,26 @@ import { useGetAllInquiries } from '../../../../hooks/admin/useGetAllInquiries';
 import Avatar from '../../../common/avatar/Avatar';
 import { ADMIN_ROUTE } from '../../../../constants/routes';
 import arrow_right from '../../../../assets/ArrowRight.svg';
-import LoadingSpinner from '../../../common/loadingSpinner/LoadingSpinner';
+import Spinner from '../../../user/mypage/Spinner';
 
 const InquiresPreview = () => {
   const { allInquiriesData, isLoading, isFetching } = useGetAllInquiries();
 
   if (isLoading || isFetching) {
-    return <LoadingSpinner />;
+    return (
+      <S.SpinnerWrapper>
+        <Spinner />
+      </S.SpinnerWrapper>
+    );
   }
 
   if (!allInquiriesData || allInquiriesData.length === 0) {
     return <S.Container>등록된 문의가 없습니다.</S.Container>;
   }
 
-  const previewList = allInquiriesData
-    ? allInquiriesData.length > 6
-      ? allInquiriesData.slice(0, 4)
-      : allInquiriesData
-    : [];
-
   return (
     <S.Container>
-      {previewList?.map((inquiry) => (
+      {allInquiriesData?.map((inquiry) => (
         <S.Wrapper key={inquiry.id}>
           <S.Content>
             {/* <Link to={`${ADMIN_ROUTE.}`} */}
