@@ -6,6 +6,12 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
+export const SpinnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;

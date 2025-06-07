@@ -45,9 +45,10 @@ export interface ApiGetAllUsersPreview extends ApiCommonType {
 }
 export interface AllUserPreview {
   id: number;
+  nickname: string;
   email: string;
-  user: User;
-  userState: UserState;
+  profileImg: 'string';
+  // userState: UserState;
   createdAt: string;
 }
 
