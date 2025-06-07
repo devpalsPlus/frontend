@@ -18,7 +18,7 @@ const AdminAllUser = () => {
     return <LoadingSpinner />;
   }
 
-  if (!allUserData || allUserData.allUsers.length === 0) {
+  if (!allUserData || allUserData.users.length === 0) {
     return <S.Container>{ADMIN_MODAL_MESSAGE.NO_RESULT}</S.Container>;
   }
 
@@ -37,7 +37,7 @@ const AdminAllUser = () => {
 
         <S.ScrollArea>
           <S.UserContainer>
-            {allUserData.allUsers?.map((userData) => (
+            {allUserData.users.map((userData) => (
               <UserCard key={userData.id} userData={userData} />
             ))}
           </S.UserContainer>

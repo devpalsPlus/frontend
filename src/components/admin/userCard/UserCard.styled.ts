@@ -35,7 +35,7 @@ export const TextLabel = styled.label`
 export const TextContent = styled.p<{
   $userState?: UserState;
 }>`
-  font-size: 14px;
+  font-size: 13px;
   color: ${({ theme, $userState }) =>
     $userState === UserState.ONLINE
       ? theme.color.green
@@ -43,7 +43,7 @@ export const TextContent = styled.p<{
       ? theme.color.blue
       : $userState === UserState.SUSPENDED
       ? theme.color.red
-      : theme.color.white};
+      : theme.color.primary};
   margin-left: 15px;
 `;
 

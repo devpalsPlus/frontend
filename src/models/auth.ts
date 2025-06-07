@@ -47,8 +47,9 @@ export interface AllUserPreview {
   id: number;
   nickname: string;
   email: string;
-  profileImg: 'string';
+  profileImg: string;
   // userState: UserState;
+  warning: number;
   createdAt: string;
 }
 
@@ -59,10 +60,9 @@ export interface ApiGetAllUsers extends ApiCommonType {
 export interface AllUser extends AllUserPreview {
   skill: SkillTag[];
   position: PositionTag[];
-  reportedCount: number;
 }
 
 export interface AllUserList {
-  allUsers: AllUser[];
+  users: AllUser[];
   totalPages: number;
 }
