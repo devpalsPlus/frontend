@@ -3,10 +3,15 @@ import { ReportData } from '../queries/user/keys';
 import { getAllReports } from '../../api/report.api';
 
 export const useGetAllReports = () => {
-  const { data: allReportsData, isLoading } = useQuery({
+  const {
+    data: allReportsData,
+    isLoading,
+    isFetching,
+  } = useQuery({
     queryKey: [ReportData.allReports],
     queryFn: () => getAllReports(),
+    select: (allReports) => allReports.slice(0, 5),
   });
 
-  return { allReportsData, isLoading };
+  return { allReportsData, isLoading, isFetching };
 };
