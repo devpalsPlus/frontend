@@ -57,6 +57,7 @@ export const CustomerService = {
   faq: 'faq',
   notice: 'notice',
   noticeDetail: 'noticeDetail',
+  inquiryDetail: 'inquiryDetail',
 };
 
 export const ReportData = {

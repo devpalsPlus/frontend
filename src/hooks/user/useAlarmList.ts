@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { AlarmList } from '../queries/user/keys';
+import { AlarmList } from '../queries/keys';
 import { getAlarmList } from '../../api/alarm.api';
 import useAuthStore from '../../store/authStore';
 

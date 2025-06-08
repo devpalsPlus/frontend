@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getChartData } from '../../api/chart.api';
-import { ChartDataList } from '../queries/user/keys';
+import { ChartDataList } from '../queries/keys';
 
 const useChartData = () => {
   const { data, isLoading, isFetching } = useQuery({

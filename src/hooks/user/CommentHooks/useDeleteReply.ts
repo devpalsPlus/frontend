@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ProjectReplyList } from '../../queries/user/keys';
+import { ProjectReplyList } from '../../queries/keys';
 import { deleteReply } from '../../../api/reply.api';
 
 const useDeleteReply = (commentId: number, projectId: number) => {

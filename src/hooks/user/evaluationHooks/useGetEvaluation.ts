@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getEvaluation } from '../../../api/evaluation.api';
-import { ProjectMemberListEval } from '../../queries/user/keys';
+import { ProjectMemberListEval } from '../../queries/keys';
 import { useEffect } from 'react';
 import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
 import { useNavigate } from 'react-router-dom';
