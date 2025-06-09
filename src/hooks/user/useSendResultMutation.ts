@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { managedProjectKey } from '../queries/user/keys';
+import { managedProjectKey } from '../queries/keys';
 import { patchSendResult } from '../../api/myProjectList.api';
 import { MODAL_MESSAGE } from '../../constants/user/modalMessage';
 

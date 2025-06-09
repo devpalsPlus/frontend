@@ -1,4 +1,4 @@
-import { ActivityLog } from '../queries/user/keys';
+import { ActivityLog } from '../queries/keys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';

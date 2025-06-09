@@ -5,7 +5,7 @@ import {
   putNotice,
 } from '../../api/admin/customerService/Notice.api';
 import { AxiosError } from 'axios';
-import { CustomerService } from '../queries/user/keys';
+import { CustomerService } from '../queries/keys';
 import { useNavigate } from 'react-router-dom';
 import { ADMIN_MODAL_MESSAGE } from '../../constants/admin/adminModal';
 import { WriteBody } from '../../models/customerService';

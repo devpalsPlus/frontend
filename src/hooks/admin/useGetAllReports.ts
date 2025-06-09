@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { ReportData } from '../queries/user/keys';
+import { ReportData } from '../queries/keys';
 import { getAllReports } from '../../api/report.api';
 
 export const useGetAllReports = () => {

@@ -23,13 +23,3 @@ export const getMyInquiries = async () => {
     throw e;
   }
 };
-
-export const getAllInquiries = async () => {
-  try {
-    const response = await httpClient.get<ApiAllInquiries>(`/inquiry`);
-    return response.data.data;
-  } catch (e) {
-    console.error('전체 문의 조회 에러', e);
-    throw e;
-  }
-};

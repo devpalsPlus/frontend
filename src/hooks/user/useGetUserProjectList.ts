@@ -3,7 +3,7 @@ import {
   getUserJoinedProjectList,
   getUserManagedProjectList,
 } from '../../api/userpage.api';
-import { userInfoKey } from '../queries/user/keys';
+import { userInfoKey } from '../queries/keys';
 import { useLocation, useParams } from 'react-router-dom';
 import type { ApiUserProject } from '../../models/userProject';
 

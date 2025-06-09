@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { myInfoKey, ProjectListKey } from '../queries/user/keys';
+import { myInfoKey, ProjectListKey } from '../queries/keys';
 import useAuthStore from '../../store/authStore';
 import type { ApiUserInfo, EditMyInfo } from '../../models/userInfo';
 import {

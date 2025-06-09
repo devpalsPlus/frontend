@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteAlarm } from '../../api/alarm.api';
-import { AlarmList } from '../queries/user/keys';
+import { AlarmList } from '../queries/keys';
 import useAuthStore from '../../store/authStore';
 
 export const useAlarmDelete = () => {

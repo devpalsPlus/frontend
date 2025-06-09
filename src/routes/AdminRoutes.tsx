@@ -1,7 +1,8 @@
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { ADMIN_ROUTE } from '../constants/routes';
 import ProtectAdminRoute from './ProtectAdminRoute';
+import { Spinner } from '../components/common/loadingSpinner/LoadingSpinner.styled';
 
 const Sidebar = lazy(
   () => import('../components/common/admin/sidebar/AdminSidebar')
@@ -32,6 +33,27 @@ const Reports = lazy(() => import('../pages/admin/adminReports/AdminReports'));
 const Inquiries = lazy(
   () => import('../pages/admin/adminInquiries/AdminInquiries')
 );
+const InquiryList = lazy(
+  () =>
+    import(
+      '../pages/admin/adminInquiries/adminInquiryList/AdminInquiryListPage'
+    )
+);
+const InquiryDetail = lazy(
+  () =>
+    import(
+      '../pages/admin/adminInquiries/adminInquiryDetail/AdminInquiryDetailPage'
+    )
+);
+const InquiryAnswerContent = lazy(
+  () => import('../components/admin/adminInquiry/AdminInquiryAnswer')
+);
+const InquiryAnswerWrite = lazy(
+  () =>
+    import(
+      '../pages/admin/adminInquiries/adminInquiryWrite/AdminInquiryWritePage'
+    )
+);
 const Manage = lazy(() => import('../pages/admin/adminManage/AdminManage'));
 
 export const AdminRoutes = () => {
@@ -39,9 +61,11 @@ export const AdminRoutes = () => {
     {
       path: ADMIN_ROUTE.admin,
       element: (
-        <ProtectAdminRoute>
-          <Sidebar />
-        </ProtectAdminRoute>
+        <Suspense fallback={<Spinner />}>
+          <ProtectAdminRoute>
+            <Sidebar />
+          </ProtectAdminRoute>
+        </Suspense>
       ),
       children: [
         {
@@ -98,6 +122,24 @@ export const AdminRoutes = () => {
         {
           path: ADMIN_ROUTE.inquiries,
           element: <Inquiries />,
+          children: [
+            { index: true, element: <InquiryList /> },
+            {
+              path: `${ADMIN_ROUTE.detail}/:inquiryId`,
+              element: <InquiryDetail />,
+              children: [
+                { index: true, element: <InquiryAnswerContent /> },
+                {
+                  path: ADMIN_ROUTE.write,
+                  element: <InquiryAnswerWrite />,
+                },
+                {
+                  path: ADMIN_ROUTE.modification,
+                  element: <InquiryAnswerWrite />,
+                },
+              ],
+            },
+          ],
         },
         {
           path: ADMIN_ROUTE.manage,

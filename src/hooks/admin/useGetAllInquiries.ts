@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getAllInquiries } from '../../api/activityLog.api';
-import { Inquiries } from '../queries/user/keys';
+import { Inquiries } from '../queries/keys';
+import { getAllInquiries } from '../../api/admin/customerService/Inquiry.api';
 
 export const useGetAllInquiries = () => {
   const {

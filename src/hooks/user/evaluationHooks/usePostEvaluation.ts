@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postEvaluation } from '../../../api/evaluation.api';
-import { ProjectMemberListEval } from '../../queries/user/keys';
+import { ProjectMemberListEval } from '../../queries/keys';
 import type { apiEvaluatedUser } from '../../../models/evaluation';
 
 export const usePostEvaluation = (projectId: number) => {

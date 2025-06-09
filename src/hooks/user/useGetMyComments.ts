@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getMyComments } from '../../api/activityLog.api';
 import useAuthStore from '../../store/authStore';
-import { ActivityLog } from '../queries/user/keys';
+import { ActivityLog } from '../queries/keys';
 
 export const useGetMyComments = () => {
   const userId = useAuthStore.getState().userData?.id;
