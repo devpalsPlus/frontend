@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -23,6 +23,20 @@ export const InquiryTitle = styled.div``;
 
 export const InquiryState = styled.div`
   text-align: center;
+`;
+
+export const InquiryStateSpan = styled.span<{ $isCompletedAnswer: boolean }>`
+  width: fit-content;
+  color: ${({ $isCompletedAnswer, theme }) =>
+    $isCompletedAnswer ? theme.color.white : theme.color.green};
+
+  ${({ $isCompletedAnswer }) =>
+    $isCompletedAnswer &&
+    css`
+      background: ${({ theme }) => theme.color.navy};
+      border-radius: ${({ theme }) => theme.borderRadius.small};
+      padding: 0.2rem;
+    `}
 `;
 
 export const InquiryContentWrapper = styled.div`
@@ -53,6 +67,30 @@ export const InquiryImg = styled.img`
 
 export const MessageWrapper = styled.div`
   font-size: 0.8rem;
+`;
+
+export const InquiryAnswerContentContainer = styled.div`
+  margin-top: 1rem;
+`;
+
+export const InquiryAnswerContentWrapper = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  gap: 0.5rem;
+`;
+
+export const InquiryAnswerIconWrapper = styled.div`
+  align-items: start;
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+`;
+
+export const InquiryAnswerContent = styled.div`
+  font-weight: 400;
+  font-size: 1.1rem;
+  white-space: pre-line;
 `;
 
 export const ModalImgContainer = styled.div`
