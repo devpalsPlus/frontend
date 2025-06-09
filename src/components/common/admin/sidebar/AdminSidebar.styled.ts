@@ -17,6 +17,7 @@ export const SidebarContainer = styled.section`
   position: fixed;
   padding: 1rem;
   width: 15rem;
+  height: 100%;
   border-right: 1px solid ${({ theme }) => theme.color.grey};
 `;
 

@@ -15,7 +15,9 @@ export const SpinnerWrapper = styled(SpinnerWrapperStyled)``;
 
 export const InquiryAnswerContentContainer = styled(
   AdminInquiryContentContainer
-)``;
+)`
+  margin-bottom: 5rem;
+`;
 
 export const InquiryAnswerWriteWrapper = styled(AdminInquiryContentWrapper)``;
 
@@ -39,7 +41,6 @@ export const InquiryAnswerWriteButton = styled(InquiryAnswerButton)`
 export const InquiryAnswerWriteButtonSpan = styled.span``;
 
 export const InquiryAnswerWrite = styled(InquiryContent)`
-  resize: none;
   border: 1px solid ${({ theme }) => theme.color.placeholder};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   padding: 1rem;

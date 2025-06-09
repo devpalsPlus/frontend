@@ -45,6 +45,8 @@ export const InquiryDeleteButton = styled(SendButton)`
 export const InquiryContent = styled.div`
   font-size: 1.1rem;
   width: 100%;
+  white-space: pre-line;
+  overflow: hidden;
 `;
 
 export const InquiryFileImgBlowUpButton = styled.button``;

@@ -10,7 +10,9 @@ import { SendButton } from '../../user/customerService/inquiry/Inquiry.styled';
 
 export const InquiryAnswerContentContainer = styled(
   AdminInquiryContentContainer
-)``;
+)`
+  margin-bottom: 5rem;
+`;
 
 export const InquiryAnswerContentWrapper = styled(AdminInquiryContentWrapper)``;
 
