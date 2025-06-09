@@ -27,19 +27,22 @@ export const useAdminInquiry = ({
   const handleButtonState = (state: State, isDeleteApi: boolean = false) => {
     switch (state) {
       case 'success':
-        if (!isDeleteApi) {
-          handleModalOpen(ADMIN_MODAL_MESSAGE.writeSuccess);
-        } else {
-          handleConfirm?.();
-          handleModalOpen(ADMIN_MODAL_MESSAGE.writeDeleteSuccess);
-        }
-        setTimeout(() => {
-          if (id) {
-            return navigate(`/admin/inquiries/detail/${id}`);
+        {
+          if (!isDeleteApi) {
+            handleModalOpen(ADMIN_MODAL_MESSAGE.writeSuccess);
           } else {
-            return navigate(-1);
+            handleConfirm?.();
+            handleModalOpen(ADMIN_MODAL_MESSAGE.writeDeleteSuccess);
           }
-        }, 1000);
+          const timer = setTimeout(() => {
+            if (id) {
+              return navigate(`/admin/inquiries/detail/${id}`);
+            } else {
+              return navigate(-1);
+            }
+          }, 1000);
+          clearTimeout(timer);
+        }
         break;
       case 'fail':
         if (!isDeleteApi) {
