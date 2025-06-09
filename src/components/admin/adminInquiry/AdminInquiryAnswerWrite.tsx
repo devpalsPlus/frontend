@@ -46,7 +46,11 @@ export default function AdminInquiryAnswerWrite() {
   }, [answerData]);
 
   if (isLoading) {
-    <Spinner />;
+    return (
+      <S.SpinnerWrapper $isAdmin={true}>
+        <Spinner />
+      </S.SpinnerWrapper>
+    );
   }
 
   const handleSubmitAnswer = (e: React.FormEvent<HTMLFormElement>) => {

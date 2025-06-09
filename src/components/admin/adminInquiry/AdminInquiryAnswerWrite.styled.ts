@@ -9,6 +9,9 @@ import {
   InquiryAnswerButton,
   InquiryAnswerInfo,
 } from './AdminInquiryAnswer.styled';
+import { SpinnerWrapperStyled } from '../../user/mypage/Spinner.styled';
+
+export const SpinnerWrapper = styled(SpinnerWrapperStyled)``;
 
 export const InquiryAnswerContentContainer = styled(
   AdminInquiryContentContainer
