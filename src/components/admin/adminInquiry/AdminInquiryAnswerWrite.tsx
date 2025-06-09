@@ -45,6 +45,13 @@ export default function AdminInquiryAnswerWrite() {
     }
   }, [answerData]);
 
+  useEffect(() => {
+    if (inputRef && inputRef.current) {
+      inputRef.current.style.height = 'auto';
+      inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+    }
+  }, [answer]);
+
   if (isLoading) {
     return (
       <S.SpinnerWrapper $isAdmin={true}>
@@ -94,7 +101,7 @@ export default function AdminInquiryAnswerWrite() {
           value={answer}
           ref={inputRef}
           onChange={handleChangeAnswer}
-        ></S.InquiryAnswerWrite>
+        />
       </S.InquiryAnswerWriteWrapper>
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         {message}

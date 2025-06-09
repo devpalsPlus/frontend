@@ -15,7 +15,7 @@ export default function AdminInquiryAnswer() {
     useOutletContext();
 
   const [answer, setAnswer] = useState<string>('');
-  const selectButton: LinkType = answer === null ? '작성하기' : '수정하기';
+  const selectButton: LinkType = answerData === null ? '작성하기' : '수정하기';
 
   useEffect(() => {
     if (answerData === null) {
