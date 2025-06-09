@@ -7,7 +7,7 @@ import {
   passNonPass,
   passNonPassList,
 } from './applicant';
-import { projectDetail, reportsAll } from './projectDetail';
+import { projectDetail } from './projectDetail';
 import {
   myPageAppliedProjectList,
   mypageEditProfile,
@@ -16,12 +16,7 @@ import {
   myPageProfile,
   myPageSkillTag,
 } from './mypage';
-import {
-  userAll,
-  userAllPreview,
-  userPageAppliedProjectList,
-  userPageProfile,
-} from './userpage';
+import { userPageAppliedProjectList, userPageProfile } from './userpage';
 import { login } from './auth';
 import { fetchProjectLists, fetchProjectStatistic } from './projectLists';
 import {
@@ -30,6 +25,13 @@ import {
   fetchSkillTag,
 } from './projectSearchFiltering';
 import { createProject } from './createProject.ts';
+import {
+  passthroughAllGet,
+  passthroughAllPost,
+  reportsAll,
+  userAll,
+  userAllPreview,
+} from './adminMock.ts';
 
 export const handlers = [
   fetchProjectLists,
@@ -59,6 +61,8 @@ export const handlers = [
   reportsAll,
   userAll,
   userAllPreview,
+  passthroughAllGet,
+  passthroughAllPost,
 ];
 
 export const worker = setupWorker(...handlers);

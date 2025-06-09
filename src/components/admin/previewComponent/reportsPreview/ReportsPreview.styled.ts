@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { SpinnerContainer } from '../allUserPreview/AllUserPreview.styled';
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 `;
+
+export const SpinnerWrapper = styled(SpinnerContainer)``;
 
 export const Wrapper = styled.div`
   display: flex;

@@ -3,19 +3,22 @@ import { useGetAllReports } from '../../../../hooks/admin/useGetAllReports';
 import Avatar from '../../../common/avatar/Avatar';
 import arrow_right from '../../../../assets/ArrowRight.svg';
 import { ADMIN_ROUTE } from '../../../../constants/routes';
+import { Spinner } from '../../../common/loadingSpinner/LoadingSpinner.styled';
 
 const ReportsPreview = () => {
-  const { allReportsData } = useGetAllReports();
+  const { allReportsData, isLoading, isFetching } = useGetAllReports();
 
-  const previewList = allReportsData
-    ? allReportsData.length > 6
-      ? allReportsData.slice(0, 4)
-      : allReportsData
-    : [];
+  if (isLoading || isFetching) {
+    return (
+      <S.SpinnerWrapper>
+        <Spinner />
+      </S.SpinnerWrapper>
+    );
+  }
 
   return (
     <S.Container>
-      {previewList?.map((report) => (
+      {allReportsData?.map((report) => (
         <S.Wrapper key={report.id}>
           <S.ReportArea to={`${ADMIN_ROUTE.reports}/${report.id}`}>
             <Avatar image={report.user.img} size='40px' />

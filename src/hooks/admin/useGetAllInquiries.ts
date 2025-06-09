@@ -10,6 +10,7 @@ export const useGetAllInquiries = () => {
   } = useQuery({
     queryKey: [Inquiries.allInquiries],
     queryFn: () => getAllInquiries(),
+    select: (allInquiries) => allInquiries.slice(0, 5),
   });
 
   return { allInquiriesData, isLoading, isFetching };

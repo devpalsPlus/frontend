@@ -38,8 +38,8 @@ export const SIDEBAR_LIST = {
   user: [
     {
       name: 'allUser',
-      title: '전체 회원 조회',
-      router: ADMIN_ROUTE.allUser,
+      title: '회원 조회',
+      router: ADMIN_ROUTE.users,
     },
     {
       name: 'reports',
