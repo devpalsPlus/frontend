@@ -18,7 +18,11 @@ export default function AdminInquiryAnswer() {
   const selectButton: LinkType = answer === null ? '작성하기' : '수정하기';
 
   useEffect(() => {
-    setAnswer(answerData);
+    if (answerData === null) {
+      return setAnswer('');
+    } else {
+      return setAnswer(answerData);
+    }
   }, [answerData]);
 
   return (
