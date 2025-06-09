@@ -7,9 +7,11 @@ export default function AdminInquiryList() {
   const { allInquiriesData, isLoading } = useGetAllInquiries();
 
   if (isLoading) {
-    <S.SpinnerWrapper>
-      <Spinner />
-    </S.SpinnerWrapper>;
+    return (
+      <S.SpinnerWrapper>
+        <Spinner />
+      </S.SpinnerWrapper>
+    );
   }
 
   if (!allInquiriesData) return;

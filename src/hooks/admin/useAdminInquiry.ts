@@ -102,6 +102,10 @@ export const useAdminInquiry = ({
       queryClient.invalidateQueries({
         queryKey: [CustomerService.inquiryDetail, id],
       });
+      handleButtonState('success', true);
+    },
+    onError: () => {
+      handleButtonState('fail');
     },
   });
 

@@ -21,7 +21,7 @@ export const AdminInquiryCategory = styled.span`
 
 export const AdminInquiryUser = styled.div``;
 
-export const ADminInquiryDate = styled.span`
+export const AdminInquiryDate = styled.span`
   font-size: 0.9rem;
   color: ${({ theme }) => theme.color.deepGrey};
 `;

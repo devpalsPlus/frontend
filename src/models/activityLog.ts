@@ -6,7 +6,7 @@ export interface MyInquiries {
   content: string;
   category: string;
   state: boolean;
-  answer: string;
+  answer?: string;
   imageUrls: string[];
   createdAt: string;
   updatedAt: string;

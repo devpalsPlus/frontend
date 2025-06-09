@@ -1,10 +1,10 @@
 import { ADMIN_ROUTE } from '../../../constants/routes';
-import type { AdminInquiry } from '../../../models/inquiry';
+import type { AdminInquiry as TAdminInquiry } from '../../../models/inquiry';
 import ContentBorder from '../../common/contentBorder/ContentBorder';
 import * as S from './AdminInquiry.styled';
 
 interface AdminInquiryProps {
-  list: AdminInquiry;
+  list: TAdminInquiry;
 }
 
 export default function AdminInquiry({ list }: AdminInquiryProps) {
@@ -14,7 +14,7 @@ export default function AdminInquiry({ list }: AdminInquiryProps) {
         <S.AdminInquiryCategory>[{list.category}]</S.AdminInquiryCategory>
         <S.AdminInquiryTitle>{list.title}</S.AdminInquiryTitle>
         <S.AdminInquiryUser>{list.user.nickname}</S.AdminInquiryUser>
-        <S.ADminInquiryDate>{list.createdAt}</S.ADminInquiryDate>
+        <S.AdminInquiryDate>{list.createdAt}</S.AdminInquiryDate>
         <S.AdminInquiryState $hasAnswer={list.state}>
           {list.state ? '답변완료' : '확인중'}
         </S.AdminInquiryState>

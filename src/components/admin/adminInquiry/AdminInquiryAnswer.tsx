@@ -9,6 +9,7 @@ interface AdminInquiryDetailContentOutletContext {
 }
 
 type LinkType = '작성하기' | '수정하기';
+
 export default function AdminInquiryAnswer() {
   const { createdAt, answerData }: AdminInquiryDetailContentOutletContext =
     useOutletContext();
@@ -34,12 +35,6 @@ export default function AdminInquiryAnswer() {
                 ? ADMIN_ROUTE.write
                 : ADMIN_ROUTE.modification
             }
-            state={{
-              from:
-                selectButton === '작성하기'
-                  ? ADMIN_ROUTE.write
-                  : ADMIN_ROUTE.modification,
-            }}
           >
             <S.AnswerButtonSpan>{selectButton}</S.AnswerButtonSpan>
           </S.InquiryAnswerButton>

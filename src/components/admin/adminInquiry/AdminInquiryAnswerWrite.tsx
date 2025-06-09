@@ -4,6 +4,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { InquiryAnswerBody } from '../../../models/inquiry';
 import { UseMutationResult } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import Modal from '../../common/modal/Modal';
+import { useModal } from '../../../hooks/useModal';
+import { INQUIRY_MESSAGE } from '../../../constants/user/customerService';
+import Spinner from '../../user/mypage/Spinner';
 
 interface AdminInquiryAnswerWriteProps {
   answerData: string;
@@ -31,6 +35,9 @@ export default function AdminInquiryAnswerWrite() {
   } = useOutletContext<AdminInquiryAnswerWriteProps>();
   const [answer, setAnswer] = useState<string>('');
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
+  const isLoading =
+    postInquiryAnswerMutate.isPending || patchInquiryAnswerMutate.isPending;
 
   useEffect(() => {
     if (answerData) {
@@ -38,8 +45,16 @@ export default function AdminInquiryAnswerWrite() {
     }
   }, [answerData]);
 
+  if (isLoading) {
+    <Spinner />;
+  }
+
   const handleSubmitAnswer = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (answer.trim() === '') {
+      return handleModalOpen(INQUIRY_MESSAGE.writeContent);
+    }
 
     if (isWrite) {
       postInquiryAnswerMutate.mutate({ id, answer: answer });
@@ -49,13 +64,14 @@ export default function AdminInquiryAnswerWrite() {
   };
 
   const handleChangeAnswer = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const answerValue = e.target.value;
-    setAnswer(answerValue);
-
     if (inputRef && inputRef.current) {
       inputRef.current.style.height = 'auto';
       inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
     }
+
+    const answerValue = e.target.value;
+
+    setAnswer(answerValue);
   };
 
   return (
@@ -72,9 +88,13 @@ export default function AdminInquiryAnswerWrite() {
         <S.InquiryAnswerWrite
           as='textarea'
           value={answer}
+          ref={inputRef}
           onChange={handleChangeAnswer}
         ></S.InquiryAnswerWrite>
       </S.InquiryAnswerWriteWrapper>
+      <Modal isOpen={isOpen} onClose={handleModalClose}>
+        {message}
+      </Modal>
     </S.InquiryAnswerContentContainer>
   );
 }
