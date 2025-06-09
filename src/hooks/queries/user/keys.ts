@@ -66,4 +66,5 @@ export const ReportData = {
 export const UserData = {
   allUser: ['AllUser'],
   allUserPreview: ['AllUserPreview'],
+  userInfo: ['userInfo'],
 };
