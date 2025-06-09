@@ -2,6 +2,12 @@ import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import { lazy } from 'react';
 import { ADMIN_ROUTE } from '../constants/routes';
 import ProtectAdminRoute from './ProtectAdminRoute';
+import AdminUserDetail from '../components/admin/adminUserDetail/AdminUserDetail';
+import UserProjects from '../components/user/userPage/userProjectList/UserProjectList';
+import Profile from '../components/user/mypage/myProfile/profile/Profile';
+import { Navigate } from 'react-router-dom';
+import ActivityLog from '../components/user/mypage/activityLog/ActivityLog';
+import Notifications from '../components/user/mypage/notifications/Notifications';
 
 const Sidebar = lazy(
   () => import('../components/common/admin/sidebar/AdminSidebar')
@@ -20,7 +26,7 @@ const NoticeDetail = lazy(
 );
 const Banner = lazy(() => import('../pages/admin/adminBanner/AdminBanner'));
 const Tags = lazy(() => import('../pages/admin/adminTags/AdminTags'));
-const AllUser = lazy(() => import('../pages/admin/adminAllUser/AdminAllUser'));
+const AdminUser = lazy(() => import('../pages/admin/adminUser/AdminUser'));
 const Reports = lazy(() => import('../pages/admin/adminReports/AdminReports'));
 const Inquiries = lazy(
   () => import('../pages/admin/adminInquiries/AdminInquiries')
@@ -39,7 +45,7 @@ export const AdminRoutes = () => {
       children: [
         {
           index: true,
-          element: <Notice />,
+          element: <Main />,
         },
         {
           path: ADMIN_ROUTE.notice,
@@ -69,8 +75,38 @@ export const AdminRoutes = () => {
           element: <Tags />,
         },
         {
-          path: ADMIN_ROUTE.allUser,
-          element: <AllUser />,
+          path: ADMIN_ROUTE.users,
+          element: <AdminUser />,
+        },
+        {
+          path: `${ADMIN_ROUTE.users}/:userId`,
+          element: <AdminUserDetail />,
+          children: [
+            {
+              index: true,
+              element: <Navigate to={ADMIN_ROUTE.basic} replace />,
+            },
+            {
+              path: `${ADMIN_ROUTE.basic}`,
+              element: <Profile />,
+            },
+            {
+              path: `${ADMIN_ROUTE.log}`,
+              element: <ActivityLog />,
+            },
+            {
+              path: `${ADMIN_ROUTE.appliedProject}`,
+              element: <Notifications />,
+            },
+            {
+              path: `${ADMIN_ROUTE.joinedProject}`,
+              element: <UserProjects />,
+            },
+            {
+              path: `${ADMIN_ROUTE.createdProject}`,
+              element: <UserProjects />,
+            },
+          ],
         },
         {
           path: ADMIN_ROUTE.reports,
