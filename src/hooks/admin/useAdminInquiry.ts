@@ -35,11 +35,8 @@ export const useAdminInquiry = ({
         }
         setTimeout(() => {
           if (id) {
-            console.log('제대로 탐');
-
             return navigate(`/admin/inquiries/detail/${id}`);
           } else {
-            console.log('??');
             return navigate(-1);
           }
         }, 1000);
