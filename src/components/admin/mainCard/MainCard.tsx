@@ -1,6 +1,7 @@
 import * as S from './MainCard.styled';
 import arrowRight from '../../../assets/ArrowRight.svg';
 import React from 'react';
+import ContentBorder from '../../common/contentBorder/ContentBorder';
 
 interface MainCardProps {
   title: string;
@@ -20,7 +21,7 @@ const MainCard = ({ title, moreLink, children }: MainCardProps) => {
           </S.ShowAllArea>
         )}
       </S.CardHeader>
-      <S.Line />
+      <ContentBorder />
       <S.Wrapper>
         <S.MainContent>{children}</S.MainContent>
       </S.Wrapper>
