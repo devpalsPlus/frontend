@@ -6,13 +6,18 @@ export const AdminInquiryContainer = styled(Link)``;
 export const AdminInquiryWrapper = styled.div`
   padding: 0.8rem;
   display: grid;
-  grid-template-columns: 64% 15% 11% 10%;
+  grid-template-columns: 13% 51% 15% 11% 10%;
   justify-content: center;
   align-items: center;
   font-size: 1.1rem;
 `;
 
 export const AdminInquiryTitle = styled.div``;
+
+export const AdminInquiryCategory = styled.span`
+  font-size: 1.1rem;
+  font-weight: 500;
+`;
 
 export const AdminInquiryUser = styled.div``;
 

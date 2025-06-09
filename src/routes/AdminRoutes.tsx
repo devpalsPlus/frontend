@@ -134,7 +134,7 @@ export const AdminRoutes = () => {
                   element: <InquiryAnswerWrite />,
                 },
                 {
-                  pathname: ADMIN_ROUTE.modification,
+                  path: ADMIN_ROUTE.modification,
                   element: <InquiryAnswerWrite />,
                 },
               ],

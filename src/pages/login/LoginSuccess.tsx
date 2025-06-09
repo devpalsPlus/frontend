@@ -16,7 +16,6 @@ function LoginSuccess() {
 
   useEffect(() => {
     const accessToken = searchParams.get('accessToken');
-    console.log('accessToken', accessToken);
 
     if (accessToken) {
       login(accessToken, null);

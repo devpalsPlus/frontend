@@ -1,3 +1,5 @@
+import AdminInquiryAnswerWrite from '../../../../components/admin/adminInquiry/AdminInquiryAnswerWrite';
+
 export default function AdminInquiryWritePage() {
-  return <div></div>;
+  return <AdminInquiryAnswerWrite />;
 }

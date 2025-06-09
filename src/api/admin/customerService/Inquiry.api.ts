@@ -31,7 +31,9 @@ export const getInquiryDetail = async (id: string) => {
 
 export const postInquiryAnswer = async ({ id, answer }: InquiryAnswerBody) => {
   try {
-    await httpClient.post<ApiCommonBasicType>(`/inquiry/${id}/answer`, answer);
+    await httpClient.post<ApiCommonBasicType>(`/inquiry/${id}/answer`, {
+      answer,
+    });
   } catch (e) {
     console.error(e);
     throw e;
@@ -40,7 +42,9 @@ export const postInquiryAnswer = async ({ id, answer }: InquiryAnswerBody) => {
 
 export const patchInquiryAnswer = async ({ id, answer }: InquiryAnswerBody) => {
   try {
-    await httpClient.patch<ApiCommonBasicType>(`/inquiry/${id}/answer`, answer);
+    await httpClient.patch<ApiCommonBasicType>(`/inquiry/${id}/answer`, {
+      answer,
+    });
   } catch (e) {
     console.error(e);
     throw e;

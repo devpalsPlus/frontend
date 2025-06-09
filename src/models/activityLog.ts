@@ -9,6 +9,7 @@ export interface MyInquiries {
   answer: string;
   imageUrls: string[];
   createdAt: string;
+  updatedAt: string;
   user: User;
 }
 

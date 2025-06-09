@@ -25,8 +25,6 @@ export const InquiryAnswerInfo = styled(InquiryInfo)`
 `;
 
 export const InquiryAnswerButton = styled(SendButton)`
-  align-items: start;
-  height: fit-content;
   font-size: 0.9rem;
   padding: 0.3rem 0.5rem;
 `;

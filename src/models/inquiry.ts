@@ -11,6 +11,7 @@ export interface AdminInquiry {
   id: number;
   title: string;
   user: User;
+  category: string;
   state: boolean;
   createdAt: string;
 }

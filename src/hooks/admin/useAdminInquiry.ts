@@ -2,14 +2,57 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   deleteInquiry,
   getInquiryDetail,
+  patchInquiryAnswer,
   postInquiryAnswer,
 } from '../../api/admin/customerService/Inquiry.api';
-import { InquiryAnswerBody } from '../../models/inquiry';
+import type { InquiryAnswerBody } from '../../models/inquiry';
 import { AxiosError } from 'axios';
 import { CustomerService } from '../queries/keys';
+import type { State } from './useAdminFAQ';
+import { useNavigate } from 'react-router-dom';
+import { ADMIN_MODAL_MESSAGE } from '../../constants/admin/adminModal';
 
-export const useAdminInquiry = (id: string) => {
+export const useAdminInquiry = ({
+  handleModalOpen,
+  id = '',
+  handleConfirm,
+}: {
+  handleModalOpen: (message: string) => void;
+  id?: string;
+  handleConfirm?: () => void;
+}) => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  const handleButtonState = (state: State, isDeleteApi: boolean = false) => {
+    switch (state) {
+      case 'success':
+        if (!isDeleteApi) {
+          handleModalOpen(ADMIN_MODAL_MESSAGE.writeSuccess);
+        } else {
+          handleConfirm?.();
+          handleModalOpen(ADMIN_MODAL_MESSAGE.writeDeleteSuccess);
+        }
+        setTimeout(() => {
+          if (id) {
+            return navigate(`/admin/inquiries/detail/${id}`);
+          } else {
+            return navigate(-1);
+          }
+        }, 1000);
+        break;
+      case 'fail':
+        if (!isDeleteApi) {
+          handleModalOpen(ADMIN_MODAL_MESSAGE.writeFail);
+        } else {
+          handleModalOpen(ADMIN_MODAL_MESSAGE.writeDeleteFail);
+        }
+        break;
+      default:
+        handleModalOpen(ADMIN_MODAL_MESSAGE.writeError);
+        break;
+    }
+  };
 
   const getInquiryDetailData = useQuery({
     queryKey: [CustomerService.inquiryDetail, id],
@@ -28,6 +71,10 @@ export const useAdminInquiry = (id: string) => {
       queryClient.invalidateQueries({
         queryKey: [CustomerService.inquiryDetail, id],
       });
+      handleButtonState('success');
+    },
+    onError: () => {
+      handleButtonState('fail');
     },
   });
 
@@ -37,11 +84,15 @@ export const useAdminInquiry = (id: string) => {
     InquiryAnswerBody
   >({
     mutationFn: ({ id, answer }: InquiryAnswerBody) =>
-      postInquiryAnswer({ id, answer }),
+      patchInquiryAnswer({ id, answer }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [CustomerService.inquiryDetail, id],
       });
+      handleButtonState('success');
+    },
+    onError: () => {
+      handleButtonState('fail');
     },
   });
 

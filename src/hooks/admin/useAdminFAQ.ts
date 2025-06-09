@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { ADMIN_MODAL_MESSAGE } from '../../constants/admin/adminModal';
 import { CustomerService } from '../queries/keys';
 
-type State = 'success' | 'fail';
+export type State = 'success' | 'fail';
 
 export const useAdminFAQ = ({
   handleModalOpen,

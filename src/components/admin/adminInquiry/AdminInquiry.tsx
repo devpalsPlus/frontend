@@ -11,6 +11,7 @@ export default function AdminInquiry({ list }: AdminInquiryProps) {
   return (
     <S.AdminInquiryContainer to={`${ADMIN_ROUTE.detail}/${list.id}`}>
       <S.AdminInquiryWrapper>
+        <S.AdminInquiryCategory>[{list.category}]</S.AdminInquiryCategory>
         <S.AdminInquiryTitle>{list.title}</S.AdminInquiryTitle>
         <S.AdminInquiryUser>{list.user.nickname}</S.AdminInquiryUser>
         <S.ADminInquiryDate>{list.createdAt}</S.ADminInquiryDate>
