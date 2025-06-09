@@ -35,6 +35,7 @@ export const ADMIN_ROUTE = {
   admin: '/admin',
   devPals: '/main',
   notice: 'notice',
+  faq: 'faq',
   banner: 'banner',
   tags: 'tags',
   users: 'users',

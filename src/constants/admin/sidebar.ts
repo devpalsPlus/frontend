@@ -20,6 +20,11 @@ export const SIDEBAR_LIST = {
       router: ADMIN_ROUTE.notice,
     },
     {
+      name: 'faq',
+      title: 'FAQ',
+      router: ADMIN_ROUTE.faq,
+    },
+    {
       name: 'banner',
       title: '배너관리',
       router: ADMIN_ROUTE.banner,

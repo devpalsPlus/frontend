@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { UserData } from '../queries/user/keys';
+import { UserData } from '../queries/keys';
 import { getAllUsers } from '../../api/auth.api';
 import type { SearchType } from '../../models/search';
 

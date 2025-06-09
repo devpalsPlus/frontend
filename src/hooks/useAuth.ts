@@ -6,7 +6,7 @@ import useAuthStore from '../store/authStore';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { LoginResponse } from '../models/auth';
 import { AxiosError } from 'axios';
-import { myInfoKey } from './queries/user/keys';
+import { myInfoKey } from './queries/keys';
 import { MODAL_MESSAGE } from '../constants/user/modalMessage';
 import { ROUTES } from '../constants/routes';
 import { registerFormValues } from '../pages/user/register/Register';

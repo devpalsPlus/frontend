@@ -1,5 +1,5 @@
-import * as S from './AdminInquiries.styled';
+import CommonAdminPage from '../CommonAdminPage';
 
 export default function AdminInquires() {
-  return <S.AdminInquiriesContainer></S.AdminInquiriesContainer>;
+  return <CommonAdminPage title='문의확인' />;
 }

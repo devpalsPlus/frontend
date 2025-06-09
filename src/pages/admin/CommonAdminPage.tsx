@@ -9,8 +9,12 @@ interface CommonAdminPageProps {
 export default function CommonAdminPage({ title }: CommonAdminPageProps) {
   return (
     <S.AdminNoticeContainer>
-      <AdminTitle title={title} />
-      <Outlet />
+      <S.FixedTitle>
+        <AdminTitle title={title} />
+      </S.FixedTitle>
+      <S.OutletWrapper>
+        <Outlet />
+      </S.OutletWrapper>
     </S.AdminNoticeContainer>
   );
 }

@@ -1,5 +1,5 @@
 import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { ADMIN_ROUTE } from '../constants/routes';
 import ProtectAdminRoute from './ProtectAdminRoute';
 import AdminUserDetail from '../components/admin/adminUserDetail/AdminUserDetail';
@@ -8,6 +8,7 @@ import Profile from '../components/user/mypage/myProfile/profile/Profile';
 import { Navigate } from 'react-router-dom';
 import ActivityLog from '../components/user/mypage/activityLog/ActivityLog';
 import Notifications from '../components/user/mypage/notifications/Notifications';
+import { Spinner } from '../components/common/loadingSpinner/LoadingSpinner.styled';
 
 const Sidebar = lazy(
   () => import('../components/common/admin/sidebar/AdminSidebar')
@@ -24,12 +25,40 @@ const NoticeWrite = lazy(
 const NoticeDetail = lazy(
   () => import('../pages/admin/adminNoticeDetail/AdminNoticeDetail')
 );
+const FAQ = lazy(() => import('../pages/admin/adminFAQ/AdminFAQ'));
+const FAQList = lazy(
+  () => import('../pages/admin/adminFAQ/adminFAQList/AdminFAQListPage')
+);
+const FAQWrite = lazy(
+  () => import('../pages/admin/adminFAQ/adminFAQWrite/AdminFAQWritePage')
+);
 const Banner = lazy(() => import('../pages/admin/adminBanner/AdminBanner'));
 const Tags = lazy(() => import('../pages/admin/adminTags/AdminTags'));
 const AdminUser = lazy(() => import('../pages/admin/adminUser/AdminUser'));
 const Reports = lazy(() => import('../pages/admin/adminReports/AdminReports'));
 const Inquiries = lazy(
   () => import('../pages/admin/adminInquiries/AdminInquiries')
+);
+const InquiryList = lazy(
+  () =>
+    import(
+      '../pages/admin/adminInquiries/adminInquiryList/AdminInquiryListPage'
+    )
+);
+const InquiryDetail = lazy(
+  () =>
+    import(
+      '../pages/admin/adminInquiries/adminInquiryDetail/AdminInquiryDetailPage'
+    )
+);
+const InquiryAnswerContent = lazy(
+  () => import('../components/admin/adminInquiry/AdminInquiryAnswer')
+);
+const InquiryAnswerWrite = lazy(
+  () =>
+    import(
+      '../pages/admin/adminInquiries/adminInquiryWrite/AdminInquiryWritePage'
+    )
 );
 const Manage = lazy(() => import('../pages/admin/adminManage/AdminManage'));
 
@@ -38,9 +67,11 @@ export const AdminRoutes = () => {
     {
       path: ADMIN_ROUTE.admin,
       element: (
-        <ProtectAdminRoute>
-          <Sidebar />
-        </ProtectAdminRoute>
+        <Suspense fallback={<Spinner />}>
+          <ProtectAdminRoute>
+            <Sidebar />
+          </ProtectAdminRoute>
+        </Suspense>
       ),
       children: [
         {
@@ -63,6 +94,18 @@ export const AdminRoutes = () => {
             {
               path: `${ADMIN_ROUTE.detail}/:noticeId/${ADMIN_ROUTE.modification}`,
               element: <NoticeWrite />,
+            },
+          ],
+        },
+        {
+          path: ADMIN_ROUTE.faq,
+          element: <FAQ />,
+          children: [
+            { index: true, element: <FAQList /> },
+            { path: ADMIN_ROUTE.write, element: <FAQWrite /> },
+            {
+              path: `${ADMIN_ROUTE.modification}/:faqId`,
+              element: <FAQWrite />,
             },
           ],
         },
@@ -115,6 +158,24 @@ export const AdminRoutes = () => {
         {
           path: ADMIN_ROUTE.inquiries,
           element: <Inquiries />,
+          children: [
+            { index: true, element: <InquiryList /> },
+            {
+              path: `${ADMIN_ROUTE.detail}/:inquiryId`,
+              element: <InquiryDetail />,
+              children: [
+                { index: true, element: <InquiryAnswerContent /> },
+                {
+                  path: ADMIN_ROUTE.write,
+                  element: <InquiryAnswerWrite />,
+                },
+                {
+                  path: ADMIN_ROUTE.modification,
+                  element: <InquiryAnswerWrite />,
+                },
+              ],
+            },
+          ],
         },
         {
           path: ADMIN_ROUTE.manage,

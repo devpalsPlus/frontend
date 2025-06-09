@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { managedProjectKey } from '../queries/user/keys';
+import { managedProjectKey } from '../queries/keys';
 import { getProjectData } from '../../api/joinProject.api';
 
 const useGetProjectData = (projectId: number) => {
