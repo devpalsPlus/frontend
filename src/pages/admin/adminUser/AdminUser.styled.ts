@@ -1,9 +1,12 @@
 import styled from 'styled-components';
+import { SpinnerContainer } from '../../../components/user/mypage/Spinner.styled';
 
 export const Container = styled.div``;
 
+export const Spinner = styled(SpinnerContainer)``;
+
 export const SearchBar = styled.div`
-  margin-top: 20px;
+  margin-top: 120px;
 `;
 
 export const ScrollArea = styled.div`
