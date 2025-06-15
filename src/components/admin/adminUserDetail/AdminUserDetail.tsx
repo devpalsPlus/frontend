@@ -68,15 +68,16 @@ const AdminUserDetail = () => {
   return (
     <ScrollPreventor>
       <S.Container>
-        <AdminTitle title='회원 상세' />
-
+        <S.HeaderArea>
+          <AdminTitle title='회원 상세' />
+          <S.ContentHeader radius='primary' schema='primary' size='primary'>
+            <S.BackToList to={`/admin/${ADMIN_ROUTE.users}`}>
+              목록으로 이동
+            </S.BackToList>
+          </S.ContentHeader>
+        </S.HeaderArea>
         <S.Wrapper>
           <S.MainContent>
-            <S.ContentHeader>
-              <S.BackToList to={`/admin/${ADMIN_ROUTE.users}`}>
-                목록으로 이동
-              </S.BackToList>
-            </S.ContentHeader>
             <S.Content>
               <Sidebar
                 menuItems={tabs}
