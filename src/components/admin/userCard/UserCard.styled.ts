@@ -10,6 +10,27 @@ export const Container = styled.div`
   padding: 10px;
 `;
 
+export const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const BanArea = styled.div`
+  position: absolute;
+  top: 0px;
+  right: 0px;
+`;
+
+export const BanButton = styled.button`
+  width: 40px;
+  border: 1px solid ${({ theme }) => theme.color.lightgrey};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
+  background-color: ${({ theme }) => theme.color.red};
+  color: ${({ theme }) => theme.color.white};
+`;
+
 export const ProfileHeader = styled.div`
   display: flex;
   flex-direction: column;
