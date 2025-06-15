@@ -37,7 +37,7 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
   }, [location.pathname, menuItems]);
 
   return (
-    <S.Container>
+    <S.Container $isAdmin={isAdmin}>
       <S.AvatarContainer>
         <S.AvatarWrapper>
           {profileImage === MainLogo ? (
