@@ -27,12 +27,16 @@ const AllUserPreview = () => {
         <S.Wrapper key={user.id}>
           <S.UserArea>
             <Avatar image={user.profileImg} size='40px' />
-            <S.ContentArea to={`${ADMIN_ROUTE.users}/${user.id}`}>
+            <S.ContentArea
+              to={`${ADMIN_ROUTE.admin}/${ADMIN_ROUTE.users}/${user.id}`}
+            >
               <S.NickName>{user.nickname}</S.NickName>
               <S.Email>{user.email}</S.Email>
             </S.ContentArea>
           </S.UserArea>
-          <S.MoveToUsersArea to={`${ADMIN_ROUTE.users}/${user.id}`}>
+          <S.MoveToUsersArea
+            to={`${ADMIN_ROUTE.admin}/${ADMIN_ROUTE.users}/${user.id}`}
+          >
             <S.Text>상세 보기</S.Text>
             <S.Arrow src={arrow_right} />
           </S.MoveToUsersArea>

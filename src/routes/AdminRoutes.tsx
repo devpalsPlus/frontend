@@ -175,6 +175,10 @@ export const AdminRoutes = () => {
               element: <Notifications />,
               children: [
                 {
+                  index: true,
+                  element: <NotificationsAll />,
+                },
+                {
                   path: `${ADMIN_ROUTE.checkingApplicant}`,
                   element: <NotificationsAll />,
                 },

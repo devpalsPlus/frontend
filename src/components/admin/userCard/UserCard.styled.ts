@@ -25,10 +25,16 @@ export const BanArea = styled.div`
 
 export const BanButton = styled.button`
   width: 40px;
+  height: 25px;
   border: 1px solid ${({ theme }) => theme.color.lightgrey};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   background-color: ${({ theme }) => theme.color.red};
   color: ${({ theme }) => theme.color.white};
+  font-weight: 600;
+
+  &:hover {
+    background-color: #ff8789;
+  }
 `;
 
 export const ProfileHeader = styled.div`
