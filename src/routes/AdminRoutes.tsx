@@ -61,6 +61,25 @@ const InquiryAnswerWrite = lazy(
     )
 );
 const Manage = lazy(() => import('../pages/admin/adminManage/AdminManage'));
+const ActivityLogComments = lazy(
+  () =>
+    import(
+      '../components/user/mypage/activityLog/commentsActivity/CommentsActivity'
+    )
+);
+const ActivityLogInquiries = lazy(
+  () => import('../components/user/mypage/activityLog/inquiries/Inquiries')
+);
+
+const NotificationsAppliedProjects = lazy(
+  () =>
+    import(
+      '../components/user/mypage/notifications/appliedProjects/AppliedProjects'
+    )
+);
+const NotificationsAll = lazy(
+  () => import('../components/user/mypage/notifications/all/All')
+);
 
 export const AdminRoutes = () => {
   const routeList = [
@@ -136,10 +155,38 @@ export const AdminRoutes = () => {
             {
               path: `${ADMIN_ROUTE.log}`,
               element: <ActivityLog />,
+              children: [
+                {
+                  index: true,
+                  element: <Navigate to={ADMIN_ROUTE.comments} replace />,
+                },
+                {
+                  path: `${ADMIN_ROUTE.comments}`,
+                  element: <ActivityLogComments />,
+                },
+                {
+                  path: `${ADMIN_ROUTE.inquiries}`,
+                  element: <ActivityLogInquiries />,
+                },
+              ],
             },
             {
               path: `${ADMIN_ROUTE.appliedProject}`,
               element: <Notifications />,
+              children: [
+                {
+                  path: `${ADMIN_ROUTE.checkingApplicant}`,
+                  element: <NotificationsAll />,
+                },
+                {
+                  path: `${ADMIN_ROUTE.comments}`,
+                  element: <NotificationsAll />,
+                },
+                {
+                  path: `${ADMIN_ROUTE.applyingProject}`,
+                  element: <NotificationsAppliedProjects />,
+                },
+              ],
             },
             {
               path: `${ADMIN_ROUTE.joinedProject}`,

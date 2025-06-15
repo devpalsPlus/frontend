@@ -49,16 +49,22 @@ export const MenuList = styled.div`
 export const MenuItem = styled.div<{
   $isActive: boolean;
   $isHidden?: boolean;
+  $isAdmin?: boolean;
 }>`
   display: ${({ $isHidden }) => ($isHidden ? 'none' : 'flex')};
   align-items: center;
   padding: 0.625rem 1.25rem;
   margin: 0.5rem 0;
-  background-color: ${({ $isActive }) =>
-    $isActive ? '#f9f9f9' : 'transparent'};
+  background-color: ${({ theme, $isActive, $isAdmin }) =>
+    $isActive
+      ? $isAdmin
+        ? theme.color.white
+        : theme.color.lightgrey
+      : 'transparent'};
 
   &:hover {
-    background-color: #f9f9f9;
+    background-color: ${({ theme, $isAdmin }) =>
+      $isAdmin ? theme.color.white : theme.color.lightgrey};
   }
 
   svg {

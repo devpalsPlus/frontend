@@ -50,4 +50,7 @@ export const ADMIN_ROUTE = {
   joinedProject: 'joined-project',
   createdProject: 'created-project',
   appliedProject: 'apply-project',
+  comments: 'comments',
+  checkingApplicant: 'checked-applicants',
+  applyingProject: 'applied-projects',
 };
