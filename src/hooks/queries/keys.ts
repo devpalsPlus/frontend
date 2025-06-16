@@ -69,3 +69,9 @@ export const UserData = {
   allUserPreview: ['AllUserPreview'],
   userInfo: ['userInfo'],
 };
+
+export const Tag = {
+  skillTag: ['skillTagsData'],
+  positionTag: ['positionsData'],
+  method: ['fetchMethodTag'],
+};

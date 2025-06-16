@@ -6,7 +6,7 @@ import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
 import { useSaveSearchFiltering } from '../../../hooks/user/useSaveSearchFiltering';
 
 export interface SkillTagBoxProps {
-  width: string;
+  width?: string;
   onHandleSkillTagReset?: React.MouseEventHandler<HTMLButtonElement>;
   selectedTag?: number[];
   isMain?: boolean;
@@ -14,7 +14,7 @@ export interface SkillTagBoxProps {
 }
 
 export default function SkillTagBox({
-  width,
+  width = '100%',
   onHandleSkillTagReset,
   selectedTag,
   isMain = false,

@@ -27,4 +27,7 @@ export const MODAL_MESSAGE = {
   alreadyApply: '이미 참여한/지원하신 공고 입니다.',
   noMemberToEvaluate: '평가 할 멤버가 없습니다.',
   noTagsData: '대표 스킬/포지션을 입력 하셔야 사용할 수 있습니다.',
+  duplicationTag: '이미 존재하는 태그입니다.',
+  emptyTag: '태그명을 입력하세요.',
+  emptySkillImg: '스킬 이미지를 추가하세요.',
 } as const;

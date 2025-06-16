@@ -6,6 +6,7 @@ import {
   getPositionTag,
   getSkillTag,
 } from '../../api/projectSearchFiltering.api';
+import { Tag } from '../queries/keys';
 
 export const useSearchFilteringSkillTag = () => {
   const [skillTagsData, setSkillTagsData] = useState<SkillTag[]>([]);
@@ -15,19 +16,19 @@ export const useSearchFilteringSkillTag = () => {
   const queries = useQueries({
     queries: [
       {
-        queryKey: ['skillTagsData', skillTagsData],
+        queryKey: Tag.skillTag,
         queryFn: () => getSkillTag(),
         staleTime: Infinity,
         gcTime: Infinity,
       },
       {
-        queryKey: ['positionsData', positionTagsData],
+        queryKey: Tag.positionTag,
         queryFn: () => getPositionTag(),
         staleTime: Infinity,
         gcTime: Infinity,
       },
       {
-        queryKey: ['fetchMethodTag', methodTagsData],
+        queryKey: Tag.method,
         queryFn: () => getMethodTag(),
         staleTime: Infinity,
         gcTime: Infinity,

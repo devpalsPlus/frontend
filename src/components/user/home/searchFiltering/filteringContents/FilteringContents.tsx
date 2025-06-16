@@ -18,7 +18,7 @@ export default function FilteringContents() {
     setSkillTagButtonToggle((prev) => !prev);
   };
 
-  const handleSkillTagFilterClick = (e: React.MouseEvent<HTMLElement>) => {
+  const handleSkillTagFilterClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     const target = e.target as HTMLElement;
 
