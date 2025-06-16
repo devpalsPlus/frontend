@@ -43,6 +43,7 @@ export default function AdminTagsBasic() {
 
   const handleGetItemId = (id: number | null) => {
     setItemId(id);
+    return id === null ? [] : [id];
   };
 
   return (

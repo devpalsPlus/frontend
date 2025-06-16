@@ -138,8 +138,6 @@ export default function AdminTagCRUD<T>({
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
     const id = e.currentTarget.id as SubmitButtonType;
-    console.log('커런트 타겟: ', id, 'itemId: ', itemId);
-
     setButtonType(id);
   };
 

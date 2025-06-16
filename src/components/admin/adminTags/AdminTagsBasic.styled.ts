@@ -5,6 +5,7 @@ export const Container = styled.main`
   display: flex;
   gap: 3rem;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const CRUDContainer = styled.section`

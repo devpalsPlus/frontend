@@ -36,11 +36,12 @@ export default function SkillTagBox({
                   skillTagData={skillTagData}
                   key={`skillTagBox-${skillTagData.id}`}
                   $select={
-                    (isMain &&
+                    selectedTag?.includes(skillTagData.id) ||
+                    ((isMain &&
                       searchFiltersSkillTag?.includes(skillTagData.id)) ||
                     (isCreate && selectedTag?.includes(skillTagData.id))
                       ? true
-                      : false
+                      : false)
                   }
                 />
               ))}
