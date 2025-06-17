@@ -36,8 +36,6 @@ export const deleteSkillTag = async (id: number) => {
 };
 
 export const postPositionTag = async ({ name }: Pick<TagFormType, 'name'>) => {
-  console.log(name);
-
   try {
     await httpClient.post<ApiCommonBasicType>(`/position-tag`, { name });
   } catch (e) {

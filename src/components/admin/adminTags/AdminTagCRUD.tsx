@@ -103,13 +103,11 @@ export default function AdminTagCRUD<T>({
             return handleModalOpen(MODAL_MESSAGE.duplicationTag);
           }
           if (state.type === 'skill') {
-            console.log('스킬');
             state.handlePutTag({ params: formData, id: itemId } as {
               params: T;
               id: number;
             });
           } else {
-            console.log('포지션');
             state.handlePutTag({ params: name, id: itemId } as {
               params: T;
               id: number;
