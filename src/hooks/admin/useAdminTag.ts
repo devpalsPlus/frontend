@@ -53,7 +53,7 @@ export const useAdminSkillTag = () => {
     AxiosError,
     Pick<TagFormType, 'name'>
   >({
-    mutationFn: ({ name }) => postPositionTag({ name }),
+    mutationFn: ({ name }) => postPositionTag(name),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: Tag.positionTag,
@@ -65,7 +65,7 @@ export const useAdminSkillTag = () => {
     void,
     AxiosError,
     {
-      name: Pick<TagFormType, 'name'>;
+      name: string;
       id: number;
     }
   >({

@@ -8,7 +8,7 @@ import {
 } from '../../api/projectSearchFiltering.api';
 import { Tag } from '../queries/keys';
 
-export const useSearchFilteringSkillTag = () => {
+export const useSearchFilteringTags = () => {
   const [skillTagsData, setSkillTagsData] = useState<SkillTag[]>([]);
   const [positionTagsData, setPositionTagsData] = useState<PositionTag[]>([]);
   const [methodTagsData, setMethodTagsData] = useState<MethodTag[]>([]);

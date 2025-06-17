@@ -5,7 +5,7 @@ import type { PositionTag, SkillTag, TagFormType } from '../../../models/tags';
 import Modal from '../../common/modal/Modal';
 import { useModal } from '../../../hooks/useModal';
 import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
-import { useSearchFilteringSkillTag } from '../../../hooks/user/useSearchFilteringSkillTag';
+import { useSearchFilteringTags } from '../../../hooks/user/useSearchFilteringTags';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
 interface TagState<T> {
@@ -20,7 +20,7 @@ interface TagState<T> {
 interface AdminTagCRUDProps<T> {
   state: TagState<T>;
   itemId: number | null;
-  onGetItemId: (id: null) => void;
+  onGetItemId: (id: number | null) => void;
 }
 
 interface FormDataType extends TagFormType {
@@ -42,7 +42,7 @@ export default function AdminTagCRUD<T>({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const textInputRef = useRef<HTMLInputElement>(null);
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
-  const { skillTagsData, positionTagsData } = useSearchFilteringSkillTag();
+  const { skillTagsData, positionTagsData } = useSearchFilteringTags();
 
   const [buttonType, setButtonType] = useState<SubmitButtonType>('등록');
   const [formState, setFormState] = useState<FormDataType>({
@@ -89,7 +89,7 @@ export default function AdminTagCRUD<T>({
           if (state.type === 'skill') {
             state.handlePostTag(formData as T);
           } else {
-            state.handlePostTag({ name } as T);
+            state.handlePostTag(name as T);
           }
         }
         break;
@@ -97,8 +97,12 @@ export default function AdminTagCRUD<T>({
         {
           const duplication =
             state.type === 'skill'
-              ? skillTagsData.filter((data) => data.name === name)
-              : positionTagsData.filter((data) => data.name === name);
+              ? skillTagsData
+                  .filter((data) => data.id !== itemId)
+                  .filter((data) => data.name === name)
+              : positionTagsData
+                  .filter((data) => data.id !== itemId)
+                  .filter((data) => data.name === name);
           if (duplication.length > 0) {
             return handleModalOpen(MODAL_MESSAGE.duplicationTag);
           }

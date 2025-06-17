@@ -40,15 +40,9 @@ export default function AdminTagsBasic() {
       type: 'position',
       label: '포지션',
       needImgFile: false,
-      handlePostTag: (name: Pick<TagFormType, 'name'>) =>
-        postPositionTagMutate.mutate(name),
-      handlePutTag: ({
-        params,
-        id,
-      }: {
-        params: Pick<TagFormType, 'name'>;
-        id: number;
-      }) => putPositionTagMutate.mutate({ name: params, id }),
+      handlePostTag: (name: string) => postPositionTagMutate.mutate({ name }),
+      handlePutTag: ({ params, id }: { params: string; id: number }) =>
+        putPositionTagMutate.mutate({ name: params, id }),
       handleDeleteTag: (id: number) => deletePositionTagMutate.mutate(id),
     },
   };
@@ -67,7 +61,7 @@ export default function AdminTagsBasic() {
             onGetItemId={handleGetItemId}
           />
         ) : (
-          <AdminTagCRUD<Pick<TagFormType, 'name'>>
+          <AdminTagCRUD<string>
             state={tagState.position}
             itemId={itemId}
             onGetItemId={handleGetItemId}

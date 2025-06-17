@@ -14,7 +14,11 @@ export default function SkillTagImg({
 }: SkillTagImgProps) {
   return (
     <S.Wrapper $select={$select}>
-      <S.SkillImg src={image} alt={skillTag} data-id={skillTagId} />
+      <S.SkillImg
+        src={`${image}?t=${Date.now()}`}
+        alt={skillTag}
+        data-id={skillTagId}
+      />
     </S.Wrapper>
   );
 }

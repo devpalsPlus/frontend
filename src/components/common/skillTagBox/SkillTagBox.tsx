@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSearchFilteringSkillTag } from '../../../hooks/user/useSearchFilteringSkillTag';
+import { useSearchFilteringTags } from '../../../hooks/user/useSearchFilteringTags';
 import SkillTag from './skillTag/SkillTag';
 import * as S from './SkillTagBox.styled';
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
@@ -20,7 +20,7 @@ export default function SkillTagBox({
   isMain = false,
   isCreate = false,
 }: SkillTagBoxProps) {
-  const { skillTagsData } = useSearchFilteringSkillTag();
+  const { skillTagsData } = useSearchFilteringTags();
   const { searchFilters } = useSaveSearchFiltering();
   const searchFiltersSkillTag = searchFilters.skillTag;
 

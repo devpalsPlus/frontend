@@ -1,4 +1,4 @@
-import { useSearchFilteringSkillTag } from '../../../../hooks/user/useSearchFilteringSkillTag';
+import { useSearchFilteringTags } from '../../../../hooks/user/useSearchFilteringTags';
 import PositionButton from '../../../common/positionButton/PositionButton';
 import * as S from './AdminPositionItems.styled';
 
@@ -9,7 +9,7 @@ interface AdminPositionItemsProps {
 export default function AdminPositionItems({
   onGetItemId,
 }: AdminPositionItemsProps) {
-  const { positionTagsData } = useSearchFilteringSkillTag();
+  const { positionTagsData } = useSearchFilteringTags();
 
   return (
     <S.Container>
