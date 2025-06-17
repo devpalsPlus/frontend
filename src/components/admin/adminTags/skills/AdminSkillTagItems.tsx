@@ -1,20 +1,15 @@
 import * as S from './AdminSkillTagItems.styled';
 import SkillTagBox from '../../../common/skillTagBox/SkillTagBox';
-import { useEffect, useState } from 'react';
 
 interface AdminSKillTagItemsProps {
-  onGetItemId: (id: number) => number[];
+  onGetItemId: (id: number) => void;
+  selectTagId: number[];
 }
 
 export default function AdminSkillTagItems({
   onGetItemId,
+  selectTagId,
 }: AdminSKillTagItemsProps) {
-  const [selectTagId, setSelectTagId] = useState<number[]>();
-
-  useEffect(() => {
-    console.log(selectTagId);
-  }, [selectTagId]);
-
   const handleClickGetId = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     const target = e.target as HTMLElement;
@@ -25,7 +20,6 @@ export default function AdminSkillTagItems({
 
     if (!id) return;
     onGetItemId(id);
-    setSelectTagId(onGetItemId(id));
   };
 
   return (

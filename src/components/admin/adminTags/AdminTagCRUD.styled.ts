@@ -3,10 +3,12 @@ import { SendButton } from '../../user/customerService/inquiry/Inquiry.styled';
 
 export const CRUDContainer = styled.form`
   width: 100%;
+  height: 100%;
 `;
 
 export const CRUDWrapper = styled.div`
   width: 70%;
+  height: 100%;
   display: flex;
   gap: 1rem;
   font-size: 1.2rem;
@@ -15,9 +17,11 @@ export const CRUDWrapper = styled.div`
 
 export const InfoContainer = styled.div`
   display: flex;
+  height: 100%;
   flex-direction: column;
   gap: 1.5rem;
   justify-content: center;
+  /* align-items: center; */
 `;
 
 export const CRUDButtonWrapper = styled.div`

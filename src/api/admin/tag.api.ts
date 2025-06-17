@@ -11,6 +11,21 @@ export const postSkillTag = async (formData: FormData) => {
   }
 };
 
+export const putSkillTag = async ({
+  formData,
+  id,
+}: {
+  formData: FormData;
+  id: number;
+}) => {
+  try {
+    await httpClient.put<ApiCommonBasicType>(`/skill-tag/${id}`, formData);
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
 export const deleteSkillTag = async (id: number) => {
   try {
     await httpClient.delete<ApiCommonBasicType>(`/skill-tag/${id}`);
@@ -21,8 +36,25 @@ export const deleteSkillTag = async (id: number) => {
 };
 
 export const postPositionTag = async ({ name }: Pick<TagFormType, 'name'>) => {
+  console.log(name);
+
   try {
     await httpClient.post<ApiCommonBasicType>(`/position-tag`, { name });
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
+export const putPositionTag = async ({
+  name,
+  id,
+}: {
+  name: Pick<TagFormType, 'name'>;
+  id: number;
+}) => {
+  try {
+    await httpClient.put<ApiCommonBasicType>(`/position-tag/${id}`, { name });
   } catch (e) {
     console.error(e);
     throw e;

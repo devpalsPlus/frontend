@@ -13,6 +13,7 @@ interface TagState<T> {
   label: string;
   needImgFile: boolean;
   handlePostTag: (params: T) => void;
+  handlePutTag: ({ params, id }: { params: T; id: number }) => void;
   handleDeleteTag: (id: number) => void;
 }
 
@@ -71,7 +72,7 @@ export default function AdminTagCRUD<T>({
     if (!isValid.name) {
       return handleModalOpen(MODAL_MESSAGE.emptyTag);
     }
-    if (!isValid.imgName && !itemId) {
+    if (state.type === 'skill' && !isValid.imgName && !itemId) {
       return handleModalOpen(MODAL_MESSAGE.emptySkillImg);
     }
 
@@ -88,9 +89,34 @@ export default function AdminTagCRUD<T>({
           if (state.type === 'skill') {
             state.handlePostTag(formData as T);
           } else {
-            state.handlePostTag(name as T);
+            state.handlePostTag({ name } as T);
           }
         }
+        break;
+      case '수정':
+        {
+          const duplication =
+            state.type === 'skill'
+              ? skillTagsData.filter((data) => data.name === name)
+              : positionTagsData.filter((data) => data.name === name);
+          if (duplication.length > 0) {
+            return handleModalOpen(MODAL_MESSAGE.duplicationTag);
+          }
+          if (state.type === 'skill') {
+            console.log('스킬');
+            state.handlePutTag({ params: formData, id: itemId } as {
+              params: T;
+              id: number;
+            });
+          } else {
+            console.log('포지션');
+            state.handlePutTag({ params: name, id: itemId } as {
+              params: T;
+              id: number;
+            });
+          }
+        }
+
         break;
       case '삭제':
         if (itemId) {
@@ -101,7 +127,6 @@ export default function AdminTagCRUD<T>({
         break;
     }
     handleClickReset();
-    onGetItemId(null);
   };
 
   const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {

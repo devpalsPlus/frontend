@@ -16,11 +16,14 @@ export default function AdminTagsBasic() {
 
   const {
     postSkillTagMutate,
+    putSkillTagMutate,
     deleteSkillTagMutate,
     postPositionTagMutate,
+    putPositionTagMutate,
     deletePositionTagMutate,
   } = useAdminSkillTag();
   const [itemId, setItemId] = useState<number | null>(null);
+  const selectTagId = itemId ? [itemId] : [];
 
   const tagState = {
     skill: {
@@ -29,6 +32,8 @@ export default function AdminTagsBasic() {
       needImgFile: true,
       handlePostTag: (formData: FormData) =>
         postSkillTagMutate.mutate(formData),
+      handlePutTag: ({ params, id }: { params: FormData; id: number }) =>
+        putSkillTagMutate.mutate({ formData: params, id }),
       handleDeleteTag: (id: number) => deleteSkillTagMutate.mutate(id),
     },
     position: {
@@ -37,13 +42,19 @@ export default function AdminTagsBasic() {
       needImgFile: false,
       handlePostTag: (name: Pick<TagFormType, 'name'>) =>
         postPositionTagMutate.mutate(name),
+      handlePutTag: ({
+        params,
+        id,
+      }: {
+        params: Pick<TagFormType, 'name'>;
+        id: number;
+      }) => putPositionTagMutate.mutate({ name: params, id }),
       handleDeleteTag: (id: number) => deletePositionTagMutate.mutate(id),
     },
   };
 
   const handleGetItemId = (id: number | null) => {
     setItemId(id);
-    return id === null ? [] : [id];
   };
 
   return (
@@ -64,8 +75,14 @@ export default function AdminTagsBasic() {
         )}
       </S.CRUDContainer>
       <S.ItemContainer>
-        <AdminSkillTagItems onGetItemId={handleGetItemId} />
-        <AdminPositionItems onGetItemId={handleGetItemId} />
+        {witchTag === 'skill' ? (
+          <AdminSkillTagItems
+            onGetItemId={handleGetItemId}
+            selectTagId={selectTagId}
+          />
+        ) : (
+          <AdminPositionItems onGetItemId={handleGetItemId} />
+        )}
       </S.ItemContainer>
     </S.Container>
   );

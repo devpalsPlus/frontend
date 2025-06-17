@@ -10,6 +10,7 @@ export const Container = styled.main`
 
 export const CRUDContainer = styled.section`
   width: 90%;
+  min-height: 11rem;
   border: 1px solid ${({ theme }) => theme.color.placeholder};
   border-radius: ${({ theme }) => theme.borderRadius.large};
   display: flex;

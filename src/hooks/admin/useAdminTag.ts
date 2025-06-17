@@ -4,6 +4,8 @@ import {
   deleteSkillTag,
   postPositionTag,
   postSkillTag,
+  putPositionTag,
+  putSkillTag,
 } from '../../api/admin/tag.api';
 import { AxiosError } from 'axios';
 import type { TagFormType } from '../../models/tags';
@@ -14,6 +16,22 @@ export const useAdminSkillTag = () => {
 
   const postSkillTagMutate = useMutation<void, AxiosError, FormData>({
     mutationFn: (formData) => postSkillTag(formData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: Tag.skillTag,
+      });
+    },
+  });
+
+  const putSkillTagMutate = useMutation<
+    void,
+    AxiosError,
+    {
+      formData: FormData;
+      id: number;
+    }
+  >({
+    mutationFn: ({ formData, id }) => putSkillTag({ formData, id }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: Tag.skillTag,
@@ -43,6 +61,22 @@ export const useAdminSkillTag = () => {
     },
   });
 
+  const putPositionTagMutate = useMutation<
+    void,
+    AxiosError,
+    {
+      name: Pick<TagFormType, 'name'>;
+      id: number;
+    }
+  >({
+    mutationFn: ({ name, id }) => putPositionTag({ name, id }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: Tag.positionTag,
+      });
+    },
+  });
+
   const deletePositionTagMutate = useMutation<void, AxiosError, number>({
     mutationFn: (id: number) => deletePositionTag(id),
     onSuccess: () => {
@@ -54,8 +88,10 @@ export const useAdminSkillTag = () => {
 
   return {
     postSkillTagMutate,
+    putSkillTagMutate,
     deleteSkillTagMutate,
     postPositionTagMutate,
+    putPositionTagMutate,
     deletePositionTagMutate,
   };
 };
