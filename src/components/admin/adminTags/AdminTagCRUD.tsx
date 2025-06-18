@@ -24,7 +24,6 @@ interface AdminTagCRUDProps<T> {
 }
 
 interface FormDataType extends TagFormType {
-  imgName: string;
   preview: string;
 }
 
@@ -47,7 +46,6 @@ export default function AdminTagCRUD<T>({
   const [buttonType, setButtonType] = useState<SubmitButtonType>('등록');
   const [formState, setFormState] = useState<FormDataType>({
     name: '',
-    imgName: '',
     preview: '',
     img: undefined,
   });
@@ -66,13 +64,13 @@ export default function AdminTagCRUD<T>({
 
     const isValid = {
       name: formState.name.trim() !== '',
-      imgName: formState.imgName.trim() !== '',
+      preview: formState.preview.trim() !== '',
     };
 
     if (!isValid.name) {
       return handleModalOpen(MODAL_MESSAGE.emptyTag);
     }
-    if (state.type === 'skill' && !isValid.imgName && !itemId) {
+    if (state.type === 'skill' && !isValid.preview && !itemId) {
       return handleModalOpen(MODAL_MESSAGE.emptySkillImg);
     }
 
@@ -106,6 +104,7 @@ export default function AdminTagCRUD<T>({
           if (duplication.length > 0) {
             return handleModalOpen(MODAL_MESSAGE.duplicationTag);
           }
+          if (!itemId) return;
           if (state.type === 'skill') {
             state.handlePutTag({ params: formData, id: itemId } as {
               params: T;
@@ -138,15 +137,13 @@ export default function AdminTagCRUD<T>({
 
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const img = e.target.files?.[0];
-    const imgName = img?.name || '';
     const preview = img ? URL.createObjectURL(img) : '';
-    setFormState((prev) => ({ ...prev, imgName, preview, img }));
+    setFormState((prev) => ({ ...prev, preview, img }));
   };
 
   const handleClickReset = () => {
     setFormState({
       name: '',
-      imgName: '',
       preview: '',
       img: undefined,
     });
@@ -220,7 +217,6 @@ export default function AdminTagCRUD<T>({
               <S.CRUDImgExplore htmlFor='upload' as='label'>
                 파일찾기
               </S.CRUDImgExplore>
-              <S.CRUDImgExplain>{formState.imgName}</S.CRUDImgExplain>
               <S.CRUDImgInput
                 type='file'
                 name='img'

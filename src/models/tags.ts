@@ -4,7 +4,7 @@ export interface SkillTag {
   id: number;
   name: string;
   img: string;
-  createdAt: string;
+  updatedAt: string;
 }
 
 export interface PositionTag {

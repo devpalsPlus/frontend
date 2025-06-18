@@ -3,19 +3,21 @@ import * as S from './SkillTagImg.styled';
 export interface SkillTagImgProps {
   image: string;
   skillTag: string;
+  updatedAt: string;
   $select?: boolean;
   skillTagId?: number;
 }
 export default function SkillTagImg({
   image,
   skillTag,
+  updatedAt,
   $select,
   skillTagId,
 }: SkillTagImgProps) {
   return (
     <S.Wrapper $select={$select}>
       <S.SkillImg
-        src={`${image}?t=${Date.now()}`}
+        src={`${image}?t=${updatedAt}`}
         alt={skillTag}
         data-id={skillTagId}
       />
