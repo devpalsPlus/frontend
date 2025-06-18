@@ -27,7 +27,7 @@ interface FormDataType extends TagFormType {
   preview: string;
 }
 
-type Skill = Omit<SkillTag, 'createdAt'>;
+type Skill = Omit<SkillTag, 'updatedAt'>;
 
 type CRUDDataType = Skill | PositionTag;
 
