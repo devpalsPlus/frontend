@@ -4,7 +4,7 @@ export interface SkillTag {
   id: number;
   name: string;
   img: string;
-  createdAt: string;
+  updatedAt: string;
 }
 
 export interface PositionTag {
@@ -29,4 +29,9 @@ export interface ApiPositionTag extends ApiCommonType {
 
 export interface ApiMethodTag extends ApiCommonType {
   data: MethodTag[] | null;
+}
+
+export interface TagFormType {
+  name: string;
+  img?: File | undefined;
 }

@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div``;
-
 export const PositionButton = styled.button<{
   $isSelected: boolean;
   $isHover: boolean;

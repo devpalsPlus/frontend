@@ -1,12 +1,12 @@
 import React from 'react';
-import { useSearchFilteringSkillTag } from '../../../hooks/user/useSearchFilteringSkillTag';
+import { useSearchFilteringTags } from '../../../hooks/user/useSearchFilteringTags';
 import SkillTag from './skillTag/SkillTag';
 import * as S from './SkillTagBox.styled';
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
 import { useSaveSearchFiltering } from '../../../hooks/user/useSaveSearchFiltering';
 
 export interface SkillTagBoxProps {
-  width: string;
+  width?: string;
   onHandleSkillTagReset?: React.MouseEventHandler<HTMLButtonElement>;
   selectedTag?: number[];
   isMain?: boolean;
@@ -14,13 +14,13 @@ export interface SkillTagBoxProps {
 }
 
 export default function SkillTagBox({
-  width,
+  width = '100%',
   onHandleSkillTagReset,
   selectedTag,
   isMain = false,
   isCreate = false,
 }: SkillTagBoxProps) {
-  const { skillTagsData } = useSearchFilteringSkillTag();
+  const { skillTagsData } = useSearchFilteringTags();
   const { searchFilters } = useSaveSearchFiltering();
   const searchFiltersSkillTag = searchFilters.skillTag;
 
@@ -36,11 +36,12 @@ export default function SkillTagBox({
                   skillTagData={skillTagData}
                   key={`skillTagBox-${skillTagData.id}`}
                   $select={
-                    (isMain &&
+                    selectedTag?.includes(skillTagData.id) ||
+                    ((isMain &&
                       searchFiltersSkillTag?.includes(skillTagData.id)) ||
                     (isCreate && selectedTag?.includes(skillTagData.id))
                       ? true
-                      : false
+                      : false)
                   }
                 />
               ))}

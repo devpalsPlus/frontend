@@ -2,12 +2,6 @@ import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import { lazy, Suspense } from 'react';
 import { ADMIN_ROUTE } from '../constants/routes';
 import ProtectAdminRoute from './ProtectAdminRoute';
-import AdminUserDetail from '../components/admin/adminUserDetail/AdminUserDetail';
-import UserProjects from '../components/user/userPage/userProjectList/UserProjectList';
-import Profile from '../components/user/mypage/myProfile/profile/Profile';
-import { Navigate } from 'react-router-dom';
-import ActivityLog from '../components/user/mypage/activityLog/ActivityLog';
-import Notifications from '../components/user/mypage/notifications/Notifications';
 import { Spinner } from '../components/common/loadingSpinner/LoadingSpinner.styled';
 
 const Sidebar = lazy(
@@ -33,7 +27,18 @@ const FAQWrite = lazy(
   () => import('../pages/admin/adminFAQ/adminFAQWrite/AdminFAQWritePage')
 );
 const Banner = lazy(() => import('../pages/admin/adminBanner/AdminBanner'));
-const Tags = lazy(() => import('../pages/admin/adminTags/AdminTags'));
+const SkillTagPage = lazy(
+  () => import('../pages/admin/adminTags/skill/AdminSkillTagsPage')
+);
+const SkillTags = lazy(
+  () => import('../components/admin/adminTags/skills/AdminSkillTags')
+);
+const PositionTagPage = lazy(
+  () => import('../pages/admin/adminTags/position/AdminPositionTagsPage')
+);
+const PositionTags = lazy(
+  () => import('../components/admin/adminTags/positions/AdminPositionTags')
+);
 const AdminUser = lazy(() => import('../pages/admin/adminUser/AdminUser'));
 const Reports = lazy(() => import('../pages/admin/adminReports/AdminReports'));
 const Inquiries = lazy(
@@ -114,42 +119,18 @@ export const AdminRoutes = () => {
           element: <Banner />,
         },
         {
-          path: ADMIN_ROUTE.tags,
-          element: <Tags />,
+          path: ADMIN_ROUTE.skillTags,
+          element: <SkillTagPage />,
+          children: [{ index: true, element: <SkillTags /> }],
+        },
+        {
+          path: ADMIN_ROUTE.positionTags,
+          element: <PositionTagPage />,
+          children: [{ index: true, element: <PositionTags /> }],
         },
         {
           path: ADMIN_ROUTE.users,
           element: <AdminUser />,
-        },
-        {
-          path: `${ADMIN_ROUTE.users}/:userId`,
-          element: <AdminUserDetail />,
-          children: [
-            {
-              index: true,
-              element: <Navigate to={ADMIN_ROUTE.basic} replace />,
-            },
-            {
-              path: `${ADMIN_ROUTE.basic}`,
-              element: <Profile />,
-            },
-            {
-              path: `${ADMIN_ROUTE.log}`,
-              element: <ActivityLog />,
-            },
-            {
-              path: `${ADMIN_ROUTE.appliedProject}`,
-              element: <Notifications />,
-            },
-            {
-              path: `${ADMIN_ROUTE.joinedProject}`,
-              element: <UserProjects />,
-            },
-            {
-              path: `${ADMIN_ROUTE.createdProject}`,
-              element: <UserProjects />,
-            },
-          ],
         },
         {
           path: ADMIN_ROUTE.reports,

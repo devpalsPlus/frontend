@@ -10,7 +10,7 @@ import { SquaresPlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import MyProfileWrapper from '../MyProfileWrapper';
 import type { UserInfo } from '../../../../../models/userInfo';
-import { useSearchFilteringSkillTag } from '../../../../../hooks/user/useSearchFilteringSkillTag';
+import { useSearchFilteringTags } from '../../../../../hooks/user/useSearchFilteringTags';
 import { useEditMyProfileInfo } from '../../../../../hooks/user/useMyInfo';
 import useNickNameVerification from '../../../../../hooks/user/useNicknameVerification';
 import { ROUTES } from '../../../../../constants/routes';
@@ -34,7 +34,7 @@ export default function EditProfile() {
     scrollRef: React.RefObject<HTMLDivElement>;
     handleModalOpen: (message: string) => void;
   } = useOutletContext();
-  const { skillTagsData, positionTagsData } = useSearchFilteringSkillTag();
+  const { skillTagsData, positionTagsData } = useSearchFilteringTags();
   const { editMyProfile } = useEditMyProfileInfo(handleModalOpen);
   const { nicknameMessage, handleDuplicationNickname } =
     useNickNameVerification();

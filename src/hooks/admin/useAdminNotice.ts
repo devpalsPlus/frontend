@@ -3,7 +3,7 @@ import {
   deleteNotice,
   postNotice,
   putNotice,
-} from '../../api/admin/customerService/Notice.api';
+} from '../../api/admin/customerService/notice.api';
 import { AxiosError } from 'axios';
 import { CustomerService } from '../queries/keys';
 import { useNavigate } from 'react-router-dom';
