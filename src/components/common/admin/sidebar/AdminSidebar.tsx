@@ -25,31 +25,6 @@ export default function AdminSidebar() {
   };
 
   return (
-<<<<<<< HEAD
-    <S.SidebarContainer>
-      <S.SidebarLogoWrapper>
-        <S.SidebarLogoImg src={logo} alt='logo' />
-        <S.LogoutButton
-          type='button'
-          onClick={handleClickLogout}
-          aria-label='관리자 로그아웃'
-          title='로그아웃'
-        >
-          <S.LogoutImg src={logoutIcon} alt='logout icon' />
-          <S.LogoutSpan>Logout</S.LogoutSpan>
-        </S.LogoutButton>
-      </S.SidebarLogoWrapper>
-      <ContentBorder />
-      <S.MovedListContainerAll>
-        <AdminSidebarList title='' list={SIDEBAR_LIST.main} />
-        <AdminSidebarList title='서비스 관리' list={SIDEBAR_LIST.service} />
-        <AdminSidebarList title='사용자 관리' list={SIDEBAR_LIST.user} />
-      </S.MovedListContainerAll>
-      <Modal isOpen={isOpen} onClose={handleModalClose}>
-        {message}
-      </Modal>
-    </S.SidebarContainer>
-=======
     <S.LayoutContainer>
       <S.SidebarContainer>
         <S.SidebarLogoWrapper>
@@ -78,6 +53,5 @@ export default function AdminSidebar() {
         {message}
       </Modal>
     </S.LayoutContainer>
->>>>>>> origin
   );
 }
