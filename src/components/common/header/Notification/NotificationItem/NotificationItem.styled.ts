@@ -1,13 +1,12 @@
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
-  padding: 8px 0;
+  padding: 10px;
   font-size: 14px;
 `;
 
 export const TypeArea = styled.div`
   display: flex;
-  margin-left: 6px;
 `;
 
 export const Type = styled.p``;
@@ -22,13 +21,11 @@ export const ItemContent = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-left: 6px;
 `;
 
 export const Time = styled.span`
   color: #999;
   font-size: 12px;
-  margin-left: 6px;
   margin-right: 5px;
 `;
 

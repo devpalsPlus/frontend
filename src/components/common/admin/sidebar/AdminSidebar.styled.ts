@@ -1,9 +1,23 @@
 import styled from 'styled-components';
 
-export const SidebarContainer = styled.section`
+export const LayoutContainer = styled.div`
+  max-width: 1440px;
   height: 100vh;
+  display: flex;
+`;
+
+export const ContainerArea = styled.section`
+  flex: 1;
+  width: 100%;
+  padding: 2rem;
+  margin-left: 15rem;
+`;
+
+export const SidebarContainer = styled.section`
+  position: fixed;
   padding: 1rem;
   width: 15rem;
+  height: 100%;
   border-right: 1px solid ${({ theme }) => theme.color.grey};
 `;
 

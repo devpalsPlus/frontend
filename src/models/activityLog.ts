@@ -1,11 +1,16 @@
-import type { ApiCommonType } from './apiCommon';
+import type { ApiCommonType, User } from './apiCommon';
 
 export interface MyInquiries {
+  id: number;
   title: string;
   content: string;
   category: string;
   state: boolean;
+  answer?: string;
   imageUrls: string[];
+  createdAt: string;
+  updatedAt: string;
+  user: User;
 }
 
 export interface ApiMyInquiries extends ApiCommonType {

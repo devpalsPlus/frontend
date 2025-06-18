@@ -1,8 +1,8 @@
 import { MagnifyingGlassIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import * as S from './CustomerServiceHeader.styled';
 import MovedInquiredLink from './MoveInquiredLink';
-import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Outlet, useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
 import Modal from '../../common/modal/Modal';
 import { useModal } from '../../../hooks/useModal';
 import { MODAL_MESSAGE_CUSTOMER_SERVICE } from '../../../constants/user/customerService';
@@ -15,12 +15,13 @@ interface CustomerServiceHeaderProps {
 
 export default function CustomerServiceHeader({
   title,
-  keyword,
+  keyword: value,
   onGetKeyword,
 }: CustomerServiceHeaderProps) {
   const [inputValue, setInputValue] = useState<string>('');
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
   const [searchParams, setSearchParams] = useSearchParams();
+  const keyword = value ? value : inputValue;
 
   const handleKeyword = (inputValue: string) => {
     const newSearchParams = new URLSearchParams(searchParams);
@@ -64,7 +65,7 @@ export default function CustomerServiceHeader({
           <S.SearchBarInput
             type='text'
             placeholder='궁금한 내용을 검색해보세요.'
-            value={keyword ? keyword : inputValue}
+            value={keyword}
             onChange={handleChangeValue}
           />
           <S.ButtonWrapper>

@@ -20,21 +20,31 @@ export const SIDEBAR_LIST = {
       router: ADMIN_ROUTE.notice,
     },
     {
+      name: 'faq',
+      title: 'FAQ',
+      router: ADMIN_ROUTE.faq,
+    },
+    {
       name: 'banner',
       title: '배너관리',
       router: ADMIN_ROUTE.banner,
     },
     {
-      name: 'tags',
-      title: '태그관리',
-      router: ADMIN_ROUTE.tags,
+      name: 'skillTags',
+      title: '스킬 태그',
+      router: ADMIN_ROUTE.skillTags,
+    },
+    {
+      name: 'positionTags',
+      title: '포지션 태그',
+      router: ADMIN_ROUTE.positionTags,
     },
   ],
   user: [
     {
       name: 'allUser',
-      title: '전체 회원 조회',
-      router: ADMIN_ROUTE.allUser,
+      title: '회원 조회',
+      router: ADMIN_ROUTE.users,
     },
     {
       name: 'reports',

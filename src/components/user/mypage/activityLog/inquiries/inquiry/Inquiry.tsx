@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import type { MyInquiries } from '../../../../../../models/activityLog';
 import * as S from './Inquiry.styled';
 import { My_INQUIRIES_MESSAGE } from '../../../../../../constants/user/customerService';
+import ContentBorder from '../../../../../common/contentBorder/ContentBorder';
+import { ChevronRightIcon } from '@heroicons/react/24/outline';
 
 interface InquiryProps {
   list: MyInquiries;
@@ -19,6 +21,15 @@ export default function Inquiry({ list, no }: InquiryProps) {
     isImageOpen: false,
     url: '',
   });
+  const answer = list.answer || '';
+  const answerRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleChangeAnswerRef = () => {
+    if (answerRef && answerRef.current) {
+      answerRef.current.style.height = 'auto';
+      answerRef.current.style.height = `${answerRef.current.scrollHeight}px`;
+    }
+  };
 
   return (
     <S.Container>
@@ -29,7 +40,11 @@ export default function Inquiry({ list, no }: InquiryProps) {
         <S.InquiryNumber>{no}</S.InquiryNumber>
         <S.InquiryCategory>{`[${list.category}]`}</S.InquiryCategory>
         <S.InquiryTitle>{list.title}</S.InquiryTitle>
-        <S.InquiryState>{list.state ? '답변완료' : '확인중'}</S.InquiryState>
+        <S.InquiryState>
+          <S.InquiryStateSpan $isCompletedAnswer={list.state ? true : false}>
+            {list.state ? '답변완료' : '확인중'}
+          </S.InquiryStateSpan>
+        </S.InquiryState>
       </S.InquiryTitleWrapper>
       {isOpen && (
         <S.InquiryContentWrapper>
@@ -55,6 +70,17 @@ export default function Inquiry({ list, no }: InquiryProps) {
                 {My_INQUIRIES_MESSAGE.blowUpMessage}
               </S.MessageWrapper>
             </S.InquiryImgContainer>
+          )}
+          {answer && (
+            <S.InquiryAnswerContentContainer>
+              <ContentBorder />
+              <S.InquiryAnswerContentWrapper>
+                <S.InquiryAnswerIconWrapper>
+                  <ChevronRightIcon />
+                </S.InquiryAnswerIconWrapper>
+                <S.InquiryAnswerContent>{answer}</S.InquiryAnswerContent>
+              </S.InquiryAnswerContentWrapper>
+            </S.InquiryAnswerContentContainer>
           )}
           {isImageOpen.isImageOpen && (
             <S.ModalImgContainer>

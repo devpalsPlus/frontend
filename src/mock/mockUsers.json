@@ -1,0 +1,117 @@
+{
+  "success": true,
+  "message": "성공적으로 처리되었습니다.",
+  "data": [
+    {
+      "id": 1,
+      "email": "alice@example.com",
+      "name": "Alice Kim",
+      "user": {
+        "id": 201,
+        "nickname": "alice",
+        "img": ""
+      },
+      "createdAt": "2025-05-15"
+    },
+    {
+      "id": 2,
+      "email": "bob@example.com",
+      "name": "Bob Lee",
+      "user": {
+        "id": 202,
+        "nickname": "bob",
+        "img": ""
+      },
+      "createdAt": "2025-05-16"
+    },
+    {
+      "id": 3,
+      "email": "charlie@example.com",
+      "name": "Charlie Park",
+      "user": {
+        "id": 204,
+        "nickname": "daisy",
+        "img": ""
+      },
+      "createdAt": "2025-05-17"
+    },
+    {
+      "id": 4,
+      "email": "daisy@example.com",
+      "name": "Daisy Choi",
+      "user": {
+        "id": 205,
+        "nickname": "daisy",
+        "img": ""
+      },
+      "createdAt": "2025-05-18"
+    },
+    {
+      "id": 5,
+      "email": "eve@example.com",
+      "name": "Eve Jung",
+      "user": {
+        "id": 206,
+        "nickname": "eve",
+        "img": ""
+      },
+      "createdAt": "2025-05-19"
+    },
+    {
+      "id": 6,
+      "email": "frank@example.com",
+      "name": "Frank Han",
+      "user": {
+        "id": 208,
+        "nickname": "grace",
+        "img": ""
+      },
+      "createdAt": "2025-05-20"
+    },
+    {
+      "id": 7,
+      "email": "grace@example.com",
+      "name": "Grace Yoon",
+      "user": {
+        "id": 209,
+        "nickname": "grace",
+        "img": ""
+      },
+      "createdAt": "2025-05-21"
+    },
+    {
+      "id": 8,
+      "email": "henry@example.com",
+      "name": "Henry Shin",
+      "user": {
+        "id": 210,
+        "nickname": "henry",
+        "img": ""
+      },
+      "createdAt": "2025-05-22"
+    },
+    {
+      "id": 9,
+      "email": "iris@example.com",
+      "name": "Iris Lim",
+      "user": {
+        "id": 211,
+        "nickname": "iris",
+        "img": ""
+      },
+      "createdAt": "2025-05-23"
+    },
+    {
+      "id": 10,
+      "email": "jack@example.com",
+      "name": "Jack Han",
+      "user": {
+        "id": 212,
+        "nickname": "jack",
+        "img": ""
+      },
+
+      "createdAt": "2025-05-24"
+    }
+  ]
+}

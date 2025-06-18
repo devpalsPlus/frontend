@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postReply } from '../../../api/reply.api';
-import { ProjectReplyList } from '../../queries/user/keys';
+import { ProjectReplyList } from '../../queries/keys';
 
 const usePostReply = (projectId: number, commentId: number) => {
   const queryClient = useQueryClient();

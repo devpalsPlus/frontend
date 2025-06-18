@@ -25,6 +25,13 @@ import {
   fetchSkillTag,
 } from './projectSearchFiltering';
 import { createProject } from './createProject.ts';
+import {
+  passthroughAllGet,
+  passthroughAllPost,
+  reportsAll,
+  userAll,
+  userAllPreview,
+} from './adminMock.ts';
 
 export const handlers = [
   fetchProjectLists,
@@ -51,6 +58,11 @@ export const handlers = [
   login,
   createApplicant,
   createProject,
+  reportsAll,
+  userAll,
+  userAllPreview,
+  passthroughAllGet,
+  passthroughAllPost,
 ];
 
 export const worker = setupWorker(...handlers);

@@ -4,12 +4,9 @@ import type { NoticeSearch } from '../../../../models/customerService';
 import { useGetNotice } from '../../../../hooks/user/useGetNotice';
 import { Spinner } from '../../../../components/common/loadingSpinner/LoadingSpinner.styled';
 import CustomerServiceHeader from '../../../../components/user/customerService/CustomerServiceHeader';
-import ContentBorder from '../../../../components/common/contentBorder/ContentBorder';
-import { ROUTES } from '../../../../constants/routes';
-import NoticeList from '../../../../components/user/customerService/notice/NoticeList';
-import NoResult from '../../../../components/common/noResult/NoResult';
 import Pagination from '../../../../components/common/pagination/Pagination';
-import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import NoticeItem from '../../../../components/user/customerService/notice/noticeItem/NoticeItem';
 
 export default function Notice() {
   const [noticeSearch, setNoticeSearch] = useState<NoticeSearch>({
@@ -18,17 +15,16 @@ export default function Notice() {
   });
   const [value, setValue] = useState<string>('');
   const { noticeData, isLoading } = useGetNotice(noticeSearch);
-  const location = useLocation();
-  const hasKeyword = location.search
-    ? decodeURI(location.search.split('=')[1])
-    : '';
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    if (hasKeyword) {
-      setNoticeSearch((prev) => ({ ...prev, keyword: hasKeyword }));
-      setValue(hasKeyword);
+    const searchKeyword = searchParams.get('keyword');
+
+    if (searchKeyword) {
+      setNoticeSearch((prev) => ({ ...prev, keyword: searchKeyword }));
+      setValue((prev) => (searchKeyword ? searchKeyword : prev));
     }
-  }, [hasKeyword]);
+  }, [searchParams]);
 
   const handleGetKeyword = (keyword: string) => {
     setNoticeSearch((prev) => ({ ...prev, keyword }));
@@ -58,23 +54,11 @@ export default function Notice() {
         onGetKeyword={handleGetKeyword}
       />
       <S.Container>
-        <S.Wrapper>
-          {noticeData.notices.length > 0 && <ContentBorder />}
-          {noticeData.notices.length > 0 ? (
-            noticeData.notices.map((list) => (
-              <S.NoticeDetailLink
-                to={`${ROUTES.customerService}/${ROUTES.noticeDetail}/${list.id}`}
-                state={{ id: list.id, keyword: value }}
-                key={list.id}
-              >
-                <NoticeList notice={list} />
-                <ContentBorder />
-              </S.NoticeDetailLink>
-            ))
-          ) : (
-            <NoResult height='20rem' />
-          )}
-        </S.Wrapper>
+        <NoticeItem
+          noticeData={noticeData.notices}
+          value={value}
+          $width='75%'
+        />
         <Pagination
           page={noticeSearch.page}
           getLastPage={lastPage}

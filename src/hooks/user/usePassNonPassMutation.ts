@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { applicantKey } from '../queries/user/keys';
+import { applicantKey } from '../queries/keys';
 import { MODAL_MESSAGE } from '../../constants/user/modalMessage';
 import { patchPassNonPassStatus } from '../../api/applicant.api';
 

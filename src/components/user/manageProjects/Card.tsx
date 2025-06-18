@@ -22,8 +22,10 @@ function Card({ project }: CardProps) {
           <S.EvaluateButton
             key={project.id}
             to={`${ROUTES.evaluation}/${project.id}`}
+            state={{ isAllCompleted: project.isAllEvaluated }}
+            $isCompleted={project.isAllEvaluated}
           >
-            평가하기
+            {project.isAllEvaluated ? '평가완료' : '평가하기'}
           </S.EvaluateButton>
         )}
         {project.isDone && <S.RecruitmentEnd>모집 종료</S.RecruitmentEnd>}

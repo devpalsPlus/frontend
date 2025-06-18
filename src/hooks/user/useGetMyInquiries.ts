@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getMyInquiries } from '../../api/activityLog.api';
 import useAuthStore from '../../store/authStore';
-import { ActivityLog } from '../queries/user/keys';
+import { ActivityLog } from '../queries/keys';
 
 export const useGetMyInquiries = () => {
   const userId = useAuthStore.getState().userData?.id;

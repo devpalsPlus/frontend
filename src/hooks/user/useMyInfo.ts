@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { myInfoKey, ProjectListKey } from '../queries/user/keys';
+import { myInfoKey, ProjectListKey } from '../queries/keys';
 import useAuthStore from '../../store/authStore';
 import type { ApiUserInfo, EditMyInfo } from '../../models/userInfo';
 import {
@@ -24,8 +24,10 @@ export const useMyProfileInfo = () => {
   const { data, isLoading } = useQuery<ApiUserInfo>({
     queryKey: myInfoKey.myProfile,
     queryFn: () => getMyInfo(),
-    staleTime: Infinity,
-    gcTime: Infinity,
+    staleTime: 1000 * 60 * 30,
+    gcTime: 1000 * 60 * 60,
+    refetchInterval: 1000 * 60 * 60,
+    refetchIntervalInBackground: false,
     enabled: isLoggedIn,
   });
 

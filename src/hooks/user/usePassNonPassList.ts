@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { applicantKey } from '../queries/user/keys';
+import { applicantKey } from '../queries/keys';
 import { getPassNonPassList } from '../../api/applicant.api';
 
 export const usePassNonPassList = (projectId: number) => {

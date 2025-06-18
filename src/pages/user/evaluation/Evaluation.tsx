@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import * as S from './Evaluation.styled';
 import useGetCompletedEvaluation from '../../../hooks/user/evaluationHooks/useGetEvaluation';
 import LoadingSpinner from '../../../components/common/loadingSpinner/LoadingSpinner';
@@ -9,6 +9,10 @@ import { useModal } from '../../../hooks/useModal';
 const Evaluation = () => {
   const { projectId: projectIdParam } = useParams();
   const projectId = Number(projectIdParam);
+  const location = useLocation();
+  const isAllEvaluated =
+    typeof location.state === 'boolean' ? location.state : false;
+
   const { isOpen, message, handleModalOpen, handleModalClose, handleConfirm } =
     useModal();
 
@@ -28,6 +32,7 @@ const Evaluation = () => {
           projectId={projectId}
           projectName={memberList.projectName}
           memberList={memberList.userData!}
+          isAllEvaluated={isAllEvaluated}
         />
       </S.Container>
       <Modal

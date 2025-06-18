@@ -1,5 +1,17 @@
-//model
-import { ApiCommonType } from './apiCommon';
+import { PositionTag, SkillTag } from './tags';
+import { type ApiCommonType, type User } from './apiCommon';
+
+export enum UserState {
+  ONLINE = 'ONLINE',
+  OFFLINE = 'OFFLINE',
+  SUSPENDED = 'SUSPENDED',
+}
+
+export const USER_STATE_LABELS = {
+  [UserState.ONLINE]: '접속 중',
+  [UserState.OFFLINE]: '오프라인',
+  [UserState.SUSPENDED]: '정지',
+} as const;
 
 export interface VerifyEmail {
   email: string;
@@ -20,9 +32,37 @@ export interface UserData {
   email: string;
   nickname: string;
   admin: boolean;
+  hasRequiredTags: boolean;
 }
 
 export interface ApiOauth extends ApiCommonType {
   data: Pick<LoginResponse, 'accessToken'>;
   user: UserData;
+}
+
+export interface ApiGetAllUsersPreview extends ApiCommonType {
+  data: AllUserPreview[];
+}
+export interface AllUserPreview {
+  id: number;
+  nickname: string;
+  email: string;
+  profileImg: string;
+  // userState: UserState;
+  warning: number;
+  createdAt: string;
+}
+
+export interface ApiGetAllUsers extends ApiCommonType {
+  data: AllUserList;
+}
+
+export interface AllUser extends AllUserPreview {
+  skill: SkillTag[];
+  position: PositionTag[];
+}
+
+export interface AllUserList {
+  users: AllUser[];
+  totalPages: number;
 }

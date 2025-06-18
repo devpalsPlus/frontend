@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { applicantKey } from '../queries/user/keys';
+import { applicantKey } from '../queries/keys';
 import { getApplicantList } from '../../api/applicant.api';
 import type { ApiApplicants } from '../../models/applicant';
 

@@ -10,6 +10,7 @@ export interface JoinedProject {
   totalMember: number;
   skills: Omit<SkillTag, 'createdAt'>[];
   canEvaluate: boolean;
+  isAllEvaluated: boolean;
 }
 
 export interface ApiJoinedProject extends ApiCommonType {
