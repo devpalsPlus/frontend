@@ -62,6 +62,7 @@ export const CustomerService = {
 
 export const ReportData = {
   allReports: ['AllReports'],
+  allReportsPreview: ['AllReportsPreview'],
 };
 
 export const UserData = {
