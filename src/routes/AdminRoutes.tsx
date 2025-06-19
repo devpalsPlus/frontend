@@ -2,13 +2,8 @@ import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import { lazy, Suspense } from 'react';
 import { ADMIN_ROUTE } from '../constants/routes';
 import ProtectAdminRoute from './ProtectAdminRoute';
-import AdminUserDetail from '../components/admin/adminUserDetail/AdminUserDetail';
-import UserProjects from '../components/user/userPage/userProjectList/UserProjectList';
-import Profile from '../components/user/mypage/myProfile/profile/Profile';
-import { Navigate } from 'react-router-dom';
-import ActivityLog from '../components/user/mypage/activityLog/ActivityLog';
-import Notifications from '../components/user/mypage/notifications/Notifications';
 import { Spinner } from '../components/common/loadingSpinner/LoadingSpinner.styled';
+import { Navigate } from 'react-router-dom';
 
 const Sidebar = lazy(
   () => import('../components/common/admin/sidebar/AdminSidebar')
@@ -25,6 +20,21 @@ const NoticeWrite = lazy(
 const NoticeDetail = lazy(
   () => import('../pages/admin/adminNoticeDetail/AdminNoticeDetail')
 );
+const AdminUserDetail = lazy(
+  () => import('../components/admin/adminUserDetail/AdminUserDetail')
+);
+const Profile = lazy(
+  () => import('../components/user/mypage/myProfile/profile/Profile')
+);
+const ActivityLog = lazy(
+  () => import('../components/user/mypage/activityLog/ActivityLog')
+);
+const Notifications = lazy(
+  () => import('../components/user/mypage/notifications/Notifications')
+);
+const UserProjects = lazy(
+  () => import('../components/user/userPage/userProjectList/UserProjectList')
+);
 const FAQ = lazy(() => import('../pages/admin/adminFAQ/AdminFAQ'));
 const FAQList = lazy(
   () => import('../pages/admin/adminFAQ/adminFAQList/AdminFAQListPage')
@@ -33,7 +43,18 @@ const FAQWrite = lazy(
   () => import('../pages/admin/adminFAQ/adminFAQWrite/AdminFAQWritePage')
 );
 const Banner = lazy(() => import('../pages/admin/adminBanner/AdminBanner'));
-const Tags = lazy(() => import('../pages/admin/adminTags/AdminTags'));
+const SkillTagPage = lazy(
+  () => import('../pages/admin/adminTags/skill/AdminSkillTagsPage')
+);
+const SkillTags = lazy(
+  () => import('../components/admin/adminTags/skills/AdminSkillTags')
+);
+const PositionTagPage = lazy(
+  () => import('../pages/admin/adminTags/position/AdminPositionTagsPage')
+);
+const PositionTags = lazy(
+  () => import('../components/admin/adminTags/positions/AdminPositionTags')
+);
 const AdminUser = lazy(() => import('../pages/admin/adminUser/AdminUser'));
 const Reports = lazy(() => import('../pages/admin/adminReports/AdminReports'));
 const Inquiries = lazy(
@@ -133,8 +154,14 @@ export const AdminRoutes = () => {
           element: <Banner />,
         },
         {
-          path: ADMIN_ROUTE.tags,
-          element: <Tags />,
+          path: ADMIN_ROUTE.skillTags,
+          element: <SkillTagPage />,
+          children: [{ index: true, element: <SkillTags /> }],
+        },
+        {
+          path: ADMIN_ROUTE.positionTags,
+          element: <PositionTagPage />,
+          children: [{ index: true, element: <PositionTags /> }],
         },
         {
           path: ADMIN_ROUTE.users,

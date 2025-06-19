@@ -30,9 +30,14 @@ export const SIDEBAR_LIST = {
       router: ADMIN_ROUTE.banner,
     },
     {
-      name: 'tags',
-      title: '태그관리',
-      router: ADMIN_ROUTE.tags,
+      name: 'skillTags',
+      title: '스킬 태그',
+      router: ADMIN_ROUTE.skillTags,
+    },
+    {
+      name: 'positionTags',
+      title: '포지션 태그',
+      router: ADMIN_ROUTE.positionTags,
     },
   ],
   user: [

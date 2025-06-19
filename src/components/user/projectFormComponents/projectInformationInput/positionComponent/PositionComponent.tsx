@@ -1,3 +1,4 @@
+import React from 'react';
 import useTagSelectors from '../../../../../hooks/user/ProjectHooks/useTagSelectors';
 import type { CreateProjectFormValues } from '../../../../../models/createProject';
 import type { PositionTag } from '../../../../../models/tags';
@@ -27,6 +28,13 @@ const MozipCategoryComponent = ({
     fieldName: 'position',
   });
 
+  const handleClickSelect = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    idx: number
+  ) => {
+    handleClick(e, idx + 1);
+  };
+
   return (
     <S.Container>
       <S.CategoryContainer>
@@ -36,9 +44,7 @@ const MozipCategoryComponent = ({
             <S.PositionButtonFeat
               position={position.name}
               isSelected={isSelected}
-              onClick={(e: React.MouseEvent<HTMLElement>) =>
-                handleClick(e, idx + 1)
-              }
+              onClickSelect={(e) => handleClickSelect(e, idx)}
               key={idx + 1}
               isHover={true}
               fontSize={true}

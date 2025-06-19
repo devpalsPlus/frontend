@@ -6,7 +6,7 @@ import * as S from './ProjectInformationInput.styled';
 import Input from '../inputComponent/InputComponent';
 import type { ProjectDetailPlusExtended } from '../../../../models/projectDetail';
 import type { CreateProjectFormValues } from '../../../../models/createProject';
-import { useSearchFilteringSkillTag } from '../../../../hooks/user/useSearchFilteringSkillTag';
+import { useSearchFilteringTags } from '../../../../hooks/user/useSearchFilteringTags';
 import { PROJECT_DATA } from '../../../../constants/user/projectConstants';
 
 interface ProjectInformationProps {
@@ -22,7 +22,7 @@ const ProjectInformationInput = ({
   setValue,
   apiData,
 }: ProjectInformationProps) => {
-  const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
+  const { positionTagsData, methodTagsData } = useSearchFilteringTags();
 
   return (
     <>

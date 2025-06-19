@@ -4,7 +4,7 @@ import {
   getInquiryDetail,
   patchInquiryAnswer,
   postInquiryAnswer,
-} from '../../api/admin/customerService/Inquiry.api';
+} from '../../api/admin/customerService/inquiry.api';
 import type { InquiryAnswerBody } from '../../models/inquiry';
 import { AxiosError } from 'axios';
 import { CustomerService } from '../queries/keys';
