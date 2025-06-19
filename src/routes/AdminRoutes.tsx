@@ -2,14 +2,25 @@ import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import { lazy, Suspense } from 'react';
 import { ADMIN_ROUTE } from '../constants/routes';
 import ProtectAdminRoute from './ProtectAdminRoute';
-import AdminUserDetail from '../components/admin/adminUserDetail/AdminUserDetail';
-import UserProjects from '../components/user/userPage/userProjectList/UserProjectList';
 import Profile from '../components/user/mypage/myProfile/profile/Profile';
 import { Navigate } from 'react-router-dom';
-import ActivityLog from '../components/user/mypage/activityLog/ActivityLog';
-import Notifications from '../components/user/mypage/notifications/Notifications';
 import { Spinner } from '../components/common/loadingSpinner/LoadingSpinner.styled';
 
+const AdminUserDetail = lazy(
+  () => import('../components/admin/adminUserDetail/AdminUserDetail')
+);
+const UserProjects = lazy(
+  () => import('../components/user/userPage/userProjectList/UserProjectList')
+);
+const ActivityLog = lazy(
+  () => import('../components/user/mypage/activityLog/ActivityLog')
+);
+const Notifications = lazy(
+  () => import('../components/user/mypage/notifications/Notifications')
+);
+const AdminReportDetail = lazy(
+  () => import('../components/admin/adminUserReport/AdminReportDetail')
+);
 const Sidebar = lazy(
   () => import('../components/common/admin/sidebar/AdminSidebar')
 );
@@ -205,6 +216,10 @@ export const AdminRoutes = () => {
         {
           path: ADMIN_ROUTE.reports,
           element: <Reports />,
+        },
+        {
+          path: `${ADMIN_ROUTE.reports}/:id`,
+          element: <AdminReportDetail />,
         },
         {
           path: ADMIN_ROUTE.inquiries,
