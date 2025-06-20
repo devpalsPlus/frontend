@@ -99,7 +99,11 @@ export default function Profile() {
         <label>깃허브</label>
         <S.BackgroundWrapper>
           <span>
-            {userInfoData.github ||
+            {(userInfoData.github && (
+              <S.GithubLink to={userInfoData.github} target='_blank'>
+                {userInfoData.github}
+              </S.GithubLink>
+            )) ||
               (myPage
                 ? PROFILE_DEFAULT_MESSAGE.myGithub
                 : PROFILE_DEFAULT_MESSAGE.github)}
@@ -158,7 +162,11 @@ export default function Profile() {
           </S.ChartBox>
         </S.BackgroundBox>
       </S.List>
-      {myPage && <Link to={ROUTES.changePw}>비밀번호 재설정</Link>}
+      {myPage && (
+        <S.ChangePasswordLink as={Link} to={ROUTES.changePw}>
+          비밀번호 재설정
+        </S.ChangePasswordLink>
+      )}
     </S.ProfileSection>
   );
 }

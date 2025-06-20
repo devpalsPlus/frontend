@@ -47,6 +47,12 @@ const Profile = lazy(
 const ProfileEdit = lazy(
   () => import('../components/user/mypage/myProfile/editProfile/EditProfile')
 );
+const ProfileGithubSuccess = lazy(
+  () =>
+    import(
+      '../components/user/mypage/myProfile/editProfile/ProfileGithubSuccess'
+    )
+);
 const MyProjectVolunteer = lazy(
   () => import('../pages/user/manage/myProjectVolunteer/MyProjectVolunteer')
 );
@@ -109,6 +115,10 @@ export const AppRoutes = () => {
     {
       path: ROUTES.loginSuccess,
       element: <LoginApi />,
+    },
+    {
+      path: ROUTES.githubSuccess,
+      element: <ProfileGithubSuccess />,
     },
     {
       path: ROUTES.signup,
