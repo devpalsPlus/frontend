@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div<{ $isAdmin: boolean }>`
   display: flex;
   flex-direction: column;
   border: 2px solid #f0f0f0;
   border-radius: ${({ theme }) => theme.borderRadius.large};
   width: 22%;
-  min-width: 130px;
-  height: 80vh;
+  min-width: ${({ $isAdmin }) => ($isAdmin ? `200px` : `130px`)};
   margin-right: 1.25rem;
   padding-bottom: 1rem;
 `;
@@ -49,16 +48,22 @@ export const MenuList = styled.div`
 export const MenuItem = styled.div<{
   $isActive: boolean;
   $isHidden?: boolean;
+  $isAdmin?: boolean;
 }>`
   display: ${({ $isHidden }) => ($isHidden ? 'none' : 'flex')};
   align-items: center;
   padding: 0.625rem 1.25rem;
   margin: 0.5rem 0;
-  background-color: ${({ $isActive }) =>
-    $isActive ? '#f9f9f9' : 'transparent'};
+  background-color: ${({ theme, $isActive, $isAdmin }) =>
+    $isActive
+      ? $isAdmin
+        ? theme.color.white
+        : theme.color.lightgrey
+      : 'transparent'};
 
   &:hover {
-    background-color: #f9f9f9;
+    background-color: ${({ theme, $isAdmin }) =>
+      $isAdmin ? theme.color.white : theme.color.lightgrey};
   }
 
   svg {

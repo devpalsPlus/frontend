@@ -15,8 +15,8 @@ export interface CardItem {
 export const cardList: CardItem[] = [
   {
     key: 'allUsers',
-    title: '전체 회원 조회',
-    link: `${ADMIN_ROUTE.allUser}`,
+    title: '회원 조회',
+    link: `${ADMIN_ROUTE.users}`,
     Component: AllUserPreview,
   },
   {

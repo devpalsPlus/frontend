@@ -62,7 +62,13 @@ export interface AllUser extends AllUserPreview {
   position: PositionTag[];
 }
 
+export interface AllUserInfo extends AllUser {
+  email: string;
+  warning: number;
+  createdAt: string;
+}
+
 export interface AllUserList {
   users: AllUser[];
-  totalPages: number;
+  totalPage: number;
 }

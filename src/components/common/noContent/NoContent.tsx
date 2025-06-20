@@ -17,8 +17,8 @@ export default function NoContent({ type }: NoContentProps) {
     applicants: '지원자가',
     passNonPass: '합/불합격자 리스트가',
     notification: '알림이',
-    comment: '내 댓글이',
-    inquiries: '내 문의글이',
+    comment: '댓글이',
+    inquiries: '문의글이',
   };
 
   return (

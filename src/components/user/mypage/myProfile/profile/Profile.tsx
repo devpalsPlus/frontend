@@ -4,20 +4,25 @@ import { Link, useLocation, useOutletContext } from 'react-router-dom';
 import { Radar } from 'react-chartjs-2';
 import { useEffect } from 'react';
 import MyProfileWrapper from '../MyProfileWrapper';
-import type { UserInfo } from '../../../../../models/userInfo';
 import { PROFILE_DEFAULT_MESSAGE } from '../../../../../constants/user/myPageProfile';
 import { ROUTES } from '../../../../../constants/routes';
 import 'chart.js/auto';
 import { chartOptions } from '../../../../../constants/evaluationChartData';
+import { formatDate } from '../../../../../util/formatDate';
+import { UserInfoAll } from '../../../../../models/userInfo';
 
 export default function Profile() {
   const {
     userInfoData,
     scrollRef,
-  }: { userInfoData: UserInfo; scrollRef: React.RefObject<HTMLDivElement> } =
-    useOutletContext();
+  }: {
+    userInfoData: UserInfoAll;
+    scrollRef?: React.RefObject<HTMLDivElement>;
+  } = useOutletContext();
+
   const location = useLocation();
   const myPage = location.pathname.includes('mypage') ? true : false;
+  const admin = location.pathname.includes('admin') ? true : false;
 
   const chartData = {
     labels: ['책임감', '기획력', '협업능력', '성실도', '문제해결', '기술력'],
@@ -31,8 +36,10 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = 0;
+    if (scrollRef) {
+      if (scrollRef.current) {
+        scrollRef.current.scrollTop = 0;
+      }
     }
   }, [scrollRef]);
 
@@ -49,6 +56,31 @@ export default function Profile() {
           )}
         </S.NicknameBackgroundBox>
       </MyProfileWrapper>
+
+      {admin && (
+        <>
+          <MyProfileWrapper>
+            <label>이메일</label>
+            <S.NicknameBackgroundBox>
+              <S.NicknameSpan>{userInfoData.email}</S.NicknameSpan>
+            </S.NicknameBackgroundBox>
+          </MyProfileWrapper>
+          <MyProfileWrapper>
+            <label>경고 횟수</label>
+            <S.NicknameBackgroundBox>
+              <S.NicknameSpan>{userInfoData.warning}번</S.NicknameSpan>
+            </S.NicknameBackgroundBox>
+          </MyProfileWrapper>
+          <MyProfileWrapper>
+            <label>계정 생성 날짜</label>
+            <S.NicknameBackgroundBox>
+              <S.NicknameSpan>
+                {formatDate(userInfoData.createdAt)}
+              </S.NicknameSpan>
+            </S.NicknameBackgroundBox>
+          </MyProfileWrapper>
+        </>
+      )}
       <MyProfileWrapper>
         <label>스킬셋</label>
         <S.BackgroundBox>

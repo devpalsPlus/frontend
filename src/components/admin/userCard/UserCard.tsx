@@ -1,20 +1,35 @@
 import React from 'react';
 import * as S from './UserCard.styled';
 import Avatar from '../../common/avatar/Avatar';
-import { type AllUser } from '../../../models/auth';
+import type { AllUser } from '../../../models/auth';
 import { formatDate } from '../../../util/formatDate';
 
 interface UserCardProps {
   userData: AllUser;
+  onBan: (userId: number) => void;
 }
 
-const UserCard = ({ userData }: UserCardProps) => {
+const UserCard = ({ userData, onBan }: UserCardProps) => {
   return (
     <S.Container>
-      <S.ProfileHeader>
-        <Avatar image={userData.profileImg} size='46px' />
-        <S.NickName>{userData.nickname}</S.NickName>
-      </S.ProfileHeader>
+      <S.Wrapper>
+        <S.ProfileHeader>
+          <Avatar image={userData.profileImg} size='46px' />
+          <S.NickName>{userData.nickname}</S.NickName>
+        </S.ProfileHeader>
+        {/* {userData.userState !== '정지' &&  */}
+
+        <S.BanArea
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onBan(userData.id);
+          }}
+        >
+          <S.BanButton>퇴출</S.BanButton>
+        </S.BanArea>
+        {/* } */}
+      </S.Wrapper>
       <S.MainContentArea>
         <S.TextLabel>이메일</S.TextLabel>
         <S.TextContent>{userData.email}</S.TextContent>
