@@ -62,7 +62,18 @@ export default function EditProfile() {
   });
 
   const handleClickGithubValidation = () => {
-    window.location.href = `${BASE_URL}/${github}`;
+    if (!github || !BASE_URL) {
+      console.error('GitHub OAuth URL이 설정되지 않았습니다.');
+      return;
+    }
+    const oauthUrl = `${BASE_URL}/${github}`;
+    try {
+      new URL(oauthUrl);
+    } catch {
+      console.error('유효하지 않은 OAuth URL입니다.');
+      return;
+    }
+    window.location.href = oauthUrl;
   };
 
   const handleClickDeleteGithubValue = () => {

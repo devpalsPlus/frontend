@@ -1,4 +1,4 @@
-import * as S from './MyPropfileWrapper.styled';
+import * as S from './MyProfileWrapper.styled';
 
 interface MyProfileWrapperProps {
   children: React.ReactNode;
