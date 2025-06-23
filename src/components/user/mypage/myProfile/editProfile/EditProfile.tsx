@@ -7,7 +7,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import InputText from '../../../auth/InputText';
 import { z } from 'zod';
 import { SquaresPlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import MyProfileWrapper from '../MyProfileWrapper';
 import type { UserInfo } from '../../../../../models/userInfo';
 import { useSearchFilteringTags } from '../../../../../hooks/user/useSearchFilteringTags';
@@ -15,10 +15,7 @@ import { useEditMyProfileInfo } from '../../../../../hooks/user/useMyInfo';
 import useNickNameVerification from '../../../../../hooks/user/useNicknameVerification';
 import { ROUTES } from '../../../../../constants/routes';
 import Button from '../../../../common/Button/Button';
-import {
-  ERROR_MESSAGES,
-  OAUTH_PROVIDERS,
-} from '../../../../../constants/user/authConstants';
+import { ERROR_MESSAGES } from '../../../../../constants/user/authConstants';
 import githubIcon from '../../../../../assets/githubIcon.svg';
 
 type ProfileFormData = z.infer<typeof profileSchema>;
@@ -39,17 +36,14 @@ export default function EditProfile() {
   const { nicknameMessage, handleDuplicationNickname } =
     useNickNameVerification();
   const navigate = useNavigate();
+  const location = useLocation();
+  const githubUrl = location.state?.githubUrl;
   const BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
-  const github = {
-    ...OAUTH_PROVIDERS.filter((oauth) => oauth.name.includes('github'))[0],
-  };
-
-  const handleClickGithubValidation = () => {
-    window.location.href = `${BASE_URL}/${github.url}`;
-  };
+  const github = import.meta.env.VITE_APP_BASE_URL_GITHUB_LINK;
 
   const {
     control,
+    setValue,
     handleSubmit,
     reset,
     formState: { errors },
@@ -67,11 +61,43 @@ export default function EditProfile() {
     mode: 'onChange',
   });
 
+  const handleClickGithubValidation = () => {
+    if (!github || !BASE_URL) {
+      console.error('GitHub OAuth URL이 설정되지 않았습니다.');
+      return;
+    }
+    const oauthUrl = `${BASE_URL}/${github}`;
+    try {
+      new URL(oauthUrl);
+    } catch {
+      console.error('유효하지 않은 OAuth URL입니다.');
+      return;
+    }
+    window.location.href = oauthUrl;
+  };
+
+  const handleClickDeleteGithubValue = () => {
+    reset({
+      ...control._defaultValues,
+      github: '',
+    });
+    setValue('github', '', { shouldValidate: true, shouldDirty: true });
+  };
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = 0;
     }
   }, [scrollRef]);
+
+  useEffect(() => {
+    if (githubUrl) {
+      setValue('github', githubUrl, {
+        shouldValidate: true,
+        shouldDirty: true,
+      });
+    }
+  }, [githubUrl, setValue]);
 
   useEffect(() => {
     if (userInfoData) {
@@ -93,7 +119,7 @@ export default function EditProfile() {
         bio: userInfoData.bio || '',
         beginner: userInfoData.beginner,
         positionTagIds,
-        github: userInfoData.github || '',
+        github: userInfoData.github || githubUrl || '',
         skillTagIds,
         career: userInfoData.career?.length
           ? userInfoData.career.map((item) => ({
@@ -105,7 +131,7 @@ export default function EditProfile() {
           : [{ name: '', periodStart: '', periodEnd: '', role: '' }],
       });
     }
-  }, [userInfoData, skillTagsData, positionTagsData, reset]);
+  }, [userInfoData, skillTagsData, positionTagsData, reset, githubUrl]);
 
   const { fields, append, remove } = useFieldArray({ control, name: 'career' });
 
@@ -260,35 +286,55 @@ export default function EditProfile() {
       {/* 깃허브 */}
       <S.EditWrapper>
         <label>깃허브</label>
-        <Controller
-          name='github'
-          control={control}
-          render={({ field }) => (
-            <S.InputWrapper>
-              <S.InputTextGithub>
-                <InputText
-                  inputType='text'
-                  placeholder='깃허브 주소를 입력해주세요.'
-                  autoComplete='auto'
-                  {...field}
-                />
-              </S.InputTextGithub>
-              {errors.github && (
-                <S.ErrorMessage>{errors.github.message}</S.ErrorMessage>
-              )}
-              <Button
-                size='primary'
-                schema='primary'
-                radius='large'
-                type='button'
-                onClick={handleClickGithubValidation}
-              >
-                <S.GithubImg src={githubIcon} alt='깃허브 아이콘' />
-                인증
-              </Button>
-            </S.InputWrapper>
-          )}
-        />
+        <S.GithubContainer>
+          <Controller
+            name='github'
+            control={control}
+            render={({ field }) => (
+              <S.InputWrapper>
+                <S.InputTextGithub>
+                  <InputText
+                    inputType='text'
+                    placeholder='깃허브 주소를 인증하면 자동으로 가져옵니다.'
+                    autoComplete='auto'
+                    readOnly
+                    {...field}
+                  />
+                </S.InputTextGithub>
+                {!field.value ? (
+                  <Button
+                    size='primary'
+                    schema='primary'
+                    radius='large'
+                    type='button'
+                    onClick={handleClickGithubValidation}
+                  >
+                    <S.GithubDeleteIcon>
+                      <S.GithubImg src={githubIcon} alt='깃허브 아이콘' />
+                      <S.GithubSpan>인증</S.GithubSpan>
+                    </S.GithubDeleteIcon>
+                  </Button>
+                ) : (
+                  <Button
+                    size='primary'
+                    schema='primary'
+                    radius='large'
+                    type='button'
+                    onClick={handleClickDeleteGithubValue}
+                  >
+                    <S.GithubDeleteIcon>
+                      <XMarkIcon />
+                      <S.GithubSpan>삭제</S.GithubSpan>
+                    </S.GithubDeleteIcon>
+                  </Button>
+                )}
+                {errors.github && (
+                  <S.ErrorMessage>{errors.github.message}</S.ErrorMessage>
+                )}
+              </S.InputWrapper>
+            )}
+          />
+        </S.GithubContainer>
       </S.EditWrapper>
 
       {/* 경력 */}

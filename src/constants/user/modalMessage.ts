@@ -30,4 +30,6 @@ export const MODAL_MESSAGE = {
   duplicationTag: '이미 존재하는 태그입니다.',
   emptyTag: '태그명을 입력하세요.',
   emptySkillImg: '스킬 이미지를 추가하세요.',
+  githubProfileFail: '깃허브 프로필 등록에 실패했습니다. 다시 시도해주세요.',
+  githubProfileSuccess: '깃허브 프로필이 성공적으로 등록되었습니다!',
 } as const;

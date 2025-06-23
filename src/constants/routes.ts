@@ -29,6 +29,7 @@ export const ROUTES = {
   inquiry: '/inquiry',
   evaluation: '/evaluation',
   loginSuccess: '/oauth-redirect',
+  githubSuccess: '/oauth/github-success',
 } as const;
 
 export const ADMIN_ROUTE = {
@@ -50,8 +51,8 @@ export const ADMIN_ROUTE = {
   log: 'log',
   joinedProject: 'joined-project',
   createdProject: 'created-project',
-  appliedProject: 'apply-project',
+  appliedProject: 'applied-project',
   comments: 'comments',
   checkingApplicant: 'checked-applicants',
   applyingProject: 'applied-projects',
-};
+} as const;
