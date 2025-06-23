@@ -1,7 +1,6 @@
 import * as S from './AdminUser.styled';
 import AdminTitle from '../../../components/common/admin/title/AdminTitle';
 import { useGetAllUsers } from '../../../hooks/admin/useGetAllUsers';
-import LoadingSpinner from '../../../components/common/loadingSpinner/LoadingSpinner';
 import UserCard from '../../../components/admin/userCard/UserCard';
 import ScrollPreventor from '../../../components/common/modal/ScrollPreventor';
 import SearchBar from '../../../components/common/admin/searchBar/SearchBar';
@@ -10,6 +9,7 @@ import useSearchBar from '../../../hooks/admin/useSearchBar';
 import { ADMIN_MODAL_MESSAGE } from '../../../constants/admin/adminModal';
 import { Link } from 'react-router-dom';
 import { ADMIN_ROUTE } from '../../../constants/routes';
+import Spinner from '../../../components/user/mypage/Spinner';
 
 const AdminUser = () => {
   const { searchUnit, value, handleGetKeyword, handleChangePagination } =
@@ -17,12 +17,20 @@ const AdminUser = () => {
   const { allUserData, isLoading, isFetching } = useGetAllUsers(searchUnit);
 
   if (isLoading || isFetching) {
-    return <LoadingSpinner />;
+    return (
+      <S.Spinner>
+        <Spinner />
+      </S.Spinner>
+    );
   }
 
   if (!allUserData || allUserData.users.length === 0) {
     return <S.Container>{ADMIN_MODAL_MESSAGE.NO_RESULT}</S.Container>;
   }
+
+  const onBan = (userId: number) => {
+    // TODO : 버튼을 누르면 해당 유저 강퇴 조치 API 전송.
+  };
 
   return (
     <>
@@ -32,7 +40,7 @@ const AdminUser = () => {
           <S.SearchBar>
             <SearchBar
               onGetKeyword={handleGetKeyword}
-              isNotice={false}
+              canWrite={false}
               value={value}
             />
           </S.SearchBar>
@@ -43,13 +51,12 @@ const AdminUser = () => {
                 <Link
                   key={userData.id}
                   to={`${userData.id}/${ADMIN_ROUTE.basic}`}
-                  state={{
-                    email: userData.email,
-                    warning: userData.warning,
-                    createdAt: userData.createdAt,
-                  }}
                 >
-                  <UserCard key={userData.id} userData={userData} />
+                  <UserCard
+                    key={userData.id}
+                    userData={userData}
+                    onBan={onBan}
+                  />
                 </Link>
               ))}
             </S.UserContainer>

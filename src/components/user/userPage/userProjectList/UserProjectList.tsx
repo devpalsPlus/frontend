@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import * as S from '../../mypage/joinedProject/MyJoinProjects.styled';
 import { ROUTES } from '../../../../constants/routes';
 import NoContent from '../../../common/noContent/NoContent';
@@ -8,6 +8,8 @@ import Project from '../../mypage/joinedProject/Project';
 import { useGetUserProjectList } from '../../../../hooks/user/useGetUserProjectList';
 
 export default function UserProjects() {
+  const { pathname } = useLocation();
+  const isAdmin = pathname.includes('/admin');
   const { userProjectData, isLoading, title } = useGetUserProjectList();
 
   if (isLoading) {
@@ -26,6 +28,8 @@ export default function UserProjects() {
               <Link
                 key={project.id}
                 to={`${ROUTES.projectDetail}/${project.id}`}
+                target={isAdmin ? '_blank' : undefined}
+                rel={isAdmin ? 'noopener noreferrer' : undefined}
               >
                 <Project project={project} />
               </Link>

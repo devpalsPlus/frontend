@@ -129,8 +129,10 @@ export const LabelBox = styled.div`
 `;
 
 export const ChartBox = styled.div`
-  width: 250px;
-  height: 250px;
+  width: 100%;
+  max-width: 250px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
 `;
 
 export const ExplainBox = styled.div`

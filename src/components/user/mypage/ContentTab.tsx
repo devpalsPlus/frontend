@@ -20,6 +20,7 @@ interface ContentProps {
 export default function ContentTab({ filter, $justifyContent }: ContentProps) {
   const { pathname } = useLocation();
   const [filterId, setFilterId] = useState<number>();
+  const isAdmin = pathname.includes('/admin');
 
   function handleChangeId(id: number) {
     setFilterId(id);
@@ -59,7 +60,7 @@ export default function ContentTab({ filter, $justifyContent }: ContentProps) {
       {pathname.includes('inquiries') ? (
         <>
           <S.WrapperButton $height='10%'>
-            <MovedInquiredLink />
+            {!isAdmin && <MovedInquiredLink />}
           </S.WrapperButton>
           <ScrollWrapper $height='10%'>
             <S.FilterContainer>

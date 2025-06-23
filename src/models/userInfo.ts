@@ -16,11 +16,18 @@ export interface UserInfo {
   profileImg?: string;
   beginner: boolean;
   github?: string;
+  warning: number;
   career?: Career[];
   positions: Omit<PositionTag, 'createdAt'>[];
   skills: Omit<SkillTag, 'createdAt'>[];
   createdAt?: string;
   averageScores: number[];
+}
+
+export interface UserInfoAll extends UserInfo {
+  email: string;
+  warning: number;
+  createdAt: string;
 }
 
 export interface ApiUserInfo extends ApiCommonType {

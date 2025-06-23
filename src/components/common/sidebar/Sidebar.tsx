@@ -24,15 +24,20 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
   const location = useLocation();
   const isUserPage = location.pathname.includes('/user');
   const isManagePage = location.pathname.includes('/manage');
+  const isAdmin = location.pathname.includes('/admin');
 
   const isMyProfile = isLoggedIn && !isUserPage && !isManagePage;
   const getActiveIndex = useCallback(() => {
     const currentPath = location.pathname;
-    return menuItems.findIndex((item) => currentPath === item.path) ?? 0;
+    return (
+      menuItems.findIndex((item) => {
+        return currentPath === item.path;
+      }) ?? 0
+    );
   }, [location.pathname, menuItems]);
 
   return (
-    <S.Container>
+    <S.Container $isAdmin={isAdmin}>
       <S.AvatarContainer>
         <S.AvatarWrapper>
           {profileImage === MainLogo ? (
@@ -53,6 +58,7 @@ const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
               <S.MenuItem
                 $isActive={getActiveIndex() === index}
                 $isHidden={index === 2 && isDone}
+                $isAdmin={isAdmin}
               >
                 {icon && <S.IconWrapper>{icon}</S.IconWrapper>}
                 {icon && <S.Label>{label}</S.Label>}

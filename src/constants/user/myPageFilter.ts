@@ -26,3 +26,8 @@ export const ACTIVITY_FILTER = [
   { title: '내 댓글', url: ROUTES.comments, id: 0 },
   { title: '내 문의글', url: ROUTES.activityInquiries, id: 1 },
 ] as const;
+
+export const ACTIVITY_FILTER_ADMIN = [
+  { title: '댓글', url: ROUTES.comments, id: 0 },
+  { title: '문의글', url: ROUTES.activityInquiries, id: 1 },
+] as const;
