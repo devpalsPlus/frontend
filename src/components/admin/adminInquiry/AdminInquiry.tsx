@@ -8,12 +8,26 @@ interface AdminInquiryProps {
 }
 
 export default function AdminInquiry({ list }: AdminInquiryProps) {
+  const handleClickLookupUser = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const userId = e.currentTarget.dataset.id;
+
+    console.log(userId);
+  };
+
   return (
     <S.AdminInquiryContainer to={`${ADMIN_ROUTE.detail}/${list.id}`}>
       <S.AdminInquiryWrapper>
         <S.AdminInquiryCategory>[{list.category}]</S.AdminInquiryCategory>
         <S.AdminInquiryTitle>{list.title}</S.AdminInquiryTitle>
-        <S.AdminInquiryUser>{list.user.nickname}</S.AdminInquiryUser>
+        <S.AdminInquiryUser
+          data-id={list.user.id}
+          onClick={handleClickLookupUser}
+        >
+          {list.user.nickname}
+        </S.AdminInquiryUser>
         <S.AdminInquiryDate>{list.createdAt}</S.AdminInquiryDate>
         <S.AdminInquiryState $hasAnswer={list.state}>
           {list.state ? '답변완료' : '확인중'}

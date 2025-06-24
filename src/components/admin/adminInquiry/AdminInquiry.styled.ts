@@ -19,7 +19,14 @@ export const AdminInquiryCategory = styled.span`
   font-weight: 500;
 `;
 
-export const AdminInquiryUser = styled.div``;
+export const AdminInquiryUser = styled.button`
+  width: fit-content;
+  font-size: 1.1rem;
+  z-index: 1;
+  &:hover {
+    color: ${({ theme }) => theme.color.navy};
+  }
+`;
 
 export const AdminInquiryDate = styled.span`
   font-size: 0.9rem;
