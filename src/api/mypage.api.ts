@@ -1,3 +1,4 @@
+import { ApiCommonBasicType } from '../models/apiCommon';
 import type {
   ApiUserInfo,
   ApiUserInfoImg,
@@ -49,6 +50,17 @@ export const patchMyProfileImg = async (file: File) => {
     return response.data.data;
   } catch (error) {
     console.error('프로필 이미지 업데이트: ', error);
+    throw error;
+  }
+};
+
+export const patchGithubLink = async (githubUrl: string) => {
+  try {
+    await httpClient.patch<ApiCommonBasicType>('/user/github', {
+      params: { githubUrl },
+    });
+  } catch (error) {
+    console.error('프로필 깃허브 업데이트: ', error);
     throw error;
   }
 };

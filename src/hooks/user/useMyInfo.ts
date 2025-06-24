@@ -8,6 +8,7 @@ import {
   getMyAppliedStatusList,
   getMyInfo,
   getMyJoinedProjectList,
+  patchGithubLink,
   patchMyProfileImg,
   putMyInfo,
 } from '../../api/mypage.api';
@@ -86,6 +87,24 @@ export const useUploadProfileImg = (
   };
 
   return { uploadProfileImg };
+};
+
+export const useGithubLink = () => {
+  const queryClient = useQueryClient();
+  const isLoggedIn = useAuthStore.getState().isLoggedIn;
+
+  const { mutate: patchGithubLinkMutate } = useMutation<
+    void,
+    AxiosError,
+    string
+  >({
+    mutationFn: (githubUrl: string) => patchGithubLink(githubUrl),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: myInfoKey.myProfile });
+    },
+  });
+
+  return { patchGithubLinkMutate, isLoggedIn };
 };
 
 export const useMyJoinedProjectList = () => {
