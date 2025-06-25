@@ -1,1 +1,1 @@
-export type TabKey = 'basic' | 'log' | 'inquiry' | 'projects';
+export type TabKey = 'profile' | 'log' | 'projects';

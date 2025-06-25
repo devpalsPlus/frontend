@@ -1,22 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import { useLocation } from 'react-router-dom';
 import { ActivityLog, UserData } from '../queries/keys';
 import { getUserActivityData } from '../../api/admin/userActivity.api';
 import { getMyComments, getMyInquiries } from '../../api/activityLog.api';
 import useAuthStore from '../../store/authStore';
 import { MyComments, MyInquiries } from '../../models/activityLog';
-import {
-  UserComment,
-  UserInquiry,
-} from '../../models/admin/userDetail/userActivity';
 
 export function useGetUserActivity(
   userId: number,
   type: 'comments' | 'inquiries'
 ) {
   const userLoginId = useAuthStore.getState().userData?.id;
-  const { pathname } = useLocation();
-  const isAdmin = pathname.includes('/admin');
+  const isAdmin = useAuthStore((state) => state.userData?.admin) ?? false;
 
   const getQueryKey = () => {
     if (isAdmin) return [UserData.userActivity, userId, type];
@@ -40,7 +34,7 @@ export function useGetUserActivity(
   };
 
   const { data, isLoading, isFetching } = useQuery<
-    MyComments[] | MyInquiries[] | UserComment[] | UserInquiry[]
+    MyComments[] | MyInquiries[]
   >({
     queryKey: getQueryKey(),
     queryFn: getQueryFn,

@@ -6,7 +6,6 @@ import Spinner from '../../Spinner';
 import * as S from './Inquiries.styled';
 import Inquiry from './inquiry/Inquiry';
 import { MyInquiries } from '../../../../../models/activityLog';
-import { UserInquiry } from '../../../../../models/admin/userDetail/userActivity';
 
 export default function Inquiries() {
   const { userId } = useParams();
@@ -30,7 +29,7 @@ export default function Inquiries() {
       </S.WrapperNoContentAppliedProjects>
     );
 
-  const myInquiriesData = userActivityData as MyInquiries[] | UserInquiry[];
+  const myInquiriesData = userActivityData as MyInquiries[];
 
   return (
     <S.container>

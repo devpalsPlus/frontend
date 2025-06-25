@@ -39,7 +39,7 @@ const AdminUserDetail = () => {
     icon: React.ReactNode;
   }[] = [
     {
-      key: 'basic',
+      key: 'profile',
       label: '기본 정보',
       path: `/admin/users/${userId}`,
       icon: <InformationCircleIcon width='17px' height='17px' />,

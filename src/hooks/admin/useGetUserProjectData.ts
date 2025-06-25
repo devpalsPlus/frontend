@@ -17,7 +17,7 @@ const useGetUserProjectData = (userId: number) => {
     queryFn: () =>
       isAdmin ? getUserProjectData(userId) : getMyAppliedStatusList(),
     staleTime: 1 * 60 * 1000,
-    enabled: isLoggedIn || !!userId,
+    enabled: isAdmin ? !!userId : isLoggedIn,
   });
 
   return { userData: data, isLoading, isFetching };

@@ -11,7 +11,7 @@ export interface Applicant {
   phoneNumber: string;
   career: Career[];
   status: 'WAITING' | 'ACCEPTED' | 'REJECTED';
-  createAt: string;
+  createdAt: string;
   updatedAt: string;
   user: User;
 }

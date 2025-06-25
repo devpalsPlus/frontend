@@ -1,17 +1,5 @@
-import { ApiCommonType, User } from '../../apiCommon';
-
-export interface UserInquiry {
-  id: number;
-  title: string;
-  content: string;
-  category: string;
-  state: boolean;
-  answer?: string;
-  imageUrls: string[];
-  createdAt: string;
-  updatedAt: string;
-  user: User;
-}
+import { MyInquiries } from '../../activityLog';
+import { ApiCommonType } from '../../apiCommon';
 
 export interface UserComment {
   id: number;
@@ -22,7 +10,7 @@ export interface UserComment {
 }
 
 export interface UserActivityData {
-  inquiries: UserInquiry[];
+  inquiries: MyInquiries[];
   comments: UserComment[];
 }
 
