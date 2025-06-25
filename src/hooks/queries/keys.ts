@@ -47,23 +47,23 @@ export const ProjectMemberListEval = {
 export const ActivityLog = {
   myComments: ['MyComments'],
   myInquiries: ['MyInquiries'],
-};
+} as const;
 
 export const Inquiries = {
   allInquiries: ['AllInquiries'],
-};
+} as const;
 
 export const CustomerService = {
   faq: 'faq',
   notice: 'notice',
   noticeDetail: 'noticeDetail',
   inquiryDetail: 'inquiryDetail',
-};
+} as const;
 
 export const ReportData = {
   allReports: ['AllReports'],
   allReportsPreview: ['AllReportsPreview'],
-};
+} as const;
 
 export const UserData = {
   allUser: ['AllUser'],
@@ -71,4 +71,10 @@ export const UserData = {
   userInfo: ['userInfo'],
   userJoinedProjectList: ['userJoinedProjectList'],
   userActivity: ['userActivity'],
-};
+} as const;
+
+export const Tag = {
+  skillTag: ['skillTagsData'],
+  positionTag: ['positionsData'],
+  method: ['fetchMethodTag'],
+} as const;

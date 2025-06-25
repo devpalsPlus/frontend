@@ -43,6 +43,10 @@ export const InputBeginner = styled.input`
   accent-color: ${({ theme }) => theme.color.navy};
 `;
 
+export const GithubContainer = styled.div`
+  width: 85%;
+`;
+
 export const InputTextGithub = styled.div`
   width: 70%;
 `;
@@ -51,6 +55,22 @@ export const GithubImg = styled.img`
   width: 1.5rem;
   margin-right: 0.3rem;
   filter: invert(1);
+`;
+
+export const GithubDeleteIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+`;
+
+export const GithubSpan = styled.span`
+  width: auto;
 `;
 
 export const InputTextCareer = styled.div`

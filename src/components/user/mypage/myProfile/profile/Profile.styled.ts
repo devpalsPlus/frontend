@@ -1,20 +1,11 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { SendButton } from '../../../customerService/inquiry/Inquiry.styled';
 
 export const ProfileSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-
-  a {
-    width: fit-content;
-    display: inline-block;
-    padding: 0.5rem 0.7rem;
-    border-radius: ${({ theme }) => theme.borderRadius.large};
-    background-color: #3e5879;
-    color: ${({ theme }) => theme.color.white};
-    font-size: 0.8rem;
-    margin-top: 1rem;
-  }
 `;
 
 export const BackgroundWrapper = styled.div`
@@ -125,6 +116,12 @@ export const List = styled.div`
   }
 `;
 
+export const GithubLink = styled(Link)`
+  &:hover {
+    color: ${({ theme }) => theme.color.lightnavy};
+  }
+`;
+
 export const LabelBox = styled.div`
   display: flex;
   overflow: visible;
@@ -173,4 +170,12 @@ export const Explain = styled.p`
   font-size: 0.75rem;
   cursor: pointer;
   user-select: none;
+`;
+
+export const ChangePasswordLink = styled(SendButton)`
+  width: fit-content;
+  padding: 0.5rem 0.7rem;
+  background-color: #3e5879;
+  font-size: 0.8rem;
+  margin-top: 1rem;
 `;

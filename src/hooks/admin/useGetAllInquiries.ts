@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Inquiries } from '../queries/keys';
-import { getAllInquiries } from '../../api/admin/customerService/Inquiry.api';
+import { getAllInquiries } from '../../api/admin/customerService/inquiry.api';
 
 export const useGetAllInquiries = () => {
   const {
@@ -10,7 +10,6 @@ export const useGetAllInquiries = () => {
   } = useQuery({
     queryKey: [Inquiries.allInquiries],
     queryFn: () => getAllInquiries(),
-    select: (allInquiries) => allInquiries.slice(0, 5),
   });
 
   return { allInquiriesData, isLoading, isFetching };

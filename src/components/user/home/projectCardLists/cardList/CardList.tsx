@@ -28,7 +28,6 @@ export default function CardList({ list }: CardListProps) {
               <PositionButton
                 position={tag.name}
                 key={`cardListPosition-${tag.id}`}
-                fontSize
               />
             ))}
           {list.positions.length > listPositionTag.length && (

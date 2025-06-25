@@ -3,14 +3,14 @@ import * as S from './FilteringContents.styled';
 import beginner from '../../../../../assets/beginner.svg';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import React, { useState } from 'react';
-import { useSearchFilteringSkillTag } from '../../../../../hooks/user/useSearchFilteringSkillTag';
+import { useSearchFilteringTags } from '../../../../../hooks/user/useSearchFilteringTags';
 import { useOutsideClick } from '../../../../../hooks/user/useOutsideClick';
 import { useSaveSearchFiltering } from '../../../../../hooks/user/useSaveSearchFiltering';
 import { SEARCH_FILTERING_DEFAULT_VALUE } from '../../../../../constants/user/homeConstants';
 import SkillTagBox from '../../../../common/skillTagBox/SkillTagBox';
 
 export default function FilteringContents() {
-  const { positionTagsData, methodTagsData } = useSearchFilteringSkillTag();
+  const { positionTagsData, methodTagsData } = useSearchFilteringTags();
   const { searchFilters, handleUpdateFilters } = useSaveSearchFiltering();
   const [skillTagButtonToggle, setSkillTagButtonToggle] = useState(false);
 
@@ -18,7 +18,7 @@ export default function FilteringContents() {
     setSkillTagButtonToggle((prev) => !prev);
   };
 
-  const handleSkillTagFilterClick = (e: React.MouseEvent<HTMLElement>) => {
+  const handleSkillTagFilterClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     const target = e.target as HTMLElement;
 
