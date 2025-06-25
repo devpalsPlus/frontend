@@ -69,4 +69,6 @@ export const UserData = {
   allUser: ['AllUser'],
   allUserPreview: ['AllUserPreview'],
   userInfo: ['userInfo'],
+  userJoinedProjectList: ['userJoinedProjectList'],
+  userActivity: ['userActivity'],
 };

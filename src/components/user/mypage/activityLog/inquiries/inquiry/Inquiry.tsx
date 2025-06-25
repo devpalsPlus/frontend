@@ -4,9 +4,10 @@ import * as S from './Inquiry.styled';
 import { My_INQUIRIES_MESSAGE } from '../../../../../../constants/user/customerService';
 import ContentBorder from '../../../../../common/contentBorder/ContentBorder';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
+import { UserInquiry } from '../../../../../../models/admin/userDetail/userActivity';
 
 interface InquiryProps {
-  list: MyInquiries;
+  list: MyInquiries | UserInquiry;
   no: number;
 }
 

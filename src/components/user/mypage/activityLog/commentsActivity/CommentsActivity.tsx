@@ -3,10 +3,18 @@ import Spinner from '../../Spinner';
 import CommentActivity from './commentActivity/CommentActivity';
 import * as S from './CommentsActivity.styled';
 import NoContent from '../../../../common/noContent/NoContent';
-import { useGetMyComments } from '../../../../../hooks/user/useGetMyComments';
+import useGetUserActivity from '../../../../../hooks/admin/useGetAllUserActivity';
+import { useParams } from 'react-router-dom';
+import { MyComments } from '../../../../../models/activityLog';
+import { UserComment } from '../../../../../models/admin/userDetail/userActivity';
 
 export default function CommentsActivity() {
-  const { myCommentsData, isLoading } = useGetMyComments();
+  const { userId } = useParams();
+
+  const { userActivityData, isLoading } = useGetUserActivity(
+    Number(userId),
+    'comments'
+  );
 
   if (isLoading) {
     return (
@@ -16,7 +24,11 @@ export default function CommentsActivity() {
     );
   }
 
-  if (!myCommentsData || myCommentsData.length === 0) {
+  if (
+    !userActivityData ||
+    !Array.isArray(userActivityData) ||
+    userActivityData.length === 0
+  ) {
     return (
       <S.WrapperNoContentAppliedProjects data-type='noContent'>
         <NoContent type='comment' />
@@ -24,13 +36,15 @@ export default function CommentsActivity() {
     );
   }
 
+  const commentsData = userActivityData as MyComments[] | UserComment[];
+
   return (
     <S.Container>
       <S.CommentsWrapper>
-        {myCommentsData.map((list, idx: number) => (
+        {commentsData.map((list: MyComments | UserComment, idx: number) => (
           <Fragment key={list.id}>
             <CommentActivity list={list} />
-            {idx !== myCommentsData.length - 1 && (
+            {idx !== commentsData.length - 1 && (
               <S.CommentBorder></S.CommentBorder>
             )}
           </Fragment>

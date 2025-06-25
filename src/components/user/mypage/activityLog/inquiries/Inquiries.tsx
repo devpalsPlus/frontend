@@ -1,12 +1,19 @@
-import { useGetMyInquiries } from '../../../../../hooks/user/useGetMyInquiries';
+import { useParams } from 'react-router-dom';
+import useGetUserActivity from '../../../../../hooks/admin/useGetAllUserActivity';
 import ContentBorder from '../../../../common/contentBorder/ContentBorder';
 import NoContent from '../../../../common/noContent/NoContent';
 import Spinner from '../../Spinner';
 import * as S from './Inquiries.styled';
 import Inquiry from './inquiry/Inquiry';
+import { MyInquiries } from '../../../../../models/activityLog';
+import { UserInquiry } from '../../../../../models/admin/userDetail/userActivity';
 
 export default function Inquiries() {
-  const { myInquiriesData, isLoading } = useGetMyInquiries();
+  const { userId } = useParams();
+  const { userActivityData, isLoading } = useGetUserActivity(
+    Number(userId),
+    'inquiries'
+  );
 
   if (isLoading) {
     return (
@@ -16,12 +23,14 @@ export default function Inquiries() {
     );
   }
 
-  if (!myInquiriesData || myInquiriesData?.length === 0)
+  if (!userActivityData || userActivityData?.length === 0)
     return (
       <S.WrapperNoContentAppliedProjects data-type='noContent'>
         <NoContent type='inquiries' />
       </S.WrapperNoContentAppliedProjects>
     );
+
+  const myInquiriesData = userActivityData as MyInquiries[] | UserInquiry[];
 
   return (
     <S.container>

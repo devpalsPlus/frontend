@@ -5,6 +5,7 @@ import ProtectAdminRoute from './ProtectAdminRoute';
 import Profile from '../components/user/mypage/myProfile/profile/Profile';
 import { Navigate } from 'react-router-dom';
 import { Spinner } from '../components/common/loadingSpinner/LoadingSpinner.styled';
+import AdminUserProjectsLayout from '../pages/admin/adminUser/AdminUserProjectsLayout';
 
 const AdminUserDetail = lazy(
   () => import('../components/admin/adminUserDetail/AdminUserDetail')
@@ -157,10 +158,6 @@ export const AdminRoutes = () => {
           children: [
             {
               index: true,
-              element: <Navigate to={ADMIN_ROUTE.basic} replace />,
-            },
-            {
-              path: `${ADMIN_ROUTE.basic}`,
               element: <Profile />,
             },
             {
@@ -182,34 +179,26 @@ export const AdminRoutes = () => {
               ],
             },
             {
-              path: `${ADMIN_ROUTE.appliedProject}`,
-              element: <Notifications />,
+              path: `${ADMIN_ROUTE.projects}`,
+              element: <AdminUserProjectsLayout />,
               children: [
                 {
                   index: true,
-                  element: <NotificationsAll />,
+                  element: <Navigate to={ADMIN_ROUTE.appliedProject} replace />,
                 },
                 {
-                  path: `${ADMIN_ROUTE.checkingApplicant}`,
-                  element: <NotificationsAll />,
-                },
-                {
-                  path: `${ADMIN_ROUTE.comments}`,
-                  element: <NotificationsAll />,
-                },
-                {
-                  path: `${ADMIN_ROUTE.applyingProject}`,
+                  path: `${ADMIN_ROUTE.appliedProject}`,
                   element: <NotificationsAppliedProjects />,
                 },
+                {
+                  path: `${ADMIN_ROUTE.joinedProject}`,
+                  element: <UserProjects />,
+                },
+                {
+                  path: `${ADMIN_ROUTE.createdProject}`,
+                  element: <UserProjects />,
+                },
               ],
-            },
-            {
-              path: `${ADMIN_ROUTE.joinedProject}`,
-              element: <UserProjects />,
-            },
-            {
-              path: `${ADMIN_ROUTE.createdProject}`,
-              element: <UserProjects />,
             },
           ],
         },

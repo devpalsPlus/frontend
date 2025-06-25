@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as S from './ContentTab.styled';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { ROUTES } from '../../../constants/routes';
 import ScrollWrapper from './ScrollWrapper';
 import MovedInquiredLink from '../customerService/MoveInquiredLink';
 
@@ -22,25 +21,20 @@ export default function ContentTab({ filter, $justifyContent }: ContentProps) {
   const [filterId, setFilterId] = useState<number>();
   const isAdmin = pathname.includes('/admin');
 
+  useEffect(() => {
+    const currentFilter = filter.find((item) =>
+      pathname.includes(item.url.split('/').pop() || '')
+    );
+    if (currentFilter && currentFilter.id !== undefined) {
+      setFilterId(currentFilter.id);
+    } else {
+      setFilterId(filter[0]?.id || 0);
+    }
+  }, [pathname, filter]);
+
   function handleChangeId(id: number) {
     setFilterId(id);
   }
-  useEffect(() => {
-    if (
-      pathname.includes(ROUTES.notificationsAppliedProjects) ||
-      pathname.includes(ROUTES.activityInquiries)
-    ) {
-      return setFilterId(1);
-    } else if (pathname.includes(ROUTES.notificationsCheckedApplicants)) {
-      return setFilterId(2);
-    } else if (
-      pathname.includes(`${ROUTES.myPageNotifications}/${ROUTES.comments}`)
-    ) {
-      return setFilterId(3);
-    } else {
-      return setFilterId(0);
-    }
-  }, [setFilterId, pathname]);
 
   return (
     <S.Container>
@@ -64,7 +58,7 @@ export default function ContentTab({ filter, $justifyContent }: ContentProps) {
           </S.WrapperButton>
           <ScrollWrapper $height='10%'>
             <S.FilterContainer>
-              <Outlet />
+              <Outlet context={{ filterId }} />
             </S.FilterContainer>
           </ScrollWrapper>
         </>
