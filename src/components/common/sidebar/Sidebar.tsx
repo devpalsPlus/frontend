@@ -22,9 +22,9 @@ interface SidebarProps {
 const Sidebar = ({ menuItems, profileImage, nickname }: SidebarProps) => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const location = useLocation();
+  const isAdmin = useAuthStore().userData?.admin;
   const isUserPage = location.pathname.includes('/user');
   const isManagePage = location.pathname.includes('/manage');
-  const isAdmin = location.pathname.includes('/admin');
 
   const isMyProfile = isLoggedIn && !isUserPage && !isManagePage;
   const getActiveIndex = useCallback(() => {

@@ -3,6 +3,7 @@ import * as S from './ContentTab.styled';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import ScrollWrapper from './ScrollWrapper';
 import MovedInquiredLink from '../customerService/MoveInquiredLink';
+import useAuthStore from '../../../store/authStore';
 
 interface Filter {
   title: string;
@@ -18,8 +19,8 @@ interface ContentProps {
 
 export default function ContentTab({ filter, $justifyContent }: ContentProps) {
   const { pathname } = useLocation();
+  const isAdmin = useAuthStore().userData?.admin;
   const [filterId, setFilterId] = useState<number>();
-  const isAdmin = pathname.includes('/admin');
 
   useEffect(() => {
     const currentFilter = filter.find((item) =>
