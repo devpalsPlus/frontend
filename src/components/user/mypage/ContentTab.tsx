@@ -4,6 +4,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import ScrollWrapper from './ScrollWrapper';
 import MovedInquiredLink from '../customerService/MoveInquiredLink';
 import useAuthStore from '../../../store/authStore';
+import { ADMIN_ROUTE, ROUTES } from '../../../constants/routes';
 
 interface Filter {
   title: string;
@@ -23,15 +24,26 @@ export default function ContentTab({ filter, $justifyContent }: ContentProps) {
   const [filterId, setFilterId] = useState<number>();
 
   useEffect(() => {
-    const currentFilter = filter.find((item) =>
-      pathname.includes(item.url.split('/').pop() || '')
-    );
-    if (currentFilter && currentFilter.id !== undefined) {
-      setFilterId(currentFilter.id);
+    if (
+      pathname.includes(ROUTES.notificationsAppliedProjects) ||
+      pathname.includes(ROUTES.activityInquiries) ||
+      pathname.includes(ADMIN_ROUTE.appliedProject)
+    ) {
+      return setFilterId(1);
+    } else if (
+      pathname.includes(ROUTES.notificationsCheckedApplicants) ||
+      pathname.includes(ADMIN_ROUTE.joinedProject)
+    ) {
+      return setFilterId(2);
+    } else if (
+      pathname.includes(`${ROUTES.myPageNotifications}/${ROUTES.comments}`) ||
+      pathname.includes(ADMIN_ROUTE.createdProject)
+    ) {
+      return setFilterId(3);
     } else {
-      setFilterId(filter[0]?.id || 0);
+      return setFilterId(0);
     }
-  }, [pathname, filter]);
+  }, [setFilterId, pathname]);
 
   function handleChangeId(id: number) {
     setFilterId(id);
@@ -46,6 +58,7 @@ export default function ContentTab({ filter, $justifyContent }: ContentProps) {
             to={filter.url}
             onClick={() => handleChangeId(filter.id as number)}
           >
+            {' '}
             <S.WrapperTitle $selected={filter?.id === filterId}>
               <S.FilterTitle>{filter.title}</S.FilterTitle>
             </S.WrapperTitle>
