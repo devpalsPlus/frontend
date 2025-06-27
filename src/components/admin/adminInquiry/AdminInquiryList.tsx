@@ -4,39 +4,19 @@ import Spinner from '../../user/mypage/Spinner';
 import AdminInquiry from './AdminInquiry';
 import * as S from './AdminInquiryList.styled';
 import AdminInquiryListLookup from './AdminInquiryListLookup';
-import { useEffect, useState } from 'react';
+import type { AdminInquiryChangeSearchParams } from '../../../models/inquiry';
 
-export type SearchParamsType = {
-  userId?: string;
-  startDate?: string;
-  endDate?: string;
-};
-
+export type SearchParamsInquiryKeyType = keyof AdminInquiryChangeSearchParams;
 export default function AdminInquiryList() {
-  const [childSearchParams, setChildSearchParams] = useState<SearchParamsType>({
-    userId: '',
-    startDate: '',
-    endDate: '',
-  });
   const [searchParams, setSearchParams] = useSearchParams();
-  const { allInquiriesData, isLoading } = useGetAllInquiries();
-
-  const handleSearchParamsChange = (newParams: SearchParamsType) => {
-    setChildSearchParams((prevParams) => ({
-      ...prevParams,
-      ...newParams,
-    }));
-  };
-
-  useEffect(() => {
-    const newParams = new URLSearchParams();
-
-    Object.entries(childSearchParams).forEach(([key, value]) => {
-      return value ? newParams.set(key, value) : newParams.delete(key);
-    });
-
-    setSearchParams(newParams);
-  }, [childSearchParams, searchParams, setSearchParams]);
+  const userId = searchParams.get('userId') || '';
+  const startDate = searchParams.get('startDate') || '';
+  const endDate = searchParams.get('endDate') || '';
+  const { allInquiriesData, isLoading } = useGetAllInquiries({
+    userId,
+    startDate,
+    endDate,
+  });
 
   if (isLoading) {
     return (
@@ -50,7 +30,7 @@ export default function AdminInquiryList() {
 
   return (
     <S.AdminInquiryListContainer>
-      <AdminInquiryListLookup onSearchParamsChange={handleSearchParamsChange} />
+      <AdminInquiryListLookup />
       <S.AdminInquiryListWrapper>
         {allInquiriesData.map((list) => (
           <AdminInquiry key={list.id} list={list} />

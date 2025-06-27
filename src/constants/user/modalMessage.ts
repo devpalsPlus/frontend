@@ -32,4 +32,6 @@ export const MODAL_MESSAGE = {
   emptySkillImg: '스킬 이미지를 추가하세요.',
   githubProfileFail: '깃허브 프로필 등록에 실패했습니다. 다시 시도해주세요.',
   githubProfileSuccess: '깃허브 프로필이 성공적으로 등록되었습니다!',
+  startDateInvalid: '시작일은 종료일 이전으로 설정해주세요.',
+  endDateInvalid: '종료일은 시작일 이후로 설정해주세요.',
 } as const;
