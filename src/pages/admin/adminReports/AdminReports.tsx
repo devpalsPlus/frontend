@@ -60,7 +60,10 @@ export default function AdminReports() {
           {allReportsData?.data.map((data) => (
             <S.Item key={data.reportId} to={`${data.reportId}`}>
               <S.ProfileImg>
-                <Avatar image={data.profileImg} size='50px' />
+                <Avatar
+                  image={data.profileImg ? data.profileImg : defaultImg}
+                  size='50px'
+                />
                 <S.NickName>{data.nickname}</S.NickName>
               </S.ProfileImg>
               <S.ContentArea>
