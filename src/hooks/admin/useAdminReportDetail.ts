@@ -8,7 +8,7 @@ export const useGetReportDetail = (reportId: number) => {
     isLoading,
     isFetching,
   } = useQuery({
-    queryKey: [ReportData.reportDetail],
+    queryKey: [ReportData.reportDetail, reportId],
     queryFn: () => getReportDetail(reportId),
   });
 

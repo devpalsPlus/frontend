@@ -6,4 +6,5 @@ export const ADMIN_MODAL_MESSAGE = {
   writeError: '알수없는 에러가 발생했습니다.',
   NO_RESULT: '결과가 존재하지 않습니다.',
   banSuccess: '성공적으로 강퇴 했습니다.',
+  warningSuccess: '성공적으로 경고 했습니다.',
 };

@@ -4,12 +4,14 @@ import { ADMIN_MODAL_MESSAGE } from '../../constants/admin/adminModal';
 import { ReportData, UserData } from '../queries/keys';
 import { AxiosError } from 'axios';
 
-interface useBanUserProps {
+interface useHandleUserApiProps {
   handleModalOpen: (message: string) => void;
   handleConfirm: () => void;
 }
 
-export const useHandleUserApi = ({ handleModalOpen }: useBanUserProps) => {
+export const useHandleUserApi = ({
+  handleModalOpen,
+}: useHandleUserApiProps) => {
   const queryClient = useQueryClient();
 
   const postBan = useMutation<void, AxiosError, number>({
@@ -27,9 +29,8 @@ export const useHandleUserApi = ({ handleModalOpen }: useBanUserProps) => {
       queryClient.invalidateQueries({
         queryKey: [ReportData.allReportsPreview],
       });
-      handleModalOpen(ADMIN_MODAL_MESSAGE.banSuccess);
+      handleModalOpen(ADMIN_MODAL_MESSAGE.warningSuccess);
     },
-    onError: () => {},
   });
 
   const postWarning = useMutation<void, AxiosError, number>({
@@ -49,7 +50,6 @@ export const useHandleUserApi = ({ handleModalOpen }: useBanUserProps) => {
       });
       handleModalOpen(ADMIN_MODAL_MESSAGE.banSuccess);
     },
-    onError: () => {},
   });
 
   return { postBan, postWarning };

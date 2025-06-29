@@ -52,7 +52,7 @@ export const ProfileImg = styled.div`
 `;
 
 export const NickName = styled.p`
-  ${({ theme }) => theme.heading.xsSmall};ß
+  ${({ theme }) => theme.heading.xsSmall};
   margin-top: 3px;
   opacity: 50%;
 `;

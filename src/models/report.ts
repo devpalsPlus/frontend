@@ -9,6 +9,7 @@ export interface ApiPostContent {
 
 export interface ApiAllReports extends ApiCommonType {
   data: AllReports[];
+  totalPage: number;
 }
 
 export interface AllReports {

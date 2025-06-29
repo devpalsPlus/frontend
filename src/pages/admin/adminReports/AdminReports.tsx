@@ -13,6 +13,7 @@ import Modal from '../../../components/common/modal/Modal';
 import { useGetAllReports } from '../../../hooks/admin/useGetAllReports';
 import { Spinner } from '../../../components/common/loadingSpinner/LoadingSpinner.styled';
 import { useHandleUser } from '../../../hooks/admin/useHandleUser';
+import { ADMIN_MODAL_MESSAGE } from '../../../constants/admin/adminModal';
 
 export default function AdminReports() {
   const { searchUnit, value, handleChangePagination, handleGetKeyword } =
@@ -31,6 +32,10 @@ export default function AdminReports() {
     handleModalOpen,
     handleConfirm,
   });
+
+  if (!allReportsData) {
+    return <S.Container>{ADMIN_MODAL_MESSAGE.NO_RESULT}</S.Container>;
+  }
 
   if (isLoading || isFetching) {
     return (
@@ -52,10 +57,10 @@ export default function AdminReports() {
           />
         </S.SearchBarWrapper>
         <S.List>
-          {allReportsData?.map((data) => (
+          {allReportsData?.data.map((data) => (
             <S.Item key={data.reportId} to={`${data.reportId}`}>
               <S.ProfileImg>
-                <Avatar image={defaultImg} size='50px' />
+                <Avatar image={data.profileImg} size='50px' />
                 <S.NickName>{data.nickname}</S.NickName>
               </S.ProfileImg>
               <S.ContentArea>
@@ -93,7 +98,7 @@ export default function AdminReports() {
         </S.List>
         <Pagination
           page={searchUnit.page}
-          getLastPage={5}
+          getLastPage={allReportsData?.totalPage}
           onChangePagination={handleChangePagination}
         />
       </S.Container>

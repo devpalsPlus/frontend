@@ -22,7 +22,6 @@ export const useAdminReports = ({ handleModalOpen }: useAdminReportsProps) => {
       });
       handleModalOpen(ADMIN_MODAL_MESSAGE.banSuccess);
     },
-    onError: () => {},
   });
 
   return { postDelete };

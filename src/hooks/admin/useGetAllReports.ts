@@ -11,7 +11,6 @@ export const useGetAllReports = (searchUnit: SearchType) => {
   } = useQuery({
     queryKey: [ReportData.allReports, searchUnit.keyword, searchUnit.page],
     queryFn: () => getAllReports(searchUnit),
-    select: (allReports) => allReports.slice(0, 5),
   });
 
   return { allReportsData, isLoading, isFetching };

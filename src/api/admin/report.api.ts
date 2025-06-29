@@ -27,7 +27,7 @@ export const getReportDetail = async (reportId: number) => {
 export const getAllReports = async (params: SearchType) => {
   try {
     const response = await httpClient.get<ApiAllReports>(`/report`, { params });
-    return response.data.data;
+    return response.data;
   } catch (e) {
     console.error(e);
     throw e;
