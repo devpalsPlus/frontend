@@ -13,7 +13,7 @@ import Spinner from '../../user/mypage/Spinner';
 import Sidebar from '../../common/sidebar/Sidebar';
 import ScrollPreventor from '../../common/modal/ScrollPreventor';
 import useGetUserProjectData from '../../../hooks/admin/useGetUserProjectData';
-import { TabKey } from '../../../models/admin/userDetail/routing';
+import type { TabKey } from '../../../models/admin/userDetail/routing';
 
 const AdminUserDetail = () => {
   const { userId } = useParams();

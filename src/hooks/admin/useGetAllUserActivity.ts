@@ -3,7 +3,7 @@ import { ActivityLog, UserData } from '../queries/keys';
 import { getUserActivityData } from '../../api/admin/userActivity.api';
 import { getMyComments, getMyInquiries } from '../../api/activityLog.api';
 import useAuthStore from '../../store/authStore';
-import { MyComments, MyInquiries } from '../../models/activityLog';
+import type { MyComments, MyInquiries } from '../../models/activityLog';
 import { useLocation } from 'react-router-dom';
 
 export function useGetUserActivity(

@@ -1,5 +1,5 @@
 import { httpClient } from '../http.api';
-import { ApiUserActivityResponse } from '../../models/admin/userDetail/userActivity';
+import type { ApiUserActivityResponse } from '../../models/admin/userDetail/userActivity';
 
 export const getUserActivityData = async (userId: number) => {
   try {

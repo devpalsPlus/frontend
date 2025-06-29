@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import { AlarmLive } from '../../../models/alarm';
+import type { AlarmLive } from '../../../models/alarm';
 import { SseContext } from '../../../context/SseContext';
 
 export const NotificationProvider = ({ children }: { children: ReactNode }) => {
