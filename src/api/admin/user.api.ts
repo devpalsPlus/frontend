@@ -2,7 +2,7 @@ import { ApiUserApplicantsData } from '../../models/admin/userDetail/userDetail.
 import { ApiUserProjectDataResponse } from '../../models/admin/userDetail/userProjectData';
 import { httpClient } from '../http.api';
 
-export const postBanUser = async (id: string) => {
+export const postBanUser = async (id: number) => {
   try {
     await httpClient.post(`/ban/${id}`);
   } catch (e) {
@@ -11,7 +11,7 @@ export const postBanUser = async (id: string) => {
   }
 };
 
-export const postWarningUser = async (id: string) => {
+export const postWarningUser = async (id: number) => {
   try {
     await httpClient.post(`/warning/${id}`);
   } catch (e) {

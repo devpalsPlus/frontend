@@ -1,4 +1,4 @@
-import { type ApiCommonType, type User } from './apiCommon';
+import type { ApiCommonType } from './apiCommon';
 
 export interface ApiPostContent {
   reportTargetId: number;
@@ -12,10 +12,12 @@ export interface ApiAllReports extends ApiCommonType {
 }
 
 export interface AllReports {
-  id: number;
-  reportedCount: number;
+  reportId: number;
+  userId: number;
+  nickname: string;
+  profileImg: string;
+  warning: number;
   category: string;
-  user: User;
-  isDone: boolean;
-  createdAt: string;
+  reportedAt: string;
+  imposed: boolean;
 }

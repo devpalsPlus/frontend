@@ -1,16 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { ReportData } from '../queries/keys';
-import { getAllReports } from '../../api/admin/report.api';
-import { SearchType } from '../../models/search';
+import { getAllReportsPreview } from '../../api/admin/report.api';
 
-export const useGetAllReports = (searchUnit: SearchType) => {
+export const useGetAllReportsPreview = () => {
   const {
     data: allReportsData,
     isLoading,
     isFetching,
   } = useQuery({
-    queryKey: [ReportData.allReports, searchUnit.keyword, searchUnit.page],
-    queryFn: () => getAllReports(searchUnit),
+    queryKey: [ReportData.allReportsPreview],
+    queryFn: () => getAllReportsPreview(),
     select: (allReports) => allReports.slice(0, 5),
   });
 

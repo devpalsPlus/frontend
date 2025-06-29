@@ -56,6 +56,7 @@ export const Inquiries = {
 export const CustomerService = {
   faq: 'faq',
   notice: 'notice',
+  noticePreview: 'noticePreview',
   noticeDetail: 'noticeDetail',
   inquiryDetail: 'inquiryDetail',
 } as const;
@@ -63,6 +64,7 @@ export const CustomerService = {
 export const ReportData = {
   allReports: ['AllReports'],
   allReportsPreview: ['AllReportsPreview'],
+  reportDetail: ['ReportDetail'],
 } as const;
 
 export const UserData = {
