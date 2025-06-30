@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { AlarmLive } from '../models/alarm';
+import type { AlarmLive } from '../models/alarm';
 
 export interface SseContextProps {
   signalData: AlarmLive | null;

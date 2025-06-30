@@ -1,5 +1,5 @@
-import { ApiUserApplicantsData } from '../../models/admin/userDetail/userDetail.applicants';
-import { ApiUserProjectDataResponse } from '../../models/admin/userDetail/userProjectData';
+import type { ApiUserApplicantsData } from '../../models/admin/userDetail/userDetail.applicants';
+import type { ApiUserProjectDataResponse } from '../../models/admin/userDetail/userProjectData';
 import { httpClient } from '../http.api';
 
 export const postBanUser = async (id: number) => {

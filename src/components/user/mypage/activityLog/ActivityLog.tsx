@@ -3,10 +3,11 @@ import {
   ACTIVITY_FILTER_ADMIN,
 } from '../../../../constants/user/myPageFilter';
 import ContentTab from '../ContentTab';
-import useAuthStore from '../../../../store/authStore';
+import { useLocation } from 'react-router-dom';
 
 export default function ActivityLog() {
-  const isAdmin = useAuthStore().userData?.admin;
+  const { pathname } = useLocation();
+  const isAdmin = pathname.includes('/admin');
 
   return (
     <ContentTab

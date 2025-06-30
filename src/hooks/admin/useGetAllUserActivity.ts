@@ -3,14 +3,16 @@ import { ActivityLog, UserData } from '../queries/keys';
 import { getUserActivityData } from '../../api/admin/userActivity.api';
 import { getMyComments, getMyInquiries } from '../../api/activityLog.api';
 import useAuthStore from '../../store/authStore';
-import { MyComments, MyInquiries } from '../../models/activityLog';
+import type { MyComments, MyInquiries } from '../../models/activityLog';
+import { useLocation } from 'react-router-dom';
 
 export function useGetUserActivity(
   userId: number,
   type: 'comments' | 'inquiries'
 ) {
   const userLoginId = useAuthStore.getState().userData?.id;
-  const isAdmin = useAuthStore((state) => state.userData?.admin) ?? false;
+  const { pathname } = useLocation();
+  const isAdmin = pathname.includes('/admin');
 
   const getQueryKey = () => {
     if (isAdmin) return [UserData.userActivity, userId, type];

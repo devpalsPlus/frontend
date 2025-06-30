@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ProjectListKey, userInfoKey } from '../../queries/keys';
 import { useNavigate } from 'react-router-dom';
 import { postApplicantProject } from '../../../api/joinProject.api';
-import { joinProject } from '../../../models/joinProject';
+import type { joinProject } from '../../../models/joinProject';
 import { MODAL_MESSAGE } from '../../../constants/user/modalMessage';
 import { ROUTES } from '../../../constants/routes';
 

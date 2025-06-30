@@ -5,7 +5,7 @@ import NoContent from '../../../../common/noContent/NoContent';
 import Spinner from '../../Spinner';
 import * as S from './Inquiries.styled';
 import Inquiry from './inquiry/Inquiry';
-import { MyInquiries } from '../../../../../models/activityLog';
+import type { MyInquiries } from '../../../../../models/activityLog';
 
 export default function Inquiries() {
   const { userId } = useParams();

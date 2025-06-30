@@ -5,8 +5,8 @@ import * as S from './CommentsActivity.styled';
 import NoContent from '../../../../common/noContent/NoContent';
 import useGetUserActivity from '../../../../../hooks/admin/useGetAllUserActivity';
 import { useParams } from 'react-router-dom';
-import { MyComments } from '../../../../../models/activityLog';
-import { UserComment } from '../../../../../models/admin/userDetail/userActivity';
+import type { MyComments } from '../../../../../models/activityLog';
+import type { UserComment } from '../../../../../models/admin/userDetail/userActivity';
 
 export default function CommentsActivity() {
   const { userId } = useParams();
