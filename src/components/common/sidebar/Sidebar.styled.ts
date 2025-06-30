@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{ $isAdmin: boolean }>`
+export const Container = styled.div<{ $isAdmin: boolean | undefined }>`
   display: flex;
   flex-direction: column;
   border: 2px solid #f0f0f0;

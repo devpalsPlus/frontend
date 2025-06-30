@@ -8,7 +8,6 @@ import Pagination from '../../../components/common/pagination/Pagination';
 import useSearchBar from '../../../hooks/admin/useSearchBar';
 import { ADMIN_MODAL_MESSAGE } from '../../../constants/admin/adminModal';
 import { Link } from 'react-router-dom';
-import { ADMIN_ROUTE } from '../../../constants/routes';
 import Spinner from '../../../components/user/mypage/Spinner';
 
 const AdminUser = () => {
@@ -38,20 +37,13 @@ const AdminUser = () => {
         <S.Container>
           <AdminTitle title='회원 조회' />
           <S.SearchBar>
-            <SearchBar
-              onGetKeyword={handleGetKeyword}
-              canWrite={false}
-              value={value}
-            />
+            <SearchBar onGetKeyword={handleGetKeyword} value={value} />
           </S.SearchBar>
 
           <S.ScrollArea>
             <S.UserContainer>
               {allUserData.users.map((userData) => (
-                <Link
-                  key={userData.id}
-                  to={`${userData.id}/${ADMIN_ROUTE.basic}`}
-                >
+                <Link key={userData.id} to={`${userData.id}`}>
                   <UserCard
                     key={userData.id}
                     userData={userData}

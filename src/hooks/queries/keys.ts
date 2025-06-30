@@ -62,12 +62,15 @@ export const CustomerService = {
 
 export const ReportData = {
   allReports: ['AllReports'],
+  allReportsPreview: ['AllReportsPreview'],
 } as const;
 
 export const UserData = {
   allUser: ['AllUser'],
   allUserPreview: ['AllUserPreview'],
   userInfo: ['userInfo'],
+  userJoinedProjectList: ['userJoinedProjectList'],
+  userActivity: ['userActivity'],
 } as const;
 
 export const Tag = {

@@ -24,7 +24,7 @@ export interface AppliedProject {
 }
 
 export interface ApiAppliedProject extends ApiCommonType {
-  data: AppliedProject[] | null;
+  data: AppliedProject[];
 }
 
 export interface ApiUserProject extends ApiCommonType {

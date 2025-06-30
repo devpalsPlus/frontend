@@ -1,4 +1,4 @@
-import { ApiCommonBasicType } from '../../../models/apiCommon';
+import type { ApiCommonBasicType } from '../../../models/apiCommon';
 import type { ApiFAQDetail, WriteBody } from '../../../models/customerService';
 import { httpClient } from '../../http.api';
 
