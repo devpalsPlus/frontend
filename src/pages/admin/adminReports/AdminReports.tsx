@@ -66,9 +66,12 @@ export default function AdminReports() {
                 <S.NickName>{data.nickname}</S.NickName>
               </S.ProfileImg>
               <S.ContentArea>
-                {data.category.map((category) => (
-                  <S.Category>
-                    "{REPORT_CATEGORY_LIST[category - 1]}"
+                {data.category.map((category, index) => (
+                  <S.Category key={`${data.reportId}-${category}-${index}`}>
+                    "
+                    {REPORT_CATEGORY_LIST[category - 1] ||
+                      '알 수 없는 카테고리'}
+                    "
                   </S.Category>
                 ))}
               </S.ContentArea>
