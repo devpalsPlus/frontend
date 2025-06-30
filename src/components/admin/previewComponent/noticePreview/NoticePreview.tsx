@@ -1,13 +1,10 @@
 import * as S from './NoticePreview.styled';
-import { useGetNotice } from '../../../../hooks/user/useGetNotice';
 import line from '../../../../assets/line.svg';
 import { Spinner } from '../../../common/loadingSpinner/LoadingSpinner.styled';
+import { useGetNoticePreview } from '../../../../hooks/admin/useGetAllNoticePreview';
 
 const NoticePreview = () => {
-  const { noticeData, isLoading, isFetching } = useGetNotice({
-    keyword: '',
-    page: 1,
-  });
+  const { noticeData, isLoading, isFetching } = useGetNoticePreview();
 
   if (isLoading || isFetching) {
     return (
@@ -17,13 +14,13 @@ const NoticePreview = () => {
     );
   }
 
-  if (!noticeData?.notices || noticeData.notices.length === 0) {
+  if (!noticeData) {
     return <S.Container>공지사힝이 없습니다.</S.Container>;
   }
 
   return (
     <S.Container>
-      {noticeData.notices.map((notice) => (
+      {noticeData.map((notice) => (
         <S.Wrapper key={notice.id}>
           <S.Dot src={line} />
           <S.NoticeTitle>{notice.title}</S.NoticeTitle>
