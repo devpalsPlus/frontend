@@ -1,0 +1,13 @@
+export const REPORT_CATEGORY_LIST = [
+  '욕설/비속어',
+  '성적내용/음란물',
+  '광고/스팸',
+  '사기/부정행위',
+  '도배/스팸',
+  '혐오/차별발언',
+  '사생활 침해',
+  '저작권 침해',
+  '기타',
+] as const;
+
+export type ReportCategory = (typeof REPORT_CATEGORY_LIST)[number];

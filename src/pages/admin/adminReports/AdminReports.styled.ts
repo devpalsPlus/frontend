@@ -46,9 +46,12 @@ export const Item = styled(Link)`
 `;
 
 export const ProfileImg = styled.div`
-  flex-shrink: 0;
-  text-align: center;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-right: 16px;
+  flex-shrink: 0;
 `;
 
 export const NickName = styled.p`
@@ -60,14 +63,17 @@ export const NickName = styled.p`
 export const ContentArea = styled.div`
   display: flex;
   flex: 1;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   margin-left: 35px;
-  margin-bottom: 30px;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 export const Category = styled.p`
+  padding: 5px 10px;
   ${({ theme }) => theme.heading.small};
   opacity: 50%;
 `;

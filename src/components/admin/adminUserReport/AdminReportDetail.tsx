@@ -12,6 +12,7 @@ import { formatDate } from '../../../util/formatDate';
 import { useHandleUser } from '../../../hooks/admin/useHandleUser';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../common/modal/Modal';
+import { REPORT_CATEGORY_LIST } from '../../../constants/admin/adminReportCategoryList';
 
 export default function AdminReportDetail() {
   const { id: reportId } = useParams();
@@ -65,8 +66,8 @@ export default function AdminReportDetail() {
               <Link to={`/admin/users/${reportDetailData.reporter.userId}`}>
                 <Avatar
                   image={
-                    reportDetailData.reporter.img
-                      ? reportDetailData.reporter.img
+                    reportDetailData.reporter.profileImg
+                      ? reportDetailData.reporter.profileImg
                       : defaultImg
                   }
                   size='50px'
@@ -81,8 +82,8 @@ export default function AdminReportDetail() {
               <Link to={`/admin/users/${reportDetailData.reportedUser.userId}`}>
                 <Avatar
                   image={
-                    reportDetailData.reportedUser.img
-                      ? reportDetailData.reportedUser.img
+                    reportDetailData.reportedUser.profileImg
+                      ? reportDetailData.reportedUser.profileImg
                       : defaultImg
                   }
                   size='47px'
@@ -97,13 +98,9 @@ export default function AdminReportDetail() {
             <S.ContentHeader>
               <ReportCheckBox
                 isAdmin={true}
-                selectedCheckbox={[
-                  '욕설/비속어',
-                  '성적내용/음란물',
-                  '광고/스팸',
-                  '저작권 침해',
-                  '기타',
-                ]}
+                selectedCheckbox={reportDetailData.category.map(
+                  (num) => REPORT_CATEGORY_LIST[num - 1]
+                )}
               />
               <S.Date>{formatDate(reportDetailData.reportedAt)}</S.Date>
             </S.ContentHeader>

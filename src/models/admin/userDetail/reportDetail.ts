@@ -3,7 +3,7 @@ import { ApiCommonType } from '../../apiCommon';
 export interface UserData {
   userId: number;
   nickname: string;
-  img: string;
+  profileImg: string;
 }
 
 export interface ReportDetail {
@@ -12,7 +12,7 @@ export interface ReportDetail {
   reportedUser: UserData;
   reportedAt: string;
   reason: string;
-  category: 'ALL' | 'ABUSE' | 'SEXUAL' | 'AD' | 'COPYRIGHT' | 'ETC';
+  category: number[];
   location: 'USER' | 'PROJECT' | 'COMMENT' | 'RECOMMENT';
   locationId: number;
 }

@@ -6,14 +6,13 @@ import * as S from './AdminReports.styled';
 import defaultImg from '../../../assets/defaultImg.png';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import Pagination from '../../../components/common/pagination/Pagination';
-
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../../components/common/modal/Modal';
-
 import { useGetAllReports } from '../../../hooks/admin/useGetAllReports';
 import { Spinner } from '../../../components/common/loadingSpinner/LoadingSpinner.styled';
 import { useHandleUser } from '../../../hooks/admin/useHandleUser';
 import { ADMIN_MODAL_MESSAGE } from '../../../constants/admin/adminModal';
+import { REPORT_CATEGORY_LIST } from '../../../constants/admin/adminReportCategoryList';
 
 export default function AdminReports() {
   const { searchUnit, value, handleChangePagination, handleGetKeyword } =
@@ -67,7 +66,11 @@ export default function AdminReports() {
                 <S.NickName>{data.nickname}</S.NickName>
               </S.ProfileImg>
               <S.ContentArea>
-                <S.Category>{data.category}</S.Category>
+                {data.category.map((category) => (
+                  <S.Category>
+                    "{REPORT_CATEGORY_LIST[category - 1]}"
+                  </S.Category>
+                ))}
               </S.ContentArea>
               <S.ButtonArea>
                 <S.WarningButton

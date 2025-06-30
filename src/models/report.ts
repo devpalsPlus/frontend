@@ -18,7 +18,7 @@ export interface AllReports {
   nickname: string;
   profileImg: string;
   warning: number;
-  category: string;
+  category: number[];
   reportedAt: string;
   imposed: boolean;
 }
