@@ -1,5 +1,5 @@
-import { MyInquiries } from '../../activityLog';
-import { ApiCommonType } from '../../apiCommon';
+import type { MyInquiries } from '../../activityLog';
+import type { ApiCommonType } from '../../apiCommon';
 
 export interface UserComment {
   id: number;

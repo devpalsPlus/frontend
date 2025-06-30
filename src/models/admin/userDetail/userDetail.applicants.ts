@@ -1,6 +1,6 @@
-import { ApiCommonType, User } from '../../apiCommon';
-import { Career } from '../../applicant';
-import { SkillTag } from '../../tags';
+import type { ApiCommonType, User } from '../../apiCommon';
+import type { Career } from '../../applicant';
+import type { SkillTag } from '../../tags';
 
 export interface Applicant {
   id: number;

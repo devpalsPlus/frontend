@@ -1,6 +1,6 @@
-import { ApiCommonType } from '../../apiCommon';
-import { MethodTag, PositionTag, SkillTag } from '../../tags';
-import { AppliedProject, JoinedProject } from '../../userProject';
+import type { ApiCommonType } from '../../apiCommon';
+import type { MethodTag, PositionTag, SkillTag } from '../../tags';
+import type { AppliedProject, JoinedProject } from '../../userProject';
 
 export interface BaseProject {
   id: number;
