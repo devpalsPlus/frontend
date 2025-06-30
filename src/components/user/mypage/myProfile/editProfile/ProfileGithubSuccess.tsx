@@ -15,7 +15,6 @@ export default function ProfileGithubSuccess() {
   useEffect(() => {
     (async () => {
       const githubUrl = searchParams.get('githubUrl');
-      console.log('githubUrl:', githubUrl);
 
       if (githubUrl) {
         patchGithubLinkMutate(githubUrl);

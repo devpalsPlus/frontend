@@ -25,11 +25,21 @@ export default function AdminInquiryListLookup() {
   const handleSubmitChangeParams = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const { startDate, endDate } = searchFilters;
+
     const newParams = new URLSearchParams(searchParams);
 
-    Object.entries(searchFilters).forEach(([key, value]) =>
-      value ? newParams.set(key, value) : newParams.delete(key)
-    );
+    if (startDate && !endDate) {
+      return handleModalOpen(MODAL_MESSAGE.endDateEmpty);
+    } else if (!startDate && endDate) {
+      return handleModalOpen(MODAL_MESSAGE.startDateEmpty);
+    } else if (startDate && endDate) {
+      newParams.set('startDate', startDate);
+      newParams.set('endDate', endDate);
+    } else {
+      newParams.delete('startDate');
+      newParams.delete('endDate');
+    }
 
     setSearchParams(newParams);
   };
