@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import type { MyInquiries } from '../../../../../../models/activityLog';
 import * as S from './Inquiry.styled';
 import { My_INQUIRIES_MESSAGE } from '../../../../../../constants/user/customerService';

@@ -1,7 +1,7 @@
 import { useOutletContext } from 'react-router-dom';
 import * as S from './AdminInquiryAnswerWrite.styled';
 import React, { useEffect, useRef, useState } from 'react';
-import { InquiryAnswerBody } from '../../../models/inquiry';
+import type { InquiryAnswerBody } from '../../../models/inquiry';
 import { UseMutationResult } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import Modal from '../../common/modal/Modal';

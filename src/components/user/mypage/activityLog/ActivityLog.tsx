@@ -1,9 +1,9 @@
-import { useLocation } from 'react-router-dom';
 import {
   ACTIVITY_FILTER,
   ACTIVITY_FILTER_ADMIN,
 } from '../../../../constants/user/myPageFilter';
 import ContentTab from '../ContentTab';
+import { useLocation } from 'react-router-dom';
 
 export default function ActivityLog() {
   const { pathname } = useLocation();

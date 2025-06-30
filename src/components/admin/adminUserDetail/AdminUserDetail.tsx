@@ -12,14 +12,19 @@ import useGetUserInfo from '../../../hooks/admin/useGetUserInfo';
 import Spinner from '../../user/mypage/Spinner';
 import Sidebar from '../../common/sidebar/Sidebar';
 import ScrollPreventor from '../../common/modal/ScrollPreventor';
-
-type TabKey = 'basic' | 'log' | 'inquiry' | 'joined' | 'created' | 'applied';
+import useGetUserProjectData from '../../../hooks/admin/useGetUserProjectData';
+import type { TabKey } from '../../../models/admin/userDetail/routing';
 
 const AdminUserDetail = () => {
   const { userId } = useParams();
   const { userData, isLoading, isFetching } = useGetUserInfo(Number(userId));
+  const {
+    userData: projectData,
+    isLoading: projectLoading,
+    isFetching: projectFetching,
+  } = useGetUserProjectData(Number(userId));
 
-  if (isLoading || isFetching) {
+  if (isLoading || isFetching || projectLoading || projectFetching) {
     return (
       <S.Spinner>
         <Spinner />
@@ -34,9 +39,9 @@ const AdminUserDetail = () => {
     icon: React.ReactNode;
   }[] = [
     {
-      key: 'basic',
+      key: 'profile',
       label: '기본 정보',
-      path: `/admin/users/${userId}/${ADMIN_ROUTE.basic}`,
+      path: `/admin/users/${userId}`,
       icon: <InformationCircleIcon width='17px' height='17px' />,
     },
     {
@@ -46,22 +51,10 @@ const AdminUserDetail = () => {
       icon: <ClipboardDocumentListIcon width='17px' height='17px' />,
     },
     {
-      key: 'joined',
-      label: '참여 프로젝트',
-      path: `/admin/users/${userId}/${ADMIN_ROUTE.joinedProject}`,
+      key: 'projects',
+      label: '지원/참여/기획한 프로젝트',
+      path: `/admin/users/${userId}/${ADMIN_ROUTE.projects}`,
       icon: <UserGroupIcon width='17px' height='17px' />,
-    },
-    {
-      key: 'created',
-      label: '기획 프로젝트',
-      path: `/admin/users/${userId}/${ADMIN_ROUTE.createdProject}`,
-      icon: <UserGroupIcon width='17px' height='17px' />,
-    },
-    {
-      key: 'applied',
-      label: '지원한 프로젝트',
-      path: `/admin/users/${userId}/${ADMIN_ROUTE.appliedProject}`,
-      icon: <ClipboardDocumentListIcon width='17px' height='17px' />,
     },
   ];
 
@@ -88,6 +81,7 @@ const AdminUserDetail = () => {
                 <Outlet
                   context={{
                     userInfoData: userData,
+                    projectData,
                   }}
                 />
               </S.DetailContent>

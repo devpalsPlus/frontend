@@ -72,7 +72,7 @@ export const getMyAppliedStatusList = async () => {
       '/user/applications'
     );
 
-    return response.data;
+    return response.data.data;
   } catch (error) {
     console.error('내가 지원한 프로젝트 리스트: ', error);
     throw error;

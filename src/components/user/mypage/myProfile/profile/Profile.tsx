@@ -9,7 +9,7 @@ import { ROUTES } from '../../../../../constants/routes';
 import 'chart.js/auto';
 import { chartOptions } from '../../../../../constants/evaluationChartData';
 import { formatDate } from '../../../../../util/formatDate';
-import { UserInfoAll } from '../../../../../models/userInfo';
+import type { UserInfoAll } from '../../../../../models/userInfo';
 
 export default function Profile() {
   const {

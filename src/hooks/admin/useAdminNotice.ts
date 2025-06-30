@@ -8,7 +8,7 @@ import { AxiosError } from 'axios';
 import { CustomerService } from '../queries/keys';
 import { useNavigate } from 'react-router-dom';
 import { ADMIN_MODAL_MESSAGE } from '../../constants/admin/adminModal';
-import { WriteBody } from '../../models/customerService';
+import type { WriteBody } from '../../models/customerService';
 
 type State = 'success' | 'fail';
 

@@ -2,9 +2,25 @@ import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import { lazy, Suspense } from 'react';
 import { ADMIN_ROUTE } from '../constants/routes';
 import ProtectAdminRoute from './ProtectAdminRoute';
-import { Spinner } from '../components/common/loadingSpinner/LoadingSpinner.styled';
 import { Navigate } from 'react-router-dom';
+import { Spinner } from '../components/common/loadingSpinner/LoadingSpinner.styled';
+import AdminUserProjectsLayout from '../pages/admin/adminUser/AdminUserProjectsLayout';
 
+const AdminUserDetail = lazy(
+  () => import('../components/admin/adminUserDetail/AdminUserDetail')
+);
+const UserProjects = lazy(
+  () => import('../components/user/userPage/userProjectList/UserProjectList')
+);
+const ActivityLog = lazy(
+  () => import('../components/user/mypage/activityLog/ActivityLog')
+);
+const Notifications = lazy(
+  () => import('../components/user/mypage/notifications/Notifications')
+);
+const AdminReportDetail = lazy(
+  () => import('../components/admin/adminUserReport/AdminReportDetail')
+);
 const Sidebar = lazy(
   () => import('../components/common/admin/sidebar/AdminSidebar')
 );
@@ -20,20 +36,8 @@ const NoticeWrite = lazy(
 const NoticeDetail = lazy(
   () => import('../pages/admin/adminNoticeDetail/AdminNoticeDetail')
 );
-const AdminUserDetail = lazy(
-  () => import('../components/admin/adminUserDetail/AdminUserDetail')
-);
 const Profile = lazy(
   () => import('../components/user/mypage/myProfile/profile/Profile')
-);
-const ActivityLog = lazy(
-  () => import('../components/user/mypage/activityLog/ActivityLog')
-);
-const Notifications = lazy(
-  () => import('../components/user/mypage/notifications/Notifications')
-);
-const UserProjects = lazy(
-  () => import('../components/user/userPage/userProjectList/UserProjectList')
 );
 const FAQ = lazy(() => import('../pages/admin/adminFAQ/AdminFAQ'));
 const FAQList = lazy(
@@ -173,10 +177,6 @@ export const AdminRoutes = () => {
           children: [
             {
               index: true,
-              element: <Navigate to={ADMIN_ROUTE.basic} replace />,
-            },
-            {
-              path: `${ADMIN_ROUTE.basic}`,
               element: <Profile />,
             },
             {
@@ -198,40 +198,36 @@ export const AdminRoutes = () => {
               ],
             },
             {
-              path: `${ADMIN_ROUTE.appliedProject}`,
-              element: <Notifications />,
+              path: `${ADMIN_ROUTE.projects}`,
+              element: <AdminUserProjectsLayout />,
               children: [
                 {
                   index: true,
-                  element: <NotificationsAll />,
+                  element: <Navigate to={ADMIN_ROUTE.appliedProject} replace />,
                 },
                 {
-                  path: `${ADMIN_ROUTE.checkingApplicant}`,
-                  element: <NotificationsAll />,
-                },
-                {
-                  path: `${ADMIN_ROUTE.comments}`,
-                  element: <NotificationsAll />,
-                },
-                {
-                  path: `${ADMIN_ROUTE.applyingProject}`,
+                  path: `${ADMIN_ROUTE.appliedProject}`,
                   element: <NotificationsAppliedProjects />,
                 },
+                {
+                  path: `${ADMIN_ROUTE.joinedProject}`,
+                  element: <UserProjects />,
+                },
+                {
+                  path: `${ADMIN_ROUTE.createdProject}`,
+                  element: <UserProjects />,
+                },
               ],
-            },
-            {
-              path: `${ADMIN_ROUTE.joinedProject}`,
-              element: <UserProjects />,
-            },
-            {
-              path: `${ADMIN_ROUTE.createdProject}`,
-              element: <UserProjects />,
             },
           ],
         },
         {
           path: ADMIN_ROUTE.reports,
           element: <Reports />,
+        },
+        {
+          path: `${ADMIN_ROUTE.reports}/:id`,
+          element: <AdminReportDetail />,
         },
         {
           path: ADMIN_ROUTE.inquiries,
