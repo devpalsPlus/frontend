@@ -56,9 +56,7 @@ export const patchMyProfileImg = async (file: File) => {
 
 export const patchGithubLink = async (githubUrl: string) => {
   try {
-    await httpClient.patch<ApiCommonBasicType>('/user/github', {
-      params: { githubUrl },
-    });
+    await httpClient.patch<ApiCommonBasicType>('/user/github', { githubUrl });
   } catch (error) {
     console.error('프로필 깃허브 업데이트: ', error);
     throw error;

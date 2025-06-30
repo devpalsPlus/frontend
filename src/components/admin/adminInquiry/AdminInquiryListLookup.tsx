@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { SearchParamsInquiryKeyType } from './AdminInquiryList';
 import * as S from './AdminInquiryListLookup.styled';
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -21,6 +21,15 @@ export default function AdminInquiryListLookup() {
     startDate,
     endDate,
   });
+
+  useEffect(() => {
+    const startDate = searchParams.get('startDate') || '';
+    const endDate = searchParams.get('endDate') || '';
+    setSearchFilters({
+      startDate,
+      endDate,
+    });
+  }, [searchParams, setSearchFilters]);
 
   const handleSubmitChangeParams = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
