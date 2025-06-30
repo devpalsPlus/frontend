@@ -1,4 +1,4 @@
-import { ApiCommonType } from './apiCommon';
+import type { ApiCommonType } from './apiCommon';
 
 export interface ApiAlarmList extends ApiCommonType {
   data: Alarm[] | null;

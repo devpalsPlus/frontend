@@ -1,6 +1,6 @@
-import { ApiReportDetail } from '../../models/admin/userDetail/reportDetail';
-import { ApiAllReports } from '../../models/report';
-import { SearchType } from '../../models/search';
+import type { ApiReportDetail } from '../../models/admin/userDetail/reportDetail';
+import type { ApiAllReports } from '../../models/report';
+import type { SearchType } from '../../models/search';
 import { httpClient } from '../http.api';
 
 export const postDeleteReport = async (id: number) => {

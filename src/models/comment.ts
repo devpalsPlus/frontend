@@ -1,4 +1,4 @@
-import { ApiCommonType, User } from './apiCommon';
+import type { ApiCommonType, User } from './apiCommon';
 
 export interface GetCommentType extends ApiCommonType {
   data: CommentType[];

@@ -1,4 +1,4 @@
-import { ApiCommonType } from './apiCommon';
+import type { ApiCommonType } from './apiCommon';
 
 export interface FAQ {
   id: number;
