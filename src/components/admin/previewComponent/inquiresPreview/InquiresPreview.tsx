@@ -4,9 +4,16 @@ import Avatar from '../../../common/avatar/Avatar';
 import { ADMIN_ROUTE } from '../../../../constants/routes';
 import arrow_right from '../../../../assets/ArrowRight.svg';
 import Spinner from '../../../user/mypage/Spinner';
+import { AdminInquiryChangeSearchParams } from '../../../../models/inquiry';
 
 const InquiresPreview = () => {
-  const { allInquiriesData, isLoading, isFetching } = useGetAllInquiries();
+  const childSearchParams: AdminInquiryChangeSearchParams = {
+    userId: '',
+    startDate: '',
+    endDate: '',
+  };
+  const { allInquiriesData, isLoading, isFetching } =
+    useGetAllInquiries(childSearchParams);
 
   if (isLoading || isFetching) {
     return (
