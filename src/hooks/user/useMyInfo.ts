@@ -89,8 +89,9 @@ export const useUploadProfileImg = (
   return { uploadProfileImg };
 };
 
-export const useGithubLink = () => {
+export const useGithubLink = (onModalOpen: (message: string) => void) => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const isLoggedIn = useAuthStore.getState().isLoggedIn;
 
   const { mutate: patchGithubLinkMutate } = useMutation<
@@ -101,6 +102,13 @@ export const useGithubLink = () => {
     mutationFn: (githubUrl: string) => patchGithubLink(githubUrl),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: myInfoKey.myProfile });
+      onModalOpen(MODAL_MESSAGE.githubProfileSuccess);
+    },
+    onError: () => {
+      onModalOpen(MODAL_MESSAGE.githubProfileFail);
+      setTimeout(() => {
+        navigate(`${ROUTES.mypage}/${ROUTES.mypageEdit}`);
+      }, 1000);
     },
   });
 

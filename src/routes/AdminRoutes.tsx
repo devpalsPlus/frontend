@@ -18,9 +18,9 @@ const ActivityLog = lazy(
 const Notifications = lazy(
   () => import('../components/user/mypage/notifications/Notifications')
 );
-const AdminReportDetail = lazy(
-  () => import('../components/admin/adminUserReport/AdminReportDetail')
-);
+// const AdminReportDetail = lazy(
+//   () => import('../components/admin/adminUserReport/AdminReportDetail')
+// );
 const Sidebar = lazy(
   () => import('../components/common/admin/sidebar/AdminSidebar')
 );
@@ -225,10 +225,10 @@ export const AdminRoutes = () => {
           path: ADMIN_ROUTE.reports,
           element: <Reports />,
         },
-        {
-          path: `${ADMIN_ROUTE.reports}/:id`,
-          element: <AdminReportDetail />,
-        },
+        // {
+        //   path: `${ADMIN_ROUTE.reports}/:id`,
+        //   element: <AdminReportDetail />,
+        // },
         {
           path: ADMIN_ROUTE.inquiries,
           element: <Inquiries />,

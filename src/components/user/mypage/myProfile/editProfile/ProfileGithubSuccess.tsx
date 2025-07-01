@@ -10,7 +10,7 @@ export default function ProfileGithubSuccess() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
-  const { patchGithubLinkMutate } = useGithubLink();
+  const { patchGithubLinkMutate } = useGithubLink(handleModalOpen);
 
   useEffect(() => {
     (async () => {
