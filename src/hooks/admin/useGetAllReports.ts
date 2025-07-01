@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { ReportData } from '../queries/keys';
 import { getAllReports } from '../../api/admin/report.api';
-import { SearchType } from '../../models/search';
+import type { SearchType } from '../../models/search';
 
 export const useGetAllReports = (searchUnit: SearchType) => {
   const {

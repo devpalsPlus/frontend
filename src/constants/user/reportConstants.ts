@@ -1,4 +1,4 @@
-export const reasons = [
+export const REASON_LIST = [
   '욕설/비속어',
   '성적내용/음란물',
   '광고/스팸',

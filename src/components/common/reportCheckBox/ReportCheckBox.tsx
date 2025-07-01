@@ -1,5 +1,5 @@
 import * as S from './ReportCheckBox.styled';
-import { reasons } from '../../../constants/user/reportConstants';
+import { REASON_LIST } from '../../../constants/user/reportConstants';
 
 interface ReportCheckBoxProps {
   isNotExist?: boolean;
@@ -14,8 +14,8 @@ const ReportCheckBox = ({
 }: ReportCheckBoxProps) => {
   return (
     <S.Container>
-      {reasons.map((reason) => (
-        <S.CheckItem key={reason}>
+      {REASON_LIST.map((reason, index) => (
+        <S.CheckItem key={index}>
           <S.CheckInput
             type='checkbox'
             name='reason'
