@@ -1,14 +1,19 @@
 import type { ApiCommonBasicType } from '../../../models/apiCommon';
 import type {
+  AdminInquiryChangeSearchParams,
   ApiAdminInquiry,
   ApiAdminInquiryDetail,
   InquiryAnswerBody,
 } from '../../../models/inquiry';
 import { httpClient } from '../../http.api';
 
-export const getAllInquiries = async () => {
+export const getAllInquiries = async (
+  childSearchParams: AdminInquiryChangeSearchParams
+) => {
   try {
-    const response = await httpClient.get<ApiAdminInquiry>(`/inquiry`);
+    const response = await httpClient.get<ApiAdminInquiry>(`/inquiry`, {
+      params: childSearchParams,
+    });
     return response.data.data;
   } catch (e) {
     console.error('전체 문의 조회 에러', e);

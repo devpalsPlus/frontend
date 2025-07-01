@@ -7,6 +7,12 @@ export interface InquiryFormData {
   content: string;
 }
 
+export interface AdminInquiryChangeSearchParams {
+  userId: string;
+  startDate: string;
+  endDate: string;
+}
+
 export interface AdminInquiry {
   id: number;
   title: string;

@@ -19,7 +19,33 @@ export const AdminInquiryCategory = styled.span`
   font-weight: 500;
 `;
 
-export const AdminInquiryUser = styled.div``;
+export const AdminInquiryUserWrapper = styled.div`
+  position: relative;
+`;
+
+export const AdminInquiryUser = styled.button`
+  width: fit-content;
+  font-size: 1.1rem;
+  z-index: 1;
+  transition: color 0.1s ease-in-out;
+  &:hover {
+    color: ${({ theme }) => theme.color.lightnavy};
+  }
+`;
+
+export const AdminInquiryUserCheckDropdown = styled.div`
+  position: absolute;
+  top: 0.8rem;
+  right: 0;
+  background: ${({ theme }) => theme.color.white};
+  border-radius: ${({ theme }) => theme.borderRadius.primary};
+  border: 1px solid ${({ theme }) => theme.color.lightgrey};
+  padding: 0.3rem 0.5rem;
+  z-index: 100000;
+  box-shadow: 3px 2px 19px -6px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 3px 2px 19px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 2px 19px -6px rgba(0, 0, 0, 0.75);
+`;
 
 export const AdminInquiryDate = styled.span`
   font-size: 0.9rem;
