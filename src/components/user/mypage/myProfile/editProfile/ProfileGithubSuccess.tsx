@@ -18,17 +18,6 @@ export default function ProfileGithubSuccess() {
 
       if (githubUrl) {
         patchGithubLinkMutate(githubUrl);
-        handleModalOpen(MODAL_MESSAGE.githubProfileSuccess);
-        setTimeout(() => {
-          navigate(`${ROUTES.mypage}/${ROUTES.mypageEdit}`, {
-            state: { githubUrl },
-          });
-        }, 1000);
-      } else {
-        handleModalOpen(MODAL_MESSAGE.githubProfileFail);
-        setTimeout(() => {
-          navigate(`${ROUTES.mypage}/${ROUTES.mypageEdit}`);
-        }, 1000);
       }
     })();
   }, [searchParams, handleModalOpen, navigate, patchGithubLinkMutate]);
