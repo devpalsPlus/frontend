@@ -1,4 +1,4 @@
-import { ApiCommonType, User } from './apiCommon';
+import type { ApiCommonType, User } from './apiCommon';
 import type { MethodTag, PositionTag, SkillTag } from './tags';
 
 export interface ProjectSkillTagList {

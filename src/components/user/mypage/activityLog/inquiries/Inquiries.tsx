@@ -29,7 +29,9 @@ export default function Inquiries() {
       </S.WrapperNoContentAppliedProjects>
     );
 
-  const myInquiriesData = userActivityData as MyInquiries[];
+  const myInquiriesData = Array.isArray(userActivityData)
+    ? (userActivityData as MyInquiries[])
+    : [];
 
   return (
     <S.container>

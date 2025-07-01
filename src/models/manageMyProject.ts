@@ -1,5 +1,5 @@
-import { ApiCommonType } from './apiCommon';
-import { SkillTag } from './tags';
+import type { ApiCommonType } from './apiCommon';
+import type { SkillTag } from './tags';
 
 export interface ManagedProject {
   id: number;

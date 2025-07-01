@@ -29,6 +29,17 @@ export const getNotice = async (params: NoticeSearch) => {
   }
 };
 
+export const getNoticePreview = async () => {
+  try {
+    const response = await httpClient.get<ApiNotice>(`/notice`);
+
+    return response.data.data;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
 export const getNoticeDetail = async (id: string) => {
   try {
     const response = await httpClient.get<ApiNoticeDetail>(`/notice/${id}`);

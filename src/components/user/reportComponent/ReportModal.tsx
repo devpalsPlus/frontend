@@ -1,8 +1,8 @@
 import { postReport } from '../../../api/report.api';
-import { reasons } from '../../../constants/user/reportConstants';
 import Avatar from '../../common/avatar/Avatar';
 import Button from '../../common/Button/Button';
 import ScrollPreventor from '../../common/modal/ScrollPreventor';
+import ReportCheckBox from '../../common/reportCheckBox/ReportCheckBox';
 import * as S from './ReportModal.styled';
 import { useRef, useState } from 'react';
 
@@ -80,22 +80,7 @@ const ReportModal = ({
           <S.Form onSubmit={handleSubmit}>
             <S.SectionTitle>신고 사유</S.SectionTitle>
 
-            <S.CheckboxGrid>
-              {reasons.map((reason) => (
-                <S.CheckItem key={reason}>
-                  <S.CheckInput type='checkbox' name='reason' value={reason} />
-                  <S.CheckContent htmlFor={`reason-${reason}`}>
-                    {reason}
-                  </S.CheckContent>
-                </S.CheckItem>
-              ))}
-
-              {isNotExist && (
-                <S.ErrorMessage>
-                  신고 사유를 하나 이상 선택해주세요.
-                </S.ErrorMessage>
-              )}
-            </S.CheckboxGrid>
+            <ReportCheckBox isNotExist={isNotExist} />
 
             <S.SectionTitle>상세 작성(생략 가능)</S.SectionTitle>
             <S.TextArea
