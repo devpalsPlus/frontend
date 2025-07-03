@@ -9,7 +9,7 @@ export const InquiryTitleWrapper = styled.button`
   text-align: start;
   font-size: 1.1rem;
   display: grid;
-  grid-template-columns: 8% 15% 65% 17%;
+  grid-template-columns: 8% 15% 65% 12%;
   cursor: pointer;
 `;
 

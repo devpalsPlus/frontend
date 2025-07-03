@@ -6,6 +6,7 @@ import { useAlarmDelete } from '../../../../../hooks/user/useAlarmDelete';
 import { useAlarmPatch } from '../../../../../hooks/user/useAlarmPatch';
 import useAlarmList from '../../../../../hooks/user/useAlarmList';
 import NoContent from '../../../../common/noContent/NoContent';
+import { ROUTES } from '../../../../../constants/routes';
 
 export default function All() {
   const { alarmListData, isLoading } = useAlarmList();
@@ -17,14 +18,16 @@ export default function All() {
     // 문의, 신고 답변시 추후 수정
     if (filter === 1 || filter === 3) {
       if (replier === 3) {
-        return `/activity-log/inquiries`;
+        return `/${ROUTES.myPageActivityLog}/${ROUTES.activityInquiries}`;
       } else {
-        return `/project-detail/${id}`;
+        return `${ROUTES.projectDetail}/${id}`;
       }
     } else if (filter === 2) {
-      return `/manage/${id}`;
+      return `${ROUTES.manageProjectsRoot}/${id}`;
+    } else if (filter === 4) {
+      return ``;
     } else {
-      return `/mypage/notification`;
+      return `${ROUTES.mypage}/${ROUTES.myPageNotifications}`;
     }
   };
 
