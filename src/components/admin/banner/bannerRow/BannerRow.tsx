@@ -5,6 +5,7 @@ import ToggleSwitch from '../toggleSwitch/ToggleSwitch';
 import RadioGroup from '../radioGroup/RadioGroup';
 import DateRange from '../dateRange/DateRange';
 import { useState } from 'react';
+import { formatDate } from '../../../../util/formatDate';
 
 interface BannerRowProps {
   banner: BannerItem;
@@ -59,15 +60,6 @@ const BannerRow = ({
     setHoveredImageId(null);
   };
 
-  const formatDateRange = (start: string, end: string) => {
-    if (start && end) {
-      return `${start.replace(/-/g, '.')} ~ ${end.replace(/-/g, '.')}`;
-    }
-    return null;
-  };
-
-  const dateRangeDisplay = formatDateRange(banner.startDate, banner.endDate);
-
   return (
     <S.TableRow key={banner.id}>
       <S.TableCell>{index + 1}</S.TableCell>
@@ -97,8 +89,10 @@ const BannerRow = ({
       <S.TableCell>
         {banner.always ? (
           <S.Placeholder>-</S.Placeholder>
-        ) : dateRangeDisplay ? (
-          <S.DateDisplay>{dateRangeDisplay}</S.DateDisplay>
+        ) : banner.startDate && banner.endDate ? (
+          <S.DateDisplay>
+            {formatDate(banner.startDate)} ~ {formatDate(banner.endDate)}
+          </S.DateDisplay>
         ) : (
           <DateRange
             startDate={banner.startDate}
