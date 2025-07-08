@@ -26,12 +26,7 @@ export const TableHeaderCell = styled.th`
 
 export const ScrollBody = styled.tbody``;
 
-export const TableRow = styled.tr<{ $header?: boolean }>`
-  &:nth-child(odd) {
-    background-color: ${({ $header, theme }) =>
-      $header ? theme.buttonScheme.primary.bg : '#fafafa'};
-  }
-`;
+export const TableRow = styled.tr``;
 
 export const TableCell = styled.td`
   padding: 14px;

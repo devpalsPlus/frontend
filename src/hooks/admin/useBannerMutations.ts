@@ -35,7 +35,7 @@ export const useBannerMutations = ({
     mutationFn: (formData: FormData) => postBanner(formData),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: Banners.allBanners,
+        queryKey: [Banners.allBanners],
       });
     },
     onError: () => {
@@ -51,7 +51,7 @@ export const useBannerMutations = ({
     mutationFn: ({ formData, bannerId }) => patchBanner(formData, bannerId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: Banners.allBanners,
+        queryKey: [Banners.allBanners],
       });
     },
     onError: () => {
@@ -63,7 +63,7 @@ export const useBannerMutations = ({
     mutationFn: (bannerId: number) => deleteBanner(bannerId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: Banners.allBanners,
+        queryKey: [Banners.allBanners],
       });
       handleDeleteButtonState('success');
     },

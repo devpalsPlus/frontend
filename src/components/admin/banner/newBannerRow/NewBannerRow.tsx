@@ -1,54 +1,32 @@
+import { useCallback } from 'react';
 import * as S from './NewBannerRow.styled';
-import { BannerFormData } from '../../../../models/admin/banner';
+import { useNewBannerRow } from './useNewBannerRow';
 import ImageUploadArea from '../imageUploadArea/ImageUploadArea';
 import ToggleSwitch from '../toggleSwitch/ToggleSwitch';
 import RadioGroup from '../radioGroup/RadioGroup';
 import DateRange from '../dateRange/DateRange';
 
-interface NewBannerRowProps {
-  newBanner: BannerFormData;
-  canCreateBanner: boolean;
-  onInputChange: (
-    field: keyof BannerFormData,
-    value: string | boolean | File
-  ) => void;
-  onCreate: () => void;
-}
+const NewBannerRow = () => {
+  const { newBanner, canCreateBanner, handleInputChange, handleCreate } =
+    useNewBannerRow();
 
-const NewBannerRow = ({
-  newBanner,
-  canCreateBanner,
-  onInputChange,
-  onCreate,
-}: NewBannerRowProps) => {
-  const handleImageChange = (file: File) => {
-    onInputChange('imageUrl', file);
-  };
-
-  const handleFileInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      handleImageChange(file);
-    }
-  };
-
-  const handleImageClick = () => {
+  const handleImageClick = useCallback(() => {
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = 'image/*';
     input.style.display = 'none';
 
-    input.onchange = (event) =>
-      handleFileInputChange(
-        event as unknown as React.ChangeEvent<HTMLInputElement>
-      );
+    input.onchange = (event) => {
+      const file = (event.target as HTMLInputElement).files?.[0];
+      if (file) {
+        handleInputChange('imageUrl', file);
+      }
+    };
 
     document.body.appendChild(input);
     input.click();
     document.body.removeChild(input);
-  };
+  }, [handleInputChange]);
 
   const imageUrl = newBanner.imageUrl
     ? URL.createObjectURL(newBanner.imageUrl)
@@ -59,6 +37,7 @@ const NewBannerRow = ({
       <S.TableCell>
         <S.Placeholder>-</S.Placeholder>
       </S.TableCell>
+
       <S.ImageCell>
         <ImageUploadArea
           imageUrl={imageUrl}
@@ -68,20 +47,23 @@ const NewBannerRow = ({
           showOverlay={false}
         />
       </S.ImageCell>
+
       <S.TableCell>
         <ToggleSwitch
           id='toggle-new'
           checked={!!newBanner.visible}
-          onChange={(checked) => onInputChange('visible', checked)}
+          onChange={(checked) => handleInputChange('visible', checked)}
         />
       </S.TableCell>
+
       <S.TableCell>
         <RadioGroup
           name='new'
           value={newBanner.always}
-          onChange={(always) => onInputChange('always', always)}
+          onChange={(always) => handleInputChange('always', always)}
         />
       </S.TableCell>
+
       <S.TableCell>
         {newBanner.always ? (
           <S.Placeholder>-</S.Placeholder>
@@ -89,13 +71,14 @@ const NewBannerRow = ({
           <DateRange
             startDate={newBanner.startDate}
             endDate={newBanner.endDate}
-            onStartDateChange={(date) => onInputChange('startDate', date)}
-            onEndDateChange={(date) => onInputChange('endDate', date)}
+            onStartDateChange={(date) => handleInputChange('startDate', date)}
+            onEndDateChange={(date) => handleInputChange('endDate', date)}
           />
         )}
       </S.TableCell>
+
       <S.TableCell>
-        <S.CreateButton onClick={onCreate} disabled={!canCreateBanner}>
+        <S.CreateButton onClick={handleCreate} disabled={!canCreateBanner}>
           생성하기
         </S.CreateButton>
       </S.TableCell>

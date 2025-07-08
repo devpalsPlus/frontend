@@ -7,11 +7,10 @@ export const useGetAllBannerList = () => {
     data: allBannersData,
     isLoading,
     isFetching,
-    refetch,
   } = useQuery({
     queryKey: [Banners.allBanners],
     queryFn: () => getBannerList(),
   });
 
-  return { allBannersData, isLoading, isFetching, refetch };
+  return { allBannersData, isLoading, isFetching };
 };

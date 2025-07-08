@@ -17,6 +17,15 @@ export interface BannerFormData {
   endDate: string;
 }
 
+// 편집 중인 배너의 변경사항을 추적하기 위한 타입
+export interface BannerChanges {
+  visible?: boolean;
+  always?: boolean;
+  startDate?: string;
+  endDate?: string;
+  newImageFile?: File;
+}
+
 export interface ApiBannerList extends ApiCommonType {
   data: BannerItem[];
 }

@@ -1,49 +1,49 @@
+import { useState, useCallback } from 'react';
 import * as S from './BannerList.styled';
 import ScrollPreventor from '../../common/modal/ScrollPreventor';
-import { useBannerManagement } from '../../../hooks/admin/useBannerManagement';
+import { useGetAllBannerList } from '../../../hooks/admin/useGetAllBannerList';
+import { useBannerMutations } from '../../../hooks/admin/useBannerMutations';
 import { useModal } from '../../../hooks/useModal';
 import TableHeader from './tableHeader/TableHeader';
 import BannerRow from './bannerRow/BannerRow';
 import NewBannerRow from './newBannerRow/NewBannerRow';
 import Modal from '../../common/modal/Modal';
+import { Spinner } from '../../common/loadingSpinner/LoadingSpinner.styled';
+
+const TABLE_COLUMNS = [
+  { width: '50px' },
+  { width: '280px' },
+  { width: '100px' },
+  { width: '160px' },
+  { width: '240px' },
+  { width: '140px' },
+];
 
 export default function BannerList() {
   const { isOpen, message, handleModalOpen, handleModalClose } = useModal();
+  const { allBannersData, isLoading } = useGetAllBannerList();
+  const { deleteBannerMutate } = useBannerMutations({ handleModalOpen });
+  const [isCreating, setIsCreating] = useState(false);
 
-  const {
-    allBanners,
-    isLoading,
-    newBanner,
-    isCreating,
-    canCreateBanner,
-    hasNewBannerChanges,
-    handleToggle,
-    handleChangeType,
-    handleDateChange,
-    handleImageChange,
-    handleDelete,
-    handleCreate,
-    handleInputChange,
-    toggleCreating,
-    resetNewBanner,
-  } = useBannerManagement({ handleModalOpen });
-
-  const handleCancel = () => {
-    if (hasNewBannerChanges) {
-      const confirmed = window.confirm(
-        '입력 데이터가 날아 갈 수 있습니다. 계속 하시겠습니까?'
-      );
-      if (confirmed) {
-        resetNewBanner();
-        toggleCreating();
+  const handleDelete = useCallback(
+    async (id: number) => {
+      if (window.confirm('정말 삭제하시겠습니까?')) {
+        try {
+          await deleteBannerMutate.mutateAsync(id);
+        } catch (error) {
+          console.error('삭제 실패:', error);
+        }
       }
-    } else {
-      toggleCreating();
-    }
-  };
+    },
+    [deleteBannerMutate]
+  );
+
+  const toggleCreating = useCallback(() => {
+    setIsCreating((prev) => !prev);
+  }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   return (
@@ -51,37 +51,27 @@ export default function BannerList() {
       <ScrollPreventor />
       <S.Container>
         <colgroup>
-          <col style={{ width: '50px' }} />
-          <col style={{ width: '280px' }} />
-          <col style={{ width: '100px' }} />
-          <col style={{ width: '160px' }} />
-          <col style={{ width: '240px' }} />
-          <col style={{ width: '140px' }} />
+          {TABLE_COLUMNS.map((col, index) => (
+            <col key={index} style={{ width: col.width }} />
+          ))}
         </colgroup>
+
         <TableHeader />
+
         <S.TableBody>
-          {allBanners.map((banner, index) => (
+          {allBannersData?.data.map((banner, index) => (
             <BannerRow
               key={banner.id}
               banner={banner}
               index={index}
-              onToggle={handleToggle}
-              onChangeType={handleChangeType}
-              onDateChange={handleDateChange}
-              onImageChange={handleImageChange}
               onDelete={handleDelete}
             />
           ))}
-          {isCreating && (
-            <NewBannerRow
-              newBanner={newBanner}
-              canCreateBanner={canCreateBanner}
-              onInputChange={handleInputChange}
-              onCreate={handleCreate}
-            />
-          )}
+
+          {isCreating && <NewBannerRow />}
         </S.TableBody>
       </S.Container>
+
       <S.ButtonContainer>
         {!isCreating ? (
           <S.CreateButton
@@ -97,12 +87,13 @@ export default function BannerList() {
             radius='primary'
             schema='primary'
             size='primary'
-            onClick={handleCancel}
+            onClick={toggleCreating}
           >
             취소하기
           </S.CancelButton>
         )}
       </S.ButtonContainer>
+
       <Modal isOpen={isOpen} onClose={handleModalClose}>
         {message}
       </Modal>
