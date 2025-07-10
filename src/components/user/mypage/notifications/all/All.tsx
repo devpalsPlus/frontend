@@ -13,8 +13,9 @@ export default function All() {
   const { filterId }: { filterId: number } = useOutletContext();
   const { mutate: deleteAlarm } = useAlarmDelete();
   const { mutate: patchAlarm } = useAlarmPatch();
+  console.log(alarmListData);
 
-  const linkUrl = (id: number, filter: number, replier = 0) => {
+  const linkUrl = (id: number, filter: number, replier: number = 0) => {
     // 문의, 신고 답변시 추후 수정
     if (filter === 1 || filter === 3) {
       if (replier === 3) {
@@ -25,7 +26,7 @@ export default function All() {
     } else if (filter === 2) {
       return `${ROUTES.manageProjectsRoot}/${id}`;
     } else if (filter === 4) {
-      return ``;
+      return `${ROUTES.mypage}/${ROUTES.myPageActivityLog}/${ROUTES.activityInquiries}`;
     } else {
       return `${ROUTES.mypage}/${ROUTES.myPageNotifications}`;
     }
@@ -62,6 +63,8 @@ export default function All() {
         {alarmListData
           .filter((list) => {
             if (filterId === 0) {
+              return true;
+            } else if (filterId === 3 && list.alarmFilterId === 4) {
               return true;
             } else if (list.alarmFilterId === filterId) {
               return true;
