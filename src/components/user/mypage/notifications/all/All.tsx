@@ -13,16 +13,11 @@ export default function All() {
   const { filterId }: { filterId: number } = useOutletContext();
   const { mutate: deleteAlarm } = useAlarmDelete();
   const { mutate: patchAlarm } = useAlarmPatch();
-  console.log(alarmListData);
 
-  const linkUrl = (id: number, filter: number, replier: number = 0) => {
+  const linkUrl = (id: number, filter: number) => {
     // 문의, 신고 답변시 추후 수정
     if (filter === 1 || filter === 3) {
-      if (replier === 3) {
-        return `/${ROUTES.myPageActivityLog}/${ROUTES.activityInquiries}`;
-      } else {
-        return `${ROUTES.projectDetail}/${id}`;
-      }
+      return `${ROUTES.projectDetail}/${id}`;
     } else if (filter === 2) {
       return `${ROUTES.manageProjectsRoot}/${id}`;
     } else if (filter === 4) {
@@ -49,7 +44,7 @@ export default function All() {
     return false;
   }).length;
 
-  if (!alarmListData || alarmListData.length === 0 || filterLength === 0) {
+  if (!alarmListData?.length || filterLength === 0) {
     return (
       <S.WrapperNoContent data-type='noContent'>
         <NoContent type='notification' />
@@ -76,7 +71,7 @@ export default function All() {
               {/* 신고하기 알림 구별 */}
               {list.alarmFilterId !== 5 ? (
                 <Link
-                  to={linkUrl(list.routingId, list.alarmFilterId, list.replier)}
+                  to={linkUrl(list.routingId, list.alarmFilterId)}
                   onClick={() => patchAlarm(list.id)}
                 >
                   <S.SpanNotification
