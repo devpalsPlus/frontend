@@ -15,7 +15,6 @@ export default function All() {
   const { mutate: patchAlarm } = useAlarmPatch();
 
   const linkUrl = (id: number, filter: number) => {
-    // 문의, 신고 답변시 추후 수정
     if (filter === 1 || filter === 3) {
       return `${ROUTES.projectDetail}/${id}`;
     } else if (filter === 2) {
