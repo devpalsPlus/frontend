@@ -74,23 +74,23 @@ export default function BannerList() {
 
       <S.ButtonContainer>
         {!isCreating ? (
-          <S.CreateButton
+          <S.BannerButton
             radius='primary'
             schema='primary'
             size='primary'
             onClick={toggleCreating}
           >
             배너 생성하기
-          </S.CreateButton>
+          </S.BannerButton>
         ) : (
-          <S.CancelButton
+          <S.BannerButton
             radius='primary'
             schema='primary'
             size='primary'
             onClick={toggleCreating}
           >
             취소하기
-          </S.CancelButton>
+          </S.BannerButton>
         )}
       </S.ButtonContainer>
 

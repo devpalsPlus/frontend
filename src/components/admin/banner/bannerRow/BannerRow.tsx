@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import * as S from './BannerRow.styled';
-import { BannerItem } from '../../../../models/admin/banner';
+import type { BannerItem } from '../../../../models/admin/banner';
 import { useBannerRow } from './useBannerRow';
 import ImageUploadArea from '../imageUploadArea/ImageUploadArea';
 import ToggleSwitch from '../toggleSwitch/ToggleSwitch';

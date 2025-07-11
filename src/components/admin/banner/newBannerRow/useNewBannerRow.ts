@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { BannerFormData } from '../../../../models/admin/banner';
+import type { BannerFormData } from '../../../../models/admin/banner';
 import { useBannerMutations } from '../../../../hooks/admin/useBannerMutations';
 import { useModal } from '../../../../hooks/useModal';
 

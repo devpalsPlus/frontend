@@ -24,6 +24,10 @@ export const postBanner = async (formData: FormData) => {
 
 export const patchBanner = async (formData: FormData, bannerId?: number) => {
   try {
+    if (!bannerId) {
+      throw new Error('bannerId is required');
+    }
+
     for (const [key, value] of formData.entries()) {
       if (value instanceof File) {
         console.log(`${key}:`, {
@@ -46,6 +50,10 @@ export const patchBanner = async (formData: FormData, bannerId?: number) => {
 
 export const deleteBanner = async (bannerId?: number) => {
   try {
+    if (!bannerId) {
+      throw new Error('bannerId is required');
+    }
+
     const response = await httpClient.delete(`/banner/${bannerId}`);
     return response.data;
   } catch (error) {

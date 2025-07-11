@@ -39,6 +39,7 @@ export const useBannerMutations = ({
       });
     },
     onError: () => {
+      handleModalOpen(ADMIN_MODAL_MESSAGE.writeError);
       console.error('배너 생성에 실패했습니다.');
     },
   });
@@ -55,6 +56,7 @@ export const useBannerMutations = ({
       });
     },
     onError: () => {
+      handleModalOpen(ADMIN_MODAL_MESSAGE.writeError);
       console.error('배너 수정에 실패했습니다.');
     },
   });
@@ -68,6 +70,7 @@ export const useBannerMutations = ({
       handleDeleteButtonState('success');
     },
     onError: () => {
+      handleModalOpen(ADMIN_MODAL_MESSAGE.writeError);
       handleDeleteButtonState('fail');
     },
   });

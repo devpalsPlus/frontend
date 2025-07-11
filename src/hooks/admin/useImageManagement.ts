@@ -16,6 +16,9 @@ export const useImageManagement = () => {
         onImageChange(base64, bannerId);
       }
     };
+    reader.onerror = () => {
+      console.error('이미지 업로드에 실패했습니다.');
+    };
     reader.readAsDataURL(file);
   };
 

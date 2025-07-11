@@ -23,7 +23,7 @@ const ImageUploadArea = ({
         onMouseLeave={onImageLeave}
         onClick={onImageClick}
       >
-        <S.Thumbnail src={imageUrl} alt='' />
+        <S.Thumbnail src={imageUrl} alt='배너 이미지 미리보기' />
         {showOverlay && (
           <S.ImageOverlay>
             <S.EditIcon>

@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import * as S from './NewBannerRow.styled';
 import { useNewBannerRow } from './useNewBannerRow';
 import ImageUploadArea from '../imageUploadArea/ImageUploadArea';
@@ -9,6 +9,18 @@ import DateRange from '../dateRange/DateRange';
 const NewBannerRow = () => {
   const { newBanner, canCreateBanner, handleInputChange, handleCreate } =
     useNewBannerRow();
+
+  const imageUrl = newBanner.imageUrl
+    ? URL.createObjectURL(newBanner.imageUrl)
+    : '';
+
+  useEffect(() => {
+    return () => {
+      if (imageUrl) {
+        URL.revokeObjectURL(imageUrl);
+      }
+    };
+  }, [imageUrl]);
 
   const handleImageClick = useCallback(() => {
     const input = document.createElement('input');
@@ -27,10 +39,6 @@ const NewBannerRow = () => {
     input.click();
     document.body.removeChild(input);
   }, [handleInputChange]);
-
-  const imageUrl = newBanner.imageUrl
-    ? URL.createObjectURL(newBanner.imageUrl)
-    : '';
 
   return (
     <S.TableRow>

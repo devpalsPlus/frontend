@@ -1,5 +1,8 @@
 import { useState, useCallback } from 'react';
-import { BannerItem, BannerChanges } from '../../../../models/admin/banner';
+import type {
+  BannerItem,
+  BannerChanges,
+} from '../../../../models/admin/banner';
 import { useBannerMutations } from '../../../../hooks/admin/useBannerMutations';
 import { useModal } from '../../../../hooks/useModal';
 
@@ -34,19 +37,24 @@ export const useBannerRow = (banner: BannerItem) => {
       setChanges((prev) => {
         const newChanges = { ...prev, ...updates };
 
-        // 실제 변경사항만 필터링
         const actualChanges: BannerChanges = {};
 
         Object.entries(newChanges).forEach(([key, newValue]) => {
           const field = key as keyof BannerChanges;
-          const originalValue = banner[field as keyof BannerItem];
 
           if (field === 'newImageFile') {
             if (newValue && newValue instanceof File) {
               actualChanges[field] = newValue;
             }
-          } else if (newValue !== originalValue) {
-            (actualChanges as any)[field] = newValue;
+          } else {
+            const originalValue = banner[field as keyof BannerItem];
+            if (newValue !== originalValue) {
+              if (field === 'visible' || field === 'always') {
+                actualChanges[field] = newValue as boolean;
+              } else if (field === 'startDate' || field === 'endDate') {
+                actualChanges[field] = newValue as string;
+              }
+            }
           }
         });
 
