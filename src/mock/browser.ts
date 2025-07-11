@@ -31,6 +31,10 @@ import {
   reportsAll,
   userAll,
   userAllPreview,
+  getBannerList,
+  postBanner,
+  patchBanner,
+  deleteBanner,
 } from './adminMock.ts';
 
 export const handlers = [
@@ -61,6 +65,10 @@ export const handlers = [
   reportsAll,
   userAll,
   userAllPreview,
+  getBannerList,
+  postBanner,
+  patchBanner,
+  deleteBanner,
   passthroughAllGet,
   passthroughAllPost,
 ];
