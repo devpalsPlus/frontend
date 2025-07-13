@@ -51,6 +51,7 @@ export const ActivityLog = {
 
 export const Inquiries = {
   allInquiries: ['AllInquiries'],
+  inquiriesPreview: ['InquiriesPreview'],
 } as const;
 
 export const CustomerService = {
@@ -79,4 +80,8 @@ export const Tag = {
   skillTag: ['skillTagsData'],
   positionTag: ['positionsData'],
   method: ['fetchMethodTag'],
+} as const;
+
+export const Banners = {
+  allBanners: ['AllBanners'],
 } as const;
