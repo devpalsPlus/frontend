@@ -16,6 +16,7 @@ export const InquiriesTableHeadContainer = styled.div`
   padding-top: 1rem;
   top: 0;
   background: ${({ theme }) => theme.color.lightgrey};
+  z-index: 10000;
 `;
 
 export const InquiriesTableHeadWrapper = styled.div`
@@ -44,15 +45,15 @@ export const InquiriesTableHeaderState = styled.div`
   text-align: center;
 `;
 
-export const MyInquiriesWrapper = styled.div<{ $headHeight: number }>`
-  scroll-margin-top: ${({ $headHeight }) => $headHeight + 10}px;
-`;
-
 export const InquiriesWrapper = styled.div`
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+`;
+
+export const MyInquiriesWrapper = styled.div`
+  scroll-margin-top: 65px;
 `;
 
 export const WrapperNoContentAppliedProjects = styled(WrapperNoContent)``;

@@ -6,7 +6,7 @@ import Spinner from '../../Spinner';
 import * as S from './Inquiries.styled';
 import Inquiry from './inquiry/Inquiry';
 import type { MyInquiries } from '../../../../../models/activityLog';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 
 export default function Inquiries() {
   const { userId } = useParams();
@@ -16,16 +16,13 @@ export default function Inquiries() {
     Number(userId),
     'inquiries'
   );
-  const headRef = useRef<HTMLDivElement>(null);
   const inquiriesRef = useRef<(HTMLDivElement | null)[]>([]);
-  const [headHeight, setHeadHeight] = useState<number>(0);
 
   useLayoutEffect(() => {
-    if (!id || !headRef?.current) return;
-    const height = headRef.current.offsetHeight;
-    setHeadHeight(height);
+    if (!id || !userActivityData) return;
     const idx = userActivityData?.findIndex((item) => item.id == id);
-    const targetRef = idx !== undefined ? inquiriesRef.current[idx] : null;
+    const targetRef =
+      idx !== undefined && idx >= 0 ? inquiriesRef.current[idx] : null;
     if (inquiriesRef?.current && targetRef) {
       targetRef.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -53,7 +50,7 @@ export default function Inquiries() {
   return (
     <S.container>
       <S.InquiriesContainer>
-        <S.InquiriesTableHeadContainer ref={headRef}>
+        <S.InquiriesTableHeadContainer>
           <S.InquiriesTableHeadWrapper>
             <S.InquiriesTableHeaderNo>No</S.InquiriesTableHeaderNo>
             <S.InquiriesTableHeaderCategory>
@@ -69,7 +66,6 @@ export default function Inquiries() {
             <S.MyInquiriesWrapper
               ref={(el) => (inquiriesRef.current[index] = el)}
               key={`${index}-${list.title}`}
-              $headHeight={headHeight}
             >
               <Inquiry list={list} no={myInquiriesData.length - index} />
             </S.MyInquiriesWrapper>
