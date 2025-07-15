@@ -31,7 +31,7 @@ export default function Inquiry({ list, no }: InquiryProps) {
     if (list.id === id) {
       setIsOpen(true);
     }
-  }, [list, id, setIsOpen]);
+  }, [list.id, id]);
 
   return (
     <S.Container ref={divRef}>

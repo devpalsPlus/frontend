@@ -25,11 +25,11 @@ export default function Inquiries() {
     const height = headRef.current.offsetHeight;
     setHeadHeight(height);
     const idx = userActivityData?.findIndex((item) => item.id == id);
-    const targetRef = typeof idx === 'number' ? inquiriesRef.current[idx] : '';
+    const targetRef = idx !== undefined ? inquiriesRef.current[idx] : null;
     if (inquiriesRef?.current && targetRef) {
       targetRef.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  }, [userActivityData, id, headHeight]);
+  }, [userActivityData, id]);
 
   if (isLoading) {
     return (
