@@ -34,8 +34,8 @@ export const InquiryStateSpan = styled.span<{ $isCompletedAnswer: boolean }>`
     $isCompletedAnswer &&
     css`
       background: ${({ theme }) => theme.color.navy};
-      border-radius: ${({ theme }) => theme.borderRadius.small};
-      padding: 0.2rem;
+      border-radius: ${({ theme }) => theme.borderRadius.large};
+      padding: 0.2rem 0.5rem;
     `}
 `;
 

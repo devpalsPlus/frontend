@@ -71,6 +71,7 @@ export default function All() {
               {list.alarmFilterId !== 5 ? (
                 <Link
                   to={linkUrl(list.routingId, list.alarmFilterId)}
+                  state={list.alarmFilterId === 4 && { id: list.routingId }}
                   onClick={() => patchAlarm(list.id)}
                 >
                   <S.SpanNotification

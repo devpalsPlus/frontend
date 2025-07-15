@@ -44,6 +44,10 @@ export const InquiriesTableHeaderState = styled.div`
   text-align: center;
 `;
 
+export const MyInquiriesWrapper = styled.div<{ $headHeight: number }>`
+  scroll-margin-top: ${({ $headHeight }) => $headHeight + 10}px;
+`;
+
 export const InquiriesWrapper = styled.div`
   margin-top: 1rem;
   display: flex;

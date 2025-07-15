@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import useGetUserActivity from '../../../../../hooks/admin/useGetAllUserActivity';
 import ContentBorder from '../../../../common/contentBorder/ContentBorder';
 import NoContent from '../../../../common/noContent/NoContent';
@@ -6,13 +6,30 @@ import Spinner from '../../Spinner';
 import * as S from './Inquiries.styled';
 import Inquiry from './inquiry/Inquiry';
 import type { MyInquiries } from '../../../../../models/activityLog';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 export default function Inquiries() {
   const { userId } = useParams();
+  const { state } = useLocation();
+  const { id } = state || {};
   const { userActivityData, isLoading } = useGetUserActivity(
     Number(userId),
     'inquiries'
   );
+  const headRef = useRef<HTMLDivElement>(null);
+  const inquiriesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [headHeight, setHeadHeight] = useState<number>(0);
+
+  useLayoutEffect(() => {
+    if (!id || !headRef?.current) return;
+    const height = headRef.current.offsetHeight;
+    setHeadHeight(height);
+    const idx = userActivityData?.findIndex((item) => item.id == id);
+    const targetRef = typeof idx === 'number' ? inquiriesRef.current[idx] : '';
+    if (inquiriesRef?.current && targetRef) {
+      targetRef.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [userActivityData, id, headHeight]);
 
   if (isLoading) {
     return (
@@ -36,7 +53,7 @@ export default function Inquiries() {
   return (
     <S.container>
       <S.InquiriesContainer>
-        <S.InquiriesTableHeadContainer>
+        <S.InquiriesTableHeadContainer ref={headRef}>
           <S.InquiriesTableHeadWrapper>
             <S.InquiriesTableHeaderNo>No</S.InquiriesTableHeaderNo>
             <S.InquiriesTableHeaderCategory>
@@ -49,11 +66,13 @@ export default function Inquiries() {
         </S.InquiriesTableHeadContainer>
         <S.InquiriesWrapper>
           {myInquiriesData.map((list, index) => (
-            <Inquiry
+            <S.MyInquiriesWrapper
+              ref={(el) => (inquiriesRef.current[index] = el)}
               key={`${index}-${list.title}`}
-              list={list}
-              no={myInquiriesData.length - index}
-            />
+              $headHeight={headHeight}
+            >
+              <Inquiry list={list} no={myInquiriesData.length - index} />
+            </S.MyInquiriesWrapper>
           ))}
         </S.InquiriesWrapper>
       </S.InquiriesContainer>
