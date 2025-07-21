@@ -57,7 +57,7 @@ const ModifyProject = () => {
       setValue('title', projectData.title);
       setValue('newBy', projectData.isBeginner);
       setValue('maxVolunteers', projectData.totalMember);
-      setValue('duration', Number(projectData.estimatedPeriod.slice(0, 1)));
+      setValue('duration', projectData.estimatedPeriod.slice(0, 1));
       setValue('markdownEditor', projectData.description);
     }
   }, [projectData, setValue]);
@@ -73,12 +73,12 @@ const ModifyProject = () => {
   const handleSubmit = async (data: z.infer<typeof createProjectScheme>) => {
     const formData: FormData = {
       title: data.title,
-      totalMember: data.maxVolunteers,
+      totalMember: Number(data.maxVolunteers),
       recruitmentStartDate: data.startDate,
       recruitmentEndDate: data.endDate,
       startDate: data.startDatePre,
       positionTagIds: data.position,
-      estimatedPeriod: `${data.duration}개월`,
+      estimatedPeriod: `${Number(data.duration)}일`,
       methodTypeId: data.field,
       isBeginner: data.newBy,
       skillTagIds: data.languages,
