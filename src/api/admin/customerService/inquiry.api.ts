@@ -21,6 +21,11 @@ export const getAllInquiries = async (
   }
 };
 
+export const getInquiriesPreview = async () => {
+  const response = await httpClient.get<ApiAdminInquiry>(`/inquiry/preview`);
+  return response.data.data;
+};
+
 export const getInquiryDetail = async (id: string) => {
   try {
     const response = await httpClient.get<ApiAdminInquiryDetail>(

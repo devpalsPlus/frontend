@@ -15,7 +15,7 @@ const NoticePreview = () => {
   }
 
   if (!noticeData) {
-    return <S.Container>공지사힝이 없습니다.</S.Container>;
+    return <S.Container>공지사항이 없습니다.</S.Container>;
   }
 
   return (
