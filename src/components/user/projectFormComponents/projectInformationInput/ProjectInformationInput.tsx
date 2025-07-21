@@ -27,24 +27,23 @@ const ProjectInformationInput = ({
   return (
     <>
       {PROJECT_DATA.map((input, index) => (
-        <>
-          <S.InfoRow key={index}>
-            <S.InfoLabel htmlFor={input.name}>{input.label}</S.InfoLabel>
-            <Input
-              indexInfo={input.id}
-              control={control}
-              errors={errors}
-              name={input.name}
-              type={input.type}
-              placeholder={input.placeholder}
-            />
-            {input.type === 'checkbox' && (
-              <S.welcomeSprout>
-                새싹 멤버를 환영한다면 체크를 눌러주세요!!
-              </S.welcomeSprout>
-            )}
-          </S.InfoRow>
-        </>
+        <S.InfoRow key={index}>
+          <S.InfoLabel htmlFor={input.name}>{input.label}</S.InfoLabel>
+          <Input
+            indexInfo={input.id}
+            control={control}
+            errors={errors}
+            name={input.name}
+            type={input.type}
+            unit={input.unit}
+            min={1}
+          />
+          {input.type === 'checkbox' && (
+            <S.welcomeSprout>
+              새싹 멤버를 환영한다면 체크를 눌러주세요!!
+            </S.welcomeSprout>
+          )}
+        </S.InfoRow>
       ))}
 
       <S.InfoRow>
@@ -59,7 +58,12 @@ const ProjectInformationInput = ({
       />
 
       <S.InfoRow>
-        <S.InfoLabel htmlFor='position'>모집 분야</S.InfoLabel>
+        <S.InfoLabel htmlFor='position'>
+          모집 분야
+          <S.welcomeSprout>
+            전체를 클릭하면 다른 카테고리가 해제됩니다 !
+          </S.welcomeSprout>
+        </S.InfoLabel>
       </S.InfoRow>
       <MozipCategoryComponent
         name='position'
