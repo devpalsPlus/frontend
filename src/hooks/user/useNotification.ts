@@ -36,10 +36,7 @@ const useNotification = () => {
 
       eventSourceRef.current = eventSource;
 
-      eventSource.onopen = () => {
-        console.log('확인');
-        console.log(eventSource.readyState);
-      };
+      eventSource.onopen = () => {};
 
       eventSource.addEventListener('alarm', (e) => {
         const event = e as MessageEvent;

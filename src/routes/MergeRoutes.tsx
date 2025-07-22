@@ -11,8 +11,8 @@ export default function MergeRoutes() {
     {
       element: (
         <NotificationProvider>
-          <NotificationInitializer />
           <ToastProvider>
+            <NotificationInitializer />
             <Outlet />
           </ToastProvider>
         </NotificationProvider>
