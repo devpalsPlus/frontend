@@ -1,9 +1,10 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { MyInquiries } from '../../../../../../models/activityLog';
 import * as S from './Inquiry.styled';
 import { My_INQUIRIES_MESSAGE } from '../../../../../../constants/user/customerService';
 import ContentBorder from '../../../../../common/contentBorder/ContentBorder';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
+import { useLocation } from 'react-router-dom';
 
 interface InquiryProps {
   list: MyInquiries;
@@ -16,26 +17,28 @@ interface IsImageOpen {
 }
 
 export default function Inquiry({ list, no }: InquiryProps) {
+  const { state } = useLocation();
+  const { id } = state || {};
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isImageOpen, setIsImageOpen] = useState<IsImageOpen>({
     isImageOpen: false,
     url: '',
   });
   const answer = list.answer || '';
-  const answerRef = useRef<HTMLTextAreaElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
 
-  const handleChangeAnswerRef = () => {
-    if (answerRef && answerRef.current) {
-      answerRef.current.style.height = 'auto';
-      answerRef.current.style.height = `${answerRef.current.scrollHeight}px`;
+  useEffect(() => {
+    if (list.id === id) {
+      setIsOpen(true);
     }
-  };
+  }, [list.id, id]);
 
   return (
-    <S.Container>
+    <S.Container ref={divRef}>
       <S.InquiryTitleWrapper
         type='button'
         onClick={() => setIsOpen((prev) => !prev)}
+        data-id={list.id}
       >
         <S.InquiryNumber>{no}</S.InquiryNumber>
         <S.InquiryCategory>{`[${list.category}]`}</S.InquiryCategory>

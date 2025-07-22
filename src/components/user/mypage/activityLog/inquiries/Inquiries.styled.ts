@@ -16,12 +16,13 @@ export const InquiriesTableHeadContainer = styled.div`
   padding-top: 1rem;
   top: 0;
   background: ${({ theme }) => theme.color.lightgrey};
+  z-index: 10000;
 `;
 
 export const InquiriesTableHeadWrapper = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 8% 15% 65% 17%;
+  grid-template-columns: 8% 15% 65% 12%;
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -49,6 +50,10 @@ export const InquiriesWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+`;
+
+export const MyInquiriesWrapper = styled.div`
+  scroll-margin-top: 65px;
 `;
 
 export const WrapperNoContentAppliedProjects = styled(WrapperNoContent)``;

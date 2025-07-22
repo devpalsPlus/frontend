@@ -6,6 +6,7 @@ import { useAlarmDelete } from '../../../../../hooks/user/useAlarmDelete';
 import { useAlarmPatch } from '../../../../../hooks/user/useAlarmPatch';
 import useAlarmList from '../../../../../hooks/user/useAlarmList';
 import NoContent from '../../../../common/noContent/NoContent';
+import { ROUTES } from '../../../../../constants/routes';
 
 export default function All() {
   const { alarmListData, isLoading } = useAlarmList();
@@ -13,18 +14,15 @@ export default function All() {
   const { mutate: deleteAlarm } = useAlarmDelete();
   const { mutate: patchAlarm } = useAlarmPatch();
 
-  const linkUrl = (id: number, filter: number, replier = 0) => {
-    // 문의, 신고 답변시 추후 수정
+  const linkUrl = (id: number, filter: number) => {
     if (filter === 1 || filter === 3) {
-      if (replier === 3) {
-        return `/activity-log/inquiries`;
-      } else {
-        return `/project-detail/${id}`;
-      }
+      return `${ROUTES.projectDetail}/${id}`;
     } else if (filter === 2) {
-      return `/manage/${id}`;
+      return `${ROUTES.manageProjectsRoot}/${id}`;
+    } else if (filter === 4) {
+      return `${ROUTES.mypage}/${ROUTES.myPageActivityLog}/${ROUTES.activityInquiries}`;
     } else {
-      return `/mypage/notification`;
+      return `${ROUTES.mypage}/${ROUTES.myPageNotifications}`;
     }
   };
 
@@ -45,7 +43,7 @@ export default function All() {
     return false;
   }).length;
 
-  if (!alarmListData || alarmListData.length === 0 || filterLength === 0) {
+  if (!alarmListData?.length || filterLength === 0) {
     return (
       <S.WrapperNoContent data-type='noContent'>
         <NoContent type='notification' />
@@ -60,6 +58,8 @@ export default function All() {
           .filter((list) => {
             if (filterId === 0) {
               return true;
+            } else if (filterId === 3 && list.alarmFilterId === 4) {
+              return true;
             } else if (list.alarmFilterId === filterId) {
               return true;
             }
@@ -70,7 +70,8 @@ export default function All() {
               {/* 신고하기 알림 구별 */}
               {list.alarmFilterId !== 5 ? (
                 <Link
-                  to={linkUrl(list.routingId, list.alarmFilterId, list.replier)}
+                  to={linkUrl(list.routingId, list.alarmFilterId)}
+                  state={list.alarmFilterId === 4 && { id: list.routingId }}
                   onClick={() => patchAlarm(list.id)}
                 >
                   <S.SpanNotification

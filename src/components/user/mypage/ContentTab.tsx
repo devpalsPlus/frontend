@@ -57,7 +57,6 @@ export default function ContentTab({ filter, $justifyContent }: ContentProps) {
             to={filter.url}
             onClick={() => handleChangeId(filter.id as number)}
           >
-            {' '}
             <S.WrapperTitle $selected={filter?.id === filterId}>
               <S.FilterTitle>{filter.title}</S.FilterTitle>
             </S.WrapperTitle>
