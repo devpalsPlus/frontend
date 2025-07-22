@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Button from '../../../components/common/Button/Button';
 
 export const Container = styled.div`
   max-width: 100%;
@@ -46,9 +45,10 @@ export const StepContainer = styled.div`
 
 export const StepButton = styled.div`
   display: flex;
-  justify-content: left;
+  justify-content: center;
   padding-top: 20px;
   gap: 20px;
+  width: 100%;
 `;
 
 export const StepLabel = styled.div`
@@ -65,10 +65,4 @@ export const StepLabel = styled.div`
 export const StepWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-
-export const SubmitButton = styled(Button)`
-  padding: 15px;
-  margin: 0 auto;
-  cursor: pointer;
 `;
