@@ -16,10 +16,11 @@ export const Container = styled.div<{ $reply: boolean }>`
 
 export const Wrapper = styled.div`
   display: flex;
-  flex-grow: 1;
+  flex: 1;
 `;
 
 export const CommentWrapper = styled.div`
+  flex: 1;
   margin-top: 4px;
 `;
 

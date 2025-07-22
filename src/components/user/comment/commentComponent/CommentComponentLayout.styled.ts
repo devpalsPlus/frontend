@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const CommentContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex: 1;
   width: 100%;
   margin-bottom: 20px;
 `;
