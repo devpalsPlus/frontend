@@ -15,8 +15,8 @@ import {
 import { MODAL_MESSAGE } from '../../constants/user/modalMessage';
 import { ROUTES } from '../../constants/routes';
 import type {
-  ApiAppliedProject,
   ApiJoinedProject,
+  AppliedProject,
 } from '../../models/userProject';
 
 export const useMyProfileInfo = () => {
@@ -130,11 +130,11 @@ export const useMyJoinedProjectList = () => {
 export const useMyAppliedStatusList = () => {
   const isLoggedIn = useAuthStore.getState().isLoggedIn;
 
-  const { data, isLoading } = useQuery<ApiAppliedProject>({
+  const { data, isLoading } = useQuery<AppliedProject[]>({
     queryKey: ProjectListKey.myAppliedStatusList,
     queryFn: () => getMyAppliedStatusList(),
     enabled: isLoggedIn,
   });
 
-  return { myAppliedStatusListData: data?.data, isLoading };
+  return { myAppliedStatusListData: data, isLoading };
 };

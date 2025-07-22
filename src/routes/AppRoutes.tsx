@@ -7,7 +7,6 @@ import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
 import QueryErrorBoundary from '../components/common/error/QueryErrorBoundary';
 import { ROUTES } from '../constants/routes';
 const Login = lazy(() => import('../pages/login/Login'));
-const LoginSuccess = lazy(() => import('../pages/login/LoginSuccess'));
 const LoginApi = lazy(() => import('../pages/login/LoginApi'));
 const Register = lazy(() => import('../pages/user/register/Register'));
 const ChangePassword = lazy(

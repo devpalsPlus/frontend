@@ -1,4 +1,3 @@
-import React from 'react';
 import * as S from './GraphCard.styled';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
@@ -58,7 +57,6 @@ const options: ChartOptions<'line'> = {
     x: {
       grid: {
         display: true,
-        borderDash: [5, 5],
         color: 'rgba(0,0,0,0.1)',
       },
       ticks: {
@@ -71,9 +69,6 @@ const options: ChartOptions<'line'> = {
     y: {
       grid: {
         display: true,
-        drawBorder: false,
-
-        borderDash: [5, 5],
         color: 'rgba(0,0,0,0.1)',
       },
       ticks: {

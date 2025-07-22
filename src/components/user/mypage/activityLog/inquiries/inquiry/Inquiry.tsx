@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import type { MyInquiries } from '../../../../../../models/activityLog';
 import * as S from './Inquiry.styled';
 import { My_INQUIRIES_MESSAGE } from '../../../../../../constants/user/customerService';
@@ -22,14 +22,14 @@ export default function Inquiry({ list, no }: InquiryProps) {
     url: '',
   });
   const answer = list.answer || '';
-  const answerRef = useRef<HTMLTextAreaElement>(null);
+  // const answerRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleChangeAnswerRef = () => {
-    if (answerRef && answerRef.current) {
-      answerRef.current.style.height = 'auto';
-      answerRef.current.style.height = `${answerRef.current.scrollHeight}px`;
-    }
-  };
+  // const handleChangeAnswerRef = () => {
+  //   if (answerRef && answerRef.current) {
+  //     answerRef.current.style.height = 'auto';
+  //     answerRef.current.style.height = `${answerRef.current.scrollHeight}px`;
+  //   }
+  // };
 
   return (
     <S.Container>

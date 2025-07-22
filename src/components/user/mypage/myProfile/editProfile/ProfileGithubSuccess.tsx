@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { ROUTES } from '../../../../../constants/routes';
 import { useModal } from '../../../../../hooks/useModal';
 import Modal from '../../../../common/modal/Modal';
-import { MODAL_MESSAGE } from '../../../../../constants/user/modalMessage';
 import { useGithubLink } from '../../../../../hooks/user/useMyInfo';
 
 export default function ProfileGithubSuccess() {

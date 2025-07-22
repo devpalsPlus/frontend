@@ -1,4 +1,3 @@
-import React from 'react';
 import * as S from './UserCard.styled';
 import Avatar from '../../common/avatar/Avatar';
 import type { AllUser } from '../../../models/auth';

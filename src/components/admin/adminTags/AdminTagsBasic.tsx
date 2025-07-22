@@ -4,7 +4,7 @@ import { useAdminSkillTag } from '../../../hooks/admin/useAdminTag';
 import { useLocation } from 'react-router-dom';
 import AdminTagCRUD from './AdminTagCRUD';
 import AdminSkillTagItems from './skills/AdminSkillTagItems';
-import type { TagFormType } from '../../../models/tags';
+
 import AdminPositionItems from './positions/AdminPositionItems';
 
 export type TWitchTag = 'skill' | 'position';

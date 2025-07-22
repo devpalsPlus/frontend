@@ -15,12 +15,7 @@ const UserProjects = lazy(
 const ActivityLog = lazy(
   () => import('../components/user/mypage/activityLog/ActivityLog')
 );
-const Notifications = lazy(
-  () => import('../components/user/mypage/notifications/Notifications')
-);
-// const AdminReportDetail = lazy(
-//   () => import('../components/admin/adminUserReport/AdminReportDetail')
-// );
+
 const Sidebar = lazy(
   () => import('../components/common/admin/sidebar/AdminSidebar')
 );
@@ -102,9 +97,9 @@ const NotificationsAppliedProjects = lazy(
       '../components/user/mypage/notifications/appliedProjects/AppliedProjects'
     )
 );
-const NotificationsAll = lazy(
-  () => import('../components/user/mypage/notifications/all/All')
-);
+// const NotificationsAll = lazy(
+//   () => import('../components/user/mypage/notifications/all/All')
+// );
 
 export const AdminRoutes = () => {
   const routeList = [

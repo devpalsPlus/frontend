@@ -61,7 +61,6 @@ const DropDownItem = ({
           targetId={recommentId ? recommentId : commentId}
           type={recommentId ? 'recomment' : 'comment'}
           onClose={handleCloseReportModal}
-          route={projectId}
         />
       )}
     </>
