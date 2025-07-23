@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import useGetUserActivity from '../../../../../hooks/admin/useGetAllUserActivity';
 import ContentBorder from '../../../../common/contentBorder/ContentBorder';
 import NoContent from '../../../../common/noContent/NoContent';
@@ -6,13 +6,27 @@ import Spinner from '../../Spinner';
 import * as S from './Inquiries.styled';
 import Inquiry from './inquiry/Inquiry';
 import type { MyInquiries } from '../../../../../models/activityLog';
+import { useLayoutEffect, useRef } from 'react';
 
 export default function Inquiries() {
   const { userId } = useParams();
+  const { state } = useLocation();
+  const { id } = state || {};
   const { userActivityData, isLoading } = useGetUserActivity(
     Number(userId),
     'inquiries'
   );
+  const inquiriesRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useLayoutEffect(() => {
+    if (!id || !userActivityData) return;
+    const idx = userActivityData?.findIndex((item) => item.id == id);
+    const targetRef =
+      idx !== undefined && idx >= 0 ? inquiriesRef.current[idx] : null;
+    if (inquiriesRef?.current && targetRef) {
+      targetRef.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [userActivityData, id]);
 
   if (isLoading) {
     return (
@@ -49,11 +63,12 @@ export default function Inquiries() {
         </S.InquiriesTableHeadContainer>
         <S.InquiriesWrapper>
           {myInquiriesData.map((list, index) => (
-            <Inquiry
+            <S.MyInquiriesWrapper
+              ref={(el) => (inquiriesRef.current[index] = el)}
               key={`${index}-${list.title}`}
-              list={list}
-              no={myInquiriesData.length - index}
-            />
+            >
+              <Inquiry list={list} no={myInquiriesData.length - index} />
+            </S.MyInquiriesWrapper>
           ))}
         </S.InquiriesWrapper>
       </S.InquiriesContainer>

@@ -6,19 +6,19 @@ export const NOTIFICATION_FILTER = [
     title: '지원한 프로젝트',
     url: ROUTES.notificationsAppliedProjects,
     id: 1,
-    linkUrl: `/project-detail`,
+    linkUrl: ROUTES.projectDetail,
   },
   {
     title: '지원자 확인',
     url: ROUTES.notificationsCheckedApplicants,
     id: 2,
-    linkUrl: `/project-detail`,
+    linkUrl: ROUTES.projectDetail,
   },
   {
     title: '댓글&답변',
     url: ROUTES.comments,
     id: 3,
-    linkUrl: `/project-detail`,
+    linkUrl: ROUTES.projectDetail,
   },
 ] as const;
 
