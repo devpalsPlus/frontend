@@ -94,14 +94,7 @@ export const createProjectScheme = z.object({
   field: z.number({ message: '진행 방식을 선택 해주세요.' }),
   duration: z
     .string({ message: '예상 기간을 입력해주세요.' })
-    .min(1, { message: '예상 기간을 입력해주세요.' })
-    .refine(
-      (val) => {
-        const num = Number(val);
-        return !isNaN(num) && num >= 1 && num <= 365;
-      },
-      { message: '예상 기간은 1일 이상 365일 이하여야 합니다.' }
-    ),
+    .min(1, { message: '예상 기간을 입력해주세요.' }),
   position: z
     .array(z.number({ message: '숫자로 입력 되어야 합니다.' }))
     .min(1, { message: '1개의 분야를 선택해주세요.' }),

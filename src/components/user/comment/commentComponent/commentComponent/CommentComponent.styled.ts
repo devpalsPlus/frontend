@@ -42,15 +42,18 @@ export const Comment = styled.span`
 
 export const ReplyInputButton = styled.div`
   display: flex;
+  margin-left: 7px;
   margin-top: 11px;
   cursor: pointer;
 `;
 
 export const Icon = styled.div`
+  color: ${({ theme }) => theme.color.blue};
   margin-left: 11px;
 `;
 
 export const ReplyContent = styled.p`
+  color: ${({ theme }) => theme.color.blue};
   margin-left: 10px;
   margin-bottom: 10px;
 `;

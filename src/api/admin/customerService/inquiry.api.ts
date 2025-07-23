@@ -22,8 +22,13 @@ export const getAllInquiries = async (
 };
 
 export const getInquiriesPreview = async () => {
-  const response = await httpClient.get<ApiAdminInquiry>(`/inquiry/preview`);
-  return response.data.data;
+  try {
+    const response = await httpClient.get<ApiAdminInquiry>(`/inquiry/preview`);
+    return response.data.data;
+  } catch (e) {
+    console.error('문의 미리보기 조회 에러', e);
+    throw e;
+  }
 };
 
 export const getInquiryDetail = async (id: string) => {

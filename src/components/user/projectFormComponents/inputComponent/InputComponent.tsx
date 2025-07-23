@@ -31,18 +31,14 @@ const Input = ({
   const hasError = Boolean(errors?.[name]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    let value = e.target.value;
 
     // 숫자 입력 필드인 경우 숫자만 허용
     if (name === 'maxVolunteers' || name === 'duration') {
-      // 숫자가 아닌 문자 제거
-      const numericValue = value.replace(/[^0-9]/g, '');
-      if (numericValue !== value) {
-        e.target.value = numericValue;
-      }
+      value = value.replace(/[^0-9]/g, '');
 
       // 음수 방지 (0보다 작은 값은 허용하지 않음)
-      const numValue = Number(numericValue);
+      const numValue = Number(value);
       if (numValue < min) {
         return;
       }
