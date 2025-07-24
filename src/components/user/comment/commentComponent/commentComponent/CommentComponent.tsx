@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
 import * as S from './CommentComponent.styled';
-import chat from '../../../../../assets/chat.svg';
 import { Link } from 'react-router-dom';
 import CommentInput from '../../commentInput/CommentInput';
 import type { CommentType } from '../../../../../models/comment';
 import { ROUTES } from '../../../../../constants/routes';
 import Avatar from '../../../../common/avatar/Avatar';
+import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 
 interface CommentComponentProps {
   item: CommentType;
@@ -84,9 +84,9 @@ const CommentComponent = ({
               }
             >
               <S.Icon>
-                <img src={chat} />
+                <ChatBubbleBottomCenterTextIcon width={20} height={20} />
               </S.Icon>
-              <S.ReplyContent>댓글 달기</S.ReplyContent>
+              <S.ReplyContent>답글 달기</S.ReplyContent>
             </S.ReplyInputButton>
           )}
         </S.CommentWrapper>

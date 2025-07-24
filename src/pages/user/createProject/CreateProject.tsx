@@ -43,12 +43,12 @@ const CreateProject = () => {
   const handleSubmit = (data: z.infer<typeof createProjectScheme>) => {
     const formData: FormData = {
       title: data.title,
-      totalMember: data.maxVolunteers,
+      totalMember: Number(data.maxVolunteers),
       recruitmentStartDate: data.startDate,
       recruitmentEndDate: data.endDate,
       startDate: data.startDatePre,
       positionTagIds: data.position,
-      estimatedPeriod: `${data.duration}개월`,
+      estimatedPeriod: `${Number(data.duration)}개월`,
       methodTypeId: data.field,
       isBeginner: data.newBy,
       skillTagIds: data.languages,

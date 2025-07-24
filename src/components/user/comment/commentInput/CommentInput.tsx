@@ -85,7 +85,7 @@ const CommentInput = ({
 
   return (
     <S.InputContainer>
-      <Avatar size={'55px'} image={profileImg} />
+      {!activateEditMode && <Avatar size={'55px'} image={profileImg} />}
       <S.InputWrapper>
         <form
           onSubmit={
@@ -97,8 +97,9 @@ const CommentInput = ({
             type='text'
             placeholder='댓글을 입력하세요'
             onFocus={handleFocus}
+            $isEditMode={!!activateEditMode}
           />
-          <S.Line $isFocused={isFocused} />
+          <S.Line $isFocused={isFocused} $isEditMode={!!activateEditMode} />
           {isFocused && (
             <S.ButtonWrapper>
               <S.ButtonCancel

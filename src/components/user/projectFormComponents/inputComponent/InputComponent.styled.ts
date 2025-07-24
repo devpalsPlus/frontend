@@ -6,15 +6,34 @@ export const InputContainer = styled.div`
   flex-direction: column;
 `;
 
-export const InputStyle = styled.input<{ type?: string }>`
+export const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+`;
+
+export const UnitText = styled.span`
+  font-size: ${({ theme }) => theme.heading.xsSmall.fontSize};
+  color: ${({ theme }) => theme.color.deepGrey};
+  white-space: nowrap;
+`;
+
+export const InputStyle = styled.input<{ type?: string; name?: string }>`
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius.primary};
   font-size: ${({ theme }) => theme.heading.small.fontSize};
 
-  ${({ type }) => {
+  ${({ type, name }) => {
     switch (type) {
       case 'text':
+        if (name === 'maxVolunteers' || name === 'duration') {
+          return css`
+            width: 60px;
+            text-align: right;
+            border-radius: 13px;
+          `;
+        }
         return css`
           width: 100%;
           border-radius: 13px;
@@ -40,19 +59,20 @@ export const InputStyle = styled.input<{ type?: string }>`
   }}
 `;
 
-export const InputInfoStyle = styled.input<{ type?: string }>`
+export const InputInfoStyle = styled.input<{ type?: string; name?: string }>`
   font-size: ${({ theme }) => theme.heading.small.fontSize};
   border: none;
 
-  ${({ type }) => {
+  ${({ type, name }) => {
     switch (type) {
       case 'text':
-        return css`
-          width: 220px;
-          text-align: left;
-          padding-left: 1px;
-        `;
-      case 'number':
+        if (name === 'maxVolunteers' || name === 'duration') {
+          return css`
+            width: 30px;
+            text-align: right;
+            padding-left: 1px;
+          `;
+        }
         return css`
           width: 220px;
           text-align: left;

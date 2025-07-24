@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { decryptData, encryptData } from '../util/cryptoUtils';
 import type { UserData } from '../models/auth';
 
 interface AuthState {

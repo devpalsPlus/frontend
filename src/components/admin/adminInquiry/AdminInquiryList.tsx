@@ -8,7 +8,7 @@ import type { AdminInquiryChangeSearchParams } from '../../../models/inquiry';
 
 export type SearchParamsInquiryKeyType = keyof AdminInquiryChangeSearchParams;
 export default function AdminInquiryList() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const userId = searchParams.get('userId') || '';
   const startDate = searchParams.get('startDate') || '';
   const endDate = searchParams.get('endDate') || '';

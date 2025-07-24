@@ -1,19 +1,13 @@
 import * as S from './InquiresPreview.styled';
-import { useGetAllInquiries } from '../../../../hooks/admin/useGetAllInquiries';
 import Avatar from '../../../common/avatar/Avatar';
 import { ADMIN_ROUTE } from '../../../../constants/routes';
 import arrow_right from '../../../../assets/ArrowRight.svg';
 import Spinner from '../../../user/mypage/Spinner';
-import { AdminInquiryChangeSearchParams } from '../../../../models/inquiry';
+import { useGetInquiriesPreview } from '../../../../hooks/admin/useGetInquiriesPreview';
 
 const InquiresPreview = () => {
-  const childSearchParams: AdminInquiryChangeSearchParams = {
-    userId: '',
-    startDate: '',
-    endDate: '',
-  };
-  const { allInquiriesData, isLoading, isFetching } =
-    useGetAllInquiries(childSearchParams);
+  const { allInquiriesPreviewData, isLoading, isFetching } =
+    useGetInquiriesPreview();
 
   if (isLoading || isFetching) {
     return (
@@ -23,13 +17,13 @@ const InquiresPreview = () => {
     );
   }
 
-  if (!allInquiriesData || allInquiriesData.length === 0) {
+  if (!allInquiriesPreviewData || allInquiriesPreviewData.length === 0) {
     return <S.Container>등록된 문의가 없습니다.</S.Container>;
   }
 
   return (
     <S.Container>
-      {allInquiriesData?.map((inquiry) => (
+      {allInquiriesPreviewData.map((inquiry) => (
         <S.Wrapper key={inquiry.id}>
           <S.Content>
             {/* <Link to={`${ADMIN_ROUTE.}`} */}

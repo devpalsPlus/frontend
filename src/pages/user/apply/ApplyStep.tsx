@@ -114,7 +114,13 @@ const Apply = () => {
     next,
   } = useMultiStepForm(stepList);
 
-  const handleNextStep = async () => {
+  const handlePrevStep = (e: React.MouseEvent) => {
+    e.preventDefault();
+    prev();
+  };
+
+  const handleNextStep = async (e: React.MouseEvent) => {
+    e.preventDefault();
     const fieldsToValidate = stepFields[currentStepIndex];
     const isValid = await trigger(fieldsToValidate);
     if (isValid) {
@@ -165,37 +171,24 @@ const Apply = () => {
 
         <S.StepButton>
           <Button
-            size={'small'}
+            size={'primary'}
             schema={'primary'}
             radius={'primary'}
             type='button'
-            onClick={prev}
+            onClick={handlePrevStep}
           >
             이전
           </Button>
-          {currentStepIndex !== stepList.length - 1 && (
-            <Button
-              size={'small'}
-              schema={'primary'}
-              radius={'primary'}
-              type='button'
-              onClick={handleNextStep}
-            >
-              다음
-            </Button>
-          )}
-        </S.StepButton>
-
-        {isLastStep && (
-          <S.SubmitButton
-            size='primary'
-            schema='primary'
-            radius='primary'
-            type='submit'
+          <Button
+            size={'primary'}
+            schema={'primary'}
+            radius={'primary'}
+            type={isLastStep ? 'submit' : 'button'}
+            onClick={isLastStep ? undefined : handleNextStep}
           >
-            지원 완료하기
-          </S.SubmitButton>
-        )}
+            {isLastStep ? '지원하기' : '다음'}
+          </Button>
+        </S.StepButton>
       </form>
 
       <Modal

@@ -1,4 +1,3 @@
-import React from 'react';
 import * as S from './AdminReportDetail.styled';
 import AdminTitle from '../../common/admin/title/AdminTitle';
 import Avatar from '../../common/avatar/Avatar';

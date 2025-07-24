@@ -1,4 +1,3 @@
-import React from 'react';
 import * as S from './AllUserPreview.styled';
 import Avatar from '../../../common/avatar/Avatar';
 import { ADMIN_ROUTE } from '../../../../constants/routes';

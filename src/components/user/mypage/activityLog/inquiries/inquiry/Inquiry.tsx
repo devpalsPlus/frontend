@@ -25,6 +25,7 @@ export default function Inquiry({ list, no }: InquiryProps) {
     url: '',
   });
   const answer = list.answer || '';
+
   const divRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

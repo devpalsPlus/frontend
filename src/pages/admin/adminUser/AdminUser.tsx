@@ -27,7 +27,7 @@ const AdminUser = () => {
     return <S.Container>{ADMIN_MODAL_MESSAGE.NO_RESULT}</S.Container>;
   }
 
-  const onBan = (userId: number) => {
+  const onBan = () => {
     // TODO : 버튼을 누르면 해당 유저 강퇴 조치 API 전송.
   };
 

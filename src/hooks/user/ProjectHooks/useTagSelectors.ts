@@ -52,17 +52,40 @@ const useTagSelectors = ({
         return updated;
       });
     } else if (fieldName === 'position') {
-      setSelectedTag((prev) => {
-        if (prev.includes(1) && idx !== 1) {
-          return prev;
+      // 전체(인덱스 1)를 클릭하는 경우
+      if (idx === 1) {
+        // 이미 전체가 선택되어 있으면 해제
+        if (selectedTag.includes(1)) {
+          const updated = selectedTag.filter((item) => item !== 1);
+          setSelectedTag(updated);
+          setValue(fieldName, updated);
+          return;
         }
 
-        if (idx === 1) {
-          const updated = prev.includes(1) ? [] : [1];
+        // 다른 카테고리가 선택되어 있으면 확인 메시지 표시
+        if (selectedTag.length > 0 && !selectedTag.includes(1)) {
+          const confirmed = window.confirm('선택된 카테고리가 해제됩니다.');
+          if (!confirmed) {
+            return;
+          }
+        }
+
+        // 전체 선택
+        setSelectedTag([1]);
+        setValue(fieldName, [1]);
+        return;
+      }
+
+      // 다른 카테고리를 클릭하는 경우
+      setSelectedTag((prev) => {
+        // 전체가 선택되어 있으면 전체 해제하고 해당 카테고리 선택
+        if (prev.includes(1)) {
+          const updated = [idx];
           setValue(fieldName, updated);
           return updated;
         }
 
+        // 일반적인 토글 로직
         const isAlreadySelected = prev.includes(idx);
         const updated = isAlreadySelected
           ? prev.filter((item) => item !== idx)

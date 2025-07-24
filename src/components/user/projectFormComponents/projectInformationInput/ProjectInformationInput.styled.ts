@@ -17,6 +17,13 @@ export const InfoLabel = styled.label`
   color: #333;
 `;
 
+export const LabelDescription = styled.span`
+  font-size: ${({ theme }) => theme.heading.xsSmall.fontSize};
+  color: ${({ theme }) => theme.color.grey};
+  font-weight: normal;
+  margin-left: 8px;
+`;
+
 export const welcomeSprout = styled.p`
   font-size: 1rem;
   font-weight: bold;

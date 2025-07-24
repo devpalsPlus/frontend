@@ -1,5 +1,5 @@
 import { PositionTag, SkillTag } from './tags';
-import { type ApiCommonType, type User } from './apiCommon';
+import type { ApiCommonType } from './apiCommon';
 
 export enum UserState {
   ONLINE = 'ONLINE',

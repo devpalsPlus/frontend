@@ -7,8 +7,8 @@ export const PROJECT_DATA = [
     id: '1',
     name: 'maxVolunteers',
     label: '모집 인원',
-    type: 'number',
-    placeholder: '모집 인원을 입력하세요. (ex. 5)',
+    type: 'text',
+    unit: '명',
   },
   {
     id: '2',
@@ -16,14 +16,15 @@ export const PROJECT_DATA = [
     label: '시작 예정',
     type: 'text',
     placeholder: 'YYYY-MM-DD',
+    unit: '',
   },
 
   {
     id: '3',
     name: 'duration',
     label: '예상 기간',
-    type: 'number',
-    placeholder: '예상 기간을 입력하세요. (ex. 5)',
+    type: 'text',
+    unit: '개월',
   },
 
   {
@@ -32,6 +33,7 @@ export const PROJECT_DATA = [
     label: '새싹 여부',
     type: 'checkbox',
     placeholder: '',
+    unit: '',
   },
 ] as const;
 
@@ -74,20 +76,25 @@ export const createProjectScheme = z.object({
     .string({ message: '프로젝트 제목을 입력해주세요.' })
     .min(1, { message: '프로젝트 제목을 입력해주세요.' }),
 
-  maxVolunteers: z.coerce
+  maxVolunteers: z
     .number({ message: '모집 인원을 입력해주세요.' })
-    .min(1, { message: '모집 인원은 1명 이상이어야 합니다.' })
-    .max(1000, { message: '모집 인원은 1000명 이하이어야 합니다.' }),
+    .min(1, { message: '모집 인원을 입력해주세요.' })
+    .refine(
+      (val) => {
+        const num = Number(val);
+        return !isNaN(num) && num >= 1 && num <= 1000;
+      },
+      { message: '모집 인원은 1명 이상 1000명 이하여야 합니다.' }
+    ),
   startDatePre: z
     .string({ required_error: '종료 날짜를 입력해주세요.' })
     .refine((date) => !isNaN(Date.parse(date)), {
       message: '유효한 날짜를 입력해주세요.',
     }),
   field: z.number({ message: '진행 방식을 선택 해주세요.' }),
-  duration: z.coerce
-    .number({ message: '예상 기간을 입력해주세요.' })
-    .positive({ message: '예상 기간은 1 이상이어야 합니다.' })
-    .max(365, { message: '예상 기간은 365일을 초과할 수 없습니다.' }),
+  duration: z
+    .string({ message: '예상 기간을 입력해주세요.' })
+    .min(1, { message: '예상 기간을 입력해주세요.' }),
   position: z
     .array(z.number({ message: '숫자로 입력 되어야 합니다.' }))
     .min(1, { message: '1개의 분야를 선택해주세요.' }),

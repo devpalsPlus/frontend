@@ -1,5 +1,5 @@
 import type { ApiCommonBasicType } from '../../models/apiCommon';
-import type { TagFormType } from '../../models/tags';
+
 import { httpClient } from '../http.api';
 
 export const postSkillTag = async (formData: FormData) => {
