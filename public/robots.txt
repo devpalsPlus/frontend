@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://www.devpals.site
+Sitemap: https://www.devpals.site/sitemap.xml
 
 # Crawl-delay (선택사항)
 Crawl-delay: 1 
