@@ -27,7 +27,7 @@ const Inquiry = lazy(
 );
 const MyPage = lazy(() => import('../pages/user/mypage/MyPage'));
 const UserPage = lazy(() => import('../pages/user/userpage/UserPage'));
-const Apply = lazy(() => import('../pages/user/apply/ApplyStep'));
+const Apply = lazy(() => import('../pages/user/apply/Apply'));
 const CreateProject = lazy(
   () => import('../pages/user/createProject/CreateProject')
 );
