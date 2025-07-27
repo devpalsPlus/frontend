@@ -10,7 +10,7 @@ const usePostComment = (id: number) => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [ProjectCommentList.projectComment, id],
-        exact: true,
+        exact: false,
       });
     },
     onError: (error) => {
