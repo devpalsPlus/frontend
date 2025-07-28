@@ -15,6 +15,8 @@ import LoadingSpinner from '../../../components/common/loadingSpinner/LoadingSpi
 import PhoneComponent from '../../../components/user/applyComponents/phoneComponent/PhoneComponent';
 import CareersComponent from '../../../components/user/applyComponents/careersComponent/CareersComponent';
 import Input from '../../../components/user/projectFormComponents/inputComponent/InputComponent';
+import ApplyStep from './ApplyStep';
+import useIsMobile from '../../../hooks/useIsMobile';
 
 const Apply = () => {
   const { projectId } = useParams();
@@ -23,6 +25,7 @@ const Apply = () => {
   const { data: projectData, isLoading, isFetching } = useGetProjectData(id);
   const { applyProject } = useApplyProject({ id, handleModalOpen });
   const userEmail = useAuthStore((state) => state.userData?.email);
+  const isMobile = useIsMobile();
 
   const {
     handleSubmit: onSubmitHandler,
@@ -65,6 +68,12 @@ const Apply = () => {
   if (isLoading) return <LoadingSpinner />;
   if (isFetching) return <LoadingSpinner />;
 
+  // 모바일 환경이면 ApplyStep 컴포넌트 렌더링
+  if (isMobile) {
+    return <ApplyStep />;
+  }
+
+  // 데스크톱 환경이면 기존 Apply 컴포넌트 렌더링
   return (
     <S.Container>
       <S.Title>프로젝트 지원</S.Title>

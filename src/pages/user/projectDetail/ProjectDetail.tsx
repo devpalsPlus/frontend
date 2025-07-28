@@ -31,6 +31,29 @@ const ProjectDetail = () => {
     }
   }, [data, handleModalOpen, isLoading, isFetching]);
 
+  // 간단한 메타 정보 설정
+  useEffect(() => {
+    if (data) {
+      document.title = `${data.title} - 프로젝트 상세`;
+
+      // 메타 설명 추가
+      const metaDescription = document.querySelector(
+        'meta[name="description"]'
+      );
+      if (metaDescription) {
+        metaDescription.setAttribute(
+          'content',
+          `${data.title} 프로젝트에 대한 상세 정보입니다.`
+        );
+      } else {
+        const newMetaDescription = document.createElement('meta');
+        newMetaDescription.name = 'description';
+        newMetaDescription.content = `${data.title} 프로젝트에 대한 상세 정보입니다.`;
+        document.head.appendChild(newMetaDescription);
+      }
+    }
+  }, [data]);
+
   if (isLoading || isFetching) return <LoadingSpinner />;
 
   if (!data) {
@@ -63,7 +86,11 @@ const ProjectDetail = () => {
             <S.Title>{data.title}</S.Title>
             <S.ProfileContainer>
               <S.ProfileImageContainer onClick={handleMovetoUserPage}>
-                <Avatar size='2.5rem' image={data.user.img} />
+                <Avatar
+                  size='2.5rem'
+                  image={data.user.img}
+                  alt={`${data.user.nickname}의 프로필 이미지`}
+                />
               </S.ProfileImageContainer>
               <S.UserInfo>
                 <S.UserName onClick={handleMovetoUserPage}>
@@ -71,19 +98,21 @@ const ProjectDetail = () => {
                 </S.UserName>
                 <S.PostDate>{formatDate(data.recruitmentEndDate)}</S.PostDate>
                 <S.ViewCount>
-                  <EyeIcon />
+                  <EyeIcon aria-label='조회수' />
                   {data.views}
                 </S.ViewCount>
               </S.UserInfo>
             </S.ProfileContainer>
           </S.Header>
+
           <S.Content>
             <ProjectInformation data={data} />
-            <br></br>
+            <br />
             <S.ProjectDescription>
               <MarkdownEditorView description={data.description} />
             </S.ProjectDescription>
           </S.Content>
+
           <S.ApplyButtonContainer>
             {userData &&
             userData.id !== data.user.id &&
@@ -99,7 +128,9 @@ const ProjectDetail = () => {
               </Button>
             ) : null}
           </S.ApplyButtonContainer>
-          <hr></hr>
+
+          <hr />
+
           <CommentLayout
             projectId={data.id}
             createrId={data.user.id}
@@ -107,6 +138,7 @@ const ProjectDetail = () => {
           />
         </S.Wrapper>
       </S.Container>
+
       <Modal
         isOpen={isOpen}
         onClose={handleModalClose}
